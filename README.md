@@ -8,6 +8,9 @@ We are currently working on a successor to shapez, with 3D Graphics, Exploration
 
 <br>
 
+# Shapez Community Edition
+Shapez Community Edition is a community maintained version of shapez.
+
 # shapez
 
 <a href="https://get.shapez.io/ghi" title="shapez on Steam">
