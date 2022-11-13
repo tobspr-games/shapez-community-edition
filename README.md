@@ -8,8 +8,8 @@ We are currently working on a successor to shapez, with 3D Graphics, Exploration
 
 <br>
 
-# Shapez Community Edition
-Shapez Community Edition is a community maintained version of shapez.
+# shapez Community Edition
+shapez Community Edition is a community-maintained version of shapez.
 
 # shapez
 
