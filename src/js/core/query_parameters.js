@@ -1,5 +1,4 @@
-const queryString = require("query-string");
-const options = queryString.parse(location.search);
+const options = Object.fromEntries(new URLSearchParams(location.search).entries());
 
 export let queryParamOptions = {
     embedProvider: null,

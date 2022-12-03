@@ -6,7 +6,7 @@ import { ShapeDefinition } from "../../shape_definition";
 import { BaseHUDPart } from "../base_hud_part";
 import { DynamicDomAttach } from "../dynamic_dom_attach";
 
-const copy = require("clipboard-copy");
+import copy from "clipboard-copy";
 
 export class HUDShapeViewer extends BaseHUDPart {
     createElements(parent) {

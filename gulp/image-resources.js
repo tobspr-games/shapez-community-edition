@@ -1,36 +1,50 @@
-const { existsSync } = require("fs");
-// @ts-ignore
-const path = require("path");
-const atlasToJson = require("./atlas2json");
+import fs from "fs";
+import path from "path/posix";
+import atlasToJson from "./atlas2json.js";
 
+import { execSync } from "child_process";
 const execute = command =>
-    require("child_process").execSync(command, {
+    execSync(command, {
         encoding: "utf-8",
     });
 
+import gulpImagemin from "gulp-imagemin";
+import imageminJpegtran from "imagemin-jpegtran";
+import imageminGifsicle from "imagemin-gifsicle";
+import imageminPngquant from "imagemin-pngquant";
+import gulpIf from "gulp-if";
+import gulpCached from "gulp-cached";
+import gulpClean from "gulp-clean";
+
 // Globs for atlas resources
-const rawImageResourcesGlobs = ["../res_raw/atlas.json", "../res_raw/**/*.png"];
+export const rawImageResourcesGlobs = ["../res_raw/atlas.json", "../res_raw/**/*.png"];
 
 // Globs for non-ui resources
-const nonImageResourcesGlobs = ["../res/**/*.woff2", "../res/*.ico", "../res/**/*.webm"];
+export const nonImageResourcesGlobs = ["../res/**/*.woff2", "../res/*.ico", "../res/**/*.webm"];
 
 // Globs for ui resources
-const imageResourcesGlobs = ["../res/**/*.png", "../res/**/*.svg", "../res/**/*.jpg", "../res/**/*.gif"];
+export const imageResourcesGlobs = [
+    "../res/**/*.png",
+    "../res/**/*.svg",
+    "../res/**/*.jpg",
+    "../res/**/*.gif",
+];
 
 // Link to download LibGDX runnable-texturepacker.jar
-const runnableTPSource = "https://libgdx-nightlies.s3.eu-central-1.amazonaws.com/libgdx-runnables/runnable-texturepacker.jar";
+const runnableTPSource =
+    "https://libgdx-nightlies.s3.eu-central-1.amazonaws.com/libgdx-runnables/runnable-texturepacker.jar";
 
-function gulptasksImageResources($, gulp, buildFolder) {
+export default function gulptasksImageResources(gulp, buildFolder) {
     // Lossless options
     const minifyImagesOptsLossless = () => [
-        $.imageminJpegtran({
+        imageminJpegtran({
             progressive: true,
         }),
-        $.imagemin.svgo({}),
-        $.imagemin.optipng({
+        gulpImagemin.svgo({}),
+        gulpImagemin.optipng({
             optimizationLevel: 3,
         }),
-        $.imageminGifsicle({
+        imageminGifsicle({
             optimizationLevel: 3,
             colors: 128,
         }),
@@ -38,22 +52,22 @@ function gulptasksImageResources($, gulp, buildFolder) {
 
     // Lossy options
     const minifyImagesOpts = () => [
-        $.imagemin.mozjpeg({
+        gulpImagemin.mozjpeg({
             quality: 80,
             maxMemory: 1024 * 1024 * 8,
         }),
-        $.imagemin.svgo({}),
-        $.imageminPngquant({
+        gulpImagemin.svgo({}),
+        imageminPngquant({
             speed: 1,
             strip: true,
             quality: [0.65, 0.9],
             dithering: false,
             verbose: false,
         }),
-        $.imagemin.optipng({
+        gulpImagemin.optipng({
             optimizationLevel: 3,
         }),
-        $.imageminGifsicle({
+        imageminGifsicle({
             optimizationLevel: 3,
             colors: 128,
         }),
@@ -81,7 +95,7 @@ function gulptasksImageResources($, gulp, buildFolder) {
             // First check whether Java is installed
             execute("java -version");
             // Now check and try downloading runnable-texturepacker.jar (22MB)
-            if (!existsSync("./runnable-texturepacker.jar")) {
+            if (!fs.existsSync("./runnable-texturepacker.jar")) {
                 const safeLink = JSON.stringify(runnableTPSource);
                 const commands = [
                     // linux/macos if installed
@@ -116,7 +130,7 @@ function gulptasksImageResources($, gulp, buildFolder) {
 
     // Converts .atlas LibGDX files to JSON
     gulp.task("imgres.atlasToJson", cb => {
-        atlasToJson.convert("../res_built/atlas");
+        atlasToJson("../res_built/atlas");
         cb();
     });
 
@@ -130,10 +144,10 @@ function gulptasksImageResources($, gulp, buildFolder) {
         return gulp
             .src(["../res_built/atlas/*.png"])
             .pipe(
-                $.if(
+                gulpIf(
                     fname => fileMustBeLossless(fname.history[0]),
-                    $.imagemin(minifyImagesOptsLossless()),
-                    $.imagemin(minifyImagesOpts())
+                    gulpImagemin(minifyImagesOptsLossless()),
+                    gulpImagemin(minifyImagesOpts())
                 )
             )
             .pipe(gulp.dest(resourcesDestFolder));
@@ -151,7 +165,7 @@ function gulptasksImageResources($, gulp, buildFolder) {
         return gulp
             .src(imageResourcesGlobs)
 
-            .pipe($.cached("imgres.copyImageResources"))
+            .pipe(gulpCached("imgres.copyImageResources"))
             .pipe(gulp.dest(path.join(resourcesDestFolder)));
     });
 
@@ -160,10 +174,10 @@ function gulptasksImageResources($, gulp, buildFolder) {
         return gulp
             .src(imageResourcesGlobs)
             .pipe(
-                $.if(
+                gulpIf(
                     fname => fileMustBeLossless(fname.history[0]),
-                    $.imagemin(minifyImagesOptsLossless()),
-                    $.imagemin(minifyImagesOpts())
+                    gulpImagemin(minifyImagesOptsLossless()),
+                    gulpImagemin(minifyImagesOpts())
                 )
             )
             .pipe(gulp.dest(path.join(resourcesDestFolder)));
@@ -193,13 +207,6 @@ function gulptasksImageResources($, gulp, buildFolder) {
                 ],
                 { read: false }
             )
-            .pipe($.if(fname => fname.history[0].indexOf("noinline") < 0, $.clean({ force: true })));
+            .pipe(gulpIf(fname => fname.history[0].indexOf("noinline") < 0, gulpClean({ force: true })));
     });
 }
-
-module.exports = {
-    rawImageResourcesGlobs,
-    nonImageResourcesGlobs,
-    imageResourcesGlobs,
-    gulptasksImageResources,
-};

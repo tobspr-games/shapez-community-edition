@@ -1,6 +1,6 @@
 import { createLogger } from "../core/logging";
 
-const Ajv = require("ajv");
+import Ajv from "ajv";
 const ajv = new Ajv({
     allErrors: false,
     uniqueItems: false,

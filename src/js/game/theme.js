@@ -1,6 +1,9 @@
+import dark from "./themes/dark.json";
+import light from "./themes/light.json";
+
 export const THEMES = {
-    dark: require("./themes/dark.json"),
-    light: require("./themes/light.json"),
+    dark,
+    light,
 };
 
 export let THEME = THEMES.light;

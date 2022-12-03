@@ -5,7 +5,7 @@ import { globalConfig } from "../core/config";
 import { Savegame } from "./savegame";
 const logger = createLogger("savegame_manager");
 
-const Rusha = require("rusha");
+import Rusha from "rusha";
 
 /**
  * @typedef {import("./savegame_typedefs").SavegamesData} SavegamesData

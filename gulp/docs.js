@@ -1,12 +1,15 @@
-const path = require("path");
-const fs = require("fs");
+import path from "path/posix";
+import fs from "fs";
 
-function gulptasksDocs($, gulp, buildFolder) {
+import gulpRename from "gulp-rename";
+import stripJsonComments from "strip-json-comments";
+
+export default function gulptasksDocs(gulp, buildFolder) {
     gulp.task("docs.convertJsToTs", () => {
         return gulp
             .src(path.join("..", "src", "js", "**", "*.js"))
             .pipe(
-                $.rename(path => {
+                gulpRename(path => {
                     path.extname = ".ts";
                 })
             )
@@ -15,7 +18,7 @@ function gulptasksDocs($, gulp, buildFolder) {
 
     gulp.task("docs.copyTsconfigForHints", cb => {
         const src = fs.readFileSync(path.join("..", "src", "js", "tsconfig.json")).toString();
-        const baseConfig = JSON.parse($.stripJsonComments(src));
+        const baseConfig = JSON.parse(stripJsonComments(src));
 
         baseConfig.allowJs = false;
         baseConfig.checkJs = false;
@@ -33,7 +36,3 @@ function gulptasksDocs($, gulp, buildFolder) {
 
     gulp.task("main.prepareDocs", gulp.series("docs.convertJsToTs", "docs.copyTsconfigForHints"));
 }
-
-module.exports = {
-    gulptasksDocs,
-};

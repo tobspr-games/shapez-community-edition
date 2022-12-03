@@ -116,8 +116,6 @@ function initExtensions() {
     };
 }
 
-// Fetch polyfill
-import "whatwg-fetch";
 // Other polyfills
 initPolyfills();
 initExtensions();

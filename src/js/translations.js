@@ -5,7 +5,7 @@ import { LANGUAGES } from "./languages";
 const logger = createLogger("translations");
 
 // @ts-ignore
-const baseTranslations = require("./built-temp/base-en.json");
+import baseTranslations from "./built-temp/base-en.json";
 
 export let T = baseTranslations;
 

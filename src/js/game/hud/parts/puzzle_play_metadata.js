@@ -6,8 +6,6 @@ import { formatBigNumberFull, formatSeconds, makeDiv } from "../../../core/utils
 import { T } from "../../../translations";
 import { BaseHUDPart } from "../base_hud_part";
 
-const copy = require("clipboard-copy");
-
 export class HUDPuzzlePlayMetadata extends BaseHUDPart {
     createElements(parent) {
         this.titleElement = makeDiv(parent, "ingame_HUD_PuzzlePlayTitle");

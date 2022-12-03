@@ -11,7 +11,6 @@ import { Entity } from "../../entity";
 import { BOOL_FALSE_SINGLETON, BOOL_TRUE_SINGLETON } from "../../items/boolean_item";
 import { COLOR_ITEM_SINGLETONS } from "../../items/color_item";
 import { BaseHUDPart } from "../base_hud_part";
-import trim from "trim";
 import { enumColors } from "../../colors";
 import { ShapeDefinition } from "../../shape_definition";
 
@@ -192,7 +191,7 @@ export class HUDConstantSignalEdit extends BaseHUDPart {
             return null;
         }
 
-        code = trim(code);
+        code = code.trim();
         const codeLower = code.toLowerCase();
 
         if (MODS_ADDITIONAL_CONSTANT_SIGNAL_RESOLVER[codeLower]) {

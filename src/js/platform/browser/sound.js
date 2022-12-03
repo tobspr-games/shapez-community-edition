@@ -3,12 +3,12 @@ import { cachebust } from "../../core/cachebust";
 import { createLogger } from "../../core/logging";
 import { globalConfig } from "../../core/config";
 
-const { Howl, Howler } = require("howler");
+import { Howl, Howler } from "howler";
 
 const logger = createLogger("sound/browser");
 
 // @ts-ignore
-const sprites = require("../../built-temp/sfx.json");
+import sprites from "../../built-temp/sfx.json";
 
 class SoundSpritesContainer {
     constructor() {

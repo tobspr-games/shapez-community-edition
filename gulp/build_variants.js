@@ -7,7 +7,7 @@
  *  executableName?: string
  * }>}
  */
-const BUILD_VARIANTS = {
+export const BUILD_VARIANTS = {
     "web-localhost": {
         standalone: false,
         environment: "dev",
@@ -26,4 +26,3 @@ const BUILD_VARIANTS = {
         steamAppId: 1318690,
     },
 };
-module.exports = { BUILD_VARIANTS };

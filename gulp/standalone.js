@@ -1,35 +1,34 @@
-require("colors");
-const packager = require("electron-packager");
-const pj = require("../electron/package.json");
-const path = require("path");
-const { getVersion } = require("./buildutils");
-const fs = require("fs");
-const fse = require("fs-extra");
-const buildutils = require("./buildutils");
-const execSync = require("child_process").execSync;
-const electronNotarize = require("electron-notarize");
-const { BUILD_VARIANTS } = require("./build_variants");
+import packager from "electron-packager";
+import pj from "../electron/package.json" assert { type: "json" };
+import path from "path/posix";
+import { getRevision, getVersion } from "./buildutils.js";
+import fs from "fs";
+import { execSync } from "child_process";
+import electronNotarize from "electron-notarize";
+import { BUILD_VARIANTS } from "./build_variants.js";
+
+import gulpClean from "gulp-clean";
 
 let signAsync;
 try {
-    signAsync = require("tobspr-osx-sign").signAsync;
+    signAsync = (await import("tobspr-osx-sign")).signAsync;
 } catch (ex) {
     console.warn("tobspr-osx-sign not installed, can not create osx builds");
 }
 
-function gulptasksStandalone($, gulp) {
+export default function gulptasksStandalone(gulp) {
     for (const variant in BUILD_VARIANTS) {
         const variantData = BUILD_VARIANTS[variant];
         if (!variantData.standalone) {
             continue;
         }
-        const tempDestDir = path.join(__dirname, "..", "build_output", variant);
+        const tempDestDir = path.join("..", "build_output", variant);
         const taskPrefix = "standalone." + variant;
-        const electronBaseDir = path.join(__dirname, "..", variantData.electronBaseDir || "electron");
+        const electronBaseDir = path.join("..", variantData.electronBaseDir || "electron");
         const tempDestBuildDir = path.join(tempDestDir, "built");
 
         gulp.task(taskPrefix + ".prepare.cleanup", () => {
-            return gulp.src(tempDestDir, { read: false, allowEmpty: true }).pipe($.clean({ force: true }));
+            return gulp.src(tempDestDir, { read: false, allowEmpty: true }).pipe(gulpClean({ force: true }));
         });
 
         gulp.task(taskPrefix + ".prepare.copyPrefab", () => {
@@ -161,7 +160,7 @@ function gulptasksStandalone($, gulp) {
                         if (variantData.steamAppId) {
                             fs.writeFileSync(
                                 path.join(appPath, "LICENSE"),
-                                fs.readFileSync(path.join(__dirname, "..", "LICENSE"))
+                                fs.readFileSync(path.join("..", "LICENSE"))
                             );
 
                             fs.writeFileSync(
@@ -228,7 +227,7 @@ function gulptasksStandalone($, gulp) {
                         execSync(
                             `codesign --force --verbose --options runtime --timestamp --no-strict --sign "${
                                 process.env.SHAPEZ_CLI_APPLE_CERT_NAME
-                            }" --entitlements "${path.join(__dirname, "entitlements.plist")}" ${appIdDest}`,
+                            }" --entitlements "${path.join("entitlements.plist")}" ${appIdDest}`,
                             {
                                 cwd: appFile,
                             }
@@ -247,7 +246,7 @@ function gulptasksStandalone($, gulp) {
                         type: "distribution",
                         optionsForFile: f => {
                             return {
-                                entitlements: path.join(__dirname, "entitlements.plist"),
+                                entitlements: path.join("entitlements.plist"),
                                 hardenedRuntime: true,
                                 signatureFlags: ["runtime"],
                             };
@@ -295,20 +294,20 @@ function gulptasksStandalone($, gulp) {
 
     // Steam helpers
     gulp.task("standalone.prepareVDF", cb => {
-        const hash = buildutils.getRevision();
-        const version = buildutils.getVersion();
+        const hash = getRevision();
+        const version = getVersion();
 
         // for (const platform of ["steampipe", "steampipe-darwin"]) {
-        const templatesSource = path.join(__dirname, "steampipe", "templates");
-        const templatesDest = path.join(__dirname, "steampipe", "built_vdfs");
+        const templatesSource = path.join("steampipe", "templates");
+        const templatesDest = path.join("steampipe", "built_vdfs");
 
         const variables = {
-            PROJECT_DIR: path.resolve(path.join(__dirname, "..")).replace(/\\/g, "/"),
-            BUNDLE_DIR: path.resolve(path.join(__dirname, "..", "build_output")).replace(/\\/g, "/"),
+            PROJECT_DIR: path.resolve(path.join("..")).replace(/\\/g, "/"),
+            BUNDLE_DIR: path.resolve(path.join("..", "build_output")).replace(/\\/g, "/"),
 
-            TMP_DIR: path.resolve(path.join(__dirname, "steampipe", "tmp")).replace(/\\/g, "/"),
+            TMP_DIR: path.resolve(path.join("steampipe", "tmp")).replace(/\\/g, "/"),
             // BUILD_DESC: "v" + version + " @ " + hash,
-            VDF_DIR: path.resolve(path.join(__dirname, "steampipe", "built_vdfs")).replace(/\\/g, "/"),
+            VDF_DIR: path.resolve(path.join("steampipe", "built_vdfs")).replace(/\\/g, "/"),
         };
 
         const files = fs.readdirSync(templatesSource);
@@ -333,5 +332,3 @@ function gulptasksStandalone($, gulp) {
         cb();
     });
 }
-
-module.exports = { gulptasksStandalone };

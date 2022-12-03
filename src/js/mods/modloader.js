@@ -107,7 +107,7 @@ export class ModLoader {
     exposeExports() {
         if (G_IS_DEV || G_IS_STANDALONE) {
             let exports = {};
-            const modules = require.context("../", true, /\.js$/);
+            const modules = import.meta.webpackContext("../", { recursive: true, regExp: /\.js$/ });
             Array.from(modules.keys()).forEach(key => {
                 // @ts-ignore
                 const module = modules(key);

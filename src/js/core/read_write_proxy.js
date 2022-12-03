@@ -12,7 +12,7 @@ import { decompressX64, compressX64 } from "./lzstring";
 import { asyncCompressor, compressionPrefix } from "./async_compression";
 import { compressObject, decompressObject } from "../savegame/savegame_compressor";
 
-const debounce = require("debounce-promise");
+import debounce from "debounce-promise";
 
 const logger = createLogger("read_write_proxy");
 

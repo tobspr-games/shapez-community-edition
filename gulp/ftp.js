@@ -1,12 +1,15 @@
-const path = require("path");
-const fs = require("fs");
+import path from "path/posix";
+import fs from "fs";
 
-const buildUtils = require("./buildutils");
+import { getRevision, getVersion } from "./buildutils.js";
 
-function gulptasksFTP($, gulp, buildFolder) {
-    const commitHash = buildUtils.getRevision();
+import gulpRename from "gulp-rename";
+import gulpSftp from "gulp-sftp";
 
-    const additionalFolder = path.join(__dirname, "additional_build_files");
+export default function gulptasksFTP(gulp, buildFolder) {
+    const commitHash = getRevision();
+
+    const additionalFolder = path.join("additional_build_files");
 
     const additionalFiles = [
         path.join(additionalFolder, "*"),
@@ -38,8 +41,8 @@ function gulptasksFTP($, gulp, buildFolder) {
             path.join(buildFolder, "version.json"),
             JSON.stringify(
                 {
-                    commit: buildUtils.getRevision(),
-                    appVersion: buildUtils.getVersion(),
+                    commit: getRevision(),
+                    appVersion: getVersion(),
                     buildTime: new Date().getTime(),
                 },
                 null,
@@ -63,11 +66,11 @@ function gulptasksFTP($, gulp, buildFolder) {
             return gulp
                 .src(gameSrcGlobs, { base: buildFolder })
                 .pipe(
-                    $.rename(pth => {
+                    gulpRename(pth => {
                         pth.dirname = path.join("v", commitHash, pth.dirname);
                     })
                 )
-                .pipe($.sftp(deployCredentials));
+                .pipe(gulpSftp(deployCredentials));
         });
 
         gulp.task(`ftp.upload.${deployEnv}.indexHtml`, () => {
@@ -75,13 +78,13 @@ function gulptasksFTP($, gulp, buildFolder) {
                 .src([path.join(buildFolder, "index.html"), path.join(buildFolder, "version.json")], {
                     base: buildFolder,
                 })
-                .pipe($.sftp(deployCredentials));
+                .pipe(gulpSftp(deployCredentials));
         });
 
         gulp.task(`ftp.upload.${deployEnv}.additionalFiles`, () => {
             return gulp
                 .src(additionalFiles, { base: additionalFolder }) //
-                .pipe($.sftp(deployCredentials));
+                .pipe(gulpSftp(deployCredentials));
         });
 
         gulp.task(
@@ -95,7 +98,3 @@ function gulptasksFTP($, gulp, buildFolder) {
         );
     }
 }
-
-module.exports = {
-    gulptasksFTP,
-};

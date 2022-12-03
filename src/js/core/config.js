@@ -2,6 +2,8 @@
 import { Application } from "../application";
 /* typehints:end */
 
+import debug from "./config.local";
+
 export const IS_DEBUG =
     G_IS_DEV &&
     typeof window !== "undefined" &&
@@ -128,7 +130,7 @@ export const globalConfig = {
     },
 
     rendering: {},
-    debug: require("./config.local").default,
+    debug,
 
     currentDiscount: 0,
 

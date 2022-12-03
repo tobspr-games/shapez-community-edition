@@ -3,7 +3,7 @@ import { createLogger } from "../../core/logging.js";
 import { T } from "../../translations.js";
 import { TypeVector, TypeNumber, TypeString, TypeNullable } from "../serialization_data_types.js";
 
-const schema = require("./1001.json");
+import schema from "./1001.json";
 
 const logger = createLogger("savegame_interface/1001");
 

@@ -8,7 +8,7 @@ import { KEYMAPPINGS } from "../../key_action_mapper";
 import { enumHubGoalRewards } from "../../tutorial_goals";
 import { BaseHUDPart } from "../base_hud_part";
 
-const copy = require("clipboard-copy");
+import copy from "clipboard-copy";
 const wiresBackgroundDpi = 4;
 
 export class HUDWiresOverlay extends BaseHUDPart {

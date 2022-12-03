@@ -1,5 +1,5 @@
 import { globalConfig } from "../core/config";
-const circularJson = require("circular-json");
+import circularJson from "circular-json";
 
 /*
 Logging functions

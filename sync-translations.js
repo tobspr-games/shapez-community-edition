@@ -1,7 +1,6 @@
 // Synchronizes all translations
 
 const fs = require("fs");
-const matchAll = require("match-all");
 const path = require("path");
 const YAML = require("yaml");
 
@@ -36,8 +35,8 @@ function match(originalObj, translatedObj, path = "/", ignorePlaceholderMismatch
         if (typeof valueOriginal === "object") {
             match(valueOriginal, valueMatching, path + key + "/", ignorePlaceholderMismatch);
         } else if (typeof valueOriginal === "string") {
-            const originalPlaceholders = matchAll(valueOriginal, placeholderRegexp).toArray();
-            const translatedPlaceholders = matchAll(valueMatching, placeholderRegexp).toArray();
+            const originalPlaceholders = [...valueOriginal.matchAll(placeholderRegexp)];
+            const translatedPlaceholders = [...valueMatching.matchAll(placeholderRegexp)];
 
             if (!ignorePlaceholderMismatch && originalPlaceholders.length !== translatedPlaceholders.length) {
                 console.warn(

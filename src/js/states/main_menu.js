@@ -24,8 +24,6 @@ import { PlatformWrapperImplElectron } from "../platform/electron/wrapper";
 import { Savegame } from "../savegame/savegame";
 import { T } from "../translations";
 
-const trim = require("trim");
-
 /**
  * @typedef {import("../savegame/savegame_typedefs").SavegameMetadata} SavegameMetadata
  * @typedef {import("../profile/setting_types").EnumSetting} EnumSetting
@@ -723,7 +721,7 @@ export class MainMenuState extends GameState {
 
         // When confirmed, save the name
         dialog.buttonSignals.ok.add(() => {
-            game.name = trim(nameInput.getValue());
+            game.name = nameInput.getValue().trim();
             this.app.savegameMgr.writeAsync();
             this.renderSavegames();
         });

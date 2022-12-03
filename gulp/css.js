@@ -1,17 +1,29 @@
-const path = require("path");
-const buildUtils = require("./buildutils");
+import path from "path/posix";
+import { getRevision, cachebust } from "./buildutils.js";
 
-function gulptasksCSS($, gulp, buildFolder, browserSync) {
+import gulpPostcss from "gulp-postcss";
+import postcssAssets from "postcss-assets";
+import postcssPresetEnv from "postcss-preset-env";
+import postcssRoundSubpixels from "postcss-round-subpixels";
+import postcssCriticalSplit from "postcss-critical-split";
+import cssMqpacker from "css-mqpacker";
+import cssnano from "cssnano";
+import gulpSassLint from "gulp-sass-lint";
+import gulpDartSass from "gulp-dart-sass";
+import gulpPlumber from "gulp-plumber";
+import gulpRename from "gulp-rename";
+
+export default function gulptasksCSS(gulp, buildFolder, browserSync) {
     // The assets plugin copies the files
-    const commitHash = buildUtils.getRevision();
-    const postcssAssetsPlugin = cachebust =>
-        $.postcssAssets({
+    const commitHash = getRevision();
+    const postcssAssetsPlugin = enableCachebust =>
+        postcssAssets({
             loadPaths: [path.join(buildFolder, "res", "ui")],
             basePath: buildFolder,
             baseUrl: ".",
-            cachebuster: cachebust
+            cachebuster: enableCachebust
                 ? (filePath, urlPathname) => ({
-                      pathname: buildUtils.cachebust(urlPathname, commitHash),
+                      pathname: cachebust(urlPathname, commitHash),
                   })
                 : "",
         });
@@ -21,16 +33,16 @@ function gulptasksCSS($, gulp, buildFolder, browserSync) {
         const plugins = [postcssAssetsPlugin(cachebust)];
         if (prod) {
             plugins.unshift(
-                $.postcssPresetEnv({
+                postcssPresetEnv({
                     browsers: ["> 0.1%"],
                 })
             );
 
             plugins.push(
-                $.cssMqpacker({
+                cssMqpacker({
                     sort: true,
                 }),
-                $.cssnano({
+                cssnano({
                     preset: [
                         "advanced",
                         {
@@ -42,7 +54,7 @@ function gulptasksCSS($, gulp, buildFolder, browserSync) {
                         },
                     ],
                 }),
-                $.postcssRoundSubpixels()
+                postcssRoundSubpixels()
             );
         }
         return plugins;
@@ -52,25 +64,25 @@ function gulptasksCSS($, gulp, buildFolder, browserSync) {
     gulp.task("css.lint", () => {
         return gulp
             .src(["../src/css/**/*.scss"])
-            .pipe($.sassLint({ configFile: ".sasslint.yml" }))
-            .pipe($.sassLint.format())
-            .pipe($.sassLint.failOnError());
+            .pipe(gulpSassLint({ configFile: ".sasslint.yml" }))
+            .pipe(gulpSassLint.format())
+            .pipe(gulpSassLint.failOnError());
     });
 
     function resourcesTask({ cachebust, isProd }) {
         return gulp
-            .src("../src/css/main.scss", { cwd: __dirname })
-            .pipe($.plumber())
-            .pipe($.dartSass.sync().on("error", $.dartSass.logError))
+            .src("../src/css/main.scss")
+            .pipe(gulpPlumber())
+            .pipe(gulpDartSass.sync().on("error", gulpDartSass.logError))
             .pipe(
-                $.postcss([
-                    $.postcssCriticalSplit({
+                gulpPostcss([
+                    postcssCriticalSplit({
                         blockTag: "@load-async",
                     }),
                 ])
             )
-            .pipe($.rename("async-resources.css"))
-            .pipe($.postcss(postcssPlugins(isProd, { cachebust })))
+            .pipe(gulpRename("async-resources.css"))
+            .pipe(gulpPostcss(postcssPlugins(isProd, { cachebust })))
             .pipe(gulp.dest(buildFolder))
             .pipe(browserSync.stream());
     }
@@ -92,18 +104,18 @@ function gulptasksCSS($, gulp, buildFolder, browserSync) {
 
     function mainTask({ cachebust, isProd }) {
         return gulp
-            .src("../src/css/main.scss", { cwd: __dirname })
-            .pipe($.plumber())
-            .pipe($.dartSass.sync().on("error", $.dartSass.logError))
+            .src("../src/css/main.scss")
+            .pipe(gulpPlumber())
+            .pipe(gulpDartSass.sync().on("error", gulpDartSass.logError))
             .pipe(
-                $.postcss([
-                    $.postcssCriticalSplit({
+                gulpPostcss([
+                    postcssCriticalSplit({
                         blockTag: "@load-async",
                         output: "rest",
                     }),
                 ])
             )
-            .pipe($.postcss(postcssPlugins(isProd, { cachebust })))
+            .pipe(gulpPostcss(postcssPlugins(isProd, { cachebust })))
             .pipe(gulp.dest(buildFolder))
             .pipe(browserSync.stream());
     }
@@ -130,7 +142,3 @@ function gulptasksCSS($, gulp, buildFolder, browserSync) {
         gulp.parallel("css.main.prod-standalone", "css.resources.prod-standalone")
     );
 }
-
-module.exports = {
-    gulptasksCSS,
-};

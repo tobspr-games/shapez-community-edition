@@ -1,5 +1,4 @@
 import { T } from "../translations";
-import { rando } from "@nastyox/rando.js";
 import { WEB_STEAM_SSO_AUTHENTICATED } from "./steam_sso";
 
 const bigNumberSuffixTranslationKeys = ["thousands", "millions", "billions", "trillions"];
@@ -44,7 +43,7 @@ export function newEmptyMap() {
  * @param {number} end
  */
 export function randomInt(start, end) {
-    return rando(start, end);
+    return Math.floor(Math.random() * (end - start + 1) + start);
 }
 
 /**

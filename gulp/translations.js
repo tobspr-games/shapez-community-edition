@@ -1,18 +1,18 @@
-const path = require("path");
-const fs = require("fs");
-const gulpYaml = require("gulp-yaml");
-const YAML = require("yaml");
-const stripIndent = require("strip-indent");
-const trim = require("trim");
+import path from "path/posix";
+import fs from "fs";
+import gulpYaml from "gulp-yaml";
+import YAML from "yaml";
 
-const translationsSourceDir = path.join(__dirname, "..", "translations");
-const translationsJsonDir = path.join(__dirname, "..", "src", "js", "built-temp");
+import gulpPlumber from "gulp-plumber";
 
-function gulptasksTranslations($, gulp) {
+const translationsSourceDir = path.join("..", "translations");
+const translationsJsonDir = path.join("..", "src", "js", "built-temp");
+
+export default function gulptasksTranslations(gulp) {
     gulp.task("translations.convertToJson", () => {
         return gulp
             .src(path.join(translationsSourceDir, "*.yaml"))
-            .pipe($.plumber())
+            .pipe(gulpPlumber())
             .pipe(gulpYaml({ space: 2, safe: true }))
             .pipe(gulp.dest(translationsJsonDir));
     });
@@ -50,7 +50,7 @@ function gulptasksTranslations($, gulp) {
                 [/list]
                     `;
 
-                fs.writeFileSync(destpath, trim(content.replace(/(\n[ \t\r]*)/gi, "\n")), {
+                fs.writeFileSync(destpath, content.replace(/(\n[ \t\r]*)/gi, "\n").trim(), {
                     encoding: "utf-8",
                 });
             });
@@ -58,7 +58,3 @@ function gulptasksTranslations($, gulp) {
         cb();
     });
 }
-
-module.exports = {
-    gulptasksTranslations,
-};

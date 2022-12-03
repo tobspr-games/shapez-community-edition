@@ -13,7 +13,6 @@ import { ShapeItem } from "../../items/shape_item";
 import { ShapeDefinition } from "../../shape_definition";
 import { BaseHUDPart } from "../base_hud_part";
 
-const trim = require("trim");
 const logger = createLogger("puzzle-review");
 
 export class HUDPuzzleEditorReview extends BaseHUDPart {
@@ -106,7 +105,7 @@ export class HUDPuzzleEditorReview extends BaseHUDPart {
             label: T.dialogs.submitPuzzle.descName,
             placeholder: T.dialogs.submitPuzzle.placeholderName,
             defaultValue: title,
-            validator: val => trim(val).match(regex) && trim(val).length > 0,
+            validator: val => val.trim().match(regex) && val.trim().length > 0,
         });
 
         let items = new Set();
@@ -135,7 +134,7 @@ export class HUDPuzzleEditorReview extends BaseHUDPart {
             label: null,
             placeholder: "CuCuCuCu",
             defaultValue: shortKey,
-            validator: val => ShapeDefinition.isValidShortKey(trim(val)),
+            validator: val => ShapeDefinition.isValidShortKey(val.trim()),
         });
 
         const dialog = new DialogWithForm({
@@ -153,8 +152,8 @@ export class HUDPuzzleEditorReview extends BaseHUDPart {
         this.root.hud.parts.dialogs.internalShowDialog(dialog);
 
         dialog.buttonSignals.ok.add(() => {
-            const title = trim(nameInput.getValue());
-            const shortKey = trim(shapeKeyInput.getValue());
+            const title = nameInput.getValue().trim();
+            const shortKey = shapeKeyInput.getValue().trim();
             this.doSubmitPuzzle(title, shortKey);
         });
     }
