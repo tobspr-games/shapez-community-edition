@@ -4,9 +4,10 @@ import { clamp } from "../core/utils";
 import { BasicSerializableObject, types } from "../savegame/serialization";
 import { enumColors } from "./colors";
 import { enumItemProcessorTypes } from "./components/item_processor";
+import { FreeplayShape } from "./freeplay_shape";
 import { enumAnalyticsDataSource } from "./production_analytics";
 import { GameRoot } from "./root";
-import { enumSubShape, ShapeDefinition } from "./shape_definition";
+import { ShapeDefinition } from "./shape_definition";
 import { enumHubGoalRewards } from "./tutorial_goals";
 
 export const MOD_ITEM_PROCESSOR_SPEEDS = {};
@@ -18,7 +19,8 @@ export class HubGoals extends BasicSerializableObject {
 
     static getSchema() {
         return {
-            level: types.uint,
+            chapter: types.nullable(types.string),
+            completed: types.array(types.pair(types.string, types.string)),
             storedShapes: types.keyValueMap(types.uint),
             upgradeLevels: types.keyValueMap(types.uint),
         };
@@ -35,19 +37,21 @@ export class HubGoals extends BasicSerializableObject {
             return errorCode;
         }
 
-        const levels = root.gameMode.getLevelDefinitions();
-
-        // If freeplay is not available, clamp the level
-        if (!root.gameMode.getIsFreeplayAvailable()) {
-            this.level = Math.min(this.level, levels.length);
-        }
+        const levels = root.gameMode.getLevelSet();
 
         // Compute gained rewards
-        for (let i = 0; i < this.level - 1; ++i) {
-            if (i < levels.length) {
-                const reward = levels[i].reward;
-                this.gainedRewards[reward] = (this.gainedRewards[reward] || 0) + 1;
-            }
+        for (let i = 0; i < this.completed.length; ++i) {
+            const completed = this.completed[i];
+            const chapter = levels.chapters.find(x => x.id === completed[0]);
+            if (!chapter) continue;
+            const goal = chapter.goals.find(x => x.id === completed[1]);
+            if (!goal) continue;
+            chapter.setGoalCompleted(goal.id);
+            this.gainedRewards[goal.reward] = (this.gainedRewards[goal.reward] || 0) + 1;
+        }
+
+        if (!levels.setActiveChapter(data.chapter)) {
+            this.chapter = levels.activeChapterId;
         }
 
         // Compute upgrade improvements
@@ -74,7 +78,15 @@ export class HubGoals extends BasicSerializableObject {
 
         this.root = root;
 
-        this.level = 1;
+        /**
+         * @type {[string, string][]}
+         */
+        this.completed = [];
+
+        /**
+         * @type {string | null}
+         */
+        this.chapter = null;
 
         /**
          * Which story rewards we already gained
@@ -107,21 +119,14 @@ export class HubGoals extends BasicSerializableObject {
             this.upgradeImprovements[key] = 1;
         }
 
-        this.computeNextGoal();
+        /** @type {{ definition: ShapeDefinition, required: number, reward: string | null, throughputOnly: boolean} | null} */
+        this.currentGoal = null;
 
-        // Allow quickly switching goals in dev mode
-        if (G_IS_DEV) {
-            window.addEventListener("keydown", ev => {
-                if (ev.key === "p") {
-                    // root is not guaranteed to exist within ~0.5s after loading in
-                    if (this.root && this.root.app && this.root.app.gameAnalytics) {
-                        if (!this.isEndOfDemoReached()) {
-                            this.onGoalCompleted();
-                        }
-                    }
-                }
-            });
-        }
+        this.computeNextGoal();
+        this.root.signals.chapterChanged.add(id => {
+            this.chapter = id || "shapez:freeplay";
+            this.computeNextGoal();
+        });
     }
 
     /**
@@ -131,7 +136,8 @@ export class HubGoals extends BasicSerializableObject {
     isEndOfDemoReached() {
         return (
             !this.root.gameMode.getIsFreeplayAvailable() &&
-            this.level >= this.root.gameMode.getLevelDefinitions().length
+            this.root.gameMode.getLevelSet().getCompletedGoals().length >=
+                this.root.gameMode.getLevelSet().getAllGoals().length
         );
     }
 
@@ -169,6 +175,7 @@ export class HubGoals extends BasicSerializableObject {
      * Returns how much of the current goal was already delivered
      */
     getCurrentGoalDelivered() {
+        if (!this.currentGoal) return null;
         if (this.currentGoal.throughputOnly) {
             return (
                 this.root.productionAnalytics.getCurrentShapeRateRaw(
@@ -204,7 +211,7 @@ export class HubGoals extends BasicSerializableObject {
             return false;
         }
 
-        if (this.root.gameMode.getLevelDefinitions().length < 1) {
+        if (this.root.gameMode.getLevelSet().getAllGoals().length < 1) {
             // no story, so always unlocked
             return true;
         }
@@ -224,8 +231,9 @@ export class HubGoals extends BasicSerializableObject {
 
         // Check if we have enough for the next level
         if (
-            this.getCurrentGoalDelivered() >= this.currentGoal.required ||
-            (G_IS_DEV && globalConfig.debug.rewardsInstant)
+            this.currentGoal &&
+            (this.getCurrentGoalDelivered() >= this.currentGoal.required ||
+                (G_IS_DEV && globalConfig.debug.rewardsInstant))
         ) {
             if (!this.isEndOfDemoReached()) {
                 this.onGoalCompleted();
@@ -237,28 +245,78 @@ export class HubGoals extends BasicSerializableObject {
      * Creates the next goal
      */
     computeNextGoal() {
-        const storyIndex = this.level - 1;
-        const levels = this.root.gameMode.getLevelDefinitions();
-        if (storyIndex < levels.length) {
-            const { shape, required, reward, throughputOnly } = levels[storyIndex];
+        const levels = this.root.gameMode.getLevelSet();
+        if (levels.isCompleted() && !levels.getActiveChapter()) {
+            const required = Math.min(200, Math.floor(4 + this.getFreeplayLevel() * 0.25));
             this.currentGoal = {
-                /** @type {ShapeDefinition} */
-                definition: this.root.shapeDefinitionMgr.getShapeFromShortKey(shape),
+                definition: this.root.shapeDefinitionMgr.getShapeFromShortKey(
+                    FreeplayShape.computeFreeplayShape(
+                        "shapez:freeplay",
+                        this.getFreeplayLevel().toString(),
+                        this.root.map.seed,
+                        {
+                            colorsAllowed:
+                                this.getFreeplayLevel() > 35
+                                    ? [
+                                          enumColors.red,
+                                          enumColors.yellow,
+                                          enumColors.green,
+                                          enumColors.cyan,
+                                          enumColors.blue,
+                                          enumColors.purple,
+                                          enumColors.red,
+                                          enumColors.yellow,
+                                          enumColors.white,
+                                          enumColors.uncolored,
+                                      ]
+                                    : [
+                                          enumColors.red,
+                                          enumColors.yellow,
+                                          enumColors.green,
+                                          enumColors.cyan,
+                                          enumColors.blue,
+                                          enumColors.purple,
+                                          enumColors.red,
+                                          enumColors.yellow,
+                                          enumColors.white,
+                                      ],
+                            layerCount: clamp(this.getFreeplayLevel() / 25, 2, 4),
+                        }
+                    )
+                ),
                 required,
-                reward,
-                throughputOnly,
+                reward: enumHubGoalRewards.no_reward_freeplay,
+                throughputOnly: true,
             };
-            return;
-        }
+            console.log(this.currentGoal);
+        } else {
+            const chapter = levels.getActiveChapter();
 
-        //Floor Required amount to remove confusion
-        const required = Math.min(200, Math.floor(4 + (this.level - 27) * 0.25));
-        this.currentGoal = {
-            definition: this.computeFreeplayShape(this.level),
-            required,
-            reward: enumHubGoalRewards.no_reward_freeplay,
-            throughputOnly: true,
-        };
+            if (chapter.isCompleted()) {
+                const nextChapter = levels.getNextChapter(this.root.hud.parts.levels.getTree());
+                if (!nextChapter) levels.disableActiveChapter();
+                else levels.setActiveChapter(nextChapter.id);
+                return;
+            }
+
+            const goal = levels.getActiveGoal();
+            if (goal) {
+                const { id, shape, required, reward, throughputOnly } = goal;
+                this.currentGoal = {
+                    /** @type {ShapeDefinition} */
+                    definition: this.root.shapeDefinitionMgr.getShapeFromShortKey(
+                        typeof shape === "string"
+                            ? shape
+                            : FreeplayShape.computeFreeplayShape(chapter.id, id, this.root.map.seed, shape)
+                    ),
+                    required,
+                    reward,
+                    throughputOnly,
+                };
+            } else {
+                this.currentGoal = null;
+            }
+        }
     }
 
     /**
@@ -268,18 +326,25 @@ export class HubGoals extends BasicSerializableObject {
         const reward = this.currentGoal.reward;
         this.gainedRewards[reward] = (this.gainedRewards[reward] || 0) + 1;
 
-        this.root.app.gameAnalytics.handleLevelCompleted(this.level);
-        ++this.level;
+        const levels = this.root.gameMode.getLevelSet();
+
+        const goal = levels.getActiveGoal();
+        if (goal) {
+            this.root.app.gameAnalytics.handleLevelCompleted(goal);
+            levels.getActiveChapter().setGoalCompleted(goal.id);
+            this.completed.push([levels.getActiveChapter().id, goal.id]);
+        } else {
+            this.completed.push(["shapez:freeplay", this.getFreeplayLevel().toString()]);
+        }
+
+        this.root.signals.storyGoalCompleted.dispatch(
+            goal
+                ? levels.getActiveChapter().id + "-" + goal.id
+                : "shapez:freeplay-" + this.getFreeplayLevel(),
+            reward
+        );
+
         this.computeNextGoal();
-
-        this.root.signals.storyGoalCompleted.dispatch(this.level - 1, reward);
-    }
-
-    /**
-     * Returns whether we are playing in free-play
-     */
-    isFreePlay() {
-        return this.level >= this.root.gameMode.getLevelDefinitions().length;
     }
 
     /**
@@ -363,119 +428,11 @@ export class HubGoals extends BasicSerializableObject {
         return true;
     }
 
-    /**
-     * Picks random colors which are close to each other
-     * @param {RandomNumberGenerator} rng
-     */
-    generateRandomColorSet(rng, allowUncolored = false) {
-        const colorWheel = [
-            enumColors.red,
-            enumColors.yellow,
-            enumColors.green,
-            enumColors.cyan,
-            enumColors.blue,
-            enumColors.purple,
-            enumColors.red,
-            enumColors.yellow,
-        ];
+    getFreeplayLevel() {
+        const freeplay = this.completed.filter(x => x[0] === "shapez:freeplay");
+        freeplay.sort((a, b) => Number(b[1]) - Number(a[1]));
 
-        const universalColors = [enumColors.white];
-        if (allowUncolored) {
-            universalColors.push(enumColors.uncolored);
-        }
-        const index = rng.nextIntRange(0, colorWheel.length - 2);
-        const pickedColors = colorWheel.slice(index, index + 3);
-        pickedColors.push(rng.choice(universalColors));
-        return pickedColors;
-    }
-
-    /**
-     * Creates a (seeded) random shape
-     * @param {number} level
-     * @returns {ShapeDefinition}
-     */
-    computeFreeplayShape(level) {
-        const layerCount = clamp(this.level / 25, 2, 4);
-
-        /** @type {Array<import("./shape_definition").ShapeLayer>} */
-        let layers = [];
-
-        const rng = new RandomNumberGenerator(this.root.map.seed + "/" + level);
-
-        const colors = this.generateRandomColorSet(rng, level > 35);
-
-        let pickedSymmetry = null; // pairs of quadrants that must be the same
-        let availableShapes = [enumSubShape.rect, enumSubShape.circle, enumSubShape.star];
-        if (rng.next() < 0.5) {
-            pickedSymmetry = [
-                // radial symmetry
-                [0, 2],
-                [1, 3],
-            ];
-            availableShapes.push(enumSubShape.windmill); // windmill looks good only in radial symmetry
-        } else {
-            const symmetries = [
-                [
-                    // horizontal axis
-                    [0, 3],
-                    [1, 2],
-                ],
-                [
-                    // vertical axis
-                    [0, 1],
-                    [2, 3],
-                ],
-                [
-                    // diagonal axis
-                    [0, 2],
-                    [1],
-                    [3],
-                ],
-                [
-                    // other diagonal axis
-                    [1, 3],
-                    [0],
-                    [2],
-                ],
-            ];
-            pickedSymmetry = rng.choice(symmetries);
-        }
-
-        const randomColor = () => rng.choice(colors);
-        const randomShape = () => rng.choice(availableShapes);
-
-        let anyIsMissingTwo = false;
-
-        for (let i = 0; i < layerCount; ++i) {
-            /** @type {import("./shape_definition").ShapeLayer} */
-            const layer = [null, null, null, null];
-
-            for (let j = 0; j < pickedSymmetry.length; ++j) {
-                const group = pickedSymmetry[j];
-                const shape = randomShape();
-                const color = randomColor();
-                for (let k = 0; k < group.length; ++k) {
-                    const quad = group[k];
-                    layer[quad] = {
-                        subShape: shape,
-                        color,
-                    };
-                }
-            }
-
-            // Sometimes they actually are missing *two* ones!
-            // Make sure at max only one layer is missing it though, otherwise we could
-            // create an uncreateable shape
-            if (level > 75 && rng.next() > 0.95 && !anyIsMissingTwo) {
-                layer[rng.nextIntRange(0, 4)] = null;
-                anyIsMissingTwo = true;
-            }
-
-            layers.push(layer);
-        }
-
-        const definition = new ShapeDefinition({ layers });
-        return this.root.shapeDefinitionMgr.registerOrReturnHandle(definition);
+        return freeplay[0] ? Number(freeplay[0][1]) + 1 : 0;
     }
 
     ////////////// HELPERS

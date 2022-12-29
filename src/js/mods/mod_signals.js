@@ -3,6 +3,7 @@ import { BaseHUDPart } from "../game/hud/base_hud_part";
 import { GameRoot } from "../game/root";
 import { GameState } from "../core/game_state";
 import { InGameState } from "../states/ingame";
+import { LevelSet } from "../game/levels/LevelSet";
 /* typehints:end */
 
 import { Signal } from "../core/signal";
@@ -13,7 +14,7 @@ export const MOD_SIGNALS = {
     // Called when the application has booted and instances like the app settings etc are available
     appBooted: new Signal(),
 
-    modifyLevelDefinitions: /** @type {TypedSignal<[Array[Object]]>} */ (new Signal()),
+    modifyLevelSet: /** @type {TypedSignal<[LevelSet]>} */ (new Signal()),
     modifyUpgrades: /** @type {TypedSignal<[Object]>} */ (new Signal()),
 
     hudElementInitialized: /** @type {TypedSignal<[BaseHUDPart]>} */ (new Signal()),

@@ -30,7 +30,7 @@ export class GameAnalyticsInterface {
 
     /**
      * Handles the given level completed
-     * @param {number} level
+     * @param {import("../game/levels/LevelChapter").LevelGoal} level
      */
     handleLevelCompleted(level) {}
 

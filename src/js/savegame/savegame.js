@@ -16,6 +16,7 @@ import { SavegameInterface_V1008 } from "./schemas/1008";
 import { SavegameInterface_V1009 } from "./schemas/1009";
 import { MODS } from "../mods/modloader";
 import { SavegameInterface_V1010 } from "./schemas/1010";
+import { SavegameInterface_V1011 } from "./schemas/1011";
 
 const logger = createLogger("savegame");
 
@@ -78,8 +79,9 @@ export class Savegame extends ReadWriteProxy {
                 internalId: "puzzle",
                 lastUpdate: 0,
                 version: 0,
-                level: 0,
                 name: "puzzle",
+                goal: null,
+                chapter: null,
             },
         });
     }
@@ -166,6 +168,11 @@ export class Savegame extends ReadWriteProxy {
         if (data.version === 1009) {
             SavegameInterface_V1010.migrate1009to1010(data);
             data.version = 1010;
+        }
+
+        if (data.version === 1010) {
+            SavegameInterface_V1011.migrate1010to1011(data);
+            data.version = 1011;
         }
 
         return ExplainedResult.good();
@@ -307,9 +314,13 @@ export class Savegame extends ReadWriteProxy {
         this.metaDataRef.lastUpdate = new Date().getTime();
         this.metaDataRef.version = this.getCurrentVersion();
         if (!this.hasGameDump()) {
-            this.metaDataRef.level = 0;
+            this.metaDataRef.goal = null;
+            this.metaDataRef.chapter = null;
         } else {
-            this.metaDataRef.level = this.currentData.dump.hubGoals.level;
+            this.metaDataRef.goal = this.currentData.dump.hubGoals.completed.filter(
+                x => x[0] === this.currentData.dump.hubGoals.chapter
+            ).length;
+            this.metaDataRef.chapter = this.currentData.dump.hubGoals.chapter;
         }
 
         return this.app.savegameMgr.writeAsync();

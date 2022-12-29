@@ -1,0 +1,275 @@
+#ingame_HUD_Levels {
+    .dialogInner {
+        width: 80%;
+    }
+
+    .content {
+        width: 100%;
+        @include S(height, 400px);
+        position: relative;
+
+        &.active {
+            cursor: grab;
+        }
+    }
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        pointer-events: all;
+        width: 20%;
+        @include S(height, 380px);
+        right: 0%;
+        background-color: #eeeeee;
+        border-radius: 10px;
+        z-index: 10;
+        border-left: white solid 1px;
+        @include S(padding, 10px);
+        transform: translateX(10%);
+        opacity: 0;
+        transition: all 0.1s ease-in-out;
+        position: fixed;
+
+        * {
+            pointer-events: all !important;
+        }
+
+        &.active {
+            right: 10%;
+            transform: none;
+            opacity: 1;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            .title {
+                @include Heading;
+                text-transform: uppercase;
+            }
+        }
+
+        .subtitle {
+            @include S(margin-top, 5px);
+            text-transform: uppercase;
+        }
+
+        .closeButton {
+            opacity: 0.7;
+            @include S(width, 20px);
+            @include S(height, 20px);
+            cursor: pointer;
+            transition: opacity 0.2s ease-in-out;
+            &:hover {
+                opacity: 0.4;
+            }
+            & {
+                background: uiResource("icons/close.png") center center / 80% no-repeat;
+            }
+        }
+
+        .button {
+            background-color: $colorGreenBright;
+            color: white;
+            text-transform: uppercase;
+            @include S(border-radius, 7px);
+            text-align: center;
+            @include S(margin-top, 5px);
+            display: none;
+
+            &.active {
+                display: block;
+            }
+        }
+
+        .goals {
+            overflow-y: auto;
+            display: flex;
+            @include S(gap, 5px);
+            height: 100%;
+            @include S(padding, 5px);
+            @include SuperSmallText;
+
+            .container {
+                display: flex;
+                flex-direction: column;
+                @include S(gap, 5px);
+            }
+
+            .progress {
+                display: flex;
+                @include S(width, 5px);
+                background-color: #e2e4e6;
+                border-radius: 10px;
+                justify-content: center;
+                position: relative;
+
+                .bar {
+                    @include S(width, 5px);
+                    background: $colorGreenBright; //linear-gradient(#586ecf 0%, $colorGreenBright 100%);
+                    border-radius: 10px;
+                }
+
+                .thumb {
+                    position: absolute;
+                    @include S(width, 10px);
+                    @include S(height, 10px);
+                    background: $colorGreenBright;
+                    border-radius: 100%;
+                }
+            }
+
+            .goal {
+                display: flex;
+                align-items: center;
+                @include S(gap, 5px);
+                .shape {
+                    @include S(height, 30px);
+                }
+                filter: opacity(1);
+
+                &.completed {
+                    filter: opacity(0.5);
+                }
+            }
+        }
+    }
+
+    .content::-webkit-scrollbar {
+        width: 0px;
+        height: 0px;
+    }
+
+    .connection {
+        position: absolute;
+        @include S(width, 46px);
+        @include S(height, 5px);
+        background-color: #586ecf;
+        border-radius: 0 10px 10px 0;
+
+        &.unlocked {
+            background-color: $colorGreenBright;
+        }
+    }
+
+    .connection-top {
+        position: absolute;
+        @include S(width, 24px);
+        @include S(height, 5px);
+        background-color: #586ecf;
+        border-radius: 0 10px 10px 0;
+
+        &.unlocked {
+            background-color: $colorGreenBright;
+        }
+    }
+
+    .connection-side {
+        position: absolute;
+        @include S(width, 27px);
+        @include S(height, 5px);
+        background-color: #586ecf;
+        border-radius: 10px 10px 10px 10px;
+
+        &.unlocked {
+            background-color: $colorGreenBright;
+        }
+    }
+
+    .connection-down {
+        position: absolute;
+        @include S(width, 5px);
+        background-color: #586ecf;
+        border-radius: 10px 10px 10px 10px;
+
+        &.unlocked {
+            background-color: $colorGreenBright;
+        }
+    }
+
+    .chapter {
+        cursor: pointer;
+        pointer-events: all;
+        position: absolute;
+        @include S(padding, 5px);
+        @include S(padding-top, 10px);
+        background-color: #eeeeee;
+        @include S(width, 80px);
+        @include S(height, 100px);
+        @include S(border-radius, 10px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        .shape {
+            width: 70%;
+            display: none;
+        }
+
+        .locked {
+            color: #555555;
+            text-align: center;
+            display: flex;
+            height: 60%;
+            justify-content: center;
+            align-items: center;
+            text-transform: uppercase;
+            flex-direction: column;
+
+            .lock {
+                background-image: uiResource("lock.png") !important;
+                background-size: contain;
+                background-repeat: no-repeat;
+                @include S(width, 30px);
+                @include S(height, 30px);
+            }
+        }
+
+        &.unlocked {
+            .shape {
+                display: block;
+            }
+            .locked {
+                display: none;
+            }
+        }
+
+        .title {
+            background-color: #586ecf;
+            color: white;
+            width: 100%;
+            @include S(border-radius, 7px);
+            text-align: center;
+            @include S(padding, 1px);
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+
+            .bar {
+                top: 0;
+                left: 0;
+                position: absolute;
+                height: 100%;
+                background-color: $colorGreenBright;
+            }
+
+            .text {
+                position: relative;
+                z-index: 2;
+            }
+        }
+
+        &.completed {
+            .title {
+                background-color: $colorGreenBright;
+            }
+        }
+    }
+
+    .offset {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+    }
+}

@@ -8,6 +8,7 @@ import { types, BasicSerializableObject } from "../savegame/serialization";
 import { MetaBuilding } from "./meta_building";
 import { MetaItemProducerBuilding } from "./buildings/item_producer";
 import { BaseHUDPart } from "./hud/base_hud_part";
+import { LevelSet } from "./levels/LevelSet";
 
 /** @enum {string} */
 export const enumGameModeIds = {
@@ -151,9 +152,9 @@ export class GameMode extends BasicSerializableObject {
         return;
     }
 
-    /** @returns {array} */
-    getLevelDefinitions() {
-        return [];
+    /** @returns {LevelSet} */
+    getLevelSet() {
+        return new LevelSet(this.root);
     }
 
     /** @returns {boolean} */

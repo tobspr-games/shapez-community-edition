@@ -111,7 +111,7 @@ export class HUDStandaloneAdvantages extends BaseHUDPart {
 
         this.root.signals.gameRestored.add(() => {
             if (
-                this.root.hubGoals.level >= this.root.gameMode.getLevelDefinitions().length - 1 &&
+                this.root.gameMode.getLevelSet().chapters.every(x => x.isCompleted()) &&
                 this.root.app.restrictionMgr.getIsStandaloneMarketingActive()
             ) {
                 this.show(true);

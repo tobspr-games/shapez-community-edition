@@ -103,7 +103,7 @@ export class HUDPinnedShapes extends BaseHUDPart {
      * @param {string} key
      */
     findGoalValueForShape(key) {
-        if (key === this.root.hubGoals.currentGoal.definition.getHash()) {
+        if (this.root.hubGoals.currentGoal && key === this.root.hubGoals.currentGoal.definition.getHash()) {
             return this.root.hubGoals.currentGoal.required;
         }
         if (key === this.root.gameMode.getBlueprintShapeKey()) {
@@ -139,7 +139,7 @@ export class HUDPinnedShapes extends BaseHUDPart {
      */
     isShapePinned(key) {
         if (
-            key === this.root.hubGoals.currentGoal.definition.getHash() ||
+            (this.root.hubGoals.currentGoal && key === this.root.hubGoals.currentGoal.definition.getHash()) ||
             key === this.root.gameMode.getBlueprintShapeKey()
         ) {
             // This is a "special" shape which is always pinned
@@ -154,6 +154,7 @@ export class HUDPinnedShapes extends BaseHUDPart {
      */
     rerenderFull() {
         const currentGoal = this.root.hubGoals.currentGoal;
+        if (!currentGoal) return;
         const currentKey = currentGoal.definition.getHash();
 
         // First, remove all old shapes
@@ -313,7 +314,7 @@ export class HUDPinnedShapes extends BaseHUDPart {
      */
     pinNewShape(definition) {
         const key = definition.getHash();
-        if (key === this.root.hubGoals.currentGoal.definition.getHash()) {
+        if (this.root.hubGoals.currentGoal && key === this.root.hubGoals.currentGoal.definition.getHash()) {
             // Can not pin current goal
             return;
         }

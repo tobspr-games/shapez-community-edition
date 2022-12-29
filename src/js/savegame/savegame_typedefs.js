@@ -41,7 +41,8 @@
  *   lastUpdate: number,
  *   version: number,
  *   internalId: string,
- *   level: number
+ *   chapter: string,
+ *   goal: number,
  *   name: string|null
  * }} SavegameMetadata
  *

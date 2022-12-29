@@ -572,6 +572,33 @@ ingame:
 
         maximumLevel: MAXIMUM LEVEL (Speed x<currentMult>)
 
+    # The "Levels" window
+    levels:
+        title: Levels
+        goals: Goals
+        activate: Activate chapter
+
+        # Chapters
+        chapters:
+            shapez:freeplay:
+                title: Freeplay
+                description: Unlimited levels!
+            shapez:cutting_rotating:
+                title: Cutting & Rotating
+                description: Road to a basic factory
+            shapez:painting_mixing:
+                title: Painting & Mixing
+                description: Road to a basic factory
+            shapez:basic_stacking:
+                title: Basic Stacking
+                description: Road to a basic factory
+            shapez:advanced_stacking:
+                title: Advanced Stacking
+                description: Road to a basic factory
+            shapez:optimization:
+                title: Optimization
+                description: Road to a basic factory
+
     # The "Statistics" window
     statistics:
         title: Statistics
@@ -782,7 +809,7 @@ buildings:
     hub:
         deliver: Deliver
         toUnlock: to unlock
-        levelShortcut: LVL
+        goalShortcut: GOAL
         endOfDemo: End of Demo
 
     belt:

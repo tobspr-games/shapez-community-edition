@@ -549,7 +549,7 @@ export class MainMenuState extends GameState {
     }
 
     fetchPlayerCount() {
-        const element = this.htmlElement.querySelector(".onlinePlayerCount");
+        const element = /** @type {HTMLElement} */ (this.htmlElement.querySelector(".onlinePlayerCount"));
         if (!element) {
             return;
         }
@@ -568,6 +568,7 @@ export class MainMenuState extends GameState {
     }
 
     onPuzzleModeButtonClicked(force = false) {
+        // TODO: Change after new chapters are added
         const hasUnlockedBlueprints = this.app.savegameMgr.getSavegamesMetaData().some(s => s.level >= 12);
         if (!force && !hasUnlockedBlueprints) {
             const { ok } = this.dialogs.showWarning(
@@ -693,8 +694,15 @@ export class MainMenuState extends GameState {
                     elem,
                     null,
                     ["level"],
-                    games[i].level
-                        ? T.mainMenu.savegameLevel.replace("<x>", "" + games[i].level)
+                    typeof games[i].goal === "number" && games[i].chapter
+                        ? T.mainMenu.savegameLevel.replace(
+                              "<x>",
+                              (T.ingame.levels.chapters[games[i].chapter]
+                                  ? T.ingame.levels.chapters[games[i].chapter].title
+                                  : games[i].chapter) +
+                                  " " +
+                                  (games[i].goal + 1)
+                          )
                         : T.mainMenu.savegameLevelUnknown
                 );
 
@@ -855,7 +863,12 @@ export class MainMenuState extends GameState {
             T.dialogs.confirmSavegameDelete.title,
             T.dialogs.confirmSavegameDelete.text
                 .replace("<savegameName>", game.name || T.mainMenu.savegameUnnamed)
-                .replace("<savegameLevel>", String(game.level)),
+                .replace(
+                    "<savegameLevel>",
+                    game.chapter
+                        ? T.ingame.levels.chapters[game.chapter].title + " " + (game.goal + 1)
+                        : T.mainMenu.savegameLevelUnknown
+                ),
             ["cancel:good", "delete:bad:timeout"]
         );
 

@@ -136,7 +136,9 @@ export class HUDShop extends BaseHUDPart {
                     );
                 }
 
-                const currentGoalShape = this.root.hubGoals.currentGoal.definition.getHash();
+                const currentGoalShape = this.root.hubGoals.currentGoal
+                    ? this.root.hubGoals.currentGoal.definition.getHash()
+                    : null;
                 if (shape === currentGoalShape) {
                     pinButton.classList.add("isGoal");
                 } else if (this.root.hud.parts.pinnedShapes.isShapePinned(shape)) {

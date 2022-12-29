@@ -89,7 +89,7 @@ export class HUDConstantSignalEdit extends BaseHUDPart {
             );
         }
 
-        if (this.root.gameMode.hasHub()) {
+        if (this.root.gameMode.hasHub() && this.root.hubGoals.currentGoal) {
             items.push(
                 this.root.shapeDefinitionMgr.getShapeItemFromDefinition(
                     this.root.hubGoals.currentGoal.definition

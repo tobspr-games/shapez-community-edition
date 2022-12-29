@@ -164,7 +164,8 @@ export class GameRoot {
 
             gameFrameStarted: /** @type {TypedSignal<[]>} */ (new Signal()), // New frame
 
-            storyGoalCompleted: /** @type {TypedSignal<[number, string]>} */ (new Signal()),
+            chapterChanged: /** @type {TypedSignal<[string]>} */ (new Signal()),
+            storyGoalCompleted: /** @type {TypedSignal<[string, string]>} */ (new Signal()),
             upgradePurchased: /** @type {TypedSignal<[string]>} */ (new Signal()),
 
             // Called right after game is initialized

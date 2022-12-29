@@ -38,6 +38,11 @@ import { MetaItemProducerBuilding } from "../buildings/item_producer";
 import { MOD_SIGNALS } from "../../mods/mod_signals";
 import { finalGameShape, generateLevelsForVariant } from "./levels";
 import { WEB_STEAM_SSO_AUTHENTICATED } from "../../core/steam_sso";
+import { LevelSet } from "../levels/LevelSet";
+import { LevelChapter } from "../levels/LevelChapter";
+import { HUDLevels } from "../hud/parts/levels";
+import { HUDLevelsOpen } from "../hud/parts/levels_open";
+import { T } from "../../translations";
 
 /** @typedef {{
  *   shape: string,
@@ -294,28 +299,174 @@ function generateUpgrades(limitedVersion = false, difficulty = 1) {
     return upgrades;
 }
 
-let levelDefinitionsCache = null;
-
 /**
- * Generates the level definitions
+ * @param {GameRoot} root
+ * @returns {LevelSet}
  */
-export function generateLevelDefinitions(app) {
-    if (levelDefinitionsCache) {
-        return levelDefinitionsCache;
-    }
-    const levelDefinitions = generateLevelsForVariant(app);
-    MOD_SIGNALS.modifyLevelDefinitions.dispatch(levelDefinitions);
-    if (G_IS_DEV) {
-        levelDefinitions.forEach(({ shape }) => {
-            try {
-                ShapeDefinition.fromShortKey(shape);
-            } catch (ex) {
-                throw new Error("Invalid tutorial goal: '" + ex + "' for shape" + shape);
-            }
-        });
-    }
-    levelDefinitionsCache = levelDefinitions;
-    return levelDefinitions;
+export function createDefaultLevelChapters(root) {
+    const set = new LevelSet(root);
+
+    // Change to new default chapters
+    set.addChapter(
+        new LevelChapter(
+            "shapez:cutting_rotating",
+            T.ingame.levels.chapters["shapez:cutting_rotating"].title,
+            T.ingame.levels.chapters["shapez:cutting_rotating"].description
+        ).addGoal({
+            id: "1",
+            shape: "CuCuCuCu",
+            required: 30,
+            reward: enumHubGoalRewards.reward_cutter_and_trash,
+        })
+        // .addRandomShape(
+        //     {
+        //         id: "1",
+        //         required: 30,
+        //         reward: enumHubGoalRewards.reward_cutter_and_trash,
+        //     },
+        //     {}
+        // )
+    );
+    set.addChapter(
+        new LevelChapter(
+            "default",
+            "Default",
+            "You can get some levels",
+            generateLevelsForVariant(root.app)
+                .map((x, i) => ({ ...x, id: "level-" + i }))
+                .splice(0, 3)
+        )
+    );
+    set.addChapter(
+        new LevelChapter(
+            "default-1",
+            "Default I",
+            "You can get some levels",
+            generateLevelsForVariant(root.app)
+                .map((x, i) => ({ ...x, id: "level-" + i }))
+                .splice(0, 5),
+            "default",
+            true
+        )
+    );
+    set.addChapter(
+        new LevelChapter(
+            "mod-1",
+            "Mod",
+            "You can get some levels",
+            generateLevelsForVariant(root.app)
+                .map((x, i) => ({ ...x, id: "level-" + i }))
+                .splice(3, 3),
+            "default"
+        )
+    );
+    // set.addChapter(
+    //     new LevelChapter(
+    //         "default-1-2",
+    //         "Default II",
+    //         "You can get some levels",
+    //         generateLevelsForVariant(root.app).map((x, i) => ({ ...x, id: "level-" + i })),
+    //         "default-1",
+    //         true
+    //     )
+    // );
+    // set.addChapter(
+    //     new LevelChapter(
+    //         "default-1-3",
+    //         "Default III",
+    //         "You can get some levels",
+    //         generateLevelsForVariant(root.app).map((x, i) => ({ ...x, id: "level-" + i })),
+    //         "default-1",
+    //         true
+    //     )
+    // );
+    // set.addChapter(
+    //     new LevelChapter(
+    //         "default-3",
+    //         "Default III",
+    //         "You can get some levels",
+    //         generateLevelsForVariant(root.app).map((x, i) => ({ ...x, id: "level-" + i })),
+    //         "default-2"
+    //     )
+    // );
+    // set.addChapter(
+    //     new LevelChapter(
+    //         "default-2",
+    //         "Default II",
+    //         "You can get some levels",
+    //         generateLevelsForVariant(root.app).map((x, i) => ({ ...x, id: "level-" + i })),
+    //         "default"
+    //     )
+    // );
+    // set.addChapter(
+    //     new LevelChapter(
+    //         "mod-2",
+    //         "Mod2",
+    //         "You can get some levels",
+    //         generateLevelsForVariant(root.app).map((x, i) => ({ ...x, id: "level-" + i })),
+    //         "default-3"
+    //     )
+    // );
+    // set.addChapter(
+    //     new LevelChapter(
+    //         "mod-3",
+    //         "Mod3",
+    //         "You can get some levels",
+    //         generateLevelsForVariant(root.app).map((x, i) => ({ ...x, id: "level-" + i })),
+    //         "default-2"
+    //     )
+    // );
+    // set.addChapter(
+    //     new LevelChapter(
+    //         "mod-3-1",
+    //         "Mod3 I",
+    //         "You can get some levels",
+    //         generateLevelsForVariant(root.app).map((x, i) => ({ ...x, id: "level-" + i })),
+    //         "mod-1",
+    //         true
+    //     )
+    // );
+    // set.addChapter(
+    //     new LevelChapter(
+    //         "mod-3-2",
+    //         "Mod3 II",
+    //         "You can get some levels",
+    //         generateLevelsForVariant(root.app).map((x, i) => ({ ...x, id: "level-" + i })),
+    //         "mod-3-1"
+    //     )
+    // );
+    // set.addChapter(
+    //     new LevelChapter(
+    //         "mod-3-3",
+    //         "Mod3 III",
+    //         "You can get some levels",
+    //         generateLevelsForVariant(root.app).map((x, i) => ({ ...x, id: "level-" + i })),
+    //         "mod-3-2"
+    //     )
+    // );
+    // set.addChapter(
+    //     new LevelChapter(
+    //         "mod-3-2-1",
+    //         "Mod3 II-I",
+    //         "You can get some levels",
+    //         generateLevelsForVariant(root.app).map((x, i) => ({ ...x, id: "level-" + i })),
+    //         "mod-3-2",
+    //         true
+    //     )
+    // );
+    // set.addChapter(
+    //     new LevelChapter(
+    //         "mod-3-2-2",
+    //         "Mod3 II-II",
+    //         "You can get some levels",
+    //         generateLevelsForVariant(root.app).map((x, i) => ({ ...x, id: "level-" + i })),
+    //         "mod-3-2",
+    //         true
+    //     )
+    // );
+    MOD_SIGNALS.modifyLevelSet.dispatch(set);
+
+    return set;
 }
 
 export class RegularGameMode extends GameMode {
@@ -336,6 +487,8 @@ export class RegularGameMode extends GameMode {
             unlockNotification: HUDUnlockNotification,
             massSelector: HUDMassSelector,
             shop: HUDShop,
+            levels: HUDLevels,
+            levelsOpen: HUDLevelsOpen,
             statistics: HUDStatistics,
             waypoints: HUDWaypoints,
             wireInfo: HUDWireInfo,
@@ -400,10 +553,14 @@ export class RegularGameMode extends GameMode {
 
     /**
      * Returns the goals for all levels including their reward
-     * @returns {Array<LevelDefinition>}
+     * @returns {LevelSet}
      */
-    getLevelDefinitions() {
-        return generateLevelDefinitions(this.root.app);
+    getLevelSet() {
+        if (!this.levelSet) {
+            this.levelSet = createDefaultLevelChapters(this.root);
+        }
+
+        return this.levelSet;
     }
 
     /**

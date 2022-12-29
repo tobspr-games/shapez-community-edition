@@ -313,7 +313,7 @@ export class ShapezGameAnalytics extends GameAnalyticsInterface {
             category,
             value,
             version: G_BUILD_VERSION,
-            level: root.hubGoals.level,
+            level: root.gameMode.getLevelSet().getCompletedGoals(),
             gameDump: this.generateGameDump(root),
         }).catch(err => {
             console.warn("Request failed", err);
@@ -339,7 +339,7 @@ export class ShapezGameAnalytics extends GameAnalyticsInterface {
         }
 
         // Check if its a story goal
-        const levels = root.gameMode.getLevelDefinitions();
+        const levels = root.gameMode.getLevelSet().getAllGoals();
         for (let i = 0; i < levels.length; ++i) {
             if (key === levels[i].shape) {
                 return true;
@@ -400,11 +400,11 @@ export class ShapezGameAnalytics extends GameAnalyticsInterface {
 
     /**
      * Handles the given level completed
-     * @param {number} level
+     * @param {import("../../game/levels/LevelChapter").LevelGoal} level
      */
     handleLevelCompleted(level) {
         logger.log("Complete level", level);
-        this.sendGameEvent("level_complete", "" + level);
+        this.sendGameEvent("level_complete", "" + level.id);
     }
 
     /**

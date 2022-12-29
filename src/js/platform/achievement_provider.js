@@ -428,9 +428,10 @@ export class AchievementCollection {
         };
     }
 
+    // TODO: Change after new chapters are added
     createLevelOptions(level) {
         return {
-            init: ({ key }) => this.unlock(key, this.root.hubGoals.level),
+            init: ({ key }) => this.unlock(key, this.root.gameMode.getLevelSet().getCompletedGoals().length),
             isValid: currentLevel => currentLevel > level,
             signal: "storyGoalCompleted",
         };
@@ -496,7 +497,7 @@ export class AchievementCollection {
 
     /** @param {ShapeDefinition} definition @returns {boolean} */
     isIrrelevantShapeValid(definition) {
-        const levels = this.root.gameMode.getLevelDefinitions();
+        const levels = this.root.gameMode.getLevelSet().getAllGoals();
         for (let i = 0; i < levels.length; i++) {
             if (definition.cachedHash === levels[i].shape) {
                 return false;
@@ -518,14 +519,21 @@ export class AchievementCollection {
         return true;
     }
 
+    // TODO: Change after new chapters are added
     /** @param {ShapeItem} item @returns {boolean} */
     isLogoBefore18Valid(item) {
-        return this.root.hubGoals.level < 18 && this.isShape(item, SHAPE_LOGO);
+        return (
+            this.root.gameMode.getLevelSet().getCompletedGoals().length < 18 && this.isShape(item, SHAPE_LOGO)
+        );
     }
 
+    // TODO: Change after new chapters are added
     /** @returns {boolean} */
     isMamValid() {
-        return this.root.hubGoals.level > 27 && !this.root.savegame.currentData.stats.failedMam;
+        return (
+            this.root.gameMode.getLevelSet().getCompletedGoals().length > 27 &&
+            !this.root.savegame.currentData.stats.failedMam
+        );
     }
 
     /** @param {number} count @returns {boolean} */

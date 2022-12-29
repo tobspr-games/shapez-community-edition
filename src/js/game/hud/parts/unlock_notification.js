@@ -53,28 +53,28 @@ export class HUDUnlockNotification extends BaseHUDPart {
     }
 
     /**
-     * @param {number} level
+     * @param {string} levelId
      * @param {enumHubGoalRewards} reward
      */
-    showForLevel(level, reward) {
+    showForLevel(levelId, reward) {
         this.root.soundProxy.playUi(SOUNDS.levelComplete);
 
-        const levels = this.root.gameMode.getLevelDefinitions();
-        // Don't use getIsFreeplay() because we want the freeplay level up to show
-        if (level > levels.length) {
-            this.root.hud.signals.notification.dispatch(
-                T.ingame.notifications.freeplayLevelComplete.replace("<level>", String(level)),
-                enumNotificationType.success
-            );
-            return;
-        }
+        const levels = this.root.gameMode.getLevelSet();
+        const freeplay = !levels.getActiveChapter();
 
-        this.root.app.gameAnalytics.noteMinor("game.level.complete-" + level);
+        this.root.app.gameAnalytics.noteMinor("game.level.complete-" + levelId);
 
         this.root.app.inputMgr.makeSureAttachedAndOnTop(this.inputReciever);
         this.elemTitle.innerText = T.ingame.levelCompleteNotification.levelTitle.replace(
             "<level>",
-            ("" + level).padStart(2, "0")
+            (freeplay ? T.ingame.levels.chapters["shapez:freeplay"].title : levels.getActiveChapter().label) +
+                "-" +
+                (
+                    "" +
+                    (freeplay
+                        ? this.root.hubGoals.getFreeplayLevel()
+                        : levels.getActiveChapter().getCompletedGoals().length)
+                ).padStart(2, "0")
         );
 
         const rewardName = T.storyRewards[reward].title;
@@ -139,18 +139,11 @@ export class HUDUnlockNotification extends BaseHUDPart {
 
             this.root.hud.signals.unlockNotificationFinished.dispatch();
 
-            if (
-                this.root.hubGoals.level > this.root.gameMode.getLevelDefinitions().length - 1 &&
-                this.root.app.restrictionMgr.getIsStandaloneMarketingActive()
-            ) {
-                this.root.hud.parts.standaloneAdvantages.show(true);
-            }
-
             if (!this.root.app.settings.getAllSettings().offerHints) {
                 return;
             }
 
-            if (this.root.hubGoals.level === 3) {
+            if (this.root.gameMode.getLevelSet().getCompletedGoals().length === 4) {
                 const { showUpgrades } = this.root.hud.parts.dialogs.showInfo(
                     T.dialogs.upgradesIntroduction.title,
                     T.dialogs.upgradesIntroduction.desc,
@@ -159,7 +152,7 @@ export class HUDUnlockNotification extends BaseHUDPart {
                 showUpgrades.add(() => this.root.hud.parts.shop.show());
             }
 
-            if (this.root.hubGoals.level === 5) {
+            if (this.root.gameMode.getLevelSet().getCompletedGoals().length === 6) {
                 const { showKeybindings } = this.root.hud.parts.dialogs.showInfo(
                     T.dialogs.keybindingsIntroduction.title,
                     T.dialogs.keybindingsIntroduction.desc,

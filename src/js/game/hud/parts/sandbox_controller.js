@@ -112,7 +112,17 @@ export class HUDSandboxController extends BaseHUDPart {
 
     modifyLevel(amount) {
         const hubGoals = this.root.hubGoals;
-        hubGoals.level = Math.max(1, hubGoals.level + amount);
+        const levels = this.root.gameMode.getLevelSet();
+        for (let i = 0; i < amount; i++) {
+            const goal = levels.getActiveGoal();
+            if (goal) {
+                this.root.app.gameAnalytics.handleLevelCompleted(goal);
+                levels.getActiveChapter().setGoalCompleted(goal.id);
+                hubGoals.completed.push([levels.getActiveChapter().id, goal.id]);
+            } else {
+                hubGoals.completed.push(["shapez:freeplay", hubGoals.getFreeplayLevel().toString()]);
+            }
+        }
         hubGoals.computeNextGoal();
 
         // Clear all shapes of this level
@@ -124,16 +134,21 @@ export class HUDSandboxController extends BaseHUDPart {
 
         // Compute gained rewards
         hubGoals.gainedRewards = {};
-        const levels = this.root.gameMode.getLevelDefinitions();
-        for (let i = 0; i < hubGoals.level - 1; ++i) {
-            if (i < levels.length) {
-                const reward = levels[i].reward;
-                hubGoals.gainedRewards[reward] = (hubGoals.gainedRewards[reward] || 0) + 1;
-            }
+        for (let i = 0; i < hubGoals.completed.length; ++i) {
+            const completed = hubGoals.completed[i];
+            const chapter = levels.chapters.find(x => x.id === completed[0]);
+            if (!chapter) continue;
+            const goal = chapter.goals.find(x => x.id === completed[1]);
+            if (!goal) continue;
+            chapter.setGoalCompleted(goal.id);
+            hubGoals.gainedRewards[goal.reward] = (hubGoals.gainedRewards[goal.reward] || 0) + 1;
         }
 
         this.root.hud.signals.notification.dispatch(
-            "Changed level to " + hubGoals.level,
+            "Changed level to " +
+                levels.getActiveChapter().label +
+                " " +
+                levels.getActiveChapter().getCompletedGoals().length,
             enumNotificationType.upgrade
         );
     }
