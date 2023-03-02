@@ -44,7 +44,7 @@ export default function gulptasksCSS(gulp, buildFolder, browserSync) {
                 }),
                 cssnano({
                     preset: [
-                        "advanced",
+                        "default",
                         {
                             cssDeclarationSorter: false,
                             discardUnused: true,
