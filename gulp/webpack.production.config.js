@@ -49,12 +49,22 @@ const moduleRules = [
                     end: "typehints:end",
                 },
             },
+        ],
+        resolve: {
+            fullySpecified: false,
+        },
+    },
+    {
+        test: /\.ts$/,
+        use: [
             {
-                // TODO: Consider removing this separation
-                loader: "webpack-strip-block",
+                loader: "ts-loader",
+
                 options: {
-                    start: "dev:start",
-                    end: "dev:end",
+                    configFile: resolve("../src/js/tsconfig.json"),
+                    onlyCompileBundledFiles: true,
+                    transpileOnly: true,
+                    experimentalWatchApi: true,
                 },
             },
         ],
@@ -72,10 +82,16 @@ const moduleRules = [
         ],
     },
     {
-        test: /\.js$/,
-        resolve: {
-            fullySpecified: false,
-        },
+        test: /\.worker\.ts$/,
+        use: [
+            {
+                loader: "worker-loader",
+                options: {
+                    filename: "[fullhash].worker.ts",
+                    inline: "fallback",
+                },
+            },
+        ],
     },
 ];
 

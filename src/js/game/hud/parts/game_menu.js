@@ -112,14 +112,8 @@ export class HUDGameMenu extends BaseHUDPart {
 
         // Check for notifications and badges
         for (let i = 0; i < this.badgesToUpdate.length; ++i) {
-            const {
-                badge,
-                button,
-                badgeElement,
-                lastRenderAmount,
-                notification,
-                condition,
-            } = this.badgesToUpdate[i];
+            const { badge, button, badgeElement, lastRenderAmount, notification, condition } =
+                this.badgesToUpdate[i];
 
             if (condition && !condition()) {
                 // Do not show notifications for invisible buttons
