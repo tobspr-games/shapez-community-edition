@@ -8,8 +8,8 @@ import gulpFluentFfmpeg from "gulp-fluent-ffmpeg";
 
 export default function gulptasksSounds(gulp, buildFolder) {
     // Gather some basic infos
-    const soundsDir = path.join("..", "res_raw", "sounds");
-    const builtSoundsDir = path.join("..", "res_built", "sounds");
+    const soundsDir = path.resolve("..", "res_raw", "sounds");
+    const builtSoundsDir = path.resolve("..", "res_built", "sounds");
 
     gulp.task("sounds.clear", () => {
         return gulp.src(builtSoundsDir, { read: false, allowEmpty: true }).pipe(gulpClean({ force: true }));
@@ -111,7 +111,7 @@ export default function gulptasksSounds(gulp, buildFolder) {
     gulp.task("sounds.sfxCopyAtlas", () => {
         return gulp
             .src([path.join(builtSoundsDir, "sfx.json")])
-            .pipe(gulp.dest(path.join("..", "src", "js", "built-temp")));
+            .pipe(gulp.dest(path.resolve("..", "src", "js", "built-temp")));
     });
 
     gulp.task(

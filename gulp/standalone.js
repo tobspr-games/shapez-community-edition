@@ -22,10 +22,10 @@ export default function gulptasksStandalone(gulp) {
         if (!variantData.standalone) {
             continue;
         }
-        const tempDestDir = path.join("..", "build_output", variant);
+        const tempDestDir = path.resolve("..", "build_output", variant);
         const taskPrefix = "standalone." + variant;
-        const electronBaseDir = path.join("..", variantData.electronBaseDir || "electron");
-        const tempDestBuildDir = path.join(tempDestDir, "built");
+        const electronBaseDir = path.resolve("..", variantData.electronBaseDir || "electron");
+        const tempDestBuildDir = path.resolve(tempDestDir, "built");
 
         gulp.task(taskPrefix + ".prepare.cleanup", () => {
             return gulp.src(tempDestDir, { read: false, allowEmpty: true }).pipe(gulpClean({ force: true }));

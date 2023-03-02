@@ -48,6 +48,9 @@ const moduleRules = [
                 },
             },
         ],
+        resolve: {
+            fullySpecified: false,
+        },
     },
     {
         test: /\.ts$/,
@@ -56,10 +59,22 @@ const moduleRules = [
                 loader: "ts-loader",
 
                 options: {
-                    configFile: "C:/Dev Temp/ts/shapez-community-edition/src/ts/tsconfig.json",
+                    configFile: resolve("../src/js/tsconfig.json"),
                     onlyCompileBundledFiles: true,
                     transpileOnly: true,
                     experimentalWatchApi: true,
+                },
+            },
+        ],
+    },
+    {
+        test: /\.worker\.js$/,
+        use: [
+            {
+                loader: "worker-loader",
+                options: {
+                    filename: "[fullhash].worker.js",
+                    inline: "fallback",
                 },
             },
         ],
@@ -123,7 +138,7 @@ const moduleRules = [
 /** @type {import("webpack").Configuration} */
 export default {
     mode: "development",
-    entry: resolve("../src/ts/main.ts"),
+    entry: resolve("../src/js/main.js"),
     context: resolve(".."),
     output: {
         path: resolve("../build"),
@@ -132,9 +147,10 @@ export default {
     resolve: {
         // fallback: { fs: false },
         alias: {
-            "global-compression": resolve("../src/ts/core/lzstring.ts"),
+            "global-compression": resolve("../src/js/core/lzstring.js"),
         },
-        extensions: [".ts", ".js"],
+        extensions: [".js", ".ts"],
+        fullySpecified: false,
     },
     devtool: "cheap-source-map",
     watch: true,
@@ -146,7 +162,7 @@ export default {
             exclude: /node_modules/,
             failOnError: true,
             allowAsyncCycles: false,
-            cwd: resolve("../src/ts"),
+            cwd: resolve("../src/js"),
         }),
     ],
     module: { rules: moduleRules },

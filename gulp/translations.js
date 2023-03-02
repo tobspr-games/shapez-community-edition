@@ -5,8 +5,8 @@ import YAML from "yaml";
 
 import gulpPlumber from "gulp-plumber";
 
-const translationsSourceDir = path.join("..", "translations");
-const translationsJsonDir = path.join("..", "src", "js", "built-temp");
+const translationsSourceDir = path.resolve("..", "translations");
+const translationsJsonDir = path.resolve("..", "src", "js", "built-temp");
 
 export default function gulptasksTranslations(gulp) {
     gulp.task("translations.convertToJson", () => {
