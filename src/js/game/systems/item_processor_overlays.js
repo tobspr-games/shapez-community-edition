@@ -58,7 +58,7 @@ export class ItemProcessorOverlaysSystem extends GameSystem {
                 if (processorComp.type === enumItemProcessorTypes.reader) {
                     this.drawReaderOverlays(parameters, entity);
                 }
-            }
+            } //eslint-disable-line brace-style
 
             // Draw filter overlays
             else if (filterComp) {

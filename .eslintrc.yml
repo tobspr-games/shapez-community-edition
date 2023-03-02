@@ -24,4 +24,4 @@ rules:
     no-unreachable: off
     no-prototype-builtins: off
     linebreak-style: off
-    brace-style: [1, 1tbs]
+    brace-style: [2, 1tbs]
