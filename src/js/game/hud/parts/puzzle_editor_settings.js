@@ -150,8 +150,9 @@ export class HUDPuzzleEditorSettings extends BaseHUDPart {
                     }
 
                     for (const key in building.components) {
-                        /** @type {import("../../../core/global_registries").Component} */ (building
-                            .components[key]).copyAdditionalStateTo(result.components[key]);
+                        /** @type {import("../../../core/global_registries").Component} */ (
+                            building.components[key]
+                        ).copyAdditionalStateTo(result.components[key]);
                     }
                 }
             });

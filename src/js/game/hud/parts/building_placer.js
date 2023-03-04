@@ -303,17 +303,14 @@ export class HUDBuildingPlacer extends HUDBuildingPlacerLogic {
         const mouseTile = worldPos.toTileSpace();
 
         // Compute best rotation variant
-        const {
-            rotation,
-            rotationVariant,
-            connectedEntities,
-        } = metaBuilding.computeOptimalDirectionAndRotationVariantAtTile({
-            root: this.root,
-            tile: mouseTile,
-            rotation: this.currentBaseRotation,
-            variant: this.currentVariant.get(),
-            layer: metaBuilding.getLayer(),
-        });
+        const { rotation, rotationVariant, connectedEntities } =
+            metaBuilding.computeOptimalDirectionAndRotationVariantAtTile({
+                root: this.root,
+                tile: mouseTile,
+                rotation: this.currentBaseRotation,
+                variant: this.currentVariant.get(),
+                layer: metaBuilding.getLayer(),
+            });
 
         // Check if there are connected entities
         if (connectedEntities) {

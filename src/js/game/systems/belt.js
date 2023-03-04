@@ -151,16 +151,14 @@ export class BeltSystem extends GameSystem {
                         continue;
                     }
 
-                    const {
-                        rotation,
-                        rotationVariant,
-                    } = metaBelt.computeOptimalDirectionAndRotationVariantAtTile({
-                        root: this.root,
-                        tile: new Vector(x, y),
-                        rotation: targetStaticComp.originalRotation,
-                        variant: defaultBuildingVariant,
-                        layer: targetEntity.layer,
-                    });
+                    const { rotation, rotationVariant } =
+                        metaBelt.computeOptimalDirectionAndRotationVariantAtTile({
+                            root: this.root,
+                            tile: new Vector(x, y),
+                            rotation: targetStaticComp.originalRotation,
+                            variant: defaultBuildingVariant,
+                            layer: targetEntity.layer,
+                        });
 
                     // Compute delta to see if anything changed
                     const newDirection = arrayBeltVariantToRotation[rotationVariant];
