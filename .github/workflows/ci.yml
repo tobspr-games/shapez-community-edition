@@ -38,13 +38,6 @@ jobs:
             - name: Lint
               run: |
                   yarn lint
-            - name: TSLint
-              run: |
-                  cd gulp
-                  yarn gulp translations.fullBuild
-                  yarn gulp localConfig.findOrCreate
-                  cd ..
-                  yarn tslint
 
     yaml-lint:
         name: yaml-lint
