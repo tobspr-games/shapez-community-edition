@@ -56,7 +56,25 @@ const moduleRules = [
         ],
     },
     {
-        test: /\.worker\.js$/,
+        test: /\.[jt]s$/,
+        use: [
+            {
+                loader: "ts-loader",
+
+                options: {
+                    configFile: resolve("../src/js/tsconfig.json"),
+                    onlyCompileBundledFiles: true,
+                    transpileOnly: true,
+                    experimentalWatchApi: true,
+                },
+            },
+        ],
+        resolve: {
+            fullySpecified: false,
+        },
+    },
+    {
+        test: /\.worker\.[jt]s$/,
         use: [
             {
                 loader: "worker-loader",
@@ -66,12 +84,6 @@ const moduleRules = [
                 },
             },
         ],
-    },
-    {
-        test: /\.js$/,
-        resolve: {
-            fullySpecified: false,
-        },
     },
 ];
 
@@ -89,6 +101,8 @@ export default {
         alias: {
             "global-compression": resolve("../src/js/core/lzstring.js"),
         },
+        fullySpecified: false,
+        extensions: [".ts", ".js"],
     },
     stats: { optimizationBailout: true },
     devtool: false,

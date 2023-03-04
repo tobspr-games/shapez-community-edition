@@ -730,16 +730,14 @@ export class WireSystem extends GameSystem {
 
                     const variant = targetStaticComp.getVariant();
 
-                    const {
-                        rotation,
-                        rotationVariant,
-                    } = metaWire.computeOptimalDirectionAndRotationVariantAtTile({
-                        root: this.root,
-                        tile: new Vector(x, y),
-                        rotation: targetStaticComp.originalRotation,
-                        variant,
-                        layer: targetEntity.layer,
-                    });
+                    const { rotation, rotationVariant } =
+                        metaWire.computeOptimalDirectionAndRotationVariantAtTile({
+                            root: this.root,
+                            tile: new Vector(x, y),
+                            rotation: targetStaticComp.originalRotation,
+                            variant,
+                            layer: targetEntity.layer,
+                        });
 
                     // Compute delta to see if anything changed
                     const newType = arrayWireRotationVariantToType[rotationVariant];
