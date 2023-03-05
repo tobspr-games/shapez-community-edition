@@ -2,6 +2,7 @@ import gulp from "gulp";
 import BrowserSync from "browser-sync";
 const browserSync = BrowserSync.create({});
 import path from "path/posix";
+import pathNative from "path";
 import deleteEmpty from "delete-empty";
 import { execSync } from "child_process";
 
@@ -189,12 +190,16 @@ function serveHTML({ version = "web-dev" }) {
 
     // Watch the build folder and reload when anything changed
     const extensions = ["html", "js", "png", "gif", "jpg", "svg", "mp3", "ico", "woff2", "json"];
-    gulp.watch(extensions.map(ext => path.join(buildFolder, "**", "*." + ext))).on("change", function (path) {
-        return gulp.src(path).pipe(browserSync.reload({ stream: true }));
+    gulp.watch(extensions.map(ext => path.join(buildFolder, "**", "*." + ext))).on("change", function (p) {
+        return gulp
+            .src(pathNative.resolve(p).replaceAll(pathNative.sep, path.sep))
+            .pipe(browserSync.reload({ stream: true }));
     });
 
-    gulp.watch("../src/js/built-temp/*.json").on("change", function (path) {
-        return gulp.src(path).pipe(browserSync.reload({ stream: true }));
+    gulp.watch("../src/js/built-temp/*.json").on("change", function (p) {
+        return gulp
+            .src(pathNative.resolve(p).replaceAll(pathNative.sep, path.sep))
+            .pipe(browserSync.reload({ stream: true }));
     });
 
     gulp.series("js." + version + ".dev.watch")(() => true);
