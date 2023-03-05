@@ -104,6 +104,10 @@ declare interface Window {
     assert(condition: boolean, failureMessage: string);
 
     coreThreadLoadedCb();
+
+    //JSX
+    JSXCreateElement(tag: string | ((...args: any) => JSX.Element), props: Record<string, any>, ...children: JSX.Element[]);
+    JSXCreateFragment(props: Record<string, any>, ...children: JSX.Element[]);
 }
 
 declare interface Navigator {
@@ -207,4 +211,25 @@ declare module "worker-loader?inline=true&fallback=false!*" {
     }
 
     export default WebpackWorker;
+}
+
+// JSX
+declare namespace JSX {
+    // The return type of our JSX Factory: this could be anything
+    type Element = HTMLElement;
+
+    // IntrinsicElementMap grabs all the standard HTML tags in the TS DOM lib.
+    interface IntrinsicElements extends IntrinsicElementMap { }
+
+
+    // The following are custom types, not part of TS's known JSX namespace:
+    type IntrinsicElementMap = {
+        [K in keyof HTMLElementTagNameMap]: {
+            [k: string]: any
+        }
+    }
+
+    interface Component {
+        (properties?: { [key: string]: any }, children?: Node[]): Node
+    }
 }
