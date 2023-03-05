@@ -34,7 +34,7 @@ const moduleRules = [
         type: "javascript/auto",
     },
     {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         enforce: "pre",
         exclude: /node_modules/,
         use: [
@@ -56,7 +56,7 @@ const moduleRules = [
         ],
     },
     {
-        test: /\.[jt]s$/,
+        test: /\.[jt]sx?$/,
         use: [
             {
                 loader: "ts-loader",
@@ -102,7 +102,7 @@ export default {
             "global-compression": resolve("../src/js/core/lzstring.js"),
         },
         fullySpecified: false,
-        extensions: [".ts", ".js"],
+        extensions: [".ts", ".js", ".tsx", ".jsx"],
     },
     stats: { optimizationBailout: true },
     devtool: false,

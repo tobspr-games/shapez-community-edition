@@ -32,11 +32,16 @@
         "moduleResolution": "node" /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */,
         "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
 
+        /* JSX Compilation */
+        "jsx": "react",
+        "jsxFactory": "window.JSXCreateElement",
+        "jsxFragmentFactory": "window.JSXCreateFragment",
+
         /* Experimental Options */
         "resolveJsonModule": true,
         "skipLibCheck": true,
         "skipDefaultLibCheck": true
     },
-    "include": ["./**/*.js", "./**/*.ts"],
+    "include": ["./**/*.js", "./**/*.ts", "./**/*.jsx", "./**/*.tsx"],
     "exclude": ["webworkers", "node_modules"]
 }
