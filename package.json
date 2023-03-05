@@ -76,7 +76,7 @@
         "strip-json-comments": "^3.0.1",
         "terser-webpack-plugin": "^5.3.6",
         "ts-loader": "^9.4.2",
-        "typescript": "3.9.3",
+        "typescript": "^5.0.1-rc",
         "webpack": "^5.75.0",
         "webpack-deadcode-plugin": "^0.1.17",
         "webpack-stream": "^7.0.0",
