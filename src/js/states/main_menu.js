@@ -708,7 +708,7 @@ export class MainMenuState extends GameState {
             label: null,
             placeholder: "",
             defaultValue: game.name || "",
-            validator: val => val.match(regex) && trim(val).length > 0,
+            validator: val => val.match(regex) && val.trim().length > 0,
         });
         const dialog = new DialogWithForm({
             app: this.app,
@@ -717,6 +717,7 @@ export class MainMenuState extends GameState {
             formElements: [nameInput],
             buttons: ["cancel:bad:escape", "ok:good:enter"],
         });
+
         this.dialogs.internalShowDialog(dialog);
 
         // When confirmed, save the name
