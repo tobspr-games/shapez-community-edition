@@ -1,17 +1,16 @@
-export const STOP_PROPAGATION = "stop_propagation";
+export const STOP_PROPAGATION = "stop_propagation" as const;
+export type STOP_PROPAGATION = typeof STOP_PROPAGATION;
 
-export class Signal {
-    constructor() {
-        this.receivers = [];
-        this.modifyCount = 0;
-    }
+export type SignalReceiver<T extends any[]> = (...args: T) => STOP_PROPAGATION | void;
+
+export class Signal<T extends any[] = []> {
+    public receivers: { receiver: SignalReceiver<T>; scope: any }[] = [];
+    public modifyCount: number = 0;
 
     /**
      * Adds a new signal listener
-     * @param {function} receiver
-     * @param {object} scope
      */
-    add(receiver, scope = null) {
+    add(receiver: SignalReceiver<T>, scope: any = null) {
         assert(receiver, "receiver is null");
         this.receivers.push({ receiver, scope });
         ++this.modifyCount;
@@ -19,10 +18,8 @@ export class Signal {
 
     /**
      * Adds a new signal listener
-     * @param {function} receiver
-     * @param {object} scope
      */
-    addToTop(receiver, scope = null) {
+    addToTop(receiver: SignalReceiver<T>, scope: any = null) {
         assert(receiver, "receiver is null");
         this.receivers.unshift({ receiver, scope });
         ++this.modifyCount;
@@ -30,15 +27,14 @@ export class Signal {
 
     /**
      * Dispatches the signal
-     * @param  {...any} payload
      */
-    dispatch() {
+    dispatch(...payload: T) {
         const modifyState = this.modifyCount;
 
         const n = this.receivers.length;
         for (let i = 0; i < n; ++i) {
             const { receiver, scope } = this.receivers[i];
-            if (receiver.apply(scope, arguments) === STOP_PROPAGATION) {
+            if (receiver.apply(scope, payload) === STOP_PROPAGATION) {
                 return STOP_PROPAGATION;
             }
 
@@ -51,9 +47,8 @@ export class Signal {
 
     /**
      * Removes a receiver
-     * @param {function} receiver
      */
-    remove(receiver) {
+    remove(receiver: SignalReceiver<T>) {
         let index = null;
         const n = this.receivers.length;
         for (let i = 0; i < n; ++i) {
