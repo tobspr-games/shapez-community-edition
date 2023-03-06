@@ -66,7 +66,7 @@ export class FormElementInput extends FormElement {
     }
 
     getHtml() {
-        let classes = [];
+        const classes = [];
         let inputType = "text";
         let maxlength = 256;
         switch (this.inputType) {
@@ -193,7 +193,7 @@ export class FormElementItemChooser extends FormElement<BaseItem> {
     }
 
     getHtml() {
-        let classes = [];
+        const classes = [];
 
         return `
             <div class="formElement">

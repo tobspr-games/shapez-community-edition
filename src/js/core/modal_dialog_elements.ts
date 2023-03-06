@@ -367,7 +367,7 @@ export class DialogOptionChooser extends Dialog<"optionSelected"> {
 
         options.options.forEach(({ value, text, desc = null, iconPrefix = null }) => {
             const descHtml = desc ? `<span class="desc">${desc}</span>` : "";
-            let iconHtml = iconPrefix ? `<span class="icon icon-${iconPrefix}-${value}"></span>` : "";
+            const iconHtml = iconPrefix ? `<span class="icon icon-${iconPrefix}-${value}"></span>` : "";
             html += `
                 <div class='option ${value === options.active ? "active" : ""} ${
                 iconPrefix ? "hasIcon" : ""
