@@ -435,7 +435,7 @@ export class DialogOptionChooser extends Dialog<"optionSelected"> {
 
 export class DialogWithForm<T extends string = "cancel" | "ok"> extends Dialog<T> {
     public confirmButtonId: string;
-    public formElements: FormElement[];
+    public formElements: FormElement<any>[];
 
     constructor({
         app,
@@ -449,7 +449,7 @@ export class DialogWithForm<T extends string = "cancel" | "ok"> extends Dialog<T
         app: Application;
         title: string;
         desc: string;
-        formElements: FormElement[];
+        formElements: FormElement<any>[];
         buttons?: DialogButtonStr<T>[];
         confirmButtonId?: T;
         closeButton?: boolean;

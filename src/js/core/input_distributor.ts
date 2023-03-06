@@ -1,7 +1,5 @@
-/* typehints:start */
-import { Application } from "../application";
-import { InputReceiver } from "./input_receiver";
-/* typehints:end */
+import type { Application } from "../application";
+import type { InputReceiver } from "./input_receiver";
 
 import { Signal, STOP_PROPAGATION } from "./signal";
 import { createLogger } from "./logging";
@@ -10,47 +8,33 @@ import { arrayDeleteValue, fastArrayDeleteValue } from "./utils";
 const logger = createLogger("input_distributor");
 
 export class InputDistributor {
+    public recieverStack: InputReceiver[] = [];
+    public filters: ((arg: any) => boolean)[] = [];
+
     /**
-     *
-     * @param {Application} app
+     * All keys which are currently down
      */
-    constructor(app) {
-        this.app = app;
+    public keysDown = new Set<number>();
 
-        /** @type {Array<InputReceiver>} */
-        this.recieverStack = [];
-
-        /** @type {Array<function(any) : boolean>} */
-        this.filters = [];
-
-        /**
-         * All keys which are currently down
-         */
-        this.keysDown = new Set();
-
+    constructor(public app: Application) {
         this.bindToEvents();
     }
 
     /**
      * Attaches a new filter which can filter and reject events
-     * @param {function(any): boolean} filter
      */
-    installFilter(filter) {
+    installFilter(filter: (arg: any) => boolean) {
         this.filters.push(filter);
     }
 
     /**
      * Removes an attached filter
-     * @param {function(any) : boolean} filter
      */
-    dismountFilter(filter) {
+    dismountFilter(filter: (arg: any) => boolean) {
         fastArrayDeleteValue(this.filters, filter);
     }
 
-    /**
-     * @param {InputReceiver} reciever
-     */
-    pushReciever(reciever) {
+    pushReciever(reciever: InputReceiver) {
         if (this.isRecieverAttached(reciever)) {
             assert(false, "Can not add reciever " + reciever.context + " twice");
             logger.error("Can not add reciever", reciever.context, "twice");
@@ -66,10 +50,7 @@ export class InputDistributor {
         }
     }
 
-    /**
-     * @param {InputReceiver} reciever
-     */
-    popReciever(reciever) {
+    popReciever(reciever: InputReceiver) {
         if (this.recieverStack.indexOf(reciever) < 0) {
             assert(false, "Can not pop reciever " + reciever.context + "  since its not contained");
             logger.error("Can not pop reciever", reciever.context, "since its not contained");
@@ -86,45 +67,29 @@ export class InputDistributor {
         arrayDeleteValue(this.recieverStack, reciever);
     }
 
-    /**
-     * @param {InputReceiver} reciever
-     */
-    isRecieverAttached(reciever) {
+    isRecieverAttached(reciever: InputReceiver) {
         return this.recieverStack.indexOf(reciever) >= 0;
     }
 
-    /**
-     * @param {InputReceiver} reciever
-     */
-    isRecieverOnTop(reciever) {
+    isRecieverOnTop(reciever: InputReceiver) {
         return (
             this.isRecieverAttached(reciever) &&
             this.recieverStack[this.recieverStack.length - 1] === reciever
         );
     }
 
-    /**
-     * @param {InputReceiver} reciever
-     */
-    makeSureAttachedAndOnTop(reciever) {
+    makeSureAttachedAndOnTop(reciever: InputReceiver) {
         this.makeSureDetached(reciever);
         this.pushReciever(reciever);
     }
 
-    /**
-     * @param {InputReceiver} reciever
-     */
-    makeSureDetached(reciever) {
+    makeSureDetached(reciever: InputReceiver) {
         if (this.isRecieverAttached(reciever)) {
             arrayDeleteValue(this.recieverStack, reciever);
         }
     }
 
-    /**
-     *
-     * @param {InputReceiver} reciever
-     */
-    destroyReceiver(reciever) {
+    destroyReceiver(reciever: InputReceiver) {
         this.makeSureDetached(reciever);
         reciever.cleanup();
     }
@@ -171,10 +136,7 @@ export class InputDistributor {
         return signal.dispatch(payload);
     }
 
-    /**
-     * @param {Event} event
-     */
-    handleBackButton(event) {
+    handleBackButton(event: Event) {
         event.preventDefault();
         event.stopPropagation();
         this.forwardToReceiver("backButton");
@@ -188,17 +150,11 @@ export class InputDistributor {
         this.keysDown.clear();
     }
 
-    /**
-     *
-     */
     handlePaste(ev) {
         this.forwardToReceiver("paste", ev);
     }
 
-    /**
-     * @param {KeyboardEvent | MouseEvent} event
-     */
-    handleKeyMouseDown(event) {
+    handleKeyMouseDown(event: KeyboardEvent | MouseEvent) {
         const keyCode = event instanceof MouseEvent ? event.button + 1 : event.keyCode;
         if (
             keyCode === 4 || // MB4
@@ -236,10 +192,7 @@ export class InputDistributor {
         }
     }
 
-    /**
-     * @param {KeyboardEvent | MouseEvent} event
-     */
-    handleKeyMouseUp(event) {
+    handleKeyMouseUp(event: KeyboardEvent | MouseEvent) {
         const keyCode = event instanceof MouseEvent ? event.button + 1 : event.keyCode;
         this.keysDown.delete(keyCode);
 
