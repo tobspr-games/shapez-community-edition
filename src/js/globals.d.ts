@@ -106,7 +106,11 @@ declare interface Window {
     coreThreadLoadedCb();
 
     //JSX
-    JSXCreateElement(tag: string | ((...args: any) => JSX.Element), props: Record<string, any>, ...children: JSX.Element[]);
+    JSXCreateElement(
+        tag: string | ((...args: any) => JSX.Element),
+        props: Record<string, any>,
+        ...children: JSX.Element[]
+    );
     JSXCreateFragment(props: Record<string, any>, ...children: JSX.Element[]);
 }
 
@@ -219,17 +223,16 @@ declare namespace JSX {
     type Element = HTMLElement;
 
     // IntrinsicElementMap grabs all the standard HTML tags in the TS DOM lib.
-    interface IntrinsicElements extends IntrinsicElementMap { }
-
+    interface IntrinsicElements extends IntrinsicElementMap {}
 
     // The following are custom types, not part of TS's known JSX namespace:
     type IntrinsicElementMap = {
         [K in keyof HTMLElementTagNameMap]: {
-            [k: string]: any
-        }
-    }
+            [k: string]: any;
+        };
+    };
 
     interface Component {
-        (properties?: { [key: string]: any }, children?: Node[]): Node
+        (properties?: { [key: string]: any }, children?: Node[]): Node;
     }
 }
