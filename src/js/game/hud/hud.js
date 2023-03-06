@@ -45,6 +45,7 @@ export class GameHUD {
             unlockNotificationFinished: /** @type {TypedSignal<[]>} */ (new Signal()),
         };
 
+        /** @type {import("./hud_parts").HudParts} */
         this.parts = {
             buildingsToolbar: new HUDBuildingsToolbar(this.root),
 
