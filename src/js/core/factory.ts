@@ -3,21 +3,19 @@ import { createLogger } from "./logging";
 const logger = createLogger("factory");
 
 // simple factory pattern
-export class Factory {
-    constructor(id) {
-        this.id = id;
+export class Factory<T> {
+    // Store array as well as dictionary, to speed up lookups
+    public entries: Class<T>[] = [];
+    public entryIds: string[] = [];
+    public idToEntry: Record<string, Class<T>> = {} as any;
 
-        // Store array as well as dictionary, to speed up lookups
-        this.entries = [];
-        this.entryIds = [];
-        this.idToEntry = {};
-    }
+    constructor(public id: string) {}
 
     getId() {
         return this.id;
     }
 
-    register(entry) {
+    register(entry: Class<T> & { getId(): string }) {
         // Extract id
         const id = entry.getId();
         assert(id, "Factory: Invalid id for class: " + entry);
@@ -33,19 +31,15 @@ export class Factory {
 
     /**
      * Checks if a given id is registered
-     * @param {string} id
-     * @returns {boolean}
      */
-    hasId(id) {
+    hasId(id: string): boolean {
         return !!this.idToEntry[id];
     }
 
     /**
      * Finds an instance by a given id
-     * @param {string} id
-     * @returns {object}
      */
-    findById(id) {
+    findById(id: string): Class<T> {
         const entry = this.idToEntry[id];
         if (!entry) {
             logger.error("Object with id", id, "is not registered on factory", this.id, "!");
@@ -57,25 +51,22 @@ export class Factory {
 
     /**
      * Returns all entries
-     * @returns {Array<object>}
      */
-    getEntries() {
+    getEntries(): Class<T>[] {
         return this.entries;
     }
 
     /**
      * Returns all registered ids
-     * @returns {Array<string>}
      */
-    getAllIds() {
+    getAllIds(): string[] {
         return this.entryIds;
     }
 
     /**
      * Returns amount of stored entries
-     * @returns {number}
      */
-    getNumEntries() {
+    getNumEntries(): number {
         return this.entries.length;
     }
 }
