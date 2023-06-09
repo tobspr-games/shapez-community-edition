@@ -104,14 +104,6 @@ declare interface Window {
     assert(condition: boolean, failureMessage: string);
 
     coreThreadLoadedCb();
-
-    //JSX
-    JSXCreateElement(
-        tag: string | ((...args: any) => JSX.Element),
-        props: Record<string, any>,
-        ...children: JSX.Element[]
-    );
-    JSXCreateFragment(props: Record<string, any>, ...children: JSX.Element[]);
 }
 
 declare interface Navigator {
@@ -217,22 +209,49 @@ declare module "worker-loader?inline=true&fallback=false!*" {
     export default WebpackWorker;
 }
 
-// JSX
+type OmitByValue<T, V> = {
+    [K in keyof T as T[K] extends V ? never : K]: T[K];
+};
+
+// JSX type support - https://www.typescriptlang.org/docs/handbook/jsx.html
+// modified from https://stackoverflow.com/a/68238924
 declare namespace JSX {
-    // The return type of our JSX Factory: this could be anything
+    /**
+     * The return type of a JSX expression.
+     *
+     * In reality, Fragments can return arbitrary values, but we ignore this for convenience.
+     */
     type Element = HTMLElement;
-
-    // IntrinsicElementMap grabs all the standard HTML tags in the TS DOM lib.
-    interface IntrinsicElements extends IntrinsicElementMap {}
-
-    // The following are custom types, not part of TS's known JSX namespace:
-    type IntrinsicElementMap = {
+    /**
+     * Key-value list of intrinsic element names and their allowed properties.
+     *
+     * Because children are treated as a property, the Node type cannot be excluded from the index signature.
+     */
+    type IntrinsicElements = {
         [K in keyof HTMLElementTagNameMap]: {
-            [k: string]: any;
+            children?: Node | Node[];
+            [k: string]: Node | Node[] | string | number | boolean;
         };
     };
+    /**
+     * The property of the attributes object storing the children.
+     */
+    type ElementChildrenAttribute = { children: unknown };
 
-    interface Component {
-        (properties?: { [key: string]: any }, children?: Node[]): Node;
-    }
+    // The following do not have special meaning to TypeScript.
+
+    /**
+     * An attributes object.
+     */
+    type Props = { [k: string]: unknown };
+    /**
+     * A functional component requiring attributes to match `T`.
+     */
+    type Component<T extends Props> = {
+        (props: T): Element;
+    };
+    /**
+     * A child of a JSX element.
+     */
+    type Node = Element | string | boolean | null | undefined;
 }

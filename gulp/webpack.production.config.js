@@ -100,6 +100,7 @@ export default {
         fallback: { fs: false },
         alias: {
             "global-compression": resolve("../src/js/core/lzstring.js"),
+            "root": resolve("../src/js/"),
         },
         fullySpecified: false,
         extensions: [".ts", ".js", ".tsx", ".jsx"],
