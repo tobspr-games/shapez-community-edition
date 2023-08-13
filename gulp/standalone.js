@@ -108,11 +108,8 @@ export default function gulptasksStandalone(gulp) {
         function packageStandalone(platform, arch, cb, isRelease = true) {
             const privateArtifactsPath = "node_modules/shapez.io-private-artifacts";
 
-            // Only use asar on steam builds (not supported by wegame)
-            let asar = Boolean(variantData.steamAppId);
-
-            // Unpack private artifacts though
-            if (asar && fs.existsSync(path.join(tempDestBuildDir, privateArtifactsPath))) {
+            // Unpack private artifacts
+            if (fs.existsSync(path.join(tempDestBuildDir, privateArtifactsPath))) {
                 // @ts-expect-error
                 asar = { unpackDir: privateArtifactsPath };
             }
@@ -124,7 +121,7 @@ export default function gulptasksStandalone(gulp) {
                 buildVersion: "1.0.0",
                 arch,
                 platform,
-                asar: asar,
+                asar: true,
                 executableName: "shapezio",
                 icon: path.join(electronBaseDir, "favicon"),
                 name: "shapez",

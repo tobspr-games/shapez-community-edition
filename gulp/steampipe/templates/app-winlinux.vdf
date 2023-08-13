@@ -10,8 +10,6 @@
 	"depots"
 	{
 		"1318691"	"$VDF_DIR$\standalone-windows.vdf"
-		"1318694"	"$VDF_DIR$\standalone-china-windows.vdf"
 		"1318692"	"$VDF_DIR$\standalone-linux.vdf"
-		"1318695"	"$VDF_DIR$\standalone-china-linux.vdf"
 	}
 }
