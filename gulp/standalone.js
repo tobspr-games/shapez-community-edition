@@ -109,8 +109,9 @@ export default function gulptasksStandalone(gulp) {
             const privateArtifactsPath = "node_modules/shapez.io-private-artifacts";
 
             // Unpack private artifacts
+            /** @type {boolean | { unpackDir: string }} */
+            let asar = true;
             if (fs.existsSync(path.join(tempDestBuildDir, privateArtifactsPath))) {
-                // @ts-expect-error
                 asar = { unpackDir: privateArtifactsPath };
             }
 
@@ -121,7 +122,7 @@ export default function gulptasksStandalone(gulp) {
                 buildVersion: "1.0.0",
                 arch,
                 platform,
-                asar: true,
+                asar,
                 executableName: "shapezio",
                 icon: path.join(electronBaseDir, "favicon"),
                 name: "shapez",
