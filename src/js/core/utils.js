@@ -1,5 +1,4 @@
 import { T } from "../translations";
-import { WEB_STEAM_SSO_AUTHENTICATED } from "./steam_sso";
 
 const bigNumberSuffixTranslationKeys = ["thousands", "millions", "billions", "trillions"];
 
@@ -748,14 +747,6 @@ export function getRomanNumber(number) {
  * Returns the appropriate logo sprite path
  */
 export function getLogoSprite() {
-    if (G_IS_STANDALONE || WEB_STEAM_SSO_AUTHENTICATED) {
-        return "logo.png";
-    }
-
-    if (G_IS_BROWSER) {
-        return "logo_demo.png";
-    }
-
     return "logo.png";
 }
 
