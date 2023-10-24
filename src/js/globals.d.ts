@@ -209,10 +209,6 @@ declare module "worker-loader?inline=true&fallback=false!*" {
     export default WebpackWorker;
 }
 
-type OmitByValue<T, V> = {
-    [K in keyof T as T[K] extends V ? never : K]: T[K];
-};
-
 // JSX type support - https://www.typescriptlang.org/docs/handbook/jsx.html
 // modified from https://stackoverflow.com/a/68238924
 declare namespace JSX {
