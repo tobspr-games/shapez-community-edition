@@ -10,35 +10,6 @@ on:
             - master
 
 jobs:
-    setup:
-        name: CI
-
-        runs-on: ubuntu-latest
-
-        steps:
-            - name: Install Dependencies
-              run: |
-                  sudo apt-get update
-                  sudo apt-get install ffmpeg
-
-            - name: Setup Node
-              uses: actions/setup-node@v2-beta
-              with:
-                  node-version: 16.x
-
-            - name: Checkout repo
-              uses: actions/checkout@v2
-
-            - name: Install Yarn Dependencies
-              run: |
-                  yarn
-                  cd gulp/
-                  yarn
-                  cd ..
-            - name: Lint
-              run: |
-                  yarn lint
-
     yaml-lint:
         name: yaml-lint
         runs-on: ubuntu-latest
