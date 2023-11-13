@@ -7,7 +7,7 @@ export class Factory<T> {
     // Store array as well as dictionary, to speed up lookups
     public entries: Class<T>[] = [];
     public entryIds: string[] = [];
-    public idToEntry: Record<string, Class<T>> = {} as any;
+    public idToEntry: Record<string, Class<T>> = {};
 
     constructor(public id: string) {}
 

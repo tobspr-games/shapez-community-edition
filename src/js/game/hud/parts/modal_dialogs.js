@@ -58,7 +58,7 @@ export class HUDModalDialogs extends BaseHUDPart {
     /**
      * @param {string} title
      * @param {string} text
-     * @param {Array<string>} buttons
+     * @param {Array<`${string}:${string}`>} buttons
      */
     showInfo(title, text, buttons = ["ok:good"]) {
         const dialog = new Dialog({
@@ -80,7 +80,7 @@ export class HUDModalDialogs extends BaseHUDPart {
     /**
      * @param {string} title
      * @param {string} text
-     * @param {Array<string>} buttons
+     * @param {Array<`${string}:${string}`>} buttons
      */
     showWarning(title, text, buttons = ["ok:good"]) {
         const dialog = new Dialog({

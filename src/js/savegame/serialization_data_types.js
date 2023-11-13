@@ -8,6 +8,15 @@ import { round4Digits } from "../core/utils";
 export const globalJsonSchemaDefs = {};
 
 /**
+ * @typedef {import("../core/factory").Factory<T>} FactoryTemplate<T>
+ * @template T
+ */
+/**
+ * @typedef {import("../core/singleton_factory").SingletonFactory<T>} SingletonFactoryTemplate<T>
+ * @template {{ getId(): string }} T
+ */
+
+/**
  *
  * @param {import("./serialization").Schema} schema
  */

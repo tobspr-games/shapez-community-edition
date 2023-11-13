@@ -25,6 +25,15 @@ import {
     TypePositiveIntegerOrString,
 } from "./serialization_data_types";
 
+/**
+ * @typedef {import("../core/factory").Factory<T>} FactoryTemplate<T>
+ * @template T
+ */
+/**
+ * @typedef {import("../core/singleton_factory").SingletonFactory<T>} SingletonFactoryTemplate<T>
+ * @template {{ getId(): string }} T
+ */
+
 const logger = createLogger("serialization");
 
 // Schema declarations
@@ -106,7 +115,7 @@ export const types = {
     },
 
     /**
-     * @param {SingletonFactoryTemplate<*>} innerType
+     * @param {SingletonFactoryTemplate<*>} registry
      */
     classRef(registry) {
         return new TypeMetaClass(registry);

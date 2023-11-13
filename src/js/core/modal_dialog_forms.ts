@@ -32,7 +32,7 @@ export abstract class FormElement<T = string> {
         return true;
     }
 
-    abstract getValue(): any;
+    abstract getValue(): T;
 }
 
 export class FormElementInput extends FormElement {
@@ -69,6 +69,7 @@ export class FormElementInput extends FormElement {
         const classes = [];
         let inputType = "text";
         let maxlength = 256;
+        // @TODO: `inputType` and these classes are unused
         switch (this.inputType) {
             case "text": {
                 classes.push("input-text");
@@ -125,7 +126,7 @@ export class FormElementInput extends FormElement {
         return this.element.value;
     }
 
-    setValue(value) {
+    setValue(value: string) {
         this.element.value = value;
         this.updateErrorState();
     }
@@ -136,7 +137,7 @@ export class FormElementInput extends FormElement {
     }
 }
 
-export class FormElementCheckbox extends FormElement {
+export class FormElementCheckbox extends FormElement<boolean> {
     public defaultValue: boolean;
     public value: boolean;
     public element: HTMLDivElement;

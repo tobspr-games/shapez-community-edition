@@ -1,8 +1,11 @@
 // Globals defined by webpack
 
 declare const G_IS_DEV: boolean;
-declare function assert(condition: boolean | object | string, ...errorMessage: string[]): void;
-declare function assertAlways(condition: boolean | object | string, ...errorMessage: string[]): void;
+declare function assert(condition: boolean | object | string, ...errorMessage: string[]): asserts condition;
+declare function assertAlways(
+    condition: boolean | object | string,
+    ...errorMessage: string[]
+): asserts condition;
 
 declare const abstract: void;
 
@@ -140,34 +143,6 @@ declare type Class<T = unknown> = new (...args: any[]) => T;
 declare interface String {
     padStart(size: number, fill?: string): string;
     padEnd(size: number, fill: string): string;
-}
-
-declare interface FactoryTemplate<T> {
-    entries: Array<Class<T>>;
-    entryIds: Array<string>;
-    idToEntry: any;
-
-    getId(): string;
-    getAllIds(): Array<string>;
-    register(entry: Class<T>): void;
-    hasId(id: string): boolean;
-    findById(id: string): Class<T>;
-    getEntries(): Array<Class<T>>;
-    getNumEntries(): number;
-}
-
-declare interface SingletonFactoryTemplate<T> {
-    entries: Array<T>;
-    idToEntry: any;
-
-    getId(): string;
-    getAllIds(): Array<string>;
-    register(classHandle: Class<T>): void;
-    hasId(id: string): boolean;
-    findById(id: string): T;
-    findByClass(classHandle: Class<T>): T;
-    getEntries(): Array<T>;
-    getNumEntries(): number;
 }
 
 declare interface SignalTemplate0 {

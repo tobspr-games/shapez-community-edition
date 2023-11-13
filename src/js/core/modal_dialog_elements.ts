@@ -2,9 +2,9 @@ import type { Application } from "../application";
 
 import { Signal, STOP_PROPAGATION } from "./signal";
 import { arrayDeleteValue, waitNextFrame } from "./utils";
-import { ClickDetector } from "./click_detector";
+import { ClickDetector, ClickDetectorConstructorArgs } from "./click_detector";
 import { SOUNDS } from "../platform/sound";
-import { InputReceiver } from "./input_receiver";
+import { InputReceiver, KeydownEvent } from "./input_receiver";
 import { FormElement } from "./modal_dialog_forms";
 import { globalConfig } from "./config";
 import { getStringForKeyCode } from "../game/key_action_mapper";
@@ -27,8 +27,8 @@ const kbCancel = 27;
 
 const logger = createLogger("dialogs");
 
-export type DialogButtonStr<T extends string> = `${T}:${string}` | `${T}`;
-export type DialogButtonType = "info" | "warn" | "loading" | "warning";
+export type DialogButtonStr<T extends string> = `${T}:${string}`;
+export type DialogButtonType = "info" | "loading" | "warning";
 
 /**
  * Basic text based dialog
@@ -44,16 +44,16 @@ export class Dialog<T extends string = never> {
     public element: HTMLDivElement;
 
     public closeRequested = new Signal();
-    public buttonSignals: Record<T, Signal<[any?]>> = {} as any;
+    public buttonSignals = {} as Record<T, Signal<unknown[]>>;
 
     public valueChosen = new Signal<[T]>();
 
-    public timeouts = [];
-    public clickDetectors = [];
+    public timeouts: number[] = [];
+    public clickDetectors: ClickDetector[] = [];
 
     public inputReciever: InputReceiver;
-    public enterHandler = null;
-    public escapeHandler = null;
+    public enterHandler: T = null;
+    public escapeHandler: T = null;
 
     /**
      *
@@ -69,7 +69,7 @@ export class Dialog<T extends string = never> {
      *    timeout: This button is only available after some waiting time
      *    kb_enter: This button is triggered by the enter key
      *    kb_escape This button is triggered by the escape key
-     * @param param0.type The dialog type, either "info" or "warn"
+     * @param param0.type The dialog type, either "info", "warning", or "loading"
      * @param param0.closeButton Whether this dialog has a close button
      */
     constructor({
@@ -103,33 +103,15 @@ export class Dialog<T extends string = never> {
             this.buttonSignals[buttonId] = new Signal();
         }
 
-        this.valueChosen = new Signal();
-
-        this.timeouts = [];
-        this.clickDetectors = [];
-
         this.inputReciever = new InputReceiver("dialog-" + this.title);
 
         this.inputReciever.keydown.add(this.handleKeydown, this);
-
-        this.enterHandler = null;
-        this.escapeHandler = null;
     }
 
     /**
      * Internal keydown handler
      */
-    handleKeydown({
-        keyCode,
-        shift,
-        alt,
-        ctrl,
-    }: {
-        keyCode: number;
-        shift: boolean;
-        alt: boolean;
-        ctrl: boolean;
-    }): void | STOP_PROPAGATION {
+    handleKeydown({ keyCode, shift, alt, ctrl }: KeydownEvent): void | STOP_PROPAGATION {
         if (keyCode === kbEnter && this.enterHandler) {
             this.internalButtonHandler(this.enterHandler);
             return STOP_PROPAGATION;
@@ -141,7 +123,7 @@ export class Dialog<T extends string = never> {
         }
     }
 
-    internalButtonHandler(id, ...payload) {
+    internalButtonHandler(id: T | "close-button", ...payload: unknown[]) {
         this.app.inputMgr.popReciever(this.inputReciever);
 
         if (id !== "close-button") {
@@ -158,7 +140,7 @@ export class Dialog<T extends string = never> {
         this.dialogElem.classList.add("dialogInner");
 
         if (this.type) {
-            this.dialogElem.classList.add(this.type);
+            this.dialogElem.classList.add(this.type); // @TODO: `this.type` seems unused
         }
         elem.appendChild(this.dialogElem);
 
@@ -192,13 +174,17 @@ export class Dialog<T extends string = never> {
 
             // Create buttons
             for (let i = 0; i < this.buttonIds.length; ++i) {
-                const [buttonId, buttonStyle, rawParams] = this.buttonIds[i].split(":");
+                const [buttonId, buttonStyle, rawParams] = this.buttonIds[i].split(":") as [
+                    T,
+                    string,
+                    string?
+                ]; // @TODO: some button strings omit `buttonStyle`
 
                 const button = document.createElement("button");
                 button.classList.add("button");
                 button.classList.add("styledButton");
                 button.classList.add(buttonStyle);
-                button.innerText = T.dialogs.buttons[buttonId];
+                button.innerText = T.dialogs.buttons[buttonId as string];
 
                 const params = (rawParams || "").split("/");
                 const useTimeout = params.indexOf("timeout") >= 0;
@@ -215,7 +201,7 @@ export class Dialog<T extends string = never> {
                     const timeout = setTimeout(() => {
                         button.classList.remove("timedButton");
                         arrayDeleteValue(this.timeouts, timeout);
-                    }, 1000);
+                    }, 1000) as unknown as number; // @TODO: @types/node should not be affecting this
                     this.timeouts.push(timeout);
                 }
                 if (isEnter || isEscape) {
@@ -250,7 +236,7 @@ export class Dialog<T extends string = never> {
         return this.element;
     }
 
-    setIndex(index) {
+    setIndex(index: string) {
         this.element.style.zIndex = index;
     }
 
@@ -288,12 +274,8 @@ export class Dialog<T extends string = never> {
 
     /**
      * Helper method to track clicks on an element
-     * @param {Element} elem
-     * @param {function():void} handler
-     * @param {import("./click_detector").ClickDetectorConstructorArgs=} args
-     * @returns {ClickDetector}
      */
-    trackClicks(elem: Element, handler: () => void, args = {}) {
+    trackClicks(elem: Element, handler: () => void, args: ClickDetectorConstructorArgs = {}) {
         const detector = new ClickDetector(elem, args);
         detector.click.add(handler, this);
         this.clickDetectors.push(detector);
@@ -305,7 +287,7 @@ export class Dialog<T extends string = never> {
  * Dialog which simply shows a loading spinner
  */
 export class DialogLoading extends Dialog {
-    constructor(app, public text = "") {
+    constructor(app: Application, public text = "") {
         super({
             app,
             title: "",
@@ -474,7 +456,7 @@ export class DialogWithForm<T extends string = "cancel" | "ok"> extends Dialog<T
         this.enterHandler = confirmButtonId;
     }
 
-    internalButtonHandler(id, ...payload) {
+    internalButtonHandler(id: T | "close-button", ...payload: unknown[]) {
         if (id === this.confirmButtonId) {
             if (this.hasAnyInvalid()) {
                 this.dialogElem.classList.remove("errorShake");

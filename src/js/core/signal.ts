@@ -1,16 +1,16 @@
 export const STOP_PROPAGATION = "stop_propagation" as const;
 export type STOP_PROPAGATION = typeof STOP_PROPAGATION;
 
-export type SignalReceiver<T extends any[]> = (...args: T) => STOP_PROPAGATION | void;
+export type SignalReceiver<T extends unknown[]> = (...args: T) => STOP_PROPAGATION | void;
 
-export class Signal<T extends any[] = []> {
-    public receivers: { receiver: SignalReceiver<T>; scope: any }[] = [];
+export class Signal<T extends unknown[] = []> {
+    public receivers: { receiver: SignalReceiver<T>; scope: unknown }[] = [];
     public modifyCount: number = 0;
 
     /**
      * Adds a new signal listener
      */
-    add(receiver: SignalReceiver<T>, scope: any = null) {
+    add(receiver: SignalReceiver<T>, scope: unknown = null) {
         assert(receiver, "receiver is null");
         this.receivers.push({ receiver, scope });
         ++this.modifyCount;
@@ -19,7 +19,7 @@ export class Signal<T extends any[] = []> {
     /**
      * Adds a new signal listener
      */
-    addToTop(receiver: SignalReceiver<T>, scope: any = null) {
+    addToTop(receiver: SignalReceiver<T>, scope: unknown = null) {
         assert(receiver, "receiver is null");
         this.receivers.unshift({ receiver, scope });
         ++this.modifyCount;

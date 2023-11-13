@@ -1,5 +1,5 @@
 import type { Application } from "../application";
-import type { InputReceiver } from "./input_receiver";
+import type { InputReceiver, ReceiverId } from "./input_receiver";
 
 import { Signal, STOP_PROPAGATION } from "./signal";
 import { createLogger } from "./logging";
@@ -9,7 +9,7 @@ const logger = createLogger("input_distributor");
 
 export class InputDistributor {
     public recieverStack: InputReceiver[] = [];
-    public filters: ((arg: any) => boolean)[] = [];
+    public filters: ((arg: string) => boolean)[] = [];
 
     /**
      * All keys which are currently down
@@ -23,14 +23,14 @@ export class InputDistributor {
     /**
      * Attaches a new filter which can filter and reject events
      */
-    installFilter(filter: (arg: any) => boolean) {
+    installFilter(filter: (arg: string) => boolean) {
         this.filters.push(filter);
     }
 
     /**
      * Removes an attached filter
      */
-    dismountFilter(filter: (arg: any) => boolean) {
+    dismountFilter(filter: (arg: string) => boolean) {
         fastArrayDeleteValue(this.filters, filter);
     }
 
@@ -118,7 +118,10 @@ export class InputDistributor {
         document.addEventListener("paste", this.handlePaste.bind(this));
     }
 
-    forwardToReceiver(eventId, payload = null) {
+    forwardToReceiver<T extends ReceiverId>(
+        eventId: T,
+        payload: InputReceiver[T] extends Signal<infer Payload> ? Payload[0] : never = null
+    ) {
         // Check filters
         for (let i = 0; i < this.filters.length; ++i) {
             if (!this.filters[i](eventId)) {
@@ -146,11 +149,11 @@ export class InputDistributor {
      * Handles when the page got blurred
      */
     handleBlur() {
-        this.forwardToReceiver("pageBlur", {});
+        this.forwardToReceiver("pageBlur");
         this.keysDown.clear();
     }
 
-    handlePaste(ev) {
+    handlePaste(ev: ClipboardEvent) {
         this.forwardToReceiver("paste", ev);
     }
 
