@@ -107,6 +107,7 @@ export class ModLoader {
     exposeExports() {
         if (G_IS_DEV || G_IS_STANDALONE) {
             let exports = {};
+            // @TODO: fix whatever's meant to type `webpackContext`
             const modules = import.meta.webpackContext("../", {
                 recursive: true,
                 regExp: /\.[jt]s$/,

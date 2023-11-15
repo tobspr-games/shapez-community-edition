@@ -68,7 +68,7 @@ export class HUDConstantSignalEdit extends BaseHUDPart {
             label: fillInLinkIntoTranslation(T.dialogs.editSignal.descShortKey, THIRDPARTY_URLS.shapeViewer),
             placeholder: "",
             defaultValue: signal ? signal.getAsCopyableKey() : "",
-            validator: val => this.parseSignalCode(entity, val),
+            validator: val => this.parseSignalCode(entity, val) !== null,
         });
 
         const items = [...Object.values(COLOR_ITEM_SINGLETONS)];

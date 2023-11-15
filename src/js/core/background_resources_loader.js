@@ -55,6 +55,7 @@ export class BackgroundResourcesLoader {
         this.mainMenuPromise = null;
         this.ingamePromise = null;
 
+        /** @type {Signal<[{ progress: number }]>} */
         this.resourceStateChangedSignal = new Signal();
     }
 

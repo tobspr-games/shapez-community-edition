@@ -11,6 +11,7 @@ import { GameRoot } from "./root";
 
 const logger = createLogger("camera");
 
+// @TODO: unused signal
 export const USER_INTERACT_MOVE = "move";
 export const USER_INTERACT_ZOOM = "zoom";
 export const USER_INTERACT_TOUCHEND = "touchend";
@@ -60,6 +61,7 @@ export class Camera extends BasicSerializableObject {
         this.keyboardForce = new Vector();
 
         // Signal which gets emitted once the user changed something
+        /** @type {Signal<[string]>} */
         this.userInteraction = new Signal();
 
         /** @type {Vector} */

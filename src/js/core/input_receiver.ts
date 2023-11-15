@@ -39,5 +39,9 @@ export class InputReceiver {
 }
 
 export type ReceiverId = keyof {
-    [K in keyof InputReceiver as InputReceiver[K] extends Signal<any[]> ? K : never]: unknown;
+    [K in keyof InputReceiver as InputReceiver[K] extends Signal<any[]>
+        ? K extends "destroyed"
+            ? never
+            : K
+        : never]: unknown;
 };

@@ -120,7 +120,7 @@ export class InputDistributor {
 
     forwardToReceiver<T extends ReceiverId>(
         eventId: T,
-        payload: InputReceiver[T] extends Signal<infer Payload> ? Payload[0] : never = null
+        payload: Parameters<InputReceiver[T]["dispatch"]>[0] = null
     ) {
         // Check filters
         for (let i = 0; i < this.filters.length; ++i) {
@@ -136,7 +136,8 @@ export class InputDistributor {
         }
         const signal = reciever[eventId];
         assert(signal instanceof Signal, "Not a valid event id");
-        return signal.dispatch(payload);
+        // probably not possible to type properly, since the types of `signal` and `payload` are correlated
+        return signal.dispatch(payload as never);
     }
 
     handleBackButton(event: Event) {

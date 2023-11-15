@@ -11,7 +11,9 @@ const resetDtMs = 16;
 
 export class AnimationFrame {
     constructor() {
+        /** @type {Signal<[number]>} */
         this.frameEmitted = new Signal();
+        /** @type {Signal<[number]>} */
         this.bgFrameEmitted = new Signal();
 
         this.lastTime = performance.now();
