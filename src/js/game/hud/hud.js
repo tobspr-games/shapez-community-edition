@@ -34,15 +34,15 @@ export class GameHUD {
      */
     initialize() {
         this.signals = {
-            buildingSelectedForPlacement: /** @type {TypedSignal<[MetaBuilding|null]>} */ (new Signal()),
-            selectedPlacementBuildingChanged: /** @type {TypedSignal<[MetaBuilding|null]>} */ (new Signal()),
-            shapePinRequested: /** @type {TypedSignal<[ShapeDefinition]>} */ (new Signal()),
-            shapeUnpinRequested: /** @type {TypedSignal<[string]>} */ (new Signal()),
-            notification: /** @type {TypedSignal<[string, enumNotificationType]>} */ (new Signal()),
-            buildingsSelectedForCopy: /** @type {TypedSignal<[Array<number>]>} */ (new Signal()),
-            pasteBlueprintRequested: /** @type {TypedSignal<[]>} */ (new Signal()),
-            viewShapeDetailsRequested: /** @type {TypedSignal<[ShapeDefinition]>} */ (new Signal()),
-            unlockNotificationFinished: /** @type {TypedSignal<[]>} */ (new Signal()),
+            buildingSelectedForPlacement: /** @type {Signal<[MetaBuilding|null]>} */ (new Signal()),
+            selectedPlacementBuildingChanged: /** @type {Signal<[MetaBuilding|null]>} */ (new Signal()),
+            shapePinRequested: /** @type {Signal<[ShapeDefinition]>} */ (new Signal()),
+            shapeUnpinRequested: /** @type {Signal<[string]>} */ (new Signal()),
+            notification: /** @type {Signal<[string, enumNotificationType]>} */ (new Signal()),
+            buildingsSelectedForCopy: /** @type {Signal<[Array<number>]>} */ (new Signal()),
+            pasteBlueprintRequested: /** @type {Signal<[]>} */ (new Signal()),
+            viewShapeDetailsRequested: /** @type {Signal<[ShapeDefinition]>} */ (new Signal()),
+            unlockNotificationFinished: /** @type {Signal<[]>} */ (new Signal()),
         };
 
         /** @type {import("./hud_parts").HudParts} */

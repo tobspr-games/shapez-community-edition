@@ -145,53 +145,53 @@ export class GameRoot {
 
         this.signals = {
             // Entities
-            entityManuallyPlaced: /** @type {TypedSignal<[Entity]>} */ (new Signal()),
-            entityAdded: /** @type {TypedSignal<[Entity]>} */ (new Signal()),
-            entityChanged: /** @type {TypedSignal<[Entity]>} */ (new Signal()),
-            entityGotNewComponent: /** @type {TypedSignal<[Entity]>} */ (new Signal()),
-            entityComponentRemoved: /** @type {TypedSignal<[Entity]>} */ (new Signal()),
-            entityQueuedForDestroy: /** @type {TypedSignal<[Entity]>} */ (new Signal()),
-            entityDestroyed: /** @type {TypedSignal<[Entity]>} */ (new Signal()),
+            entityManuallyPlaced: /** @type {Signal<[Entity]>} */ (new Signal()),
+            entityAdded: /** @type {Signal<[Entity]>} */ (new Signal()),
+            entityChanged: /** @type {Signal<[Entity]>} */ (new Signal()),
+            entityGotNewComponent: /** @type {Signal<[Entity]>} */ (new Signal()),
+            entityComponentRemoved: /** @type {Signal<[Entity]>} */ (new Signal()),
+            entityQueuedForDestroy: /** @type {Signal<[Entity]>} */ (new Signal()),
+            entityDestroyed: /** @type {Signal<[Entity]>} */ (new Signal()),
 
             // Global
-            resized: /** @type {TypedSignal<[number, number]>} */ (new Signal()),
-            readyToRender: /** @type {TypedSignal<[]>} */ (new Signal()),
-            aboutToDestruct: /** @type {TypedSignal<[]>} */ new Signal(),
+            resized: /** @type {Signal<[number, number]>} */ (new Signal()),
+            readyToRender: /** @type {Signal<[]>} */ (new Signal()),
+            aboutToDestruct: /** @type {Signal<[]>} */ new Signal(),
 
             // Game Hooks
-            gameSaved: /** @type {TypedSignal<[]>} */ (new Signal()), // Game got saved
-            gameRestored: /** @type {TypedSignal<[]>} */ (new Signal()), // Game got restored
+            gameSaved: /** @type {Signal<[]>} */ (new Signal()), // Game got saved
+            gameRestored: /** @type {Signal<[]>} */ (new Signal()), // Game got restored
 
-            gameFrameStarted: /** @type {TypedSignal<[]>} */ (new Signal()), // New frame
+            gameFrameStarted: /** @type {Signal<[]>} */ (new Signal()), // New frame
 
-            storyGoalCompleted: /** @type {TypedSignal<[number, string]>} */ (new Signal()),
-            upgradePurchased: /** @type {TypedSignal<[string]>} */ (new Signal()),
+            storyGoalCompleted: /** @type {Signal<[number, string]>} */ (new Signal()),
+            upgradePurchased: /** @type {Signal<[string]>} */ (new Signal()),
 
             // Called right after game is initialized
-            postLoadHook: /** @type {TypedSignal<[]>} */ (new Signal()),
+            postLoadHook: /** @type {Signal<[]>} */ (new Signal()),
 
-            shapeDelivered: /** @type {TypedSignal<[ShapeDefinition]>} */ (new Signal()),
-            itemProduced: /** @type {TypedSignal<[BaseItem]>} */ (new Signal()),
+            shapeDelivered: /** @type {Signal<[ShapeDefinition]>} */ (new Signal()),
+            itemProduced: /** @type {Signal<[BaseItem]>} */ (new Signal()),
 
-            bulkOperationFinished: /** @type {TypedSignal<[]>} */ (new Signal()),
-            immutableOperationFinished: /** @type {TypedSignal<[]>} */ (new Signal()),
+            bulkOperationFinished: /** @type {Signal<[]>} */ (new Signal()),
+            immutableOperationFinished: /** @type {Signal<[]>} */ (new Signal()),
 
-            editModeChanged: /** @type {TypedSignal<[Layer]>} */ (new Signal()),
+            editModeChanged: /** @type {Signal<[Layer]>} */ (new Signal()),
 
             // Called to check if an entity can be placed, second parameter is an additional offset.
             // Use to introduce additional placement checks
-            prePlacementCheck: /** @type {TypedSignal<[Entity, Vector]>} */ (new Signal()),
+            prePlacementCheck: /** @type {Signal<[Entity, Vector]>} */ (new Signal()),
 
             // Called before actually placing an entity, use to perform additional logic
             // for freeing space before actually placing.
-            freeEntityAreaBeforeBuild: /** @type {TypedSignal<[Entity]>} */ (new Signal()),
+            freeEntityAreaBeforeBuild: /** @type {Signal<[Entity]>} */ (new Signal()),
 
             // Called with an achievement key and necessary args to validate it can be unlocked.
-            achievementCheck: /** @type {TypedSignal<[string, any]>} */ (new Signal()),
-            bulkAchievementCheck: /** @type {TypedSignal<(string|any)[]>} */ (new Signal()),
+            achievementCheck: /** @type {Signal<[string, any]>} */ (new Signal()),
+            bulkAchievementCheck: /** @type {Signal<(string|any)[]>} */ (new Signal()),
 
             // Puzzle mode
-            puzzleComplete: /** @type {TypedSignal<[]>} */ (new Signal()),
+            puzzleComplete: /** @type {Signal<[]>} */ (new Signal()),
         };
 
         // RNG's
