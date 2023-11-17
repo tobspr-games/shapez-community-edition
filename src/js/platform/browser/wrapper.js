@@ -140,7 +140,7 @@ export class PlatformWrapperImplBrowser extends PlatformWrapperInterface {
 
     performRestart() {
         logger.log("Performing restart");
-        window.location.reload(true);
+        window.location.reload();
     }
 
     /**

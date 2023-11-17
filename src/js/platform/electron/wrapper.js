@@ -54,7 +54,7 @@ export class PlatformWrapperImplElectron extends PlatformWrapperImplBrowser {
 
     performRestart() {
         logger.log(this, "Performing restart");
-        window.location.reload(true);
+        window.location.reload();
     }
 
     initializeAdProvider() {

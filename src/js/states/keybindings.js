@@ -103,7 +103,11 @@ export class KeybindingsState extends TextualGameState {
                 event.preventDefault();
             }
 
-            if (event.target && event.target.tagName === "BUTTON" && keyCode === 1) {
+            if (
+                event.target &&
+                /** @type {HTMLElement} */ (event.target).tagName === "BUTTON" &&
+                keyCode === 1
+            ) {
                 return;
             }
 

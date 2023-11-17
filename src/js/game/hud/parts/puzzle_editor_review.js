@@ -146,7 +146,7 @@ export class HUDPuzzleEditorReview extends BaseHUDPart {
         });
 
         itemInput.valueChosen.add(value => {
-            shapeKeyInput.setValue(value.definition.getHash());
+            shapeKeyInput.setValue(/** @type {ShapeItem} */ (value).definition.getHash());
         });
 
         this.root.hud.parts.dialogs.internalShowDialog(dialog);

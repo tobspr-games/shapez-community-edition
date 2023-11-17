@@ -180,7 +180,10 @@ export class GameTime extends BasicSerializableObject {
     setSpeed(speed) {
         assert(speed instanceof BaseGameSpeed, "Not a valid game speed");
         if (this.speed.getId() === speed.getId()) {
-            logger.warn("Same speed set than current one:", speed.constructor.getId());
+            logger.warn(
+                "Same speed set than current one:",
+                /** @type {typeof BaseGameSpeed} */ (speed.constructor).getId()
+            );
         }
         this.speed = speed;
     }

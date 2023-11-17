@@ -265,7 +265,7 @@ export class PreloadState extends GameState {
                         `;
                         }
 
-                        return new Promise(resolve => {
+                        return new /** @type {typeof Promise<void>} */ (Promise)(resolve => {
                             this.dialogs.showInfo(T.dialogs.updateSummary.title, dialogHtml).ok.add(resolve);
                         });
                     });

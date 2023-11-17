@@ -177,7 +177,7 @@ export class PuzzlePlayGameMode extends PuzzleGameMode {
             }
         );
 
-        return new Promise(resolve => {
+        return new /** @type {typeof Promise<void>} */ (Promise)(resolve => {
             optionSelected.add(option => {
                 const closeLoading = this.root.hud.parts.dialogs.showLoadingDialog();
 

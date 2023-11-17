@@ -110,11 +110,6 @@ export class ShapezGameAnalytics extends GameAnalyticsInterface {
     initialize() {
         this.syncKey = null;
 
-        window.setAbt = abt => {
-            this.app.storage.writeFileAsync("shapez_" + CURRENT_ABT + ".bin", String(abt));
-            window.location.reload();
-        };
-
         // Retrieve sync key from player
         return this.fetchABVariant().then(() => {
             setInterval(() => this.sendTimePoints(), 60 * 1000);

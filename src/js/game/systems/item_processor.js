@@ -48,17 +48,17 @@ const MAX_QUEUED_CHARGES = 2;
  */
 
 /**
- * @type {Object<string, (ProcessorImplementationPayload) => void>}
+ * @type {Object<string, (arg: ProcessorImplementationPayload) => void>}
  */
 export const MOD_ITEM_PROCESSOR_HANDLERS = {};
 
 /**
- * @type {Object<string, (ProccessingRequirementsImplementationPayload) => boolean>}
+ * @type {Object<string, (arg: ProccessingRequirementsImplementationPayload) => boolean>}
  */
 export const MODS_PROCESSING_REQUIREMENTS = {};
 
 /**
- * @type {Object<string, ({entity: Entity}) => boolean>}
+ * @type {Object<string, (arg: {entity: Entity}) => boolean>}
  */
 export const MODS_CAN_PROCESS = {};
 
@@ -67,7 +67,7 @@ export class ItemProcessorSystem extends GameSystemWithFilter {
         super(root, [ItemProcessorComponent]);
 
         /**
-         * @type {Object<enumItemProcessorTypes, function(ProcessorImplementationPayload) : string>}
+         * @type {Object<enumItemProcessorTypes, (arg: ProcessorImplementationPayload) => void>}
          */
         this.handlers = {
             [enumItemProcessorTypes.balancer]: this.process_BALANCER,

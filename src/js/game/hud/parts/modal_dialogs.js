@@ -80,7 +80,7 @@ export class HUDModalDialogs extends BaseHUDPart {
     /**
      * @param {string} title
      * @param {string} text
-     * @param {Array<`${string}:${string}`>} buttons
+     * @param {Array<import("../../../core/modal_dialog_elements").DialogButtonStr<string>>} buttons
      */
     showWarning(title, text, buttons = ["ok:good"]) {
         const dialog = new Dialog({

@@ -798,7 +798,7 @@ export class MainMenuState extends GameState {
             "continue:bad",
         ]);
 
-        return new Promise(resolve => {
+        return new /** @type {typeof Promise<void>} */ (Promise)(resolve => {
             signals.continue.add(resolve);
         });
     }

@@ -27,13 +27,13 @@ const kbCancel = 27;
 
 const logger = createLogger("dialogs");
 
-export type DialogButtonStr<T extends string> = `${T}:${string}`;
+export type DialogButtonStr<T extends string> = `${T}:${string}` | T;
 export type DialogButtonType = "info" | "loading" | "warning";
 
 /**
  * Basic text based dialog
  */
-export class Dialog<T extends string = never> {
+export class Dialog<T extends string = never, U extends unknown[] = []> {
     public title: string;
     public app: Application;
     public contentHTML: string;
@@ -44,9 +44,9 @@ export class Dialog<T extends string = never> {
     public element: HTMLDivElement;
 
     public closeRequested = new Signal();
-    public buttonSignals = {} as Record<T, Signal<unknown[]>>;
+    public buttonSignals = {} as Record<T, Signal<U | []>>;
 
-    public valueChosen = new Signal<[T]>();
+    public valueChosen = new Signal<[unknown]>();
 
     public timeouts: number[] = [];
     public clickDetectors: ClickDetector[] = [];
@@ -123,7 +123,7 @@ export class Dialog<T extends string = never> {
         }
     }
 
-    internalButtonHandler(id: T | "close-button", ...payload: unknown[]) {
+    internalButtonHandler(id: T | "close-button", ...payload: U | []) {
         this.app.inputMgr.popReciever(this.inputReciever);
 
         if (id !== "close-button") {
@@ -326,7 +326,7 @@ export class DialogLoading extends Dialog {
 }
 
 type DialogOptionChooserOption = { value: string; text: string; desc?: string; iconPrefix?: string };
-export class DialogOptionChooser extends Dialog<"optionSelected"> {
+export class DialogOptionChooser extends Dialog<"optionSelected", [string]> {
     public options: {
         options: DialogOptionChooserOption[];
         active: string;
@@ -417,6 +417,7 @@ export class DialogOptionChooser extends Dialog<"optionSelected"> {
 
 export class DialogWithForm<T extends string = "cancel" | "ok"> extends Dialog<T> {
     public confirmButtonId: string;
+    // `FormElement` is invariant so `unknown` and `never` don't work
     public formElements: FormElement<any>[];
 
     constructor({
@@ -456,7 +457,7 @@ export class DialogWithForm<T extends string = "cancel" | "ok"> extends Dialog<T
         this.enterHandler = confirmButtonId;
     }
 
-    internalButtonHandler(id: T | "close-button", ...payload: unknown[]) {
+    internalButtonHandler(id: T | "close-button", ...payload: []) {
         if (id === this.confirmButtonId) {
             if (this.hasAnyInvalid()) {
                 this.dialogElem.classList.remove("errorShake");
@@ -470,7 +471,7 @@ export class DialogWithForm<T extends string = "cancel" | "ok"> extends Dialog<T
             }
         }
 
-        super.internalButtonHandler(id, payload);
+        super.internalButtonHandler(id, ...payload);
     }
 
     hasAnyInvalid() {

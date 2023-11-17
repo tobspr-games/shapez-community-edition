@@ -107,14 +107,13 @@ export class ModLoader {
     exposeExports() {
         if (G_IS_DEV || G_IS_STANDALONE) {
             let exports = {};
-            // @TODO: fix whatever's meant to type `webpackContext`
             const modules = import.meta.webpackContext("../", {
                 recursive: true,
                 regExp: /\.[jt]s$/,
                 exclude: /\.d\.ts$/,
             });
             Array.from(modules.keys()).forEach(key => {
-                // @ts-ignore
+                /** @type {object} */
                 const module = modules(key);
                 for (const member in module) {
                     if (member === "default" || member === "__$S__") {
