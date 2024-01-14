@@ -84,5 +84,6 @@
         "worker-loader": "^3.0.8",
         "yaml": "^1.10.0",
         "yarn": "^1.22.4"
-    }
+    },
+    "packageManager": "yarn@4.0.2"
 }
