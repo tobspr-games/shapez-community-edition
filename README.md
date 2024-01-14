@@ -57,9 +57,8 @@ and does not intend to provide compatibility for older clients.
 ### Prerequisites
 
 -   [ffmpeg](https://www.ffmpeg.org/download.html)
--   [Node.js 16](https://nodejs.org/en/about/previous-releases)
-    (not 17+, see <https://github.com/tobspr-games/shapez.io/issues/1473>)
--   [Yarn 1](https://classic.yarnpkg.com/en/docs/install) (not 2, we haven't migrated yet)
+-   [Node.js](https://nodejs.org/en/download)
+-   [Yarn](https://yarnpkg.com/getting-started/install)
 -   [Java](https://www.oracle.com/java/technologies/downloads/) (or [OpenJDK](https://openjdk.org/)) (to run texture packer)
 
 ### Development
