@@ -54,9 +54,6 @@ gulptasksJS(gulp, buildFolder, browserSync);
 import gulptasksHTML from "./html.js";
 gulptasksHTML(gulp, buildFolder);
 
-import gulptasksFTP from "./ftp.js";
-gulptasksFTP(gulp, buildFolder);
-
 import gulptasksDocs from "./docs.js";
 gulptasksDocs(gulp, buildFolder);
 
