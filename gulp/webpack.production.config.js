@@ -3,9 +3,7 @@ import TerserPlugin from "terser-webpack-plugin";
 import webpack from "webpack";
 const { DefinePlugin, IgnorePlugin } = webpack;
 import DeadCodePlugin from "webpack-deadcode-plugin";
-import pj from "../package.json" assert { type: "json" };
-const { version } = pj;
-import { getAllResourceImages, getRevision } from "./buildutils.js";
+import { getAllResourceImages, getRevision, getVersion } from "./buildutils.js";
 
 const globalDefs = {
     "assert": "false && window.assert",
@@ -16,7 +14,7 @@ const globalDefs = {
     "G_APP_ENVIRONMENT": JSON.stringify("release"),
     "G_BUILD_TIME": new Date().getTime().toString(),
     "G_BUILD_COMMIT_HASH": JSON.stringify(getRevision()),
-    "G_BUILD_VERSION": JSON.stringify(version),
+    "G_BUILD_VERSION": JSON.stringify(getVersion()),
     "G_ALL_UI_IMAGES": JSON.stringify(getAllResourceImages()),
 
     "G_IS_RELEASE": "true",

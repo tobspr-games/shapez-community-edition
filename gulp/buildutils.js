@@ -1,7 +1,6 @@
 import glob from "glob";
 import { execSync } from "child_process";
 import fs from "fs";
-import path from "path/posix";
 
 export function getRevision(useLast = false) {
     const commitHash = execSync("git rev-parse --short " + (useLast ? "HEAD^1" : "HEAD")).toString("ascii");
@@ -30,7 +29,8 @@ export function getTag() {
 }
 
 export function getVersion() {
-    return fs.readFileSync(path.join("..", "version")).toString().trim();
+    // Use the version number specified in package.json
+    return JSON.parse(fs.readFileSync("../package.json", "utf-8")).version;
 }
 
 /**
