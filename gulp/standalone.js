@@ -40,16 +40,6 @@ export default function gulptasksStandalone(gulp) {
             return gulp.src(requiredFiles, { base: electronBaseDir }).pipe(gulp.dest(tempDestBuildDir));
         });
 
-        gulp.task(taskPrefix + ".prepare.writeAppId", cb => {
-            if (variantData.steamAppId) {
-                fs.writeFileSync(
-                    path.join(tempDestBuildDir, "steam_appid.txt"),
-                    String(variantData.steamAppId)
-                );
-            }
-            cb();
-        });
-
         gulp.task(taskPrefix + ".prepare.writePackageJson", cb => {
             const packageJsonString = JSON.stringify(
                 {
@@ -94,8 +84,7 @@ export default function gulptasksStandalone(gulp) {
                 taskPrefix + ".prepare.copyPrefab",
                 taskPrefix + ".prepare.writePackageJson",
                 taskPrefix + ".prepare.minifyCode",
-                taskPrefix + ".prepare.copyGamefiles",
-                taskPrefix + ".prepare.writeAppId"
+                taskPrefix + ".prepare.copyGamefiles"
             )
         );
 
@@ -155,41 +144,18 @@ export default function gulptasksStandalone(gulp) {
                             return;
                         }
 
-                        if (variantData.steamAppId) {
+                        fs.writeFileSync(
+                            path.join(appPath, "LICENSE"),
+                            fs.readFileSync(path.join("..", "LICENSE"))
+                        );
+
+                        if (platform === "linux") {
+                            // Write launcher script
                             fs.writeFileSync(
-                                path.join(appPath, "LICENSE"),
-                                fs.readFileSync(path.join("..", "LICENSE"))
+                                path.join(appPath, "play.sh"),
+                                '#!/usr/bin/env bash\n./shapezio --no-sandbox "$@"\n'
                             );
-
-                            fs.writeFileSync(
-                                path.join(appPath, "steam_appid.txt"),
-                                String(variantData.steamAppId)
-                            );
-
-                            if (platform === "linux") {
-                                // Write launcher script
-                                fs.writeFileSync(
-                                    path.join(appPath, "play.sh"),
-                                    '#!/usr/bin/env bash\n./shapezio --no-sandbox "$@"\n'
-                                );
-                                fs.chmodSync(path.join(appPath, "play.sh"), 0o775);
-                            }
-
-                            if (platform === "darwin") {
-                                if (!isRelease) {
-                                    // Needs special location
-                                    fs.writeFileSync(
-                                        path.join(
-                                            appPath,
-                                            "shapez.app",
-                                            "Contents",
-                                            "MacOS",
-                                            "steam_appid.txt"
-                                        ),
-                                        String(variantData.steamAppId)
-                                    );
-                                }
-                            }
+                            fs.chmodSync(path.join(appPath, "play.sh"), 0o775);
                         }
                     });
 
@@ -211,26 +177,6 @@ export default function gulptasksStandalone(gulp) {
                     const appFile = path.join(tempDestDir, "shapez-darwin-x64");
                     const appFileInner = path.join(appFile, "shapez.app");
                     console.warn("++ Signing ++");
-
-                    if (variantData.steamAppId) {
-                        const appIdDest = path.join(
-                            path.join(appFileInner, "Contents", "MacOS"),
-                            "steam_appid.txt"
-                        );
-                        // console.warn("++ Preparing ++");
-                        // fse.copySync(path.join(tempDestBuildDir, "steam_appid.txt"), appIdDest);
-
-                        console.warn("Signing steam_appid.txt");
-
-                        execSync(
-                            `codesign --force --verbose --options runtime --timestamp --no-strict --sign "${
-                                process.env.SHAPEZ_CLI_APPLE_CERT_NAME
-                            }" --entitlements "${path.join("entitlements.plist")}" ${appIdDest}`,
-                            {
-                                cwd: appFile,
-                            }
-                        );
-                    }
 
                     console.warn("Base dir:", appFile);
 
@@ -289,44 +235,4 @@ export default function gulptasksStandalone(gulp) {
             gulp.series(taskPrefix + ".prepare", gulp.parallel(taskPrefix + ".package.darwin64"))
         );
     }
-
-    // Steam helpers
-    gulp.task("standalone.prepareVDF", cb => {
-        const hash = getRevision();
-        const version = getVersion();
-
-        // for (const platform of ["steampipe", "steampipe-darwin"]) {
-        const templatesSource = path.join("steampipe", "templates");
-        const templatesDest = path.join("steampipe", "built_vdfs");
-
-        const variables = {
-            PROJECT_DIR: path.resolve(path.join("..")).replace(/\\/g, "/"),
-            BUNDLE_DIR: path.resolve(path.join("..", "build_output")).replace(/\\/g, "/"),
-
-            TMP_DIR: path.resolve(path.join("steampipe", "tmp")).replace(/\\/g, "/"),
-            // BUILD_DESC: "v" + version + " @ " + hash,
-            VDF_DIR: path.resolve(path.join("steampipe", "built_vdfs")).replace(/\\/g, "/"),
-        };
-
-        const files = fs.readdirSync(templatesSource);
-        for (const file of files) {
-            if (!file.endsWith(".vdf")) {
-                continue;
-            }
-
-            variables.BUILD_DESC = file.replace(".vdf", "") + " - v" + version + " @ " + hash;
-
-            let content = fs.readFileSync(path.join(templatesSource, file)).toString("utf-8");
-            content = content.replace(/\$([^$]+)\$/gi, (_, variable) => {
-                if (!variables[variable]) {
-                    throw new Error("Unknown variable " + variable + " in " + file);
-                }
-
-                return variables[variable];
-            });
-
-            fs.writeFileSync(path.join(templatesDest, file), content, { encoding: "utf8" });
-        }
-        cb();
-    });
 }

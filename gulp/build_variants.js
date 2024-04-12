@@ -3,7 +3,6 @@
  *  standalone: boolean,
  *  environment?: 'dev' | 'staging' | 'prod',
  *  electronBaseDir?: string,
- *  steamAppId?: number,
  *  executableName?: string
  * }>}
  */
@@ -23,6 +22,5 @@ export const BUILD_VARIANTS = {
     "standalone-steam": {
         standalone: true,
         executableName: "shapez",
-        steamAppId: 1318690,
     },
 };
