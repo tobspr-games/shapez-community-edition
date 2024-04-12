@@ -19,11 +19,6 @@ export class HUDScreenshotExporter extends BaseHUDPart {
     }
 
     startExport() {
-        if (!this.root.app.restrictionMgr.getIsExportingScreenshotsPossible()) {
-            this.root.hud.parts.dialogs.showFeatureRestrictionInfo(T.demo.features.exportingBase);
-            return;
-        }
-
         const { ok } = this.root.hud.parts.dialogs.showInfo(
             T.dialogs.exportScreenshotWarning.title,
             T.dialogs.exportScreenshotWarning.desc,

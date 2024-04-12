@@ -31,13 +31,11 @@ import type { HUDSettingsMenu } from "./parts/settings_menu.js";
 import type { HUDShapeTooltip } from "./parts/shape_tooltip.js";
 import type { HUDShapeViewer } from "./parts/shape_viewer.js";
 import type { HUDShop } from "./parts/shop.js";
-import type { HUDStandaloneAdvantages } from "./parts/standalone_advantages.js";
 import type { HUDStatistics } from "./parts/statistics.js";
 import type { HUDPartTutorialHints } from "./parts/tutorial_hints.js";
 import type { HUDTutorialVideoOffer } from "./parts/tutorial_video_offer.js";
 import type { HUDUnlockNotification } from "./parts/unlock_notification.js";
 import type { HUDVignetteOverlay } from "./parts/vignette_overlay.js";
-import type { HUDWatermark } from "./parts/watermark.js";
 import type { HUDWaypoints } from "./parts/waypoints.js";
 import type { HUDWiresOverlay } from "./parts/wires_overlay.js";
 import type { HUDWiresToolbar } from "./parts/wires_toolbar.js";
@@ -87,8 +85,6 @@ export interface HudParts {
     tutorialVideoOffer?: HUDTutorialVideoOffer;
     gameMenu?: HUDGameMenu;
     keybindingOverlay?: HUDKeybindingOverlay;
-    watermark?: HUDWatermark;
-    standaloneAdvantages?: HUDStandaloneAdvantages;
     tutorialHints?: HUDPartTutorialHints;
     interactiveTutorial?: HUDInteractiveTutorial;
 

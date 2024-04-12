@@ -29,8 +29,6 @@ import { HUDGameMenu } from "../hud/parts/game_menu";
 import { HUDConstantSignalEdit } from "../hud/parts/constant_signal_edit";
 import { IS_MOBILE } from "../../core/config";
 import { HUDKeybindingOverlay } from "../hud/parts/keybinding_overlay";
-import { HUDWatermark } from "../hud/parts/watermark";
-import { HUDStandaloneAdvantages } from "../hud/parts/standalone_advantages";
 import { HUDPartTutorialHints } from "../hud/parts/tutorial_hints";
 import { HUDInteractiveTutorial } from "../hud/parts/interactive_tutorial";
 import { MetaBlockBuilding } from "../buildings/block";
@@ -69,14 +67,16 @@ const upgradesCache = {};
 
 /**
  * Generates all upgrades
- * @returns {Object<string, UpgradeTiers>} */
+ * @returns {Object<string, UpgradeTiers>}
+ */
 function generateUpgrades(limitedVersion = false, difficulty = 1) {
+    // TODO: Remove the limitedVersion parameter
     if (upgradesCache[limitedVersion]) {
         return upgradesCache[limitedVersion];
     }
 
     const fixedImprovements = [0.5, 0.5, 1, 1, 2, 1, 1];
-    const numEndgameUpgrades = limitedVersion ? 0 : 1000 - fixedImprovements.length - 1;
+    const numEndgameUpgrades = 1000 - fixedImprovements.length - 1;
 
     function generateInfiniteUnlocks() {
         return new Array(numEndgameUpgrades).fill(null).map((_, i) => ({
@@ -352,11 +352,6 @@ export class RegularGameMode extends GameMode {
             this.additionalHudParts.keybindingOverlay = HUDKeybindingOverlay;
         }
 
-        if (this.root.app.restrictionMgr.getIsStandaloneMarketingActive()) {
-            this.additionalHudParts.watermark = HUDWatermark;
-            this.additionalHudParts.standaloneAdvantages = HUDStandaloneAdvantages;
-        }
-
         if (this.root.app.settings.getAllSettings().offerHints) {
             this.additionalHudParts.tutorialHints = HUDPartTutorialHints;
             this.additionalHudParts.interactiveTutorial = HUDInteractiveTutorial;
@@ -383,10 +378,7 @@ export class RegularGameMode extends GameMode {
      * @returns {Object<string, UpgradeTiers>}
      */
     getUpgrades() {
-        return generateUpgrades(
-            !this.root.app.restrictionMgr.getHasExtendedUpgrades(),
-            this.difficultyMultiplicator
-        );
+        return generateUpgrades(false, this.difficultyMultiplicator);
     }
 
     /**
@@ -403,7 +395,7 @@ export class RegularGameMode extends GameMode {
      * @returns {boolean}
      */
     getIsFreeplayAvailable() {
-        return this.root.app.restrictionMgr.getHasExtendedLevelsAndFreeplay();
+        return true;
     }
 
     /** @returns {boolean} */

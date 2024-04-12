@@ -50,48 +50,12 @@ export class MainMenuState extends GameState {
             }
         }
 
-        const showDemoAdvertisement =
-            showExternalLinks && this.app.restrictionMgr.getIsStandaloneMarketingActive();
-
         const ownsPuzzleDLC =
             WEB_STEAM_SSO_AUTHENTICATED ||
             (G_IS_STANDALONE &&
                 /** @type { PlatformWrapperImplElectron}*/ (this.app.platformWrapper).dlcs.puzzle);
 
         const showShapez2 = showExternalLinks && MODS.mods.length === 0;
-
-        const bannerHtml = `
-            <h3>${T.demoBanners.titleV2}</h3>
-
-
-            <div class="points">
-                ${Array.from(Object.entries(T.ingame.standaloneAdvantages.points))
-                    .slice(0, 6)
-                    .map(
-                        ([key, trans]) => `
-                <div class="point ${key}">
-                    <strong>${trans.title}</strong>
-                    <p>${trans.desc}</p>
-                </div>`
-                    )
-                    .join("")}
-
-            </div>
-
-
-            <a href="#" class="steamLink steam_dlbtn_0" target="_blank">
-            ${
-                globalConfig.currentDiscount > 0
-                    ? `<span class='discount'>${T.global.discount.replace(
-                          "<percentage>",
-                          String(globalConfig.currentDiscount)
-                      )}</span>`
-                    : ""
-            }
-                Play shapez on Steam
-            </a>
-            <div class="onlinePlayerCount"></div>
-        `;
 
         return `
             <div class="topButtons">
@@ -114,7 +78,7 @@ export class MainMenuState extends GameState {
                 ${/*showUpdateLabel ? `<span class="updateLabel">MODS UPDATE!</span>` : ""*/ ""}
             </div>
 
-            <div class="mainWrapper" data-columns="${showDemoAdvertisement || showPuzzleDLC ? 2 : 1}">
+            <div class="mainWrapper" data-columns="${showPuzzleDLC ? 2 : 1}">
                 <div class="mainContainer">
                     <div class="buttons"></div>
                     <div class="savegamesMount"></div>
@@ -149,8 +113,6 @@ export class MainMenuState extends GameState {
                 </div>
 
                 <div class="sideContainer">
-                    ${showDemoAdvertisement ? `<div class="standaloneBanner">${bannerHtml}</div>` : ""}
-
                     ${
                         showShapez2
                             ? `<div class="mainNews shapez2">
@@ -312,14 +274,6 @@ export class MainMenuState extends GameState {
      * Asks the user to import a savegame
      */
     requestImportSavegame() {
-        if (
-            this.app.savegameMgr.getSavegamesMetaData().length > 0 &&
-            !this.app.restrictionMgr.getHasUnlimitedSavegames()
-        ) {
-            this.showSavegameSlotLimit();
-            return;
-        }
-
         this.app.gameAnalytics.note("startimport");
 
         // Create a 'fake' file-input to accept savegames
@@ -870,15 +824,6 @@ export class MainMenuState extends GameState {
     }
 
     onPlayButtonClicked() {
-        if (
-            this.app.savegameMgr.getSavegamesMetaData().length > 0 &&
-            !this.app.restrictionMgr.getHasUnlimitedSavegames()
-        ) {
-            this.app.gameAnalytics.noteMinor("menu.slotlimit");
-            this.showSavegameSlotLimit();
-            return;
-        }
-
         this.app.adProvider.showVideoAd().then(() => {
             this.app.gameAnalytics.noteMinor("menu.play");
             const savegame = this.app.savegameMgr.createNewSavegame();

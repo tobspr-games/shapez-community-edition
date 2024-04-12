@@ -30,7 +30,6 @@ import { MobileWarningState } from "./states/mobile_warning";
 import { PreloadState } from "./states/preload";
 import { SettingsState } from "./states/settings";
 import { ShapezGameAnalytics } from "./platform/browser/game_analytics";
-import { RestrictionManager } from "./core/restriction_manager";
 import { PuzzleMenuState } from "./states/puzzle_menu";
 import { ClientAPI } from "./platform/api";
 import { LoginState } from "./states/login";
@@ -93,9 +92,6 @@ export class Application {
         this.inputMgr = new InputDistributor(this);
         this.backgroundResourceLoader = new BackgroundResourcesLoader(this);
         this.clientApi = new ClientAPI(this);
-
-        // Restrictions (Like demo etc)
-        this.restrictionMgr = new RestrictionManager(this);
 
         // Platform dependent stuff
 

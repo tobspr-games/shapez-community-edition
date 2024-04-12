@@ -197,12 +197,6 @@ export class HubGoals extends BasicSerializableObject {
         if (G_IS_DEV && globalConfig.debug.allBuildingsUnlocked) {
             return true;
         }
-        if (
-            reward === enumHubGoalRewards.reward_blueprints &&
-            this.root.app.restrictionMgr.isLimitedVersion()
-        ) {
-            return false;
-        }
 
         if (this.root.gameMode.getLevelDefinitions().length < 1) {
             // no story, so always unlocked

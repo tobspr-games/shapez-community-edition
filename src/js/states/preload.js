@@ -180,11 +180,6 @@ export class PreloadState extends GameState {
                 return this.app.sound.initialize();
             })
 
-            .then(() => this.setStatus("Initializing restrictions", 34))
-            .then(() => {
-                return this.app.restrictionMgr.initialize();
-            })
-
             .then(() => this.setStatus("Initializing savegames", 38))
             .then(() => {
                 return this.app.savegameMgr.initialize().catch(err => {

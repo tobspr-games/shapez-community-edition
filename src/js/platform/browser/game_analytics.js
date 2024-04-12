@@ -79,27 +79,7 @@ export class ShapezGameAnalytics extends GameAnalyticsInterface {
     }
 
     note(action) {
-        if (this.app.restrictionMgr.isLimitedVersion()) {
-            fetch(
-                "https://analytics.shapez.io/campaign/" +
-                    "action_" +
-                    this.environment +
-                    "_" +
-                    action +
-                    "_" +
-                    CURRENT_ABT +
-                    "_" +
-                    this.abtVariant +
-                    "?lpurl=nocontent",
-                {
-                    method: "GET",
-                    mode: "no-cors",
-                    cache: "no-cache",
-                    referrer: "no-referrer",
-                    credentials: "omit",
-                }
-            ).catch(err => {});
-        }
+        // TODO: Remove game analytics altogether
     }
 
     noteMinor(action, payload = "") {}
@@ -113,25 +93,6 @@ export class ShapezGameAnalytics extends GameAnalyticsInterface {
         // Retrieve sync key from player
         return this.fetchABVariant().then(() => {
             setInterval(() => this.sendTimePoints(), 60 * 1000);
-
-            if (this.app.restrictionMgr.isLimitedVersion() && !G_IS_DEV) {
-                fetch(
-                    "https://analytics.shapez.io/campaign/" +
-                        this.environment +
-                        "_" +
-                        CURRENT_ABT +
-                        "_" +
-                        this.abtVariant +
-                        "?lpurl=nocontent",
-                    {
-                        method: "GET",
-                        mode: "no-cors",
-                        cache: "no-cache",
-                        referrer: "no-referrer",
-                        credentials: "omit",
-                    }
-                ).catch(err => {});
-            }
 
             return this.app.storage.readFileAsync(analyticsLocalFile).then(
                 syncKey => {

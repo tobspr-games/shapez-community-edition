@@ -217,9 +217,6 @@ function initializeSettings() {
                     applyGameTheme(id);
                     document.documentElement.setAttribute("data-theme", id);
                 },
-            enabledCb: /**
-             * @param {Application} app
-             */ app => app.restrictionMgr.getHasExtendedSettings(),
         }),
 
         new EnumSetting("autosaveInterval", {
@@ -278,9 +275,6 @@ function initializeSettings() {
             category: enumCategories.performance,
             restartRequired: false,
             changeCb: (app, id) => {},
-            enabledCb: /**
-             * @param {Application} app
-             */ app => app.restrictionMgr.getHasExtendedSettings(),
         }),
 
         new BoolSetting("lowQualityMapResources", enumCategories.performance, (app, value) => {}),
@@ -513,7 +507,7 @@ export class ApplicationSettings extends ReadWriteProxy {
         }
 
         // MODS
-        if (!THEMES[data.settings.theme] || !this.app.restrictionMgr.getHasExtendedSettings()) {
+        if (!THEMES[data.settings.theme]) {
             console.log("Resetting theme because its no longer available: " + data.settings.theme);
             data.settings.theme = "light";
         }
@@ -705,7 +699,7 @@ export class ApplicationSettings extends ReadWriteProxy {
         }
 
         // MODS
-        if (!THEMES[data.settings.theme] || !this.app.restrictionMgr.getHasExtendedSettings()) {
+        if (!THEMES[data.settings.theme]) {
             console.log("Resetting theme because its no longer available: " + data.settings.theme);
             data.settings.theme = "light";
         }

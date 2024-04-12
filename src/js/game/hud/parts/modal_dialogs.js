@@ -99,31 +99,6 @@ export class HUDModalDialogs extends BaseHUDPart {
         return dialog.buttonSignals;
     }
 
-    /**
-     * @param {string} feature
-     * @param {string} textPrefab
-     */
-    showFeatureRestrictionInfo(feature, textPrefab = T.dialogs.featureRestriction.desc) {
-        const dialog = new Dialog({
-            app: this.app,
-            title: T.dialogs.featureRestriction.title,
-            contentHTML: textPrefab.replace("<feature>", feature),
-            buttons: ["cancel:bad", "getStandalone:good"],
-            type: "warning",
-        });
-        this.internalShowDialog(dialog);
-
-        if (this.app) {
-            this.app.sound.playUiSound(SOUNDS.dialogOk);
-        }
-
-        dialog.buttonSignals.getStandalone.add(() => {
-            openStandaloneLink(this.app, "shapez_demo_dialog");
-        });
-
-        return dialog.buttonSignals;
-    }
-
     showOptionChooser(title, options) {
         const dialog = new DialogOptionChooser({
             app: this.app,
