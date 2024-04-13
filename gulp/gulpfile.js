@@ -258,16 +258,22 @@ for (const variant in BUILD_VARIANTS) {
 
     gulp.task(buildName, gulp.series("utils.cleanup", buildName + ".all", "step.postbuild"));
 
-    // bundle
+    // Tasks for creating distributable packages
     if (data.standalone) {
-        gulp.task(
-            "bundle." + variant + ".from-windows",
-            gulp.series(buildName, "standalone." + variant + ".build-from-windows")
-        );
-        gulp.task(
-            "bundle." + variant + ".from-darwin",
-            gulp.series(buildName, "standalone." + variant + ".build-from-darwin")
-        );
+        // TODO: Figure out macOS support as a non-published app
+        const packagePlatforms = ["win32", "linux"];
+
+        for (const platform of packagePlatforms) {
+            gulp.task(
+                `package.${variant}.${platform}`,
+                gulp.series(
+                    `build.${variant}`,
+                    "utils.cleanBuildOutputFolder",
+                    `standalone.${variant}.prepare`,
+                    `standalone.${variant}.package.${platform}`
+                )
+            );
+        }
     }
 
     // serve
@@ -285,16 +291,6 @@ gulp.task(
 gulp.task(
     "deploy.prod",
     gulp.series("utils.requireCleanWorkingTree", "build.web-shapezio", "ftp.upload.prod")
-);
-
-// Bundling (pre upload)
-gulp.task(
-    "bundle.steam.from-darwin",
-    gulp.series("utils.cleanBuildOutputFolder", "bundle.standalone-steam.from-darwin")
-);
-gulp.task(
-    "bundle.steam.from-windows",
-    gulp.series("utils.cleanBuildOutputFolder", "bundle.standalone-steam.from-windows")
 );
 
 // Default task (dev, localhost)

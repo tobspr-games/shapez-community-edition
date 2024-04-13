@@ -11,7 +11,9 @@
         "gulp": "gulp --cwd gulp",
         "lint": "eslint src/js",
         "prettier-all": "prettier --write src/**/*.* && prettier --write gulp/**/*.*",
-        "buildTypes": "tsc src/js/application.js --declaration --allowJs --emitDeclarationOnly --skipLibCheck --out types.js"
+        "buildTypes": "tsc src/js/application.js --declaration --allowJs --emitDeclarationOnly --skipLibCheck --out types.js",
+        "package-win32": "gulp package.standalone-steam.win32",
+        "package-linux": "gulp package.standalone-steam.linux"
     },
     "dependencies": {
         "ajv": "^6.10.2",

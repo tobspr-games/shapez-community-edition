@@ -24,7 +24,7 @@ export default function gulptasksStandalone(gulp) {
         }
         const tempDestDir = path.join("..", "build_output", variant);
         const taskPrefix = "standalone." + variant;
-        const electronBaseDir = path.join("..", variantData.electronBaseDir || "electron");
+        const electronBaseDir = path.join("..", "electron");
         const tempDestBuildDir = path.join(tempDestDir, "built");
 
         gulp.task(taskPrefix + ".prepare.cleanup", () => {
@@ -169,7 +169,7 @@ export default function gulptasksStandalone(gulp) {
         }
 
         // Manual signing with patched @electron/osx-sign (we need --no-strict)
-        gulp.task(taskPrefix + ".package.darwin64", cb =>
+        gulp.task(taskPrefix + ".package.darwin", cb =>
             packageStandalone(
                 "darwin",
                 "x64",
@@ -221,18 +221,7 @@ export default function gulptasksStandalone(gulp) {
             )
         );
 
-        gulp.task(taskPrefix + ".package.win64", cb => packageStandalone("win32", "x64", cb));
-        gulp.task(taskPrefix + ".package.linux64", cb => packageStandalone("linux", "x64", cb));
-        gulp.task(
-            taskPrefix + ".build-from-windows",
-            gulp.series(
-                taskPrefix + ".prepare",
-                gulp.parallel(taskPrefix + ".package.win64", taskPrefix + ".package.linux64")
-            )
-        );
-        gulp.task(
-            taskPrefix + ".build-from-darwin",
-            gulp.series(taskPrefix + ".prepare", gulp.parallel(taskPrefix + ".package.darwin64"))
-        );
+        gulp.task(taskPrefix + ".package.win32", cb => packageStandalone("win32", "x64", cb));
+        gulp.task(taskPrefix + ".package.linux", cb => packageStandalone("linux", "x64", cb));
     }
 }

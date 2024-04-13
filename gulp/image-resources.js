@@ -96,28 +96,12 @@ export default function gulptasksImageResources(gulp, buildFolder) {
             execute("java -version");
             // Now check and try downloading runnable-texturepacker.jar (22MB)
             if (!fs.existsSync("./runnable-texturepacker.jar")) {
-                const safeLink = JSON.stringify(runnableTPSource);
-                const commands = [
-                    // linux/macos if installed
-                    `wget -O runnable-texturepacker.jar ${safeLink}`,
-                    // linux/macos, latest windows 10
-                    `curl -o runnable-texturepacker.jar ${safeLink}`,
-                    // windows 10 / updated windows 7+
-                    "powershell.exe -Command (new-object System.Net.WebClient)" +
-                        `.DownloadFile(${safeLink.replace(/"/g, "'")}, 'runnable-texturepacker.jar')`,
-                    // windows 7+, vulnerability exploit
-                    `certutil.exe -urlcache -split -f ${safeLink} runnable-texturepacker.jar`,
-                ];
+                const escapedLink = JSON.stringify(runnableTPSource);
 
-                while (commands.length) {
-                    try {
-                        execute(commands.shift());
-                        break;
-                    } catch {
-                        if (!commands.length) {
-                            throw new Error("Failed to download runnable-texturepacker.jar!");
-                        }
-                    }
+                try {
+                    execute(`curl -o runnable-texturepacker.jar ${escapedLink}`);
+                } catch {
+                    throw new Error("Failed to download runnable-texturepacker.jar!");
                 }
             }
 

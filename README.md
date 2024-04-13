@@ -60,7 +60,10 @@ and does not intend to provide compatibility for older clients.
 -   [Node.js 16](https://nodejs.org/en/about/previous-releases)
     (not 17+, see <https://github.com/tobspr-games/shapez.io/issues/1473>)
 -   [Yarn 1](https://classic.yarnpkg.com/en/docs/install) (not 2, we haven't migrated yet)
--   [Java](https://www.oracle.com/java/technologies/downloads/) (or [OpenJDK](https://openjdk.org/)) (to run texture packer)
+-   [Java](https://www.oracle.com/java/technologies/downloads/) (or [OpenJDK](https://openjdk.org/)) to run the texture packer
+-   [cURL](https://curl.se/download.html)[^1] to download the texture packer
+
+[^1]: cURL is already installed on most Windows, Linux and macOS systems.
 
 ### Development
 
@@ -72,13 +75,11 @@ and does not intend to provide compatibility for older clients.
 
 ### Release
 
-> [!CAUTION]
-> Release steps are currently unchecked and unmaintained and will likely be revised in the future.
+> [!IMPORTANT]
+> While there is partial macOS support, it is not tested and adapted yet. Therefore, macOS package creation task is not provided.
 
 -   Run `yarn` in the root folder and in `electron/`.
--   In the root folder, run `yarn gulp build.standalone-steam`.
--   Run `yarn gulp standalone.standalone-steam.prepare`.
--   Run `yarn gulp standalone.standalone-steam.package.$PLATFORM` where `$PLATFORM` is `win64`, `linux64`, or `darwin64` depending on your system.
+-   In the root folder, run `yarn package-$PLATFORM` where `$PLATFORM` is `win32` or `linux` depending on your system.
 -   The build will be found under `build_output/standalone-steam` as `shapez-...-x64`.
 
 ## Credits
