@@ -261,7 +261,7 @@ for (const variant in BUILD_VARIANTS) {
     // Tasks for creating distributable packages
     if (data.standalone) {
         // TODO: Figure out macOS support as a non-published app
-        const packagePlatforms = ["win32", "linux"];
+        const packagePlatforms = ["win32", "linux", "darwin"];
 
         for (const platform of packagePlatforms) {
             gulp.task(
