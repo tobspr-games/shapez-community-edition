@@ -1,4 +1,4 @@
-import { openStandaloneLink, THIRDPARTY_URLS } from "../core/config";
+import { THIRDPARTY_URLS } from "../core/config";
 import { WEB_STEAM_SSO_AUTHENTICATED } from "../core/steam_sso";
 import { TextualGameState } from "../core/textual_game_state";
 import { MODS } from "../mods/modloader";
@@ -56,8 +56,6 @@ export class ModsState extends TextualGameState {
                     <p>${WEB_STEAM_SSO_AUTHENTICATED ? T.mods.browserNoSupport : T.mods.noModSupport}</p>
                     <br>
                     <button class="styledButton browseMods">${T.mods.browseMods}</button>
-                    <a href="#" class="steamLink steam_dlbtn_0" target="_blank">Get on Steam!</a>
-
 
                 </div>
             `;
@@ -107,10 +105,6 @@ export class ModsState extends TextualGameState {
     }
 
     onEnter() {
-        const steamLink = this.htmlElement.querySelector(".steamLink");
-        if (steamLink) {
-            this.trackClicks(steamLink, this.onSteamLinkClicked);
-        }
         const openModsFolder = this.htmlElement.querySelector(".openModsFolder");
         if (openModsFolder) {
             this.trackClicks(openModsFolder, this.openModsFolder);
@@ -140,11 +134,6 @@ export class ModsState extends TextualGameState {
 
     openBrowseMods() {
         this.app.platformWrapper.openExternalLink(THIRDPARTY_URLS.modBrowser);
-    }
-
-    onSteamLinkClicked() {
-        openStandaloneLink(this.app, "shapez_modsettings");
-        return false;
     }
 
     getDefaultPreviousState() {

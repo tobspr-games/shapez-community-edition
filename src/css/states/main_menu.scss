@@ -252,15 +252,6 @@
                 font-weight: 700 !important;
             }
 
-            .onlinePlayerCount {
-                color: #333;
-                display: none;
-                @include S(margin-top, 15px);
-                @include SuperSmallText;
-                @include S(height, 15px);
-                text-align: center;
-            }
-
             h3 {
                 @include Heading;
                 font-weight: bold;
@@ -1166,39 +1157,6 @@
         box-sizing: border-box;
         @include S(gap, 30px);
         @include S(padding, 15px, 25px, 15px, 20px);
-
-        &.wegameDisclaimer {
-            @include SuperSmallText;
-            display: grid;
-            justify-content: center;
-            text-align: center;
-
-            > .disclaimer {
-                grid-column: 2 / 3;
-
-                @include DarkThemeOverride {
-                    color: #fff;
-                }
-            }
-
-            > .rating {
-                grid-column: 3 / 4;
-                justify-self: end;
-                align-self: end;
-
-                @include S(width, 32px);
-                @include S(height, 40px);
-                background: green;
-                cursor: pointer !important;
-                pointer-events: all;
-                @include S(border-radius, 4px);
-                overflow: hidden;
-
-                & {
-                    background: #fff uiResource("wegame_isbn_rating.jpg") center center / contain no-repeat;
-                }
-            }
-        }
 
         .author {
             margin-left: auto;

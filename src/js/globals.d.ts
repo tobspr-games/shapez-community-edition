@@ -46,53 +46,13 @@ declare interface Logger {
     error(...args);
 }
 
-// Cordova
-declare interface Device {
-    uuid: string;
-    platform: string;
-    available: boolean;
-    version: string;
-    cordova: string;
-    model: string;
-    manufacturer: string;
-    isVirtual: boolean;
-    serial: string;
-}
-
 declare interface MobileAccessibility {
     usePreferredTextZoom(boolean);
 }
 
 declare interface Window {
-    // Cordova
-    device: Device;
-    StatusBar: any;
-    AndroidFullScreen: any;
-    AndroidNotch: any;
-    plugins: any;
-
-    // Adinplay
-    aiptag: any;
-    adPlayer: any;
-    aipPlayer: any;
-    MobileAccessibility: MobileAccessibility;
-    LocalFileSystem: any;
-
     // Debugging
     activeClickDetectors: Array<any>;
-
-    // Experimental/Newer apis
-    FontFace: any;
-    TouchEvent: undefined | TouchEvent;
-
-    // Thirdparty
-    XPayStationWidget: any;
-    Sentry: any;
-    LogRocket: any;
-    grecaptcha: any;
-    gtag: any;
-    cpmstarAPI: any;
-    CrazyGames: any;
 
     // Mods
     $shapez_registerMod: any;
@@ -113,11 +73,6 @@ declare interface Navigator {
     app: any;
     device: any;
     splashscreen: any;
-}
-
-// FontFace
-declare interface Document {
-    fonts: any;
 }
 
 // Webpack

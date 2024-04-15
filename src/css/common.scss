@@ -714,18 +714,6 @@ input.rangeInput {
     }
 }
 
-.xpaystation-widget-lightbox {
-    z-index: 19999;
-    .xpaystation-widget-lightbox-overlay {
-        background: rgba($mainBgColor, 0.94);
-    }
-    &,
-    iframe {
-        pointer-events: all;
-        user-select: all;
-    }
-}
-
 iframe {
     pointer-events: all;
     user-select: all;
@@ -743,33 +731,4 @@ iframe {
     opacity: 0.01;
     pointer-events: none;
     z-index: -1;
-}
-
-.sentry-error-embed-wrapper {
-    z-index: 10000;
-    background: rgba(0, 0, 0, 0.9);
-    * {
-        text-shadow: none !important;
-        pointer-events: all;
-    }
-}
-
-.cpmsrendertarget {
-    &,
-    * {
-        pointer-events: all;
-    }
-    background: rgba($mainBgColor, 0.94) !important;
-    .cpmsvideoclosebanner {
-        font-family: GameFont !important;
-        font-size: 16px !important;
-        border-radius: 2px !important;
-        background: $themeColor !important;
-        @include BoxShadow3D(darken($mainBgColor, 12));
-        color: #eee !important;
-        &:active {
-            @include BoxShadow3D(darken($mainBgColor, 12), $size: 1px);
-            transform: translateY(2px);
-        }
-    }
 }

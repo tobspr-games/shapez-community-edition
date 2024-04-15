@@ -25,7 +25,6 @@ export const THIRDPARTY_URLS = {
     patreon: "https://www.patreon.com/tobsprgames",
     privacyPolicy: "https://tobspr.io/privacy.html",
 
-    standaloneCampaignLink: "https://get.shapez.io/bundle/$campaign",
     puzzleDlcStorePage: "https://get.shapez.io/mm_puzzle_dlc?target=dlc",
 
     levelTutorialVideos: {
@@ -36,17 +35,6 @@ export const THIRDPARTY_URLS = {
 
     modBrowser: "https://shapez.mod.io/",
 };
-
-/**
- * @param {Application} app
- * @param {string} campaign
- */
-export function openStandaloneLink(app, campaign) {
-    const discount = globalConfig.currentDiscount > 0 ? "_discount" + globalConfig.currentDiscount : "";
-    const event = campaign + discount;
-    app.platformWrapper.openExternalLink(THIRDPARTY_URLS.standaloneCampaignLink.replace("$campaign", event));
-    app.gameAnalytics.noteMinor("g.stdlink." + event);
-}
 
 export const globalConfig = {
     // Size of a single tile in Pixels.

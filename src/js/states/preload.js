@@ -1,9 +1,8 @@
 import { CHANGELOG } from "../changelog";
 import { cachebust } from "../core/cachebust";
-import { globalConfig, THIRDPARTY_URLS } from "../core/config";
+import { globalConfig } from "../core/config";
 import { GameState } from "../core/game_state";
 import { createLogger } from "../core/logging";
-import { queryParamOptions } from "../core/query_parameters";
 import { authorizeViaSSOToken } from "../core/steam_sso";
 import { getLogoSprite, timeoutPromise } from "../core/utils";
 import { getRandomHint } from "../game/hints";
@@ -68,27 +67,6 @@ export class PreloadState extends GameState {
         if (G_IS_STANDALONE) {
             return;
         }
-        if (queryParamOptions.campaign) {
-            fetch(
-                "https://analytics.shapez.io/campaign/" +
-                    queryParamOptions.campaign +
-                    "?lpurl=nocontent&fbclid=" +
-                    (queryParamOptions.fbclid || "") +
-                    "&gclid=" +
-                    (queryParamOptions.gclid || "")
-            ).catch(err => {
-                console.warn("Failed to send beacon:", err);
-            });
-        }
-        if (queryParamOptions.embedProvider) {
-            fetch(
-                "https://analytics.shapez.io/campaign/embed_" +
-                    queryParamOptions.embedProvider +
-                    "?lpurl=nocontent"
-            ).catch(err => {
-                console.warn("Failed to send beacon:", err);
-            });
-        }
     }
 
     onLeave() {
@@ -138,10 +116,6 @@ export class PreloadState extends GameState {
             .then(() => {
                 return this.app.storage.initialize();
             })
-
-            .then(() => this.setStatus("Initializing libraries", 12))
-            .then(() => this.app.analytics.initialize())
-            .then(() => this.app.gameAnalytics.initialize())
 
             .then(() => this.setStatus("Connecting to api", 15))
             .then(() => this.fetchDiscounts())

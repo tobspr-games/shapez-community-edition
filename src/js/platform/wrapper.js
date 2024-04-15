@@ -43,14 +43,6 @@ export class PlatformWrapperInterface {
     }
 
     /**
-     * Should initialize the apps ad provider in case supported
-     *  @returns {Promise<void>}
-     */
-    initializeAdProvider() {
-        return Promise.resolve();
-    }
-
-    /**
      * Should return the minimum supported zoom level
      * @returns {number}
      */

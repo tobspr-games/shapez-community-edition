@@ -114,7 +114,7 @@ export class HubGoals extends BasicSerializableObject {
             window.addEventListener("keydown", ev => {
                 if (ev.key === "p") {
                     // root is not guaranteed to exist within ~0.5s after loading in
-                    if (this.root && this.root.app && this.root.app.gameAnalytics) {
+                    if (this.root) {
                         if (!this.isEndOfDemoReached()) {
                             this.onGoalCompleted();
                         }
@@ -262,7 +262,6 @@ export class HubGoals extends BasicSerializableObject {
         const reward = this.currentGoal.reward;
         this.gainedRewards[reward] = (this.gainedRewards[reward] || 0) + 1;
 
-        this.root.app.gameAnalytics.handleLevelCompleted(this.level);
         ++this.level;
         this.computeNextGoal();
 
@@ -351,8 +350,6 @@ export class HubGoals extends BasicSerializableObject {
         this.upgradeImprovements[upgradeId] += tierData.improvement;
 
         this.root.signals.upgradePurchased.dispatch(upgradeId);
-
-        this.root.app.gameAnalytics.handleUpgradeUnlocked(upgradeId, currentLevel);
 
         return true;
     }

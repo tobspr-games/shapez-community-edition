@@ -35,32 +35,6 @@ export function createLogger(context) {
     return new Logger(context);
 }
 
-function prepareObjectForLogging(obj, maxDepth = 1) {
-    if (!window.Sentry) {
-        // Not required without sentry
-        return obj;
-    }
-
-    if (typeof obj !== "object" && !Array.isArray(obj)) {
-        return obj;
-    }
-    const result = {};
-    for (const key in obj) {
-        const val = obj[key];
-
-        if (typeof val === "object") {
-            if (maxDepth > 0) {
-                result[key] = prepareObjectForLogging(val, maxDepth - 1);
-            } else {
-                result[key] = "[object]";
-            }
-        } else {
-            result[key] = val;
-        }
-    }
-    return result;
-}
-
 /**
  * Serializes an error
  * @param {Error|ErrorEvent} err
@@ -155,19 +129,12 @@ export function globalError(context, ...args) {
     args = prepareArgsForLogging(args);
     // eslint-disable-next-line no-console
     logInternal(context, console.error, args);
-
-    if (window.Sentry) {
-        window.Sentry.withScope(scope => {
-            scope.setExtra("args", args);
-            window.Sentry.captureMessage(internalBuildStringFromArgs(args), "error");
-        });
-    }
 }
 
 function prepareArgsForLogging(args) {
     let result = [];
     for (let i = 0; i < args.length; ++i) {
-        result.push(prepareObjectForLogging(args[i]));
+        result.push(args[i]);
     }
     return result;
 }
