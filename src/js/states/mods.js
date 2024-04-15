@@ -1,5 +1,4 @@
 import { THIRDPARTY_URLS } from "../core/config";
-import { WEB_STEAM_SSO_AUTHENTICATED } from "../core/steam_sso";
 import { TextualGameState } from "../core/textual_game_state";
 import { MODS } from "../mods/modloader";
 import { T } from "../translations";
@@ -14,10 +13,7 @@ export class ModsState extends TextualGameState {
     }
 
     get modsSupported() {
-        return (
-            !WEB_STEAM_SSO_AUTHENTICATED &&
-            (G_IS_STANDALONE || (G_IS_DEV && !window.location.href.includes("demo")))
-        );
+        return G_IS_STANDALONE || G_IS_DEV;
     }
 
     internalGetFullHtml() {
@@ -53,7 +49,7 @@ export class ModsState extends TextualGameState {
             return `
                 <div class="noModSupport">
 
-                    <p>${WEB_STEAM_SSO_AUTHENTICATED ? T.mods.browserNoSupport : T.mods.noModSupport}</p>
+                    <p>${T.mods.noModSupport}</p>
                     <br>
                     <button class="styledButton browseMods">${T.mods.browseMods}</button>
 

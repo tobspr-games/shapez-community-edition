@@ -3,7 +3,6 @@ import { cachebust } from "../core/cachebust";
 import { globalConfig } from "../core/config";
 import { GameState } from "../core/game_state";
 import { createLogger } from "../core/logging";
-import { authorizeViaSSOToken } from "../core/steam_sso";
 import { getLogoSprite, timeoutPromise } from "../core/utils";
 import { getRandomHint } from "../game/hints";
 import { HUDModalDialogs } from "../game/hud/parts/modal_dialogs";
@@ -64,9 +63,7 @@ export class PreloadState extends GameState {
     }
 
     async sendBeacon() {
-        if (G_IS_STANDALONE) {
-            return;
-        }
+        // TODO: Get rid of this analytics stuff
     }
 
     onLeave() {
@@ -75,20 +72,7 @@ export class PreloadState extends GameState {
 
     startLoading() {
         this.setStatus("Booting")
-            .then(() => {
-                try {
-                    window.localStorage.setItem("local_storage_feature_detection", "1");
-                } catch (ex) {
-                    throw new Error(
-                        "Could not access local storage. Make sure you are not playing in incognito mode and allow thirdparty cookies!"
-                    );
-                }
-            })
             .then(() => this.setStatus("Creating platform wrapper", 3))
-
-            .then(() => this.sendBeacon())
-            .then(() => authorizeViaSSOToken(this.app, this.dialogs))
-
             .then(() => this.app.platformWrapper.initialize())
 
             .then(() => this.setStatus("Initializing local storage", 6))

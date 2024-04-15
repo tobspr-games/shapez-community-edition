@@ -100,32 +100,13 @@ export class ClientAPI {
      * @returns {Promise<{token: string}>}
      */
     apiTryLogin() {
-        if (!G_IS_STANDALONE) {
-            let token = window.localStorage.getItem("steam_sso_auth_token");
-            if (!token && G_IS_DEV) {
-                token = window.prompt(
-                    "Please enter the auth token for the puzzle DLC (If you have none, you can't login):"
-                );
-                window.localStorage.setItem("dev_api_auth_token", token);
-            }
-            return Promise.resolve({ token });
-        }
-
-        return timeoutPromise(ipcRenderer.invoke("steam:get-ticket"), 15000).then(
-            ticket => {
-                logger.log("Got auth ticket:", ticket);
-                return this._request("/v1/public/login", {
-                    method: "POST",
-                    body: {
-                        token: ticket,
-                    },
-                });
-            },
-            err => {
-                logger.error("Failed to get auth ticket from steam: ", err);
-                throw err;
-            }
+        let token = window.localStorage.getItem("dev_api_auth_token");
+        token ??= window.prompt(
+            "Please enter the auth token for the puzzle DLC (If you have none, you can't login):"
         );
+
+        window.localStorage.setItem("dev_api_auth_token", token);
+        return Promise.resolve({ token });
     }
 
     /**

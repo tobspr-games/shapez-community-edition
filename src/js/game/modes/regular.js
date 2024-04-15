@@ -34,8 +34,7 @@ import { HUDInteractiveTutorial } from "../hud/parts/interactive_tutorial";
 import { MetaBlockBuilding } from "../buildings/block";
 import { MetaItemProducerBuilding } from "../buildings/item_producer";
 import { MOD_SIGNALS } from "../../mods/mod_signals";
-import { finalGameShape, generateLevelsForVariant } from "./levels";
-import { WEB_STEAM_SSO_AUTHENTICATED } from "../../core/steam_sso";
+import { finalGameShape, REGULAR_MODE_LEVELS } from "./levels";
 
 /** @typedef {{
  *   shape: string,
@@ -63,16 +62,16 @@ const preparementShape = "CpRpCp--:SwSwSwSw";
 // Tiers need % of the previous tier as requirement too
 const tierGrowth = 2.5;
 
-const upgradesCache = {};
+// TODO: Convert this file to TS and fix types. Maybe split the levels and upgrades as well
+let upgradesCache = null;
 
 /**
  * Generates all upgrades
  * @returns {Object<string, UpgradeTiers>}
  */
-function generateUpgrades(limitedVersion = false, difficulty = 1) {
-    // TODO: Remove the limitedVersion parameter
-    if (upgradesCache[limitedVersion]) {
-        return upgradesCache[limitedVersion];
+function generateUpgrades() {
+    if (upgradesCache) {
+        return upgradesCache;
     }
 
     const fixedImprovements = [0.5, 0.5, 1, 1, 2, 1, 1];
@@ -243,9 +242,6 @@ function generateUpgrades(limitedVersion = false, difficulty = 1) {
             const tierHandle = upgradeTiers[i];
             tierHandle.improvement = fixedImprovements[i];
 
-            tierHandle.required.forEach(required => {
-                required.amount = Math.round(required.amount * difficulty);
-            });
             const originalRequired = tierHandle.required.slice();
 
             for (let k = currentTierRequirements.length - 1; k >= 0; --k) {
@@ -286,7 +282,7 @@ function generateUpgrades(limitedVersion = false, difficulty = 1) {
         }
     }
 
-    upgradesCache[limitedVersion] = upgrades;
+    upgradesCache = upgrades;
     return upgrades;
 }
 
@@ -295,12 +291,15 @@ let levelDefinitionsCache = null;
 /**
  * Generates the level definitions
  */
-export function generateLevelDefinitions(app) {
+export function generateLevelDefinitions() {
+    // NOTE: This cache is useless in production, but is there because of the G_IS_DEV validation
     if (levelDefinitionsCache) {
         return levelDefinitionsCache;
     }
-    const levelDefinitions = generateLevelsForVariant(app);
+
+    const levelDefinitions = REGULAR_MODE_LEVELS;
     MOD_SIGNALS.modifyLevelDefinitions.dispatch(levelDefinitions);
+
     if (G_IS_DEV) {
         levelDefinitions.forEach(({ shape }) => {
             try {
@@ -310,6 +309,7 @@ export function generateLevelDefinitions(app) {
             }
         });
     }
+
     levelDefinitionsCache = levelDefinitions;
     return levelDefinitions;
 }
@@ -366,19 +366,12 @@ export class RegularGameMode extends GameMode {
         ];
     }
 
-    get difficultyMultiplicator() {
-        if (G_IS_STANDALONE || WEB_STEAM_SSO_AUTHENTICATED) {
-            return 1;
-        }
-        return 0.5;
-    }
-
     /**
      * Should return all available upgrades
      * @returns {Object<string, UpgradeTiers>}
      */
     getUpgrades() {
-        return generateUpgrades(false, this.difficultyMultiplicator);
+        return generateUpgrades();
     }
 
     /**
@@ -386,7 +379,7 @@ export class RegularGameMode extends GameMode {
      * @returns {Array<LevelDefinition>}
      */
     getLevelDefinitions() {
-        return generateLevelDefinitions(this.root.app);
+        return generateLevelDefinitions();
     }
 
     /**

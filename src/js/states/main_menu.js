@@ -4,7 +4,6 @@ import { GameState } from "../core/game_state";
 import { DialogWithForm } from "../core/modal_dialog_elements";
 import { FormElementInput } from "../core/modal_dialog_forms";
 import { ReadWriteProxy } from "../core/read_write_proxy";
-import { WEB_STEAM_SSO_AUTHENTICATED } from "../core/steam_sso";
 import {
     formatSecondsToTimeAgo,
     generateFileDownload,
@@ -33,13 +32,7 @@ export class MainMenuState extends GameState {
     }
 
     getInnerHTML() {
-        const showPuzzleDLC = G_IS_STANDALONE || WEB_STEAM_SSO_AUTHENTICATED;
         const hasMods = MODS.anyModsActive();
-
-        const ownsPuzzleDLC =
-            WEB_STEAM_SSO_AUTHENTICATED ||
-            (G_IS_STANDALONE &&
-                /** @type { PlatformWrapperImplElectron}*/ (this.app.platformWrapper).dlcs.puzzle);
 
         return `
             <div class="topButtons">
@@ -61,7 +54,7 @@ export class MainMenuState extends GameState {
                 ${/*showUpdateLabel ? `<span class="updateLabel">MODS UPDATE!</span>` : ""*/ ""}
             </div>
 
-            <div class="mainWrapper" data-columns="${showPuzzleDLC ? 2 : 1}">
+            <div class="mainWrapper" data-columns="2">
                 <div class="mainContainer">
                     <div class="buttons"></div>
                     <div class="savegamesMount"></div>
@@ -69,27 +62,11 @@ export class MainMenuState extends GameState {
 
                 <div class="sideContainer">
                 ${
-                    showPuzzleDLC
+                    !hasMods
                         ? `
-                        ${
-                            ownsPuzzleDLC && !hasMods
-                                ? `
-                            <div class="puzzleContainer owned">
-                                <button class="styledButton puzzleDlcPlayButton">${T.mainMenu.play}</button>
-                            </div>`
-                                : ""
-                        }
-
-                        ${
-                            !ownsPuzzleDLC && !hasMods
-                                ? `
-                            <div class="puzzleContainer notOwned">
-                                <p>${T.mainMenu.puzzleDlcText}</p>
-                                <button class="styledButton puzzleDlcGetButton">${T.mainMenu.puzzleDlcViewNow}</button>
-                            </div>`
-                                : ""
-                        }
-                        `
+                    <div class="puzzleContainer owned">
+                        <button class="styledButton puzzleDlcPlayButton">${T.mainMenu.play}</button>
+                    </div>`
                         : ""
                 }
 
