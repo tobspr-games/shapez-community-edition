@@ -164,8 +164,8 @@ function serveHTML({ version = "web-dev" }) {
     gulp.watch(["../src/**/*.scss"], gulp.series("css.dev"));
 
     // Watch .html files, those trigger a html rebuild
-    gulp.watch("../src/**/*.html", gulp.series("html." + version + ".dev"));
-    gulp.watch("./preloader/*.*", gulp.series("html." + version + ".dev"));
+    gulp.watch("../src/**/*.html", gulp.series("html.dev"));
+    gulp.watch("./preloader/*.*", gulp.series("html.dev"));
 
     // Watch translations
     gulp.watch("../translations/**/*.yaml", gulp.series("translations.convertToJson"));
@@ -253,7 +253,7 @@ for (const variant in BUILD_VARIANTS) {
 
     gulp.task(
         buildName + ".all",
-        gulp.series(buildName + ".resourcesAndCode", "css.prod-standalone", "html." + variant + ".prod")
+        gulp.series(buildName + ".resourcesAndCode", "css.prod-standalone", "html.prod")
     );
 
     gulp.task(buildName, gulp.series("utils.cleanup", buildName + ".all", "step.postbuild"));
@@ -279,7 +279,7 @@ for (const variant in BUILD_VARIANTS) {
     // serve
     gulp.task(
         "serve." + variant,
-        gulp.series("build.prepare.dev", "html." + variant + ".dev", () => serveHTML({ version: variant }))
+        gulp.series("build.prepare.dev", "html.dev", () => serveHTML({ version: variant }))
     );
 }
 
