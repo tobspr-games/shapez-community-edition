@@ -258,19 +258,28 @@ for (const variant in BUILD_VARIANTS) {
 
     gulp.task(buildName, gulp.series("utils.cleanup", buildName + ".all", "step.postbuild"));
 
-    // Tasks for creating distributable packages
+    // Tasks for creating packages. These packages are already distributable, but usually can be further
+    // wrapped in a different format (an installer for Windows, tarball for Linux, DMG for macOS).
     if (data.standalone) {
-        // TODO: Figure out macOS support as a non-published app
-        const packagePlatforms = ["win32", "linux"];
+        const packageTasks = [
+            "win32-x64",
+            "win32-arm64",
+            "linux-x64",
+            "linux-arm64",
+            "darwin-x64",
+            "darwin-arm64",
+            "all",
+        ];
 
-        for (const platform of packagePlatforms) {
+        for (const task of packageTasks) {
             gulp.task(
-                `package.${variant}.${platform}`,
+                `package.${variant}.${task}`,
                 gulp.series(
+                    "localConfig.findOrCreate",
                     `build.${variant}`,
                     "utils.cleanBuildOutputFolder",
                     `standalone.${variant}.prepare`,
-                    `standalone.${variant}.package.${platform}`
+                    `standalone.${variant}.package.${task}`
                 )
             );
         }

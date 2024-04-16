@@ -75,12 +75,11 @@ and does not intend to provide compatibility for older clients.
 
 ### Release
 
-> [!IMPORTANT]
-> While there is partial macOS support, it is not tested and adapted yet. Therefore, macOS package creation task is not provided.
-
 -   Run `yarn` in the root folder and in `electron/`.
--   In the root folder, run `yarn package-$PLATFORM` where `$PLATFORM` is `win32` or `linux` depending on your system.
--   The build will be found under `build_output/standalone-steam` as `shapez-...-x64`.
+-   In the root folder, run `yarn package-$PLATFORM-$ARCH` where:
+    -   `$PLATFORM` is `win32`, `linux` or `darwin` depending on your system.
+    -   `$ARCH` is the target system architecture (`x64` or `arm64`)
+-   The build will be found under `build_output/standalone-steam` as `shapez-...`.
 
 ## Credits
 
