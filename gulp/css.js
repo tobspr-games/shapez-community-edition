@@ -1,5 +1,5 @@
 import path from "path/posix";
-import { getRevision, cachebust } from "./buildutils.js";
+import { getRevision } from "./buildutils.js";
 
 import gulpPostcss from "gulp-postcss";
 import postcssAssets from "postcss-assets";
@@ -16,21 +16,15 @@ import gulpRename from "gulp-rename";
 export default function gulptasksCSS(gulp, buildFolder, browserSync) {
     // The assets plugin copies the files
     const commitHash = getRevision();
-    const postcssAssetsPlugin = enableCachebust =>
-        postcssAssets({
-            loadPaths: [path.join(buildFolder, "res", "ui")],
-            basePath: buildFolder,
-            baseUrl: ".",
-            cachebuster: enableCachebust
-                ? (filePath, urlPathname) => ({
-                      pathname: cachebust(urlPathname, commitHash),
-                  })
-                : "",
-        });
+    const postcssAssetsPlugin = postcssAssets({
+        loadPaths: [path.join(buildFolder, "res", "ui")],
+        basePath: buildFolder,
+        baseUrl: ".",
+    });
 
     // Postcss configuration
-    const postcssPlugins = (prod, { cachebust = false }) => {
-        const plugins = [postcssAssetsPlugin(cachebust)];
+    const postcssPlugins = prod => {
+        const plugins = [postcssAssetsPlugin];
         if (prod) {
             plugins.unshift(
                 postcssPresetEnv({
@@ -69,7 +63,7 @@ export default function gulptasksCSS(gulp, buildFolder, browserSync) {
             .pipe(gulpSassLint.failOnError());
     });
 
-    function resourcesTask({ cachebust, isProd }) {
+    function resourcesTask({ isProd }) {
         return gulp
             .src("../src/css/main.scss")
             .pipe(gulpPlumber())
@@ -82,27 +76,22 @@ export default function gulptasksCSS(gulp, buildFolder, browserSync) {
                 ])
             )
             .pipe(gulpRename("async-resources.css"))
-            .pipe(gulpPostcss(postcssPlugins(isProd, { cachebust })))
+            .pipe(gulpPostcss(postcssPlugins(isProd)))
             .pipe(gulp.dest(buildFolder))
             .pipe(browserSync.stream());
     }
 
     // Builds the css resources
     gulp.task("css.resources.dev", () => {
-        return resourcesTask({ cachebust: false, isProd: false });
+        return resourcesTask({ isProd: false });
     });
 
     // Builds the css resources in prod (=minified)
     gulp.task("css.resources.prod", () => {
-        return resourcesTask({ cachebust: true, isProd: true });
+        return resourcesTask({ isProd: true });
     });
 
-    // Builds the css resources in prod (=minified), without cachebusting
-    gulp.task("css.resources.prod-standalone", () => {
-        return resourcesTask({ cachebust: false, isProd: true });
-    });
-
-    function mainTask({ cachebust, isProd }) {
+    function mainTask({ isProd }) {
         return gulp
             .src("../src/css/main.scss")
             .pipe(gulpPlumber())
@@ -115,30 +104,21 @@ export default function gulptasksCSS(gulp, buildFolder, browserSync) {
                     }),
                 ])
             )
-            .pipe(gulpPostcss(postcssPlugins(isProd, { cachebust })))
+            .pipe(gulpPostcss(postcssPlugins(isProd)))
             .pipe(gulp.dest(buildFolder))
             .pipe(browserSync.stream());
     }
 
     // Builds the css main
     gulp.task("css.main.dev", () => {
-        return mainTask({ cachebust: false, isProd: false });
+        return mainTask({ isProd: false });
     });
 
     // Builds the css main in prod (=minified)
     gulp.task("css.main.prod", () => {
-        return mainTask({ cachebust: true, isProd: true });
-    });
-
-    // Builds the css main in prod (=minified), without cachebusting
-    gulp.task("css.main.prod-standalone", () => {
-        return mainTask({ cachebust: false, isProd: true });
+        return mainTask({ isProd: true });
     });
 
     gulp.task("css.dev", gulp.parallel("css.main.dev", "css.resources.dev"));
     gulp.task("css.prod", gulp.parallel("css.main.prod", "css.resources.prod"));
-    gulp.task(
-        "css.prod-standalone",
-        gulp.parallel("css.main.prod-standalone", "css.resources.prod-standalone")
-    );
 }

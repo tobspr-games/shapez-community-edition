@@ -32,11 +32,3 @@ export function getVersion() {
     // Use the version number specified in package.json
     return JSON.parse(fs.readFileSync("../package.json", "utf-8")).version;
 }
-
-/**
- * @param {string} url
- * @param {string} commitHash
- */
-export function cachebust(url, commitHash) {
-    return "/v/" + commitHash + "/" + url;
-}

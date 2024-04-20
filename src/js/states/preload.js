@@ -1,5 +1,4 @@
 import { CHANGELOG } from "../changelog";
-import { cachebust } from "../core/cachebust";
 import { globalConfig } from "../core/config";
 import { GameState } from "../core/game_state";
 import { createLogger } from "../core/logging";
@@ -283,7 +282,7 @@ export class PreloadState extends GameState {
 
         subElement.innerHTML = `
                 <div class="logo">
-                    <img src="${cachebust("res/" + getLogoSprite())}" alt="Shapez.io Logo">
+                    <img src="res/getLogoSprite()" alt="Shapez.io Logo">
                 </div>
                 <div class="failureInner">
                     <div class="errorHeader">

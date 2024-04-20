@@ -1,4 +1,3 @@
-import { cachebust } from "../core/cachebust";
 import { GameState } from "../core/game_state";
 
 export class MobileWarningState extends GameState {
@@ -9,7 +8,7 @@ export class MobileWarningState extends GameState {
     getInnerHTML() {
         return `
 
-            <img class="logo" src="${cachebust("res/logo.png")}" alt="shapez.io Logo">
+            <img class="logo" src="res/logo.png" alt="shapez.io Logo">
 
             <p>I'm sorry, but shapez.io is not available on mobile devices yet!</p>
             <p>If you have a desktop device, you can get shapez on Steam:</p>
@@ -27,18 +26,6 @@ export class MobileWarningState extends GameState {
         return false;
     }
 
-    onEnter() {
-        try {
-            if (window.gtag) {
-                window.gtag("event", "click", {
-                    event_category: "ui",
-                    event_label: "mobile_warning",
-                });
-            }
-        } catch (ex) {
-            console.warn("Failed to track mobile click:", ex);
-        }
-    }
     onLeave() {
         // this.dialogs.cleanup();
     }

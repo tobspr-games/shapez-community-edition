@@ -6,7 +6,6 @@ import { initSpriteCache } from "../game/meta_building_registry";
 import { MUSIC, SOUNDS } from "../platform/sound";
 import { T } from "../translations";
 import { AtlasDefinition, atlasFiles } from "./atlas_definitions";
-import { cachebust } from "./cachebust";
 import { Loader } from "./loader";
 import { createLogger } from "./logging";
 import { Signal } from "./signal";
@@ -200,8 +199,7 @@ export class BackgroundResourcesLoader {
             const xhr = new XMLHttpRequest();
             let notifiedNotComputable = false;
 
-            const fullUrl = cachebust(src);
-            xhr.open("GET", fullUrl, true);
+            xhr.open("GET", src, true);
             xhr.responseType = "arraybuffer";
             xhr.onprogress = function (ev) {
                 if (ev.lengthComputable) {
@@ -225,7 +223,7 @@ export class BackgroundResourcesLoader {
 
             xhr.onloadend = function () {
                 if (!xhr.status.toString().match(/^2/)) {
-                    reject(fullUrl + ": " + xhr.status + " " + xhr.statusText);
+                    reject(src + ": " + xhr.status + " " + xhr.statusText);
                 } else {
                     if (!notifiedNotComputable) {
                         progressHandler(1);

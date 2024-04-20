@@ -251,10 +251,7 @@ for (const variant in BUILD_VARIANTS) {
 
     gulp.task(buildName + ".resourcesAndCode", gulp.parallel("step.baseResources", buildName + ".code"));
 
-    gulp.task(
-        buildName + ".all",
-        gulp.series(buildName + ".resourcesAndCode", "css.prod-standalone", "html.prod")
-    );
+    gulp.task(buildName + ".all", gulp.series(buildName + ".resourcesAndCode", "css.prod", "html.prod"));
 
     gulp.task(buildName, gulp.series("utils.cleanup", buildName + ".all", "step.postbuild"));
 

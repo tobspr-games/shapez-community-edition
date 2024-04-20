@@ -4,7 +4,6 @@ import { GameRoot } from "../../root";
 import { MinerComponent } from "../../components/miner";
 import { DynamicDomAttach } from "../dynamic_dom_attach";
 import { TrackedState } from "../../../core/tracked_state";
-import { cachebust } from "../../../core/cachebust";
 import { T } from "../../../translations";
 import { enumItemProcessorTypes, ItemProcessorComponent } from "../../components/item_processor";
 import { ShapeItem } from "../../items/shape_item";
@@ -190,7 +189,7 @@ export class HUDInteractiveTutorial extends BaseHUDPart {
         document.documentElement.setAttribute("data-tutorial-step", hintId);
 
         this.elementGif.style.backgroundImage =
-            "url('" + cachebust("res/ui/interactive_tutorial.noinline/" + hintId + ".gif") + "')";
+            "url('res/ui/interactive_tutorial.noinline/" + hintId + ".gif')";
         this.element.classList.toggle("animEven");
         this.element.classList.toggle("animOdd");
         if (hintId) {

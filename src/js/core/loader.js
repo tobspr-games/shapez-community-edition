@@ -1,6 +1,5 @@
 import { makeOffscreenBuffer } from "./buffer_utils";
 import { AtlasSprite, BaseSprite, RegularSprite, SpriteAtlasLink } from "./sprites";
-import { cachebust } from "./cachebust";
 import { createLogger } from "./logging";
 
 /**

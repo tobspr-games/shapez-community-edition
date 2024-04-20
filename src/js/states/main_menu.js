@@ -1,4 +1,3 @@
-import { cachebust } from "../core/cachebust";
 import { globalConfig, THIRDPARTY_URLS } from "../core/config";
 import { GameState } from "../core/game_state";
 import { DialogWithForm } from "../core/modal_dialog_elements";
@@ -43,11 +42,11 @@ export class MainMenuState extends GameState {
             </div>
 
             <video autoplay muted loop class="fullscreenBackgroundVideo">
-                <source src="${cachebust("res/bg_render.webm")}" type="video/webm">
+                <source src="res/bg_render.webm" type="video/webm">
             </video>
 
             <div class="logo">
-                <img src="${cachebust("res/" + getLogoSprite())}" alt="shapez.io Logo"
+                <img src="res/${getLogoSprite()}" alt="shapez.io Logo"
                     width="${Math.round((710 / 3) * this.app.getEffectiveUiScale())}"
                     height="${Math.round((180 / 3) * this.app.getEffectiveUiScale())}"
                 >
@@ -132,7 +131,7 @@ export class MainMenuState extends GameState {
 
                 <div class="author">
                     <a class="producerLink" href="https://tobspr.io" target="_blank" title="tobspr Games" rel="follow">
-                        <img src="${cachebust("res/logo-tobspr-games.svg")}" alt="tobspr Games"
+                        <img src="res/logo-tobspr-games.svg" alt="tobspr Games"
                         height="${25 * 0.8 * this.app.getEffectiveUiScale()}"
                         width="${82 * 0.8 * this.app.getEffectiveUiScale()}"
                         >

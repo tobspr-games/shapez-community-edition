@@ -1,5 +1,4 @@
 import { MusicInstanceInterface, SoundInstanceInterface, SoundInterface, MUSIC, SOUNDS } from "../sound";
-import { cachebust } from "../../core/cachebust";
 import { createLogger } from "../../core/logging";
 import { globalConfig } from "../../core/config";
 
@@ -23,7 +22,7 @@ class SoundSpritesContainer {
         }
         return (this.loadingPromise = new Promise(resolve => {
             this.howl = new Howl({
-                src: cachebust("res/sounds/sfx.mp3"),
+                src: "res/sounds/sfx.mp3",
                 sprite: sprites.sprite,
                 autoplay: false,
                 loop: false,
@@ -95,7 +94,7 @@ class MusicInstance extends MusicInstanceInterface {
     load() {
         return new Promise((resolve, reject) => {
             this.howl = new Howl({
-                src: cachebust("res/sounds/music/" + this.url + ".mp3"),
+                src: "res/sounds/music/" + this.url + ".mp3",
                 autoplay: false,
                 loop: true,
                 html5: true,
