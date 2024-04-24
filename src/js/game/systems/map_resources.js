@@ -92,13 +92,7 @@ export class MapResourcesSystem extends GameSystem {
      * @param {number} dpi
      */
     generateChunkBackground(chunk, canvas, context, w, h, dpi) {
-        if (this.root.app.settings.getAllSettings().disableTileGrid) {
-            // The map doesn't draw a background, so we have to
-            context.fillStyle = THEME.map.background;
-            context.fillRect(0, 0, w, h);
-        } else {
-            context.clearRect(0, 0, w, h);
-        }
+        context.clearRect(0, 0, w, h);
 
         context.globalAlpha = 0.5;
         const layer = chunk.lowerLayer;

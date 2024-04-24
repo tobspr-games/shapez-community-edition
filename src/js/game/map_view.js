@@ -229,9 +229,6 @@ export class MapView extends BaseMap {
     drawBackground(parameters) {
         // Render tile grid
         if (!this.root.app.settings.getAllSettings().disableTileGrid || !this.root.gameMode.hasResources()) {
-            const dpi = this.backgroundCacheDPI;
-            parameters.context.scale(1 / dpi, 1 / dpi);
-
             let key = "regular";
 
             // Disabled rn because it can be really annoying
@@ -250,14 +247,19 @@ export class MapView extends BaseMap {
                 this.cachedBackgroundCanvases[key],
                 "repeat"
             );
-            parameters.context.fillRect(
-                parameters.visibleRect.x * dpi,
-                parameters.visibleRect.y * dpi,
-                parameters.visibleRect.w * dpi,
-                parameters.visibleRect.h * dpi
-            );
-            parameters.context.scale(dpi, dpi);
+        } else {
+            parameters.context.fillStyle = THEME.map.background;
         }
+
+        const dpi = this.backgroundCacheDPI;
+        parameters.context.scale(1 / dpi, 1 / dpi);
+        parameters.context.fillRect(
+            parameters.visibleRect.x * dpi,
+            parameters.visibleRect.y * dpi,
+            parameters.visibleRect.w * dpi,
+            parameters.visibleRect.h * dpi
+        );
+        parameters.context.scale(dpi, dpi);
 
         this.drawVisibleChunks(parameters, MapChunkView.prototype.drawBackgroundLayer);
     }

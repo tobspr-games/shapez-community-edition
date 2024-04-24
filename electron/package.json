@@ -13,7 +13,7 @@
     "optionalDependencies": {},
     "dependencies": {
         "async-lock": "^1.4.1",
-        "electron": "30.0.0",
+        "electron": "^30.0.0",
         "electron-window-state": "^5.0.3"
     }
 }
