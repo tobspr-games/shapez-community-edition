@@ -131,6 +131,7 @@ export function drawSpriteClipped({
             intersection.w,
             intersection.h
         );
+        return;
     }
 
     const matrix = parameters.context.getTransform();
