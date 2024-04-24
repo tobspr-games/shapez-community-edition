@@ -83,8 +83,20 @@ let warningsShown = 0;
  * @param {number} param0.h
  * @param {number} param0.originalW
  * @param {number} param0.originalH
+ * @param {boolean=} param0.pixelAligned
+ * Whether to round the canvas coordinates, to avoid issues with transparency between tiling images
  */
-export function drawSpriteClipped({ parameters, sprite, x, y, w, h, originalW, originalH }) {
+export function drawSpriteClipped({
+    parameters,
+    sprite,
+    x,
+    y,
+    w,
+    h,
+    originalW,
+    originalH,
+    pixelAligned = false,
+}) {
     const rect = new Rectangle(x, y, w, h);
     const intersection = rect.getIntersection(parameters.visibleRect);
     if (!intersection) {
@@ -103,6 +115,38 @@ export function drawSpriteClipped({ parameters, sprite, x, y, w, h, originalW, o
         return;
     }
 
+    if (!pixelAligned) {
+        parameters.context.drawImage(
+            sprite,
+
+            // src pos and size
+            ((intersection.x - x) / w) * originalW,
+            ((intersection.y - y) / h) * originalH,
+            (originalW * intersection.w) / w,
+            (originalH * intersection.h) / h,
+
+            // dest pos and size
+            intersection.x,
+            intersection.y,
+            intersection.w,
+            intersection.h
+        );
+    }
+
+    const matrix = parameters.context.getTransform();
+    let { x: x1, y: y1 } = matrix.transformPoint(new DOMPoint(intersection.x, intersection.y));
+    let { x: x2, y: y2 } = matrix.transformPoint(
+        new DOMPoint(intersection.x + intersection.w, intersection.y + intersection.h)
+    );
+    x1 = Math.round(x1);
+    y1 = Math.round(y1);
+    x2 = Math.round(x2);
+    y2 = Math.round(y2);
+    if (x2 - x1 == 0 || y2 - y1 == 0) {
+        return;
+    }
+
+    parameters.context.resetTransform();
     parameters.context.drawImage(
         sprite,
 
@@ -113,9 +157,10 @@ export function drawSpriteClipped({ parameters, sprite, x, y, w, h, originalW, o
         (originalH * intersection.h) / h,
 
         // dest pos and size
-        intersection.x,
-        intersection.y,
-        intersection.w,
-        intersection.h
+        x1,
+        y1,
+        x2 - x1,
+        y2 - y1
     );
+    parameters.context.setTransform(matrix);
 }

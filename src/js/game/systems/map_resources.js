@@ -31,6 +31,7 @@ export class MapResourcesSystem extends GameSystem {
             h: globalConfig.mapChunkWorldSize,
             originalW: globalConfig.mapChunkSize,
             originalH: globalConfig.mapChunkSize,
+            pixelAligned: true,
         });
         parameters.context.imageSmoothingEnabled = true;
 

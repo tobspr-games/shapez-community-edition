@@ -533,7 +533,13 @@ export class BeltSystem extends GameSystem {
                     }
 
                     // Culling happens within the static map entity component
-                    entity.components.StaticMapEntity.drawSpriteOnBoundsClipped(parameters, sprite, 0);
+                    entity.components.StaticMapEntity.drawSpriteOnBoundsClipped(
+                        parameters,
+                        sprite,
+                        0,
+                        null,
+                        true
+                    );
                 }
             }
         } else {
@@ -544,7 +550,13 @@ export class BeltSystem extends GameSystem {
                     const sprite = this.beltAnimations[direction][animationIndex % BELT_ANIM_COUNT];
 
                     // Culling happens within the static map entity component
-                    entity.components.StaticMapEntity.drawSpriteOnBoundsClipped(parameters, sprite, 0);
+                    entity.components.StaticMapEntity.drawSpriteOnBoundsClipped(
+                        parameters,
+                        sprite,
+                        0,
+                        null,
+                        true
+                    );
                 }
             }
         }

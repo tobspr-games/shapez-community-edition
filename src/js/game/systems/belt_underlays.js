@@ -278,20 +278,36 @@ export class BeltUnderlaysSystem extends GameSystem {
                     ((this.root.time.realtimeNow() * speedMultiplier * BELT_ANIM_COUNT * 126) / 42) *
                         globalConfig.itemSpacingOnBelts
                 );
-                parameters.context.translate(x, y);
+
+                // See components/static_map_entity.js:drawSpriteOnBoundsClipped
+                const transform = parameters.context.getTransform();
+                const matrix = new DOMMatrix().rotate(0, 0, -angle).multiplySelf(transform);
+                let { x: x1, y: y1 } = matrix.transformPoint(
+                    new DOMPoint(x - globalConfig.halfTileSize, y - globalConfig.halfTileSize)
+                );
+                let { x: x2, y: y2 } = matrix.transformPoint(
+                    new DOMPoint(x + globalConfig.halfTileSize, y + globalConfig.halfTileSize)
+                );
+                if (x1 > x2) {
+                    [x1, x2] = [x2, x1];
+                }
+                if (y1 > y2) {
+                    [y1, y2] = [y2, y1];
+                }
+                x1 = Math.round(x1);
+                y1 = Math.round(y1);
+                x2 = Math.round(x2);
+                y2 = Math.round(y2);
+                if (x2 - x1 == 0 || y2 - y1 == 0) {
+                    continue;
+                }
+
+                parameters.context.resetTransform();
                 parameters.context.rotate(angleRadians);
                 this.underlayBeltSprites[
                     animationIndex % this.underlayBeltSprites.length
-                ].drawCachedWithClipRect(
-                    parameters,
-                    -globalConfig.halfTileSize,
-                    -globalConfig.halfTileSize,
-                    globalConfig.tileSize,
-                    globalConfig.tileSize,
-                    clipRect
-                );
-                parameters.context.rotate(-angleRadians);
-                parameters.context.translate(-x, -y);
+                ].drawCachedWithClipRect(parameters, x1, y1, x2 - x1, y2 - y1, clipRect);
+                parameters.context.setTransform(transform);
             }
         }
     }

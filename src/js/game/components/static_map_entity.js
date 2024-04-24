@@ -255,8 +255,16 @@ export class StaticMapEntityComponent extends Component {
      * @param {AtlasSprite} sprite
      * @param {number=} extrudePixels How many pixels to extrude the sprite
      * @param {Vector=} overridePosition Whether to drwa the entity at a different location
+     * @param {boolean=} pixelAligned
+     * Whether to round the canvas coordinates, to avoid issues with transparency between tiling images
      */
-    drawSpriteOnBoundsClipped(parameters, sprite, extrudePixels = 0, overridePosition = null) {
+    drawSpriteOnBoundsClipped(
+        parameters,
+        sprite,
+        extrudePixels = 0,
+        overridePosition = null,
+        pixelAligned = false
+    ) {
         if (!this.shouldBeDrawn(parameters) && !overridePosition) {
             return;
         }
@@ -269,31 +277,68 @@ export class StaticMapEntityComponent extends Component {
             worldY = overridePosition.y * globalConfig.tileSize;
         }
 
-        if (this.rotation === 0) {
-            // Early out, is faster
-            sprite.drawCached(
-                parameters,
-                worldX - extrudePixels * size.x,
-                worldY - extrudePixels * size.y,
-                globalConfig.tileSize * size.x + 2 * extrudePixels * size.x,
-                globalConfig.tileSize * size.y + 2 * extrudePixels * size.y
-            );
-        } else {
-            const rotationCenterX = worldX + globalConfig.halfTileSize;
-            const rotationCenterY = worldY + globalConfig.halfTileSize;
+        if (!pixelAligned) {
+            if (this.rotation === 0) {
+                // Early out, is faster
+                sprite.drawCached(
+                    parameters,
+                    worldX - extrudePixels * size.x,
+                    worldY - extrudePixels * size.y,
+                    globalConfig.tileSize * size.x + 2 * extrudePixels * size.x,
+                    globalConfig.tileSize * size.y + 2 * extrudePixels * size.y
+                );
+            } else {
+                const rotationCenterX = worldX + globalConfig.halfTileSize;
+                const rotationCenterY = worldY + globalConfig.halfTileSize;
 
-            parameters.context.translate(rotationCenterX, rotationCenterY);
-            parameters.context.rotate(Math.radians(this.rotation));
-            sprite.drawCached(
-                parameters,
-                -globalConfig.halfTileSize - extrudePixels * size.x,
-                -globalConfig.halfTileSize - extrudePixels * size.y,
-                globalConfig.tileSize * size.x + 2 * extrudePixels * size.x,
-                globalConfig.tileSize * size.y + 2 * extrudePixels * size.y,
-                false // no clipping possible here
-            );
-            parameters.context.rotate(-Math.radians(this.rotation));
-            parameters.context.translate(-rotationCenterX, -rotationCenterY);
+                parameters.context.translate(rotationCenterX, rotationCenterY);
+                parameters.context.rotate(Math.radians(this.rotation));
+                sprite.drawCached(
+                    parameters,
+                    -globalConfig.halfTileSize - extrudePixels * size.x,
+                    -globalConfig.halfTileSize - extrudePixels * size.y,
+                    globalConfig.tileSize * size.x + 2 * extrudePixels * size.x,
+                    globalConfig.tileSize * size.y + 2 * extrudePixels * size.y,
+                    false // no clipping possible here
+                );
+                parameters.context.rotate(-Math.radians(this.rotation));
+                parameters.context.translate(-rotationCenterX, -rotationCenterY);
+            }
+            return;
         }
+
+        const transform = parameters.context.getTransform();
+        const matrix = new DOMMatrix().rotate(0, 0, -this.rotation).multiplySelf(transform);
+        let { x: x1, y: y1 } = matrix.transformPoint(
+            new DOMPoint(worldX - extrudePixels * size.x, worldY - extrudePixels * size.y)
+        );
+        let { x: x2, y: y2 } = matrix.transformPoint(
+            new DOMPoint(
+                worldX + globalConfig.tileSize * size.x + extrudePixels * size.x,
+                worldY + globalConfig.tileSize * size.y + extrudePixels * size.y
+            )
+        );
+        if (x1 > x2) {
+            [x1, x2] = [x2, x1];
+        }
+        if (y1 > y2) {
+            [y1, y2] = [y2, y1];
+        }
+        // Even though drawCached may scale the coordinates,
+        // that scaling is for sprites that don't take up their full tile space,
+        // so they should be interpolated exactly between the rounded tile coordinates.
+        // E.g. rounding in drawCached causes curved belts to look misaligned.
+        x1 = Math.round(x1);
+        y1 = Math.round(y1);
+        x2 = Math.round(x2);
+        y2 = Math.round(y2);
+        if (x2 - x1 == 0 || y2 - y1 == 0) {
+            return;
+        }
+
+        parameters.context.resetTransform();
+        parameters.context.rotate(Math.radians(this.rotation));
+        sprite.drawCached(parameters, x1, y1, x2 - x1, y2 - y1, false);
+        parameters.context.setTransform(transform);
     }
 }
