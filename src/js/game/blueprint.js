@@ -88,7 +88,13 @@ export class Blueprint {
                 parameters.context.globalAlpha = 1;
             }
 
-            staticComp.drawSpriteOnBoundsClipped(parameters, staticComp.getBlueprintSprite(), 0, newPos);
+            staticComp.drawSpriteOnBoundsClipped(
+                parameters,
+                staticComp.getBlueprintSprite(),
+                0,
+                newPos,
+                true
+            );
         }
         parameters.context.globalAlpha = 1;
     }
