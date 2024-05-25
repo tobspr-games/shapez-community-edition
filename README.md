@@ -56,13 +56,14 @@ and does not intend to provide compatibility for older clients.
 
 ### Prerequisites
 
--   [ffmpeg](https://www.ffmpeg.org/download.html)
+-   [ffmpeg](https://www.ffmpeg.org/download.html)[^2] (v6 or lower)
 -   [Node.js](https://nodejs.org)
 -   [Yarn 1](https://classic.yarnpkg.com/en/docs/install) (not 2, we haven't migrated yet)
 -   [Java](https://www.oracle.com/java/technologies/downloads/) (or [OpenJDK](https://openjdk.org/)) to run the texture packer
 -   [cURL](https://curl.se/download.html)[^1] to download the texture packer
 
 [^1]: cURL is already installed on most Windows, Linux and macOS systems.
+[^2]: ffmpeg v7 is known to be incompatible with this project. Dependency `gulp-fluent-ffmpeg` cannot create MP3 files with ffmpeg v7, but it can create them with ffmpeg v6.
 
 ### Development
 
