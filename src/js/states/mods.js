@@ -57,7 +57,7 @@ export class ModsState extends TextualGameState {
             `;
         }
 
-        if (MODS.mods.length === 0) {
+        if (!MODS.anyModsActive()) {
             return `
 
             <div class="modsStats noMods">
@@ -77,11 +77,13 @@ export class ModsState extends TextualGameState {
                     <div class="mainInfo">
                         <span class="name">${mod.metadata.name}</span>
                         <span class="description">${mod.metadata.description}</span>
-                        <a class="website" href="${mod.metadata.website}" target="_blank">${T.mods.modWebsite}</a>
+                        <a class="website" href="${mod.metadata.website}" target="_blank">${
+                T.mods.modWebsite
+            }</a>
                     </div>
                     <span class="version"><strong>${T.mods.version}</strong>${mod.metadata.version}</span>
                     <span class="author"><strong>${T.mods.author}</strong>${mod.metadata.author}</span>
-                    <div class="value checkbox checked">
+                    <div class="value checkbox ${!mod.disabled ? "checked" : ""}" id="${mod.metadata.id}tog">
                         <span class="knob"></span>
                     </div>
 
@@ -112,12 +114,8 @@ export class ModsState extends TextualGameState {
 
         const checkboxes = this.htmlElement.querySelectorAll(".checkbox");
         Array.from(checkboxes).forEach(checkbox => {
-            this.trackClicks(checkbox, this.showModTogglingComingSoon);
+            return;
         });
-    }
-
-    showModTogglingComingSoon() {
-        this.dialogs.showWarning(T.mods.togglingComingSoon.title, T.mods.togglingComingSoon.description);
     }
 
     openModsFolder() {
@@ -131,6 +129,8 @@ export class ModsState extends TextualGameState {
     openBrowseMods() {
         this.app.platformWrapper.openExternalLink(THIRDPARTY_URLS.modBrowser);
     }
+
+    toggleMod(modID) {}
 
     getDefaultPreviousState() {
         return "SettingsState";

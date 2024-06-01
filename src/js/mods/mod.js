@@ -12,12 +12,15 @@ export class Mod {
      * @param {ModLoader} param0.modLoader
      * @param {import("./modloader").ModMetadata} param0.meta
      * @param {Object} param0.settings
+     * @param {string} param0.path
      * @param {() => Promise<void>} param0.saveSettings
      */
-    constructor({ app, modLoader, meta, settings, saveSettings }) {
+    constructor({ app, modLoader, meta, settings, saveSettings, path }) {
         this.app = app;
         this.modLoader = modLoader;
         this.metadata = meta;
+        this.path = path;
+        this.disabled = path.endsWith(".js.disabled");
 
         this.signals = MOD_SIGNALS;
         this.modInterface = modLoader.modInterface;

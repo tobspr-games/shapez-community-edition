@@ -356,7 +356,7 @@ function loadMods() {
         ? []
         : fs
               .readdirSync(modsPath)
-              .filter(filename => filename.endsWith(".js"))
+              .filter(filename => filename.endsWith(".js") || filename.endsWith(".js.disabled"))
               .map(filename => path.join(modsPath, filename));
 
     if (externalMod) {
@@ -365,7 +365,13 @@ function loadMods() {
         modFiles = modFiles.concat(externalModPaths);
     }
 
-    return modFiles.map(filename => fs.readFileSync(filename, "utf8"));
+    return modFiles.map(
+        filename =>
+            `// ${filename}\n${fs.readFileSync(
+                filename,
+                "utf8"
+            )}`
+    );
 }
 
 let mods = [];
