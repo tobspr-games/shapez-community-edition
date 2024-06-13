@@ -256,6 +256,9 @@ dialogs:
         desc: 当前已安装的游戏模组（Mods）与该存档创建时所安装的游戏模组（Mods）不同！这可能会导致存档损坏，甚至无法加载。你确定要继续加载吗？
         missingMods: 缺失的游戏模组（Mods）
         newMods: 新安装的游戏模组（Mods）
+    applyModsWarning:
+        title: Warning
+        desc: The game will reload to apply your changes to the mods
     resourceLoadFailed:
         title: 资源载入失败
         demoLinkText: Steam上的《异形工厂》（Shapez）Demo
@@ -1158,11 +1161,7 @@ mods:
     folderOnlyStandalone: 只有完整版才可以打开游戏模组（Mods）文件夹。
     browseMods: 浏览游戏模组（Mods）
     modsInfo: 要安装和管理游戏模组（Mods），请将它们复制到游戏模组文件夹（使用右上角的“打开游戏模组（Mods）文件夹”按钮）。记住在管理完游戏模组（Mods）后，请务必重启游戏，否则游戏模组（Mods）是不会出现的。
+    applyToggle: Apply
     noModSupport: 您需要在 Steam 平台获得完整版才可以安装游戏模组（Mods）。
-    togglingComingSoon:
-        title: 即将开放
-        description:
-            当前只能通过将游戏模组（Mods）文件复制到 mods 文件夹或从 mods 文件夹移除来启用或禁用游戏模组（Mods）。
-            但是，可以切换游戏模组（Mods）已经计划在之后的更新中实现！
     modWebsite: 模组网站
     browserNoSupport: 由于浏览器功能限制，目前游戏模组（Mods）只能在Steam版本中安装进行。敬请理解！

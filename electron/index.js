@@ -160,6 +160,16 @@ function createWindow() {
         }
     });
 
+    win.webContents.on("did-start-loading", e => {
+        try {
+            mods = loadMods();
+            console.log("Loaded", mods.length, "mods");
+        } catch (ex) {
+            console.error("Failed to load mods");
+            dialog.showErrorBox("Failed to load mods:", ex);
+        }
+    });
+
     win.on("closed", () => {
         console.log("Window closed");
         win = null;
@@ -316,8 +326,10 @@ async function writeFileSafe(filename, contents) {
 }
 
 ipcMain.handle("fs-job", async (event, job) => {
-    const filenameSafe = job.filename.replace(/[^a-z\.\-_0-9]/gi, "_");
-    const fname = path.join(storePath, filenameSafe);
+    const filenameSafe = path.isAbsolute(job.filename)
+        ? job.filename
+        : job.filename.replace(/[^a-z\.\-_0-9]/gi, "_");
+    const fname = path.isAbsolute(filenameSafe) ? filenameSafe : path.join(storePath, filenameSafe);
     switch (job.type) {
         case "read": {
             if (!fs.existsSync(fname)) {
@@ -365,13 +377,7 @@ function loadMods() {
         modFiles = modFiles.concat(externalModPaths);
     }
 
-    return modFiles.map(
-        filename =>
-            `// ${filename}\n${fs.readFileSync(
-                filename,
-                "utf8"
-            )}`
-    );
+    return modFiles.map(filename => `// ${filename}\n${fs.readFileSync(filename, "utf8")}`);
 }
 
 let mods = [];

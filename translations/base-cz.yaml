@@ -285,6 +285,9 @@ dialogs:
             nenačte. Jste si jisti, že chcete pokračovat?
         missingMods: Chybějící módy
         newMods: Nově nainstalované módy
+    applyModsWarning:
+        title: Warning
+        desc: The game will reload to apply your changes to the mods
     resourceLoadFailed:
         title: Resources failed to load
         demoLinkText: shapez demo on Steam
@@ -1337,11 +1340,7 @@ mods:
     modsInfo: Chcete-li nainstalovat a spravovat módy, zkopírujte je do složky mods
         v adresáři hry. Můžete také použít tlačítko 'Otevřít složku s módy'
         vpravo nahoře.
+    applyToggle: Apply
     noModSupport: K instalaci módů potřebujete samostatnou verzi hry na Steamu.
-    togglingComingSoon:
-        title: Již brzy
-        description: Aktivace či deaktivace módů je v současné době možná pouze
-            kopírováním souboru módu z nebo do mods/ složky. Nicméně, možnost
-            správy módů přímo ze hry je plánována pro budoucí aktualizaci!
     browserNoSupport: Due to browser restrictions it is currently only possible to
         install mods in the Steam version - Sorry!

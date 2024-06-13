@@ -266,6 +266,9 @@ dialogs:
             you sure you want to continue?
         missingMods: Missing Mods
         newMods: Newly installed Mods
+    applyModsWarning:
+        title: Warning
+        desc: The game will reload to apply your changes to the mods
     resourceLoadFailed:
         title: Resources failed to load
         demoLinkText: shapez demo on Steam
@@ -1246,12 +1249,7 @@ mods:
     folderOnlyStandalone: 모드폴더를 여는것은 정식버전에서만 가능합니다.
     browseMods: 모드 찾기
     modsInfo: 모드를 설치하기위해 모드폴더에 모드 파일을 넣으세요. 오른쪽 위에있는 '모드폴더 열기' 버튼으로 모드폴더를 열수 있습니다.
+    applyToggle: Apply
     noModSupport: 모드를 사용하기 위해 정식버전이 필요합니다.
-    togglingComingSoon:
-        title: 곧 업데이트 됩니다!
-        description:
-            지금은 mods/ 폴더에 모드 파일을 넣고 빼는 방식으로만 모드를 활성화/비활성화할 수 있습니다. 모드를 이곳에서 켜고
-            끌수 있는 기능은 추후 업데이트될 예정입니다. 모드폴더에 넣고/빼는것으로 할수있습니다. 모드를 토글하는 기능은 곧 업데이트
-            됩니다!
     browserNoSupport: Due to browser restrictions it is currently only possible to
         install mods in the Steam version - Sorry!

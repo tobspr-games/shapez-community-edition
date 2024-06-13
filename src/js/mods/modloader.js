@@ -61,6 +61,10 @@ export class ModLoader {
         this.app = app;
     }
 
+    anyModsEnabled() {
+        return this.mods.some(mod => !mod.disabled);
+    }
+
     anyModsActive() {
         return this.mods.length > 0;
     }
@@ -199,7 +203,7 @@ export class ModLoader {
         };
 
         mods.forEach(modCode => {
-            path = modCode.slice(0, modCode.indexOf("\n")).replace("// ", "").replaceAll("\\", "\\\\");
+            path = modCode.slice(0, modCode.indexOf("\n")).replace("// ", "");
             modCode += `
                         if (typeof Mod !== 'undefined') {
                             if (typeof METADATA !== 'object') {
@@ -218,8 +222,6 @@ export class ModLoader {
         });
 
         delete window.$shapez_registerMod;
-
-        console.log(this.modLoadQueue);
 
         for (let i = 0; i < this.modLoadQueue.length; i++) {
             const { modClass, meta, path } = this.modLoadQueue[i];
@@ -262,7 +264,6 @@ export class ModLoader {
             }
 
             try {
-                console.log(path);
                 const mod = new modClass({
                     app: this.app,
                     modLoader: this,
@@ -292,13 +293,18 @@ export class ModLoader {
         if (mod == undefined) {
             throw new Error("Mod not found");
         }
-        if (mod.disabled) {
-            throw new Error("Can't disable mod that is already disabled");
-        }
-        this.modDisableQueue.push({
+        const index = this.modEnableQueue.indexOf({
             meta: mod.metadata,
             path: mod.path,
         });
+        if (index > -1) {
+            this.modEnableQueue.splice(index, 1);
+        } else if (!mod.disabled) {
+            this.modDisableQueue.push({
+                meta: mod.metadata,
+                path: mod.path,
+            });
+        }
     }
 
     /**
@@ -330,16 +336,19 @@ export class ModLoader {
             ? new StorageImplElectron(this.app)
             : new StorageImplBrowserIndexedDB(this.app);
         await storage.initialize();
+        console.log(this.modDisableQueue, this.modEnableQueue);
         for (let modObj of this.modDisableQueue) {
             if (this.modEnableQueue.some(value => value.meta == modObj.meta && value.path == modObj.path))
                 continue;
+            console.log(modObj);
             let text = await storage.readFileAsync(modObj.path);
-            await storage.writeFileAsync(`${modObj.path}.disabled`);
+            await storage.writeFileAsync(`${modObj.path}.disabled`, text);
             await storage.deleteFileAsync(modObj.path);
         }
         for (let modObj of this.modEnableQueue) {
+            console.log(modObj);
             let text = await storage.readFileAsync(modObj.path);
-            await storage.writeFileAsync(modObj.path.replace(".disabled", ""));
+            await storage.writeFileAsync(modObj.path.replace(".disabled", ""), text);
             await storage.deleteFileAsync(modObj.path);
         }
         window.location.reload();

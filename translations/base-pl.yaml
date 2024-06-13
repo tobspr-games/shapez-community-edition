@@ -295,6 +295,9 @@ dialogs:
             ogóle się nie załaduje. Czy na pewno chcesz kontynuować?
         missingMods: Missing Mods
         newMods: Ostatnio zainstalowane Mody
+    applyModsWarning:
+        title: Warning
+        desc: The game will reload to apply your changes to the mods
     resourceLoadFailed:
         title: Resources failed to load
         demoLinkText: shapez demo on Steam
@@ -1378,11 +1381,7 @@ mods:
     modsInfo: Aby zainstalować i zarządzać modami, skopiuj je do folderu mods w
         katalogu gry. Możesz także użyć przycisku „Otwórz folder modów” w prawym
         górnym rogu.
+    applyToggle: Apply
     noModSupport: Aby zainstalować mody, potrzebujesz osobną wersję na Steam.
-    togglingComingSoon:
-        title: Już wkrótce
-        description: Włączanie lub wyłączanie modów jest obecnie możliwe tylko przez
-            kopiowanie pliku modów do folderu "mods/". Jednak w przyszłej
-            aktualizacji będziesz/asz mógł zmieniać ich status tutaj!
     browserNoSupport: Due to browser restrictions it is currently only possible to
         install mods in the Steam version - Sorry!

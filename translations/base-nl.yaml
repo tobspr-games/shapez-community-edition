@@ -298,6 +298,9 @@ dialogs:
             you sure you want to continue?
         missingMods: Missende Mods
         newMods: Nieuw geïnstalleerde Mods
+    applyModsWarning:
+        title: Warning
+        desc: The game will reload to apply your changes to the mods
     resourceLoadFailed:
         title: Resources failed to load
         demoLinkText: shapez demo on Steam
@@ -1380,12 +1383,7 @@ mods:
     modsInfo: Om mods te installeren en te beheren, kopieert u ze naar de map mods
         in de spel map. U kunt ook de knop 'Open Mods Map' gebruiken
         rechtsboven.
+    applyToggle: Apply
     noModSupport: Je hebt de zelfstandige versie op Steam nodig om mods te installeren.
-    togglingComingSoon:
-        title: Binnenkort Beschikbaar
-        description: Mods in- of uitschakelen is momenteel alleen mogelijk door het
-            mod-bestand van of naar de mods map te kopiëren. Echter, in staat
-            zijn om ze hier in- of uitteschakelen is gepland voor een
-            toekomstige update!
     browserNoSupport: Due to browser restrictions it is currently only possible to
         install mods in the Steam version - Sorry!

@@ -22,16 +22,21 @@ export class ModsState extends TextualGameState {
                 <h1><button class="backButton"></button> ${this.getStateHeaderTitle()}</h1>
 
                 <div class="actions">
-                   ${
-                       this.modsSupported && MODS.mods.length > 0
-                           ? `<button class="styledButton browseMods">${T.mods.browseMods}</button>`
-                           : ""
-                   }
-                   ${
-                       this.modsSupported
-                           ? `<button class="styledButton openModsFolder">${T.mods.openFolder}</button>`
-                           : ""
-                   }
+                    ${
+                        this.modsSupported
+                            ? `<button class="styledButton applyToggle">${T.mods.applyToggle}</button>`
+                            : ""
+                    }
+                    ${
+                        this.modsSupported && MODS.mods.length > 0
+                            ? `<button class="styledButton browseMods">${T.mods.browseMods}</button>`
+                            : ""
+                    }
+                    ${
+                        this.modsSupported
+                            ? `<button class="styledButton openModsFolder">${T.mods.openFolder}</button>`
+                            : ""
+                    }
                 </div>
 
             </div>`;
@@ -112,9 +117,19 @@ export class ModsState extends TextualGameState {
             this.trackClicks(browseMods, this.openBrowseMods);
         }
 
+        const applyToggle = this.htmlElement.querySelector(".applyToggle");
+
+        if (applyToggle) {
+            this.trackClicks(applyToggle, this.applyModToggle);
+        }
+
         const checkboxes = this.htmlElement.querySelectorAll(".checkbox");
         Array.from(checkboxes).forEach(checkbox => {
-            return;
+            this.trackClicks(checkbox, () => {
+                this.toggleMod(checkbox, checkbox.id.replace("tog", ""), () =>
+                    checkbox.classList.contains("checked")
+                );
+            });
         });
     }
 
@@ -130,7 +145,31 @@ export class ModsState extends TextualGameState {
         this.app.platformWrapper.openExternalLink(THIRDPARTY_URLS.modBrowser);
     }
 
-    toggleMod(modID) {}
+    toggleMod(checkbox, modID, toggleIsOn) {
+        if (toggleIsOn()) {
+            MODS.disableMod(modID);
+        } else {
+            MODS.enableMod(modID);
+        }
+        checkbox.classList.toggle("checked");
+    }
+
+    applyModToggleDialog() {
+        const signals = this.dialogs.showWarning(
+            T.dialogs.applyModsWarning.title,
+            T.dialogs.applyModsWarning.desc,
+            ["cancel:good", "continue:bad"]
+        );
+        return new /** @type {typeof Promise<void>} */ (Promise)(resolve => {
+            signals.continue.add(resolve);
+        });
+    }
+
+    async applyModToggle() {
+        this.applyModToggleDialog().then(_ => {
+            MODS.applyModEnableDisable();
+        });
+    }
 
     getDefaultPreviousState() {
         return "SettingsState";

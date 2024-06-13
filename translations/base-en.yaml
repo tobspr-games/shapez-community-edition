@@ -461,6 +461,11 @@ dialogs:
         missingMods: Missing Mods
         newMods: Newly installed Mods
 
+    applyModsWarning:
+        title: Warning
+        desc: >-
+            The game will reload to apply your changes to the mods.
+
     resourceLoadFailed:
         title: Resources failed to load
 
@@ -1173,15 +1178,11 @@ mods:
     openFolder: Open Mods Folder
     folderOnlyStandalone: Opening the mod folder is only possible when running the full version on Steam.
     browseMods: Browse Mods
-
     modsInfo: >-
         To install and manage mods, copy them to the mods folder (use the 'Open Mods Folder' button). Be sure to restart the game afterwards, otherwise the mods will not show up.
+    applyToggle: Apply
     noModSupport: Get the full version on Steam to install mods!
     browserNoSupport: Due to browser restrictions it is currently only possible to install mods in the Steam version - Sorry!
-
-    togglingComingSoon:
-        title: Coming Soon
-        description: Enabling or disabling mods is currently only possible by copying the mod file from or to the mods/ folder. However, being able to toggle them here is planned for a future update!
 
 settings:
     title: Settings

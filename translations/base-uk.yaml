@@ -294,6 +294,9 @@ dialogs:
             хочете продовжити?
         missingMods: Відсутні моди
         newMods: Нещодавно встановлені моди
+    applyModsWarning:
+        title: Warning
+        desc: The game will reload to apply your changes to the mods
     resourceLoadFailed:
         title: Resources failed to load
         demoLinkText: shapez demo on Steam
@@ -1382,11 +1385,7 @@ mods:
     modsInfo: Щоб установити моди та керувати ними, скопіюйте їх у папку mods у
         папці гри. Ви також можете використати кнопку 'Відкрити папку модів'
         зверху справа.
+    applyToggle: Apply
     noModSupport: Для встановлення модів потрібна десктопна версія Steam.
-    togglingComingSoon:
-        title: Незабаром
-        description: Увімкнення або вимкнення модів наразі можливе лише шляхом
-            копіювання файлу моду з папки mods/ або до неї. Однак можливість їх
-            вимкнення та увімкнення тут запланована на майбутні оновлення!
     browserNoSupport: Due to browser restrictions it is currently only possible to
         install mods in the Steam version - Sorry!

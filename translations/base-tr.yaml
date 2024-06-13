@@ -292,6 +292,9 @@ dialogs:
             misiniz?
         missingMods: Eksik Modlar
         newMods: Yeni yüklenen Modlar
+    applyModsWarning:
+        title: Warning
+        desc: The game will reload to apply your changes to the mods
     resourceLoadFailed:
         title: Resources failed to load
         demoLinkText: shapez demo on Steam
@@ -1367,11 +1370,7 @@ mods:
     modsInfo: Modları yüklemek ve yönetmek için, bunları oyun dizini içerisindeki
         Modlar klasörüne kopyalayın. Ayrıca sağ üstteki 'Modlar Klasörünü Aç'
         düğmesini de kullanabilirsiniz.
+    applyToggle: Apply
     noModSupport: Mod yükleyebilmek için tam sürümü çalıştırmalısınız.
-    togglingComingSoon:
-        title: Yakında Gelecek
-        description: Modları etkinleştirmek veya devre dışı bırakmak şu anda yalnızca
-            dosyaları Mod klasörüne kopyalayarak mümkündür. Ancak modları burada
-            değiştirmek gelecekteki bir güncelleme için planlanmıştır!
     browserNoSupport: Due to browser restrictions it is currently only possible to
         install mods in the Steam version - Sorry!

@@ -300,6 +300,9 @@ dialogs:
             carregue. Tens a certeza que queres continuar?
         missingMods: Modos em Falta
         newMods: Modos instalados recentemente
+    applyModsWarning:
+        title: Warning
+        desc: The game will reload to apply your changes to the mods
     resourceLoadFailed:
         title: Falha ao carregar recursos
         demoLinkText: Versão Shapez demo na Steam
@@ -1384,7 +1387,7 @@ mods:
     title: Modos
     author: Autor
     version: Versão
-    modWebsite: Website
+    modWebsite: Sítio Web
     openFolder: Abrir a pasta dos Modos
     folderOnlyStandalone: Abrir a pasta dos Modos apenas é possível quando estás a
         jogar a versão completa.
@@ -1392,12 +1395,7 @@ mods:
     modsInfo: Para instalar e gerir os modos, copia-os para a pasta dos modos dentro
         da pasta do jogo. Tu também podes usar o botão 'Abrir a pasta dos Modos'
         no canto superior direito.
+    applyToggle: Apply
     noModSupport: Precisas da versão completa na Steam para instalar modos.
-    togglingComingSoon:
-        title: Brevemente
-        description: Ativar ou desativar modos atualmente apenas é possível copiando o
-            ficheiro do modo a partir de ou para a pasta dos modos. No entanto,
-            ser possível ativar ou desativar os modos está planeado para uma
-            atualização futura!
     browserNoSupport: Devido a restrições no browser atualmente apenas é possível
         instalar modos na versão Steam - Desculpa!

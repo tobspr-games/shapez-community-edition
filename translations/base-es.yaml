@@ -303,6 +303,9 @@ dialogs:
             consitnuar?
         missingMods: Mods Faltantes
         newMods: Mods Nuevos Instalados
+    applyModsWarning:
+        title: Warning
+        desc: The game will reload to apply your changes to the mods
     resourceLoadFailed:
         title: Recursos fallaron en cargar
         demoLinkText: Demo de shapez en Steam
@@ -1408,12 +1411,7 @@ mods:
     modsInfo: Para instalar y manejar mods, copialos en la carpeta de mods dentro
         del directorio del juego. Tambien puedes usar el boton 'Abrir Carpeta de
         Mods' en la esquina superior derecha.
+    applyToggle: Apply
     noModSupport: Necesitas la versión de escritorio de Steam para instalar mods.
-    togglingComingSoon:
-        title: Proximamente
-        description: Solo es posible activar o desactivar mods copiando o removiendo el
-            archivo del mod desde o en la carpeta mods/. Sin embargo, la
-            posibilidad de activarlos o desactivarlos aquí está planeada para
-            una actualización futura!
     browserNoSupport: Debido a restricciones del navegador, solo es posible instalar
         mods en la versión de Steam - Disculpas!

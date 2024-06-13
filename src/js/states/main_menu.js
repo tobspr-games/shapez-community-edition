@@ -31,7 +31,7 @@ export class MainMenuState extends GameState {
     }
 
     getInnerHTML() {
-        const hasMods = MODS.anyModsActive();
+        const hasMods = MODS.anyModsEnabled();
 
         return `
             <div class="topButtons">

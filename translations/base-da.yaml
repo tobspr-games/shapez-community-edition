@@ -287,6 +287,9 @@ dialogs:
             you sure you want to continue?
         missingMods: Missing Mods
         newMods: Newly installed Mods
+    applyModsWarning:
+        title: Warning
+        desc: The game will reload to apply your changes to the mods
     resourceLoadFailed:
         title: Resources failed to load
         demoLinkText: shapez demo on Steam
@@ -311,6 +314,7 @@ dialogs:
             the base game and the Puzzle DLC on your Steam account.<br><br>
             Please make sure you own both, signed in with the correct Steam
             account and then try again.
+
 ingame:
     keybindingsOverlay:
         moveMap: Bevæg dig
@@ -1339,11 +1343,7 @@ mods:
     modsInfo: To install and manage mods, copy them to the mods folder within the
         game directory. You can also use the 'Open Mods Folder' button on the
         top right.
+    applyToggle: Apply
     noModSupport: You need the standalone version on Steam to install mods.
-    togglingComingSoon:
-        title: Coming Soon
-        description: Enabling or disabling mods is currently only possible by copying
-            the mod file from or to the mods/ folder. However, being able to
-            toggle them here is planned for a future update!
     browserNoSupport: Due to browser restrictions it is currently only possible to
         install mods in the Steam version - Sorry!
