@@ -343,17 +343,14 @@ export class ModLoader {
             ? new StorageImplElectron(this.app)
             : new StorageImplBrowserIndexedDB(this.app);
         await storage.initialize();
-        console.log(this.modDisableQueue, this.modEnableQueue);
         for (let modObj of this.modDisableQueue) {
             if (this.modEnableQueue.some(value => value.meta == modObj.meta && value.path == modObj.path))
                 continue;
-            console.log(modObj);
             let text = await storage.readFileAsync(modObj.path);
             await storage.writeFileAsync(`${modObj.path}.disabled`, text);
             await storage.deleteFileAsync(modObj.path);
         }
         for (let modObj of this.modEnableQueue) {
-            console.log(modObj);
             let text = await storage.readFileAsync(modObj.path);
             await storage.writeFileAsync(modObj.path.replace(".disabled", ""), text);
             await storage.deleteFileAsync(modObj.path);
