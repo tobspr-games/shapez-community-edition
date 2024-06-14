@@ -204,12 +204,19 @@ export class ModLoader {
 
         mods.forEach(modCode => {
             path = modCode.slice(0, modCode.indexOf("\n")).replace("// ", "");
+            if (path.endsWith(".disabled")) {
+                modCode =
+                    `
+                           let $old_shapez = structuredClone(shapez);
+                        ` + modCode;
+            }
             modCode += `
                         if (typeof Mod !== 'undefined') {
                             if (typeof METADATA !== 'object') {
                                 throw new Error("No METADATA variable found");
                             }
                             window.$shapez_registerMod(Mod, METADATA);
+                            ${path.endsWith(".disabled") ? "shapez = structuredClone($old_shapez);" : ""}
                         }
                     `;
             try {
