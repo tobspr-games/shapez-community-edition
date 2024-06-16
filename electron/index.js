@@ -25,7 +25,6 @@ const roamingFolder =
 
 let storePath = path.join(roamingFolder, "shapez.io", "saves");
 let modsPath = path.join(roamingFolder, "shapez.io", "mods");
-let cachePath = path.join(roamingFolder, "shapez.io", "cache");
 
 if (!fs.existsSync(storePath)) {
     // No try-catch by design
@@ -358,10 +357,6 @@ async function doFsJob(job, basePath) {
 
 ipcMain.handle("fs-job", async (event, job) => {
     return doFsJob(job, storePath);
-});
-
-ipcMain.handle("cache-fs-job", async (event, job) => {
-    return doFsJob(job, cachePath);
 });
 
 ipcMain.handle("open-mods-folder", async () => {
