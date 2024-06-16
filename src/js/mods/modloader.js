@@ -46,15 +46,26 @@ export class ModLoader {
         /** @type {({ meta: ModMetadata, modClass: typeof Mod, path: string})[]} */
         this.modLoadQueue = [];
 
-        /** @type {({ meta: ModMetadata, path: string})[]} */
-        this.modDisableQueue = [];
-
-        /** @type {({ meta: ModMetadata, path: string})[]} */
-        this.modEnableQueue = [];
-
         this.initialized = false;
 
         this.signals = MOD_SIGNALS;
+
+        this.loadToggles();
+    }
+
+    async loadToggles() {
+        const storage = G_IS_STANDALONE
+            ? new StorageImplElectron(this.app)
+            : new StorageImplBrowserIndexedDB(this.app);
+        await storage.initialize();
+        try {
+            this.toggles = JSON.parse(await storage.readFileAsync("mod_toggles.json"));
+        } catch (ex) {
+            if (ex == FILE_NOT_FOUND) {
+                await storage.writeFileAsync("mod_toggles.json", JSON.stringify({}));
+            }
+            this.toggles = {};
+        }
     }
 
     linkApp(app) {
@@ -186,7 +197,7 @@ export class ModLoader {
             }
         }
 
-        let path;
+        let pathouter;
         window.$shapez_registerMod = (modClass, meta) => {
             if (this.initialized) {
                 throw new Error("Can't register mod after modloader is initialized");
@@ -198,17 +209,27 @@ export class ModLoader {
             this.modLoadQueue.push({
                 modClass,
                 meta,
-                path,
+                path: pathouter,
             });
         };
-
-        mods.forEach(modCode => {
-            path = modCode.slice(0, modCode.indexOf("\n")).replace("// ", "");
-            if (path.endsWith(".disabled")) {
-                modCode =
-                    `
-                           let $old_shapez = structuredClone(shapez);
-                        ` + modCode;
+        for (let modStuff of mods) {
+            /** @type {[string, string]} */
+            let [path, modCode] = modStuff;
+            pathouter = path;
+            let metadata;
+            try {
+                metadata = JSON.parse(await storage.readFileAsync(path + "meta.json"));
+            } catch {
+                metadata = null;
+            }
+            if (metadata) {
+                if ("id" in metadata) {
+                    if (!(metadata.id in this.toggles)) {
+                        this.toggles[metadata.id] = true;
+                    }
+                    if (!this.toggles[metadata.id]) window.$shapez_registerMod(Mod, metadata);
+                }
+                return;
             }
             modCode += `
                         if (typeof Mod !== 'undefined') {
@@ -216,23 +237,27 @@ export class ModLoader {
                                 throw new Error("No METADATA variable found");
                             }
                             window.$shapez_registerMod(Mod, METADATA);
-                            ${path.endsWith(".disabled") ? "shapez = structuredClone($old_shapez);" : ""}
                         }
-                    `;
-            try {
-                const func = new Function(modCode);
-                func();
-            } catch (ex) {
-                console.error(ex);
-                alert("Failed to parse mod (launch with --dev for more info): \n\n" + ex);
+                        `;
+            if (!(metadata?.id in this.toggles) || this.toggles[metadata.id]) {
+                try {
+                    const func = new Function(modCode);
+                    func();
+                } catch (ex) {
+                    console.error(ex);
+                    alert("Failed to parse mod (launch with --dev for more info): \n\n" + ex);
+                }
             }
-        });
-
+        }
         delete window.$shapez_registerMod;
 
         for (let i = 0; i < this.modLoadQueue.length; i++) {
             const { modClass, meta, path } = this.modLoadQueue[i];
+            const isEnabled = this.toggles[meta.id] !== undefined ? this.toggles[meta.id] : true;
             const modDataFile = "modsettings_" + meta.id + "__" + meta.version + ".json";
+            const modMetaCacheFile = path.concat(".meta.json");
+            this.toggles[meta.id] = isEnabled;
+            await storage.writeFileAsync(modMetaCacheFile, JSON.stringify(meta));
 
             if (meta.minimumGameVersion) {
                 const minimumGameVersion = meta.minimumGameVersion;
@@ -276,8 +301,8 @@ export class ModLoader {
                     modLoader: this,
                     meta,
                     settings,
-                    path,
                     saveSettings: () => storage.writeFileAsync(modDataFile, JSON.stringify(mod.settings)),
+                    isDisabled: !isEnabled,
                 });
                 if (!mod.disabled) await mod.init();
                 this.mods.push(mod);
@@ -286,9 +311,10 @@ export class ModLoader {
                 alert("Failed to initialize mods (launch with --dev for more info): \n\n" + ex);
             }
         }
-
         this.modLoadQueue = [];
         this.initialized = true;
+        await storage.writeFileAsync("mod_toggles.json", JSON.stringify(this.toggles));
+        this.enabledMods = this.mods.filter(mod => this.toggles[mod.metadata.id]);
     }
 
     /**
@@ -296,22 +322,7 @@ export class ModLoader {
      * @param {string} modID
      */
     disableMod(modID) {
-        let mod = this.mods.find(mod => mod.metadata.id === modID);
-        if (mod == undefined) {
-            throw new Error("Mod not found");
-        }
-        const index = this.modEnableQueue.indexOf({
-            meta: mod.metadata,
-            path: mod.path,
-        });
-        if (index > -1) {
-            this.modEnableQueue.splice(index, 1);
-        } else if (!mod.disabled) {
-            this.modDisableQueue.push({
-                meta: mod.metadata,
-                path: mod.path,
-            });
-        }
+        this.toggles[modID] = false;
     }
 
     /**
@@ -319,23 +330,7 @@ export class ModLoader {
      * @param {string} modID
      */
     enableMod(modID) {
-        let mod = this.mods.find(mod => mod.metadata.id === modID);
-        if (mod == undefined) {
-            throw new Error("Mod not found");
-        }
-        const index = this.modDisableQueue.indexOf({
-            meta: mod.metadata,
-            path: mod.path,
-        });
-
-        if (index > -1) {
-            this.modDisableQueue.splice(index, 1);
-        } else if (mod.disabled) {
-            this.modEnableQueue.push({
-                meta: mod.metadata,
-                path: mod.path,
-            });
-        }
+        this.toggles[modID] = true;
     }
 
     async applyModEnableDisable() {
@@ -343,18 +338,7 @@ export class ModLoader {
             ? new StorageImplElectron(this.app)
             : new StorageImplBrowserIndexedDB(this.app);
         await storage.initialize();
-        for (let modObj of this.modDisableQueue) {
-            if (this.modEnableQueue.some(value => value.meta == modObj.meta && value.path == modObj.path))
-                continue;
-            let text = await storage.readFileAsync(modObj.path);
-            await storage.writeFileAsync(`${modObj.path}.disabled`, text);
-            await storage.deleteFileAsync(modObj.path);
-        }
-        for (let modObj of this.modEnableQueue) {
-            let text = await storage.readFileAsync(modObj.path);
-            await storage.writeFileAsync(modObj.path.replace(".disabled", ""), text);
-            await storage.deleteFileAsync(modObj.path);
-        }
+        await storage.writeFileAsync("mod_toggles.json", JSON.stringify(this.toggles));
         window.location.reload();
     }
 }

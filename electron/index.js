@@ -25,6 +25,7 @@ const roamingFolder =
 
 let storePath = path.join(roamingFolder, "shapez.io", "saves");
 let modsPath = path.join(roamingFolder, "shapez.io", "mods");
+let cachePath = path.join(roamingFolder, "shapez.io", "cache");
 
 if (!fs.existsSync(storePath)) {
     // No try-catch by design
@@ -33,6 +34,10 @@ if (!fs.existsSync(storePath)) {
 
 if (!fs.existsSync(modsPath)) {
     fs.mkdirSync(modsPath, { recursive: true });
+}
+
+if (!fs.existsSync(cachePath)) {
+    fs.mkdirSync(cachePath, { recursive: true });
 }
 
 /** @type {BrowserWindow} */
@@ -325,11 +330,9 @@ async function writeFileSafe(filename, contents) {
     });
 }
 
-ipcMain.handle("fs-job", async (event, job) => {
-    const filenameSafe = path.isAbsolute(job.filename)
-        ? job.filename
-        : job.filename.replace(/[^a-z\.\-_0-9]/gi, "_");
-    const fname = path.isAbsolute(filenameSafe) ? filenameSafe : path.join(storePath, filenameSafe);
+async function doFsJob(job, basePath) {
+    const filenameSafe = job.filename.replace(/[^a-z\.\-_0-9]/gi, "_");
+    const fname = path.join(basePath, filenameSafe);
     switch (job.type) {
         case "read": {
             if (!fs.existsSync(fname)) {
@@ -351,6 +354,14 @@ ipcMain.handle("fs-job", async (event, job) => {
         default:
             throw new Error("Unknown fs job: " + job.type);
     }
+}
+
+ipcMain.handle("fs-job", async (event, job) => {
+    return doFsJob(job, storePath);
+});
+
+ipcMain.handle("cache-fs-job", async (event, job) => {
+    return doFsJob(job, cachePath);
 });
 
 ipcMain.handle("open-mods-folder", async () => {
@@ -368,7 +379,7 @@ function loadMods() {
         ? []
         : fs
               .readdirSync(modsPath)
-              .filter(filename => filename.endsWith(".js") || filename.endsWith(".js.disabled"))
+              .filter(filename => filename.endsWith(".js"))
               .map(filename => path.join(modsPath, filename));
 
     if (externalMod) {
@@ -377,9 +388,10 @@ function loadMods() {
         modFiles = modFiles.concat(externalModPaths);
     }
 
-    return modFiles.map(filename => `// ${filename}\n${fs.readFileSync(filename, "utf8")}`);
+    return modFiles.map(filename => [path.relative(modsPath, filename), fs.readFileSync(filename, "utf8")]);
 }
 
+/** @type {[string, string][]} */
 let mods = [];
 try {
     mods = loadMods();

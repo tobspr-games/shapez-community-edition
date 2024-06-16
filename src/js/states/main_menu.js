@@ -31,7 +31,7 @@ export class MainMenuState extends GameState {
     }
 
     getInnerHTML() {
-        const hasMods = MODS.anyModsEnabled();
+        const mods = MODS.enabledMods;
 
         return `
             <div class="topButtons">
@@ -61,7 +61,7 @@ export class MainMenuState extends GameState {
 
                 <div class="sideContainer">
                 ${
-                    !hasMods
+                    !(mods.length != 0)
                         ? `
                     <div class="puzzleContainer owned">
                         <button class="styledButton puzzleDlcPlayButton">${T.mainMenu.play}</button>
@@ -70,7 +70,7 @@ export class MainMenuState extends GameState {
                 }
 
                 ${
-                    hasMods
+                    mods.length != 0
                         ? `
                         <div class="modsOverview">
                             <div class="header">
@@ -78,7 +78,7 @@ export class MainMenuState extends GameState {
                                 <button class="styledButton editMods"></button>
                             </div>
                             <div class="modsList">
-                            ${MODS.mods
+                            ${mods
                                 .map(mod => {
                                     return `
                                     <div class="mod">

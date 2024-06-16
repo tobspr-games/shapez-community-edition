@@ -88,7 +88,7 @@ export class ModsState extends TextualGameState {
                     </div>
                     <span class="version"><strong>${T.mods.version}</strong>${mod.metadata.version}</span>
                     <span class="author"><strong>${T.mods.author}</strong>${mod.metadata.author}</span>
-                    <div class="value checkbox ${!mod.disabled ? "checked" : ""}" id="${mod.metadata.id}tog">
+                    <div class="value checkbox ${!mod.disabled ? "checked" : ""}" id="${mod.metadata.id}:tog">
                         <span class="knob"></span>
                     </div>
 
@@ -126,9 +126,7 @@ export class ModsState extends TextualGameState {
         const checkboxes = this.htmlElement.querySelectorAll(".checkbox");
         Array.from(checkboxes).forEach(checkbox => {
             this.trackClicks(checkbox, () => {
-                this.toggleMod(checkbox, checkbox.id.replace("tog", ""), () =>
-                    checkbox.classList.contains("checked")
-                );
+                this.toggleMod(checkbox, checkbox.id.replace(/:tog(?!.*:tog)/, ""));
             });
         });
     }
@@ -145,8 +143,8 @@ export class ModsState extends TextualGameState {
         this.app.platformWrapper.openExternalLink(THIRDPARTY_URLS.modBrowser);
     }
 
-    toggleMod(checkbox, modID, toggleIsOn) {
-        if (toggleIsOn()) {
+    toggleMod(checkbox, modID) {
+        if (checkbox.classList.contains("checked")) {
             MODS.disableMod(modID);
         } else {
             MODS.enableMod(modID);
