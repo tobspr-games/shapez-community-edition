@@ -152,20 +152,16 @@ export class ModsState extends TextualGameState {
         checkbox.classList.toggle("checked");
     }
 
-    applyModToggleDialog() {
+    applyModToggle() {
         const signals = this.dialogs.showWarning(
             T.dialogs.applyModsWarning.title,
             T.dialogs.applyModsWarning.desc,
             ["cancel:good", "continue:bad"]
         );
-        return new /** @type {typeof Promise<void>} */ (Promise)(resolve => {
-            signals.continue.add(resolve);
-        });
-    }
-
-    async applyModToggle() {
-        this.applyModToggleDialog().then(_ => {
-            MODS.applyModEnableDisable();
+        await (Promise)(resolve => {
+            signals.continue.add(_ => {
+                MODS.applyModEnableDisable();
+            });
         });
     }
 
