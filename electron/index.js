@@ -35,10 +35,6 @@ if (!fs.existsSync(modsPath)) {
     fs.mkdirSync(modsPath, { recursive: true });
 }
 
-if (!fs.existsSync(cachePath)) {
-    fs.mkdirSync(cachePath, { recursive: true });
-}
-
 /** @type {BrowserWindow} */
 let win = null;
 let menu = null;
