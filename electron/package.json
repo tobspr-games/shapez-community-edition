@@ -5,15 +5,15 @@
     "license": "MIT",
     "private": true,
     "scripts": {
-        "startDev": "electron --disable-direct-composition --in-process-gpu . --dev --local",
-        "startDevGpu": "electron --enable-gpu-rasterization --enable-accelerated-2d-canvas --num-raster-threads=8 --enable-zero-copy . --dev --local",
-        "start": "electron --disable-direct-composition --in-process-gpu ."
+        "start": "electron .",
+        "startDev": "electron . --dev"
     },
-    "devDependencies": {},
+    "devDependencies": {
+        "electron": "^31.3.0"
+    },
     "optionalDependencies": {},
     "dependencies": {
         "async-lock": "^1.4.1",
-        "electron": "^30.0.0",
         "electron-window-state": "^5.0.3"
     }
 }

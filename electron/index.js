@@ -10,27 +10,17 @@ const windowStateKeeper = require("electron-window-state");
 app.commandLine.appendSwitch("disable-features", "HardwareMediaKeyHandling");
 
 const isDev = app.commandLine.hasSwitch("dev");
-const isLocal = app.commandLine.hasSwitch("local");
 const safeMode = app.commandLine.hasSwitch("safe-mode");
 const externalMod = app.commandLine.getSwitchValue("load-mod");
 
-const roamingFolder =
-    process.env.APPDATA ||
-    (process.platform == "darwin"
-        ? process.env.HOME + "/Library/Preferences"
-        : process.env.HOME + "/.local/share");
+app.setName("shapez-ce");
+const userData = app.getPath("userData");
 
-let storePath = path.join(roamingFolder, "shapez.io", "saves");
-let modsPath = path.join(roamingFolder, "shapez.io", "mods");
+const storePath = path.join(userData, "saves");
+const modsPath = path.join(userData, "mods");
 
-if (!fs.existsSync(storePath)) {
-    // No try-catch by design
-    fs.mkdirSync(storePath, { recursive: true });
-}
-
-if (!fs.existsSync(modsPath)) {
-    fs.mkdirSync(modsPath, { recursive: true });
-}
+fs.mkdirSync(storePath, { recursive: true });
+fs.mkdirSync(modsPath, { recursive: true });
 
 /** @type {BrowserWindow} */
 let win = null;
@@ -63,24 +53,14 @@ function createWindow() {
         // fullscreen: true,
         autoHideMenuBar: !isDev,
         webPreferences: {
-            nodeIntegration: false,
-            nodeIntegrationInWorker: false,
-            nodeIntegrationInSubFrames: false,
-            contextIsolation: true,
-            enableRemoteModule: false,
             disableBlinkFeatures: "Auxclick",
-
-            webSecurity: true,
-            sandbox: true,
             preload: path.join(__dirname, "preload.js"),
-            experimentalFeatures: false,
         },
-        allowRunningInsecureContent: false,
     });
 
     mainWindowState.manage(win);
 
-    if (isLocal) {
+    if (!app.isPackaged) {
         win.loadURL("http://localhost:3005");
     } else {
         win.loadURL(
@@ -121,30 +101,6 @@ function createWindow() {
             `The application tried to redirect to the following address: '${navigationUrl}'. This attempt was blocked.`
         );
         contentsEvent.preventDefault();
-    });
-
-    // Filter loading any module via remote;
-    // you shouldn't be using remote at all, though
-    // https://electronjs.org/docs/tutorial/security#16-filter-the-remote-module
-    app.on("remote-require", (event, webContents, moduleName) => {
-        event.preventDefault();
-    });
-
-    // built-ins are modules such as "app"
-    app.on("remote-get-builtin", (event, webContents, moduleName) => {
-        event.preventDefault();
-    });
-
-    app.on("remote-get-global", (event, webContents, globalName) => {
-        event.preventDefault();
-    });
-
-    app.on("remote-get-current-window", (event, webContents) => {
-        event.preventDefault();
-    });
-
-    app.on("remote-get-current-web-contents", (event, webContents) => {
-        event.preventDefault();
     });
 
     //// END SECURITY
@@ -313,7 +269,7 @@ async function writeFileSafe(filename, contents) {
 }
 
 ipcMain.handle("fs-job", async (event, job) => {
-    const filenameSafe = job.filename.replace(/[^a-z\.\-_0-9]/gi, "_");
+    const filenameSafe = job.filename.replace(/[^a-z.\-_0-9]/gi, "_");
     const fname = path.join(storePath, filenameSafe);
     switch (job.type) {
         case "read": {
