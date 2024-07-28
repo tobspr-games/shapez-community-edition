@@ -1,7 +1,7 @@
 import { InputReceiver } from "../../../core/input_receiver";
 import { makeDiv, removeAllChildren } from "../../../core/utils";
 import { T } from "../../../translations";
-import { KeyActionMapper, KEYMAPPINGS } from "../../key_action_mapper";
+import { KEYMAPPINGS, KeyActionMapper } from "../../key_action_mapper";
 import { ShapeDefinition } from "../../shape_definition";
 import { BaseHUDPart } from "../base_hud_part";
 import { DynamicDomAttach } from "../dynamic_dom_attach";
@@ -38,8 +38,8 @@ export class HUDShapeViewer extends BaseHUDPart {
 
         this.currentShapeKey = null;
 
-        this.inputReciever = new InputReceiver("shape_viewer");
-        this.keyActionMapper = new KeyActionMapper(this.root, this.inputReciever);
+        this.inputReceiver = new InputReceiver("shape_viewer");
+        this.keyActionMapper = new KeyActionMapper(this.root, this.inputReceiver);
 
         this.keyActionMapper.getBinding(KEYMAPPINGS.general.back).add(this.close, this);
 
@@ -67,7 +67,7 @@ export class HUDShapeViewer extends BaseHUDPart {
      */
     close() {
         this.visible = false;
-        this.root.app.inputMgr.makeSureDetached(this.inputReciever);
+        this.root.app.inputMgr.makeSureDetached(this.inputReceiver);
         this.update();
     }
 
@@ -77,7 +77,7 @@ export class HUDShapeViewer extends BaseHUDPart {
      */
     renderForShape(definition) {
         this.visible = true;
-        this.root.app.inputMgr.makeSureAttachedAndOnTop(this.inputReciever);
+        this.root.app.inputMgr.makeSureAttachedAndOnTop(this.inputReceiver);
 
         removeAllChildren(this.renderArea);
 

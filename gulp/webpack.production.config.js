@@ -1,9 +1,9 @@
 import { resolve } from "path/posix";
 import TerserPlugin from "terser-webpack-plugin";
 import webpack from "webpack";
-const { DefinePlugin, IgnorePlugin } = webpack;
 import DeadCodePlugin from "webpack-deadcode-plugin";
 import { getAllResourceImages, getRevision, getVersion } from "./buildutils.js";
+const { DefinePlugin, IgnorePlugin } = webpack;
 
 const globalDefs = {
     "assert": "false && window.assert",
@@ -96,7 +96,7 @@ export default {
         fallback: { fs: false },
         alias: {
             "global-compression": resolve("../src/js/core/lzstring.js"),
-            "root": resolve("../src/js/"),
+            "@": resolve("../src/js/"),
         },
         fullySpecified: false,
         extensions: [".ts", ".js", ".tsx", ".jsx"],

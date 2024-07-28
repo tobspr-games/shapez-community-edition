@@ -57,7 +57,7 @@ export class UndergroundBeltComponent extends Component {
 
         /**
          * Used on both receiver and sender.
-         * Reciever: Used to store the next item to transfer, and to block input while doing this
+         * Receiver: Used to store the next item to transfer, and to block input while doing this
          * Sender: Used to store which items are currently "travelling"
          * @type {Array<[BaseItem, number]>} Format is [Item, ingame time to eject the item]
          */

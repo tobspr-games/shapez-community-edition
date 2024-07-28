@@ -1,40 +1,76 @@
 import { HUDModalDialogs } from "../game/hud/parts/modal_dialogs";
 import { GameState } from "./game_state";
-import { T } from "../translations";
 
 /**
  * Baseclass for all game states which are structured similary: A header with back button + some
  * scrollable content.
  */
-export class TextualGameState extends GameState {
-    ///// INTERFACE ////
+export abstract class TextualGameState extends GameState {
+    private backToStateId: string | null = null;
+    private backToStatePayload: {} | null = null;
+
+    protected headerElement: HTMLElement;
+    protected containerElement: HTMLElement;
+    protected dialogs: HUDModalDialogs;
 
     /**
      * Should return the states inner html. If not overriden, will create a scrollable container
      * with the content of getMainContentHTML()
-     * @returns {string}
+     * @deprecated
      */
-    getInnerHTML() {
-        return `
-            <div class="content mainContent">
-                ${this.getMainContentHTML()}
-            </div>
-        `;
+    getInnerHTML(): string {
+        return "";
     }
 
     /**
      * Should return the states HTML content.
+     * @deprecated
      */
-    getMainContentHTML() {
+    getMainContentHTML(): string {
         return "";
+    }
+
+    protected override getContentLayout(): Node {
+        let content = this.getInitialContent();
+
+        if (content === null) {
+            // Fall back either to getMainContentHTML or getInnerHTML (if not "")
+            let html = this.getInnerHTML();
+            if (html === "") {
+                html = `
+                    <div class="content mainContent">
+                        ${this.getMainContentHTML()}
+                    </div>
+                `;
+            }
+
+            const template = document.createElement("template");
+            template.innerHTML = html;
+            content = template.content;
+        }
+
+        return (
+            <>
+                <div class="headerBar">
+                    <h1>
+                        <button class="backButton"></button>
+                        {this.getStateHeaderTitle() ?? ""}
+                    </h1>
+                </div>
+                <div class="container">{content}</div>
+            </>
+        );
+    }
+
+    protected getInitialContent(): Node {
+        return null;
     }
 
     /**
      * Should return the title of the game state. If null, no title and back button will
      * get created
-     * @returns {string|null}
      */
-    getStateHeaderTitle() {
+    protected getStateHeaderTitle(): string | null {
         return null;
     }
 
@@ -44,7 +80,7 @@ export class TextualGameState extends GameState {
      * Back button handler, can be overridden. Per default it goes back to the main menu,
      * or if coming from the game it moves back to the game again.
      */
-    onBackButton() {
+    override onBackButton() {
         if (this.backToStateId) {
             this.moveToState(this.backToStateId, this.backToStatePayload);
         } else {
@@ -61,9 +97,9 @@ export class TextualGameState extends GameState {
 
     /**
      * Goes to a new state, telling him to go back to this state later
-     * @param {string} stateId
+     * @param stateId
      */
-    moveToStateAddGoBack(stateId) {
+    moveToStateAddGoBack(stateId: string) {
         this.moveToState(stateId, {
             backToStateId: this.key,
             backToStatePayload: {
@@ -89,43 +125,20 @@ export class TextualGameState extends GameState {
         }
     }
 
-    /**
-     * Overrides the GameState implementation to provide our own html
-     */
-    internalGetFullHtml() {
-        let headerHtml = "";
-        if (this.getStateHeaderTitle()) {
-            headerHtml = `
-            <div class="headerBar">
-            
-                <h1><button class="backButton"></button> ${this.getStateHeaderTitle()}</h1>
-            </div>`;
-        }
-
-        return `
-            ${headerHtml}
-            <div class="container">
-                    ${this.getInnerHTML()}
-
-            </div>
-        `;
-    }
-
     //// INTERNALS /////
 
     /**
      * Overrides the GameState leave callback to cleanup stuff
      */
-    internalLeaveCallback() {
+    override internalLeaveCallback() {
         super.internalLeaveCallback();
         this.dialogs.cleanup();
     }
 
     /**
      * Overrides the GameState enter callback to setup required stuff
-     * @param {any} payload
      */
-    internalEnterCallback(payload) {
+    override internalEnterCallback(payload: any) {
         super.internalEnterCallback(payload, false);
         if (payload.backToStateId) {
             this.backToStateId = payload.backToStateId;

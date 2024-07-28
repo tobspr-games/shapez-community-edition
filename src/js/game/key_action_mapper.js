@@ -1,11 +1,11 @@
 /* typehints:start */
-import { GameRoot } from "./root";
-import { InputReceiver } from "../core/input_receiver";
 import { Application } from "../application";
+import { InputReceiver } from "../core/input_receiver";
+import { GameRoot } from "./root";
 /* typehints:end */
 
-import { Signal, STOP_PROPAGATION } from "../core/signal";
 import { IS_MOBILE } from "../core/config";
+import { Signal, STOP_PROPAGATION } from "../core/signal";
 import { T } from "../translations";
 
 export function keyToKeyCode(str) {
@@ -353,9 +353,9 @@ export class Keybinding {
     get pressed() {
         // Check if the key is down
         if (this.app.inputMgr.keysDown.has(this.keyCode)) {
-            // Check if it is the top reciever
-            const reciever = this.keyMapper.inputReceiver;
-            return this.app.inputMgr.getTopReciever() === reciever;
+            // Check if it is the top receiver
+            const receiver = this.keyMapper.inputReceiver;
+            return this.app.inputMgr.getTopReceiver() === receiver;
         }
         return false;
     }
@@ -412,14 +412,14 @@ export class KeyActionMapper {
     /**
      *
      * @param {GameRoot} root
-     * @param {InputReceiver} inputReciever
+     * @param {InputReceiver} inputReceiver
      */
-    constructor(root, inputReciever) {
+    constructor(root, inputReceiver) {
         this.root = root;
-        this.inputReceiver = inputReciever;
+        this.inputReceiver = inputReceiver;
 
-        inputReciever.keydown.add(this.handleKeydown, this);
-        inputReciever.keyup.add(this.handleKeyup, this);
+        inputReceiver.keydown.add(this.handleKeydown, this);
+        inputReceiver.keyup.add(this.handleKeyup, this);
 
         /** @type {Object.<string, Keybinding>} */
         this.keybindings = {};
@@ -443,8 +443,8 @@ export class KeyActionMapper {
             }
         }
 
-        inputReciever.pageBlur.add(this.onPageBlur, this);
-        inputReciever.destroyed.add(this.cleanup, this);
+        inputReceiver.pageBlur.add(this.onPageBlur, this);
+        inputReceiver.destroyed.add(this.cleanup, this);
     }
 
     /**

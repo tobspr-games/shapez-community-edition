@@ -149,8 +149,8 @@ declare namespace JSX {
      */
     type IntrinsicElements = {
         [K in keyof HTMLElementTagNameMap]: {
-            children?: Node | Node[];
-            [k: string]: Node | Node[] | string | number | boolean;
+            children?: JSXNode | JSXNode[];
+            [k: string]: JSXNode | JSXNode[] | string | number | boolean;
         };
     };
     /**
@@ -164,14 +164,16 @@ declare namespace JSX {
      * An attributes object.
      */
     type Props = { [k: string]: unknown };
+
     /**
      * A functional component requiring attributes to match `T`.
      */
     type Component<T extends Props> = {
         (props: T): Element;
     };
+
     /**
      * A child of a JSX element.
      */
-    type Node = Element | string | boolean | null | undefined;
+    type JSXNode = Node | string | boolean | null | undefined;
 }

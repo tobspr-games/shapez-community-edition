@@ -1,4 +1,4 @@
-function isDisplayed(node: JSX.Node): node is Exclude<JSX.Node, boolean | null | undefined> {
+function isDisplayed(node: JSX.JSXNode): node is Exclude<JSX.JSXNode, boolean | null | undefined> {
     return typeof node !== "boolean" && node != null;
 }
 
@@ -27,7 +27,7 @@ function jsx<U extends JSX.Props>(
         }
         throw new TypeError("JSX element attribute assigned invalid type");
     });
-    element.append(...([children].flat(Infinity) as JSX.Node[]).filter(isDisplayed));
+    element.append(...([children].flat(Infinity) as JSX.JSXNode[]).filter(isDisplayed));
     return element;
 }
 
@@ -38,4 +38,4 @@ function jsx<U extends JSX.Props>(
 const Fragment = (props: JSX.Props) => props.children as JSX.Element;
 
 // jsxs is used when there are multiple children
-export { jsx, jsx as jsxs, Fragment };
+export { Fragment, jsx, jsx as jsxs };

@@ -3,7 +3,7 @@ import { InputReceiver } from "../../../core/input_receiver";
 import { formatBigNumber, getRomanNumber, makeDiv } from "../../../core/utils";
 import { SOUNDS } from "../../../platform/sound";
 import { T } from "../../../translations";
-import { KeyActionMapper, KEYMAPPINGS } from "../../key_action_mapper";
+import { KEYMAPPINGS, KeyActionMapper } from "../../key_action_mapper";
 import { BaseHUDPart } from "../base_hud_part";
 import { DynamicDomAttach } from "../dynamic_dom_attach";
 
@@ -193,8 +193,8 @@ export class HUDShop extends BaseHUDPart {
             attachClass: "visible",
         });
 
-        this.inputReciever = new InputReceiver("shop");
-        this.keyActionMapper = new KeyActionMapper(this.root, this.inputReciever);
+        this.inputReceiver = new InputReceiver("shop");
+        this.keyActionMapper = new KeyActionMapper(this.root, this.inputReceiver);
 
         this.keyActionMapper.getBinding(KEYMAPPINGS.general.back).add(this.close, this);
         this.keyActionMapper.getBinding(KEYMAPPINGS.ingame.menuClose).add(this.close, this);
@@ -224,13 +224,13 @@ export class HUDShop extends BaseHUDPart {
 
     show() {
         this.visible = true;
-        this.root.app.inputMgr.makeSureAttachedAndOnTop(this.inputReciever);
+        this.root.app.inputMgr.makeSureAttachedAndOnTop(this.inputReceiver);
         this.rerenderFull();
     }
 
     close() {
         this.visible = false;
-        this.root.app.inputMgr.makeSureDetached(this.inputReciever);
+        this.root.app.inputMgr.makeSureDetached(this.inputReceiver);
         this.update();
     }
 

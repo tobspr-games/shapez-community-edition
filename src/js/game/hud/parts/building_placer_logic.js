@@ -1,20 +1,19 @@
-import { globalConfig } from "../../../core/config";
 import { gMetaBuildingRegistry } from "../../../core/global_registries";
 import { Signal, STOP_PROPAGATION } from "../../../core/signal";
 import { TrackedState } from "../../../core/tracked_state";
+import { safeModulo } from "../../../core/utils";
 import { Vector } from "../../../core/vector";
+import { SOUNDS } from "../../../platform/sound";
+import { getBuildingDataFromCode, getCodeFromBuildingData } from "../../building_codes";
+import { MetaHubBuilding } from "../../buildings/hub";
+import { enumMinerVariants, MetaMinerBuilding } from "../../buildings/miner";
 import { enumMouseButton } from "../../camera";
 import { StaticMapEntityComponent } from "../../components/static_map_entity";
 import { Entity } from "../../entity";
 import { KEYMAPPINGS } from "../../key_action_mapper";
 import { defaultBuildingVariant, MetaBuilding } from "../../meta_building";
-import { BaseHUDPart } from "../base_hud_part";
-import { SOUNDS } from "../../../platform/sound";
-import { MetaMinerBuilding, enumMinerVariants } from "../../buildings/miner";
 import { enumHubGoalRewards } from "../../tutorial_goals";
-import { getBuildingDataFromCode, getCodeFromBuildingData } from "../../building_codes";
-import { MetaHubBuilding } from "../../buildings/hub";
-import { safeModulo } from "../../../core/utils";
+import { BaseHUDPart } from "../base_hud_part";
 
 /**
  * Contains all logic for the building placer - this doesn't include the rendering
@@ -122,7 +121,7 @@ export class HUDBuildingPlacerLogic extends BaseHUDPart {
             .add(this.switchDirectionLockSide, this);
         keyActionMapper.getBinding(KEYMAPPINGS.general.back).add(this.abortPlacement, this);
         keyActionMapper.getBinding(KEYMAPPINGS.placement.pipette).add(this.startPipette, this);
-        this.root.gameState.inputReciever.keyup.add(this.checkForDirectionLockSwitch, this);
+        this.root.gameState.inputReceiver.keyup.add(this.checkForDirectionLockSwitch, this);
 
         // BINDINGS TO GAME EVENTS
         this.root.hud.signals.buildingsSelectedForCopy.add(this.abortPlacement, this);

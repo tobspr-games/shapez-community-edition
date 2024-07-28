@@ -1,15 +1,15 @@
 import type { Application } from "../application";
 
+import { getStringForKeyCode } from "../game/key_action_mapper";
+import { SOUNDS } from "../platform/sound";
+import { T } from "../translations";
+import { ClickDetector, ClickDetectorConstructorArgs } from "./click_detector";
+import { globalConfig } from "./config";
+import { InputReceiver, KeydownEvent } from "./input_receiver";
+import { createLogger } from "./logging";
+import { FormElement } from "./modal_dialog_forms";
 import { Signal, STOP_PROPAGATION } from "./signal";
 import { arrayDeleteValue, waitNextFrame } from "./utils";
-import { ClickDetector, ClickDetectorConstructorArgs } from "./click_detector";
-import { SOUNDS } from "../platform/sound";
-import { InputReceiver, KeydownEvent } from "./input_receiver";
-import { FormElement } from "./modal_dialog_forms";
-import { globalConfig } from "./config";
-import { getStringForKeyCode } from "../game/key_action_mapper";
-import { createLogger } from "./logging";
-import { T } from "../translations";
 
 /*
  * ***************************************************
@@ -51,7 +51,7 @@ export class Dialog<T extends string = never, U extends unknown[] = []> {
     public timeouts: number[] = [];
     public clickDetectors: ClickDetector[] = [];
 
-    public inputReciever: InputReceiver;
+    public inputReceiver: InputReceiver;
     public enterHandler: T = null;
     public escapeHandler: T = null;
 
@@ -103,9 +103,9 @@ export class Dialog<T extends string = never, U extends unknown[] = []> {
             this.buttonSignals[buttonId] = new Signal();
         }
 
-        this.inputReciever = new InputReceiver("dialog-" + this.title);
+        this.inputReceiver = new InputReceiver("dialog-" + this.title);
 
-        this.inputReciever.keydown.add(this.handleKeydown, this);
+        this.inputReceiver.keydown.add(this.handleKeydown, this);
     }
 
     /**
@@ -124,7 +124,7 @@ export class Dialog<T extends string = never, U extends unknown[] = []> {
     }
 
     internalButtonHandler(id: T | "close-button", ...payload: U | []) {
-        this.app.inputMgr.popReciever(this.inputReciever);
+        this.app.inputMgr.popReceiver(this.inputReceiver);
 
         if (id !== "close-button") {
             this.buttonSignals[id].dispatch(...payload);
@@ -160,7 +160,7 @@ export class Dialog<T extends string = never, U extends unknown[] = []> {
             });
 
             title.appendChild(closeBtn);
-            this.inputReciever.backButton.add(() => this.internalButtonHandler("close-button"));
+            this.inputReceiver.backButton.add(() => this.internalButtonHandler("close-button"));
         }
 
         const content = document.createElement("div");
@@ -231,7 +231,7 @@ export class Dialog<T extends string = never, U extends unknown[] = []> {
         }
 
         this.element = elem;
-        this.app.inputMgr.pushReciever(this.inputReciever);
+        this.app.inputMgr.pushReceiver(this.inputReceiver);
 
         return this.element;
     }
@@ -248,7 +248,7 @@ export class Dialog<T extends string = never, U extends unknown[] = []> {
         // We need to do this here, because if the backbutton event gets
         // dispatched to the modal dialogs, it will not call the internalButtonHandler,
         // and thus our receiver stays attached the whole time
-        this.app.inputMgr.destroyReceiver(this.inputReciever);
+        this.app.inputMgr.destroyReceiver(this.inputReceiver);
 
         for (let i = 0; i < this.clickDetectors.length; ++i) {
             this.clickDetectors[i].cleanup();
@@ -300,8 +300,8 @@ export class DialogLoading extends Dialog {
         });
 
         // Loading dialog can not get closed with back button
-        this.inputReciever.backButton.removeAll();
-        this.inputReciever.context = "dialog-loading";
+        this.inputReceiver.backButton.removeAll();
+        this.inputReceiver.context = "dialog-loading";
     }
 
     createElement() {
@@ -322,7 +322,7 @@ export class DialogLoading extends Dialog {
         loader.classList.add("loadingIndicator");
         elem.appendChild(loader);
 
-        this.app.inputMgr.pushReciever(this.inputReciever);
+        this.app.inputMgr.pushReceiver(this.inputReceiver);
 
         return elem;
     }

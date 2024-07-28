@@ -27,7 +27,7 @@ export class HUDEntityDebugger extends BaseHUDPart {
     }
 
     initialize() {
-        this.root.gameState.inputReciever.keydown.add(key => {
+        this.root.gameState.inputReceiver.keydown.add(key => {
             if (key.keyCode === 119) {
                 // F8
                 this.pickEntity();

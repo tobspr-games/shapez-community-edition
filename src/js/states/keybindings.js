@@ -93,7 +93,7 @@ export class KeybindingsState extends TextualGameState {
             type: "info",
         });
 
-        dialog.inputReciever.keydown.add(({ keyCode, shift, alt, event }) => {
+        dialog.inputReceiver.keydown.add(({ keyCode, shift, alt, event }) => {
             if (keyCode === 27) {
                 this.dialogs.closeDialog(dialog);
                 return;
@@ -125,7 +125,7 @@ export class KeybindingsState extends TextualGameState {
             this.updateKeybindings();
         });
 
-        dialog.inputReciever.backButton.add(() => {});
+        dialog.inputReceiver.backButton.add(() => {});
         this.dialogs.internalShowDialog(dialog);
 
         this.app.sound.playUiSound(SOUNDS.dialogOk);

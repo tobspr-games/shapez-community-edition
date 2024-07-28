@@ -1,15 +1,12 @@
-/* typehints:start */
-import { Application } from "../application";
-import { StateManager } from "./state_manager";
-/* typehints:end */
-
-import { globalConfig } from "./config";
+import { MUSIC } from "@/platform/sound";
+import type { Application } from "../application";
 import { ClickDetector } from "./click_detector";
-import { logSection, createLogger } from "./logging";
+import { globalConfig } from "./config";
 import { InputReceiver } from "./input_receiver";
-import { waitNextFrame } from "./utils";
+import { createLogger, logSection } from "./logging";
 import { RequestChannel } from "./request_channel";
-import { MUSIC } from "../platform/sound";
+import type { StateManager } from "./state_manager";
+import { waitNextFrame } from "./utils";
 
 const logger = createLogger("game_state");
 
@@ -17,49 +14,41 @@ const logger = createLogger("game_state");
  * Basic state of the game state machine. This is the base of the whole game
  */
 export class GameState {
+    public app: Application = null;
+    public readonly key: string;
+    public inputReceiver: InputReceiver;
+
+    /** A channel we can use to perform async ops */
+    protected asyncChannel = new RequestChannel();
+    protected clickDetectors: ClickDetector[] = [];
+
+    /** @todo review this */
+    protected htmlElement: HTMLElement | undefined;
+
+    private stateManager: StateManager = null;
+
+    /** Store if we are currently fading out */
+    private fadingOut = false;
+
     /**
      * Constructs a new state with the given id
-     * @param {string} key The id of the state. We use ids to refer to states because otherwise we get
-     *                     circular references
+     * @param key The id of the state. We use ids to refer to states because otherwise we get
+     *            circular references
      */
-    constructor(key) {
+    constructor(key: string) {
         this.key = key;
 
-        /** @type {StateManager} */
-        this.stateManager = null;
-
-        /** @type {Application} */
-        this.app = null;
-
-        // Store if we are currently fading out
-        this.fadingOut = false;
-
-        /** @type {Array<ClickDetector>} */
-        this.clickDetectors = [];
-
         // Every state captures keyboard events by default
-        this.inputReciever = new InputReceiver("state-" + key);
-        this.inputReciever.backButton.add(this.onBackButton, this);
-
-        // A channel we can use to perform async ops
-        this.asyncChannel = new RequestChannel();
+        this.inputReceiver = new InputReceiver("state-" + key);
+        this.inputReceiver.backButton.add(this.onBackButton, this);
     }
 
     //// GETTERS / HELPER METHODS ////
 
     /**
-     * Returns the states key
-     * @returns {string}
-     */
-    getKey() {
-        return this.key;
-    }
-
-    /**
      * Returns the html element of the state
-     * @returns {HTMLElement}
      */
-    getDivElement() {
+    getDivElement(): HTMLElement {
         return document.getElementById("state_" + this.key);
     }
 
@@ -120,9 +109,9 @@ export class GameState {
 
     /**
      * Callback when entering the state, to be overriddemn
-     * @param {any} payload Arbitrary data passed from the state which we are transferring from
+     * @param payload Arbitrary data passed from the state which we are transferring from
      */
-    onEnter(payload) {}
+    onEnter(payload: {}) {}
 
     /**
      * Callback when leaving the state
@@ -141,22 +130,22 @@ export class GameState {
 
     /**
      * Render callback
-     * @param {number} dt Delta time in ms since last render
+     * @param dt Delta time in ms since last render
      */
-    onRender(dt) {}
+    onRender(dt: number) {}
 
     /**
      * Background tick callback, called while the game is inactiev
-     * @param {number} dt Delta time in ms since last tick
+     * @param dt Delta time in ms since last tick
      */
-    onBackgroundTick(dt) {}
+    onBackgroundTick(dt: number) {}
 
     /**
      * Called when the screen resized
-     * @param {number} w window/screen width
-     * @param {number} h window/screen height
+     * @param w window/screen width
+     * @param h window/screen height
      */
-    onResized(w, h) {}
+    onResized(w: number, h: number) {}
 
     /**
      * Internal backbutton handler, called when the hardware back button is pressed or
@@ -168,9 +157,9 @@ export class GameState {
 
     /**
      * Should return how many mulliseconds to fade in / out the state. Not recommended to override!
-     * @returns {number} Time in milliseconds to fade out
+     * @returns Time in milliseconds to fade out
      */
-    getInOutFadeTime() {
+    getInOutFadeTime(): number {
         if (globalConfig.debug.noArtificialDelays) {
             return 0;
         }
@@ -180,37 +169,41 @@ export class GameState {
     /**
      * Should return whether to fade in the game state. This will then apply the right css classes
      * for the fadein.
-     * @returns {boolean}
      */
-    getHasFadeIn() {
+    getHasFadeIn(): boolean {
         return true;
     }
 
     /**
      * Should return whether to fade out the game state. This will then apply the right css classes
      * for the fadeout and wait the delay before moving states
-     * @returns {boolean}
      */
-    getHasFadeOut() {
+    getHasFadeOut(): boolean {
         return true;
     }
 
     /**
      * Returns if this state should get paused if it does not have focus
-     * @returns {boolean} true to pause the updating of the game
+     * @returns true to pause the updating of the game
      */
-    getPauseOnFocusLost() {
+    getPauseOnFocusLost(): boolean {
         return true;
     }
 
     /**
      * Should return the html code of the state.
-     * @returns {string}
-     * @abstract
+     * @deprecated use {@link getContentLayout} instead
      */
-    getInnerHTML() {
-        abstract;
+    getInnerHTML(): string {
         return "";
+    }
+
+    /**
+     * Should return the element(s) to be displayed in the state.
+     * If null, {@link getInnerHTML} will be used instead.
+     */
+    protected getContentLayout(): Node {
+        return null;
     }
 
     /**
@@ -223,25 +216,22 @@ export class GameState {
 
     /**
      * Should return the theme music for this state
-     * @returns {string|null}
      */
-    getThemeMusic() {
+    getThemeMusic(): string | null {
         return MUSIC.menu;
     }
 
     /**
      * Should return true if the player is currently ingame
-     * @returns {boolean}
      */
-    getIsIngame() {
+    getIsIngame(): boolean {
         return false;
     }
 
     /**
      * Should return whether to clear the whole body content before entering the state.
-     * @returns {boolean}
      */
-    getRemovePreviousContent() {
+    getRemovePreviousContent(): boolean {
         return true;
     }
 
@@ -251,9 +241,8 @@ export class GameState {
 
     /**
      * Internal callback from the manager. Do not override!
-     * @param {StateManager} stateManager
      */
-    internalRegisterCallback(stateManager, app) {
+    internalRegisterCallback(stateManager: StateManager, app: Application) {
         assert(stateManager, "No state manager");
         assert(app, "No app");
         this.stateManager = stateManager;
@@ -262,12 +251,12 @@ export class GameState {
 
     /**
      * Internal callback when entering the state. Do not override!
-     * @param {any} payload Arbitrary data passed from the state which we are transferring from
-     * @param {boolean} callCallback Whether to call the onEnter callback
+     * @param payload Arbitrary data passed from the state which we are transferring from
+     * @param callCallback Whether to call the onEnter callback
      */
-    internalEnterCallback(payload, callCallback = true) {
+    internalEnterCallback(payload: any, callCallback = true) {
         logSection(this.key, "#26a69a");
-        this.app.inputMgr.pushReciever(this.inputReciever);
+        this.app.inputMgr.pushReceiver(this.inputReceiver);
 
         this.htmlElement = this.getDivElement();
         this.htmlElement.classList.add("active");
@@ -293,7 +282,7 @@ export class GameState {
         this.onLeave();
 
         this.htmlElement.classList.remove("active");
-        this.app.inputMgr.popReciever(this.inputReciever);
+        this.app.inputMgr.popReceiver(this.inputReceiver);
         this.internalCleanUpClickDetectors();
         this.asyncChannel.cancelAll();
     }
@@ -325,18 +314,33 @@ export class GameState {
     }
 
     /**
-     * Internal method to get the HTML of the game state.
-     * @returns {string}
+     * Internal method to get all elements of the game state. Can be
+     * called from subclasses to provide support for both HTMLElements
+     * and HTML strings.
      */
-    internalGetFullHtml() {
-        return this.getInnerHTML();
+    internalGetWrappedContent(): Node {
+        const elements = this.getContentLayout();
+        if (elements instanceof Node) {
+            return elements;
+        }
+
+        if (Array.isArray(elements)) {
+            const fragment = document.createDocumentFragment();
+            fragment.append(...(elements as Node[]));
+            return fragment;
+        }
+
+        // Fall back to deprecated HTML strings solution
+        const template = document.createElement("template");
+        template.innerHTML = this.getInnerHTML();
+        return template.content;
     }
 
     /**
      * Internal method to compute the time to fade in / out
-     * @returns {number} time to fade in / out in ms
+     * @returns time to fade in / out in ms
      */
-    internalGetFadeInOutTime() {
+    internalGetFadeInOutTime(): number {
         if (G_IS_DEV && globalConfig.debug.fastGameEnter) {
             return 1;
         }

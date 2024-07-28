@@ -1,11 +1,11 @@
-import { BaseHUDPart } from "../base_hud_part";
-import { makeDiv, formatBigNumberFull } from "../../../core/utils";
-import { DynamicDomAttach } from "../dynamic_dom_attach";
 import { InputReceiver } from "../../../core/input_receiver";
-import { KeyActionMapper, KEYMAPPINGS } from "../../key_action_mapper";
+import { formatBigNumberFull, makeDiv } from "../../../core/utils";
 import { T } from "../../../translations";
-import { StaticMapEntityComponent } from "../../components/static_map_entity";
 import { BeltComponent } from "../../components/belt";
+import { StaticMapEntityComponent } from "../../components/static_map_entity";
+import { KEYMAPPINGS, KeyActionMapper } from "../../key_action_mapper";
+import { BaseHUDPart } from "../base_hud_part";
+import { DynamicDomAttach } from "../dynamic_dom_attach";
 
 export class HUDSettingsMenu extends BaseHUDPart {
     createElements(parent) {
@@ -83,8 +83,8 @@ export class HUDSettingsMenu extends BaseHUDPart {
             attachClass: "visible",
         });
 
-        this.inputReciever = new InputReceiver("settingsmenu");
-        this.keyActionMapper = new KeyActionMapper(this.root, this.inputReciever);
+        this.inputReceiver = new InputReceiver("settingsmenu");
+        this.keyActionMapper = new KeyActionMapper(this.root, this.inputReceiver);
         this.keyActionMapper.getBinding(KEYMAPPINGS.general.back).add(this.close, this);
 
         this.close();
@@ -92,7 +92,7 @@ export class HUDSettingsMenu extends BaseHUDPart {
 
     show() {
         this.visible = true;
-        this.root.app.inputMgr.makeSureAttachedAndOnTop(this.inputReciever);
+        this.root.app.inputMgr.makeSureAttachedAndOnTop(this.inputReceiver);
 
         const totalMinutesPlayed = Math.ceil(this.root.time.now() / 60);
 
@@ -119,7 +119,7 @@ export class HUDSettingsMenu extends BaseHUDPart {
 
     close() {
         this.visible = false;
-        this.root.app.inputMgr.makeSureDetached(this.inputReciever);
+        this.root.app.inputMgr.makeSureDetached(this.inputReceiver);
         this.update();
     }
 

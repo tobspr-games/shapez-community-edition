@@ -1,14 +1,14 @@
 import type { Application } from "../application";
 import type { InputReceiver, ReceiverId } from "./input_receiver";
 
-import { Signal, STOP_PROPAGATION } from "./signal";
 import { createLogger } from "./logging";
+import { Signal, STOP_PROPAGATION } from "./signal";
 import { arrayDeleteValue, fastArrayDeleteValue } from "./utils";
 
 const logger = createLogger("input_distributor");
 
 export class InputDistributor {
-    public recieverStack: InputReceiver[] = [];
+    public receiverStack: InputReceiver[] = [];
     public filters: ((arg: string) => boolean)[] = [];
 
     /**
@@ -34,71 +34,71 @@ export class InputDistributor {
         fastArrayDeleteValue(this.filters, filter);
     }
 
-    pushReciever(reciever: InputReceiver) {
-        if (this.isRecieverAttached(reciever)) {
-            assert(false, "Can not add reciever " + reciever.context + " twice");
-            logger.error("Can not add reciever", reciever.context, "twice");
+    pushReceiver(receiver: InputReceiver) {
+        if (this.isReceiverAttached(receiver)) {
+            assert(false, "Can not add receiver " + receiver.context + " twice");
+            logger.error("Can not add receiver", receiver.context, "twice");
             return;
         }
-        this.recieverStack.push(reciever);
+        this.receiverStack.push(receiver);
 
-        if (this.recieverStack.length > 10) {
+        if (this.receiverStack.length > 10) {
             logger.error(
-                "Reciever stack is huge, probably some dead receivers arround:",
-                this.recieverStack.map(x => x.context)
+                "Receiver stack is huge, probably some dead receivers arround:",
+                this.receiverStack.map(x => x.context)
             );
         }
     }
 
-    popReciever(reciever: InputReceiver) {
-        if (this.recieverStack.indexOf(reciever) < 0) {
-            assert(false, "Can not pop reciever " + reciever.context + "  since its not contained");
-            logger.error("Can not pop reciever", reciever.context, "since its not contained");
+    popReceiver(receiver: InputReceiver) {
+        if (this.receiverStack.indexOf(receiver) < 0) {
+            assert(false, "Can not pop receiver " + receiver.context + "  since its not contained");
+            logger.error("Can not pop receiver", receiver.context, "since its not contained");
             return;
         }
-        if (this.recieverStack[this.recieverStack.length - 1] !== reciever) {
+        if (this.receiverStack[this.receiverStack.length - 1] !== receiver) {
             logger.warn(
-                "Popping reciever",
-                reciever.context,
+                "Popping receiver",
+                receiver.context,
                 "which is not on top of the stack. Stack is: ",
-                this.recieverStack.map(x => x.context)
+                this.receiverStack.map(x => x.context)
             );
         }
-        arrayDeleteValue(this.recieverStack, reciever);
+        arrayDeleteValue(this.receiverStack, receiver);
     }
 
-    isRecieverAttached(reciever: InputReceiver) {
-        return this.recieverStack.indexOf(reciever) >= 0;
+    isReceiverAttached(receiver: InputReceiver) {
+        return this.receiverStack.indexOf(receiver) >= 0;
     }
 
-    isRecieverOnTop(reciever: InputReceiver) {
+    isReceiverOnTop(receiver: InputReceiver) {
         return (
-            this.isRecieverAttached(reciever) &&
-            this.recieverStack[this.recieverStack.length - 1] === reciever
+            this.isReceiverAttached(receiver) &&
+            this.receiverStack[this.receiverStack.length - 1] === receiver
         );
     }
 
-    makeSureAttachedAndOnTop(reciever: InputReceiver) {
-        this.makeSureDetached(reciever);
-        this.pushReciever(reciever);
+    makeSureAttachedAndOnTop(receiver: InputReceiver) {
+        this.makeSureDetached(receiver);
+        this.pushReceiver(receiver);
     }
 
-    makeSureDetached(reciever: InputReceiver) {
-        if (this.isRecieverAttached(reciever)) {
-            arrayDeleteValue(this.recieverStack, reciever);
+    makeSureDetached(receiver: InputReceiver) {
+        if (this.isReceiverAttached(receiver)) {
+            arrayDeleteValue(this.receiverStack, receiver);
         }
     }
 
-    destroyReceiver(reciever: InputReceiver) {
-        this.makeSureDetached(reciever);
-        reciever.cleanup();
+    destroyReceiver(receiver: InputReceiver) {
+        this.makeSureDetached(receiver);
+        receiver.cleanup();
     }
 
     // Internal
 
-    getTopReciever() {
-        if (this.recieverStack.length > 0) {
-            return this.recieverStack[this.recieverStack.length - 1];
+    getTopReceiver() {
+        if (this.receiverStack.length > 0) {
+            return this.receiverStack[this.receiverStack.length - 1];
         }
         return null;
     }
@@ -129,12 +129,12 @@ export class InputDistributor {
             }
         }
 
-        const reciever = this.getTopReciever();
-        if (!reciever) {
-            logger.warn("Dismissing event because not reciever was found:", eventId);
+        const receiver = this.getTopReceiver();
+        if (!receiver) {
+            logger.warn("Dismissing event because not receiver was found:", eventId);
             return;
         }
-        const signal = reciever[eventId];
+        const signal = receiver[eventId];
         assert(signal instanceof Signal, "Not a valid event id");
         // probably not possible to type properly, since the types of `signal` and `payload` are correlated
         return signal.dispatch(payload as never);

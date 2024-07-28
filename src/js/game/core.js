@@ -17,13 +17,16 @@ import { Rectangle } from "../core/rectangle";
 import { ORIGINAL_SPRITE_SCALE } from "../core/sprites";
 import { lerp, randomInt, round2Digits } from "../core/utils";
 import { Vector } from "../core/vector";
+import { MOD_SIGNALS } from "../mods/mod_signals";
 import { Savegame } from "../savegame/savegame";
 import { SavegameSerializer } from "../savegame/savegame_serializer";
+import { AchievementProxy } from "./achievement_proxy";
 import { AutomaticSave } from "./automatic_save";
 import { MetaHubBuilding } from "./buildings/hub";
 import { Camera } from "./camera";
 import { DynamicTickrate } from "./dynamic_tickrate";
 import { EntityManager } from "./entity_manager";
+import { GameMode } from "./game_mode";
 import { GameSystemManager } from "./game_system_manager";
 import { HubGoals } from "./hub_goals";
 import { GameHUD } from "./hud/hud";
@@ -31,14 +34,11 @@ import { KeyActionMapper } from "./key_action_mapper";
 import { GameLogic } from "./logic";
 import { MapView } from "./map_view";
 import { defaultBuildingVariant } from "./meta_building";
-import { GameMode } from "./game_mode";
 import { ProductionAnalytics } from "./production_analytics";
 import { GameRoot } from "./root";
 import { ShapeDefinitionManager } from "./shape_definition_manager";
-import { AchievementProxy } from "./achievement_proxy";
 import { SoundProxy } from "./sound_proxy";
 import { GameTime } from "./time/game_time";
-import { MOD_SIGNALS } from "../mods/mod_signals";
 
 const logger = createLogger("ingame/core");
 
@@ -101,7 +101,7 @@ export class GameCore {
         const root = this.root;
 
         // This isn't nice, but we need it right here
-        root.keyMapper = new KeyActionMapper(root, this.root.gameState.inputReciever);
+        root.keyMapper = new KeyActionMapper(root, this.root.gameState.inputReceiver);
 
         // Init game mode
         root.gameMode = GameMode.create(root, gameModeId, parentState.creationPayload.gameModeParameters);
@@ -142,7 +142,7 @@ export class GameCore {
 
         // @todo Find better place
         if (G_IS_DEV && globalConfig.debug.manualTickOnly) {
-            this.root.gameState.inputReciever.keydown.add(key => {
+            this.root.gameState.inputReceiver.keydown.add(key => {
                 if (key.keyCode === 84) {
                     // 'T'
 

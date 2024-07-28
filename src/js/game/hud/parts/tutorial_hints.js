@@ -1,10 +1,10 @@
 import { InputReceiver } from "../../../core/input_receiver";
 import { TrackedState } from "../../../core/tracked_state";
 import { makeDiv } from "../../../core/utils";
+import { T } from "../../../translations";
 import { KeyActionMapper, KEYMAPPINGS } from "../../key_action_mapper";
 import { BaseHUDPart } from "../base_hud_part";
 import { DynamicDomAttach } from "../dynamic_dom_attach";
-import { T } from "../../../translations";
 
 const tutorialVideos = [3, 4, 5, 6, 7, 9, 10, 11];
 
@@ -46,8 +46,8 @@ export class HUDPartTutorialHints extends BaseHUDPart {
         this.videoAttach.update(false);
         this.enlarged = false;
 
-        this.inputReciever = new InputReceiver("tutorial_hints");
-        this.keyActionMapper = new KeyActionMapper(this.root, this.inputReciever);
+        this.inputReceiver = new InputReceiver("tutorial_hints");
+        this.keyActionMapper = new KeyActionMapper(this.root, this.inputReceiver);
         this.keyActionMapper.getBinding(KEYMAPPINGS.general.back).add(this.close, this);
 
         this.domAttach = new DynamicDomAttach(this.root, this.element);
@@ -71,14 +71,14 @@ export class HUDPartTutorialHints extends BaseHUDPart {
     close() {
         this.enlarged = false;
         this.element.classList.remove("enlarged", "noBlur");
-        this.root.app.inputMgr.makeSureDetached(this.inputReciever);
+        this.root.app.inputMgr.makeSureDetached(this.inputReceiver);
         this.update();
     }
 
     show() {
         this.element.classList.add("enlarged", "noBlur");
         this.enlarged = true;
-        this.root.app.inputMgr.makeSureAttachedAndOnTop(this.inputReciever);
+        this.root.app.inputMgr.makeSureAttachedAndOnTop(this.inputReceiver);
         this.update();
 
         this.videoElement.currentTime = 0;

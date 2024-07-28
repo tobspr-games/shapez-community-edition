@@ -31,7 +31,7 @@ export class HUDUnlockNotification extends BaseHUDPart {
     }
 
     createElements(parent) {
-        this.inputReciever = new InputReceiver("unlock-notification");
+        this.inputReceiver = new InputReceiver("unlock-notification");
 
         this.element = makeDiv(parent, "ingame_HUD_UnlockNotification", ["noBlur"]);
 
@@ -67,7 +67,7 @@ export class HUDUnlockNotification extends BaseHUDPart {
             return;
         }
 
-        this.root.app.inputMgr.makeSureAttachedAndOnTop(this.inputReciever);
+        this.root.app.inputMgr.makeSureAttachedAndOnTop(this.inputReceiver);
         this.elemTitle.innerText = T.ingame.levelCompleteNotification.levelTitle.replace(
             "<level>",
             ("" + level).padStart(2, "0")
@@ -118,7 +118,7 @@ export class HUDUnlockNotification extends BaseHUDPart {
     }
 
     cleanup() {
-        this.root.app.inputMgr.makeSureDetached(this.inputReciever);
+        this.root.app.inputMgr.makeSureDetached(this.inputReceiver);
         if (this.buttonShowTimeout) {
             clearTimeout(this.buttonShowTimeout);
             this.buttonShowTimeout = null;
@@ -158,7 +158,7 @@ export class HUDUnlockNotification extends BaseHUDPart {
     }
 
     close() {
-        this.root.app.inputMgr.makeSureDetached(this.inputReciever);
+        this.root.app.inputMgr.makeSureDetached(this.inputReceiver);
         if (this.buttonShowTimeout) {
             clearTimeout(this.buttonShowTimeout);
             this.buttonShowTimeout = null;
