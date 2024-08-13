@@ -14,7 +14,6 @@
             @include S(padding, 1px, 10px);
             border: 0;
             box-shadow: none;
-            @include IncreasedClickArea(1px);
             @include S(min-width, 30px);
             color: #fff;
             opacity: 0.25;

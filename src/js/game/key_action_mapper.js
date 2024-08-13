@@ -386,7 +386,7 @@ export class Keybinding {
         if (IS_MOBILE) {
             return null;
         }
-        const spacer = document.createElement("code");
+        const spacer = document.createElement("kbd");
         spacer.classList.add("keybinding");
         spacer.innerHTML = getStringForKeyCode(this.keyCode);
         elem.appendChild(spacer);

@@ -290,13 +290,13 @@ export class HUDKeybindingOverlay extends BaseHUDPart {
 
                 switch (key) {
                     case KEYCODE_LMB:
-                        html += `<code class="keybinding leftMouse"></code>`;
+                        html += `<kbd class="keybinding leftMouse"></kbd>`;
                         break;
                     case KEYCODE_RMB:
-                        html += `<code class="keybinding rightMouse"></code>`;
+                        html += `<kbd class="keybinding rightMouse"></kbd>`;
                         break;
                     case KEYCODE_MMB:
-                        html += `<code class="keybinding middleMouse"></code>`;
+                        html += `<kbd class="keybinding middleMouse"></kbd>`;
                         break;
                     case DIVIDER_TOKEN:
                         html += `<i></i>`;
@@ -305,9 +305,9 @@ export class HUDKeybindingOverlay extends BaseHUDPart {
                         html += `+`;
                         break;
                     default:
-                        html += `<code class="keybinding">${getStringForKeyCode(
+                        html += `<kbd class="keybinding">${getStringForKeyCode(
                             mapper.getBinding(/** @type {KeyCode} */ (key)).keyCode
-                        )}</code>`;
+                        )}</kbd>`;
                 }
             }
             html += `<label>${handle.label}</label>`;

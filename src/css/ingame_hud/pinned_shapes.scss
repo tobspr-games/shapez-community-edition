@@ -71,7 +71,6 @@
             @include S(top, 13px);
             @include S(left, -7px);
             @include DarkThemeInvert;
-            @include IncreasedClickArea(2px);
             transition: opacity 0.12s ease-in-out;
             z-index: 100;
 
@@ -93,7 +92,6 @@
             @include S(top, 3px);
             @include S(left, -7px);
             @include DarkThemeInvert;
-            @include IncreasedClickArea(2px);
             transition: opacity 0.12s ease-in-out;
             z-index: 100;
 

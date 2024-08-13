@@ -13,12 +13,6 @@
     @return calc(#{$baseValue} * var(--ui-scale));
 }
 
-// Helper method to scale the font size
-@mixin ScaleFont($fontSize, $lineHeight) {
-    font-size: D($fontSize * $mainFontScale);
-    line-height: D($lineHeight * $mainFontScale);
-}
-
 // Helper method to scale a property value
 @mixin S($propName, $v1, $v2: "", $v3: "", $v4: "", $important: false) {
     $impSuffix: "";

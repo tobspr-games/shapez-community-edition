@@ -68,10 +68,6 @@ $mainFont: "GameFont", sans-serif;
 $numberFont: $mainFont;
 $textFont: $mainFont;
 
-$mainFontWeight: 400;
-$mainFontSpacing: 0.01em;
-$mainFontScale: 1;
-
 @mixin DebugText($color) {
     // font-size: 3px;
     // &,
@@ -81,100 +77,43 @@ $mainFontScale: 1;
 }
 
 @mixin SuperDuperSmallText {
-    @include ScaleFont($superDuperSmallTextFontSize, $superDuperSmallTextLineHeight);
-    font-weight: $mainFontWeight;
-    font-family: $mainFont;
-    letter-spacing: $mainFontSpacing;
+    font-size: D($superDuperSmallTextFontSize);
+    line-height: D($superDuperSmallTextLineHeight);
     @include DebugText(green);
 }
 
 @mixin SuperSmallText {
-    @include ScaleFont($superSmallTextFontSize, $superSmallTextLineHeight);
-    font-weight: $mainFontWeight;
-    font-family: $mainFont;
-    letter-spacing: $mainFontSpacing;
+    font-size: D($superSmallTextFontSize);
+    line-height: D($superSmallTextLineHeight);
     @include DebugText(green);
 }
 
 @mixin PlainText {
-    @include ScaleFont($plainTextFontSize, $plainTextLineHeight);
-    font-weight: $mainFontWeight;
-    font-family: $mainFont;
-    letter-spacing: $mainFontSpacing;
-
+    font-size: D($plainTextFontSize);
+    line-height: D($plainTextLineHeight);
     @include DebugText(red);
 }
 
 @mixin Text {
-    @include ScaleFont($textFontSize, $textLineHeight);
-    font-weight: $mainFontWeight;
-    font-family: $mainFont;
-
-    letter-spacing: $mainFontSpacing;
-
+    font-size: D($textFontSize);
+    line-height: D($textLineHeight);
     @include DebugText(blue);
 }
 
 @mixin Heading {
-    @include ScaleFont($headingFontSize, $headingLineHeight);
-    font-weight: $mainFontWeight;
-    font-family: $mainFont;
-    letter-spacing: $mainFontSpacing;
-
+    font-size: D($headingFontSize);
+    line-height: D($headingLineHeight);
     @include DebugText(yellow);
 }
 
 @mixin SuperHeading {
-    @include ScaleFont($superHeadingFontSize, $superHeadingLineHeight);
-    font-weight: $mainFontWeight;
-    font-family: $mainFont;
-    letter-spacing: $mainFontSpacing;
-
+    font-size: D($superHeadingFontSize);
+    line-height: D($superHeadingLineHeight);
     @include DebugText(orange);
 }
 
 @mixin ButtonText {
-    @include ScaleFont($buttonFontSize, $buttonLineHeight);
-    font-weight: $mainFontWeight;
-    font-family: $mainFont;
-    letter-spacing: $mainFontSpacing;
+    font-size: D($buttonFontSize);
+    line-height: D($buttonLineHeight);
     @include DebugText(purple);
-}
-
-@function str-split($string, $separator) {
-    // empty array/list
-    $split-arr: ();
-    // first index of separator in string
-    $index: str-index($string, $separator);
-    // loop through string
-    @while $index != null {
-        // get the substring from the first character to the separator
-        $item: str-slice($string, 1, $index - 1);
-        // push item to array
-        $split-arr: append($split-arr, $item);
-        // remove item and separator from string
-        $string: str-slice($string, $index + 1);
-        // find new index of separator
-        $index: str-index($string, $separator);
-    }
-    // add the remaining string to list (the last item)
-    $split-arr: append($split-arr, $string);
-
-    @return $split-arr;
-}
-
-@function _first-index($string, $direction: "left") {
-    @for $i from 1 through str-length($string) {
-        $index: if($direction == "left", $i, -$i);
-
-        @if str-slice($string, $index, $index) != " " {
-            @return $index;
-        }
-    }
-
-    @return 0;
-}
-
-@function trim($string) {
-    @return str-slice($string, _first-index($string, "left"), _first-index($string, "right"));
 }

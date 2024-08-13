@@ -11,7 +11,6 @@
     > button,
     > .button {
         @include PlainText;
-        @include IncreasedClickArea(0px);
         background: green;
         @include S(width, 30px);
         @include S(height, 30px);

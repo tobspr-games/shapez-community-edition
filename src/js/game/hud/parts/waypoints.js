@@ -54,9 +54,9 @@ export class HUDWaypoints extends BaseHUDPart {
             <strong class='title'>${T.ingame.waypoints.waypoints}</strong>
             <span class='desc'>${T.ingame.waypoints.description.replace(
                 "<keybinding>",
-                `<code class='keybinding'>${this.root.keyMapper
+                `<kbd class='keybinding'>${this.root.keyMapper
                     .getBinding(KEYMAPPINGS.navigation.createMarker)
-                    .getKeyCodeString()}</code>`
+                    .getKeyCodeString()}</kbd>`
             )}</span>
         `
             );

@@ -87,7 +87,6 @@
             pointer-events: all;
             cursor: pointer;
             position: relative;
-            @include IncreasedClickArea(2px);
             transition: transform 0.04s ease-in-out;
 
             &:hover {

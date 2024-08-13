@@ -58,7 +58,6 @@
 
         button.toggleHint {
             @include PlainText;
-            @include IncreasedClickArea(0px);
         }
     }
 

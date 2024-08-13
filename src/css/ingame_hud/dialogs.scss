@@ -215,7 +215,6 @@
                     @include S(height, 25px);
                     position: relative;
                     cursor: pointer;
-                    @include IncreasedClickArea(3px);
 
                     &:hover {
                         opacity: 0.9;

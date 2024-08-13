@@ -12,25 +12,6 @@ the performance when animated. Use only transform and opacity in animations! */
 $hardwareAcc: null;
 
 // ----------------------------------------
-/** Increased click area for this element, helpful on mobile */
-@mixin IncreasedClickArea($size) {
-    // &::after {
-    //     content: "";
-    //     position: absolute;
-    //     top: #{D(-$size)};
-    //     bottom: #{D(-$size)};
-    //     left: #{D(-$size)};
-    //     right: #{D(-$size)};
-    //     // background: rgba(255, 0, 0, 0.3);
-    // }
-}
-button,
-.increasedClickArea {
-    position: relative;
-    @include IncreasedClickArea(15px);
-}
-
-// ----------------------------------------
 /* Duplicates an animation and adds two classes .<classPrefix>Even and .<classPrefix>Odd which uses the
   animation. This can be used to replay the animation by toggling between the classes, because
   it is not possible to restart a css animation */
@@ -99,20 +80,6 @@ button,
     }
 
     opacity: 1;
-}
-
-// ----------------------------------------
-/* Automatically transforms the game state if a hardware keyboard is open */
-@mixin TransformToMatchKeyboard {
-    transition: transform 0.2s ease-in-out;
-    @include AndroidHwKeyboardOpen {
-        @include VerticalStyle {
-            transform: translateY(#{D(-125px)}) $hardwareAcc;
-        }
-        @include HorizontalStyle {
-            transform: translateY(#{D(-100px)}) $hardwareAcc;
-        }
-    }
 }
 
 // ----------------------------------------
@@ -233,19 +200,6 @@ button,
     color: $color;
 }
 
-// ----------------------------------------
-/* String replacement */
-@function str-replace($string, $search, $replace: "") {
-    $index: str-index($string, $search);
-
-    @if $index {
-        @return str-slice($string, 1, $index - 1) + $replace +
-            str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
-    }
-
-    @return $string;
-}
-
 @mixin BounceInFromSide($mul, $duration: 0.18s ease-in-out) {
     @include InlineAnimation($duration) {
         0% {
@@ -266,17 +220,6 @@ button,
     word-wrap: break-word;
     word-break: break-all;
     overflow-wrap: break-all;
-}
-
-@mixin SupportsAndroidNotchQuery {
-    @supports (color: constant(--notch-inset-left)) {
-        @content;
-    }
-}
-@mixin SupportsiOsNotchQuery {
-    @supports (color: env(safe-area-inset-left, 0px)) {
-        @content;
-    }
 }
 
 @mixin DarkThemeOverride {

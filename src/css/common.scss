@@ -2,7 +2,7 @@
 * {
     margin: 0;
     padding: 0;
-    touch-action: pan-x pan-y !important;
+    touch-action: pan-x pan-y;
     pointer-events: none;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
@@ -21,16 +21,7 @@ body {
 }
 
 html {
-    position: fixed;
-    // scroll-behavior: smooth;
     background: $mainBgColor;
-    // Disable zooming and thus
-    touch-action: pan-x, pan-y;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: #dee1ea;
     @include DarkThemeOverride {
         background: $darkModeGameBackground;
     }
@@ -39,41 +30,11 @@ html {
 body {
     color: #555;
     user-select: none;
-    background: inherit !important;
-    text-transform: none;
-    white-space: normal;
-    word-break: normal;
-    word-spacing: normal;
+    background: inherit;
     word-wrap: break-word;
-    font-style: normal;
-    line-break: auto;
-    font-stretch: 100%;
     text-rendering: optimizeLegibility;
-    text-decoration: none;
-    text-size-adjust: 100%;
-    letter-spacing: normal;
     -webkit-font-smoothing: antialiased;
-    -webkit-touch-callout: none;
-    /* prevent callout to copy image, etc when tap to hold */
-    overflow: hidden;
     @include Text;
-    // For recording the bg video
-    // filter: blur(5px);
-    // &::after {
-    //   position: fixed;
-    //   top: 0;
-    //   left: 0;
-    //   right: 0;
-    //   bottom: 0;
-    //   z-index: 9999;
-    //   content: " ";
-    //   background: rgba($ingameHudBg, 0.5);
-    // }
-}
-
-img {
-    -webkit-touch-callout: none;
-    /* prevent callout to copy image, etc when tap to hold */
 }
 
 i {
@@ -94,8 +55,6 @@ input,
 textarea,
 select {
     font-size: inherit;
-    font-weight: inherit;
-    font-family: inherit;
     line-height: inherit;
 }
 
@@ -106,69 +65,24 @@ button {
     cursor: pointer;
     position: relative;
     @include TextShadow3D;
-    &.prefab_BuyButtonWithResources {
-        display: flex;
-        box-sizing: border-box;
-        @include S(padding, 6px, 4px);
-        // letter-spacing: 0;
-        background-color: color($cyan, 400);
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        @include S(width, 85px);
-        &.tooExpensive {
-            color: $colorRedBright;
-            background-color: #555;
-            cursor: default;
-        }
-        .cost_entry {
-            display: flex;
-            flex-grow: 1;
-            justify-content: center;
-            align-items: center;
-        }
-        b {
-            display: flex;
-            flex-grow: 1;
-            justify-content: center;
-            align-items: center;
-        }
-        &.tooExpensive {
-            cursor: default !important;
-            background-color: #565859 !important;
-            b {
-                color: $colorRedBright !important;
-            }
-            .cost_entry {
-                opacity: 0.6;
-            }
-        }
-    }
 }
 
 .styledButton {
-    background: $themeColor;
     text-transform: uppercase;
     box-sizing: content-box;
     @include S(padding, 3px, 10px);
-    @include IncreasedClickArea(10px);
-    @include TextShadow3D(#fff, $borderColor: #28292a);
     @include ButtonText;
     border: 0;
     background: $colorBlueBright;
     color: #fff;
-
     @include S(border-radius, 0.8 * $globalBorderRadius);
-    // border: #{D(1px)} solid rgba(0, 10, 20, 0.2);
-    @include S(border-bottom-width, 2px);
-    // color: $accentColorDark;
-    letter-spacing: 0em !important;
-    // box-shadow: 0 #{D(1px)} #{D(2px)} 0 rgba(0, 10, 20, 0.2);
+    transition: opacity 0.12s ease-in-out;
+
     .keybinding {
         @include S(bottom, -2.5px);
         @include S(right, -2px);
     }
-    transition: opacity 0.12s ease-in-out;
+
     &:hover {
         opacity: 0.9;
     }
@@ -184,7 +98,6 @@ input[type="email"] {
     @include S(padding, 11px, 12px);
     @include S(margin, 10px, 0);
     border: 0;
-    cursor: text;
     display: block;
     text-align: left;
     box-sizing: border-box;
@@ -194,7 +107,6 @@ input[type="email"] {
     user-select: text !important;
     pointer-events: all !important;
     @include Text;
-    @include IncreasedClickArea(15px);
     @include S(border-radius, $globalBorderRadius);
     &::placeholder {
         color: #fff;
@@ -239,8 +151,6 @@ a {
 
 a {
     text-decoration: none;
-    cursor: pointer;
-    pointer-events: all;
 }
 
 i {
@@ -250,26 +160,13 @@ i {
 input {
     user-select: text;
     pointer-events: all;
-    cursor: text;
     border-radius: 0;
 }
 
 canvas {
     pointer-events: all;
-    // image-rendering: pixelated;
-    // &.smoothed {
-    // }1
-    // &.unsmoothed {
-    // }
-    letter-spacing: 0 !important;
     transform: translateZ(0);
     backface-visibility: hidden;
-}
-
-.fontPreload {
-    position: absolute;
-    top: -100px;
-    left: -100px;
 }
 
 // Scrollbar
@@ -290,21 +187,6 @@ canvas {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #d8dce0;
-}
-
-#uiTestPlaybackCursor {
-    position: fixed;
-    top: 100px;
-    left: 100px;
-    z-index: 9999;
-    border-radius: 50%;
-    background: rgba(255, 255, 0, 0.4);
-    width: 24px;
-    height: 24px;
-    border: 3px solid rgba(0, 0, 0, 0.5);
-    margin-top: -12px;
-    margin-left: -12px;
-    box-sizing: border-box;
 }
 
 .pressed:not(.noPressEffect) {
@@ -334,8 +216,7 @@ canvas {
     color: color($purple, 300);
 }
 
-.prefab_LoadingTextWithAnim,
-.prefab_LoadingTextWithAnimDelayed {
+.prefab_LoadingTextWithAnim {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -368,20 +249,6 @@ canvas {
     }
 }
 
-.prefab_LoadingTextWithAnimDelayed {
-    @include InlineAnimation(0.6s ease-in-out) {
-        0% {
-            opacity: 0;
-        }
-        50% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
-    }
-}
-
 .prefab_LoadingProgressIndicator {
     @include PlainText;
     @include S(margin-top, 20px);
@@ -390,43 +257,6 @@ canvas {
     @include S(height, 20px);
     text-transform: uppercase;
     text-align: center;
-}
-
-.prefab_FeatureComingSoon {
-    position: relative;
-    &::after {
-        @include S(top, -5px);
-        @include S(left, -5px);
-        @include S(right, -5px);
-        @include S(bottom, -5px);
-        content: "Coming soon!";
-        z-index: 10000;
-        background: rgba(lighten($mainBgColor, 0), 0.4);
-        @include S(border-radius, $globalBorderRadius);
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        pointer-events: all;
-        @include PlainText;
-        text-transform: uppercase;
-    }
-    opacity: 0.6;
-    > * {
-        opacity: 0.5 !important;
-    }
-}
-
-.prefab_InfoIcon {
-    @include S(width, 25px);
-    @include S(height, 25px);
-    z-index: 100;
-    opacity: 0.8;
-    cursor: pointer;
-    pointer-events: all;
-    display: inline-block;
-    position: relative;
-    @include IncreasedClickArea(10px);
 }
 
 .gameState.prefab_LoadingState {
@@ -545,7 +375,6 @@ canvas {
         box-shadow 0.4s ease-in-out !important;
     position: relative;
     @include BorderRadius(20px);
-    @include IncreasedClickArea(10px);
     @include BoxShadow3D($bgColor, $size: 2px);
     &.loading {
         opacity: 0.2;
@@ -637,6 +466,7 @@ input.rangeInput {
 .keybinding {
     background: #fff;
     text-transform: uppercase;
+    font-family: inherit;
     @include S(padding, 1.5px, 3px, 2px);
     @include PlainText;
     @include S(border-radius, 0.5 * $globalBorderRadius);
@@ -644,12 +474,8 @@ input.rangeInput {
     > span {
         @include S(font-size, 9px);
         @include S(line-height, 11px);
-        font-weight: bold !important;
-        text-shadow: none !important;
-        // font-family: Arial, sans-serif !important;
     }
 
-    font-weight: bold;
     color: $accentColorDark;
     text-align: center;
     justify-content: center;

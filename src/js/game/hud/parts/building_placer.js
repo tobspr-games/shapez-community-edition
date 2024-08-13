@@ -1,3 +1,4 @@
+import { makeOffscreenBuffer } from "../../../core/buffer_utils";
 import { ClickDetector } from "../../../core/click_detector";
 import { globalConfig } from "../../../core/config";
 import { DrawParameters } from "../../../core/draw_parameters";
@@ -5,21 +6,20 @@ import { drawRotatedSprite } from "../../../core/draw_utils";
 import { Loader } from "../../../core/loader";
 import { clamp, makeDiv, removeAllChildren } from "../../../core/utils";
 import {
+    Vector,
+    enumDirection,
     enumDirectionToAngle,
     enumDirectionToVector,
     enumInvertedDirections,
-    Vector,
-    enumDirection,
 } from "../../../core/vector";
 import { T } from "../../../translations";
+import { getCodeFromBuildingData } from "../../building_codes";
 import { KEYMAPPINGS } from "../../key_action_mapper";
 import { defaultBuildingVariant } from "../../meta_building";
+import { layers } from "../../root";
 import { THEME } from "../../theme";
 import { DynamicDomAttach } from "../dynamic_dom_attach";
 import { HUDBuildingPlacerLogic } from "./building_placer_logic";
-import { makeOffscreenBuffer } from "../../../core/buffer_utils";
-import { layers } from "../../root";
-import { getCodeFromBuildingData } from "../../building_codes";
 
 export class HUDBuildingPlacer extends HUDBuildingPlacerLogic {
     /**
@@ -130,7 +130,7 @@ export class HUDBuildingPlacer extends HUDBuildingPlacerLogic {
             const binding = this.root.keyMapper.getBinding(rawBinding);
             this.buildingInfoElements.hotkey.innerHTML = T.ingame.buildingPlacement.hotkeyLabel.replace(
                 "<key>",
-                "<code class='keybinding'>" + binding.getKeyCodeString() + "</code>"
+                "<kbd class='keybinding'>" + binding.getKeyCodeString() + "</kbd>"
             );
         } else {
             this.buildingInfoElements.hotkey.innerHTML = "";
@@ -197,11 +197,11 @@ export class HUDBuildingPlacer extends HUDBuildingPlacerLogic {
             ["explanation"],
             T.ingame.buildingPlacement.cycleBuildingVariants.replace(
                 "<key>",
-                "<code class='keybinding'>" +
+                "<kbd class='keybinding'>" +
                     this.root.keyMapper
                         .getBinding(KEYMAPPINGS.placement.cycleBuildingVariants)
                         .getKeyCodeString() +
-                    "</code>"
+                    "</kbd>"
             )
         );
 

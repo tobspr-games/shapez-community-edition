@@ -100,7 +100,6 @@
                         transition:
                             opacity 0.12s ease-in-out,
                             background-color 0.12s ease-in-out;
-                        @include IncreasedClickArea(0px);
 
                         &.liked-yes {
                             /* @load-async */
@@ -153,7 +152,6 @@
                     @include S(min-width, 100px);
                     @include S(padding, 8px, 16px);
                     @include S(margin, 0, 6px);
-                    @include IncreasedClickArea(0px);
                 }
             }
 

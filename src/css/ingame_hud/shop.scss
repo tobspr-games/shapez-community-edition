@@ -126,7 +126,6 @@
                         opacity: 0.6;
                         cursor: pointer;
                         pointer-events: all;
-                        @include IncreasedClickArea(5px);
                         transition: opacity 0.12s ease-in-out;
 
                         @include DarkThemeInvert;
@@ -215,7 +214,6 @@
                         opacity: 0.5;
                         cursor: pointer;
                         pointer-events: all;
-                        @include IncreasedClickArea(5px);
                         transition: opacity 0.12s ease-in-out;
                         @include DarkThemeInvert;
 
@@ -237,7 +235,6 @@
                         @include S(margin-top, 4px);
                         z-index: 10;
                         @include SuperSmallText;
-                        letter-spacing: 0;
                         background: #e2e4e6;
 
                         @include S(line-height, 13px);

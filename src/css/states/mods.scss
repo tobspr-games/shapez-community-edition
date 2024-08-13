@@ -1,22 +1,19 @@
 #state_ModsState {
     .modsGrid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.5em;
+        grid-template-columns: 1fr auto;
+        align-items: center;
 
-        .noMods {
-            grid-template-columns: unset;
-            place-items: center;
+        > h1 {
+            justify-self: start;
+        }
+
+        .openModsFolder {
+            background-color: $modsColor;
         }
     }
 
-    .mod {
-        display: flex;
-        flex-direction: column;
-        padding: 0.6em;
-        gap: 0.3em;
-        background-color: $mainBgColor;
-        @include S(border-radius, 0.75 * $globalBorderRadius);
+    .modsStats {
         @include PlainText;
 
         .title b {

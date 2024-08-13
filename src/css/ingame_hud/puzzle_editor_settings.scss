@@ -35,7 +35,6 @@
                 justify-content: center;
                 @include S(width, 15px);
                 @include S(height, 15px);
-                @include IncreasedClickArea(0px);
             }
 
             .value {
