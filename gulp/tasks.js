@@ -268,12 +268,6 @@ for (const variant in BUILD_VARIANTS) {
     serve[variant] = gulp.series(build.prepare.dev(variant), () => serveHTML({ version: variant }));
 }
 
-// Deploying!
-export const deploy = {
-    staging: gulp.series(utils.requireCleanWorkingTree, build["web-shapezio-beta"].full),
-    prod: gulp.series(utils.requireCleanWorkingTree, build["web-shapezio"].full),
-};
-
 export const main = {
     prepareDocs: docs.prepareDocs,
     webserver,

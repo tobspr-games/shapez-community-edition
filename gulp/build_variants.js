@@ -1,26 +1,10 @@
 /**
  * @type {Record<string, {
- *  standalone: boolean,
- *  environment?: 'dev' | 'staging' | 'prod',
- *  electronBaseDir?: string,
- *  executableName?: string
+ *  standalone: boolean
  * }>}
  */
 export const BUILD_VARIANTS = {
-    "web-localhost": {
-        standalone: false,
-        environment: "dev",
-    },
-    "web-shapezio-beta": {
-        standalone: false,
-        environment: "staging",
-    },
-    "web-shapezio": {
-        standalone: false,
-        environment: "prod",
-    },
-    "standalone": {
+    standalone: {
         standalone: true,
-        executableName: "shapez",
     },
 };
