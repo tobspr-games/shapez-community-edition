@@ -1,6 +1,6 @@
+import { CHANGELOG } from "../changelog";
 import { TextualGameState } from "../core/textual_game_state";
 import { T } from "../translations";
-import { CHANGELOG } from "../changelog";
 
 export class ChangelogState extends TextualGameState {
     constructor() {
@@ -19,7 +19,7 @@ export class ChangelogState extends TextualGameState {
         for (let i = 0; i < entries.length; ++i) {
             const entry = entries[i];
             html += `
-                <div class="entry" data-changelog-skin="${entry.skin || "default"}">
+                <div class="entry">
                     <span class="version">${entry.version}</span>
                     <span class="date">${entry.date}</span>
                     <ul class="changes">
