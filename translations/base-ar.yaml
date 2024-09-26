@@ -977,12 +977,12 @@ changelog:
     title: سجل التغييرات
 demo:
     features:
-        restoringGames: Restoring savegames
-        importingGames: Importing savegames
-        oneGameLimit: Limited to one savegame
-        customizeKeybindings: Customizing Keybindings
-        exportingBase: Exporting whole Base as Image
-    settingNotAvailable: Not available in the demo.
+        restoringGames: استعادة الألعاب المحفوظة
+        importingGames: استيراد الألعاب المحفوظة
+        oneGameLimit: محدود بحفظ لعبة واحدة فقط
+        customizeKeybindings: تخصيص مفاتيح التحكم
+        exportingBase: تصدير القاعدة بأكملها كصورة
+    settingNotAvailable: غير متاح في العرض التجريبي.
 tips:
     - The hub accepts input of any kind, not just the current shape!
     - Make sure your factories are modular - it will pay out!
