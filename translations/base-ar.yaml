@@ -260,217 +260,209 @@ dialogs:
         desc: "للعب النسخة الكاملة في المتصفح، تحتاج إلى امتلاك كل من اللعبة الأساسية وDLC الألغاز على حساب Steam الخاص بك.<br><br> تأكد من امتلاكهما، وتسجيل الدخول بحساب Steam الصحيح، ثم حاول مرة أخرى."
 ingame:
     keybindingsOverlay:
-        moveMap: Move
-        selectBuildings: Select area
-        stopPlacement: Stop placement
-        rotateBuilding: Rotate building
-        placeMultiple: Place multiple
-        reverseOrientation: Reverse orientation
-        disableAutoOrientation: Disable auto-orientation
-        toggleHud: Toggle HUD
-        placeBuilding: Place building
-        createMarker: Create marker
-        delete: Delete
-        pasteLastBlueprint: Paste last blueprint
-        lockBeltDirection: Enable belt planner
-        plannerSwitchSide: Flip planner side
-        cutSelection: Cut
-        copySelection: Copy
-        clearSelection: Clear selection
-        pipette: Pipette
-        switchLayers: Switch layers
-        clearBelts: Clear belts
+        moveMap: تحريك الخريطة
+        selectBuildings: تحديد المنطقة
+        stopPlacement: إيقاف التثبيت
+        rotateBuilding: تدوير المبنى
+        placeMultiple: وضع عدة مبانٍ
+        reverseOrientation: عكس الاتجاه
+        disableAutoOrientation: تعطيل التوجيه التلقائي
+        toggleHud: تبديل واجهة المستخدم
+        placeBuilding: وضع المبنى
+        createMarker: إنشاء علامة
+        delete: حذف
+        pasteLastBlueprint: لصق المخطط الأخير
+        lockBeltDirection: تفعيل مخطط السير
+        plannerSwitchSide: قلب جانب المخطط
+        cutSelection: قص
+        copySelection: نسخ
+        clearSelection: مسح التحديد
+        pipette: ماصة
+        switchLayers: تبديل الطبقات
+        clearBelts: مسح السير
     colors:
-        red: Red
-        green: Green
-        blue: Blue
-        yellow: Yellow
-        purple: Purple
-        cyan: Cyan
-        white: White
-        black: Black
-        uncolored: Gray
+        red: أحمر
+        green: أخضر
+        blue: أزرق
+        yellow: أصفر
+        purple: بنفسجي
+        cyan: سماوي
+        white: أبيض
+        black: أسود
+        uncolored: رمادي
     buildingPlacement:
-        cycleBuildingVariants: Press <key> to cycle variants.
-        hotkeyLabel: "Hotkey: <key>"
+        cycleBuildingVariants: اضغط على <key> لتبديل النماذج.
+        hotkeyLabel: "المفتاح المختصر: <key>"
         infoTexts:
-            speed: Speed
-            range: Range
-            storage: Storage
-            oneItemPerSecond: 1 item / second
-            itemsPerSecond: <x> items / s
+            speed: السرعة
+            range: المدى
+            storage: التخزين
+            oneItemPerSecond: عنصر واحد / ثانية
+            itemsPerSecond: <x> عناصر / ثانية
             itemsPerSecondDouble: (x2)
-            tiles: <x> tiles
+            tiles: <x> بلاطات
     levelCompleteNotification:
-        levelTitle: Level <level>
-        completed: Completed
-        unlockText: Unlocked <reward>!
-        buttonNextLevel: Next Level
+        levelTitle: المستوى <level>
+        completed: تم
+        unlockText: تم فتح <reward>!
+        buttonNextLevel: المستوى التالي
     notifications:
-        newUpgrade: A new upgrade is available!
-        gameSaved: Your game has been saved.
-        freeplayLevelComplete: Level <level> has been completed!
+        newUpgrade: ترقية جديدة متاحة!
+        gameSaved: تم حفظ اللعبة.
+        freeplayLevelComplete: تم إكمال المستوى <level>!
     shop:
-        title: Upgrades
-        buttonUnlock: Upgrade
-        tier: Tier <x>
-        maximumLevel: MAXIMUM LEVEL (Speed x<currentMult>)
+        title: الترقيات
+        buttonUnlock: ترقية
+        tier: المستوى <x>
+        maximumLevel: الحد الأقصى للمستوى (السرعة x<currentMult>)
     statistics:
-        title: Statistics
+        title: الإحصائيات
         dataSources:
             stored:
-                title: Stored
-                description: Displaying amount of stored shapes in your central building.
+                title: المخزن
+                description: عرض كمية الأشكال المخزنة في المبنى المركزي.
             produced:
-                title: Produced
-                description: Displaying all shapes your whole factory produces, including
-                    intermediate products.
+                title: الإنتاج
+                description: عرض جميع الأشكال التي تنتجها المصنع بالكامل، بما في ذلك
+                    المنتجات الوسيطة.
             delivered:
-                title: Delivered
-                description: Displaying shapes which are delivered to your central building.
-        noShapesProduced: No shapes have been produced so far.
+                title: التسليم
+                description: عرض الأشكال التي تم تسليمها إلى المبنى المركزي.
+        noShapesProduced: لم يتم إنتاج أي أشكال حتى الآن.
         shapesDisplayUnits:
-            second: <shapes> / s
-            minute: <shapes> / m
-            hour: <shapes> / h
+            second: <shapes> / ثانية
+            minute: <shapes> / دقيقة
+            hour: <shapes> / ساعة
     settingsMenu:
-        playtime: Playtime
-        buildingsPlaced: Buildings
-        beltsPlaced: Belts
+        playtime: وقت اللعب
+        buildingsPlaced: المباني
+        beltsPlaced: السير
     tutorialHints:
-        title: Need help?
-        showHint: Show hint
-        hideHint: Close
+        title: تحتاج إلى مساعدة؟
+        showHint: عرض التلميح
+        hideHint: إغلاق
     blueprintPlacer:
-        cost: Cost
+        cost: التكلفة
     waypoints:
-        waypoints: Markers
-        hub: HUB
-        description: Left-click a marker to jump to it, right-click to delete
-            it.<br><br>Press <keybinding> to create a marker from the current
-            view, or <strong>right-click</strong> to create a marker at the
-            selected location.
-        creationSuccessNotification: Marker has been created.
+        waypoints: العلامات
+        hub: المحور
+        description: انقر بالزر الأيسر على العلامة للانتقال إليها، انقر بالزر الأيمن لحذفها
+            .<br><br>اضغط على <keybinding> لإنشاء علامة من العرض الحالي، أو
+            <strong>انقر بالزر الأيمن</strong> لإنشاء علامة في الموقع المحدد.
+        creationSuccessNotification: تم إنشاء العلامة.
     shapeViewer:
-        title: Layers
-        empty: Empty
-        copyKey: Copy Key
+        title: الطبقات
+        empty: فارغ
+        copyKey: نسخ المفتاح
     interactiveTutorial:
-        title: Tutorial
+        title: البرنامج التعليمي
         hints:
-            1_1_extractor: Place an <strong>extractor</strong> on top of a <strong>circle
-                shape</strong> to extract it!
-            1_2_conveyor: "Connect the extractor with a <strong>conveyor belt</strong> to
-                your hub!<br><br>Tip: <strong>Click and drag</strong> the belt
-                with your mouse!"
-            1_3_expand: "This is <strong>NOT</strong> an idle game! Build more extractors
-                and belts to finish the goal quicker.<br><br>Tip: Hold
-                <strong>SHIFT</strong> to place multiple extractors, and use
-                <strong>R</strong> to rotate them."
-            2_1_place_cutter: "Now place a <strong>Cutter</strong> to cut the circles in two
-                halves!<br><br> PS: The cutter always cuts from <strong>top to
-                bottom</strong> regardless of its orientation."
-            2_2_place_trash: The cutter can <strong>clog and stall</strong>!<br><br> Use a
-                <strong>trash</strong> to get rid of the currently (!) not
-                needed waste.
-            2_3_more_cutters: "Good job! Now place <strong>2 more cutters</strong> to speed
-                up this slow process!<br><br> PS: Use the <strong>0-9
-                hotkeys</strong> to access buildings faster!"
-            3_1_rectangles: "Now let's extract some rectangles! <strong>Build 4
-                extractors</strong> and connect them to the hub.<br><br> PS:
-                Hold <strong>SHIFT</strong> while dragging a belt to activate
-                the belt planner!"
-            21_1_place_quad_painter: Place the <strong>quad painter</strong> and get some
-                <strong>circles</strong>, <strong>white</strong> and
-                <strong>red</strong> color!
-            21_2_switch_to_wires: Switch to the wires layer by pressing
-                <strong>E</strong>!<br><br> Then <strong>connect all four
-                inputs</strong> of the painter with cables!
-            21_3_place_button: Awesome! Now place a <strong>Switch</strong> and connect it
-                with wires!
-            21_4_press_button: "Press the switch to make it <strong>emit a truthy
-                signal</strong> and thus activate the painter.<br><br> PS: You
-                don't have to connect all inputs! Try wiring only two."
-            1_2_hold_and_drag: Hold and drag
+            1_1_extractor: ضع <strong>مستخرجًا</strong> على شكل <strong>دائرة</strong> لاستخراجها!
+            1_2_conveyor: "قم بتوصيل المستخرج بـ <strong>حزام ناقل</strong> إلى المحور الخاص بك!
+                <br><br>نصيحة: <strong>انقر واسحب</strong> الحزام بالفأرة!"
+            1_3_expand: "هذا ليس <strong>لعبة خمول</strong>! قم ببناء المزيد من المستخرجات
+                والأحزمة لإنهاء الهدف بشكل أسرع.<br><br>نصيحة: اضغط مع الاستمرار على
+                <strong>SHIFT</strong> لوضع عدة مستخرجات، واستخدم
+                <strong>R</strong> لتدويرها."
+            2_1_place_cutter: "الآن ضع <strong>قاطعًا</strong> لقطع الدوائر إلى نصفين!
+                <br><br> ملاحظة: القاطع دائمًا يقطع من <strong>الأعلى إلى
+                الأسفل</strong> بغض النظر عن اتجاهه."
+            2_2_place_trash: قد يتعطل <strong>القاطع</strong> ويتوقف!<br><br> استخدم
+                <strong>سلة المهملات</strong> للتخلص من النفايات غير المطلوبة حاليًا.
+            2_3_more_cutters: "عمل رائع! الآن ضع <strong>2 المزيد من القواطع</strong> لتسريع
+                هذه العملية البطيئة!<br><br> ملاحظة: استخدم <strong>المفاتيح السريعة 0-9</strong> للوصول إلى المباني بشكل أسرع!"
+            3_1_rectangles: "الآن لنستخرج بعض المستطيلات! <strong>قم ببناء 4
+                مستخرجات</strong> وقم بتوصيلها إلى المحور.<br><br> ملاحظة:
+                اضغط مع الاستمرار على <strong>SHIFT</strong> أثناء سحب الحزام لتفعيل
+                مخطط السير!"
+            21_1_place_quad_painter: ضع <strong>الرسام الرباعي</strong> واحصل على بعض
+                <strong>الدوائر</strong>، <strong>اللون الأبيض</strong> و
+                <strong>اللون الأحمر</strong>!
+            21_2_switch_to_wires: انتقل إلى طبقة الأسلاك بالضغط على
+                <strong>E</strong>!<br><br> ثم <strong>قم بتوصيل جميع المدخلات الأربعة</strong>
+                للرسام بالكابلات!
+            21_3_place_button: رائع! الآن ضع <strong>مفتاحًا</strong> وقم بتوصيله
+                بالأسلاك!
+            21_4_press_button: "اضغط على المفتاح ليقوم بإرسال <strong>إشارة صحيحة</strong>
+                ومن ثم تفعيل الرسام.<br><br> ملاحظة: لست بحاجة إلى توصيل جميع المدخلات! جرب توصيل اثنين فقط."
+            1_2_hold_and_drag: امسك واسحب
     connectedMiners:
-        one_miner: 1 Miner
-        n_miners: <amount> Miners
-        limited_items: Limited to <max_throughput>
+        one_miner: عامل منجم واحد
+        n_miners: <amount> من عمال المناجم
+        limited_items: محدود بـ <max_throughput>
     watermark:
-        title: Demo version
-        desc: Click here to see the Steam version advantages!
-        get_on_steam: Get on steam
+        title: نسخة تجريبية
+        desc: انقر هنا لمشاهدة مزايا نسخة Steam!
+        get_on_steam: احصل عليها على Steam
     standaloneAdvantages:
-        no_thanks: No, thanks!
+        no_thanks: لا، شكرًا!
         points:
             levels:
-                title: 12 New Levels
-                desc: For a total of 26 levels!
+                title: 12 مستويات جديدة
+                desc: بإجمالي 26 مستوى!
             buildings:
-                title: 22 New Buildings
-                desc: Fully automate your factory!
+                title: 22 مباني جديدة
+                desc: قم بأتمتة مصنعك بالكامل!
             markers:
-                title: ∞ Markers
-                desc: Never get lost in your factory!
+                title: ∞ علامات
+                desc: لا تضيع أبدًا في مصنعك!
             wires:
-                title: Wires
-                desc: An entirely new dimension!
+                title: أسلاك
+                desc: بُعد جديد تمامًا!
             darkmode:
-                title: Dark Mode
-                desc: Stop hurting your eyes!
+                title: الوضع الليلي
+                desc: توقف عن إيذاء عينيك!
             support:
-                title: Support me
-                desc: I develop it in my spare time!
+                title: دعم المطور
+                desc: أنا أطورها في وقت فراغي!
             achievements:
-                title: Achievements
-                desc: Hunt them all!
+                title: الإنجازات
+                desc: اجمعها كلها!
             mods:
-                title: Modding support!
-                desc: Over 80 mods available!
-        titleV2: "Get the full version now on Steam to unlock:"
-        titleExpiredV2: Demo completed!
-        titleEnjoyingDemo: Enjoy the demo?
+                title: دعم التعديلات!
+                desc: أكثر من 80 تعديل متاح!
+        titleV2: "احصل على النسخة الكاملة الآن على Steam لفتح:"
+        titleExpiredV2: النسخة التجريبية مكتملة!
+        titleEnjoyingDemo: هل استمتعت بالنسخة التجريبية؟
     puzzleEditorSettings:
-        zoneTitle: Zone
-        zoneWidth: Width
-        zoneHeight: Height
-        trimZone: Trim
-        clearItems: Clear Items
-        share: Share
-        report: Report
-        clearBuildings: Clear Buildings
-        resetPuzzle: Reset Puzzle
+        zoneTitle: المنطقة
+        zoneWidth: العرض
+        zoneHeight: الارتفاع
+        trimZone: تقليم المنطقة
+        clearItems: مسح العناصر
+        share: مشاركة
+        report: بلاغ
+        clearBuildings: مسح المباني
+        resetPuzzle: إعادة ضبط اللغز
     puzzleEditorControls:
-        title: Puzzle Creator
+        title: منشئ الألغاز
         instructions:
-            - 1. Place <strong>Constant Producers</strong> to provide shapes and
-              colors to the player
-            - 2. Build one or more shapes you want the player to build later and
-              deliver it to one or more <strong>Goal Acceptors</strong>
-            - 3. Once a Goal Acceptor receives a shape for a certain amount of
-              time, it <strong>saves it as a goal</strong> that the player must
-              produce later (Indicated by the <strong>green badge</strong>).
-            - 4. Click the <strong>lock button</strong> on a building to disable
-              it.
-            - 5. Once you click review, your puzzle will be validated and you
-              can publish it.
-            - 6. Upon release, <strong>all buildings will be removed</strong>
-              except for the Producers and Goal Acceptors - That's the part that
-              the player is supposed to figure out for themselves, after all :)
+            - 1. ضع <strong>منتجين ثابتين</strong> لتوفير الأشكال
+              والألوان للاعب
+            - 2. قم ببناء شكل أو أكثر تريد أن يقوم اللاعب ببنائه لاحقًا
+              وتسليمه إلى واحد أو أكثر من <strong>مستقبلي الأهداف</strong>
+            - 3. بمجرد أن يتلقى مستقبِل الهدف شكلًا لفترة معينة
+              من الوقت، <strong>يتم حفظه كهدف</strong> يجب على اللاعب إنتاجه لاحقًا (يُشار إليه بـ<strong>الشارة الخضراء</strong>).
+            - 4. انقر على <strong>زر القفل</strong> على المبنى لتعطيله.
+            - 5. بمجرد النقر على المراجعة، سيتم التحقق من اللغز
+              ويمكنك نشره.
+            - 6. عند الإطلاق، <strong>سيتم إزالة جميع المباني</strong>
+              باستثناء المنتجين ومستقبلي الأهداف - هذا هو الجزء
+              الذي من المفترض أن يكتشفه اللاعب بمفرده بعد كل شيء :)
     puzzleCompletion:
-        title: Puzzle Completed!
-        titleLike: "Click the heart if you liked the puzzle:"
-        titleRating: How difficult did you find the puzzle?
-        titleRatingDesc: Your rating will help me to make you better suggestions in the future
-        continueBtn: Keep Playing
-        menuBtn: Menu
-        nextPuzzle: Next Puzzle
+        title: اللغز مكتمل!
+        titleLike: "انقر على القلب إذا أعجبك اللغز:"
+        titleRating: ما مدى صعوبة اللغز بالنسبة لك؟
+        titleRatingDesc: تقييمك سيساعدني في تقديم اقتراحات أفضل لك في المستقبل
+        continueBtn: استمر في اللعب
+        menuBtn: القائمة
+        nextPuzzle: اللغز التالي
     puzzleMetadata:
-        author: Author
-        shortKey: Short Key
-        rating: Difficulty score
-        averageDuration: Avg. Duration
-        completionRate: Completion rate
+        author: المؤلف
+        shortKey: المفتاح القصير
+        rating: درجة الصعوبة
+        averageDuration: متوسط المدة
+        completionRate: نسبة الإكمال
 shopUpgrades:
     belt:
         name: Belts, Distributor & Tunnels
