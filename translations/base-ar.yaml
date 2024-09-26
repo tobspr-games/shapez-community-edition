@@ -465,17 +465,17 @@ ingame:
         completionRate: نسبة الإكمال
 shopUpgrades:
     belt:
-        name: Belts, Distributor & Tunnels
-        description: Speed x<currentMult> → x<newMult>
+        name: الأحزمة، الموزعون والأنفاق
+        description: السرعة x<currentMult> → x<newMult>
     miner:
-        name: Extraction
-        description: Speed x<currentMult> → x<newMult>
+        name: الاستخراج
+        description: السرعة x<currentMult> → x<newMult>
     processors:
-        name: Cutting, Rotating & Stacking
-        description: Speed x<currentMult> → x<newMult>
+        name: القطع، التدوير والتكديس
+        description: السرعة x<currentMult> → x<newMult>
     painting:
-        name: Mixing & Painting
-        description: Speed x<currentMult> → x<newMult>
+        name: الخلط والطلاء
+        description: السرعة x<currentMult> → x<newMult>
 buildings:
     hub:
         deliver: Deliver
