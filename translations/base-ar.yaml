@@ -97,212 +97,167 @@ mainMenu:
     playFullVersionStandalone: يمكنك الآن لعب النسخة الكاملة في المتصفح الخاص بك!
 dialogs:
     buttons:
-        ok: OK
-        delete: Delete
-        cancel: Cancel
-        later: Later
-        restart: Restart
-        reset: Reset
-        getStandalone: Get Standalone
-        deleteGame: I know what I am doing
-        viewUpdate: View Update
-        showUpgrades: Show Upgrades
-        showKeybindings: Show Keybindings
-        retry: Retry
-        continue: Continue
-        playOffline: Play Offline
+        ok: موافق
+        delete: حذف
+        cancel: إلغاء
+        later: لاحقًا
+        restart: إعادة تشغيل
+        reset: إعادة ضبط
+        getStandalone: الحصول على النسخة المستقلة
+        deleteGame: أعلم ما أفعله
+        viewUpdate: عرض التحديث
+        showUpgrades: عرض الترقيات
+        showKeybindings: عرض تخصيص المفاتيح
+        retry: إعادة المحاولة
+        continue: متابعة
+        playOffline: اللعب دون اتصال
     importSavegameError:
-        title: Import Error
-        text: "Failed to import your savegame:"
+        title: خطأ في الاستيراد
+        text: "فشل في استيراد ملف الحفظ الخاص بك:"
     importSavegameSuccess:
-        title: Savegame Imported
-        text: Your savegame has been successfully imported.
+        title: تم استيراد ملف الحفظ
+        text: "تم استيراد ملف الحفظ بنجاح."
     gameLoadFailure:
-        title: Game is broken
-        text: "Failed to load your savegame:"
+        title: اللعبة معطوبة
+        text: "فشل في تحميل ملف الحفظ الخاص بك:"
     confirmSavegameDelete:
-        title: Confirm deletion
-        text: Are you sure you want to delete the following game?<br><br>
-            '<savegameName>' at level <savegameLevel><br><br> This can not be
-            undone!
+        title: تأكيد الحذف
+        text: "هل أنت متأكد أنك تريد حذف اللعبة التالية؟<br><br>'<savegameName>' في المستوى <savegameLevel><br><br> لا يمكن التراجع عن ذلك!"
     savegameDeletionError:
-        title: Failed to delete
-        text: "Failed to delete the savegame:"
+        title: فشل الحذف
+        text: "فشل في حذف ملف الحفظ:"
     restartRequired:
-        title: Restart required
-        text: You need to restart the game to apply the settings.
+        title: مطلوب إعادة تشغيل
+        text: "تحتاج إلى إعادة تشغيل اللعبة لتطبيق الإعدادات."
     editKeybinding:
-        title: Change Keybinding
-        desc: Press the key or mouse button you want to assign, or escape to cancel.
+        title: تغيير تخصيص المفتاح
+        desc: "اضغط على المفتاح أو زر الفأرة الذي تريد تخصيصه، أو اضغط على الهروب للإلغاء."
     resetKeybindingsConfirmation:
-        title: Reset keybindings
-        desc: This will reset all keybindings to their default values. Please confirm.
+        title: إعادة ضبط تخصيص المفاتيح
+        desc: "سيتم إعادة ضبط جميع تخصيصات المفاتيح إلى القيم الافتراضية. يرجى التأكيد."
     keybindingsResetOk:
-        title: Keybindings reset
-        desc: The keybindings have been reset to their respective defaults!
+        title: تم إعادة ضبط تخصيص المفاتيح
+        desc: "تم إعادة تخصيص المفاتيح إلى القيم الافتراضية!"
     featureRestriction:
-        title: Demo Version
-        desc: You tried to access a feature (<feature>) which is not available in the
-            demo. Consider getting the standalone version for the full
-            experience!
+        title: نسخة تجريبية
+        desc: "حاولت الوصول إلى ميزة (<feature>) غير متاحة في النسخة التجريبية. يمكنك الحصول على النسخة المستقلة لتجربة كاملة!"
     oneSavegameLimit:
-        title: Limited savegames
-        desc: You can only have one savegame at a time in the demo version. Please
-            remove the existing one or get the standalone version!
+        title: ملفات حفظ محدودة
+        desc: "يمكنك حفظ لعبة واحدة فقط في النسخة التجريبية. يرجى حذف اللعبة الحالية أو الحصول على النسخة المستقلة!"
     updateSummary:
-        title: New update!
-        desc: "Here are the changes since you last played:"
+        title: تحديث جديد!
+        desc: "إليك التغييرات التي طرأت منذ آخر مرة لعبت فيها:"
     upgradesIntroduction:
-        title: Unlock Upgrades
-        desc: All shapes you produce can be used to unlock upgrades - <strong>Don't
-            destroy your old factories!</strong> The upgrades tab can be found
-            on the top right corner of the screen.
+        title: فتح الترقيات
+        desc: "يمكن استخدام جميع الأشكال التي تصنعها لفتح الترقيات - <strong>لا تدمر مصانعك القديمة!</strong> يمكن العثور على علامة التبويب الخاصة بالترقيات في الزاوية اليمنى العلوية من الشاشة."
     massDeleteConfirm:
-        title: Confirm delete
-        desc: You are deleting a lot of buildings (<count> to be exact)! Are you sure
-            you want to do this?
+        title: تأكيد الحذف
+        desc: "أنت على وشك حذف العديد من المباني (<count> بالتحديد)! هل أنت متأكد أنك تريد القيام بذلك؟"
     massCutConfirm:
-        title: Confirm cut
-        desc: You are cutting a lot of buildings (<count> to be exact)! Are you sure you
-            want to do this?
+        title: تأكيد القص
+        desc: "أنت على وشك قص العديد من المباني (<count> بالتحديد)! هل أنت متأكد أنك تريد القيام بذلك؟"
     massCutInsufficientConfirm:
-        title: Confirm cut
-        desc: You can not afford to paste this area! Are you sure you want to cut it?
+        title: تأكيد القص
+        desc: "لا يمكنك تحمل تكلفة لصق هذه المنطقة! هل أنت متأكد أنك تريد قصها؟"
     blueprintsNotUnlocked:
-        title: Not unlocked yet
-        desc: Complete level 12 to unlock Blueprints!
+        title: لم يتم الفتح بعد
+        desc: "أكمل المستوى 12 لفتح المخططات!"
     keybindingsIntroduction:
-        title: Useful keybindings
-        desc: "This game has a lot of keybindings which make it easier to build big
-            factories. Here are a few, but be sure to <strong>check out the
-            keybindings</strong>!<br><br> <code class='keybinding'>CTRL</code> +
-            Drag: Select an area.<br> <code class='keybinding'>SHIFT</code>:
-            Hold to place multiple of one building.<br> <code
-            class='keybinding'>ALT</code>: Invert orientation of placed
-            belts.<br>"
+        title: تخصيصات مفيدة للمفاتيح
+        desc: "تحتوي هذه اللعبة على العديد من تخصيصات المفاتيح التي تجعل من السهل بناء مصانع كبيرة. إليك بعض منها، ولكن تأكد من <strong>الاطلاع على تخصيصات المفاتيح</strong>!<br><br> <code class='keybinding'>CTRL</code> + السحب: تحديد منطقة.<br> <code class='keybinding'>SHIFT</code>: الضغط المتواصل لوضع عدة مبانٍ من نوع واحد.<br> <code class='keybinding'>ALT</code>: عكس اتجاه الأحزمة الموضوعة.<br>"
     createMarker:
-        title: New Marker
-        titleEdit: Edit Marker
-        desc: Give it a meaningful name, you can also include a <strong>short
-            key</strong> of a shape (Which you can generate <link>here</link>)
+        title: علامة جديدة
+        titleEdit: تعديل العلامة
+        desc: "امنحها اسمًا ذا معنى، يمكنك أيضًا تضمين <strong>اختصار</strong> لشكل (يمكنك إنشاؤه <link>هنا</link>)"
     markerDemoLimit:
-        desc: You can only create two custom markers in the demo. Get the standalone for
-            unlimited markers!
+        desc: "يمكنك إنشاء علامتين مخصصتين فقط في النسخة التجريبية. احصل على النسخة المستقلة للحصول على عدد غير محدود من العلامات!"
     exportScreenshotWarning:
-        title: Export screenshot
-        desc: You requested to export your base as a screenshot. Please note that this
-            can be quite slow for a big base and even crash your game!
+        title: تصدير لقطة شاشة
+        desc: "طلبت تصدير قاعدتك كلقطة شاشة. يرجى ملاحظة أن هذا قد يكون بطيئًا جدًا لقاعدة كبيرة وقد يؤدي حتى إلى تعطل لعبتك!"
     editSignal:
-        title: Set Signal
-        descItems: "Choose a pre-defined item:"
-        descShortKey: ... or enter the <strong>short key</strong> of a shape (Which you
-            can generate <link>here</link>)
+        title: تعيين الإشارة
+        descItems: "اختر عنصرًا محددًا مسبقًا:"
+        descShortKey: "... أو أدخل <strong>الاختصار</strong> لشكل (يمكنك إنشاؤه <link>هنا</link>)"
     renameSavegame:
-        title: Rename Savegame
-        desc: You can rename your savegame here.
+        title: إعادة تسمية ملف الحفظ
+        desc: "يمكنك إعادة تسمية ملف الحفظ الخاص بك هنا."
     tutorialVideoAvailable:
-        title: Tutorial Available
-        desc: There is a tutorial video available for this level! Would you like to
-            watch it?
+        title: البرنامج التعليمي متاح
+        desc: "يوجد فيديو تعليمي متاح لهذا المستوى! هل ترغب في مشاهدته؟"
     tutorialVideoAvailableForeignLanguage:
-        title: Tutorial Available
-        desc: There is a tutorial video available for this level, but it is only
-            available in English. Would you like to watch it?
+        title: البرنامج التعليمي متاح
+        desc: "يوجد فيديو تعليمي متاح لهذا المستوى، ولكنه متاح باللغة الإنجليزية فقط. هل ترغب في مشاهدته؟"
     editConstantProducer:
-        title: Set Item
+        title: تعيين العنصر
     puzzleLoadFailed:
-        title: Puzzles failed to load
-        desc: "Unfortunately the puzzles could not be loaded:"
+        title: فشل تحميل الألغاز
+        desc: "للأسف لم يتمكن تحميل الألغاز:"
     submitPuzzle:
-        title: Submit Puzzle
-        descName: "Give your puzzle a name:"
-        descIcon: "Please enter a unique short key, which will be shown as the icon of
-            your puzzle (You can generate them <link>here</link>, or choose one
-            of the randomly suggested shapes below):"
-        placeholderName: Puzzle Title
+        title: إرسال اللغز
+        descName: "أعط لغزك اسمًا:"
+        descIcon: "يرجى إدخال اختصار فريد، سيتم عرضه كرمز للغز الخاص بك (يمكنك إنشاؤه <link>هنا</link> أو اختيار واحد من الأشكال المقترحة العشوائية أدناه):"
+        placeholderName: عنوان اللغز
     puzzleResizeBadBuildings:
-        title: Resize not possible
-        desc: You can't make the zone any smaller, because then some buildings would be
-            outside the zone.
+        title: تعذر تغيير الحجم
+        desc: "لا يمكنك تصغير المنطقة أكثر لأن بعض المباني ستصبح خارج المنطقة."
     puzzleLoadError:
-        title: Bad Puzzle
-        desc: "The puzzle failed to load:"
+        title: لغز سيئ
+        desc: "فشل في تحميل اللغز:"
     offlineMode:
-        title: Offline Mode
-        desc: We couldn't reach the servers, so the game has to run in offline mode.
-            Please make sure you have an active internet connection.
+        title: وضع غير متصل
+        desc: "لم نتمكن من الوصول إلى الخوادم، لذا يجب أن تعمل اللعبة في وضع عدم الاتصال. يرجى التأكد من أن لديك اتصال إنترنت نشط."
     puzzleDownloadError:
-        title: Download Error
-        desc: "Failed to download the puzzle:"
+        title: خطأ في التنزيل
+        desc: "فشل في تنزيل اللغز:"
     puzzleSubmitError:
-        title: Submission Error
-        desc: "Failed to submit your puzzle:"
+        title: خطأ في الإرسال
+        desc: "فشل في إرسال اللغز الخاص بك:"
     puzzleSubmitOk:
-        title: Puzzle Published
-        desc: Congratulations! Your puzzle has been published and can now be played by
-            others. You can now find it in the "My puzzles" section.
+        title: تم نشر اللغز
+        desc: "تهانينا! تم نشر لغزك ويمكن الآن للآخرين لعبه. يمكنك الآن العثور عليه في قسم 'ألغازي'."
     puzzleCreateOffline:
-        title: Offline Mode
-        desc: Since you are offline, you will not be able to save and/or publish your
-            puzzle. Would you still like to continue?
+        title: وضع غير متصل
+        desc: "نظرًا لأنك غير متصل بالإنترنت، لن تتمكن من حفظ أو نشر اللغز الخاص بك. هل ترغب في المتابعة على أي حال؟"
     puzzlePlayRegularRecommendation:
-        title: Recommendation
-        desc: I <strong>strongly</strong> recommend playing the normal game to level 12
-            before attempting the puzzle DLC, otherwise you may encounter
-            mechanics not yet introduced. Do you still want to continue?
+        title: توصية
+        desc: "أوصي بشدة باللعب في اللعبة العادية حتى المستوى 12 قبل محاولة لعب محتوى الألغاز، وإلا قد تواجه آليات لم يتم تقديمها بعد. هل ما زلت ترغب في المتابعة؟"
     puzzleShare:
-        title: Short Key Copied
-        desc: The short key of the puzzle (<key>) has been copied to your clipboard! It
-            can be entered in the puzzle menu to access the puzzle.
+        title: تم نسخ الاختصار
+        desc: "تم نسخ اختصار اللغز (<key>) إلى الحافظة الخاصة بك! يمكن إدخاله في قائمة الألغاز للوصول إلى اللغز."
     puzzleReport:
-        title: Report Puzzle
+        title: الإبلاغ عن اللغز
         options:
-            profane: Profane
-            unsolvable: Not solvable
-            trolling: Trolling
+            profane: مسيء
+            unsolvable: غير قابل للحل
+            trolling: خداع
     puzzleReportComplete:
-        title: Thank you for your feedback!
-        desc: The puzzle has been flagged.
+        title: شكرًا على ملاحظاتك!
+        desc: "تم الإبلاغ عن اللغز."
     puzzleReportError:
-        title: Failed to report
-        desc: "Your report could not get processed:"
+        title: فشل الإبلاغ
+        desc: "تعذر معالجة الإبلاغ الخاص بك:"
     puzzleLoadShortKey:
-        title: Enter short key
-        desc: Enter the short key of the puzzle to load it.
+        title: أدخل الاختصار
+        desc: "أدخل اختصار اللغز لتحميله."
     puzzleDelete:
-        title: Delete Puzzle?
-        desc: Are you sure you want to delete '<title>'? This can not be undone!
+        title: حذف اللغز؟
+        desc: "هل أنت متأكد أنك تريد حذف '<title>'؟ لا يمكن التراجع عن ذلك!"
     modsDifference:
-        title: Mod Warning
-        desc: The currently installed mods differ from the mods the savegame was created
-            with. This might cause the savegame to break or not load at all. Are
-            you sure you want to continue?
-        missingMods: Missing Mods
-        newMods: Newly installed Mods
+        title: تحذير المودات
+        desc: "المودات المثبتة حاليًا تختلف عن المودات التي تم إنشاء ملف الحفظ بها. قد يتسبب ذلك في تعطل ملف الحفظ أو عدم تحميله على الإطلاق. هل أنت متأكد أنك تريد المتابعة؟"
+        missingMods: المودات المفقودة
+        newMods: المودات الجديدة المثبتة
     resourceLoadFailed:
-        title: Resources failed to load
-        demoLinkText: shapez demo on Steam
-        descWeb: "One ore more resources could not be loaded. Make sure you have a
-            stable internet connection and try again. If this still doesn't
-            work, make sure to also disable any browser extensions (including
-            adblockers).<br><br> As an alternative, you can also play the
-            <demoOnSteamLinkText>. <br><br> Error Message:"
-        descSteamDemo: "One ore more resources could not be loaded. Try restarting the
-            game - If that does not help, try reinstalling and verifying the
-            game files via Steam. <br><br> Error Message:"
+        title: فشل تحميل الموارد
+        demoLinkText: النسخة التجريبية من شيبز على Steam
+        descWeb: "لم يتمكن تحميل واحد أو أكثر من الموارد. تأكد من أن لديك اتصال إنترنت مستقر وحاول مرة أخرى. إذا استمرت المشكلة، تأكد أيضًا من تعطيل أي ملحقات للمتصفح (بما في ذلك حاصرات الإعلانات).<br><br> كبديل، يمكنك أيضًا لعب <demoOnSteamLinkText>.<br><br> رسالة الخطأ:"
+        descSteamDemo: "لم يتمكن تحميل واحد أو أكثر من الموارد. حاول إعادة تشغيل اللعبة - إذا لم يساعد ذلك، حاول إعادة تثبيتها والتحقق من ملفات اللعبة عبر Steam. <br><br> رسالة الخطأ:"
     steamSsoError:
-        title: Full Version Logout
-        desc: You have been logged out from the Full Browser Version since either your
-            network connection is unstable or you are playing on another
-            device.<br><br> Please make sure you don't have shapez open in any
-            other browser tab or another computer with the same Steam
-            account.<br><br> You can login again in the main menu.
+        title: تسجيل الخروج من النسخة الكاملة
+        desc: "تم تسجيل خروجك من النسخة الكاملة على المتصفح نظرًا لأن اتصال الشبكة غير مستقر أو لأنك تلعب على جهاز آخر.<br><br> تأكد من عدم فتح شيبز في أي علامة تبويب أخرى أو على جهاز آخر بنفس حساب Steam.<br><br> يمكنك تسجيل الدخول مرة أخرى من القائمة الرئيسية."
     steamSsoNoOwnership:
-        title: Full Edition not owned
-        desc: In order to play the Full Edition in your Browser, you need to own both
-            the base game and the Puzzle DLC on your Steam account.<br><br>
-            Please make sure you own both, signed in with the correct Steam
-            account and then try again.
+        title: لا تملك النسخة الكاملة
+        desc: "للعب النسخة الكاملة في المتصفح، تحتاج إلى امتلاك كل من اللعبة الأساسية وDLC الألغاز على حساب Steam الخاص بك.<br><br> تأكد من امتلاكهما، وتسجيل الدخول بحساب Steam الصحيح، ثم حاول مرة أخرى."
 ingame:
     keybindingsOverlay:
         moveMap: Move
