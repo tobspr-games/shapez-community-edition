@@ -1041,64 +1041,64 @@ tips:
     - اضغط على F4 مرتين لعرض المربعات الخاصة بمؤشر الماوس والكاميرا.
     - يمكنك النقر فوق الشكل المثبت على الجانب الأيسر لإلغاء تثبيته.
 puzzleMenu:
-    play: Play
-    edit: Edit
-    title: Puzzle Mode
-    createPuzzle: Create Puzzle
-    loadPuzzle: Load
-    reviewPuzzle: Review & Publish
-    validatingPuzzle: Validating Puzzle
-    submittingPuzzle: Submitting Puzzle
-    noPuzzles: There are currently no puzzles in this section.
+    play: لعب
+    edit: تحرير
+    title: وضع الألغاز
+    createPuzzle: إنشاء لغز
+    loadPuzzle: تحميل
+    reviewPuzzle: مراجعة ونشر
+    validatingPuzzle: التحقق من صحة اللغز
+    submittingPuzzle: إرسال اللغز
+    noPuzzles: لا توجد ألغاز حاليًا في هذا القسم.
     categories:
-        levels: Levels
-        new: New
-        top-rated: Top Rated
-        mine: My Puzzles
-        easy: Easy
-        hard: Hard
-        completed: Completed
-        medium: Medium
-        official: Official
-        trending: Trending today
-        trending-weekly: Trending weekly
-        categories: Categories
-        difficulties: By Difficulty
-        account: My Puzzles
-        search: Search
+        levels: المستويات
+        new: جديد
+        top-rated: الأعلى تقييمًا
+        mine: ألغازي
+        easy: سهل
+        hard: صعب
+        completed: مكتمل
+        medium: متوسط
+        official: رسمي
+        trending: الأكثر رواجًا اليوم
+        trending-weekly: الأكثر رواجًا هذا الأسبوع
+        categories: الفئات
+        difficulties: حسب الصعوبة
+        account: ألغازي
+        search: بحث
     validation:
-        title: Invalid Puzzle
-        noProducers: Please place a Constant Producer!
-        noGoalAcceptors: Please place a Goal Acceptor!
-        goalAcceptorNoItem: One or more Goal Acceptors have not yet assigned an item.
-            Deliver a shape to them to set a goal.
-        goalAcceptorRateNotMet: One or more Goal Acceptors are not getting enough items.
-            Make sure that the indicators are green for all acceptors.
-        buildingOutOfBounds: One or more buildings are outside of the buildable area.
-            Either increase the area or remove them.
-        autoComplete: Your puzzle autocompletes itself! Please make sure your constant
-            producers are not directly delivering to your goal acceptors.
+        title: لغز غير صالح
+        noProducers: الرجاء وضع منتج ثابت!
+        noGoalAcceptors: الرجاء وضع مستلم هدف!
+        goalAcceptorNoItem: يوجد مستلم أو أكثر لم يتم تعيين عنصر له بعد.
+            قدم له شكلًا لتحديد هدف.
+        goalAcceptorRateNotMet: المستلمون لا يحصلون على ما يكفي من العناصر.
+            تأكد من أن جميع المؤشرات خضراء لجميع المستلمين.
+        buildingOutOfBounds: هناك مبنى أو أكثر خارج المنطقة القابلة للبناء.
+            إما أن تزيد المنطقة أو تزيل المباني.
+        autoComplete: اللغز يحل نفسه تلقائيًا! تأكد من أن المنتجين الثابتين لا
+            يسلمون مباشرة إلى مستلمي الهدف.
     difficulties:
-        easy: Easy
-        medium: Medium
-        hard: Hard
-        unknown: Unrated
-    dlcHint: Purchased the DLC already? Make sure it is activated by right clicking
-        shapez.io in your library, selecting Properties > DLCs.
+        easy: سهل
+        medium: متوسط
+        hard: صعب
+        unknown: غير مُصنف
+    dlcHint: اشتريت المحتوى القابل للتنزيل (DLC) بالفعل؟ تأكد من تفعيله بالنقر
+        بزر الماوس الأيمن على shapez.io في مكتبتك، ثم اختر الخصائص > المحتويات القابلة للتنزيل.
     search:
-        action: Search
-        placeholder: Enter a puzzle or author name
-        includeCompleted: Include Completed
+        action: بحث
+        placeholder: أدخل اسم لغز أو اسم مؤلف
+        includeCompleted: تضمين المكتمل
         difficulties:
-            any: Any Difficulty
-            easy: Easy
-            medium: Medium
-            hard: Hard
+            any: أي صعوبة
+            easy: سهل
+            medium: متوسط
+            hard: صعب
         durations:
-            any: Any Duration
-            short: Short (< 2 min)
-            medium: Normal
-            long: Long (> 10 min)
+            any: أي مدة
+            short: قصيرة (< 2 دقيقة)
+            medium: عادية
+            long: طويلة (> 10 دقائق)
 backendErrors:
     ratelimit: You are performing your actions too frequent. Please wait a bit.
     invalid-api-key: Failed to communicate with the backend, please try to
