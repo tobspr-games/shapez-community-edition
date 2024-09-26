@@ -52,22 +52,21 @@ global:
     discount: -<percentage>%
     discountSummerSale: عرض خاص! ينتهي في السابع من يوليو
 demoBanners:
-    title: Demo Version
+    title: نسخة تجريبية
     intro: |-
-        Get the full game <strong>now</strong> to unlock:<ul>
-            <li>All 26 levels + infinite Freeplay</li>
-            <li>22 new buildings</li>
-            <li>Mod support</li>
-            <li>Achievements</li>
-            <li>Dark Mode</li>
-            <li>... and a lot more!</li>
+        احصل علي اللعبة الكاملة <strong>الآن</strong> لفتح:<ul>
+            <li>الـ 26 مرحلة كاملين + اللعب الغير محدود!</li>
+            <li>22 مبني جديد</li>
+            <li>دعم المودات</li>
+            <li>الإنجازات</li>
+            <li>الوضع الليلي</li>
+            <li>... والمزيد!</li>
         </ul>
-    playtimeDisclaimer: The full version contains more than <strong>24 hours of content</strong>.
-    playerCount: <playerCount> players like you are currently playing shapez on Steam
-    untilEndOfDemo: Until end of demo
-    playtimeDisclaimerDownload: You can continue your savegame in the full version!
-        Click <strong>here</strong> to download your savegame.
-    titleV2: "Play the full version now for:"
+    playtimeDisclaimer: النسخة الكاملة تحتوي علي أكثر من <strong>24 ساعة من المحتوي</strong>.
+    playerCount: هناك <playerCount> لاعب مثلك يلعبون شيبز على ستيم
+    untilEndOfDemo: حتي نهاية النسخة التجريبية
+    playtimeDisclaimerDownload: يمكنك متابعة حفظ اللعبة في النسخة الكاملة! انقر <strong>هنا</strong> لتحميل حفظ اللعبة.
+    titlev2: "العب النسخة الكاملة الآن للحصول على:"
 mainMenu:
     play: Play
     continue: Continue
