@@ -11,14 +11,11 @@ steamPage:
         بينما في البداية تقوم بصناعة أشكال مختلفة، تتطلب منك المراحل المتقدمة تلوين هذه الأشكال، حيث يتوجب عليك استخراج وخلط الألوان.
 
         عند شراءك اللعبة على ستيم (Steam) تحصل على الإصدار الكامل للعبة، ولكن يمكن أيضاً لعبة نسخة تجريبية على موقع shapez.io  ثم يمكنك القرار لاحقا
-    what_others_say: What people say about shapez.io
-    nothernlion_comment: This game is great - I'm having a wonderful time playing,
-        and time has flown by.
-    notch_comment: Oh crap. I really should sleep, but I think I just figured out
-        how to make a computer in shapez.io
-    steam_review_comment: This game has stolen my life and I don't want it back.
-        Very chill factory game that won't let me stop making my lines more
-        efficient.
+    what_others_say: ماذا يقول الناس عن شيبز (أشكال)
+    what_others_say: ما يقوله الآخرون عن شيبز (أشكال)
+    nothernlion_comment: هذه اللعبة رائعة - لقد استمتعت كثيرًا باللعب، ومر الوقت سريعًا.
+    notch_comment: حقًا يجب أن أنام، لكنني أعتقد أنني اكتشفت للتو كيفية صنع حاسوب في شيبز (أشكال).
+    steam_review_comment: لقد سرقت هذه اللعبة حياتي ولا أريد استعادتها. لعبة مصانع مريحة جدًا ولن تدعني أتوقف عن تحسين خطوط الإنتاج.
 global:
     loading: Loading
     error: Error
