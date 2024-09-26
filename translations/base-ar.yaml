@@ -478,209 +478,182 @@ shopUpgrades:
         description: السرعة x<currentMult> → x<newMult>
 buildings:
     hub:
-        deliver: Deliver
-        toUnlock: to unlock
+        deliver: تسليم
+        toUnlock: لفتح
         levelShortcut: LVL
-        endOfDemo: End of Demo
+        endOfDemo: نهاية العرض التجريبي
     belt:
         default:
-            name: Conveyor Belt
-            description: Transports items, hold and drag to place multiple.
+            name: حزام ناقل
+            description: ينقل العناصر، امسك واسحب لوضع عدة عناصر.
     wire:
         default:
-            name: Energy Wire
-            description: Allows you to transport energy.
+            name: سلك الطاقة
+            description: يسمح لك بنقل الطاقة.
         second:
-            name: Wire
-            description: Transfers signals, which can be items, colors or booleans (1 / 0).
-                Different colored wires do not connect.
+            name: سلك
+            description: ينقل الإشارات، والتي يمكن أن تكون عناصر أو ألوان أو قيم بوليانية (1 / 0).
+                الأسلاك الملونة المختلفة لا تتصل.
     miner:
         default:
-            name: Extractor
-            description: Place over a shape or color to extract it.
+            name: مستخرج
+            description: ضع فوق شكل أو لون لاستخراجه.
         chainable:
-            name: Extractor (Chain)
-            description: Place over a shape or color to extract it. Can be chained.
+            name: مستخرج (سلسلة)
+            description: ضع فوق شكل أو لون لاستخراجه. يمكن ربطه بسلاسل.
     underground_belt:
         default:
-            name: Tunnel
-            description: Allows you to tunnel resources under buildings and belts.
+            name: نفق
+            description: يسمح لك بحفر الموارد تحت المباني والأحزمة.
         tier2:
-            name: Tunnel Tier II
-            description: Allows you to tunnel resources under buildings and belts.
+            name: نفق من الدرجة الثانية
+            description: يسمح لك بحفر الموارد تحت المباني والأحزمة.
     cutter:
         default:
-            name: Cutter
-            description: Cuts shapes from top to bottom and outputs both halves. <strong>If
-                you use only one part, be sure to destroy the other part or it
-                will stall!</strong>
+            name: قاطع
+            description: يقطع الأشكال من الأعلى إلى الأسفل ويخرج نصفين. <strong>إذا استخدمت جزءًا واحدًا فقط، تأكد من تدمير الجزء الآخر أو سيتوقف!</strong>
         quad:
-            name: Cutter (Quad)
-            description: Cuts shapes into four parts. <strong>If you use only one part, be
-                sure to destroy the other parts or it will stall!</strong>
+            name: قاطع (رباعي)
+            description: يقطع الأشكال إلى أربعة أجزاء. <strong>إذا استخدمت جزءًا واحدًا فقط، تأكد من تدمير الأجزاء الأخرى أو سيتوقف!</strong>
     rotater:
         default:
-            name: Rotate
-            description: Rotates shapes clockwise by 90 degrees.
+            name: دوران
+            description: يدور الأشكال بعكس عقارب الساعة بزاوية 90 درجة.
         ccw:
-            name: Rotate (CCW)
-            description: Rotates shapes counter-clockwise by 90 degrees.
+            name: دوران (عكس عقارب الساعة)
+            description: يدور الأشكال بعكس عقارب الساعة بزاوية 90 درجة.
         rotate180:
-            name: Rotate (180)
-            description: Rotates shapes by 180 degrees.
+            name: دوران (180)
+            description: يدور الأشكال بزاوية 180 درجة.
     stacker:
         default:
-            name: Stacker
-            description: Stacks both items. If they can not be merged, the right item is
-                placed above the left item.
+            name: مكدس
+            description: يكدس كلاً من العناصر. إذا لم يكن بالإمكان دمجها، يتم وضع العنصر الأيمن فوق العنصر الأيسر.
     mixer:
         default:
-            name: Color Mixer
-            description: Mixes two colors using additive blending.
+            name: خلاط الألوان
+            description: يمزج لونين باستخدام الخلط الإضافي.
     painter:
         default:
-            name: Painter
-            description: Colors the whole shape on the left input with the color from the
-                top input.
+            name: دهان
+            description: يلون الشكل بالكامل في المدخل الأيسر باللون من المدخل العلوي.
         mirrored:
-            name: Painter
-            description: Colors the whole shape on the left input with the color from the
-                top input.
+            name: دهان
+            description: يلون الشكل بالكامل في المدخل الأيسر باللون من المدخل العلوي.
         double:
-            name: Painter (Double)
-            description: Colors the shapes on the left inputs with the color from the top
-                input.
+            name: دهان (مزدوج)
+            description: يلون الأشكال في المدخلين الأيسر باللون من المدخل العلوي.
         quad:
-            name: Painter (Quad)
-            description: Allows you to color each quadrant of the shape individually. Only
-                slots with a <strong>truthy signal</strong> on the wires layer
-                will be painted!
+            name: دهان (رباعي)
+            description: يتيح لك تلوين كل ربع من الشكل بشكل فردي. سيتم تلوين الفتحات فقط التي تحتوي على <strong>إشارة صحيحة</strong> في طبقة الأسلاك!
     trash:
         default:
-            name: Trash
-            description: Accepts inputs from all sides and destroys them. Forever.
+            name: نفايات
+            description: يقبل المدخلات من جميع الاتجاهات ويدمرها. إلى الأبد.
     balancer:
         default:
-            name: Balancer
-            description: Multifunctional - Evenly distributes all inputs onto all outputs.
+            name: موازن
+            description: متعدد الاستخدامات - يوزع المدخلات بشكل متساوٍ على جميع المخرجات.
         merger:
-            name: Merger (compact)
-            description: Merges two conveyor belts into one.
+            name: دمج (مضغوط)
+            description: يدمج حزامين ناقلين في واحد.
         merger-inverse:
-            name: Merger (compact)
-            description: Merges two conveyor belts into one.
+            name: دمج (مضغوط)
+            description: يدمج حزامين ناقلين في واحد.
         splitter:
-            name: Splitter (compact)
-            description: Splits one conveyor belt into two.
+            name: مقسم (مضغوط)
+            description: يقسم حزامًا ناقلًا واحدًا إلى اثنين.
         splitter-inverse:
-            name: Splitter (compact)
-            description: Splits one conveyor belt into two.
+            name: مقسم (مضغوط)
+            description: يقسم حزامًا ناقلًا واحدًا إلى اثنين.
     storage:
         default:
-            name: Storage
-            description: Stores excess items, up to a given capacity. Prioritizes the left
-                output and can be used as an overflow gate.
+            name: تخزين
+            description: يخزن العناصر الزائدة، حتى سعة معينة. يفضل المخرج الأيسر ويمكن استخدامه كبوابة فائضة.
     wire_tunnel:
         default:
-            name: Wire Crossing
-            description: Allows to cross two wires without connecting them.
+            name: عبور السلك
+            description: يسمح بعبور سلكين دون ربطهما.
     constant_signal:
         default:
-            name: Constant Signal
-            description: Emits a constant signal, which can be either a shape, color or
-                boolean (1 / 0).
+            name: إشارة ثابتة
+            description: يصدر إشارة ثابتة، والتي يمكن أن تكون شكلًا أو لونًا أو قيمة بوليانية (1 / 0).
     lever:
         default:
-            name: Switch
-            description: Can be toggled to emit a boolean signal (1 / 0) on the wires layer,
-                which can then be used to control for example an item filter.
+            name: مفتاح
+            description: يمكن toggled لإصدار إشارة بوليانية (1 / 0) في طبقة الأسلاك، والتي يمكن استخدامها للتحكم على سبيل المثال في فلتر العناصر.
     logic_gate:
         default:
-            name: AND Gate
-            description: Emits a boolean "1" if both inputs are truthy. (Truthy means shape,
-                color or boolean "1")
+            name: بوابة AND
+            description: تصدر "1" بوليانية إذا كانت المدخلات كلاهما صحيحتين. (الصحيحة تعني شكل، لون أو بوليانية "1")
         not:
-            name: NOT Gate
-            description: Emits a boolean "1" if the input is not truthy. (Truthy means
-                shape, color or boolean "1")
+            name: بوابة NOT
+            description: تصدر "1" بوليانية إذا لم تكن المدخلات صحيحة. (الصحيحة تعني شكل، لون أو بوليانية "1")
         xor:
-            name: XOR Gate
-            description: Emits a boolean "1" if one of the inputs is truthy, but not both.
-                (Truthy means shape, color or boolean "1")
+            name: بوابة XOR
+            description: تصدر "1" بوليانية إذا كانت واحدة من المدخلات صحيحة، ولكن ليس كلاهما. (الصحيحة تعني شكل، لون أو بوليانية "1")
         or:
-            name: OR Gate
-            description: Emits a boolean "1" if one of the inputs is truthy. (Truthy means
-                shape, color or boolean "1")
+            name: بوابة OR
+            description: تصدر "1" بوليانية إذا كانت واحدة من المدخلات صحيحة. (الصحيحة تعني شكل، لون أو بوليانية "1")
     transistor:
         default:
-            name: Transistor
-            description: Forwards the bottom input if the side input is truthy (a shape,
-                color or "1").
+            name: ترانزستور
+            description: ينقل المدخل السفلي إذا كانت المدخل الجانبي صحيحة (شكل، لون أو "1").
         mirrored:
-            name: Transistor
-            description: Forwards the bottom input if the side input is truthy (a shape,
-                color or "1").
+            name: ترانزستور
+            description: ينقل المدخل السفلي إذا كانت المدخل الجانبي صحيحة (شكل، لون أو "1").
     filter:
         default:
-            name: Filter
-            description: Connect a signal to route all matching items to the top and the
-                remaining to the right. Can be controlled with boolean signals
-                too.
+            name: فلتر
+            description: قم بتوصيل إشارة لتوجيه جميع العناصر المطابقة إلى الأعلى والباقي إلى اليمين. يمكن التحكم فيه باستخدام إشارات بوليانية أيضًا.
     display:
         default:
-            name: Display
-            description: Connect a signal to show it on the display - It can be a shape,
-                color or boolean.
+            name: شاشة عرض
+            description: قم بتوصيل إشارة لإظهارها على الشاشة - يمكن أن تكون شكلًا أو لونًا أو بوليانية.
     reader:
         default:
-            name: Belt Reader
-            description: Allows to measure the average belt throughput. Outputs the last
-                read item on the wires layer (once unlocked).
+            name: قارئ الحزام
+            description: يسمح بقياس متوسط إنتاج الحزام. يصدر العنصر الأخير الذي تم قراءته في طبقة الأسلاك (عند الفتح).
     analyzer:
         default:
-            name: Shape Analyzer
-            description: Analyzes the top right quadrant of the lowest layer of the shape
-                and returns its shape and color.
+            name: محلل الشكل
+            description: يحلل الربع العلوي الأيمن من أدنى طبقة الشكل ويعيد شكلها ولونها.
     comparator:
         default:
-            name: Compare
-            description: Returns boolean "1" if both signals are exactly equal. Can compare
-                shapes, items and booleans.
+            name: مقارنة
+            description: يعيد "1" بوليانية إذا كانت كلا الإشارتين متساويتين تمامًا. يمكن مقارنة الأشكال، العناصر والبوليانات.
     virtual_processor:
         default:
-            name: Virtual Cutter
-            description: Virtually cuts the shape into two halves.
+            name: قاطع افتراضي
+            description: يقطع الشكل افتراضيًا إلى نصفين.
         rotater:
-            name: Virtual Rotater
-            description: Virtually rotates the shape, both clockwise and counter-clockwise.
+            name: دوار افتراضي
+            description: يدور الشكل افتراضيًا، سواء بعقارب الساعة أو عكسها.
         unstacker:
-            name: Virtual Unstacker
-            description: Virtually extracts the topmost layer to the right output and the
-                remaining ones to the left.
+            name: مفكك افتراضي
+            description: يستخرج الطبقة العليا إلى المخرج الأيمن والطبقات المتبقية إلى اليسار.
         stacker:
-            name: Virtual Stacker
-            description: Virtually stacks the right shape onto the left.
+            name: مكدس افتراضي
+            description: يكدس الشكل الأيمن على الأيسر افتراضيًا.
         painter:
-            name: Virtual Painter
-            description: Virtually paints the shape from the bottom input with the shape on
-                the right input.
+            name: دهان افتراضي
+            description: يلون الشكل من المدخل السفلي بالشكل الموجود في المدخل الأيمن.
     item_producer:
         default:
-            name: Item Producer
-            description: Available in sandbox mode only, outputs the given signal from the
-                wires layer on the regular layer.
+            name: منتج العناصر
+            description: متاح فقط في وضع الصندوق الرمل، يصدر الإشارة المعطاة من طبقة الأسلاك إلى الطبقة العادية.
     constant_producer:
         default:
-            name: Constant Producer
-            description: Constantly outputs a specified shape or color.
+            name: منتج ثابت
+            description: يصدر بشكل مستمر شكلًا أو لونًا محددًا.
     goal_acceptor:
         default:
-            name: Goal Acceptor
-            description: Deliver shapes to the goal acceptor to set them as a goal.
+            name: مستقبل الأهداف
+            description: تسليم الأشكال إلى مستقبل الأهداف لتحديدها كهدف.
     block:
         default:
-            name: Block
-            description: Allows you to block a tile.
+            name: كتلة
+            description: يسمح لك بحجب بلاطة.
 storyRewards:
     reward_cutter_and_trash:
         title: Cutting Shapes
