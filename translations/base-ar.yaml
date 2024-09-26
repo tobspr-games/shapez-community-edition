@@ -960,19 +960,19 @@ keybindings:
         massSelectClear: مسح الأحزمة
         showShapeTooltip: إظهار نص الأدوات لشكل الإخراج
 about:
-    title: About this Game
+    title: حول هذه اللعبة
     body: >-
-        This game is open source and developed by <a
-        href="https://github.com/tobspr" target="_blank">Tobias Springer</a>
-        (this is me).<br><br>
+        هذه اللعبة مفتوحة المصدر وتم تطويرها بواسطة <a
+        href="https://github.com/tobspr" target="_blank">توبياس سبرينغر</a>
+        (هذا أنا).<br><br>
 
-        If you want to contribute, check out <a href="<githublink>" target="_blank">shapez.io on GitHub</a>.<br><br>
+        إذا كنت ترغب في المساهمة، تحقق من <a href="<githublink>" target="_blank">shapez.io على GitHub</a>.<br><br>
 
-        This game wouldn't have been possible without the great Discord community around my games - You should really join the <a href="<discordlink>" target="_blank">Discord server</a>!<br><br>
+        لم تكن هذه اللعبة ممكنة بدون مجتمع Discord الرائع حول ألعابي - يجب عليك حقًا الانضمام إلى <a href="<discordlink>" target="_blank">خادم Discord</a>!<br><br>
 
-        The soundtrack was made by <a href="https://soundcloud.com/pettersumelius" target="_blank">Peppsen</a> - He's awesome.<br><br>
+        الموسيقى التصويرية تم إعدادها بواسطة <a href="https://soundcloud.com/pettersumelius" target="_blank">بيبسن</a> - إنه رائع.<br><br>
 
-        Finally, huge thanks to my best friend <a href="https://github.com/niklas-dahl" target="_blank">Niklas</a> - Without our Factorio sessions, this game would never have existed.
+        وأخيرًا، شكر كبير لأفضل أصدقائي <a href="https://github.com/niklas-dahl" target="_blank">نيكلاس</a> - بدون جلساتنا في Factorio، لما كانت هذه اللعبة موجودة أبدًا.
 changelog:
     title: Changelog
 demo:
