@@ -1100,31 +1100,27 @@ puzzleMenu:
             medium: عادية
             long: طويلة (> 10 دقائق)
 backendErrors:
-    ratelimit: You are performing your actions too frequent. Please wait a bit.
-    invalid-api-key: Failed to communicate with the backend, please try to
-        update/restart the game (Invalid Api Key).
-    unauthorized: Failed to communicate with the backend, please try to
-        update/restart the game (Unauthorized).
-    bad-token: Failed to communicate with the backend, please try to update/restart
-        the game (Bad Token).
-    bad-id: Invalid puzzle identifier.
-    not-found: The given puzzle could not be found.
-    bad-category: The given category could not be found.
-    bad-short-key: The given short key is invalid.
-    profane-title: Your puzzle title contains profane words.
-    bad-title-too-many-spaces: Your puzzle title is too short.
-    bad-shape-key-in-emitter: A constant producer has an invalid item.
-    bad-shape-key-in-goal: A goal acceptor has an invalid item.
-    no-emitters: Your puzzle does not contain any constant producers.
-    no-goals: Your puzzle does not contain any goal acceptors.
-    short-key-already-taken: This short key is already taken, please use another one.
-    can-not-report-your-own-puzzle: You can not report your own puzzle.
-    bad-payload: The request contains invalid data.
-    bad-building-placement: Your puzzle contains invalid placed buildings.
-    timeout: The request timed out.
-    too-many-likes-already: The puzzle alreay got too many likes. If you still want
-        to remove it, please contact support@shapez.io!
-    no-permission: You do not have the permission to perform this action.
+    ratelimit: أنت تقوم بتنفيذ أفعالك بشكل متكرر جدًا. الرجاء الانتظار قليلًا.
+    invalid-api-key: فشل الاتصال بالخادم الخلفي، يرجى محاولة تحديث/إعادة تشغيل اللعبة (مفتاح API غير صالح).
+    unauthorized: فشل الاتصال بالخادم الخلفي، يرجى محاولة تحديث/إعادة تشغيل اللعبة (غير مصرح).
+    bad-token: فشل الاتصال بالخادم الخلفي، يرجى محاولة تحديث/إعادة تشغيل اللعبة (رمز غير صالح).
+    bad-id: معرف اللغز غير صالح.
+    not-found: لم يتم العثور على اللغز المعطى.
+    bad-category: لم يتم العثور على الفئة المعطاة.
+    bad-short-key: المفتاح القصير المعطى غير صالح.
+    profane-title: عنوان اللغز الخاص بك يحتوي على كلمات بذيئة.
+    bad-title-too-many-spaces: عنوان اللغز الخاص بك قصير جدًا.
+    bad-shape-key-in-emitter: المنتج الثابت يحتوي على عنصر غير صالح.
+    bad-shape-key-in-goal: مستلم الهدف يحتوي على عنصر غير صالح.
+    no-emitters: لغزك لا يحتوي على أي منتجات ثابتة.
+    no-goals: لغزك لا يحتوي على أي مستلمي أهداف.
+    short-key-already-taken: المفتاح القصير هذا مأخوذ بالفعل، يرجى استخدام آخر.
+    can-not-report-your-own-puzzle: لا يمكنك الإبلاغ عن لغزك الخاص.
+    bad-payload: الطلب يحتوي على بيانات غير صالحة.
+    bad-building-placement: لغزك يحتوي على مباني تم وضعها بشكل غير صالح.
+    timeout: انتهت مهلة الطلب.
+    too-many-likes-already: اللغز حصل بالفعل على عدد كبير جدًا من الإعجابات. إذا كنت لا تزال تريد إزالته، يرجى الاتصال بـ support@shapez.io!
+    no-permission: ليس لديك الصلاحية لتنفيذ هذا الإجراء.
 mods:
     title: Mods
     author: Author
