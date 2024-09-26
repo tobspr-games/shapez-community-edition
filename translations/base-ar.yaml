@@ -68,36 +68,33 @@ demoBanners:
     playtimeDisclaimerDownload: يمكنك متابعة حفظ اللعبة في النسخة الكاملة! انقر <strong>هنا</strong> لتحميل حفظ اللعبة.
     titlev2: "العب النسخة الكاملة الآن للحصول على:"
 mainMenu:
-    play: Play
-    continue: Continue
-    newGame: New Game
-    changelog: Changelog
-    subreddit: Reddit
-    importSavegame: Import
-    openSourceHint: This game is open source!
-    discordLink: Official Discord Server
-    helpTranslate: Help translate!
-    madeBy: Made by <author-link>
-    browserWarning: Sorry, but the game is known to run slow on your browser! Get
-        the standalone version or download chrome for the full experience.
-    savegameLevel: Level <x>
-    savegameLevelUnknown: Unknown Level
-    savegameUnnamed: Unnamed
-    puzzleMode: Puzzle Mode
-    back: Back
-    puzzleDlcText: Do you enjoy compacting and optimizing factories? Get the Puzzle
-        DLC now on Steam for even more fun!
-    puzzleDlcWishlist: Wishlist now!
-    puzzleDlcViewNow: View Dlc
+    play: العب
+    continue: اكمل
+    newGame: لعبة جديدة
+    changelog: سجل التغييرات
+    subreddit: ريديت
+    importSavegame: استيراد حفظ اللعبة
+    openSourceHint: هذه اللعبة مفتوحة المصدر!
+    discordLink: سيرفر ديسكور الرسمي
+    helpTranslate: ساعدنا في الترجمة!
+    madeBy: انتجت من قبل <author-link>
+    browserWarning: عذرًا، ولكن اللعبة تعمل ببطء على متصفحك! احصل على النسخة المستقلة أو قم بتحميل كروم لتجربة كاملة.
+    savegameLevel: مرحلة رقم <x>
+    savegameLevelUnknown: مرحلة غير معروفة
+    savegameUnnamed: بلا اسم
+    puzzleMode: وضع الألغاز
+    back: العودة
+    puzzleDlcText: هل تستمتع بتحسين وتصغير المصانع؟ احصل على إضافة الألغاز الآن على ستيم لمزيد من المرح!
+    puzzleDlcWishlist: اضفنا إلى قائمة امانيك!
+    puzzleDlcViewNow: اعرض الاضافة الان!
     mods:
-        title: Active Mods
-        warningPuzzleDLC: Playing the Puzzle DLC is not possible with mods. Please
-            disable all mods to play the DLC.
-    playingFullVersion: You are now playing the full version!
-    logout: Logout
-    noActiveSavegames: No active savegames found - Click play to start a new game!
-    playFullVersionV2: Bough shapez on Steam? Play the full version in your Browser!
-    playFullVersionStandalone: You can now also play the full version in your Browser!
+        title: المودات النشطة
+        warningPuzzleDLC: لا يمكنك لعب اضافة الالغاز مع المودات, يرجي ايقاف جميع المودات اولًا.
+    playingFullVersion: انت الان تلعب اللعبة كاملة!
+    logout: تسجيل الخروج
+    noActiveSavegames: لم يتم العثور على حفظ اللعبة النشطة - انقر على اللعب لبدء لعبة جديدة!
+    playFullVersionV2: اشتريت شيبز على ستيم؟ العب النسخة الكاملة في متصفحك!
+    playFullVersionStandalone: يمكنك الآن لعب النسخة الكاملة في المتصفح الخاص بك!
 dialogs:
     buttons:
         ok: OK
