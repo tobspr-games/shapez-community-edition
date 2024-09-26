@@ -17,8 +17,8 @@ steamPage:
     notch_comment: حقًا يجب أن أنام، لكنني أعتقد أنني اكتشفت للتو كيفية صنع حاسوب في شيبز (أشكال).
     steam_review_comment: لقد سرقت هذه اللعبة حياتي ولا أريد استعادتها. لعبة مصانع مريحة جدًا ولن تدعني أتوقف عن تحسين خطوط الإنتاج.
 global:
-    loading: Loading
-    error: Error
+    loading: جاري التحميل
+    error: خطأ
     thousandsDivider: ","
     decimalSeparator: .
     suffix:
@@ -31,11 +31,11 @@ global:
         oneSecondAgo: قبل ثانية واحدة
         xSecondsAgo: قبل <x> ثانية
         oneMinuteAgo: قبل دقيقة واحدة
-        xMinutesAgo: <x> minutes ago
-        oneHourAgo: one hour ago
-        xHoursAgo: <x> hours ago
-        oneDayAgo: one day ago
-        xDaysAgo: <x> days ago
+        xMinutesAgo: قبل <x> دقيقة
+        oneHourAgo: قبل ساعة واحدة
+        xHoursAgo: قبل <x> ساعة
+        oneDayAgo: قبل يوم واحد
+        xDaysAgo: قبل <x> يوم
         secondsShort: <seconds>s
         minutesAndSecondsShort: <minutes>m <seconds>s
         hoursAndMinutesShort: <hours>h <minutes>m
@@ -47,10 +47,10 @@ global:
         escape: ESC
         shift: SHIFT
         space: SPACE
-    loggingIn: Logging in
-    loadingResources: Downloading additional resources (<percentage> %)
+    loggingIn: جاري تسجيل الدخول
+    loadingResources: يتم تحميل الملفات (<percentage> %)
     discount: -<percentage>%
-    discountSummerSale: SPECIAL PROMOTION! Offer ends 7 July
+    discountSummerSale: عرض خاص! ينتهي في السابع من يوليو
 demoBanners:
     title: Demo Version
     intro: |-
