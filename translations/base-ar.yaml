@@ -878,88 +878,87 @@ settings:
     tickrateHz: <amount> هرتز
     newBadge: جديد!
 keybindings:
-    title: Keybindings
-    hint: "Tip: Be sure to make use of CTRL, SHIFT and ALT! They enable different
-        placement options."
-    resetKeybindings: Reset Keybindings
+    title: اختصارات المفاتيح
+    hint: "نصيحة: تأكد من استخدام CTRL، SHIFT و ALT! فهي توفر خيارات وضع مختلفة."
+    resetKeybindings: إعادة تعيين اختصارات المفاتيح
     categoryLabels:
-        general: Application
-        ingame: Game
-        navigation: Navigating
-        placement: Placement
-        massSelect: Mass Select
-        buildings: Building Shortcuts
-        placementModifiers: Placement Modifiers
-        mods: Provided by Mods
+        general: التطبيق
+        ingame: اللعبة
+        navigation: التنقل
+        placement: وضع الأشياء
+        massSelect: تحديد جماعي
+        buildings: اختصارات المباني
+        placementModifiers: تعديلات الوضع
+        mods: مقدمة من الإضافات
     mappings:
-        confirm: Confirm
-        back: Back
-        mapMoveUp: Move Up
-        mapMoveRight: Move Right
-        mapMoveDown: Move Down
-        mapMoveLeft: Move Left
-        mapMoveFaster: Move Faster
-        centerMap: Center Map
-        mapZoomIn: Zoom in
-        mapZoomOut: Zoom out
-        createMarker: Create Marker
-        menuOpenShop: Upgrades
-        menuOpenStats: Statistics
-        menuClose: Close Menu
-        toggleHud: Toggle HUD
-        toggleFPSInfo: Toggle FPS and Debug Info
-        switchLayers: Switch layers
-        exportScreenshot: Export whole Base as Image
-        belt: Conveyor Belt
-        underground_belt: Tunnel
-        miner: Extractor
-        cutter: Cutter
-        rotater: Rotate
-        stacker: Stacker
-        mixer: Color Mixer
-        painter: Painter
-        trash: Trash
-        wire: Energy Wire
-        pipette: Pipette
-        rotateWhilePlacing: Rotate
-        rotateInverseModifier: "Modifier: Rotate CCW instead"
-        cycleBuildingVariants: Cycle Variants
-        confirmMassDelete: Delete area
-        pasteLastBlueprint: Paste last blueprint
-        cycleBuildings: Cycle Buildings
-        lockBeltDirection: Enable belt planner
-        switchDirectionLockSide: "Planner: Switch side"
-        massSelectStart: Hold and drag to start
-        massSelectSelectMultiple: Select multiple areas
-        massSelectCopy: Copy area
-        massSelectCut: Cut area
-        placementDisableAutoOrientation: Disable automatic orientation
-        placeMultiple: Stay in placement mode
-        placeInverse: Invert automatic belt orientation
-        balancer: Balancer
-        storage: Storage
-        constant_signal: Constant Signal
-        logic_gate: Logic Gate
-        lever: Switch (regular)
-        filter: Filter
-        wire_tunnel: Wire Crossing
-        display: Display
-        reader: Belt Reader
-        virtual_processor: Virtual Cutter
-        transistor: Transistor
-        analyzer: Shape Analyzer
-        comparator: Compare
-        item_producer: Item Producer (Sandbox)
-        copyWireValue: "Wires: Copy value below cursor"
-        rotateToUp: "Rotate: Point Up"
-        rotateToDown: "Rotate: Point Down"
-        rotateToRight: "Rotate: Point Right"
-        rotateToLeft: "Rotate: Point Left"
-        constant_producer: Constant Producer
-        goal_acceptor: Goal Acceptor
-        block: Block
-        massSelectClear: Clear belts
-        showShapeTooltip: Show shape output tooltip
+        confirm: تأكيد
+        back: رجوع
+        mapMoveUp: التحرك للأعلى
+        mapMoveRight: التحرك لليمين
+        mapMoveDown: التحرك للأسفل
+        mapMoveLeft: التحرك لليسار
+        mapMoveFaster: التحرك أسرع
+        centerMap: تمركز الخريطة
+        mapZoomIn: تكبير
+        mapZoomOut: تصغير
+        createMarker: إنشاء علامة
+        menuOpenShop: الترقيات
+        menuOpenStats: الإحصائيات
+        menuClose: إغلاق القائمة
+        toggleHud: تبديل واجهة المستخدم
+        toggleFPSInfo: تبديل معلومات FPS و Debug
+        switchLayers: تبديل الطبقات
+        exportScreenshot: تصدير القاعدة كصورة
+        belt: سير ناقل
+        underground_belt: نفق
+        miner: مستخرج
+        cutter: قاطع
+        rotater: تدوير
+        stacker: مكدس
+        mixer: خلاط ألوان
+        painter: رسام
+        trash: سلة المهملات
+        wire: سلك الطاقة
+        pipette: ماصة
+        rotateWhilePlacing: تدوير أثناء الوضع
+        rotateInverseModifier: "تعديل: تدوير عكس عقارب الساعة"
+        cycleBuildingVariants: تبديل المتغيرات
+        confirmMassDelete: حذف منطقة
+        pasteLastBlueprint: لصق المخطط الأخير
+        cycleBuildings: تبديل المباني
+        lockBeltDirection: تفعيل مخطط السير الناقل
+        switchDirectionLockSide: "مخطط: تبديل الجانب"
+        massSelectStart: اضغط واسحب لبدء التحديد
+        massSelectSelectMultiple: تحديد عدة مناطق
+        massSelectCopy: نسخ المنطقة
+        massSelectCut: قطع المنطقة
+        placementDisableAutoOrientation: تعطيل التوجه التلقائي
+        placeMultiple: البقاء في وضع الوضع
+        placeInverse: عكس توجه السير التلقائي
+        balancer: موزع
+        storage: تخزين
+        constant_signal: إشارة ثابتة
+        logic_gate: بوابة منطقية
+        lever: مفتاح (عادي)
+        filter: فلتر
+        wire_tunnel: عبور الأسلاك
+        display: شاشة عرض
+        reader: قارئ السير الناقل
+        virtual_processor: قاطع افتراضي
+        transistor: ترانزستور
+        analyzer: محلل الأشكال
+        comparator: مقارنة
+        item_producer: منتج العناصر (صندوق الرمل)
+        copyWireValue: "أسلاك: نسخ القيمة تحت المؤشر"
+        rotateToUp: "تدوير: الاتجاه للأعلى"
+        rotateToDown: "تدوير: الاتجاه للأسفل"
+        rotateToRight: "تدوير: الاتجاه لليمين"
+        rotateToLeft: "تدوير: الاتجاه لليسار"
+        constant_producer: منتج ثابت
+        goal_acceptor: مستلم الهدف
+        block: كتلة
+        massSelectClear: مسح الأحزمة
+        showShapeTooltip: إظهار نص الأدوات لشكل الإخراج
 about:
     title: About this Game
     body: >-
