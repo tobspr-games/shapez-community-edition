@@ -740,176 +740,143 @@ storyRewards:
         title: نهاية العرض
         desc: لقد وصلت إلى نهاية النسخة التجريبية!
 settings:
-    title: Settings
+    title: الإعدادات
     categories:
-        general: General
-        userInterface: User Interface
-        advanced: Advanced
-        performance: Performance
+        general: عام
+        userInterface: واجهة المستخدم
+        advanced: متقدم
+        performance: الأداء
     versionBadges:
-        dev: Development
-        staging: Staging
-        prod: Production
-    buildDate: Built <at-date>
+        dev: تطوير
+        staging: تجريبي
+        prod: إنتاج
+    buildDate: تم البناء في <at-date>
     labels:
         uiScale:
-            title: Interface scale
-            description: Changes the size of the user interface. The interface will still
-                scale based on your device's resolution, but this setting
-                controls the amount of scaling.
+            title: مقياس الواجهة
+            description: يغير حجم واجهة المستخدم. ستظل الواجهة تتناسب بناءً على دقة جهازك، لكن هذا الإعداد يتحكم في مقدار التناسب.
             scales:
-                super_small: Super small
-                small: Small
-                regular: Regular
-                large: Large
-                huge: Huge
+                super_small: صغير جدًا
+                small: صغير
+                regular: عادي
+                large: كبير
+                huge: ضخم
         autosaveInterval:
-            title: Autosave Interval
-            description: Controls how often the game saves automatically. You can also
-                disable it entirely here.
+            title: فترة الحفظ التلقائي
+            description: يتحكم في مدى تكرار حفظ اللعبة تلقائيًا. يمكنك أيضًا تعطيله تمامًا هنا.
             intervals:
-                one_minute: 1 Minute
-                two_minutes: 2 Minutes
-                five_minutes: 5 Minutes
-                ten_minutes: 10 Minutes
-                twenty_minutes: 20 Minutes
-                disabled: Disabled
+                one_minute: 1 دقيقة
+                two_minutes: 2 دقيقة
+                five_minutes: 5 دقائق
+                ten_minutes: 10 دقائق
+                twenty_minutes: 20 دقيقة
+                disabled: معطل
         scrollWheelSensitivity:
-            title: Zoom sensitivity
-            description: Changes how sensitive the zoom is (Either mouse wheel or trackpad).
+            title: حساسية الزوم
+            description: يغير مدى حساسية الزوم (سواء من خلال عجلة الماوس أو لوحة اللمس).
             sensitivity:
-                super_slow: Super slow
-                slow: Slow
-                regular: Regular
-                fast: Fast
-                super_fast: Super fast
+                super_slow: بطيء جدًا
+                slow: بطيء
+                regular: عادي
+                fast: سريع
+                super_fast: سريع جدًا
         movementSpeed:
-            title: Movement speed
-            description: Changes how fast the view moves when using the keyboard.
+            title: سرعة الحركة
+            description: يغير مدى سرعة حركة العرض عند استخدام لوحة المفاتيح.
             speeds:
-                super_slow: Super slow
-                slow: Slow
-                regular: Regular
-                fast: Fast
-                super_fast: Super Fast
-                extremely_fast: Extremely Fast
+                super_slow: بطيء جدًا
+                slow: بطيء
+                regular: عادي
+                fast: سريع
+                super_fast: سريع جدًا
+                extremely_fast: سريع للغاية
         language:
-            title: Language
-            description: Change the language. All translations are user-contributed and
-                might be incomplete!
+            title: اللغة
+            description: تغيير اللغة. جميع الترجمات مقدمة من المستخدمين وقد تكون غير مكتملة!
         enableColorBlindHelper:
-            title: Color Blind Mode
-            description: Enables various tools which allow you to play the game if you are
-                color blind.
+            title: وضع عمى الألوان
+            description: يمكنك من استخدام أدوات مختلفة تسمح لك بلعب اللعبة إذا كنت تعاني من عمى الألوان.
         fullscreen:
-            title: Fullscreen
-            description: It is recommended to play the game in fullscreen to get the best
-                experience. Only available in the standalone.
+            title: ملء الشاشة
+            description: يوصى بلعب اللعبة في وضع ملء الشاشة للحصول على أفضل تجربة. متاح فقط في النسخة المستقلة.
         soundsMuted:
-            title: Mute Sounds
-            description: If enabled, mutes all sound effects.
+            title: كتم الصوت
+            description: إذا تم تفعيله، سيتم كتم جميع المؤثرات الصوتية.
         musicMuted:
-            title: Mute Music
-            description: If enabled, mutes all music.
+            title: كتم الموسيقى
+            description: إذا تم تفعيله، سيتم كتم جميع الموسيقى.
         theme:
-            title: Game theme
-            description: Choose the game theme (light / dark).
+            title: سمة اللعبة
+            description: اختر سمة اللعبة (فاتح / داكن).
             themes:
-                dark: Dark
-                light: Light
+                dark: داكن
+                light: فاتح
         refreshRate:
-            title: Simulation Target
-            description: If you have a 144hz monitor, change the refresh rate here so the
-                game will properly simulate at higher refresh rates. This might
-                actually decrease the FPS if your computer is too slow.
+            title: معدل التحديث
+            description: إذا كان لديك شاشة بمعدل 144 هرتز، غير معدل التحديث هنا حتى تتمكن اللعبة من المحاكاة بشكل صحيح بمعدلات تحديث أعلى. قد يؤدي ذلك إلى تقليل معدل الإطارات إذا كان جهاز الكمبيوتر بطيئًا جدًا.
         alwaysMultiplace:
-            title: Multiplace
-            description: If enabled, all buildings will stay selected after placement until
-                you cancel it. This is equivalent to holding SHIFT permanently.
+            title: وضع التعدد
+            description: إذا تم تفعيله، ستبقى جميع المباني مختارة بعد التثبيت حتى تلغي ذلك. هذا يعادل الضغط على SHIFT بشكل دائم.
         offerHints:
-            title: Hints & Tutorials
-            description: Whether to offer hints and tutorials while playing. Also hides
-                certain UI elements up to a given level to make it easier to get
-                into the game.
+            title: تلميحات ودروس
+            description: سواء لتقديم التلميحات والدروس أثناء اللعب. كما يخفي بعض عناصر واجهة المستخدم حتى مستوى معين لتسهيل الدخول إلى اللعبة.
         enableTunnelSmartplace:
-            title: Smart Tunnels
-            description: When enabled, placing tunnels will automatically remove unnecessary
-                belts. This also enables you to drag tunnels and excess tunnels
-                will get removed.
+            title: الأنفاق الذكية
+            description: عند تفعيلها، ستقوم بوضع الأنفاق تلقائيًا بإزالة الأحزمة غير الضرورية. يتيح لك ذلك أيضًا سحب الأنفاق وسيتم إزالة الأنفاق الزائدة.
         vignette:
-            title: Vignette
-            description: Enables the vignette, which darkens the screen corners and makes
-                text easier to read.
+            title: تأثير الإضاءة المحيطية
+            description: يمكنك من تفعيل التأثير الذي يظلم زوايا الشاشة مما يجعل النص أسهل في القراءة.
         rotationByBuilding:
-            title: Rotation by building type
-            description: Each building type remembers the rotation you last set it to
-                individually. This may be more comfortable if you frequently
-                switch between placing different building types.
+            title: التدوير حسب نوع المبنى
+            description: يتذكر كل نوع من المباني التدوير الذي قمت بضبطه آخر مرة بشكل فردي. قد يكون ذلك أكثر راحة إذا كنت تتنقل بشكل متكرر بين أنواع المباني المختلفة.
         compactBuildingInfo:
-            title: Compact Building Infos
-            description: Shortens info boxes for buildings by only showing their ratios.
-                Otherwise a description and image is shown.
+            title: معلومات المباني المضغوطة
+            description: يقصر صناديق المعلومات للمباني من خلال عرض نسبها فقط. بخلاف ذلك، يظهر وصف وصورة.
         disableCutDeleteWarnings:
-            title: Disable Cut/Delete Warnings
-            description: Disables the warning dialogs brought up when cutting/deleting more
-                than 100 entities.
+            title: تعطيل تحذيرات القطع / الحذف
+            description: يعطل رسائل التحذير التي تظهر عند قطع / حذف أكثر من 100 كيان.
         soundVolume:
-            title: Sound Volume
-            description: Set the volume for sound effects
+            title: مستوى صوت المؤثرات الصوتية
+            description: ضبط مستوى الصوت للمؤثرات الصوتية.
         musicVolume:
-            title: Music Volume
-            description: Set the volume for music
+            title: مستوى صوت الموسيقى
+            description: ضبط مستوى الصوت للموسيقى.
         lowQualityMapResources:
-            title: Low Quality Map Resources
-            description: Simplifies the rendering of resources on the map when zoomed in to
-                improve performance. It even looks cleaner, so be sure to try it
-                out!
+            title: موارد خريطة ذات جودة منخفضة
+            description: تبسط من عرض الموارد على الخريطة عند التكبير لتحسين الأداء. تبدو أكثر نظافة، لذا تأكد من تجربتها!
         disableTileGrid:
-            title: Disable Grid
-            description: Disabling the tile grid can help with the performance. This also
-                makes the game look cleaner!
+            title: تعطيل الشبكة
+            description: قد يساعد تعطيل الشبكة في الأداء. هذا يجعل اللعبة تبدو أنظف أيضًا!
         clearCursorOnDeleteWhilePlacing:
-            title: Clear Cursor on Right Click
-            description: Enabled by default, clears the cursor whenever you right click
-                while you have a building selected for placement. If disabled,
-                you can delete buildings by right-clicking while placing a
-                building.
+            title: مسح المؤشر عند الحذف بالزر الأيمن
+            description: مفعل بشكل افتراضي، يقوم بمسح المؤشر كلما قمت بالنقر بالزر الأيمن بينما لديك مبنى محدد للتثبيت. إذا تم تعطيله، يمكنك حذف المباني من خلال النقر بالزر الأيمن أثناء وضع مبنى.
         lowQualityTextures:
-            title: Low quality textures (Ugly)
-            description: Uses low quality textures to save performance. This will make the
-                game look very ugly!
+            title: قوام منخفض الجودة (قبيح)
+            description: يستخدم قوامًا منخفض الجودة لتوفير الأداء. سيجعل هذا اللعبة تبدو قبيحة جدًا!
         displayChunkBorders:
-            title: Display Chunk Borders
-            description: The game is divided into chunks of 16x16 tiles, if this setting is
-                enabled the borders of each chunk are displayed.
+            title: عرض حدود الكتل
+            description: يتم تقسيم اللعبة إلى كتل من 16x16 بلاطة، إذا تم تفعيل هذا الإعداد، يتم عرض حدود كل كتلة.
         pickMinerOnPatch:
-            title: Pick miner on resource patch
-            description: Enabled by default, selects the miner if you use the pipette when
-                hovering a resource patch.
+            title: اختر المنقب على رقعة الموارد
+            description: مفعل بشكل افتراضي، يختار المنقب إذا استخدمت pipette عند التحويم فوق رقعة الموارد.
         simplifiedBelts:
-            title: Simplified Belts (Ugly)
-            description: Does not render belt items except when hovering the belt to save
-                performance. I do not recommend to play with this setting if you
-                do not absolutely need the performance.
+            title: أحزمة مبسطة (قبيحة)
+            description: لا يقوم بعرض عناصر الحزام إلا عند التحويم فوق الحزام لتوفير الأداء. لا أوصي باللعب بهذا الإعداد إذا لم تكن بحاجة ماسة للأداء.
         enableMousePan:
-            title: Enable Mouse Pan
-            description: Allows to move the map by moving the cursor to the edges of the
-                screen. The speed depends on the Movement Speed setting.
+            title: تفعيل الحركة بالماوس
+            description: يتيح لك نقل الخريطة عن طريق تحريك المؤشر إلى حواف الشاشة. السرعة تعتمد على إعداد سرعة الحركة.
         zoomToCursor:
-            title: Zoom towards Cursor
-            description: If activated the zoom will happen in the direction of your mouse
-                position, otherwise in the middle of the screen.
+            title: الزوم نحو المؤشر
+            description: إذا تم تفعيله، سيكون الزوم في اتجاه موضع الماوس، بخلاف ذلك يكون في منتصف الشاشة.
         mapResourcesScale:
-            title: Map Resources Size
-            description: Controls the size of the shapes on the map overview (when zooming
-                out).
+            title: حجم موارد الخريطة
+            description: يتحكم في حجم الأشكال على نظرة الخريطة (عند التكبير).
         shapeTooltipAlwaysOn:
-            title: Shape Tooltip - Show Always
-            description: Whether to always show the shape tooltip when hovering buildings,
-                instead of having to hold 'ALT'.
+            title: نص الأداة - عرض دائم
+            description: سواء لإظهار نص الأداة للأشكال عند التحويم فوق المباني، بدلاً من الحاجة إلى الضغط على 'ALT'.
     rangeSliderPercentage: <amount> %
-    tickrateHz: <amount> Hz
-    newBadge: New!
+    tickrateHz: <amount> هرتز
+    newBadge: جديد!
 keybindings:
     title: Keybindings
     hint: "Tip: Be sure to make use of CTRL, SHIFT and ALT! They enable different
