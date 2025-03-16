@@ -1,9 +1,10 @@
 /* typehints:start */
 import { Application } from "../application";
 /* typehints:end */
+import { FsError } from "@/platform/fs_error";
 import { globalConfig } from "../core/config";
 import { createLogger } from "../core/logging";
-import { FILE_NOT_FOUND, Storage } from "../platform/storage";
+import { Storage } from "../platform/storage";
 import { Mod } from "./mod";
 import { ModInterface } from "./mod_interface";
 import { MOD_SIGNALS } from "./mod_signals";
@@ -140,7 +141,10 @@ export class ModLoader {
         LOG.log("hook:init", this.app, this.app.storage);
         this.exposeExports();
 
+        // TODO: Make use of the passed file name, or wait for ModV2
         let mods = await ipcRenderer.invoke("get-mods");
+        mods = mods.map(mod => mod.source);
+
         if (G_IS_DEV && globalConfig.debug.externalModUrl) {
             const modURLs = Array.isArray(globalConfig.debug.externalModUrl)
                 ? globalConfig.debug.externalModUrl
@@ -224,7 +228,7 @@ export class ModLoader {
                     const storedSettings = await storage.readFileAsync(modDataFile);
                     settings = JSON.parse(storedSettings);
                 } catch (ex) {
-                    if (ex === FILE_NOT_FOUND) {
+                    if (ex instanceof FsError && ex.isFileNotFound()) {
                         // Write default data
                         await storage.writeFileAsync(modDataFile, JSON.stringify(meta.settings));
                     } else {

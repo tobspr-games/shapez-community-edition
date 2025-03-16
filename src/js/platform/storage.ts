@@ -1,66 +1,59 @@
-/* typehints:start */
-import { Application } from "../application";
-/* typehints:end */
-
-export const FILE_NOT_FOUND = "file_not_found";
+import { Application } from "@/application";
+import { FsError } from "./fs_error";
 
 export class Storage {
-    constructor(app) {
-        /** @type {Application} */
+    readonly app: Application;
+
+    constructor(app: Application) {
         this.app = app;
     }
 
     /**
      * Initializes the storage
-     * @returns {Promise<void>}
      */
-    initialize() {
+    initialize(): Promise<void> {
         return Promise.resolve();
     }
 
     /**
      * Writes a string to a file asynchronously
-     * @param {string} filename
-     * @param {string} contents
-     * @returns {Promise<void>}
      */
-    writeFileAsync(filename, contents) {
-        return ipcRenderer.invoke("fs-job", {
-            type: "write",
-            filename,
-            contents,
-        });
+    writeFileAsync(filename: string, contents: string): Promise<void> {
+        return ipcRenderer
+            .invoke("fs-job", {
+                type: "write",
+                filename,
+                contents,
+            })
+            .catch(e => this.wrapError(e));
     }
 
     /**
-     * Reads a string asynchronously. Returns Promise<FILE_NOT_FOUND> if file was not found.
-     * @param {string} filename
-     * @returns {Promise<string>}
+     * Reads a string asynchronously
      */
-    readFileAsync(filename) {
+    readFileAsync(filename: string): Promise<string> {
         return ipcRenderer
             .invoke("fs-job", {
                 type: "read",
                 filename,
             })
-            .then(res => {
-                if (res && res.error === FILE_NOT_FOUND) {
-                    throw FILE_NOT_FOUND;
-                }
-
-                return res;
-            });
+            .catch(e => this.wrapError(e));
     }
 
     /**
      * Tries to delete a file
-     * @param {string} filename
-     * @returns {Promise<void>}
      */
-    deleteFileAsync(filename) {
-        return ipcRenderer.invoke("fs-job", {
-            type: "delete",
-            filename,
-        });
+    deleteFileAsync(filename: string): Promise<void> {
+        return ipcRenderer
+            .invoke("fs-job", {
+                type: "delete",
+                filename,
+            })
+            .catch(e => this.wrapError(e));
+    }
+
+    private wrapError(err: unknown): Promise<never> {
+        const message = err instanceof Error ? err.message : err.toString();
+        return Promise.reject(new FsError(message, { cause: err }));
     }
 }

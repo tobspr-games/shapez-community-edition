@@ -2,7 +2,7 @@
 import { Application } from "../application";
 /* typehints:end */
 
-import { FILE_NOT_FOUND } from "../platform/storage";
+import { FsError } from "@/platform/fs_error";
 import { compressObject, decompressObject } from "../savegame/savegame_compressor";
 import { asyncCompressor, compressionPrefix } from "./async_compression";
 import { IS_DEBUG, globalConfig } from "./config";
@@ -165,7 +165,7 @@ export class ReadWriteProxy {
 
                 // Check for errors during read
                 .catch(err => {
-                    if (err === FILE_NOT_FOUND) {
+                    if (err instanceof FsError && err.isFileNotFound()) {
                         logger.log("File not found, using default data");
 
                         // File not found or unreadable, assume default file

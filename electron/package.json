@@ -8,10 +8,7 @@
     "scripts": {
         "start": "tsc && electron ."
     },
-    "dependencies": {
-        "async-lock": "^1.4.1",
-        "electron-window-state": "^5.0.3"
-    },
+    "dependencies": {},
     "devDependencies": {
         "electron": "^31.3.0"
     }
