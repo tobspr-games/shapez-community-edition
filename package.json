@@ -26,6 +26,7 @@
         "clipboard-copy": "^3.1.0",
         "crc": "^3.8.0",
         "debounce-promise": "^3.1.2",
+        "electron": "^35.0.3",
         "howler": "^2.1.2",
         "lz-string": "^1.4.4",
         "semver": "^7.3.5"
