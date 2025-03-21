@@ -93,18 +93,18 @@ export class PlatformWrapperImplElectron {
      * @param {boolean} flag
      */
     setFullscreen(flag) {
-        ipcRenderer.send("set-fullscreen", flag);
+        ipcRenderer.invoke("set-fullscreen", flag);
     }
 
     getSupportsAppExit() {
         return true;
     }
+
     /**
      * Attempts to quit the app
      */
     exitApp() {
-        logger.log(this, "Sending app exit signal");
-        ipcRenderer.send("exit-app");
+        window.close();
     }
 
     /**

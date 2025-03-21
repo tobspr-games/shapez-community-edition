@@ -1,19 +1,15 @@
 {
     "name": "electron",
     "version": "1.0.0",
-    "main": "index.js",
     "license": "MIT",
+    "type": "module",
+    "main": "dist/index.js",
     "private": true,
     "scripts": {
-        "start": "electron .",
-        "startDev": "electron . --dev"
+        "start": "tsc && electron ."
     },
+    "dependencies": {},
     "devDependencies": {
         "electron": "^31.3.0"
-    },
-    "optionalDependencies": {},
-    "dependencies": {
-        "async-lock": "^1.4.1",
-        "electron-window-state": "^5.0.3"
     }
 }

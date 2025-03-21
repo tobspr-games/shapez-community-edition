@@ -1,13 +1,11 @@
 import packager from "electron-packager";
-import pj from "../electron/package.json" with { type: "json" };
-import path from "path/posix";
-import { getVersion } from "./buildutils.js";
 import fs from "fs/promises";
-import childProcess from "child_process";
-import { promisify } from "util";
-const exec = promisify(childProcess.exec);
 import gulp from "gulp";
+import path from "path/posix";
+import electronPackageJson from "../electron/package.json" with { type: "json" };
 import { BUILD_VARIANTS } from "./build_variants.js";
+import { getVersion } from "./buildutils.js";
+import { buildProject } from "./typescript.js";
 
 import gulpClean from "gulp-clean";
 
@@ -30,6 +28,7 @@ export default Object.fromEntries(
 
             function copyPrefab() {
                 const requiredFiles = [
+                    path.join(electronBaseDir, "preload.cjs"),
                     path.join(electronBaseDir, "node_modules", "**", "*.*"),
                     path.join(electronBaseDir, "node_modules", "**", ".*"),
                     path.join(electronBaseDir, "favicon*"),
@@ -37,53 +36,34 @@ export default Object.fromEntries(
                 return gulp.src(requiredFiles, { base: electronBaseDir }).pipe(gulp.dest(tempDestBuildDir));
             }
 
-            async function writePackageJson() {
-                const packageJsonString = JSON.stringify(
-                    {
-                        scripts: {
-                            start: pj.scripts.start,
-                        },
-                        devDependencies: pj.devDependencies,
-                        dependencies: pj.dependencies,
-                        optionalDependencies: pj.optionalDependencies,
-                    },
-                    null,
-                    4
-                );
+            async function transpileTypeScript() {
+                const tsconfigPath = path.join(electronBaseDir, "tsconfig.json");
+                const outDir = path.join(tempDestBuildDir, "dist");
 
-                await fs.writeFile(path.join(tempDestBuildDir, "package.json"), packageJsonString);
+                buildProject(tsconfigPath, undefined, outDir);
+                return Promise.resolve();
             }
 
-            function minifyCode() {
-                return gulp.src(path.join(electronBaseDir, "*.js")).pipe(gulp.dest(tempDestBuildDir));
+            async function writePackageJson() {
+                const pkgJson = structuredClone(electronPackageJson);
+                pkgJson.version = getVersion();
+                delete pkgJson.scripts;
+
+                const packageJsonString = JSON.stringify(pkgJson);
+                await fs.writeFile(path.join(tempDestBuildDir, "package.json"), packageJsonString);
             }
 
             function copyGamefiles() {
                 return gulp.src("../build/**/*.*", { base: "../build" }).pipe(gulp.dest(tempDestBuildDir));
             }
 
-            async function killRunningInstances() {
-                try {
-                    await exec("taskkill /F /IM shapezio.exe");
-                } catch (ex) {
-                    console.warn("Failed to kill running instances, maybe none are up.");
-                }
-            }
-
             const prepare = {
                 cleanup,
                 copyPrefab,
+                transpileTypeScript,
                 writePackageJson,
-                minifyCode,
                 copyGamefiles,
-                all: gulp.series(
-                    killRunningInstances,
-                    cleanup,
-                    copyPrefab,
-                    writePackageJson,
-                    minifyCode,
-                    copyGamefiles
-                ),
+                all: gulp.series(cleanup, copyPrefab, transpileTypeScript, writePackageJson, copyGamefiles),
             };
 
             /**
@@ -136,7 +116,6 @@ export default Object.fromEntries(
             return [
                 variant,
                 {
-                    killRunningInstances,
                     prepare,
                     package: pack,
                 },
