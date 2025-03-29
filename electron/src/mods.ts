@@ -1,5 +1,5 @@
 import { app, protocol } from "electron";
-import fs from "fs/promises";
+import fs from "node:fs/promises";
 import path from "path";
 import { switches, userData } from "./config.js";
 import type { Dirent } from "fs";
@@ -21,8 +21,20 @@ type DirectoryNode = {
 
 type Node = FileNode | DirectoryNode;
 
+// type ModMetadata = {
+//    name: string;
+//    version: string;
+//    author: string;
+//    website: string;
+//    description: string;
+//    id: string;
+//    minimumGameVersion?: string;
+//    settings: [];
+//    doesNotAffectSavegame?: boolean
+// }
+
 interface Mod {
-    // metadata: Record<string, unknown>;
+    // metadata: ModMetadata;
     contents: DirectoryNode;
 }
 
@@ -55,6 +67,7 @@ export class ModsHandler {
 
     private async protocolHandler(req: Request): Promise<Response> {
         const url = new URL(req.url);
+        url.search
 
         return new Response();
     }
@@ -106,25 +119,21 @@ export class ModsHandler {
 
         return directory
             .filter(entry => entry.name.endsWith(modFileSuffix))
-            // .filter(entry => !entry.isDirectory())
             .map(entry => path.join(entry.path, entry.name));
     }
 
     private async readDirectory(dirPath: string): Promise<DirectoryNode> {
-        const dir = await fs.opendir(dirPath, {recursive: true});
+        const entries = await fs.readdir(dirPath, {
+            withFileTypes: true,
+        });
         const contents: Node[] = [];
 
-        let entry: Dirent | null;
-        while (true) {
-            entry = await dir.read();
-            if (entry == null) {
-                break
-            }
+        for (const entry of entries) {
             if (entry.isFile) {
                 contents.push({
                     isFile: true,
                     name: entry.name,
-                    contents: (await fs.readFile(path.join(entry.path, entry.name))).buffer
+                    contents: (await fs.readFile(path.join(dirPath, entry.name))).buffer
                 });
             } else {
                 contents.push({
@@ -134,7 +143,6 @@ export class ModsHandler {
                 });
             }
         }
-        await dir.close();
 
         return {
             isFile: false,
