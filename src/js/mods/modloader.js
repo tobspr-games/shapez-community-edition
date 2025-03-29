@@ -17,6 +17,24 @@ const LOG = createLogger("mods");
 /**
  * @typedef {{
  *   name: string;
+ *   isFile: true;
+ *   contents: Buffer;
+ * }} FileNode
+
+ * @typedef {{
+ *   name: string;
+ *   isFile: false;
+ *   contents: Node[];
+ * }} DirectoryNode
+ *
+ * @typedef {FileNode | DirectoryNode} Node
+ *
+ * @typedef {{
+ *   contents: DirectoryNode;
+ * }} IPCMod
+ *
+ * @typedef {{
+ *   name: string;
  *   version: string;
  *   author: string;
  *   website: string;
@@ -142,8 +160,23 @@ export class ModLoader {
         this.exposeExports();
 
         // TODO: Make use of the passed file name, or wait for ModV2
-        let mods = await ipcRenderer.invoke("get-mods");
-        mods = mods.map(mod => mod.source);
+        const decoder = new TextDecoder()
+        /**
+         * @type {string[]}
+         */
+        let mods = await ipcRenderer.invoke("get-mods").map(( /**@type {IPCMod} */mod) => {
+            const contents = mod.contents.contents;
+            for (const item of contents) {
+                if (item.isFile && item.name == 'index.js') {
+                    return decoder.decode(item.contents)
+                }
+            }
+            return null;
+        });
+
+        mods = mods.filter(el => {
+            return el != null;
+        });
 
         if (G_IS_DEV && globalConfig.debug.externalModUrl) {
             const modURLs = Array.isArray(globalConfig.debug.externalModUrl)

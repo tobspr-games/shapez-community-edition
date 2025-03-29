@@ -1,35 +1,73 @@
-import { app } from "electron";
+import { app, protocol } from "electron";
 import fs from "fs/promises";
 import path from "path";
 import { switches, userData } from "./config.js";
+import type { Dirent } from "fs";
 
 const localPrefix = "@/";
-const modFileSuffix = ".js";
+const modFileSuffix = ".asar";
+
+type FileNode = {
+    name: string;
+    isFile: true;
+    contents: Buffer;
+};
+
+type DirectoryNode = {
+    name: string;
+    isFile: false;
+    contents: Node[];
+};
+
+type Node = FileNode | DirectoryNode;
 
 interface Mod {
-    file: string;
-    source: string;
+    // metadata: Record<string, unknown>;
+    contents: DirectoryNode;
 }
 
 export class ModsHandler {
     private mods: Mod[] = [];
     readonly modsDir = path.join(userData, "mods");
+    readonly modScheme = "mod";
+
+    constructor() {
+        // Docs say this must be called before the ready event
+        protocol.registerSchemesAsPrivileged([
+            {
+                scheme: this.modScheme,
+                privileges: {
+                    bypassCSP: true,
+                    supportFetchAPI: true,
+                    allowServiceWorkers: true
+                }
+            },
+        ]);
+    }
 
     async getMods(): Promise<Mod[]> {
         return this.mods;
+    }
+
+    installProtocol() {
+        protocol.handle(this.modScheme, this.protocolHandler);
+    }
+
+    private async protocolHandler(req: Request): Promise<Response> {
+        const url = new URL(req.url);
+
+        return new Response();
     }
 
     async reload() {
         // Ensure the directory exists!
         fs.mkdir(this.modsDir, { recursive: true });
 
-        // Note: this method is written with classic .js mods in mind
         const files = await this.getModPaths();
         const allMods: Mod[] = [];
 
         for (const file of files) {
-            const source = await fs.readFile(file, "utf-8");
-            allMods.push({ file, source });
+            allMods.push({ contents: await this.readDirectory(file) });
         }
 
         this.mods = allMods;
@@ -70,5 +108,35 @@ export class ModsHandler {
             .filter(entry => entry.name.endsWith(modFileSuffix))
             .filter(entry => !entry.isDirectory())
             .map(entry => path.join(entry.path, entry.name));
+    }
+
+    private async readDirectory(dirPath: string): Promise<DirectoryNode> {
+        const dir = await fs.opendir(dirPath);
+        const contents: Node[] = [];
+
+        let entry: Dirent | null;
+        while (entry !== null) {
+            entry = await dir.read();
+            if (entry.isFile) {
+                contents.push({
+                    isFile: true,
+                    name: entry.name,
+                    contents: await fs.readFile(entry.path),
+                });
+            } else {
+                contents.push({
+                    isFile: false,
+                    name: entry.name,
+                    contents: (await this.readDirectory(entry.path)).contents,
+                });
+            }
+        }
+        await dir.close();
+
+        return {
+            isFile: false,
+            name: path.basename(dirPath),
+            contents,
+        };
     }
 }
