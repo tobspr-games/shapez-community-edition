@@ -6,7 +6,8 @@
     "main": "dist/index.js",
     "private": true,
     "scripts": {
-        "start": "tsc && electron ."
+        "start": "tsc && electron .",
+        "startDev": "tsc && electron . --dev"
     },
     "dependencies": {},
     "devDependencies": {

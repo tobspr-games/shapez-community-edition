@@ -18,9 +18,9 @@ const LOG = createLogger("mods");
  * @typedef {{
  *   name: string;
  *   isFile: true;
- *   contents: Buffer;
+ *   contents: ArrayBufferLike;
  * }} FileNode
-
+ *
  * @typedef {{
  *   name: string;
  *   isFile: false;
@@ -164,7 +164,7 @@ export class ModLoader {
         /**
          * @type {string[]}
          */
-        let mods = await ipcRenderer.invoke("get-mods").map(( /**@type {IPCMod} */mod) => {
+        let mods = (await ipcRenderer.invoke("get-mods")).map(( /**@type {IPCMod} */mod) => {
             const contents = mod.contents.contents;
             for (const item of contents) {
                 if (item.isFile && item.name == 'index.js') {

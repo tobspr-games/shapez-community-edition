@@ -10,7 +10,7 @@ const modFileSuffix = ".asar";
 type FileNode = {
     name: string;
     isFile: true;
-    contents: Buffer;
+    contents: ArrayBufferLike;
 };
 
 type DirectoryNode = {
@@ -106,22 +106,25 @@ export class ModsHandler {
 
         return directory
             .filter(entry => entry.name.endsWith(modFileSuffix))
-            .filter(entry => !entry.isDirectory())
+            // .filter(entry => !entry.isDirectory())
             .map(entry => path.join(entry.path, entry.name));
     }
 
     private async readDirectory(dirPath: string): Promise<DirectoryNode> {
-        const dir = await fs.opendir(dirPath);
+        const dir = await fs.opendir(dirPath, {recursive: true});
         const contents: Node[] = [];
 
         let entry: Dirent | null;
-        while (entry !== null) {
+        while (true) {
             entry = await dir.read();
+            if (entry == null) {
+                break
+            }
             if (entry.isFile) {
                 contents.push({
                     isFile: true,
                     name: entry.name,
-                    contents: await fs.readFile(entry.path),
+                    contents: (await fs.readFile(path.join(entry.path, entry.name))).buffer
                 });
             } else {
                 contents.push({
