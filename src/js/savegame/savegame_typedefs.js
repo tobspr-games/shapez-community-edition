@@ -12,7 +12,7 @@
  * @typedef {{
  *   failedMam: boolean,
  *   trashedCount: number,
- *   usedInverseRotater: boolean
+ *   usedInverseRotator: boolean
  * }} SavegameStats
  *
  * @typedef {{
@@ -50,8 +50,6 @@
  *   savegames: Array<SavegameMetadata>
  * }} SavegamesData
  */
-
-import { MetaBuilding } from "../game/meta_building";
 
 // Notice: Update backend too
 /**

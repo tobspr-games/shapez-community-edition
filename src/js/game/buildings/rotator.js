@@ -10,17 +10,17 @@ import { GameRoot } from "../root";
 import { enumHubGoalRewards } from "../tutorial_goals";
 
 /** @enum {string} */
-export const enumRotaterVariants = { ccw: "ccw", rotate180: "rotate180" };
+export const enumRotatorVariants = { ccw: "ccw", rotate180: "rotate180" };
 
 const overlayMatrices = {
     [defaultBuildingVariant]: generateMatrixRotations([0, 1, 1, 1, 1, 0, 0, 1, 1]),
-    [enumRotaterVariants.ccw]: generateMatrixRotations([1, 1, 0, 0, 1, 1, 1, 1, 0]),
-    [enumRotaterVariants.rotate180]: generateMatrixRotations([1, 1, 0, 1, 1, 1, 0, 1, 1]),
+    [enumRotatorVariants.ccw]: generateMatrixRotations([1, 1, 0, 0, 1, 1, 1, 1, 0]),
+    [enumRotatorVariants.rotate180]: generateMatrixRotations([1, 1, 0, 1, 1, 1, 0, 1, 1]),
 };
 
-export class MetaRotaterBuilding extends MetaBuilding {
+export class MetaRotatorBuilding extends MetaBuilding {
     constructor() {
-        super("rotater");
+        super("rotator");
     }
 
     static getAllVariantCombinations() {
@@ -31,11 +31,11 @@ export class MetaRotaterBuilding extends MetaBuilding {
             },
             {
                 internalId: 12,
-                variant: enumRotaterVariants.ccw,
+                variant: enumRotatorVariants.ccw,
             },
             {
                 internalId: 13,
-                variant: enumRotaterVariants.rotate180,
+                variant: enumRotatorVariants.rotate180,
             },
         ];
     }
@@ -70,15 +70,15 @@ export class MetaRotaterBuilding extends MetaBuilding {
         }
         switch (variant) {
             case defaultBuildingVariant: {
-                const speed = root.hubGoals.getProcessorBaseSpeed(enumItemProcessorTypes.rotater);
+                const speed = root.hubGoals.getProcessorBaseSpeed(enumItemProcessorTypes.rotator);
                 return [[T.ingame.buildingPlacement.infoTexts.speed, formatItemsPerSecond(speed)]];
             }
-            case enumRotaterVariants.ccw: {
-                const speed = root.hubGoals.getProcessorBaseSpeed(enumItemProcessorTypes.rotaterCCW);
+            case enumRotatorVariants.ccw: {
+                const speed = root.hubGoals.getProcessorBaseSpeed(enumItemProcessorTypes.rotatorCCW);
                 return [[T.ingame.buildingPlacement.infoTexts.speed, formatItemsPerSecond(speed)]];
             }
-            case enumRotaterVariants.rotate180: {
-                const speed = root.hubGoals.getProcessorBaseSpeed(enumItemProcessorTypes.rotater180);
+            case enumRotatorVariants.rotate180: {
+                const speed = root.hubGoals.getProcessorBaseSpeed(enumItemProcessorTypes.rotator180);
                 return [[T.ingame.buildingPlacement.infoTexts.speed, formatItemsPerSecond(speed)]];
             }
         }
@@ -90,11 +90,11 @@ export class MetaRotaterBuilding extends MetaBuilding {
      */
     getAvailableVariants(root) {
         let variants = [defaultBuildingVariant];
-        if (root.hubGoals.isRewardUnlocked(enumHubGoalRewards.reward_rotater_ccw)) {
-            variants.push(enumRotaterVariants.ccw);
+        if (root.hubGoals.isRewardUnlocked(enumHubGoalRewards.reward_rotator_ccw)) {
+            variants.push(enumRotatorVariants.ccw);
         }
-        if (root.hubGoals.isRewardUnlocked(enumHubGoalRewards.reward_rotater_180)) {
-            variants.push(enumRotaterVariants.rotate180);
+        if (root.hubGoals.isRewardUnlocked(enumHubGoalRewards.reward_rotator_180)) {
+            variants.push(enumRotatorVariants.rotate180);
         }
         return variants;
     }
@@ -103,7 +103,7 @@ export class MetaRotaterBuilding extends MetaBuilding {
      * @param {GameRoot} root
      */
     getIsUnlocked(root) {
-        return root.hubGoals.isRewardUnlocked(enumHubGoalRewards.reward_rotater);
+        return root.hubGoals.isRewardUnlocked(enumHubGoalRewards.reward_rotator);
     }
 
     /**
@@ -114,7 +114,7 @@ export class MetaRotaterBuilding extends MetaBuilding {
         entity.addComponent(
             new ItemProcessorComponent({
                 inputsPerCharge: 1,
-                processorType: enumItemProcessorTypes.rotater,
+                processorType: enumItemProcessorTypes.rotator,
             })
         );
 
@@ -145,19 +145,19 @@ export class MetaRotaterBuilding extends MetaBuilding {
     updateVariants(entity, rotationVariant, variant) {
         switch (variant) {
             case defaultBuildingVariant: {
-                entity.components.ItemProcessor.type = enumItemProcessorTypes.rotater;
+                entity.components.ItemProcessor.type = enumItemProcessorTypes.rotator;
                 break;
             }
-            case enumRotaterVariants.ccw: {
-                entity.components.ItemProcessor.type = enumItemProcessorTypes.rotaterCCW;
+            case enumRotatorVariants.ccw: {
+                entity.components.ItemProcessor.type = enumItemProcessorTypes.rotatorCCW;
                 break;
             }
-            case enumRotaterVariants.rotate180: {
-                entity.components.ItemProcessor.type = enumItemProcessorTypes.rotater180;
+            case enumRotatorVariants.rotate180: {
+                entity.components.ItemProcessor.type = enumItemProcessorTypes.rotator180;
                 break;
             }
             default:
-                assertAlways(false, "Unknown rotater variant: " + variant);
+                assertAlways(false, "Unknown rotator variant: " + variant);
         }
     }
 }

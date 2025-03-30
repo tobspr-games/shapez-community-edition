@@ -2,17 +2,17 @@ import { Vector, enumDirection } from "../../core/vector";
 import { LogicGateComponent, enumLogicGateType } from "../components/logic_gate";
 import { WiredPinsComponent, enumPinSlotType } from "../components/wired_pins";
 import { Entity } from "../entity";
-import { defaultBuildingVariant, MetaBuilding } from "../meta_building";
+import { MetaBuilding, defaultBuildingVariant } from "../meta_building";
 import { GameRoot } from "../root";
 import { enumHubGoalRewards } from "../tutorial_goals";
 import { MetaCutterBuilding } from "./cutter";
 import { MetaPainterBuilding } from "./painter";
-import { MetaRotaterBuilding } from "./rotater";
+import { MetaRotatorBuilding } from "./rotator";
 import { MetaStackerBuilding } from "./stacker";
 
 /** @enum {string} */
 export const enumVirtualProcessorVariants = {
-    rotater: "rotater",
+    rotator: "rotator",
     unstacker: "unstacker",
     stacker: "stacker",
     painter: "painter",
@@ -21,7 +21,7 @@ export const enumVirtualProcessorVariants = {
 /** @enum {string} */
 const enumVariantToGate = {
     [defaultBuildingVariant]: enumLogicGateType.cutter,
-    [enumVirtualProcessorVariants.rotater]: enumLogicGateType.rotater,
+    [enumVirtualProcessorVariants.rotator]: enumLogicGateType.rotator,
     [enumVirtualProcessorVariants.unstacker]: enumLogicGateType.unstacker,
     [enumVirtualProcessorVariants.stacker]: enumLogicGateType.stacker,
     [enumVirtualProcessorVariants.painter]: enumLogicGateType.painter,
@@ -29,7 +29,7 @@ const enumVariantToGate = {
 
 const colors = {
     [defaultBuildingVariant]: new MetaCutterBuilding().getSilhouetteColor(),
-    [enumVirtualProcessorVariants.rotater]: new MetaRotaterBuilding().getSilhouetteColor(),
+    [enumVirtualProcessorVariants.rotator]: new MetaRotatorBuilding().getSilhouetteColor(),
     [enumVirtualProcessorVariants.unstacker]: new MetaStackerBuilding().getSilhouetteColor(),
     [enumVirtualProcessorVariants.stacker]: new MetaStackerBuilding().getSilhouetteColor(),
     [enumVirtualProcessorVariants.painter]: new MetaPainterBuilding().getSilhouetteColor(),
@@ -48,7 +48,7 @@ export class MetaVirtualProcessorBuilding extends MetaBuilding {
             },
             {
                 internalId: 44,
-                variant: enumVirtualProcessorVariants.rotater,
+                variant: enumVirtualProcessorVariants.rotator,
             },
             {
                 internalId: 45,
@@ -88,7 +88,7 @@ export class MetaVirtualProcessorBuilding extends MetaBuilding {
     getAvailableVariants() {
         return [
             defaultBuildingVariant,
-            enumVirtualProcessorVariants.rotater,
+            enumVirtualProcessorVariants.rotator,
             enumVirtualProcessorVariants.stacker,
             enumVirtualProcessorVariants.painter,
             enumVirtualProcessorVariants.unstacker,
@@ -131,7 +131,7 @@ export class MetaVirtualProcessorBuilding extends MetaBuilding {
                 ]);
                 break;
             }
-            case enumLogicGateType.rotater: {
+            case enumLogicGateType.rotator: {
                 pinComp.setSlots([
                     {
                         pos: new Vector(0, 0),

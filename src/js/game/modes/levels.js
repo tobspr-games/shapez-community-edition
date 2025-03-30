@@ -31,11 +31,11 @@ export const REGULAR_MODE_LEVELS = [
     {
         shape: "RuRu----", // processors t2
         required: 70,
-        reward: enumHubGoalRewards.reward_rotater,
+        reward: enumHubGoalRewards.reward_rotator,
     },
 
     // 5
-    // Rotater
+    // Rotator
     {
         shape: "Cu----Cu", // belts t2
         required: 170,
@@ -54,7 +54,7 @@ export const REGULAR_MODE_LEVELS = [
     {
         shape: "CrCrCrCr", // unused
         required: 300,
-        reward: enumHubGoalRewards.reward_rotater_ccw,
+        reward: enumHubGoalRewards.reward_rotator_ccw,
     },
     // 8
     {
@@ -135,11 +135,11 @@ export const REGULAR_MODE_LEVELS = [
     },
 
     // 18
-    // Rotater (180deg)
+    // Rotator (180deg)
     {
         shape: "Sg----Sg:CgCgCgCg:--CyCy--", // unused
         required: 20000,
-        reward: enumHubGoalRewards.reward_rotater_180,
+        reward: enumHubGoalRewards.reward_rotator_180,
     },
 
     // 19

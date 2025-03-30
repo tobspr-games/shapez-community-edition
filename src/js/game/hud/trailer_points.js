@@ -14,7 +14,7 @@ export default [
     // // To initial cutters
     // { pos: { x: -12713, y: -580 }, zoom: 3, time: 1, wait: 2.5 },
 
-    // // To rotaters 3,2,1,0
+    // // To rotators 3,2,1,0
     // { pos: { x: -12402, y: -580 }, zoom: 3, time: 1, wait: 0 },
 
     // // Zoom in further to stackers
