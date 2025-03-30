@@ -2,10 +2,14 @@ import { app, protocol } from "electron";
 import fs from "node:fs/promises";
 import path from "path";
 import { switches, userData } from "./config.js";
-import type { Dirent } from "fs";
+// We want to be able to have comments for documentation purposes
+import { stripComments } from "jsonc-parser"
+import { type } from "arktype";
 
 const localPrefix = "@/";
 const modFileSuffix = ".asar";
+
+const decoder = new TextDecoder();
 
 type FileNode = {
     name: string;
@@ -16,25 +20,37 @@ type FileNode = {
 type DirectoryNode = {
     name: string;
     isFile: false;
-    contents: Node[];
+    contents: Record<string, Node>;
 };
 
 type Node = FileNode | DirectoryNode;
-
-// type ModMetadata = {
-//    name: string;
-//    version: string;
-//    author: string;
-//    website: string;
-//    description: string;
-//    id: string;
-//    minimumGameVersion?: string;
-//    settings: [];
-//    doesNotAffectSavegame?: boolean
-// }
+type ModMetadata = {
+    name: string,
+    version: string,
+    author: string,
+    website: string,
+    description: string,
+    id: string,
+    minimumGameVersion?: string,
+    settings?: object,
+    doesNotAffectSavegame?: boolean,
+    entryPoint: string
+}
+const modMetadata = type({
+    name: "string",
+    version: "string",
+    author: "string",
+    website: "string",
+    description: "string",
+    id: "string",
+    minimumGameVersion: "string?",
+    settings: "object?",
+    doesNotAffectSavegame: "boolean?",
+    entryPoint: "string"
+})
 
 interface Mod {
-    // metadata: ModMetadata;
+    metadata: ModMetadata;
     contents: DirectoryNode;
 }
 
@@ -80,7 +96,27 @@ export class ModsHandler {
         const allMods: Mod[] = [];
 
         for (const file of files) {
-            allMods.push({ contents: await this.readDirectory(file) });
+            const dirNode = await this.readDirectory(file);
+            if (!("mod.json" in dirNode.contents)) {
+                console.warn(`${dirNode.name} is being skipped because its mod.json doesn't exist`)
+                continue
+            }
+
+            if (!(dirNode.contents["mod.json"].isFile)) {
+                console.warn(`${dirNode.name} is being skipped because its mod.json isn't a file`)
+                continue
+            }
+            const metadata = modMetadata(JSON.parse(stripComments(
+                decoder.decode(dirNode.contents["mod.json"].contents))
+            ));
+            if (metadata instanceof type.errors) {
+                console.warn(`${dirNode.name} is being skipped because it has an invalid mod.json`)
+                continue
+            }
+            allMods.push({
+                contents: dirNode,
+                metadata: metadata
+            })
         }
 
         this.mods = allMods;
@@ -126,21 +162,18 @@ export class ModsHandler {
         const entries = await fs.readdir(dirPath, {
             withFileTypes: true,
         });
-        const contents: Node[] = [];
+        const contents: Record<string, Node> = {};
+
 
         for (const entry of entries) {
-            if (entry.isFile) {
-                contents.push({
-                    isFile: true,
-                    name: entry.name,
-                    contents: (await fs.readFile(path.join(dirPath, entry.name))).buffer
-                });
-            } else {
-                contents.push({
-                    isFile: false,
-                    name: entry.name,
-                    contents: (await this.readDirectory(entry.path)).contents,
-                });
+            contents[entry.name] = entry.isFile() ? {
+                isFile: true,
+                name: entry.name,
+                contents: (await fs.readFile(path.join(dirPath, entry.name))).buffer
+            } : {
+                isFile: false,
+                name: entry.name,
+                contents: (await this.readDirectory(entry.path)).contents,
             }
         }
 

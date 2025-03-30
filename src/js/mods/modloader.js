@@ -24,13 +24,14 @@ const LOG = createLogger("mods");
  * @typedef {{
  *   name: string;
  *   isFile: false;
- *   contents: Node[];
+ *   contents: Record<string, Node>;
  * }} DirectoryNode
  *
  * @typedef {FileNode | DirectoryNode} Node
  *
  * @typedef {{
  *   contents: DirectoryNode;
+ *   metadata: ModMetadata;
  * }} IPCMod
  *
  * @typedef {{
@@ -42,7 +43,8 @@ const LOG = createLogger("mods");
  *   id: string;
  *   minimumGameVersion?: string;
  *   settings: [];
- *   doesNotAffectSavegame?: boolean
+ *   doesNotAffectSavegame?: boolean;
+ *   entryPoint: string
  * }} ModMetadata
  */
 
@@ -159,19 +161,21 @@ export class ModLoader {
         LOG.log("hook:init", this.app, this.app.storage);
         this.exposeExports();
 
-        // TODO: Make use of the passed file name, or wait for ModV2
+        // TODO: Make use of the passed file name
         const decoder = new TextDecoder()
         /**
          * @type {string[]}
          */
         let mods = (await ipcRenderer.invoke("get-mods")).map(( /**@type {IPCMod} */mod) => {
             const contents = mod.contents.contents;
-            for (const item of contents) {
-                if (item.isFile && item.name == 'index.js') {
-                    return decoder.decode(item.contents)
-                }
+            if (!(mod.metadata.entryPoint in contents)) {
+                return null;
             }
-            return null;
+            if (!(contents[mod.metadata.entryPoint].isFile)) {
+                return null;
+            }
+            // @ts-expect-error Typescript thinks this is a Node, not a FileNode
+            return `const METADATA=${JSON.stringify(mod.metadata)};\n${decoder.decode(contents[mod.metadata.entryPoint].contents)}`
         });
 
         mods = mods.filter(el => {

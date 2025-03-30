@@ -2,6 +2,18 @@
 # yarn lockfile v1
 
 
+"@ark/schema@0.45.5":
+  version "0.45.5"
+  resolved "https://registry.yarnpkg.com/@ark/schema/-/schema-0.45.5.tgz#77374cae18e86e169492e8a4c9747148bfb13596"
+  integrity sha512-RW25FuQRcn4Mc33auOkEL1CLuyj86LmI5YGeuhYYrxEQqK23D99m5T+MGBuOSAbECBtQ8VnI4BaC5Hbb7Ly6tQ==
+  dependencies:
+    "@ark/util" "0.45.5"
+
+"@ark/util@0.45.5":
+  version "0.45.5"
+  resolved "https://registry.yarnpkg.com/@ark/util/-/util-0.45.5.tgz#7742fa3973bfeea253442a44b51a0ea492c43e51"
+  integrity sha512-BbuDOKJJYZ2dzZDNhBavkhgGD2hv4/idEhXpEPA5weOlE9/kU7XwAvEWn74tCuySHrD7peDqe2Ct/EDUlM40qg==
+
 "@electron/get@^2.0.0":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@electron/get/-/get-2.0.3.tgz#fba552683d387aebd9f3fcadbcafc8e12ee4f960"
@@ -71,6 +83,14 @@
   integrity sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q==
   dependencies:
     "@types/node" "*"
+
+arktype@^2.1.15:
+  version "2.1.15"
+  resolved "https://registry.yarnpkg.com/arktype/-/arktype-2.1.15.tgz#d21a09bc0404473e8aa7d943c4e817666a0650ca"
+  integrity sha512-ro31NmDxOEFysUjSQL4O9Q12sQuobImqXyqQbWzK7LNB/gvfflnZyeNBsysZYf5HP3pY39P9EgynMYiyqbJQ1g==
+  dependencies:
+    "@ark/schema" "0.45.5"
+    "@ark/util" "0.45.5"
 
 boolean@^3.0.1:
   version "3.2.0"
@@ -336,6 +356,11 @@ json-stringify-safe@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
   integrity sha512-ZClg6AaYvamvYEE82d3Iyd3vSSIjQ+odgjaTzRuO3s7toCdFKczob2i0zCh7JE8kWn17yvAWhUVxvqGwUalsRA==
+
+jsonc-parser@^3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/jsonc-parser/-/jsonc-parser-3.3.1.tgz#f2a524b4f7fd11e3d791e559977ad60b98b798b4"
+  integrity sha512-HUgH65KyejrUFPvHFPbqOY0rsFip3Bo5wb4ngvdi1EpCYWUQDC5V+Y7mZws+DLkr4M//zQJoanu1SP+87Dv1oQ==
 
 jsonfile@^4.0.0:
   version "4.0.0"

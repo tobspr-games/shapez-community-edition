@@ -45,6 +45,7 @@ function createWindow() {
     }
 
     win.on("ready-to-show", () => {
+        if (win === null) return;
         win.show();
 
         if (switches.dev && !switches.hideDevtools) {
@@ -57,6 +58,7 @@ function createWindow() {
 
     // Redirect any kind of main frame navigation to external applications
     win.webContents.on("will-navigate", (ev, url) => {
+        if (win === null) return;
         if (url === win.webContents.getURL()) {
             // Avoid handling reloads externally
             return;
