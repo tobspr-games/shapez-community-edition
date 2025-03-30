@@ -29,6 +29,7 @@ const mods = new ModsHandler();
 const ipc = new IpcHandler(fsJob, mods);
 
 function createWindow() {
+    mods.installProtocol()
     win = new BrowserWindow({
         minWidth: 800,
         minHeight: 600,

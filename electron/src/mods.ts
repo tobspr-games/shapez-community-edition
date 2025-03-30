@@ -5,11 +5,10 @@ import { switches, userData } from "./config.js";
 // We want to be able to have comments for documentation purposes
 import { stripComments } from "jsonc-parser"
 import { type } from "arktype";
+import { contentType, lookup, charset } from "mime-types"
 
 const localPrefix = "@/";
 const modFileSuffix = ".asar";
-
-const decoder = new TextDecoder();
 
 type FileNode = {
     name: string;
@@ -24,18 +23,6 @@ type DirectoryNode = {
 };
 
 type Node = FileNode | DirectoryNode;
-type ModMetadata = {
-    name: string,
-    version: string,
-    author: string,
-    website: string,
-    description: string,
-    id: string,
-    minimumGameVersion?: string,
-    settings?: object,
-    doesNotAffectSavegame?: boolean,
-    entryPoint: string
-}
 const modMetadata = type({
     name: "string",
     version: "string",
@@ -50,7 +37,7 @@ const modMetadata = type({
 })
 
 interface Mod {
-    metadata: ModMetadata;
+    metadata: typeof modMetadata.infer;
     contents: DirectoryNode;
 }
 
@@ -78,17 +65,58 @@ export class ModsHandler {
     }
 
     installProtocol() {
-        protocol.handle(this.modScheme, this.protocolHandler);
+        protocol.handle(this.modScheme, this.protocolHandler.bind(this));
     }
 
     private async protocolHandler(req: Request): Promise<Response> {
+        if (req.method !== "GET") {
+            return new Response(null, { status: 405 })
+        }
         const url = new URL(req.url);
-        url.search
+        const pathnames = url.pathname.split("/").slice(1);
+        console.log(url.hostname, pathnames)
 
-        return new Response();
+        if (pathnames.length < 1) {
+            return new Response(null, { status: 400 })
+        }
+
+        for (const mod of this.mods) {
+            if (url.hostname == mod.metadata.id) {
+                let node: Node = mod.contents
+                try {
+                    for (const path of pathnames) {
+                        if (!(path in node.contents)) {
+                            return new Response(null, { status: 404 });
+                        }
+                        node = node.contents[path];
+                    }
+                } catch {
+                    return new Response(null, { status: 500 });
+                }
+                if (!node.isFile) {
+                    return new Response(null, { status: 500 });
+                }
+                const fileCharSet = charset(node.name)
+                if (!fileCharSet) {
+                    return new Response(node.contents, {
+                        headers: {
+                            "Content-Type": contentType(node.name)
+                        }
+                    })
+                }
+                const decoder = new TextDecoder(fileCharSet);
+                return new Response(decoder.decode(node.contents), {
+                    headers: {
+                        "Content-Type": contentType(node.name)
+                    }
+                })
+            }
+        }
+        return new Response(null, { status: 404 });
     }
 
     async reload() {
+        const decoder = new TextDecoder();
         // Ensure the directory exists!
         fs.mkdir(this.modsDir, { recursive: true });
 
@@ -106,6 +134,7 @@ export class ModsHandler {
                 console.warn(`${dirNode.name} is being skipped because its mod.json isn't a file`)
                 continue
             }
+
             const metadata = modMetadata(JSON.parse(stripComments(
                 decoder.decode(dirNode.contents["mod.json"].contents))
             ));
