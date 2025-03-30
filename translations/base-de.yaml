@@ -668,7 +668,7 @@ buildings:
             name: Schneider (vierfach)
             description: Zerschneidet Formen in vier Teile. <strong>Benutze oder zerstöre
                 alle Viertel, sonst verstopft die Maschine!</strong>
-    rotater:
+    rotator:
         default:
             name: Rotierer (90°)
             description: Rotiert Formen im Uhrzeigersinn um 90 Grad.
@@ -799,7 +799,7 @@ buildings:
         default:
             name: Virtueller Schneider
             description: Schneidet die Form virtuell in zwei Hälften.
-        rotater:
+        rotator:
             name: Virtueller Rotierer
             description: Dreht die Form virtuell im Uhrzeigersinn.
         unstacker:
@@ -839,7 +839,7 @@ storyRewards:
             sonst <b>verstopft und blockiert er</b> - Zu diesem Zweck habe ich
             dir den <strong>Mülleimer</strong> gegeben. Er entsorgt alles, was
             du ihm fütterst!
-    reward_rotater:
+    reward_rotator:
         title: Rotieren
         desc: Der <strong>Rotierer</strong> wurde freigeschaltet! Er rotiert Formen im
             Uhrzeigersinn um 90 Grad.
@@ -869,7 +869,7 @@ storyRewards:
         title: Tunnel
         desc: Der <strong>Tunnel</strong> wurde freigeschaltet! Du kannst Items nun
             unter Gebäuden oder Fließbändern hindurchleiten.
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Gegen den UZS rotieren
         desc: Du hast eine zweite Variante des <strong>Rotierers</strong>
             freigeschaltet! Damit können Items gegen den Uhrzeigersinn gedreht
@@ -926,7 +926,7 @@ storyRewards:
             <strong>nicht kostenlos</strong>! Du musst
             <strong>Blaupausenformen</strong> produzieren, um die Kopierkosten
             zu decken (Welche du gerade produziert hast).
-    reward_rotater_180:
+    reward_rotator_180:
         title: Rotierer (180°)
         desc: Du hast eine weitere Variante des <strong>Rotierers</strong>
             freigeschaltet! Mit ihm kannst du Formen um 180° drehen
@@ -1246,7 +1246,7 @@ keybindings:
         underground_belt: Tunnel
         miner: Extraktor
         cutter: Schneider
-        rotater: Rotierer (90°)
+        rotator: Rotierer (90°)
         stacker: Stapler
         mixer: Farbmischer
         painter: Färber

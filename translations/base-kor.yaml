@@ -542,7 +542,7 @@ buildings:
             description:
                 도형을 즉시 네 개로 자릅니다. <strong>한쪽만 사용할 경우라면 다른 부분을 파괴하지 않을 경우 절단기가 막혀
                 멈추게 됩니다!</strong>
-    rotater:
+    rotator:
         default:
             name: 회전기
             description: 도형을 시계 방향으로 90도 회전시킵니다.
@@ -668,7 +668,7 @@ buildings:
         default:
             name: 가상 절단기
             description: 가상으로 도형을 잘라 반으로 나눕니다.
-        rotater:
+        rotator:
             name: 가상 회전기
             description: 가상으로 도형을 시계 방향이나 반시계 방향으로 회전합니다.
         unstacker:
@@ -704,7 +704,7 @@ storyRewards:
             <strong>반으로 나눕니다</strong>!<br><br> 쓰지 않는 도형은 쓰레기로 처리하세요, 그렇지 않으면
             <strong>작동을 멈출 것입니다</strong>! 이러한 목적을 위해 <strong>휴지통</strong>도 함께
             지급되었습니다. 휴지통에 들어간 것은 모두 파괴됩니다!
-    reward_rotater:
+    reward_rotator:
         title: 회전기
         desc: <strong>회전기</strong>가 잠금 해제되었습니다! 회전기는 들어오는 도형을 시계 방향으로 90도 회전시켜줍니다.
     reward_painter:
@@ -731,7 +731,7 @@ storyRewards:
     reward_tunnel:
         title: 터널
         desc: <strong>터널</strong>이 잠금 해제되었습니다! 이제 벨트와 건물 아래로 공간을 만들어내 옮길 수 있습니다!
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: 반시계 방향 회전기
         desc:
             <strong>반시계 방향 회전기</strong>가 잠금 해제되었습니다! 반시계 방향 회전기는 회전기의 다른 형태로, 이름처럼
@@ -798,7 +798,7 @@ storyRewards:
         desc:
             <strong>벨트 판독기</strong>가 잠금 해제되었습니다! 이제 벨트의 처리량을 확인할 수 있습니다.<br><br>그리고,
             전선이 잠금 해제될 때 까지 기다리신다면 정말 유용하게 사용할 수 있을 겁니다!
-    reward_rotater_180:
+    reward_rotator_180:
         title: 220도 회전기
         desc:
             <strong>180도 회전기</strong>가 잠금 해제되었습니다! 이제 도형을 바로 180도로 회전시킬 수 있습니다. (짜잔!
@@ -1029,7 +1029,7 @@ keybindings:
         underground_belt: 터널
         miner: 추출기
         cutter: 절단기
-        rotater: 회전기
+        rotator: 회전기
         stacker: 결합기
         mixer: 혼합기
         painter: 색칠기

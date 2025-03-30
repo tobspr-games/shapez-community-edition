@@ -597,7 +597,7 @@ buildings:
             description: Memotong bentuk-bentuk menjadi empat bagian. <strong> Apabila kamu
                 hanya menggunakan satu bagian, pastikan kamu lenyapkan
                 bagian-bagian lain atau mesin akan tersumbat dan macet!</strong>
-    rotater:
+    rotator:
         default:
             name: Pemutar
             description: Memutar bentuk searah jarum jam sebesar 90 derajat.
@@ -734,7 +734,7 @@ buildings:
         default:
             name: Pemotong Virtual
             description: Memotong bentuk menjadi dua bagian secara virtual.
-        rotater:
+        rotator:
             name: Pemutar Virtual
             description: Memutar bentuk searah jarum jam secara virtual.
         unstacker:
@@ -774,7 +774,7 @@ storyRewards:
             tidak <strong>ini dapat tersumbat dan macet</strong> - Oleh karena
             itu kamu diberikan <strong>tong sampah</strong>, yang menghapus
             semua yang kamu masukkan!
-    reward_rotater:
+    reward_rotator:
         title: Memutar
         desc: <strong>Pemutar</strong> telah dibuka! Ia memutar bentuk-bentuk searah
             jarum jam sebesar 90 derajat.
@@ -806,7 +806,7 @@ storyRewards:
         desc: <strong>Terowongan</strong> telah dibuka – Sekarang kamu dapat memindahkan
             bentuk-bentuk melalui terowongan di bawah sabuk-sabuk konveyor dan
             bangungan-bangunan dengannya!
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Memutar Berlawanan Arah Jarum Jam
         desc: Kamu telah membuka varian dari <strong>Pemutar</strong> - Bangunan ini
             memungkinkan kamu untuk memutar bentuk-bentuk berlawanan arah jarum
@@ -888,7 +888,7 @@ storyRewards:
             memungkinkan kamu untuk mengukur penghasilan dalam sebuah sabuk
             konveyor.<br><br> Dan tunggu sampai kamu membuka kabel - maka
             bangunan ini akan sangat berguna!
-    reward_rotater_180:
+    reward_rotator_180:
         title: Pemutar (180 derajat)
         desc: Kamu telah membuka <strong>pemutar</strong> 180 derajat! - Bangunan ini
             memungkinkan kamu untuk memutar bentuk dalam 180 derajat (Kejutan!
@@ -1162,7 +1162,7 @@ keybindings:
         underground_belt: Terowongan
         miner: Ekstraktor
         cutter: Pemotong
-        rotater: Pemutar
+        rotator: Pemutar
         stacker: Penumpuk
         mixer: Pencampur Warna
         painter: Pengecat

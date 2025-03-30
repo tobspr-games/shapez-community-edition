@@ -584,7 +584,7 @@ buildings:
             description: Taie formele în patru părți. <strong>Dacă folosești doar o parte,
                 ține minte să o distrugi pe cealaltă sau producția se va
                 opri!</strong>
-    rotater:
+    rotator:
         default:
             name: Rotitor
             description: Rotește formele în sensul acelor de ceasornic la 90 de grade.
@@ -737,7 +737,7 @@ buildings:
         default:
             name: Tăietor virtual
             description: Taie virtual forma în două
-        rotater:
+        rotator:
             name: Rotitor virtual
             description: Rotește virtual forma în ambele direcții.
         unstacker:
@@ -777,7 +777,7 @@ storyRewards:
             altfel <strong>o să se înfunde și o să se oprească</strong> - Pentru
             asta ți-am dat <strong>cosul de gunoi</strong> care distruge tot ce
             pui în el!
-    reward_rotater:
+    reward_rotator:
         title: Rotitul
         desc: <strong>Rotitorul</strong> a fost deblocat! El rotește formele la 90 de
             grade.
@@ -805,7 +805,7 @@ storyRewards:
         title: Tunel
         desc: <strong>Tunelul</strong> a fost deblocat - Acum poți deplasa obiecte pe
             sub benzi și construcții cu el!
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Rotitul CCW
         desc: Ai deblocat o variantă a <strong>rotitorului</strong> - El permite rotația
             în sensul invers al acelor de ceasornic! Pentru a îl construi,
@@ -879,7 +879,7 @@ storyRewards:
         desc: Ai deblocat <strong>cititirul de bandă</strong>! Iți permite să măsori
             debitul unei benzi.<br><br>Și așteaptă pană deblochezi cablurile -
             atungi devine foarte util!
-    reward_rotater_180:
+    reward_rotator_180:
         title: Rotator (180 degrees)
         desc: Tocmai ai deblocat un <strong>rotator</strong> de 180 de grade! - Îți
             permite să rotești o formă cu 180 de grade (Surpriză! :D)
@@ -1140,7 +1140,7 @@ keybindings:
         underground_belt: Tunel
         miner: Extractor
         cutter: Tăietor
-        rotater: Rotitor
+        rotator: Rotitor
         stacker: Mașină de presat
         mixer: Mixer de culori
         painter: Mașină de pictat

@@ -551,7 +551,7 @@ buildings:
         quad:
             name: 切断機 (四分割)
             description: 形を四分割します。<strong>ひとつの出力しか使わない場合、他の出力を破棄しないと詰まって停止してしまうことに注意してください！</strong>
-    rotater:
+    rotator:
         default:
             name: 回転機
             description: 形を時計回りに90度回転します。
@@ -655,7 +655,7 @@ buildings:
         default:
             name: 仮想切断機
             description: 形状の信号を2つに切断できます。
-        rotater:
+        rotator:
             name: 仮想回転機
             description: 形状の信号を時計回りに回転させます。
         unstacker:
@@ -689,7 +689,7 @@ storyRewards:
         desc:
             <strong>切断機</strong>が利用可能になりました。これは入力された形を、<strong>向きを考慮せず上下の直線で</strong>半分に切断します！　<br><br>利用しない側の出力に注意しましょう、破棄しなければ<strong>詰まって停止してしまいます。</strong>
             - このために<strong>ゴミ箱</strong>も用意しました。入力アイテムをすべて破棄できます！
-    reward_rotater:
+    reward_rotator:
         title: 回転
         desc: <strong>回転機</strong>が利用可能になりました！　形を時計回り方向に90度回転させます。
     reward_painter:
@@ -709,7 +709,7 @@ storyRewards:
     reward_tunnel:
         title: トンネル
         desc: <strong>トンネル</strong>が利用可能になりました。他のベルトや建造物の地下を通してベルトが配置可能です！
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: 反時計回りの回転
         desc: <strong>回転機</strong>のバリエーションが利用可能になりました。反時計回りの回転ができるようになります！　回転機を選択し、<strong>'T'キーを押すことで方向の切り替えができます。</strong>
     reward_miner_chainable:
@@ -747,7 +747,7 @@ storyRewards:
         title: ブループリント
         desc: 工場の建造物の<strong>コピー＆ペースト</strong>が利用可能になりました！
             範囲選択(CTRLキーを押したままマウスドラッグ)した状態で、'C'キーを押すことでコピーができます。<br><br>ただしペーストは<strong>タダではありません。</strong><strong>ブループリントの形</strong>を生産する必要があります！(たった今納品した形です)
-    reward_rotater_180:
+    reward_rotator_180:
         title: 回転（180°）
         desc: <strong>回転機</strong>のバリエーションが利用可能になりました！　180°の回転ができるようになります！（サプライズ！ :D）
     reward_wires_painter_and_levers:
@@ -983,7 +983,7 @@ keybindings:
         underground_belt: トンネル
         miner: 抽出機
         cutter: 切断機
-        rotater: 回転機
+        rotator: 回転機
         stacker: 積層機
         mixer: 混色機
         painter: 着色機

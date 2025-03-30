@@ -586,7 +586,7 @@ buildings:
             description: Knipt vormen in vier delen. <strong>Als je maar één deel gebruikt,
                 zorg dat je de andere delen vernietigt, anders loopt de machine
                 vast!</strong>
-    rotater:
+    rotator:
         default:
             name: Roteerder
             description: Draait vormen 90 graden met de klok mee.
@@ -727,7 +727,7 @@ buildings:
         default:
             name: Virtuele Knipper
             description: Knipt de vorm virtueel in twee helften.
-        rotater:
+        rotator:
             name: Virtuele Draaier
             description: Draait de vorm virtueel met de klok mee en tegen de klok in.
         unstacker:
@@ -767,7 +767,7 @@ storyRewards:
             <strong>zal het vastlopen</strong> - Daarom heb ik je de
             <strong>vuilnisbak</strong> gegeven, die alles vernietigt wat je
             erin laat stromen!
-    reward_rotater:
+    reward_rotator:
         title: Roteren
         desc: De <strong>roteerder</strong> is ontgrendeld - Het draait vormen 90 graden
             met de klok mee.
@@ -797,7 +797,7 @@ storyRewards:
         title: Tunnel
         desc: De <strong>tunnel</strong> is ontgrendeld - Je kunt nu voorwerpen onder
             gebouwen en lopende banden door laten lopen.
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Roteren (andersom)
         desc: Je hebt een variant van de <strong>roteerder</strong> ontgrendeld - Deze
             roteert voorwerpen tegen de klok in! Om hem te plaatsen selecteer je
@@ -872,7 +872,7 @@ storyRewards:
         desc: Je hebt de <strong>lopende band sensor</strong> vrijgespeeld! Dit gebouw
             geeft de doorvoer op een lopende band weer.<br><br>Wacht maar tot je
             kabels vrijspeeld, dan wordt het pas echt interessant!
-    reward_rotater_180:
+    reward_rotator_180:
         title: Draaier (180 graden)
         desc: Je hebt de <strong>180 graden draaier</strong> vrijgespeeld! - Hiermee kun
             je een item op de lopende band 180 graden draaien!
@@ -1134,7 +1134,7 @@ keybindings:
         underground_belt: Tunnel
         miner: Ontginner
         cutter: Knipper
-        rotater: Roteerder
+        rotator: Roteerder
         stacker: Stapelaar
         mixer: Kleurenmenger
         painter: Verver

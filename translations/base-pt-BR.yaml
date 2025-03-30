@@ -593,7 +593,7 @@ buildings:
             description: Corta as formas em quatro partes. <strong>Se você usar apenas uma
                 parte, não se esqueça de destruir as outras, ou ela irá parar a
                 produção!</strong>
-    rotater:
+    rotator:
         default:
             name: Rotacionador
             description: Gira as formas no sentido horário em 90 graus.
@@ -729,7 +729,7 @@ buildings:
         default:
             name: Cortador Virtual
             description: Corta virtualmente as formas em duas metades.
-        rotater:
+        rotator:
             name: Rotacionador Virtual
             description: Rotaciona virtualmente a forma, tanto no sentido horário quanto no
                 anti-horário.
@@ -771,7 +771,7 @@ storyRewards:
             orientação</strong>!<br><br>Lembre-se de se livrar do lixo, caso
             contrário, <strong>a máquina irá entupir</strong> - Por isso eu te
             dei o <strong>lixo</strong>, que destrói tudo que você coloca nele!
-    reward_rotater:
+    reward_rotator:
         title: Rotação
         desc: O <strong>rotacionador</strong> foi desbloqueado! Gira as formas no
             sentido horário em 90 graus.
@@ -800,7 +800,7 @@ storyRewards:
         title: Túnel
         desc: O <strong>túnel</strong> foi desbloqueado - Agora você pode transportar
             itens abaixo do solo!
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Rotação anti-horária
         desc: Você desbloqueou uma variante do <strong>rotacionador</strong> - permite
             girar no sentido anti-horário! Para construí-lo, selecione o
@@ -875,7 +875,7 @@ storyRewards:
         desc: Você desbloqueou o <strong>leitor de esteira</strong>! Ele permite que
             você meça a passagem de itens em uma esteira.<br><br>Espere até você
             desbloquear os fios - ele se torna muito útil!
-    reward_rotater_180:
+    reward_rotator_180:
         title: Rotacionador (180°)
         desc: Você acabou de desbloquear o <strong>rotacionador</strong> de 180 graus! -
             Ele permite que você rotacione uma forma em 180 graus (Surpresa! :D)
@@ -1145,7 +1145,7 @@ keybindings:
         underground_belt: Túnel
         miner: Extrator
         cutter: Cortador
-        rotater: Rotacionador
+        rotator: Rotacionador
         stacker: Empilhador
         mixer: Misturador de Cores
         painter: Pintor

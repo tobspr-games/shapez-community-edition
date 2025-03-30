@@ -610,7 +610,7 @@ buildings:
             description: Coupe une forme en quatre parties. <strong>Si vous n’utilisez pas
                 toutes les parties, assurez-vous de détruire les autres ou
                 sinon, gare au blocage !</strong>
-    rotater:
+    rotator:
         default:
             name: Pivoteur
             description: Fait pivoter une forme de 90 degrés vers la droite.
@@ -741,7 +741,7 @@ buildings:
         default:
             name: Découpeur virtuel
             description: Découpe virtuellement une forme.
-        rotater:
+        rotator:
             name: Pivoteur virtuel
             description: Fait pivoter virtuellement la forme de 90 degrés vers la droite.
         unstacker:
@@ -781,7 +781,7 @@ storyRewards:
             déchets, ou sinon <strong>il se bouchera et se bloquera</strong> - À
             cet effet, je vous ai donné la <strong>poubelle</strong>, qui
             détruit tout ce que vous mettez dedans !
-    reward_rotater:
+    reward_rotator:
         title: Rotation
         desc: Le <strong>pivoteur</strong> a été débloqué ! Il pivote les formes de 90
             degrés vers la droite.
@@ -814,7 +814,7 @@ storyRewards:
         title: Tunnel
         desc: Le <strong>tunnel</strong> a été débloqué. Vous pouvez maintenant faire
             passer des formes sous les convoyeurs et les bâtiments !
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Pivoteur inversé
         desc: Vous avez débloqué une variante du <strong>pivoteur</strong>. Elle permet
             de faire pivoter vers la gauche ! Pour le construire, sélectionnez
@@ -871,7 +871,7 @@ storyRewards:
             copier.<br><br> Coller n’est <strong>pas gratuit</strong>, vous
             devez produire <strong>des formes de plans</strong> pour vous le
             payer (les mêmes que celles que vous venez de livrer).
-    reward_rotater_180:
+    reward_rotator_180:
         title: Retourneur
         desc: Vous avez débloqué le <strong>retourneur</strong> ! Il permet de faire
             pivoter une forme de 180 degrés (Surprise ! :D)
@@ -1169,7 +1169,7 @@ keybindings:
         underground_belt: Tunnel
         miner: Extracteur
         cutter: Découpeur
-        rotater: Pivoteur
+        rotator: Pivoteur
         stacker: Assembleur
         mixer: Mélangeur de couleur
         painter: Station de peinture

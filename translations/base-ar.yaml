@@ -615,7 +615,7 @@ buildings:
         quad:
             name: قاطع (رباعي)
             description: يقطع الأشكال إلى أربعة أجزاء. <strong>إذا استخدمت جزءًا واحدًا فقط، تأكد من تدمير الأجزاء الأخرى أو سيتوقف!</strong>
-    rotater:
+    rotator:
         default:
             name: دوران
             description: يدور الأشكال بعكس عقارب الساعة بزاوية 90 درجة.
@@ -726,7 +726,7 @@ buildings:
         default:
             name: قاطع افتراضي
             description: يقطع الشكل افتراضيًا إلى نصفين.
-        rotater:
+        rotator:
             name: دوار افتراضي
             description: يدور الشكل افتراضيًا، سواء بعقارب الساعة أو عكسها.
         unstacker:
@@ -760,7 +760,7 @@ storyRewards:
         desc: >-
             لقد قمت بفتح <strong>القاطع</strong>، الذي يقوم بقطع الأشكال إلى نصفين من الأعلى إلى الأسفل <strong>بغض النظر عن اتجاهه</strong>!<br><br>تأكد من التخلص من النفايات، وإلا <strong>ستسد وتوقف</strong> - لهذا الغرض أعطيتك <strong>سلة المهملات</strong>، التي تدمر كل ما تضعه فيها!
 
-    reward_rotater:
+    reward_rotator:
         title: التدوير
         desc: <strong>الدوران</strong> قد تم فتحه! يقوم بتدوير الأشكال باتجاه عقارب الساعة بمقدار 90 درجة.
 
@@ -786,7 +786,7 @@ storyRewards:
         title: النفق
         desc: <strong>النفق</strong> قد تم فتحه - يمكنك الآن حفر العناصر تحت الأحزمة والمباني باستخدامه!
 
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: التدوير عكس عقارب الساعة
         desc: >-
             لقد قمت بفتح نسخة من <strong>الدوران</strong> - تسمح لك بتدوير الأشكال عكس عقارب الساعة! لبنائه، حدد الدوار و<strong>اضغط على 'T' للدوران بين أنواعه</strong>!
@@ -835,7 +835,7 @@ storyRewards:
         desc: >-
             يمكنك الآن <strong>نسخ ولصق</strong> أجزاء من مصنعك! حدد منطقة (اضغط على CTRL، ثم اسحب بالفأرة)، واضغط على 'C' لنسخها.<br><br>لصقها <strong>ليس مجانيًا</strong>، تحتاج إلى إنتاج <strong>أشكال المخططات</strong> لتحصل عليها! (التي قمت بتسليمها للتو).
 
-    reward_rotater_180:
+    reward_rotator_180:
         title: دوار (180°)
         desc: لقد قمت بفتح <strong>الدوران بزاوية 180 درجة</strong>! - يسمح لك بتدوير شكل بزاوية 180 درجة (مفاجأة! :D)
 
@@ -1081,7 +1081,7 @@ keybindings:
         underground_belt: نفق
         miner: مستخرج
         cutter: قاطع
-        rotater: تدوير
+        rotator: تدوير
         stacker: مكدس
         mixer: خلاط ألوان
         painter: رسام

@@ -583,7 +583,7 @@ buildings:
             description: Şekilleri dört parçaya böler. <strong>Eğer sadece bir çıktıyı
                 kullanıyorsanız diğer çıkan parçaları yok etmeyi unutmayın,
                 yoksa kesim durur!</strong>
-    rotater:
+    rotator:
         default:
             name: Döndürücü
             description: Şekilleri saat yönünde 90 derece döndürür.
@@ -722,7 +722,7 @@ buildings:
         default:
             name: Sanal Kesici
             description: Sanal olarak şekli ikiye böler.
-        rotater:
+        rotator:
             name: Sanal Döndürücü
             description: Sanal olarak şekli saat yönünde veya saatin tersi yönünde döndürür.
         unstacker:
@@ -760,7 +760,7 @@ storyRewards:
             kullanmayı veya çöpe atmayı unutma yoksa <strong>makine
             tıkanır</strong>! - Bu nedenle sana gönderdiğin bütün her şeyi yok
             eden <strong>çöpü</strong> de verdim!
-    reward_rotater:
+    reward_rotator:
         title: Döndürme
         desc: <strong>Döndürücü</strong> açıldı! Döndürücü şekilleri saat yönünde 90
             derece döndürür.
@@ -788,7 +788,7 @@ storyRewards:
         title: Tünel
         desc: <strong>Tünel</strong> açıldı - Artık eşyaları taşıma bantları ve yapılar
             altından geçirebilirsiniz!
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Saat yönünün tersinde Döndürme
         desc: <strong>Döndürücünün</strong> farklı bir türünü açtın - Şekiller artık
             saat yönünün tersinde döndürülebilir! İnşa etmek için döndürücüyü
@@ -865,7 +865,7 @@ storyRewards:
         desc: <strong>Bant okuyucu</strong> açıldı! Bu yapı taşıma bandındaki akış
             hızını ölçmeyi sağlar.<br><br>Kabloları açana kadar bekle - o zaman
             çok kullanışlı olacak.
-    reward_rotater_180:
+    reward_rotator_180:
         title: Döndürücü (180 derece)
         desc: 180 derece <strong>döndürücüyü</strong> açtınız! - Şekilleri 180 derece
             döndürür (Süpriz! :D)
@@ -1121,7 +1121,7 @@ keybindings:
         underground_belt: Tünel
         miner: Üretici
         cutter: Kesici
-        rotater: Döndürücü
+        rotator: Döndürücü
         stacker: Kaynaştırıcı
         mixer: Renk Karıştırıcısı
         painter: Boyayıcı

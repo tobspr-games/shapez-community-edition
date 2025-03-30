@@ -584,7 +584,7 @@ buildings:
             name: Rezač (četvorostruki)
             description: Reže oblike na četiri dela. <strong>Ako se koristi samo jedan deo,
                 ostali se moraju uništiti kako bi sprečili zastoj!</strong>
-    rotater:
+    rotator:
         default:
             name: Obrtač (↻)
             description: Okreće oblike za 90 stepeni u smeru kazaljke na satu.
@@ -714,7 +714,7 @@ buildings:
         default:
             name: Virtuelni Rezač
             description: Virtuelno reže oblik na dve polovine.
-        rotater:
+        rotator:
             name: Virtuelni Obrtač
             description: Virtuelno okreće oblike, i u smeru kazaljke na satu i suprotno od
                 smera kazaljke na satu.
@@ -754,7 +754,7 @@ storyRewards:
             suprotnom će se<strong>začepiti i stati sa radom</strong> - Baš zbog
             toga imate <strong>Smeće</strong>, koje uništava sve što uđe u
             njega!
-    reward_rotater:
+    reward_rotator:
         title: Obrtanje
         desc: <strong>Obrtač</strong> je otključan! On okreće oblike za 90 stepeni u
             smeru kazaljke na satu.
@@ -782,7 +782,7 @@ storyRewards:
         title: Tunel
         desc: <strong>Tunel</strong> je otključan - Omogućava prenos stvari ispod traka
             i ostalih građevina!
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Rotacija u smeru suprotnom od kazaljke na satu
         desc: Varijacija <strong>obrtača</strong> je otključana - Omogućuje okretanje u
             smeru suprotnom od kazaljke na satu! Odaberi obrtač i
@@ -853,7 +853,7 @@ storyRewards:
         desc: <strong>Čitač Trake</strong> je otključan! On meri propusnost pokretne
             trake.<br><br>Biće vam od velike pomoći, samo se stripite dok ne
             otključate žice!
-    reward_rotater_180:
+    reward_rotator_180:
         title: Obrtač (180 stepeni)
         desc: Otključali ste <strong>obrtač</strong> od 180 stepeni! - On može da okreće
             oblike za 180 stepeni (Iznenađenje! :D)
@@ -1116,7 +1116,7 @@ keybindings:
         underground_belt: Tunel
         miner: Rudar
         cutter: Rezač
-        rotater: Obrtač (↻)
+        rotator: Obrtač (↻)
         stacker: Slagač
         mixer: Mešalica boja
         painter: Farbač

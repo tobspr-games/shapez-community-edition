@@ -573,7 +573,7 @@ buildings:
             description: Klipper figurer om til fire dele. <strong>Hvis du kun bruger nogle
                 af dem så husk at ødelægge de andre dele, ellers går maskinen i
                 stå!</strong>
-    rotater:
+    rotator:
         default:
             name: Drejer
             description: Drejer figurer 90 grader med uret.
@@ -708,8 +708,8 @@ buildings:
         default:
             name: Virtual Cutter
             description: Virtually cuts the shape into two halves.
-        rotater:
-            name: Virtual Rotater
+        rotator:
+            name: Virtual Rotator
             description: Virtually rotates the shape, both clockwise and counter-clockwise.
         unstacker:
             name: Virtual Unstacker
@@ -748,7 +748,7 @@ storyRewards:
             anden side, ellers vil den <strong>tilstoppe og gå i stå</strong> -
             Derfor har du nu også fået <strong>skraldespanden</strong>, som
             fjerner alt der kommer i den.
-    reward_rotater:
+    reward_rotator:
         title: Drejning
         desc: <strong>Drejeren</strong> er nu tilgængelig! Den drejer figurer 90 grader
             med uret.
@@ -778,7 +778,7 @@ storyRewards:
         title: Tunnel
         desc: <strong>Tunnellen</strong> er nu tilgængelig - Du kan nu lave tuneller
             under bånd og bygninger!
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Rotation mod uret
         desc: Du har fået adgang til en variant af <strong>drejeren</strong> - Den lader
             dig dreje ting mod uret! For at bygge den skal du vælge drejeren og
@@ -849,7 +849,7 @@ storyRewards:
         desc: Du har nu åbnet op for <strong>Båndlæseren</strong>. Den måler
             gennemstrømning på et bånd. <br><br>Bare vent til du har Ledninger -
             så bliver den meget nyttig!
-    reward_rotater_180:
+    reward_rotator_180:
         title: Drejer (180 grader)
         desc: Du har nu åbnet op for <strong>Drejeren med 180°</strong>! - Nu kan du
             dreje dine figurer med 180 grader (Overraskelse! :D)
@@ -877,7 +877,7 @@ storyRewards:
         title: Virtual Processing
         desc: I just gave a whole bunch of new buildings which allow you to
             <strong>simulate the processing of shapes</strong>!<br><br> You can
-            now simulate a cutter, rotater, stacker and more on the wires layer!
+            now simulate a cutter, rotator, stacker and more on the wires layer!
             With this you now have three options to continue the game:<br><br> -
             Build an <strong>automated machine</strong> to create any possible
             shape requested by the HUB (I recommend to try it!).<br><br> - Build
@@ -1109,7 +1109,7 @@ keybindings:
         underground_belt: Tunnel
         miner: Udvinder
         cutter: Klipper
-        rotater: Drejer
+        rotator: Drejer
         stacker: Stabler
         mixer: Farveblander
         painter: Maler

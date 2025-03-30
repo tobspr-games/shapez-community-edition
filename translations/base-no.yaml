@@ -582,7 +582,7 @@ buildings:
             description: Kutter objekter til 4 biter. <strong>Hvis du bare skal bruke den
                 ene biten, sørg for å ødelegge den andre biten ellers vil det
                 stoppe opp!</strong>
-    rotater:
+    rotator:
         default:
             name: Roter
             description: Roter former med klokken, 90 grader.
@@ -723,7 +723,7 @@ buildings:
         default:
             name: Virituell Kutter
             description: Kutt former virituelt i to deler.
-        rotater:
+        rotator:
             name: Virituell Roterer
             description: Virituelt roterer formen, både med klokken og mot klokken.
         unstacker:
@@ -763,7 +763,7 @@ storyRewards:
             <strong>vil det samle seg og tette</strong> - For dette formålet så
             har jeg gitt deg en <strong>søppelkasse</strong>, som ødelegger alt
             du kaster i den!
-    reward_rotater:
+    reward_rotator:
         title: Rotering
         desc: <strong>Rotereren</strong> har blitt tilgjengelig! Den roterer objekter
             med klokken 90 grader.
@@ -792,7 +792,7 @@ storyRewards:
         title: Tunnel
         desc: <strong>Tunnelen</strong> har blitt tilgjengelig - Du kan nå transportere
             objekter under samlebånd og bygninger med den!
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Rotering mot klokken
         desc: Du har åpnte en variant av <strong>rotereren</strong> - Den tillater
             rotasjoner mot klokken! For å bygge den, velg rotereren og
@@ -864,7 +864,7 @@ storyRewards:
         desc: Du har låst opp <strong>belte leseren</strong>! Den lar deg måle trafikken
             på et belte.<br><br>Og vent til du låser opp kabler - da blir den
             veldig nyttig!
-    reward_rotater_180:
+    reward_rotator_180:
         title: Roterer (180 grader)
         desc: Du åpnet opp 180 graders <strong>rotereren</strong>! - Den lar deg rotere
             en form 180 grader (Overraskelse! :D)
@@ -1125,7 +1125,7 @@ keybindings:
         underground_belt: Tunnel
         miner: Utdrager
         cutter: Kutter
-        rotater: Roter
+        rotator: Roter
         stacker: Stabler
         mixer: Fargemikser
         painter: Maler
