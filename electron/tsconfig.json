@@ -3,6 +3,9 @@
     "include": ["./src/**/*"],
     "compilerOptions": {
         "noEmit": false,
-        "outDir": "./dist"
+        "outDir": "./dist",
+        "strictNullChecks": true,
+        "skipLibCheck": true,
+        "exactOptionalPropertyTypes": true
     }
 }

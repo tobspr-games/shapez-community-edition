@@ -69,7 +69,7 @@ and does not intend to provide compatibility for older clients.
 -   Run `yarn` in the root folder and in `electron/`.
 -   Run `yarn gulp` in the root folder to build and serve files.
     Ignore the browser tab that opens.
--   Open a new terminal and run `yarn startDev` in `electron/` to open an Electron window.
+-   Open a new terminal and run `yarn start` in `electron/` to open an Electron window.
     -   Tip: If you open the Electron window too early, you can reload it when focused on DevTools.
 
 ### Release

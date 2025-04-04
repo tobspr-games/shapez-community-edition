@@ -29,6 +29,7 @@ const mods = new ModsHandler();
 const ipc = new IpcHandler(fsJob, mods);
 
 function createWindow() {
+    mods.installProtocol()
     win = new BrowserWindow({
         minWidth: 800,
         minHeight: 600,
@@ -45,6 +46,7 @@ function createWindow() {
     }
 
     win.on("ready-to-show", () => {
+        if (win === null) return;
         win.show();
 
         if (switches.dev && !switches.hideDevtools) {
@@ -57,6 +59,7 @@ function createWindow() {
 
     // Redirect any kind of main frame navigation to external applications
     win.webContents.on("will-navigate", (ev, url) => {
+        if (win === null) return;
         if (url === win.webContents.getURL()) {
             // Avoid handling reloads externally
             return;
@@ -64,6 +67,12 @@ function createWindow() {
 
         ev.preventDefault();
         openExternalUrl(url);
+    });
+
+    // Also redirect window.open
+    win.webContents.setWindowOpenHandler(({ url }) => {
+        openExternalUrl(url);
+        return { action: "deny" };
     });
 }
 
@@ -82,7 +91,8 @@ function openExternalUrl(urlString: string) {
 
 await mods.reload();
 
-app.on("ready", createWindow);
+app.whenReady().then(createWindow);
+
 app.on("window-all-closed", () => {
     app.quit();
 });

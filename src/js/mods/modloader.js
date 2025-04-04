@@ -17,6 +17,25 @@ const LOG = createLogger("mods");
 /**
  * @typedef {{
  *   name: string;
+ *   isFile: true;
+ *   contents: ArrayBufferLike;
+ * }} FileNode
+ *
+ * @typedef {{
+ *   name: string;
+ *   isFile: false;
+ *   contents: Record<string, Node>;
+ * }} DirectoryNode
+ *
+ * @typedef {FileNode | DirectoryNode} Node
+ *
+ * @typedef {{
+ *   contents: DirectoryNode;
+ *   metadata: ModMetadata;
+ * }} IPCMod
+ *
+ * @typedef {{
+ *   name: string;
  *   version: string;
  *   author: string;
  *   website: string;
@@ -24,7 +43,8 @@ const LOG = createLogger("mods");
  *   id: string;
  *   minimumGameVersion?: string;
  *   settings: [];
- *   doesNotAffectSavegame?: boolean
+ *   doesNotAffectSavegame?: boolean;
+ *   entryPoint: string
  * }} ModMetadata
  */
 
@@ -141,9 +161,26 @@ export class ModLoader {
         LOG.log("hook:init", this.app, this.app.storage);
         this.exposeExports();
 
-        // TODO: Make use of the passed file name, or wait for ModV2
-        let mods = await ipcRenderer.invoke("get-mods");
-        mods = mods.map(mod => mod.source);
+        // TODO: Make use of the passed file name
+        const decoder = new TextDecoder()
+        /**
+         * @type {string[]}
+         */
+        let mods = (await ipcRenderer.invoke("get-mods")).map(( /**@type {IPCMod} */mod) => {
+            const contents = mod.contents.contents;
+            if (!(mod.metadata.entryPoint in contents)) {
+                return null;
+            }
+            if (!(contents[mod.metadata.entryPoint].isFile)) {
+                return null;
+            }
+            // @ts-expect-error Typescript thinks this is a Node, not a FileNode
+            return `const METADATA=${JSON.stringify(mod.metadata)};\n${decoder.decode(contents[mod.metadata.entryPoint].contents)}`
+        });
+
+        mods = mods.filter(el => {
+            return el != null;
+        });
 
         if (G_IS_DEV && globalConfig.debug.externalModUrl) {
             const modURLs = Array.isArray(globalConfig.debug.externalModUrl)
