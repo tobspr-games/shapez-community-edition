@@ -587,7 +587,7 @@ buildings:
             description: Corta as formas geométricas em quatro partes. <strong>Se apenas
                 usares uma parte, destrói as outras partes para não encravar a
                 produção!</strong>
-    rotater:
+    rotator:
         default:
             name: Rodar
             description: Roda as formas 90º no sentido dos ponteiros do relógio.
@@ -738,7 +738,7 @@ buildings:
         default:
             name: Cortador Virtual
             description: Virtualmente, corta as formas em duas metades.
-        rotater:
+        rotator:
             name: Rodador Virtual
             description: Virtualmente, roda a forma tanto no sentido horário quanto no
                 anti-horário.
@@ -781,7 +781,7 @@ storyRewards:
             desperdício, caso contrário <strong>irá encravar e parar</strong> -
             Para este propósito eu dei-te um <strong>lixo</strong>, que destrói
             tudo o que lá colocares!
-    reward_rotater:
+    reward_rotator:
         title: Rotação
         desc: O <strong>Rodador</strong> foi desbloqueado! Ele roda as formas
             geométricas 90º no sentido dos ponteiros do relógio.
@@ -811,7 +811,7 @@ storyRewards:
         title: Túnel
         desc: O <strong>Túnel</strong> foi desbloqueado - Com ele podes passar itens
             através de tapetes e construções!
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Rotação CCW
         desc: Desbloqueaste uma variante do <strong>Rodador</strong> - Permite rodar no
             sentido contrário ao dos ponteiros do relógio! Para construí-lo,
@@ -886,7 +886,7 @@ storyRewards:
         desc: Desbloqueaste o <strong>leitor de tapete</strong>! Permite-te medires a
             passagem média de itens no tapete.<br><br>E espera por desbloqueares
             os fios - aí é que vão ser bastante úteis!
-    reward_rotater_180:
+    reward_rotator_180:
         title: Rodar (180º)
         desc: Desbloqueaste o <strong>rodador</strong> de 180 graus! - Permite-te
             rodares formas 180 graus (Surpresa! :D)
@@ -1148,7 +1148,7 @@ keybindings:
         underground_belt: Túnel
         miner: Extrator
         cutter: Cortador
-        rotater: Rodar
+        rotator: Rodar
         stacker: Empilhador
         mixer: Misturador de cor
         painter: Pintor

@@ -840,9 +840,9 @@ buildings:
             name: Cutter (Quad)
             description: Cuts shapes into four parts. <strong>If you use only one part, be sure to destroy the other parts or it will clog and stall!</strong>
 
-    rotater:
+    rotator:
         default:
-            name: &rotater Rotator
+            name: &rotator Rotator
             description: Rotates shapes clockwise by 90 degrees.
         ccw:
             name: Rotator (CCW)
@@ -965,7 +965,7 @@ buildings:
             name: &virtual_processor Virtual Cutter
             description: Virtually cuts the shape into two halves.
 
-        rotater:
+        rotator:
             name: Virtual Rotator
             description: Virtually rotates the shape clockwise.
 
@@ -1009,7 +1009,7 @@ storyRewards:
             You just unlocked the <strong>cutter</strong>, which cuts shapes in half from top to bottom <strong>regardless of its orientation</strong>!<br><br>Be sure to get rid of the waste, or
             otherwise <strong>it will clog and stall</strong> - For this purpose I have given you the <strong>trash</strong>, which destroys everything you put into it!
 
-    reward_rotater:
+    reward_rotator:
         title: Rotating
         desc: The <strong>rotator</strong> has been unlocked! It rotates shapes clockwise by 90 degrees.
 
@@ -1037,7 +1037,7 @@ storyRewards:
         title: Tunnel
         desc: The <strong>tunnel</strong> has been unlocked - You can now tunnel items below belts and buildings with it!
 
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: CCW Rotating
         desc: >-
             You have unlocked a variant of the <strong>rotator</strong> - It allows you to rotate shapes counter-clockwise! To build it, select the rotator and
@@ -1090,7 +1090,7 @@ storyRewards:
             You can now <strong>copy and paste</strong> parts of your factory! Select an area (Hold CTRL, then drag with your mouse), and press 'C' to copy it.<br><br>Pasting it is
             <strong>not free</strong>, you need to produce <strong>blueprint shapes</strong> to afford it! (Those you just delivered).
 
-    reward_rotater_180:
+    reward_rotator_180:
         title: Rotator (180°)
         desc: You just unlocked the 180 degrees <strong>rotator</strong>! - It allows you to rotate a shape by 180 degrees (Surprise! :D)
 
@@ -1435,7 +1435,7 @@ keybindings:
         underground_belt: *underground_belt
         miner: *miner
         cutter: *cutter
-        rotater: *rotater
+        rotator: *rotator
         stacker: *stacker
         mixer: *mixer
         painter: *painter

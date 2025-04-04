@@ -96,7 +96,7 @@ export const KEYMAPPINGS = {
         underground_belt: { keyCode: keyToKeyCode("3") },
         miner: { keyCode: keyToKeyCode("4") },
         cutter: { keyCode: keyToKeyCode("5") },
-        rotater: { keyCode: keyToKeyCode("6") },
+        rotator: { keyCode: keyToKeyCode("6") },
         stacker: { keyCode: keyToKeyCode("7") },
         mixer: { keyCode: keyToKeyCode("8") },
         painter: { keyCode: keyToKeyCode("9") },

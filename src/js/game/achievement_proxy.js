@@ -10,7 +10,7 @@ import { getBuildingDataFromCode } from "./building_codes";
 
 const logger = createLogger("achievement_proxy");
 
-const ROTATER = "rotater";
+const ROTATOR = "rotator";
 const DEFAULT = "default";
 
 export class AchievementProxy {
@@ -60,7 +60,7 @@ export class AchievementProxy {
             this.root.signals.storyGoalCompleted.add(this.onStoryGoalCompleted, this);
         }
 
-        if (this.has(ACHIEVEMENTS.noInverseRotater)) {
+        if (this.has(ACHIEVEMENTS.noInverseRotator)) {
             this.root.signals.entityAdded.add(this.onEntityAdded, this);
         }
 
@@ -123,7 +123,7 @@ export class AchievementProxy {
 
         const building = getBuildingDataFromCode(entity.components.StaticMapEntity.code);
 
-        if (building.metaInstance.id !== ROTATER) {
+        if (building.metaInstance.id !== ROTATOR) {
             return;
         }
 
@@ -131,7 +131,7 @@ export class AchievementProxy {
             return;
         }
 
-        this.root.savegame.currentData.stats.usedInverseRotater = true;
+        this.root.savegame.currentData.stats.usedInverseRotator = true;
         this.root.signals.entityAdded.remove(this.onEntityAdded);
     }
 

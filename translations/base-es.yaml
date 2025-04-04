@@ -607,7 +607,7 @@ buildings:
             name: Cortador (Cuádruple)
             description: Corta figuras en cuatro partes. <strong> ¡Si solo usas una parte,
                 asegúrate de destruir las otras partes o se parará!</strong>
-    rotater:
+    rotator:
         default:
             name: Rotador
             description: Rota las figuras en sentido horario 90 grados.
@@ -744,7 +744,7 @@ buildings:
         default:
             name: Cortador virtual
             description: Corta virtualmente la forma en dos.
-        rotater:
+        rotator:
             name: Rotador virtual
             description: Rota virtualmente la forma, tanto en sentido del horario como
                 sentido anti-horario.
@@ -786,7 +786,7 @@ storyRewards:
             sino <strong>se trabará y parará</strong> - Por este proposite Te he
             dado el <strong>basurero</strong>, el cual destruye todo lo que
             pongas dentro de él!
-    reward_rotater:
+    reward_rotator:
         title: Rotador
         desc: ¡El <strong>rotador</strong> se ha desbloqueado! Rota figuras en sentido
             horario 90 grados.
@@ -816,7 +816,7 @@ storyRewards:
         title: Túnel
         desc: El <strong>túnel</strong> se ha desbloqueado - ¡Ahora puedes transportar
             elementos por debajo de edificios u otras cintas!
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Rotador inverso
         desc: Has desbloqueado una variante del <strong>rotador</strong> - ¡Te permite
             rotar en sentido antihorario! Para construirlo selecciona el rotador
@@ -891,7 +891,7 @@ storyRewards:
         desc: Has desbloqueado el <strong>Lector de cinta</strong>! Este te permite
             medir el rendimiento de una cinta. <br><br>Y espera a desbloquear
             los cables... Se vuelve súper útil!
-    reward_rotater_180:
+    reward_rotator_180:
         title: Rotador (180 grados)
         desc: ¡Has desbloqueado el <strong>rotador</strong> de 180 grados! - Te permite
             rotar una forma en 180 grados (¡Sorpresa! :D)
@@ -1159,7 +1159,7 @@ keybindings:
         underground_belt: Túnel
         miner: Extractor
         cutter: Cortador
-        rotater: Rotador
+        rotator: Rotador
         stacker: Apilador
         mixer: Mezclador de colores
         painter: Pintor

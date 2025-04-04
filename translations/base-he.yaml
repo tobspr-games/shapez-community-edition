@@ -573,7 +573,7 @@ buildings:
             name: חותך (מרובע)
             description: חותך את הצורות לארבעה חלקים. <strong>אם אתה משתמש רק בחלק אחד,
                 תוודא שאתה הורס את השאר החלקים או שיווצר סתימה!</strong>
-    rotater:
+    rotator:
         default:
             name: מסובב
             description: מסובב חלקים עם כיוון השעון ב90 מעלות.
@@ -691,7 +691,7 @@ buildings:
         default:
             name: חותך וירטואלי
             description: חותך באופן וירטואלי את הצורה לשני חצאים.
-        rotater:
+        rotator:
             name: מסובב וירטואלי
             description: מסובב באופן וירטואלי את הצורה עם כיוון השעון.
         unstacker:
@@ -726,7 +726,7 @@ storyRewards:
             <strong>לא משנה איזה כיוון הוא</strong>!<br><br>וודא שאתה נפתר
             מהשאריות, אחרת <strong>הוא יסתם ויתקע</strong> - בשביל המטרה הזאת
             אני הבאתי לך את ה<strong>פח</strong>, שהורס כל מה שאתה מכניס אליו!
-    reward_rotater:
+    reward_rotator:
         title: סיבוב
         desc: קיבלת גישה ל<strong>מסובב</strong> ! הוא מסובב צורות עם כיוון השעון ב90
             מעלות.
@@ -754,7 +754,7 @@ storyRewards:
         title: מנהרה
         desc: קיבלת גישה ל<strong>מנהרה</strong> - אתה יכול עכשיו להעביר חפצים מתחת
             למסועים ומבנים עם זה!
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: סיבוב נגד כיוון השעון
         desc: קיבלת גישה לצורה נוספת של <strong>מסובב</strong> - זה מאפשר לך לסובב צורות
             נגד כיוון השעון! בשביל לבנות את זה, תבחר מסובב, ו<strong>תלחץ 'T'
@@ -801,7 +801,7 @@ storyRewards:
             (החזק CTRL, וגרור עם העכבר), ואז לחץ 'C' בשביל להעתיק את
             זה.<br><br>הדבקה זה <strong>לא חינם</strong>, אתה צריך ליצר
             <strong>צורת תבנית</strong> בשביל לקנות את זה! (אלו שבדיוק יצרת).
-    reward_rotater_180:
+    reward_rotator_180:
         title: מסובב (180°)
         desc: קיבלת גישה <strong>מסובב</strong> 180 מעלות! - זה מאפשר לך לסובב צורה ב
             180 מעולות (הפתעה! :D)
@@ -1056,7 +1056,7 @@ keybindings:
         underground_belt: מנהרה
         miner: חוצב
         cutter: חותך
-        rotater: מסובב
+        rotator: מסובב
         stacker: מחבר
         mixer: מערבב
         painter: צובע

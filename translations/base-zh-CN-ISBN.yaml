@@ -503,7 +503,7 @@ buildings:
         quad:
             name: 切割机（四向）
             description: 将输入的图形切成四块。<strong>如果您只需要其中一块图形，使用<strong>垃圾桶</strong>清除其他图形，否则切割机会停止工作！</strong>
-    rotater:
+    rotator:
         default:
             name: 旋转机
             description: 将<strong>图形</strong>顺时针旋转90度。
@@ -629,7 +629,7 @@ buildings:
         default:
             name: 虚拟切割机
             description: 模拟将<strong>图形</strong>切割成两半。
-        rotater:
+        rotator:
             name: 模拟旋转机
             description: 模拟顺时针旋转<strong>图形</strong>。
         unstacker:
@@ -663,7 +663,7 @@ storyRewards:
         desc: 恭喜！您解锁了<strong>切割机</strong>，不管如何放置，它只会从上到下切开<strong>图形</strong>！
             <br>注意一定要处理掉切割后废弃的<strong>图形</strong>，不然它会<strong>阻塞</strong>传送带，
             <br>使用<strong>垃圾桶</strong>，它会清除所有放进去的图形！
-    reward_rotater:
+    reward_rotator:
         title: 旋转
         desc: 恭喜！您解锁了<strong>旋转机</strong>。它会顺时针将输入的<strong>图形旋转90度</strong>。
     reward_painter:
@@ -684,7 +684,7 @@ storyRewards:
     reward_tunnel:
         title: 隧道
         desc: 恭喜！您解锁了<strong>隧道</strong>。它可放置在<strong>传送带</strong>或<strong>设施</strong>下方以运送物品。
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: 逆时针旋转
         desc:
             恭喜！您解锁了<strong>旋转机</strong>的<strong>逆时针</strong>变体。它可以逆时针旋转<strong>图形</strong>。
@@ -735,7 +735,7 @@ storyRewards:
         title: 传送带读取器
         desc: 恭喜！您解锁了<strong>传送带读取器</strong>！它能够测量传送带上的生产率。
             <br><br>等您解锁了<strong>电线层</strong>后，它将会极其有用！
-    reward_rotater_180:
+    reward_rotator_180:
         title: 旋转机（180度）
         desc: 恭喜！您解锁了<strong>旋转器（180度）</strong>！它能帮您把一个图形旋转180度(惊喜! :D)
     reward_display:
@@ -941,7 +941,7 @@ keybindings:
         underground_belt: 隧道
         miner: 开采器
         cutter: 切割机
-        rotater: 旋转机
+        rotator: 旋转机
         stacker: 堆叠机
         mixer: 混色器
         painter: 上色器

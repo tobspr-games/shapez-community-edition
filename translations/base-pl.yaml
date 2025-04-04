@@ -584,7 +584,7 @@ buildings:
             description: Tnie kształty na cztery ćwiartki. <strong>Jeśli nie korzystasz z
                 wszystkich ćwiartek, upewnij się, że niszczysz pozostałe, by nie
                 zatkać budynku!</strong>
-    rotater:
+    rotator:
         default:
             name: Obracacz
             description: Obraca kształt zgodnie z ruchem wskazówek zegara o 90 stopni.
@@ -732,7 +732,7 @@ buildings:
         default:
             name: Wirtualny Przecinak
             description: Wirtualnie przecina kształt na 2 połówki
-        rotater:
+        rotator:
             name: Wirtualny Obracacz
             description: Wirtualnie obraca kształt, potrafi to robić w oba kierunki.
         unstacker:
@@ -772,7 +772,7 @@ storyRewards:
             przeciwnym przypadku <strong>maszyna zapcha się i przestanie
             działać!</strong> Do tego celu dałem ci <strong>śmietnik</strong>,
             który usuwa wszystko, co do niego włożysz!
-    reward_rotater:
+    reward_rotator:
         title: Obracanie
         desc: "Odblokowano nową maszynę: <strong>Obracacz</strong>! Obraca wejście o 90
             stopni zgodnie ze wskazówkami zegara."
@@ -802,7 +802,7 @@ storyRewards:
         title: Tunel
         desc: <strong>Tunel</strong> został odblokowany - Możesz teraz prowadzić
             podziemne taśmociągi!
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Obracanie odwrotne
         desc: Odblokowano nowy wariant <strong>Obracacza</strong> - Pozwala odwracać
             przeciwnie do wskazówek zegara! Aby zbudować, zaznacz Obracacz i
@@ -876,7 +876,7 @@ storyRewards:
             mierzenie przepustowości taśmociągu.<br><br>Czekaj tylko, aż
             odblokujesz przewody logiczne - dopiero wtedy staje się bardzo
             użyteczny!
-    reward_rotater_180:
+    reward_rotator_180:
         title: Obracacz (180°)
         desc: Właśnie odblokowałeś kolejny wariant <strong>obrazacza</strong>! - Pozwala
             ci na obrócenie kształtu o 180 stopni!
@@ -1133,7 +1133,7 @@ keybindings:
         underground_belt: Tunel
         miner: Ekstraktor
         cutter: Przecinak
-        rotater: Obracacz
+        rotator: Obracacz
         stacker: Sklejacz
         mixer: Mieszadło Kolorów
         painter: Malarz

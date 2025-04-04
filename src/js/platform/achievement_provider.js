@@ -25,7 +25,7 @@ export const ACHIEVEMENTS = {
     mam: "mam",
     mapMarkers15: "mapMarkers15",
     noBeltUpgradesUntilBp: "noBeltUpgradesUntilBp",
-    noInverseRotater: "noInverseRotater",
+    noInverseRotator: "noInverseRotator",
     oldLevel17: "oldLevel17",
     openWires: "openWires",
     paintShape: "paintShape",
@@ -68,8 +68,8 @@ const ITEM_SHAPE = ShapeItem.getId();
 const MINUTE_30 = 1800; // Seconds
 const MINUTE_60 = MINUTE_30 * 2;
 const MINUTE_120 = MINUTE_30 * 4;
-const ROTATER_CCW_CODE = 12;
-const ROTATER_180_CODE = 13;
+const ROTATOR_CCW_CODE = 12;
+const ROTATOR_180_CODE = 13;
 const SHAPE_BP = "CbCbCbRb:CwCwCwCw";
 const SHAPE_LOGO = "RuCw--Cw:----Ru--";
 const SHAPE_MS_LOGO = "RgRyRbRr";
@@ -205,9 +205,9 @@ export class AchievementCollection {
             isValid: this.isNoBeltUpgradesUntilBpValid,
             signal: "storyGoalCompleted",
         });
-        this.add(ACHIEVEMENTS.noInverseRotater, {
-            init: this.initNoInverseRotater,
-            isValid: this.isNoInverseRotaterValid,
+        this.add(ACHIEVEMENTS.noInverseRotator, {
+            init: this.initNoInverseRotator,
+            isValid: this.isNoInverseRotatorValid,
             signal: "storyGoalCompleted",
         });
         this.add(ACHIEVEMENTS.oldLevel17, this.createShapeOptions(SHAPE_OLD_LEVEL_17));
@@ -542,29 +542,29 @@ export class AchievementCollection {
         return level >= 12 && this.root.hubGoals.upgradeLevels.belt === 0;
     }
 
-    initNoInverseRotater() {
-        if (this.root.savegame.currentData.stats.usedInverseRotater === true) {
+    initNoInverseRotator() {
+        if (this.root.savegame.currentData.stats.usedInverseRotator === true) {
             return;
         }
 
         const entities = this.root.entityMgr.componentToEntity.StaticMapEntity;
 
-        let usedInverseRotater = false;
+        let usedInverseRotator = false;
         for (var i = 0; i < entities.length; i++) {
             const entity = entities[i].components.StaticMapEntity;
 
-            if (entity.code === ROTATER_CCW_CODE || entity.code === ROTATER_180_CODE) {
-                usedInverseRotater = true;
+            if (entity.code === ROTATOR_CCW_CODE || entity.code === ROTATOR_180_CODE) {
+                usedInverseRotator = true;
                 break;
             }
         }
 
-        this.root.savegame.currentData.stats.usedInverseRotater = usedInverseRotater;
+        this.root.savegame.currentData.stats.usedInverseRotator = usedInverseRotator;
     }
 
     /** @param {number} level @returns {boolean} */
-    isNoInverseRotaterValid(level) {
-        return level >= 14 && !this.root.savegame.currentData.stats.usedInverseRotater;
+    isNoInverseRotatorValid(level) {
+        return level >= 14 && !this.root.savegame.currentData.stats.usedInverseRotator;
     }
 
     /** @param {string} currentLayer @returns {boolean} */

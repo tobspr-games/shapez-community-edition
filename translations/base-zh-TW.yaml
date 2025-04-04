@@ -530,7 +530,7 @@ buildings:
         quad:
             name: 四分切割機
             description: 將輸入的圖形切成四塊。 <strong>如果你只需要其中一塊，記得把其他的銷毀掉，否則切割機會停止運作！ </strong>
-    rotater:
+    rotator:
         default:
             name: 旋轉機
             description: 將圖形順時針旋轉90度。
@@ -660,7 +660,7 @@ buildings:
         default:
             name: 虛擬切割機
             description: 虛擬地將圖形訊號從上到下切開。
-        rotater:
+        rotator:
             name: 虛擬旋轉機
             description: 虛擬地將圖形訊號順時針旋轉。
         unstacker:
@@ -695,7 +695,7 @@ storyRewards:
             <strong>切割機</strong>已解鎖！不論切割機的方向，它都會把圖形<strong>垂直地</strong>切成兩半。<br><br>
             記得把不需要的部分處理掉，否則切割機會<strong>因為堵塞而停止運作</strong>。
             為此我給你準備了<strong>垃圾桶</strong>，它會把所有放進去的物品銷毀掉。
-    reward_rotater:
+    reward_rotator:
         title: 順時針旋轉
         desc: <strong>順時針旋轉機</strong>已解鎖！ 它會順時針旋轉輸入的圖形90度。
     reward_painter:
@@ -717,7 +717,7 @@ storyRewards:
     reward_tunnel:
         title: 隧道
         desc: <strong>隧道</strong>已解鎖！ 你現在可以在其他輸送帶或建築底下運送物品了！
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: 逆時針旋轉
         desc: <strong>逆時針旋轉機</strong>已解鎖！ 它會逆時針旋轉輸入的圖形90度。
             逆時針旋轉機是順時針旋轉機的變體。選擇「順時針旋轉機」並<strong>按「T」來切換變體</strong>就能使用。
@@ -769,7 +769,7 @@ storyRewards:
     reward_belt_reader:
         title: 讀取輸送帶
         desc: <strong>輸送帶讀取機</strong>已解鎖！ 它會讀取輸送帶的流量。<br><br> 當你解鎖電路層時，它會變得超有用！
-    reward_rotater_180:
+    reward_rotator_180:
         title: 220度旋轉
         desc: <strong>180度旋轉機</strong>已解鎖！ - 它可以180度旋轉物件（驚喜！:D）
     reward_display:
@@ -983,7 +983,7 @@ keybindings:
         underground_belt: 隧道
         miner: 開採機
         cutter: 切割機
-        rotater: 虛擬旋轉機
+        rotator: 虛擬旋轉機
         stacker: 虛擬堆疊機
         mixer: 混色機
         painter: 虛擬上色機

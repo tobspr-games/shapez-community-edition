@@ -599,7 +599,7 @@ buildings:
             description: Négyfelé vágja az alakzatokat. <strong>Ha csak az egyik részét
                 akarod használni, ne felejtsd el a többit a Kukába küldeni,
                 különben eldugul!</strong>
-    rotater:
+    rotator:
         default:
             name: Forgató
             description: Elforgatja az alakzatot 90 fokkal, az óramutató irányában.
@@ -720,7 +720,7 @@ buildings:
         default:
             name: Virtuális Vágó
             description: Virtuálisan félbevág egy alakzatot.
-        rotater:
+        rotator:
             name: Virtuális Forgató
             description: Virtuálisan elforgat egy alakzatot, az óramutató járásával
                 megegyező és ellenkező irányba is.
@@ -762,7 +762,7 @@ storyRewards:
             irányától</strong>!<br><br>Szabadulj meg a feleslegtől, ellenkező
             esetben <strong>eldugulhat a rendszer</strong> - Ezért kaptál egy
             <strong>Kukát</strong>, amely elpusztít mindent, amit belevezetsz!
-    reward_rotater:
+    reward_rotator:
         title: Forgatás
         desc: Feloldottad a <strong>Forgatót</strong>, amely az óramutató járásával 90
             fokban forgatja el az alakzatokat.
@@ -786,7 +786,7 @@ storyRewards:
         title: Alagút
         desc: Feloldottad az <strong>Alagutat</strong> - Átvihetsz egy futószalagot
             másik futószalag, vagy akár épület alatt!
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Ellentétes Forgatás
         desc: Feloldottad a <strong>Forgató</strong> ellentétes irányú variánsát,
             amellyel az óramutató járásával ellentétes irányban forgathatsz
@@ -854,7 +854,7 @@ storyRewards:
         desc: Feloldottad a <strong>Futószalag-mérőt</strong>! Segítségével megmérheted
             a Futószalag átmenő teljesítményét.<br><br>Várj csak, amíg feloldod
             a Vezetékeket - utána lesz csak igazán hasznos!
-    reward_rotater_180:
+    reward_rotator_180:
         title: Forgató (180°)
         desc: Feloldottad a <strong>180 fokos Forgatót</strong>, amellyel megfordíthatsz
             egy alakzatot 180 fokban (Meglepő, mi? :D)
@@ -1132,7 +1132,7 @@ keybindings:
         underground_belt: Alagút
         miner: Bánya
         cutter: Vágó
-        rotater: Forgató
+        rotator: Forgató
         stacker: Egyesítő
         mixer: Színkeverő
         painter: Festő

@@ -1,10 +1,11 @@
-import { ReadWriteProxy } from "../core/read_write_proxy";
-import { ExplainedResult } from "../core/explained_result";
-import { SavegameSerializer } from "./savegame_serializer";
-import { BaseSavegameInterface } from "./savegame_interface";
-import { createLogger } from "../core/logging";
 import { globalConfig } from "../core/config";
+import { ExplainedResult } from "../core/explained_result";
+import { createLogger } from "../core/logging";
+import { ReadWriteProxy } from "../core/read_write_proxy";
+import { MODS } from "../mods/modloader";
+import { BaseSavegameInterface } from "./savegame_interface";
 import { getSavegameInterface, savegameInterfaces } from "./savegame_interface_registry";
+import { SavegameSerializer } from "./savegame_serializer";
 import { SavegameInterface_V1001 } from "./schemas/1001";
 import { SavegameInterface_V1002 } from "./schemas/1002";
 import { SavegameInterface_V1003 } from "./schemas/1003";
@@ -14,7 +15,6 @@ import { SavegameInterface_V1006 } from "./schemas/1006";
 import { SavegameInterface_V1007 } from "./schemas/1007";
 import { SavegameInterface_V1008 } from "./schemas/1008";
 import { SavegameInterface_V1009 } from "./schemas/1009";
-import { MODS } from "../mods/modloader";
 import { SavegameInterface_V1010 } from "./schemas/1010";
 
 const logger = createLogger("savegame");
@@ -102,7 +102,7 @@ export class Savegame extends ReadWriteProxy {
             stats: {
                 failedMam: false,
                 trashedCount: 0,
-                usedInverseRotater: false,
+                usedInverseRotator: false,
             },
             lastUpdate: Date.now(),
             mods: MODS.getModsListForSavegame(),

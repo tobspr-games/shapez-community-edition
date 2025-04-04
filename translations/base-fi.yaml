@@ -586,7 +586,7 @@ buildings:
             description: Leikkaa muotoja ylhäältä alaspäin ja tuottaa muodon molemmat
                 puoliskot. <strong>Jos käytät vain yhden puoliskon, tuhoa toinen
                 puolisko tai se jumittaa leikkurin!</strong>
-    rotater:
+    rotator:
         default:
             name: Kääntäjä
             description: Kääntää muotoja 90 astetta myötäpäivään.
@@ -718,7 +718,7 @@ buildings:
         default:
             name: Virtuaalileikkuri
             description: Leikkaa tavara virtuaalisesti kahteen puoliskoon.
-        rotater:
+        rotator:
             name: Virtuaalikääntäjä
             description: Käännä tavara virtuaalisesti, sekä myötäpäivään että vastapäivään.
         unstacker:
@@ -757,7 +757,7 @@ storyRewards:
             hankkiutua eroon jätteestä, tai muuten <strong>se tukkii ja
             pysäyttää leikkurin</strong> - Siksi olen antanut sinulle
             <strong>roskiksen</strong>, joka tuhoaa kaiken sinne laitetun!
-    reward_rotater:
+    reward_rotator:
         title: Kääntö
         desc: Avasit <strong>Kääntäjän</strong>! Se kääntää muotoja myötäpäivään 90
             astetta.
@@ -785,7 +785,7 @@ storyRewards:
         title: Tunneli
         desc: Avasit <strong>Tunnelin</strong> - Nyt voit kuljettaa tavaroita
             kuljettimilla laitteiden ja toisten kuljettimien alta!
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Kääntö vastapäivään
         desc: Avasit uuden version <strong>Kääntäjästä</strong> - Se sallii kääntämisen
             vastapäivään! Sen voi rakentaa valitsemalla kääntäjän ja
@@ -855,7 +855,7 @@ storyRewards:
         desc: Olet avannut <strong>Kuljetinanturin</strong>! Voit mitata kuljettimen
             tehokkuutta.<br><br>Ja odotahan vain, kunhan saat Johdot auki.
             Sitten tämä on kätevä!
-    reward_rotater_180:
+    reward_rotator_180:
         title: Kääntäjä (180°)
         desc: Avasit juuri 180-asteen <strong>Kääntäjän</strong>! - Sillä voit kääntää
             muotoa 180 astetta (Ylläripylläri! :D)
@@ -1110,7 +1110,7 @@ keybindings:
         underground_belt: Tunneli
         miner: Poimija
         cutter: Leikkuri
-        rotater: Kääntäjä
+        rotator: Kääntäjä
         stacker: Pinoaja
         mixer: Värinsekoittaja
         painter: Maalain

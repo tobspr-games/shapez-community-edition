@@ -574,7 +574,7 @@ buildings:
             description: Rozebere tvar na čtyři části. <strong>Pokud použijete jen některé
                 části, nezapomeňte ostatní smazat, jinak se vám produkce
                 zasekne!</strong>
-    rotater:
+    rotator:
         default:
             name: Rotor
             description: Otáčí tvary o 90 stupňů po směru hodinových ručiček.
@@ -703,7 +703,7 @@ buildings:
         default:
             name: Virtuální pila
             description: Virtuálně rozřízne tvar svisle na dvě části.
-        rotater:
+        rotator:
             name: Virtuální rotor
             description: Virtuálně otáčí tvary o 90 stupňů po směru hodinových ručiček.
         unstacker:
@@ -742,7 +742,7 @@ storyRewards:
             orientaci</strong>!<br><br>Nezapomeňte se zbavit zbytku tvarů, jinak
             se <strong>vám produkce zasekne</strong> - za tímto účelem jsem vám
             dal <strong>koš</strong>, který smaže vše, co do něj vložíte!
-    reward_rotater:
+    reward_rotator:
         title: Otáčení
         desc: <strong>Rotor</strong> byl právě odemčen! Otáčí tvary po směru hodinových
             ručiček o 90 stupňů.
@@ -770,7 +770,7 @@ storyRewards:
         title: Tunel
         desc: <strong>Tunel</strong> byl právě odemčen - Umožňuje vézt suroviny pod
             budovami a pásy.
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Otáčení II
         desc: Odemkli jste variantu <strong>rotoru</strong> - Umožňuje vám otáčet proti
             směru hodinových ručiček. Vyberte rotor a <strong>zmáčkněte 'T' pro
@@ -840,7 +840,7 @@ storyRewards:
         desc: Právě jste odemkli <strong>čtečku pásů</strong>! Umožňuje vám změřit
             propustnost pásu.<br><br>A počkejte na odemčení kabelů - později to
             bude velmi užitečné!
-    reward_rotater_180:
+    reward_rotator_180:
         title: Rotor (180°)
         desc: Právě jste odemkli 180 stupňoví <strong>rotor</strong>! - Umožňuje vám
             otáčet tvar o 180 stupňů!
@@ -1096,7 +1096,7 @@ keybindings:
         underground_belt: Tunel
         miner: Extraktor
         cutter: Pila
-        rotater: Rotor
+        rotator: Rotor
         stacker: Kombinátor
         mixer: Mixér na barvy
         painter: Barvič
