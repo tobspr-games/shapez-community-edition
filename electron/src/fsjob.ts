@@ -49,6 +49,10 @@ export class FsJobHandler {
     }
 
     private async write(file: string, contents: string): Promise<string> {
+        // The target directory might not exist, ensure it does
+        const parentDir = path.dirname(file);
+        await fs.mkdir(parentDir, { recursive: true });
+
         // Backups not implemented yet.
         await fs.writeFile(file, contents, {
             encoding: "utf-8",
