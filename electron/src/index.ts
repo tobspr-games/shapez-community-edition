@@ -65,6 +65,12 @@ function createWindow() {
         ev.preventDefault();
         openExternalUrl(url);
     });
+
+    // Also redirect window.open
+    win.webContents.setWindowOpenHandler(({ url }) => {
+        openExternalUrl(url);
+        return { action: "deny" };
+    });
 }
 
 function openExternalUrl(urlString: string) {
