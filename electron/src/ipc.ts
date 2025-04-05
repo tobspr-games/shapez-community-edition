@@ -29,6 +29,8 @@ export class IpcHandler {
     }
 
     private setFullscreen(window: BrowserWindow, _event: IpcMainInvokeEvent, flag: boolean) {
-        window.setFullScreen(flag);
+        if (window.isFullScreen() != flag) {
+            window.setFullScreen(flag);
+        }
     }
 }
