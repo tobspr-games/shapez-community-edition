@@ -22,25 +22,11 @@ async function buildHtml() {
                 /** @this {Document} **/ function () {
                     const document = this;
 
-                    // Append css
-                    const css = document.createElement("link");
-                    css.rel = "stylesheet";
-                    css.href = "main.css";
-                    document.head.appendChild(css);
-
                     let loadingCss = fs.readFileSync(path.join("preloader", "preloader.css")).toString();
 
                     const style = document.createElement("style");
                     style.textContent = loadingCss;
                     document.head.appendChild(style);
-
-                    let bodyContent = fs.readFileSync(path.join("preloader", "preloader.html")).toString();
-
-                    const bundleScript = document.createElement("script");
-                    bundleScript.src = "bundle.js";
-                    document.head.appendChild(bundleScript);
-
-                    document.body.innerHTML = bodyContent;
                 }
             )
         )

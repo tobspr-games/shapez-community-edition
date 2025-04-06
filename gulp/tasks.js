@@ -134,7 +134,7 @@ async function serveHTML({ version = "web-dev" }) {
     gulp.watch("../src/css/**", css.dev);
 
     // Watch .html files, those trigger a html rebuild
-    gulp.watch(["../src/html/**", "./preloader/*"], html);
+    gulp.watch("../src/html/**", html);
 
     // Watch translations
     gulp.watch("../translations/*.yaml", translations.convertToJson);
