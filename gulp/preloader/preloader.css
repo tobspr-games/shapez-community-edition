@@ -1,3 +1,11 @@
+@font-face {
+    font-family: "GameFont";
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    src: url("res/fonts/GameFont.woff2") format("woff2");
+}
+
 * {
     margin: 0;
     padding: 0;

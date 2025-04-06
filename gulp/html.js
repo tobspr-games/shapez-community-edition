@@ -28,17 +28,7 @@ async function buildHtml() {
                     css.href = "main.css";
                     document.head.appendChild(css);
 
-                    let fontCss = `
-                        @font-face {
-                            font-family: "GameFont";
-                            font-style: normal;
-                            font-weight: normal;
-                            font-display: swap;
-                            src: url('res/fonts/GameFont.woff2') format("woff2");
-                        }
-                        `;
-                    let loadingCss =
-                        fontCss + fs.readFileSync(path.join("preloader", "preloader.css")).toString();
+                    let loadingCss = fs.readFileSync(path.join("preloader", "preloader.css")).toString();
 
                     const style = document.createElement("style");
                     style.textContent = loadingCss;
