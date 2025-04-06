@@ -25,9 +25,6 @@ async function buildHtml() {
                     // Append css
                     const css = document.createElement("link");
                     css.rel = "stylesheet";
-                    css.type = "text/css";
-                    css.media = "none";
-                    css.setAttribute("onload", "this.media='all'");
                     css.href = "main.css";
                     document.head.appendChild(css);
 
@@ -44,14 +41,12 @@ async function buildHtml() {
                         fontCss + fs.readFileSync(path.join("preloader", "preloader.css")).toString();
 
                     const style = document.createElement("style");
-                    style.setAttribute("type", "text/css");
                     style.textContent = loadingCss;
                     document.head.appendChild(style);
 
                     let bodyContent = fs.readFileSync(path.join("preloader", "preloader.html")).toString();
 
                     const bundleScript = document.createElement("script");
-                    bundleScript.type = "text/javascript";
                     bundleScript.src = "bundle.js";
                     document.head.appendChild(bundleScript);
 
