@@ -4,7 +4,6 @@ import path from "path/posix";
 import { buildFolder } from "./config.js";
 
 import gulpDom from "gulp-dom";
-import gulpHtmlBeautify from "gulp-html-beautify";
 import gulpHtmlmin from "gulp-htmlmin";
 import gulpRename from "gulp-rename";
 
@@ -43,7 +42,6 @@ async function buildHtml() {
                 useShortDoctype: true,
             })
         )
-        .pipe(gulpHtmlBeautify())
         .pipe(gulpRename("index.html"))
         .pipe(gulp.dest(buildFolder));
 }
