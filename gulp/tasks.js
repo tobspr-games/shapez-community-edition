@@ -21,7 +21,7 @@ import gulpWebserver from "gulp-webserver";
 
 import * as css from "./css.js";
 import * as docs from "./docs.js";
-import * as html from "./html.js";
+import html from "./html.js";
 import * as imgres from "./image-resources.js";
 import js from "./js.js";
 import * as localConfig from "./local-config.js";
@@ -134,7 +134,7 @@ async function serveHTML({ version = "web-dev" }) {
     gulp.watch("../src/css/**", css.dev);
 
     // Watch .html files, those trigger a html rebuild
-    gulp.watch(["../src/html/**", "./preloader/*"], html.dev);
+    gulp.watch(["../src/html/**", "./preloader/*"], html);
 
     // Watch translations
     gulp.watch("../translations/*.yaml", translations.convertToJson);
@@ -190,7 +190,7 @@ const prepare = {
                 gulp.series(imgres.buildAtlas, gulp.parallel(imgres.atlasToJson, imgres.atlas)),
                 gulp.series(imgres.copyImageResources, css.dev),
                 imgres.copyNonImageResources,
-                html.dev,
+                html,
                 gulp.series(gulp.parallel(sounds.dev, translations.fullBuild), js[variant].dev.build)
             )
         ),
@@ -233,7 +233,7 @@ for (const variant in BUILD_VARIANTS) {
 
     const resourcesAndCode = gulp.parallel(step.baseResources, code);
 
-    const all = gulp.series(resourcesAndCode, css.prod, html.prod);
+    const all = gulp.series(resourcesAndCode, css.prod, html);
 
     const full = gulp.series(utils.cleanup, all, step.postbuild);
 

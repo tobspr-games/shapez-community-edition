@@ -1,29 +1,20 @@
-import { getRevision } from "./buildutils.js";
 import fs from "fs";
-import path from "path/posix";
-import crypto from "crypto";
 import gulp from "gulp";
+import path from "path/posix";
 import { buildFolder } from "./config.js";
 
 import gulpDom from "gulp-dom";
-import gulpHtmlmin from "gulp-htmlmin";
 import gulpHtmlBeautify from "gulp-html-beautify";
+import gulpHtmlmin from "gulp-htmlmin";
 import gulpRename from "gulp-rename";
-
-function computeIntegrityHash(fullPath, algorithm = "sha256") {
-    const file = fs.readFileSync(fullPath);
-    const hash = crypto.createHash(algorithm).update(file).digest("base64");
-    return algorithm + "-" + hash;
-}
 
 /**
  * PROVIDES
  *
- * html.dev
- * html.prod
+ * html
  */
-const commitHash = getRevision();
-async function buildHtml({ integrity = true }) {
+
+async function buildHtml() {
     return gulp
         .src("../src/html/index.html")
         .pipe(
@@ -38,12 +29,6 @@ async function buildHtml({ integrity = true }) {
                     css.media = "none";
                     css.setAttribute("onload", "this.media='all'");
                     css.href = "main.css";
-                    if (integrity) {
-                        css.setAttribute(
-                            "integrity",
-                            computeIntegrityHash(path.join(buildFolder, "main.css"))
-                        );
-                    }
                     document.head.appendChild(css);
 
                     let fontCss = `
@@ -68,12 +53,6 @@ async function buildHtml({ integrity = true }) {
                     const bundleScript = document.createElement("script");
                     bundleScript.type = "text/javascript";
                     bundleScript.src = "bundle.js";
-                    if (integrity) {
-                        bundleScript.setAttribute(
-                            "integrity",
-                            computeIntegrityHash(path.join(buildFolder, "bundle.js"))
-                        );
-                    }
                     document.head.appendChild(bundleScript);
 
                     document.body.innerHTML = bodyContent;
@@ -98,11 +77,4 @@ async function buildHtml({ integrity = true }) {
         .pipe(gulp.dest(buildFolder));
 }
 
-export const dev = () =>
-    buildHtml({
-        integrity: false,
-    });
-export const prod = () =>
-    buildHtml({
-        integrity: true,
-    });
+export default buildHtml;
