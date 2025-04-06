@@ -1,6 +1,6 @@
 import { BrowserWindow, app, shell } from "electron";
 import path from "path";
-import { pageUrl, switches } from "./config.js";
+import { defaultWindowTitle, pageUrl, switches } from "./config.js";
 import { FsJobHandler } from "./fsjob.js";
 import { IpcHandler } from "./ipc.js";
 import { ModsHandler } from "./mods.js";
@@ -35,6 +35,7 @@ function createWindow() {
         useContentSize: true,
         autoHideMenuBar: !switches.dev,
         show: false,
+        title: defaultWindowTitle,
         webPreferences: {
             preload: path.join(import.meta.dirname, "../preload.cjs"),
         },

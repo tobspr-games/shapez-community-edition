@@ -56,7 +56,6 @@ export default [
     ...nodeConfig.map(config => ({
         ...config,
         files: ["*.{ts,js}", "{gulp,electron}/**/*.{ts,js}"],
-        ignores: ["gulp/preloader/*.js"],
     })),
     ...runtimeConfig.map(config => ({
         ...config,
