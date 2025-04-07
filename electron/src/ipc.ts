@@ -1,14 +1,14 @@
 import { BrowserWindow, IpcMainInvokeEvent, ipcMain } from "electron";
 import { FsJob, FsJobHandler } from "./fsjob.js";
-import { ModsHandler } from "./mods.js";
+import { ModLoader } from "./mods/loader.js";
 
 export class IpcHandler {
     private readonly fsJob: FsJobHandler;
-    private readonly mods: ModsHandler;
+    private readonly modLoader: ModLoader;
 
-    constructor(fsJob: FsJobHandler, mods: ModsHandler) {
+    constructor(fsJob: FsJobHandler, modLoader: ModLoader) {
         this.fsJob = fsJob;
-        this.mods = mods;
+        this.modLoader = modLoader;
     }
 
     install(window: BrowserWindow) {
@@ -24,8 +24,10 @@ export class IpcHandler {
         return this.fsJob.handleJob(job);
     }
 
-    private getMods() {
-        return this.mods.getMods();
+    private async getMods() {
+        // TODO: Split mod reloads into a different IPC request
+        await this.modLoader.loadMods();
+        return this.modLoader.getAllMods();
     }
 
     private setFullscreen(window: BrowserWindow, _event: IpcMainInvokeEvent, flag: boolean) {

@@ -1,4 +1,5 @@
 import { app } from "electron";
+import path from "node:path";
 
 const disabledFeatures = ["HardwareMediaKeyHandling"];
 app.commandLine.appendSwitch("disable-features", disabledFeatures.join(","));
@@ -9,6 +10,7 @@ app.setName("shapez-ce");
 // This variable should be used to avoid situations where the app name
 // wasn't set yet.
 export const userData = app.getPath("userData");
+export const executableDir = path.dirname(app.getPath("exe"));
 
 export const pageUrl = app.isPackaged
     ? new URL("../index.html", import.meta.url).href
