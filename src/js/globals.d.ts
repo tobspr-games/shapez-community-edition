@@ -71,8 +71,6 @@ declare interface Window {
     webkitRequestAnimationFrame();
 
     assert(condition: boolean, failureMessage: string);
-
-    coreThreadLoadedCb();
 }
 
 declare interface Navigator {
