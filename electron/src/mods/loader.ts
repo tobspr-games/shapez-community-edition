@@ -45,6 +45,12 @@ export class ModLoader {
                 continue;
             }
 
+            // TODO: Only check this after applying disabled state
+            if (this.isModPresent(metadata.id)) {
+                console.warn(`Ignoring duplicate mod ${location.source}::${location.file}`);
+                continue;
+            }
+
             mods.push({
                 ...location,
                 disabled: false,
@@ -67,6 +73,10 @@ export class ModLoader {
         // This is the IPC response handler for now
         // FIXME: review the format of get-mods IPC message
         return [...this.mods];
+    }
+
+    isModPresent(id: string): boolean {
+        return this.mods.some(mod => mod.metadata.id === id);
     }
 
     getModById(id: string): Mod | undefined {
