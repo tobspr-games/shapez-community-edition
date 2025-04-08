@@ -4,7 +4,6 @@ import { enumColors } from "./colors";
 import { ShapeItem } from "./items/shape_item";
 import { GameRoot } from "./root";
 import { enumSubShape, ShapeDefinition } from "./shape_definition";
-import { ACHIEVEMENTS } from "../platform/achievement_provider";
 
 const logger = createLogger("shape_definition_manager");
 
@@ -97,8 +96,6 @@ export class ShapeDefinitionManager extends BasicSerializableObject {
         const rightSide = definition.cloneFilteredByQuadrants([2, 3]);
         const leftSide = definition.cloneFilteredByQuadrants([0, 1]);
 
-        this.root.signals.achievementCheck.dispatch(ACHIEVEMENTS.cutShape, null);
-
         return /** @type {[ShapeDefinition, ShapeDefinition]} */ (
             this.operationCache[key] = [
                 this.registerOrReturnHandle(rightSide),
@@ -142,8 +139,6 @@ export class ShapeDefinitionManager extends BasicSerializableObject {
         }
 
         const rotated = definition.cloneRotateCW();
-
-        this.root.signals.achievementCheck.dispatch(ACHIEVEMENTS.rotateShape, null);
 
         return /** @type {ShapeDefinition} */ (
             this.operationCache[key] = this.registerOrReturnHandle(rotated)
@@ -198,8 +193,6 @@ export class ShapeDefinitionManager extends BasicSerializableObject {
             return /** @type {ShapeDefinition} */ (this.operationCache[key]);
         }
 
-        this.root.signals.achievementCheck.dispatch(ACHIEVEMENTS.stackShape, null);
-
         const stacked = lowerDefinition.cloneAndStackWith(upperDefinition);
         return /** @type {ShapeDefinition} */ (
             this.operationCache[key] = this.registerOrReturnHandle(stacked)
@@ -217,8 +210,6 @@ export class ShapeDefinitionManager extends BasicSerializableObject {
         if (this.operationCache[key]) {
             return /** @type {ShapeDefinition} */ (this.operationCache[key]);
         }
-
-        this.root.signals.achievementCheck.dispatch(ACHIEVEMENTS.paintShape, null);
 
         const colorized = definition.cloneAndPaintWith(color);
         return /** @type {ShapeDefinition} */ (

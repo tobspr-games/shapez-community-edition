@@ -10,12 +10,6 @@
  * }[]} SavegameStoredMods
  *
  * @typedef {{
- *   failedMam: boolean,
- *   trashedCount: number,
- *   usedInverseRotator: boolean
- * }} SavegameStats
- *
- * @typedef {{
  *   camera: any,
  *   time: any,
  *   entityMgr: any,
@@ -32,7 +26,6 @@
  * @typedef {{
  *   version: number,
  *   dump: SerializedGame,
- *   stats: SavegameStats,
  *   lastUpdate: number,
  *   mods: SavegameStoredMods
  * }} SavegameData

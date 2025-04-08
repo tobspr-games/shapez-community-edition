@@ -1,39 +1,39 @@
 /* typehints:start */
-import { GameRoot } from "../root";
 import { MetaBuilding } from "../meta_building";
+import { GameRoot } from "../root";
 /* typehints:end */
 
+import { IS_MOBILE } from "../../core/config";
 import { findNiceIntegerValue } from "../../core/utils";
+import { MOD_SIGNALS } from "../../mods/mod_signals";
+import { MetaBlockBuilding } from "../buildings/block";
 import { MetaConstantProducerBuilding } from "../buildings/constant_producer";
 import { MetaGoalAcceptorBuilding } from "../buildings/goal_acceptor";
+import { MetaItemProducerBuilding } from "../buildings/item_producer";
 import { enumGameModeIds, enumGameModeTypes, GameMode } from "../game_mode";
+import { HUDConstantSignalEdit } from "../hud/parts/constant_signal_edit";
+import { HUDGameMenu } from "../hud/parts/game_menu";
+import { HUDInteractiveTutorial } from "../hud/parts/interactive_tutorial";
+import { HUDKeybindingOverlay } from "../hud/parts/keybinding_overlay";
+import { HUDLayerPreview } from "../hud/parts/layer_preview";
+import { HUDLeverToggle } from "../hud/parts/lever_toggle";
+import { HUDMassSelector } from "../hud/parts/mass_selector";
+import { HUDMinerHighlight } from "../hud/parts/miner_highlight";
+import { HUDNotifications } from "../hud/parts/notifications";
+import { HUDPinnedShapes } from "../hud/parts/pinned_shapes";
+import { HUDScreenshotExporter } from "../hud/parts/screenshot_exporter";
+import { HUDShapeViewer } from "../hud/parts/shape_viewer";
+import { HUDShop } from "../hud/parts/shop";
+import { HUDStatistics } from "../hud/parts/statistics";
+import { HUDPartTutorialHints } from "../hud/parts/tutorial_hints";
+import { HUDTutorialVideoOffer } from "../hud/parts/tutorial_video_offer";
+import { HUDUnlockNotification } from "../hud/parts/unlock_notification";
+import { HUDWaypoints } from "../hud/parts/waypoints";
+import { HUDWireInfo } from "../hud/parts/wire_info";
+import { HUDWiresOverlay } from "../hud/parts/wires_overlay";
+import { HUDWiresToolbar } from "../hud/parts/wires_toolbar";
 import { ShapeDefinition } from "../shape_definition";
 import { enumHubGoalRewards } from "../tutorial_goals";
-import { HUDWiresToolbar } from "../hud/parts/wires_toolbar";
-import { HUDUnlockNotification } from "../hud/parts/unlock_notification";
-import { HUDMassSelector } from "../hud/parts/mass_selector";
-import { HUDShop } from "../hud/parts/shop";
-import { HUDWaypoints } from "../hud/parts/waypoints";
-import { HUDStatistics } from "../hud/parts/statistics";
-import { HUDWireInfo } from "../hud/parts/wire_info";
-import { HUDLeverToggle } from "../hud/parts/lever_toggle";
-import { HUDPinnedShapes } from "../hud/parts/pinned_shapes";
-import { HUDNotifications } from "../hud/parts/notifications";
-import { HUDScreenshotExporter } from "../hud/parts/screenshot_exporter";
-import { HUDWiresOverlay } from "../hud/parts/wires_overlay";
-import { HUDShapeViewer } from "../hud/parts/shape_viewer";
-import { HUDLayerPreview } from "../hud/parts/layer_preview";
-import { HUDTutorialVideoOffer } from "../hud/parts/tutorial_video_offer";
-import { HUDMinerHighlight } from "../hud/parts/miner_highlight";
-import { HUDGameMenu } from "../hud/parts/game_menu";
-import { HUDConstantSignalEdit } from "../hud/parts/constant_signal_edit";
-import { IS_MOBILE } from "../../core/config";
-import { HUDKeybindingOverlay } from "../hud/parts/keybinding_overlay";
-import { HUDPartTutorialHints } from "../hud/parts/tutorial_hints";
-import { HUDInteractiveTutorial } from "../hud/parts/interactive_tutorial";
-import { MetaBlockBuilding } from "../buildings/block";
-import { MetaItemProducerBuilding } from "../buildings/item_producer";
-import { MOD_SIGNALS } from "../../mods/mod_signals";
 import { finalGameShape, REGULAR_MODE_LEVELS } from "./levels";
 
 /** @typedef {{
@@ -388,11 +388,6 @@ export class RegularGameMode extends GameMode {
      * @returns {boolean}
      */
     getIsFreeplayAvailable() {
-        return true;
-    }
-
-    /** @returns {boolean} */
-    hasAchievements() {
         return true;
     }
 }

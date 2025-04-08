@@ -24,7 +24,6 @@ const logger = createLogger("savegame");
  * @typedef {import("../game/root").GameRoot} GameRoot
  * @typedef {import("./savegame_typedefs").SavegameData} SavegameData
  * @typedef {import("./savegame_typedefs").SavegameMetadata} SavegameMetadata
- * @typedef {import("./savegame_typedefs").SavegameStats} SavegameStats
  * @typedef {import("./savegame_typedefs").SerializedGame} SerializedGame
  */
 
@@ -99,11 +98,6 @@ export class Savegame extends ReadWriteProxy {
         return {
             version: this.getCurrentVersion(),
             dump: null,
-            stats: {
-                failedMam: false,
-                trashedCount: 0,
-                usedInverseRotator: false,
-            },
             lastUpdate: Date.now(),
             mods: MODS.getModsListForSavegame(),
         };
@@ -196,13 +190,6 @@ export class Savegame extends ReadWriteProxy {
     isSaveable() {
         return true;
     }
-    /**
-     * Returns the statistics of the savegame
-     * @returns {SavegameStats}
-     */
-    getStatistics() {
-        return this.currentData.stats;
-    }
 
     /**
      * Returns the *real* last update of the savegame, not the one of the metadata
@@ -273,7 +260,7 @@ export class Savegame extends ReadWriteProxy {
             return false;
         }
 
-        const shadowData = Object.assign({}, this.currentData);
+        const shadowData = {};
         shadowData.dump = dump;
         shadowData.lastUpdate = new Date().getTime();
         shadowData.version = this.getCurrentVersion();

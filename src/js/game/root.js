@@ -1,33 +1,32 @@
-import { Signal } from "../core/signal";
-import { RandomNumberGenerator } from "../core/rng";
 import { createLogger } from "../core/logging";
+import { RandomNumberGenerator } from "../core/rng";
+import { Signal } from "../core/signal";
 
 // Type hints
 /* typehints:start */
-import { GameTime } from "./time/game_time";
-import { EntityManager } from "./entity_manager";
-import { GameSystemManager } from "./game_system_manager";
-import { AchievementProxy } from "./achievement_proxy";
-import { GameHUD } from "./hud/hud";
-import { MapView } from "./map_view";
-import { Camera } from "./camera";
+import { Application } from "../application";
+import { BufferMaintainer } from "../core/buffer_maintainer";
+import { Vector } from "../core/vector";
+import { Savegame } from "../savegame/savegame";
 import { InGameState } from "../states/ingame";
 import { AutomaticSave } from "./automatic_save";
-import { Application } from "../application";
-import { SoundProxy } from "./sound_proxy";
-import { Savegame } from "../savegame/savegame";
-import { GameLogic } from "./logic";
-import { ShapeDefinitionManager } from "./shape_definition_manager";
-import { HubGoals } from "./hub_goals";
-import { BufferMaintainer } from "../core/buffer_maintainer";
-import { ProductionAnalytics } from "./production_analytics";
-import { Entity } from "./entity";
-import { ShapeDefinition } from "./shape_definition";
 import { BaseItem } from "./base_item";
+import { Camera } from "./camera";
 import { DynamicTickrate } from "./dynamic_tickrate";
-import { KeyActionMapper } from "./key_action_mapper";
-import { Vector } from "../core/vector";
+import { Entity } from "./entity";
+import { EntityManager } from "./entity_manager";
 import { GameMode } from "./game_mode";
+import { GameSystemManager } from "./game_system_manager";
+import { HubGoals } from "./hub_goals";
+import { GameHUD } from "./hud/hud";
+import { KeyActionMapper } from "./key_action_mapper";
+import { GameLogic } from "./logic";
+import { MapView } from "./map_view";
+import { ProductionAnalytics } from "./production_analytics";
+import { ShapeDefinition } from "./shape_definition";
+import { ShapeDefinitionManager } from "./shape_definition_manager";
+import { SoundProxy } from "./sound_proxy";
+import { GameTime } from "./time/game_time";
 /* typehints:end */
 
 const logger = createLogger("game/root");
@@ -124,9 +123,6 @@ export class GameRoot {
         /** @type {SoundProxy} */
         this.soundProxy = null;
 
-        /** @type {AchievementProxy} */
-        this.achievementProxy = null;
-
         /** @type {ShapeDefinitionManager} */
         this.shapeDefinitionMgr = null;
 
@@ -184,10 +180,6 @@ export class GameRoot {
             // Called before actually placing an entity, use to perform additional logic
             // for freeing space before actually placing.
             freeEntityAreaBeforeBuild: /** @type {Signal<[Entity]>} */ (new Signal()),
-
-            // Called with an achievement key and necessary args to validate it can be unlocked.
-            achievementCheck: /** @type {Signal<[string, any]>} */ (new Signal()),
-            bulkAchievementCheck: /** @type {Signal<(string|any)[]>} */ (new Signal()),
 
             // Puzzle mode
             puzzleComplete: /** @type {Signal<[]>} */ (new Signal()),
