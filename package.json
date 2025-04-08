@@ -27,8 +27,7 @@
         "crc": "^3.8.0",
         "debounce-promise": "^3.1.2",
         "howler": "^2.1.2",
-        "lz-string": "^1.4.4",
-        "semver": "^7.3.5"
+        "lz-string": "^1.4.4"
     },
     "devDependencies": {
         "@eslint/js": "^9.24.0",
