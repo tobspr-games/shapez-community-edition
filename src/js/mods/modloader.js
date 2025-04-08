@@ -1,5 +1,4 @@
 import { FsError } from "@/platform/fs_error";
-import { globalConfig } from "../core/config";
 import { createLogger } from "../core/logging";
 import { Storage } from "../platform/storage";
 import { Mod } from "./mod";
@@ -137,24 +136,6 @@ export class ModLoader {
         // TODO: Make use of the passed file name, or wait for ModV2
         let mods = await ipcRenderer.invoke("get-mods");
         mods = mods.map(mod => mod.source);
-
-        if (G_IS_DEV && globalConfig.debug.externalModUrl) {
-            const modURLs = Array.isArray(globalConfig.debug.externalModUrl)
-                ? globalConfig.debug.externalModUrl
-                : [globalConfig.debug.externalModUrl];
-
-            for (let i = 0; i < modURLs.length; i++) {
-                const response = await fetch(modURLs[i], {
-                    method: "GET",
-                });
-                if (response.status !== 200) {
-                    throw new Error(
-                        "Failed to load " + modURLs[i] + ": " + response.status + " " + response.statusText
-                    );
-                }
-                mods.push(await response.text());
-            }
-        }
 
         window.$shapez_registerMod = (modClass, meta) => {
             if (this.initialized) {
