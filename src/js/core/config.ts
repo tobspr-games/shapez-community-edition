@@ -41,9 +41,6 @@ export const globalConfig = {
     assetsSharpness: 1.5,
     shapesSharpness: 1.3,
 
-    // Achievements
-    achievementSliceDuration: 10, // Seconds
-
     // Production analytics
     statisticsGraphDpi: 2.5,
     statisticsGraphSlices: 100,

@@ -13,16 +13,14 @@ import {
     enumInvertedDirections,
     Vector,
 } from "../../core/vector";
-import { ACHIEVEMENTS } from "../../platform/achievement_provider";
 import { BaseItem } from "../base_item";
-import { arrayWireRotationVariantToType, MetaWireBuilding } from "../buildings/wire";
 import { getCodeFromBuildingData } from "../building_codes";
+import { arrayWireRotationVariantToType, MetaWireBuilding } from "../buildings/wire";
 import { enumWireType, enumWireVariant, WireComponent } from "../components/wire";
-import { enumPinSlotType, WiredPinsComponent } from "../components/wired_pins";
 import { WireTunnelComponent } from "../components/wire_tunnel";
+import { enumPinSlotType, WiredPinsComponent } from "../components/wired_pins";
 import { Entity } from "../entity";
 import { GameSystem } from "../game_system";
-import { GameSystemWithFilter } from "../game_system_with_filter";
 import { isTruthyItem } from "../items/boolean_item";
 import { MapChunkView } from "../map_chunk_view";
 
@@ -698,8 +696,6 @@ export class WireSystem extends GameSystem {
         if (!staticComp) {
             return;
         }
-
-        this.root.signals.achievementCheck.dispatch(ACHIEVEMENTS.place5000Wires, entity);
 
         // Invalidate affected area
         const originalRect = staticComp.getTileSpaceBounds();

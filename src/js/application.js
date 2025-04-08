@@ -12,7 +12,6 @@ import { Vector } from "./core/vector";
 import { MOD_SIGNALS } from "./mods/mod_signals";
 import { MODS } from "./mods/modloader";
 import { ClientAPI } from "./platform/api";
-import { NoAchievementProvider } from "./platform/no_achievement_provider";
 import { Sound } from "./platform/sound";
 import { Storage } from "./platform/storage";
 import { PlatformWrapperImplElectron } from "./platform/wrapper";
@@ -30,7 +29,6 @@ import { PuzzleMenuState } from "./states/puzzle_menu";
 import { SettingsState } from "./states/settings";
 
 /**
- * @typedef {import("./platform/achievement_provider").AchievementProviderInterface} AchievementProviderInterface
  * @typedef {import("./platform/sound").SoundInterface} SoundInterface
  */
 
@@ -74,7 +72,6 @@ export class Application {
         this.platformWrapper = new PlatformWrapperImplElectron(this);
 
         this.sound = new Sound(this);
-        this.achievementProvider = new NoAchievementProvider(this);
 
         // Track if the window is focused (only relevant for browser)
         this.focused = true;

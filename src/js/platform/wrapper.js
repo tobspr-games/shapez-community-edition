@@ -5,7 +5,6 @@ import { Application } from "../application";
 import { IS_MOBILE } from "../core/config";
 import { createLogger } from "../core/logging";
 import { clamp } from "../core/utils";
-import { NoAchievementProvider } from "./no_achievement_provider";
 
 const logger = createLogger("electron-wrapper");
 
@@ -16,10 +15,8 @@ export class PlatformWrapperImplElectron {
     }
 
     initialize() {
-        return this.initializeAchievementProvider().then(() => {
-            document.documentElement.classList.add("p-" + this.getId());
-            return Promise.resolve();
-        });
+        document.documentElement.classList.add("p-" + this.getId());
+        return Promise.resolve();
     }
 
     getId() {
@@ -59,14 +56,6 @@ export class PlatformWrapperImplElectron {
     performRestart() {
         logger.log(this, "Performing restart");
         window.location.reload();
-    }
-
-    initializeAchievementProvider() {
-        return this.app.achievementProvider.initialize().catch(err => {
-            logger.error("Failed to initialize achievement provider, disabling:", err);
-
-            this.app.achievementProvider = new NoAchievementProvider(this.app);
-        });
     }
 
     /**

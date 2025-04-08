@@ -20,7 +20,6 @@ import { Vector } from "../core/vector";
 import { MOD_SIGNALS } from "../mods/mod_signals";
 import { Savegame } from "../savegame/savegame";
 import { SavegameSerializer } from "../savegame/savegame_serializer";
-import { AchievementProxy } from "./achievement_proxy";
 import { AutomaticSave } from "./automatic_save";
 import { MetaHubBuilding } from "./buildings/hub";
 import { Camera } from "./camera";
@@ -115,7 +114,6 @@ export class GameCore {
         root.logic = new GameLogic(root);
         root.hud = new GameHUD(root);
         root.time = new GameTime(root);
-        root.achievementProxy = new AchievementProxy(root);
         root.automaticSave = new AutomaticSave(root);
         root.soundProxy = new SoundProxy(root);
 
@@ -154,9 +152,6 @@ export class GameCore {
 
                     // Update analytics
                     root.productionAnalytics.update();
-
-                    // Check achievements
-                    root.achievementProxy.update();
                 }
             });
         }
@@ -290,9 +285,6 @@ export class GameCore {
 
             // Update analytics
             root.productionAnalytics.update();
-
-            // Check achievements
-            root.achievementProxy.update();
         }
 
         // Update automatic save after everything finished

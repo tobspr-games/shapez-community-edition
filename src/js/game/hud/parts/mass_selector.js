@@ -4,7 +4,6 @@ import { createLogger } from "../../../core/logging";
 import { STOP_PROPAGATION } from "../../../core/signal";
 import { formatBigNumberFull } from "../../../core/utils";
 import { Vector } from "../../../core/vector";
-import { ACHIEVEMENTS } from "../../../platform/achievement_provider";
 import { T } from "../../../translations";
 import { Blueprint } from "../../blueprint";
 import { enumMouseButton } from "../../camera";
@@ -16,7 +15,6 @@ import { BaseHUDPart } from "../base_hud_part";
 
 /* typehints:start */
 // @ts-ignore
-import { Component } from "../../component";
 /* typehints:end */
 
 const logger = createLogger("hud/mass_selector");
@@ -121,8 +119,6 @@ export class HUDMassSelector extends BaseHUDPart {
                     count++;
                 }
             }
-
-            this.root.signals.achievementCheck.dispatch(ACHIEVEMENTS.destroy1000, count);
         });
 
         // Clear uids later
