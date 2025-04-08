@@ -1,6 +1,6 @@
-import glob from "glob";
 import { execSync } from "child_process";
 import fs from "fs";
+import glob from "glob";
 
 export function getRevision(useLast = false) {
     const commitHash = execSync("git rev-parse --short " + (useLast ? "HEAD^1" : "HEAD")).toString("ascii");
@@ -18,14 +18,6 @@ export function getAllResourceImages() {
             }
             return true;
         });
-}
-
-export function getTag() {
-    try {
-        return execSync("git describe --tag --exact-match").toString("ascii");
-    } catch (e) {
-        throw new Error("Current git HEAD is not a version tag");
-    }
 }
 
 export function getVersion() {

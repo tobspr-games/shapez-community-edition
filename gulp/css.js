@@ -1,22 +1,19 @@
-import path from "path/posix";
 import gulp from "gulp";
-import { getRevision } from "./buildutils.js";
+import path from "path/posix";
 import { buildFolder } from "./config.js";
 
-import gulpPostcss from "gulp-postcss";
-import postcssAssets from "postcss-assets";
-import postcssPresetEnv from "postcss-preset-env";
-import postcssRoundSubpixels from "postcss-round-subpixels";
-import postcssCriticalSplit from "postcss-critical-split";
 import cssMqpacker from "css-mqpacker";
 import cssnano from "cssnano";
-import gulpSassLint from "gulp-sass-lint";
 import gulpDartSass from "gulp-dart-sass";
 import gulpPlumber from "gulp-plumber";
+import gulpPostcss from "gulp-postcss";
 import gulpRename from "gulp-rename";
+import postcssAssets from "postcss-assets";
+import postcssCriticalSplit from "postcss-critical-split";
+import postcssPresetEnv from "postcss-preset-env";
+import postcssRoundSubpixels from "postcss-round-subpixels";
 
 // The assets plugin copies the files
-const commitHash = getRevision();
 const postcssAssetsPlugin = postcssAssets({
     loadPaths: [path.join(buildFolder, "res", "ui")],
     basePath: buildFolder,
@@ -54,15 +51,6 @@ const postcssPlugins = prod => {
     }
     return plugins;
 };
-
-// Performs linting on css
-export function lint() {
-    return gulp
-        .src(["../src/css/**/*.scss"])
-        .pipe(gulpSassLint({ configFile: ".sasslint.yml" }))
-        .pipe(gulpSassLint.format())
-        .pipe(gulpSassLint.failOnError());
-}
 
 function resourcesTask({ isProd }) {
     return gulp
