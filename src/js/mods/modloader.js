@@ -1,6 +1,3 @@
-/* typehints:start */
-import { Application } from "../application";
-/* typehints:end */
 import { FsError } from "@/platform/fs_error";
 import { globalConfig } from "../core/config";
 import { createLogger } from "../core/logging";
@@ -9,6 +6,7 @@ import { Mod } from "./mod";
 import { ModInterface } from "./mod_interface";
 import { MOD_SIGNALS } from "./mod_signals";
 
+import { GLOBAL_APP } from "@/core/globals";
 import semverSatisifies from "semver/functions/satisfies";
 import semverValidRange from "semver/ranges/valid";
 
@@ -32,11 +30,6 @@ export class ModLoader {
     constructor() {
         LOG.log("modloader created");
 
-        /**
-         * @type {Application}
-         */
-        this.app = undefined;
-
         /** @type {Mod[]} */
         this.mods = [];
 
@@ -50,8 +43,8 @@ export class ModLoader {
         this.signals = MOD_SIGNALS;
     }
 
-    linkApp(app) {
-        this.app = app;
+    get app() {
+        return GLOBAL_APP;
     }
 
     anyModsActive() {
