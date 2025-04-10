@@ -1,8 +1,6 @@
 import eslint from "@eslint/js";
 import globals from "globals";
-import path from "path";
 import tseslint from "typescript-eslint";
-import { fileURLToPath } from "url";
 
 const baseConfig = tseslint.config(
     eslint.configs.recommended,
@@ -12,8 +10,7 @@ const baseConfig = tseslint.config(
         languageOptions: {
             parserOptions: {
                 project: true,
-                // FIXME: Node.js 21.2.0 introduced import.meta.dirname
-                tsconfigRootDir: path.dirname(fileURLToPath(import.meta.url)),
+                tsconfigRootDir: import.meta.dirname,
             },
         },
     },

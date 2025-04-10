@@ -1,6 +1,5 @@
 import { execSync } from "child_process";
 import fs from "fs";
-import glob from "glob";
 
 export function getRevision(useLast = false) {
     const commitHash = execSync("git rev-parse --short " + (useLast ? "HEAD^1" : "HEAD")).toString("ascii");
@@ -8,8 +7,8 @@ export function getRevision(useLast = false) {
 }
 
 export function getAllResourceImages() {
-    return glob
-        .sync("res/**/*.@(png|svg|jpg)", { cwd: ".." })
+    return fs
+        .globSync("res/**/*.@(png|svg|jpg)", { cwd: ".." })
         .map(f => f.replace(/^res\//gi, ""))
         .filter(f => {
             if (f.indexOf("ui") >= 0) {
