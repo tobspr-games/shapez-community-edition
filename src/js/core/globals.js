@@ -12,7 +12,7 @@ export let GLOBAL_APP = null;
  * @param {Application} app
  */
 export function setGlobalApp(app) {
-    assert(!GLOBAL_APP, "Create application twice!");
+    assert(!GLOBAL_APP, "Tried to set GLOBAL_APP twice");
     GLOBAL_APP = app;
 }
 

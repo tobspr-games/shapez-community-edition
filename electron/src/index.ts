@@ -3,7 +3,8 @@ import path from "path";
 import { defaultWindowTitle, pageUrl, switches } from "./config.js";
 import { FsJobHandler } from "./fsjob.js";
 import { IpcHandler } from "./ipc.js";
-import { ModsHandler } from "./mods.js";
+import { ModLoader } from "./mods/loader.js";
+import { ModProtocolHandler } from "./mods/protocol_handler.js";
 
 let win: BrowserWindow | null = null;
 
@@ -25,10 +26,14 @@ if (!app.requestSingleInstanceLock()) {
 // files if requested. Perhaps, use streaming to make large
 // transfers less "blocking"
 const fsJob = new FsJobHandler("saves");
-const mods = new ModsHandler();
-const ipc = new IpcHandler(fsJob, mods);
+const modLoader = new ModLoader();
+const modProtocol = new ModProtocolHandler(modLoader);
+const ipc = new IpcHandler(fsJob, modLoader);
 
 function createWindow() {
+    // The protocol can only be handled after "ready" event
+    modProtocol.install();
+
     win = new BrowserWindow({
         minWidth: 800,
         minHeight: 600,
@@ -86,8 +91,6 @@ function openExternalUrl(urlString: string) {
         // Ignore invalid URLs
     }
 }
-
-await mods.reload();
 
 app.on("ready", createWindow);
 app.on("window-all-closed", () => {

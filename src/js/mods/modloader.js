@@ -1,16 +1,10 @@
-/* typehints:start */
-import { Application } from "../application";
-/* typehints:end */
+import { GLOBAL_APP } from "@/core/globals";
 import { FsError } from "@/platform/fs_error";
-import { globalConfig } from "../core/config";
 import { createLogger } from "../core/logging";
 import { Storage } from "../platform/storage";
 import { Mod } from "./mod";
 import { ModInterface } from "./mod_interface";
 import { MOD_SIGNALS } from "./mod_signals";
-
-import semverSatisifies from "semver/functions/satisfies";
-import semverValidRange from "semver/ranges/valid";
 
 const LOG = createLogger("mods");
 
@@ -22,7 +16,6 @@ const LOG = createLogger("mods");
  *   website: string;
  *   description: string;
  *   id: string;
- *   minimumGameVersion?: string;
  *   settings: [];
  *   doesNotAffectSavegame?: boolean
  * }} ModMetadata
@@ -31,11 +24,6 @@ const LOG = createLogger("mods");
 export class ModLoader {
     constructor() {
         LOG.log("modloader created");
-
-        /**
-         * @type {Application}
-         */
-        this.app = undefined;
 
         /** @type {Mod[]} */
         this.mods = [];
@@ -50,8 +38,8 @@ export class ModLoader {
         this.signals = MOD_SIGNALS;
     }
 
-    linkApp(app) {
-        this.app = app;
+    get app() {
+        return GLOBAL_APP;
     }
 
     anyModsActive() {
@@ -145,24 +133,6 @@ export class ModLoader {
         let mods = await ipcRenderer.invoke("get-mods");
         mods = mods.map(mod => mod.source);
 
-        if (G_IS_DEV && globalConfig.debug.externalModUrl) {
-            const modURLs = Array.isArray(globalConfig.debug.externalModUrl)
-                ? globalConfig.debug.externalModUrl
-                : [globalConfig.debug.externalModUrl];
-
-            for (let i = 0; i < modURLs.length; i++) {
-                const response = await fetch(modURLs[i], {
-                    method: "GET",
-                });
-                if (response.status !== 200) {
-                    throw new Error(
-                        "Failed to load " + modURLs[i] + ": " + response.status + " " + response.statusText
-                    );
-                }
-                mods.push(await response.text());
-            }
-        }
-
         window.$shapez_registerMod = (modClass, meta) => {
             if (this.initialized) {
                 throw new Error("Can't register mod after modloader is initialized");
@@ -200,26 +170,6 @@ export class ModLoader {
         for (let i = 0; i < this.modLoadQueue.length; i++) {
             const { modClass, meta } = this.modLoadQueue[i];
             const modDataFile = "modsettings_" + meta.id + "__" + meta.version + ".json";
-
-            if (meta.minimumGameVersion) {
-                const minimumGameVersion = meta.minimumGameVersion;
-                if (!semverValidRange(minimumGameVersion)) {
-                    alert("Mod " + meta.id + " has invalid minimumGameVersion: " + minimumGameVersion);
-                    continue;
-                }
-                if (!semverSatisifies(G_BUILD_VERSION, minimumGameVersion)) {
-                    alert(
-                        "Mod  '" +
-                            meta.id +
-                            "' is incompatible with this version of the game: \n\n" +
-                            "Mod requires version " +
-                            minimumGameVersion +
-                            " but this game has version " +
-                            G_BUILD_VERSION
-                    );
-                    continue;
-                }
-            }
 
             let settings = meta.settings;
 

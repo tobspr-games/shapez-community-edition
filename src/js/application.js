@@ -1,7 +1,7 @@
 import { AnimationFrame } from "./core/animation_frame";
 import { BackgroundResourcesLoader } from "./core/background_resources_loader";
 import { GameState } from "./core/game_state";
-import { GLOBAL_APP, setGlobalApp } from "./core/globals";
+import { setGlobalApp } from "./core/globals";
 import { InputDistributor } from "./core/input_distributor";
 import { Loader } from "./core/loader";
 import { createLogger } from "./core/logging";
@@ -41,10 +41,8 @@ export class Application {
     async boot() {
         console.log("Booting ...");
 
-        assert(!GLOBAL_APP, "Tried to construct application twice");
         logger.log("Creating application, platform =", getPlatformName());
         setGlobalApp(this);
-        MODS.app = this;
 
         // MODS
 
