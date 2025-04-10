@@ -1,27 +1,3 @@
-steamPage:
-    shortText: In shapez.io potrai costruire delle fabbriche per automatizzare la
-        creazione e la combinazione di forme sempre più complesse, in una mappa
-        infinita.
-    discordLinkShort: Discord ufficiale
-    intro: >-
-        Shapez.io è un gioco tranquillo nel quale dovrai costruire delle
-        fabbriche per la produzione automatizzata di forme geometriche.
-
-        All'aumentare del livello, le forme diventeranno sempre più complesse e dovrai espanderti sempre di più nella mappa infinita.
-
-        E come se non bastasse, dovrai produrre esponenzialmente di più per soddisfare le richieste, l'unica possibilità è andare su grande scala!
-
-        All'inizio lavorerai solo con le forme, ma in seguito dovrai colorarle; a questo scopo dovrai estrarre e mescolare i colori!
-
-        Comprare il gioco su Steam ti garantirà l'accesso alla versone completa, ma puoi anche giocare una demo su shapez.io e decidere in seguito!
-    what_others_say: "Hanno detto di shapez.io:"
-    nothernlion_comment: This game is great - I'm having a wonderful time playing,
-        and time has flown by.
-    notch_comment: Oh crap. I really should sleep, but I think I just figured out
-        how to make a computer in shapez.io
-    steam_review_comment: This game has stolen my life and I don't want it back.
-        Very chill factory game that won't let me stop making my lines more
-        efficient.
 global:
     loading: Caricamento
     error: Errore
@@ -55,57 +31,20 @@ global:
         space: SPAZIO
     loggingIn: Logging in
     loadingResources: Downloading additional resources (<percentage> %)
-    discount: -<percentage>%
-    discountSummerSale: PROMOZIONE SPECIALE! L'offerta termina il 7 Luglio
-demoBanners:
-    title: Versione Demo
-    intro: |-
-        Acquista il gioco completo <strong>ora</strong> per sbloccarlo:<ul>
-            <li>Tutti i 26 livelli + gioco libero infinito</li>
-            <li>22 nuovi edifici</li>
-            <li>Supporto mod</li>
-            <li>Obiettivi</li>
-            <li>Modalità scura</li>
-            <li>... e molto altro ancora!</li>
-        </ul>
-    playtimeDisclaimer: La versione completa contiene oltre <strong>20 ore di contenuti</strong>.
-    playerCount: <playerCount> giocatori come te stanno attualmente giocando a
-        shapez su Steam
-    untilEndOfDemo: Fino alla fine della demo
-    playtimeDisclaimerDownload: Puoi continuare il tuo salvataggio nella versione
-        completa! Fai clic <strong>qui</strong> per scaricare il tuo
-        salvataggio.
-    titleV2: "Play the full version now for:"
 mainMenu:
     play: Gioca
-    changelog: Registro modifiche
     importSavegame: Importa
-    openSourceHint: Questo gioco è open source!
-    discordLink: Server ufficiale Discord
     helpTranslate: Aiutaci a tradurre!
-    browserWarning: Ci spiace, ma il gioco è molto lento su questo browser! Ottieni
-        la versione completa oppure scarica Chrome per l'esperienza completa.
     savegameLevel: Livello <x>
     savegameLevelUnknown: Livello sconosciuto
     continue: Continua
     newGame: Nuova partita
-    madeBy: Creato da <author-link>
-    subreddit: Reddit
     savegameUnnamed: Senza nome
-    puzzleMode: Modalità puzzle
-    back: Indietro
-    puzzleDlcText: Ti piace miniaturizzare e ottimizzare le tue fabbriche? Ottieni il
-        Puzzle DLC ora su steam per un maggiore divertimento!
-    puzzleDlcWishlist: Aggiungi alla lista dei desideri ora!
-    puzzleDlcViewNow: Guarda Dlc
     mods:
-        title: Mods attive
-        warningPuzzleDLC: Non è possibile giocare al Puzzle DLC con le mods. Per favore disabilita tutte le mod per poter giocare al DLC.
-    playingFullVersion: Stai giocando la versione completa!
-    logout: Logout
-    noActiveSavegames: Nessun salvataggio trovato - Clicca su gioca per iniziare una nuova partita!
-    playFullVersionV2: Hai comprato shapez su Steam? Gioca la versione completa sul tuo Browser!
-    playFullVersionStandalone: Da adesso puoi giocare la versione completa anche sul tuo Browser!
+        warningPuzzleDLC: Non è possibile giocare al Puzzle DLC con le mods. Per favore
+            disabilita tutte le mod per poter giocare al DLC.
+    noActiveSavegames: Nessun salvataggio trovato - Clicca su gioca per iniziare una
+        nuova partita!
 dialogs:
     buttons:
         ok: OK
@@ -114,7 +53,6 @@ dialogs:
         later: Più tardi
         restart: Riavvia
         reset: Reset
-        getStandalone: Ottieni la versione completa
         deleteGame: So cosa sto facendo
         viewUpdate: Mostra aggiornamento
         showUpgrades: Mostra miglioramenti
@@ -153,15 +91,6 @@ dialogs:
     keybindingsResetOk:
         title: Comandi resettati con successo
         desc: I comandi predefiniti sono stati ripristinati!
-    featureRestriction:
-        title: Versione Demo
-        desc: Hai provato ad accedere ad una caratteristica (<feature>) che non è
-            disponibile nella Demo. Considera di prendere la versione completa
-            per l'esperienza completa!
-    oneSavegameLimit:
-        title: Salvataggi limitati
-        desc: Puoi avere solo un salvataggio nella versione Demo. Perfavore rimuovi il
-            salvataggio già esistente o prendi la versione completa!
     updateSummary:
         title: Nuovo aggiornamento!
         desc: "Qui puoi trovare i cambiamenti dall'ultima volta che hai giocato:"
@@ -194,9 +123,6 @@ dialogs:
             <strong>codice</strong> di una forma (Che puoi generare
             <link>qui</link>)
         titleEdit: Modifica etichetta
-    markerDemoLimit:
-        desc: Puoi creare solo due etichette personalizzate nella Demo. Ottieni la
-            versione completa per avere etichette personalizzate illimitati!
     massCutConfirm:
         title: Conferma taglio
         desc: Stai tagliando molte strutture (<count> per essere precisi)! Sei sicuro di
@@ -295,29 +221,17 @@ dialogs:
             annullata!
     modsDifference:
         title: Attenzione
-        desc:
-            Le mod attualmente installate differiscono rispetto alle mod con cui è stato creato il salvataggio.
-            Questo potrebbe causare la corruzione o il mancato caricamento dei dati di salvataggio. Sei sicuro di voler continuare?
+        desc: Le mod attualmente installate differiscono rispetto alle mod con cui è
+            stato creato il salvataggio. Questo potrebbe causare la corruzione o
+            il mancato caricamento dei dati di salvataggio. Sei sicuro di voler
+            continuare?
         missingMods: Mods mancanti
         newMods: Mods installate di recente
     resourceLoadFailed:
         title: Impossibile caricare le risorse
-        demoLinkText: shapez demo su Steam
-        descWeb:
-            "Impossibile caricare una o più risorse. Assicurati di avere una connessione Internet stabile e riprova.
-            Se ancora non funziona, assicurati di disabilitare tutte le estensione del browser (adblockers inclusi).<br><br>
-            In alternativa puoi anche giocare la <demoOnSteamLinkText>. <br><br> Messaggio di errore:"
-        descSteamDemo: "Impossibile caricare una o più risorse. Prova a riavviare il gioco - Se questo non aiuta, prova a reinstallare e verificare i file di gioco da Steam. <br><br> Messaggio di errore:"
-    steamSsoError:
-        title: Logout versione completa
-        desc:
-            Sei stato disconnesso dalla versione completa del Browser a causa della connessione di rete instabile oppure perché stai giocando da un altro dispositivo.<br><br>
-            Per favore assicurati di non avere shapez aperto in altre schede del browser o in un altro computer con lo stesso account Steam.<br><br> Puoi accedere nuovamente nel menù principale.
-    steamSsoNoOwnership:
-        title: Versione completa non posseduta
-        desc:
-            Per giocare alla versione completa sul tuo Browser, devi possedere sia il gioco base sia il Puzzle DLC sul tuo account Steam.<br><br>
-            Assicurati di averli entrambi, di aver effettuato l'accesso all'account Steam corretto e riprova.
+        descSteamDemo: "Impossibile caricare una o più risorse. Prova a riavviare il
+            gioco - Se questo non aiuta, prova a reinstallare e verificare i
+            file di gioco da Steam. <br><br> Messaggio di errore:"
 ingame:
     keybindingsOverlay:
         moveMap: Sposta
@@ -460,40 +374,6 @@ ingame:
         one_miner: 1 trivella
         n_miners: <amount> trivelle
         limited_items: Limitato a <max_throughput>
-    watermark:
-        title: Versione demo
-        desc: Clicca qui per vedere i vantaggi della versione Completa!
-        get_on_steam: Ottieni su Steam
-    standaloneAdvantages:
-        no_thanks: No, grazie!
-        points:
-            levels:
-                title: 12 nuovi livelli!
-                desc: Per un totale di 26 livelli!
-            buildings:
-                title: 22 nuovi edifici
-                desc: Automatizza completamente la tua fabbrica!
-            markers:
-                title: ∞ etichette
-                desc: Non perderti nella tua fabbrica!
-            wires:
-                title: Cavi
-                desc: Un'intera nuova dimensione!
-            darkmode:
-                title: Modalità scura
-                desc: Smettila di maltrattare i tuoi occhi!
-            support:
-                title: Sostienimi
-                desc: Sviluppo shapez nel tempo libero!
-            achievements:
-                title: Achievement
-                desc: Collezionali tutti!
-            mods:
-                title: Supporto Mod!
-                desc: Più di 80 mod disponibili!
-        titleV2: "Ottieni la versione completa su Steam per sbloccare:"
-        titleExpiredV2: Demo completata!
-        titleEnjoyingDemo: Ti piace la demo?
     puzzleEditorSettings:
         zoneTitle: Zona
         zoneWidth: Larghezza
@@ -988,12 +868,13 @@ settings:
                 light: Chiaro
         refreshRate:
             title: Tick Rate
-            description:
-                Questo determina quanti tick di gioco avvengono al secondo. In generale ad un maggior tick rate corrisponde una maggiore precisione ma performance peggiore.
-                Se hai un monitor con una frequenza superiore a 60Hz, aumenta questo valore, in
-                modo tale che il gioco possa correttamente simulare alla
-                frequenza di aggiornamento più alta. Questo potrebbe abbassare i
-                frame al secondo se il tuo computer è troppo lento.
+            description: Questo determina quanti tick di gioco avvengono al secondo. In
+                generale ad un maggior tick rate corrisponde una maggiore
+                precisione ma performance peggiore. Se hai un monitor con una
+                frequenza superiore a 60Hz, aumenta questo valore, in modo tale
+                che il gioco possa correttamente simulare alla frequenza di
+                aggiornamento più alta. Questo potrebbe abbassare i frame al
+                secondo se il tuo computer è troppo lento.
         alwaysMultiplace:
             title: Posizionamento multiplo
             description: Se abilitato, tutti gli edifici rimarranno selezionati dopo il
@@ -1213,12 +1094,6 @@ about:
 changelog:
     title: Registro modifiche
 demo:
-    features:
-        restoringGames: Recupero salvataggi
-        importingGames: Importazione salvataggi
-        oneGameLimit: Limite di un salvataggio
-        customizeKeybindings: Scorciatoie personalizzabili
-        exportingBase: Esportazione dell'intera base come immagine
     settingNotAvailable: Non disponibile nella demo.
 tips:
     - L'hub centrale accetta qualsiasi forma, non solo l'obiettivo corrente!
@@ -1387,13 +1262,7 @@ mods:
     version: Versione
     modWebsite: Sito
     openFolder: Apri cartella delle Mod
-    folderOnlyStandalone: Aprire la cartella delle mod è possibile solo nella versione standalone.
     browseMods: Sfoglia Mods
-    modsInfo:
-        Per installare e gestire le mod, copiale nella cartella 'mods' all'interno della directory del gioco.
-        Puoi usare anche il tasto 'Apri cartella delle Mod' in alto a destra.
-    noModSupport: Hai bisogno della versione standalone di Steam per installare le mod.
-    togglingComingSoon:
-        title: Prossimamente
-        description: Abilitare o disabilitare le mod è possibile solo spostando il file della mod dalla o nella cartella 'mods/'. Tuttavia, in un aggiornamento futuro, sarà possibile attivare/disattivare con un'opzione nel gioco!
-    browserNoSupport: A causa di restrizioni del browser è possibile installare le mod solo nella versione di Steam - Mi dispiace!
+    modsInfo: Per installare e gestire le mod, copiale nella cartella 'mods'
+        all'interno della directory del gioco. Puoi usare anche il tasto 'Apri
+        cartella delle Mod' in alto a destra.

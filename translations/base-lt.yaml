@@ -1,26 +1,3 @@
-steamPage:
-    shortText: shapez.io yra gamyklų kūrimo žaidimas, kurio tikslas automatizuoti
-        vis sudėtingesnių formų gaminimą begaliniame žemėlapyje.
-    discordLinkShort: Nuoroda į oficialų Discord
-    intro: >-
-        Shapez.io tai raminantis žaidimas, kuriame jums reikia statyti gamyklas
-        geometrinių formų kūrimo automatizavimui.
-
-        Sunkėjant lygiams, geometrinės formos tampa sudėtingesnės, todėl jums reikės išsiplėsti begaliniame žemėlapyje.
-
-        Ir jei to negana, jūs taip pat turite pagaminti eksponentiškai daugiau, tam, kad patenkintumėte poreikius, todėl vienintelis dalykas, kuris padeda yra padidinti gamybą!
-
-        Pradžioje jums reikės paruošti tik formas, tačiau vėliau jas taip pat reikės ir nudažyti, todėl pasiruoškite išgauti ir maišyti spalvas!
-
-        Perkant žaidimą Steam platformoje gausite prieigą prie pilnos žaidimo versijos, bet pirma galite išbandyti demo versiją shapez.io svetainėje ir nuspręsti vėliau!
-    what_others_say: Ką kiti sako apie shapez.io
-    nothernlion_comment: Šis žaidimas yra puikus - puikiai praleidžiu laiką ir jis
-        labai greitai pabėga.
-    notch_comment: Po velnių. Tikrai turėčiau miegoti, bet manau, kad ką tik
-        supratau kaip susikurti kompiuterį šiame žaidime.
-    steam_review_comment: Šis žaidimas pavogė mano gyvenimą ir aš nenoriu jo
-        susigrąžinti. Labai šaunus gamyklinis žaidimas, kuris neleis man nustoti
-        tobulinti savo produkcijos linijas.
 global:
     loading: Kraunasi
     error: Klaida
@@ -54,57 +31,19 @@ global:
         space: SPACE
     loggingIn: Prisijungiama
     loadingResources: Downloading additional resources (<percentage> %)
-    discount: -<percentage>%
-    discountSummerSale: SPECIAL PROMOTION! Offer ends 7 July
-demoBanners:
-    title: Demo Versija
-    intro: |-
-        Įsigykite pilną žaidimo versiją <strong>dabar</strong> atrakinti:<ul>
-            <li>Visus 26 lygius + neribotą Freeplay rėžimą </li>
-            <li>22 nauji pastatai</li>
-            <li>Modifikacijų palaikymas</li>
-            <li>Pasiekimai</li>
-            <li>Dark Mode</li>
-            <li>... ir daug daugiau!</li>
-        </ul>
-    playtimeDisclaimer: Pilnoje žaidimo versijoje yra daugiau nei <strong>20 turinio
-        valandos</strong>.
-    playerCount: <playerCount> players like you are currently playing shapez on Steam
-    untilEndOfDemo: Until end of demo
-    playtimeDisclaimerDownload: Galite tęsti savo žaidimą pilnoje versijoje!
-        Spustelėkite <strong>čia</strong>, kad atsisiųstumėte išsaugotą žaidimą.
-    titleV2: "Žaisk pilną versiją dabar:"
 mainMenu:
     play: Pradėti
-    changelog: Pakeitimai
     importSavegame: Įkelti
-    openSourceHint: Šis žaidimas yra atvirojo kodo!
-    discordLink: Nuoroda į oficialų Discord serverį
     helpTranslate: Prisidėkite prie žaidimo vertimo!
-    browserWarning: Sorry, but the game is known to run slow on your browser! Get
-        the standalone version or download chrome for the full experience.
     savegameLevel: Level <x>
     savegameLevelUnknown: Unknown Level
     continue: Continue
     newGame: New Game
-    madeBy: Made by <author-link>
-    subreddit: Reddit
     savegameUnnamed: Unnamed
-    puzzleMode: Puzzle Mode
-    back: Back
-    puzzleDlcText: Do you enjoy compacting and optimizing factories? Get the Puzzle
-        DLC now on Steam for even more fun!
-    puzzleDlcWishlist: Wishlist now!
-    puzzleDlcViewNow: View Dlc
     mods:
-        title: Active Mods
         warningPuzzleDLC: Playing the Puzzle DLC is not possible with mods. Please
             disable all mods to play the DLC.
-    playingFullVersion: You are now playing the full version!
-    logout: Logout
     noActiveSavegames: No active savegames found - Click play to start a new game!
-    playFullVersionV2: Bough shapez on Steam? Play the full version in your Browser!
-    playFullVersionStandalone: You can now also play the full version in your Browser!
 dialogs:
     buttons:
         ok: OK
@@ -113,7 +52,6 @@ dialogs:
         later: Later
         restart: Restart
         reset: Reset
-        getStandalone: Get Standalone
         deleteGame: I know what I do
         viewUpdate: View Update
         showUpgrades: Show Upgrades
@@ -150,14 +88,6 @@ dialogs:
     keybindingsResetOk:
         title: Keybindings reset
         desc: The keybindings have been reset to their respective defaults!
-    featureRestriction:
-        title: Demo Version
-        desc: You tried to access a feature (<feature>) which is not available in the
-            demo. Consider to get the standalone for the full experience!
-    oneSavegameLimit:
-        title: Limited savegames
-        desc: You can only have one savegame at a time in the demo version. Please
-            remove the existing one or get the standalone!
     updateSummary:
         title: New update!
         desc: "Here are the changes since you last played:"
@@ -187,9 +117,6 @@ dialogs:
         desc: Give it a meaningful name, you can also include a <strong>short
             key</strong> of a shape (Which you can generate <link>here</link>)
         titleEdit: Edit Marker
-    markerDemoLimit:
-        desc: You can only create two custom markers in the demo. Get the standalone for
-            unlimited markers!
     massCutConfirm:
         title: Confirm cut
         desc: You are cutting a lot of buildings (<count> to be exact)! Are you sure you
@@ -290,28 +217,9 @@ dialogs:
         newMods: Newly installed Mods
     resourceLoadFailed:
         title: Resources failed to load
-        demoLinkText: shapez demo on Steam
-        descWeb: "One ore more resources could not be loaded. Make sure you have a
-            stable internet connection and try again. If this still doesn't
-            work, make sure to also disable any browser extensions (including
-            adblockers).<br><br> As an alternative, you can also play the
-            <demoOnSteamLinkText>. <br><br> Error Message:"
         descSteamDemo: "One ore more resources could not be loaded. Try restarting the
             game - If that does not help, try reinstalling and verifying the
             game files via Steam. <br><br> Error Message:"
-    steamSsoError:
-        title: Full Version Logout
-        desc: You have been logged out from the Full Browser Version since either your
-            network connection is unstable or you are playing on another
-            device.<br><br> Please make sure you don't have shapez open in any
-            other browser tab or another computer with the same Steam
-            account.<br><br> You can login again in the main menu.
-    steamSsoNoOwnership:
-        title: Full Edition not owned
-        desc: In order to play the Full Edition in your Browser, you need to own both
-            the base game and the Puzzle DLC on your Steam account.<br><br>
-            Please make sure you own both, signed in with the correct Steam
-            account and then try again.
 ingame:
     keybindingsOverlay:
         moveMap: Move
@@ -450,40 +358,6 @@ ingame:
         one_miner: 1 Miner
         n_miners: <amount> Miners
         limited_items: Limited to <max_throughput>
-    watermark:
-        title: Demo version
-        desc: Click here to see the Steam version advantages!
-        get_on_steam: Get on steam
-    standaloneAdvantages:
-        no_thanks: No, thanks!
-        points:
-            levels:
-                title: 12 New Levels
-                desc: For a total of 26 levels!
-            buildings:
-                title: 22 New Buildings
-                desc: Fully automate your factory!
-            markers:
-                title: ∞ Markers
-                desc: Never get lost in your factory!
-            wires:
-                title: Wires
-                desc: An entirely new dimension!
-            darkmode:
-                title: Dark Mode
-                desc: Stop hurting your eyes!
-            support:
-                title: Support me
-                desc: I develop it in my spare time!
-            achievements:
-                title: Achievements
-                desc: Hunt them all!
-            mods:
-                title: Modding support!
-                desc: Over 80 mods available!
-        titleV2: "Get the full version now on Steam to unlock:"
-        titleExpiredV2: Demo completed!
-        titleEnjoyingDemo: Enjoy the demo?
     puzzleEditorSettings:
         zoneTitle: Zone
         zoneWidth: Width
@@ -1172,12 +1046,6 @@ about:
 changelog:
     title: Changelog
 demo:
-    features:
-        restoringGames: Restoring savegames
-        importingGames: Importing savegames
-        oneGameLimit: Limited to one savegame
-        customizeKeybindings: Customizing Keybindings
-        exportingBase: Exporting whole Base as Image
     settingNotAvailable: Not available in the demo.
 tips:
     - The hub accepts input of any kind, not just the current shape!
@@ -1331,16 +1199,7 @@ mods:
     version: Version
     modWebsite: Website
     openFolder: Open Mods Folder
-    folderOnlyStandalone: Opening the mod folder is only possible when running the standalone.
     browseMods: Browse Mods
     modsInfo: To install and manage mods, copy them to the mods folder within the
         game directory. You can also use the 'Open Mods Folder' button on the
         top right.
-    noModSupport: You need the standalone version on Steam to install mods.
-    togglingComingSoon:
-        title: Coming Soon
-        description: Enabling or disabling mods is currently only possible by copying
-            the mod file from or to the mods/ folder. However, being able to
-            toggle them here is planned for a future update!
-    browserNoSupport: Due to browser restrictions it is currently only possible to
-        install mods in the Steam version - Sorry!

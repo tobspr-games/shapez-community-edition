@@ -1,27 +1,3 @@
-steamPage:
-    shortText: shapez.io to gra polegająca na budowaniu fabryki automatyzującej
-        tworzenie i łączenie ze sobą coraz bardziej skomplikowanych kształtów na
-        mapie, która nie ma końca.
-    discordLinkShort: Oficjalny serwer Discord
-    intro: >-
-        Shapez.io jest spokojną grą, której celem jest budowanie automatycznych
-        fabryk produkujących różne kształty geometryczne.
-
-        W miarę zwiększania się poziomów, kształty będą stawać się coraz bardziej skomplikowane, a Twoja fabryka będzie musiała się rozprzestrzenić na mapie o nieskończonej wielkości.
-
-        A jeżeli to było mało, będziesz również musiał produkować coraz więcej kształtów, by zaspokoić wymagania - jedynym rozwiązaniem jest skalowanie fabryki!
-
-        Początkowo przekształcanie kształtów będzie proste, ale później będziesz również musiał je malować - wymaga to wydobywania i łączenia barwników!
-
-        Kupienie gry w serwisie Steam przyznaje Ci dostęp do pełnej wersji, ale możesz również skorzystać z wersji demonstracyjnej na stronie shapez.io i rozważyć zakup później!
-    what_others_say: Co inni ludzie mówią o shapez.io
-    nothernlion_comment: Ta gra jest świetna - świetnie się bawię grając, a czas
-        minął bardzo szybko.
-    notch_comment: O kurcze. Naprawdę powinienem spać, ale chyba właśnie się
-        wymyśliłem jak stworzyć komputer w shapez.io
-    steam_review_comment: Ta gra skradła mi życie i nie chce go z powrotem! Bardzo
-        luźna gra o fabrykach która nie pozwoli mi robić moich lini bardziej
-        wydajnych.
 global:
     loading: Ładowanie
     error: Wystąpił błąd
@@ -55,56 +31,19 @@ global:
         space: SPACJA
     loggingIn: Logowanie
     loadingResources: Pobieranie dodatkowych zasobów (<percentage> %)
-    discount: -<percentage>%
-    discountSummerSale: SPECIAL PROMOTION! Offer ends 7 July
-demoBanners:
-    title: Wersja demonstracyjna
-    intro: |-
-        Pobierz pełną wersję gry <strong>teraz</strong>, aby ją odblokować:<ul>
-            <li>Wszystkie 26 poziomów + nieskończona darmowa rozgrywka</li>
-            <li>22 nowe budynki</li>
-            <li>Obsługa modów</li>
-            <li>Osiągnięcia</li>
-            <li>Tryb ciemny</li>
-            <li>... i wiele innych!</li>
-        </ul>
-    playtimeDisclaimer: Pełna wersja zawiera ponad <strong>20 godziny treści</strong>.
-    playerCount: <playerCount> gracze tacy jak Ty grają obecnie w shapez na Steamie
-    untilEndOfDemo: Do końca demonstracji
-    playtimeDisclaimerDownload: Możesz kontynuować zapis stanu gry w pełnej wersji!
-        Kliknij <strong>tutaj</strong>, aby pobrać zapisaną grę.
-    titleV2: "Zagraj teraz w pełną wersję gry:"
 mainMenu:
     play: Rozpocznij
     continue: Kontynuuj
     newGame: Nowa gra
-    changelog: Dziennik Zmian
     importSavegame: Importuj
-    openSourceHint: Gra z otwartym kodem źródłowym
-    discordLink: Oficjalny serwer Discord
     helpTranslate: Pomóż w tłumaczeniu
-    browserWarning: Przepraszamy, lecz ta gra może działać wolno w Twojej
-        przeglądarce! Kup pełną wersję gry lub pobierz przeglądarkę chrome.
     savegameLevel: Poziom <x>
     savegameLevelUnknown: Nieznany poziom
-    madeBy: Gra wykonana przez <author-link>
-    subreddit: Reddit
     savegameUnnamed: Zapis bez nazwy
-    puzzleMode: Tryb Układanek
-    back: Wróć
-    puzzleDlcText: Czy lubisz kompaktować i optymalizować fabryki? Zainstaluj DLC
-        układanek na Steamie, aby mieć jeszcze więcej zabawy!
-    puzzleDlcWishlist: Ustaw jako wyczekiwane!
-    puzzleDlcViewNow: Zobacz Dlc
     mods:
-        title: Aktywne Mody
         warningPuzzleDLC: Granie w DLC Układanek nie jest możliwe z modami. Proszę
             wyłącz wszystkie mody, aby otworzyć DLC.
-    playingFullVersion: You are now playing the full version!
-    logout: Logout
     noActiveSavegames: No active savegames found - Click play to start a new game!
-    playFullVersionV2: Bough shapez on Steam? Play the full version in your Browser!
-    playFullVersionStandalone: You can now also play the full version in your Browser!
 dialogs:
     buttons:
         ok: Ok
@@ -113,7 +52,6 @@ dialogs:
         later: Później
         restart: Restart
         reset: Reset
-        getStandalone: Kup grę
         deleteGame: Wiem, co robię
         viewUpdate: Zobacz aktualizację
         showUpgrades: Pokaż ulepszenia
@@ -152,14 +90,6 @@ dialogs:
     keybindingsResetOk:
         title: Reset Klawiszologii
         desc: Klawiszologia została przywrócona do ustawień domyślnych!
-    featureRestriction:
-        title: Wersja Demonstracyjna
-        desc: Próbujesz skorzystać z "<feature>", który nie jest dostępny w wersji demo.
-            Rozważ zakup pełnej wersji gry dla pełni doświadczeń!
-    oneSavegameLimit:
-        title: Limit Zapisów Gry
-        desc: W wersji demo możesz posiadać wyłącznie jeden zapis gry. Proszę usuń
-            obecny lub zakup pełną wersję gry!
     updateSummary:
         title: Nowa aktualizacja!
         desc: "Lista zmian od Twojej ostatniej rozgrywki:"
@@ -191,9 +121,6 @@ dialogs:
         desc: Nadaj mu nazwę. Możesz w niej zawrzeć <strong>kod</strong> kształtu (Który
             możesz wygenerować <link>tutaj</link>)
         titleEdit: Edytuj Znacznik
-    markerDemoLimit:
-        desc: Możesz stworzyć tylko dwa własne znaczniki w wersji demo. Zakup pełną
-            wersję gry dla nielimitowanych znaczników!
     massCutConfirm:
         title: Potwierdź wycinanie
         desc: Wycinasz sporą ilość maszyn (<count> w roli ścisłości)! Czy na pewno
@@ -297,28 +224,9 @@ dialogs:
         newMods: Ostatnio zainstalowane Mody
     resourceLoadFailed:
         title: Resources failed to load
-        demoLinkText: shapez demo on Steam
-        descWeb: "One ore more resources could not be loaded. Make sure you have a
-            stable internet connection and try again. If this still doesn't
-            work, make sure to also disable any browser extensions (including
-            adblockers).<br><br> As an alternative, you can also play the
-            <demoOnSteamLinkText>. <br><br> Error Message:"
         descSteamDemo: "One ore more resources could not be loaded. Try restarting the
             game - If that does not help, try reinstalling and verifying the
             game files via Steam. <br><br> Error Message:"
-    steamSsoError:
-        title: Full Version Logout
-        desc: You have been logged out from the Full Browser Version since either your
-            network connection is unstable or you are playing on another
-            device.<br><br> Please make sure you don't have shapez open in any
-            other browser tab or another computer with the same Steam
-            account.<br><br> You can login again in the main menu.
-    steamSsoNoOwnership:
-        title: Full Edition not owned
-        desc: In order to play the Full Edition in your Browser, you need to own both
-            the base game and the Puzzle DLC on your Steam account.<br><br>
-            Please make sure you own both, signed in with the correct Steam
-            account and then try again.
 ingame:
     keybindingsOverlay:
         moveMap: Ruch
@@ -458,40 +366,6 @@ ingame:
         one_miner: 1 ekstraktor
         n_miners: <amount> ekstraktorów
         limited_items: Ograniczone do <max_throughput>
-    watermark:
-        title: Wersja demo
-        desc: Kliknij tutaj, aby zobaczyć co potrafi wersja Steam!
-        get_on_steam: Kup na Steam
-    standaloneAdvantages:
-        no_thanks: Nie, dziękuję!
-        points:
-            levels:
-                title: 12 Nowych Poziomów
-                desc: Aby otrzymać 26 poziomów!
-            buildings:
-                title: 22 Nowych Budynków
-                desc: W pełni zautomatyzuj produkcję!
-            markers:
-                title: ∞ Znaczników
-                desc: Nigdy nie zgub się w swojej fabryce!
-            wires:
-                title: Przewody
-                desc: Całkowicie nowy wymiar!
-            darkmode:
-                title: Tryb Ciemny
-                desc: Przestań psuć swój wzrok!
-            support:
-                title: Wspomóż mnie
-                desc: Tworzę tą grę w swoim wolnym czasie!
-            achievements:
-                title: Osiągnięcia
-                desc: Zbierz je wszystkie!
-            mods:
-                title: Modding support!
-                desc: Over 80 mods available!
-        titleV2: "Get the full version now on Steam to unlock:"
-        titleExpiredV2: Demo completed!
-        titleEnjoyingDemo: Enjoy the demo?
     puzzleEditorSettings:
         zoneTitle: Obszar
         zoneWidth: Wysokość
@@ -1200,12 +1074,6 @@ about:
 changelog:
     title: Dziennik zmian
 demo:
-    features:
-        restoringGames: Przywracanie zapisów gry
-        importingGames: Importowanie zapisów gry
-        oneGameLimit: Limit jednego zapisu gry
-        customizeKeybindings: Personalizowanie Klawiszologii
-        exportingBase: Eksportowanie całej fabryki jako zrzut ekranu
     settingNotAvailable: Niedostępne w wersji demo.
 tips:
     - Budynek główny akceptuje wejście każdego rodzaju - nie tylko aktualny
@@ -1372,17 +1240,7 @@ mods:
     version: Wersja
     modWebsite: Strona
     openFolder: Otwórz folder modów
-    folderOnlyStandalone: Otwarcie folderu modów jest możliwe tylko podczas pracy w
-        wersji samodzielnej.
     browseMods: Szukaj Modów
     modsInfo: Aby zainstalować i zarządzać modami, skopiuj je do folderu mods w
         katalogu gry. Możesz także użyć przycisku „Otwórz folder modów” w prawym
         górnym rogu.
-    noModSupport: Aby zainstalować mody, potrzebujesz osobną wersję na Steam.
-    togglingComingSoon:
-        title: Już wkrótce
-        description: Włączanie lub wyłączanie modów jest obecnie możliwe tylko przez
-            kopiowanie pliku modów do folderu "mods/". Jednak w przyszłej
-            aktualizacji będziesz/asz mógł zmieniać ich status tutaj!
-    browserNoSupport: Due to browser restrictions it is currently only possible to
-        install mods in the Steam version - Sorry!

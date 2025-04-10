@@ -1,27 +1,3 @@
-steamPage:
-    shortText: shapez.io este un joc despre construirea fabricilor pentru a
-        automatiza crearea și combinarea a din ce in ce mai complexe forme
-        într-o hartă infinită.
-    discordLinkShort: Official Discord
-    intro: >-
-        Shapez.io un joc relaxant in care trebuie sa construiești fabrici pentru
-        a automatiza producția de figuri geometrice
-
-        Pe măsură ce nivelul crește figurile devin din ce în ce mai complexe și vei fi nevoit să te extinzi pe harta infinită.
-
-        Daca asta nu era suficient, vei fi nevoit sa produci exponențial mai multe figuri pentru a satisface cererea - singurul lucru care te poate ajuta este extinderea !
-
-        Dacă la început procesezi doar forme, vei fi nevoit sa le colorezi mai târziu - pentru asta vei avea nevoie să extragi și să amesteci culori !
-
-        Cumpărarea jocului pe Steam îți va asigura acesul la versiunea finală, dar te poți juca o versiune demonstrativă pe shapez.io mai întâi și să te decizi mai târziu !
-    what_others_say: Ce spun alții despre shapez.io
-    nothernlion_comment: This game is great - I'm having a wonderful time playing,
-        and time has flown by.
-    notch_comment: Oh crap. I really should sleep, but I think I just figured out
-        how to make a computer in shapez.io
-    steam_review_comment: This game has stolen my life and I don't want it back.
-        Very chill factory game that won't let me stop making my lines more
-        efficient.
 global:
     loading: Se Încarcă
     error: Eroare
@@ -55,58 +31,19 @@ global:
         space: SPACE
     loggingIn: Logare
     loadingResources: Downloading additional resources (<percentage> %)
-    discount: -<percentage>%
-    discountSummerSale: SPECIAL PROMOTION! Offer ends 7 July
-demoBanners:
-    title: Versiunea Demo
-    intro: |-
-        Obțineți jocul complet <strong>acum</strong> pentru a-l debloca:<ul>
-            <li>Toate cele 26 de nivele + Freeplay infinit</li>
-            <li>22 de clădiri noi</li>
-            <li>Suport pentru moduri</li>
-            <li>Realizări</li>
-            <li>Modul întunecat</li>
-            <li>...și multe altele!</li>
-        </ul>
-    playtimeDisclaimer: Versiunea completă conține mai mult de <strong>20 de ore de
-        conținut</strong>.
-    playerCount: <playerCount> jucători ca tine se joacă în prezent shapez pe Steam
-    untilEndOfDemo: Până la sfârșitul demonstrației
-    playtimeDisclaimerDownload: Puteți continua salvarea în versiunea completă!
-        Faceți clic <strong>aici</strong> pentru a descărca jocul salvat.
-    titleV2: "Joacă acum versiunea completă pentru:"
 mainMenu:
     play: Joacă
-    changelog: Jurnalul schimbărilor
     importSavegame: Importă
-    openSourceHint: Acest joc este open source!
-    discordLink: Serverul oficial de Discord
     helpTranslate: Ajută să traducem!
-    browserWarning: Scuze, dar jocul este cunoscut să ruleze încet pe browser-ul
-        tău! Instalează versiunea standalone sau descarcă chrome pentru
-        experiența completă.
     savegameLevel: Nivelul <x>
     savegameLevelUnknown: Nivel necunoscut
     continue: Continuă
     newGame: Joc nou
-    madeBy: Făcut de <author-link>
-    subreddit: Reddit
     savegameUnnamed: Fară nume
-    puzzleMode: Puzzle Mode
-    back: Back
-    puzzleDlcText: Îți place să compresezi și să optimizezi fabricile ? Ia acum
-        Puzzle DLC pe Steam pentru mai multă distracție !
-    puzzleDlcWishlist: Adaugă în Wishlist acum!
-    puzzleDlcViewNow: Vezi DlC
     mods:
-        title: Active Mods
         warningPuzzleDLC: Playing the Puzzle DLC is not possible with mods. Please
             disable all mods to play the DLC.
-    playingFullVersion: You are now playing the full version!
-    logout: Logout
     noActiveSavegames: No active savegames found - Click play to start a new game!
-    playFullVersionV2: Bough shapez on Steam? Play the full version in your Browser!
-    playFullVersionStandalone: You can now also play the full version in your Browser!
 dialogs:
     buttons:
         ok: OK
@@ -115,7 +52,6 @@ dialogs:
         later: Mai târziu
         restart: Restartează
         reset: Resetează
-        getStandalone: Instalează Standalone-ul
         deleteGame: Știu ce fac
         viewUpdate: Vezi Update-ul
         showUpgrades: Vezi Upgrade-urile
@@ -153,15 +89,6 @@ dialogs:
     keybindingsResetOk:
         title: Tastele configurate se resetează
         desc: Tastele configurate au fost resetate la valorile lor obișnuite!
-    featureRestriction:
-        title: Versiune Demo
-        desc: Ai încercat să accesezi o funcție (<feature>) care nu este disponibilă în
-            demo. Consideră să instalezi standalone-ul pentru experiența
-            completă!
-    oneSavegameLimit:
-        title: Salvări limitate
-        desc: Poți avea doar o salvare în același timp în versiunea demo. Te rugăm
-            șterge-o pe cea existentă sau instalează standalone-ul!
     updateSummary:
         title: Update nou!
         desc: "Aici sunt schimbările de când ai jucat ultima oară:"
@@ -194,9 +121,6 @@ dialogs:
         desc: Dă-i un nume sugestiv, poți include și o <strong> scurtă cheie </strong> a
             unei figuri (Pe care o poți genera <link>aici</link>)
         titleEdit: Editează Marker
-    markerDemoLimit:
-        desc: Poți crea decât două waypoint-uri personalizate în demo. Ia standalone-ul
-            pentru Waypoint-uri nelimitate!
     massCutConfirm:
         title: Confirmă decuparea
         desc: Tu decupezi mai multe construcții (<count> pentru a fi precis)! Sunteți
@@ -300,28 +224,9 @@ dialogs:
         newMods: Newly installed Mods
     resourceLoadFailed:
         title: Resources failed to load
-        demoLinkText: shapez demo on Steam
-        descWeb: "One ore more resources could not be loaded. Make sure you have a
-            stable internet connection and try again. If this still doesn't
-            work, make sure to also disable any browser extensions (including
-            adblockers).<br><br> As an alternative, you can also play the
-            <demoOnSteamLinkText>. <br><br> Error Message:"
         descSteamDemo: "One ore more resources could not be loaded. Try restarting the
             game - If that does not help, try reinstalling and verifying the
             game files via Steam. <br><br> Error Message:"
-    steamSsoError:
-        title: Full Version Logout
-        desc: You have been logged out from the Full Browser Version since either your
-            network connection is unstable or you are playing on another
-            device.<br><br> Please make sure you don't have shapez open in any
-            other browser tab or another computer with the same Steam
-            account.<br><br> You can login again in the main menu.
-    steamSsoNoOwnership:
-        title: Full Edition not owned
-        desc: In order to play the Full Edition in your Browser, you need to own both
-            the base game and the Puzzle DLC on your Steam account.<br><br>
-            Please make sure you own both, signed in with the correct Steam
-            account and then try again.
 ingame:
     keybindingsOverlay:
         moveMap: Mișcă-te
@@ -463,40 +368,6 @@ ingame:
         one_miner: 1 Miner
         n_miners: <amount> Miners
         limited_items: Limitat la <max_throughput>
-    watermark:
-        title: Versiune Demo
-        desc: Apasă aici pentru a vedea avantajele versiunii Steam!
-        get_on_steam: Ia pe Steam
-    standaloneAdvantages:
-        no_thanks: Nu, mersi!
-        points:
-            levels:
-                title: 12 Nivele Noi
-                desc: Pentru un total de 26 de nivele!
-            buildings:
-                title: 22 construcții noi
-                desc: Automatizează-ti complet fabrica!
-            markers:
-                title: Marcatoare infinite
-                desc: Nu te rătăci niciodată în fabrică!
-            wires:
-                title: Cabluri
-                desc: O dimeniune complet nouă!
-            darkmode:
-                title: Mod întunecat
-                desc: Nu mai lăsa ochii să te doară!
-            support:
-                title: Ajută-mă
-                desc: Dezvolt jocuri în timpul meu liber!
-            achievements:
-                title: Realizări
-                desc: Vânează-le pe toate!
-            mods:
-                title: Modding support!
-                desc: Over 80 mods available!
-        titleV2: "Get the full version now on Steam to unlock:"
-        titleExpiredV2: Demo completed!
-        titleEnjoyingDemo: Enjoy the demo?
     puzzleEditorSettings:
         zoneTitle: Zonă
         zoneWidth: Lățime
@@ -1207,12 +1078,6 @@ about:
 changelog:
     title: Lista de schimbări
 demo:
-    features:
-        restoringGames: Restabilirea savegame-urilor
-        importingGames: Importarea savegame-urilor
-        oneGameLimit: Limitat la un savegame
-        customizeKeybindings: Taste customizabile
-        exportingBase: Exportul întregii baze ca imagine
     settingNotAvailable: Nu este valabil în demo.
 tips:
     - HUB-ul acceptă orice fel de input, nu doar forma cerută curent!
@@ -1372,16 +1237,7 @@ mods:
     version: Version
     modWebsite: Website
     openFolder: Open Mods Folder
-    folderOnlyStandalone: Opening the mod folder is only possible when running the standalone.
     browseMods: Browse Mods
     modsInfo: To install and manage mods, copy them to the mods folder within the
         game directory. You can also use the 'Open Mods Folder' button on the
         top right.
-    noModSupport: You need the standalone version on Steam to install mods.
-    togglingComingSoon:
-        title: Coming Soon
-        description: Enabling or disabling mods is currently only possible by copying
-            the mod file from or to the mods/ folder. However, being able to
-            toggle them here is planned for a future update!
-    browserNoSupport: Due to browser restrictions it is currently only possible to
-        install mods in the Steam version - Sorry!

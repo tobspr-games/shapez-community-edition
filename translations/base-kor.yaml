@@ -1,21 +1,3 @@
-steamPage:
-    shortText: shapez.io는 무한한 공간에서 점점 더 복잡한 도형의 생산과 조합을 자동화하는 공장을 짓는 게임입니다.
-    discordLinkShort: 공식 Discord
-    intro: >-
-        Shapez.io는 다양한 기하학적 도형을 만드는 공장을 건설하는 편안한 게임입니다. 레벨이 올라갈수록 더욱 복잡한 도형을
-        만들어야 하고 그만큼 무한히 커지는 지도 안에 당신의 공장을 세워야 합니다.
-
-        심지어 그것만으로는 충분하지 않을 겁니다. 수요는 기하급수적으로 늘어나게 될 것이고, 더욱 복잡한 도형을 더욱 많이 생산하여야 하므로, 유일하게 도움이 되는 것은 끊임없이 확장을 하는 것입니다! 처음에는 단순한 도형만을 만들지만, 나중에는 색소를 추출하고 혼합하여 도형에 색칠을 해야 합니다!
-
-        Steam에서 게임을 구매하여 정식 버전의 콘텐츠를 사용하실 수 있지만, 먼저 Shapez.io의 체험판 버전을 플레이해보시고 구매를 고려하셔도 됩니다!
-    what_others_say: shapez.io에 대한 의견들
-    nothernlion_comment: This game is great - I'm having a wonderful time playing,
-        and time has flown by.
-    notch_comment: Oh crap. I really should sleep, but I think I just figured out
-        how to make a computer in shapez.io
-    steam_review_comment: This game has stolen my life and I don't want it back.
-        Very chill factory game that won't let me stop making my lines more
-        efficient.
 global:
     loading: 불러오는 중
     error: 오류
@@ -49,54 +31,18 @@ global:
         space: SPACE
     loggingIn: 로그인 중
     loadingResources: Downloading additional resources (<percentage> %)
-    discount: -<percentage>%
-    discountSummerSale: SPECIAL PROMOTION! Offer ends 7 July
-demoBanners:
-    title: 체험판 버전
-    intro: |-
-        <strong>지금</strong> 정식 게임을 다운로드하여 다음을 잠금 해제하세요.<ul>
-            <li>모든 26개 레벨 + 무한 무료 플레이</li>
-            <li>22개의 새로운 건물</li>
-            <li>모드 지원</li>
-            <li>업적</li>
-            <li>다크 모드</li>
-            <li>... 그리고 더 많이!</li>
-        </ul>
-    playtimeDisclaimer: 정식 버전에는 <strong>20시간 이상의 콘텐츠</strong>가 포함되어 있습니다.
-    playerCount: <playerCount>명의 플레이어가 현재 Steam에서 shapez를 플레이하고 있습니다.
-    untilEndOfDemo: 데모가 끝날 때까지
-    playtimeDisclaimerDownload: 정식 버전에서 저장 게임을 계속할 수 있습니다! <strong>여기</strong>를 클릭하여 저장 게임을 다운로드하세요.
-    titleV2: "지금 정식 버전을 플레이하세요:"
 mainMenu:
     play: 시작
-    changelog: 버전 기록
     importSavegame: 가져오기
-    openSourceHint: 이 게임은 오픈 소스입니다!
-    discordLink: 공식 디스코드 서버
     helpTranslate: 번역을 도와주세요!
-    browserWarning:
-        이 게임은 현재 브라우저에서 느리게 작동하는 것으로 알려져 있습니다! 더 좋은 성능을 위해 정식 버전을 구매하거나
-        Google Chrome 브라우저를 다운로드하세요.
     savegameLevel: 레벨 <x>
     savegameLevelUnknown: 미확인 레벨
     continue: 계속하기
     newGame: 새로하기
-    madeBy: 제작 <author-link>
-    subreddit: Reddit
     savegameUnnamed: 이름 없음
-    puzzleMode: 퍼즐 모드
-    back: Back
-    puzzleDlcText: 공장의 크기를 줄이고 최적화하는 데 관심이 많으신가요? 지금 퍼즐 DLC를 구입하세요!
-    puzzleDlcWishlist: 지금 찜 목록에 추가하세요!
-    puzzleDlcViewNow: DLC 보러 가기
     mods:
-        title: Active Mods
         warningPuzzleDLC: 퍼즐 DLC는 모드와 호환되지 않습니다. DLC 플레이 전 모든 모드를 비활성화 해주세요.
-    playingFullVersion: You are now playing the full version!
-    logout: Logout
     noActiveSavegames: No active savegames found - Click play to start a new game!
-    playFullVersionV2: Bough shapez on Steam? Play the full version in your Browser!
-    playFullVersionStandalone: You can now also play the full version in your Browser!
 dialogs:
     buttons:
         ok: 확인
@@ -105,7 +51,6 @@ dialogs:
         later: 나중에
         restart: 다시 시작
         reset: 리셋
-        getStandalone: 유료 버전 구매하기
         deleteGame: 확실합니다
         viewUpdate: 업데이트 보기
         showUpgrades: 업그레이드 보기
@@ -141,12 +86,6 @@ dialogs:
     keybindingsResetOk:
         title: 조작법 초기화 완료
         desc: 모든 조작법이 기본값으로 초기화 되었습니다!
-    featureRestriction:
-        title: 체험판 버전
-        desc: 체험판 버전에는 없는 콘텐츠 (<feature>)로 시도했습니다. 정식 버전을 구입해서 모든 콘텐츠를 사용해보세요!
-    oneSavegameLimit:
-        title: 세이브 파일 개수 제한
-        desc: 체험판 버전에서는 세이브 파일을 한 번에 한 개만 사용할 수 있습니다. 이미 있는 세이브 파일을 지우거나 정식 버전을 구입 해주새요.
     updateSummary:
         title: 새로운 업데이트!
         desc: 지난번 플레이 이후 변경 사항은 다음과 같습니다.
@@ -177,8 +116,6 @@ dialogs:
         titleEdit: 마커 변경
         desc: 의미있는 이름을 정해주거나 <strong>단축키</strong>를 통해 도형을 직접 삽입할 수도 있습니다.
             (<link>여기</link>에서 만드실 수 있습니다).
-    markerDemoLimit:
-        desc: 체험판 버전에서는 마커를 2개 까지만 배치할 수 있습니다. 정식 버전을 구입하면 마커를 무제한으로 배치할 수 있습니다!
     exportScreenshotWarning:
         title: 스크린샷 내보내기
         desc:
@@ -268,28 +205,9 @@ dialogs:
         newMods: Newly installed Mods
     resourceLoadFailed:
         title: Resources failed to load
-        demoLinkText: shapez demo on Steam
-        descWeb: "One ore more resources could not be loaded. Make sure you have a
-            stable internet connection and try again. If this still doesn't
-            work, make sure to also disable any browser extensions (including
-            adblockers).<br><br> As an alternative, you can also play the
-            <demoOnSteamLinkText>. <br><br> Error Message:"
         descSteamDemo: "One ore more resources could not be loaded. Try restarting the
             game - If that does not help, try reinstalling and verifying the
             game files via Steam. <br><br> Error Message:"
-    steamSsoError:
-        title: Full Version Logout
-        desc: You have been logged out from the Full Browser Version since either your
-            network connection is unstable or you are playing on another
-            device.<br><br> Please make sure you don't have shapez open in any
-            other browser tab or another computer with the same Steam
-            account.<br><br> You can login again in the main menu.
-    steamSsoNoOwnership:
-        title: Full Edition not owned
-        desc: In order to play the Full Edition in your Browser, you need to own both
-            the base game and the Puzzle DLC on your Steam account.<br><br>
-            Please make sure you own both, signed in with the correct Steam
-            account and then try again.
 ingame:
     keybindingsOverlay:
         moveMap: 이동
@@ -425,40 +343,6 @@ ingame:
         one_miner: 추출기 1 개
         n_miners: 추출기 <amount>개
         limited_items: <max_throughput>까지가 한계임
-    watermark:
-        title: 체험판 버전
-        desc: 정식 버전의 장점을 보려면 여기를 클릭하세요!
-        get_on_steam: Steam으로 가기
-    standaloneAdvantages:
-        no_thanks: 괜찮아요!
-        points:
-            levels:
-                title: 새로운 12 레벨
-                desc: 최대 26 레벨로 확장됩니다!
-            buildings:
-                title: 새로운 18개의 건축물
-                desc: 완벽한 자동화된 공장을 위한 건물들입니다!
-            markers:
-                title: 무한한 마커 배치
-                desc: 넓은 공장에서 길을 잃지 마세요!
-            wires:
-                title: 전선
-                desc: 완전히 새로운 차원의 도입!
-            darkmode:
-                title: 다크 모드
-                desc: 당신의 눈을 피곤하게 만들지 마세요!
-            support:
-                title: 저를 지원해주세요
-                desc: 저는 여가 시간에 게임을 개발합니다!
-            achievements:
-                title: 도전 과제
-                desc: 모두 잡아 보세요!
-            mods:
-                title: Modding support!
-                desc: Over 80 mods available!
-        titleV2: "Get the full version now on Steam to unlock:"
-        titleExpiredV2: Demo completed!
-        titleEnjoyingDemo: Enjoy the demo?
     puzzleEditorSettings:
         zoneTitle: 구역
         zoneWidth: 너비
@@ -1095,12 +979,6 @@ about:
 changelog:
     title: 업데이트 목록
 demo:
-    features:
-        restoringGames: 게임 세이브 파일 복원 하기
-        importingGames: 게임 세이브 파일 가져오기
-        oneGameLimit: 게임 세이브 파일 최대 1개
-        customizeKeybindings: 조작법 설정하기
-        exportingBase: 공장 전체를 이미지로 내보내기
     settingNotAvailable: 체험판 버전에서 사용 불가
 tips:
     - 허브는 단지 필요로 하는 도형은 물론, 모든 형태의 도형 입력을 허용합니다!
@@ -1243,15 +1121,5 @@ mods:
     version: 버전
     modWebsite: 웹사이트
     openFolder: 모드폴더 열기
-    folderOnlyStandalone: 모드폴더를 여는것은 정식버전에서만 가능합니다.
     browseMods: 모드 찾기
     modsInfo: 모드를 설치하기위해 모드폴더에 모드 파일을 넣으세요. 오른쪽 위에있는 '모드폴더 열기' 버튼으로 모드폴더를 열수 있습니다.
-    noModSupport: 모드를 사용하기 위해 정식버전이 필요합니다.
-    togglingComingSoon:
-        title: 곧 업데이트 됩니다!
-        description:
-            지금은 mods/ 폴더에 모드 파일을 넣고 빼는 방식으로만 모드를 활성화/비활성화할 수 있습니다. 모드를 이곳에서 켜고
-            끌수 있는 기능은 추후 업데이트될 예정입니다. 모드폴더에 넣고/빼는것으로 할수있습니다. 모드를 토글하는 기능은 곧 업데이트
-            됩니다!
-    browserNoSupport: Due to browser restrictions it is currently only possible to
-        install mods in the Steam version - Sorry!

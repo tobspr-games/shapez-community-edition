@@ -1,25 +1,3 @@
-steamPage:
-    shortText: Shapez.io handler om at bygge fabrikker på en grænseløs spilleflade
-        for automatisk at skabe og kombinere figurer, der i stigende grad bliver
-        mere komplicerede.
-    discordLinkShort: Official Discord
-    intro: >-
-        Shapez.io er et afslappet spil hvor du skal bygge fabrikker for at
-        automatisere productionen af geometriske figurer.
-
-        Jo længere du når, jo mere kompliceret bliver figurerne, og du bliver nødt til at sprede dig ud på den grænseløse spilleflade.
-
-        Og, hvis det ikke var nok, så skal du også producere eksponentielt flere figurer for at møde behovene spillet giver dig - det eneste der virker er skalering! Mens du i starten kun laver former, skal du senere farvelægge dem - for at gøre dette skal du udvinde og blande farver!
-
-        Køb spillet på Steam, det giver dig adgang til det fulde spil, men du kan også spille en demoversion på shapez.io og vælge senere!
-    what_others_say: Hvad andre siger om shapez.io
-    nothernlion_comment: This game is great - I'm having a wonderful time playing,
-        and time has flown by.
-    notch_comment: Oh crap. I really should sleep, but I think I just figured out
-        how to make a computer in shapez.io
-    steam_review_comment: This game has stolen my life and I don't want it back.
-        Very chill factory game that won't let me stop making my lines more
-        efficient.
 global:
     loading: Indlæser
     error: Fejl
@@ -53,56 +31,19 @@ global:
         space: MELLEMRUM
     loggingIn: Logging in
     loadingResources: Downloader yderligere ressourcer (<percentage> %)
-    discount: -<percentage>%
-    discountSummerSale: SPECIAL PROMOTION! Offer ends 7 July
-demoBanners:
-    title: Demoversion
-    intro: |-
-        Få det fulde spil <strong>nu</strong> for at låse op:<ul>
-            <li>Alle 26 niveauer + uendeligt freeplay</li>
-            <li>22 nye bygninger</li>
-            <li>Mod-understøttelse</li>
-            <li>Mod-understøttelse</li>
-            <li>Mørk tilstand</li>
-            <li>... og meget mere!</li>
-        </ul>
-    playtimeDisclaimer: Den fulde version indeholder mere end <strong>20 timers indhold</strong>.
-    playerCount: <playerCount> spillere som dig spiller lige nu shapez på Steam
-    untilEndOfDemo: Indtil afslutningen af demoen
-    playtimeDisclaimerDownload: Du kan fortsætte dit savegame i den fulde version!
-        Klik <strong>her</strong> for at downloade dit savegame.
-    titleV2: "Spil den fulde version nu for:"
 mainMenu:
     play: Spil
     continue: Fortsæt
     newGame: Nyt Spil
-    changelog: Ændringsliste
-    subreddit: Reddit
     importSavegame: Importér
-    openSourceHint: Dette spil er open source!
-    discordLink: Officiel Discordserver
     helpTranslate: Hjælp med at oversætte!
-    madeBy: Lavet af <author-link>
-    browserWarning: Undskyld, men spillet er kendt for at køre langsomt på denne
-        browser! Køb spillet eller download Chrome for den fulde oplevelse.
     savegameLevel: Niveau <x>
     savegameLevelUnknown: Ukendt Niveau
     savegameUnnamed: Uden Navn
-    puzzleMode: Puzzle-tilstand
-    back: Tilbage
-    puzzleDlcText: Synes du det er det sjovt at gøre maskinerne mindre og mere
-        optimale? Få fat i DLC på Steam nu for mere sjov!
-    puzzleDlcWishlist: Wishlist den nu!
-    puzzleDlcViewNow: Se DLC
     mods:
-        title: Active Mods
         warningPuzzleDLC: Det er ikke muligt at spille Puzzle DLC med mods. Slå alle
             mods fra for at spille DLC.
-    playingFullVersion: You are now playing the full version!
-    logout: Logout
     noActiveSavegames: No active savegames found - Click play to start a new game!
-    playFullVersionV2: Bough shapez on Steam? Play the full version in your Browser!
-    playFullVersionStandalone: You can now also play the full version in your Browser!
 dialogs:
     buttons:
         ok: OK
@@ -111,7 +52,6 @@ dialogs:
         later: Senere
         restart: Genstart
         reset: Nulstil
-        getStandalone: Køb spillet
         deleteGame: Jeg ved hvad jeg laver
         viewUpdate: Se opdatering
         showUpgrades: Vis opgraderinger
@@ -148,14 +88,6 @@ dialogs:
     keybindingsResetOk:
         title: Tastefunktioner nulstillet
         desc: Tastefunktioner er nulstillet til deres standarder!
-    featureRestriction:
-        title: Demoversion
-        desc: Du prøvede at bruge en funktion (<feature>) der ikke er tilgængelig i
-            demoen. Overvej at købe spillet for den fulde oplevelse!
-    oneSavegameLimit:
-        title: Begrænset mængde gemte spil
-        desc: Du kan kun have et gemt spil ad gangen in demoversionen. Vær sød at slette
-            det nuværende gemte spil eller at købe spillet!
     updateSummary:
         title: Ny opdatering!
         desc: "Dette har ændret sig siden sidst du spillede:"
@@ -189,9 +121,6 @@ dialogs:
         titleEdit: Rediger Markør
         desc: Giv det et meningsfyldt navn. Du kan også inkludere en <strong> kort
             nøgle</strong> af en figur (som du kan lave <link>her</link>)
-    markerDemoLimit:
-        desc: Du kan kun lave to markører i demoen. Køb spillet for uendeligt mange
-            markører!
     exportScreenshotWarning:
         title: Eksporter skærmbillede
         desc: Du bad om at eksportere din fabrik som et skærmbillede. Bemærk at dette
@@ -289,28 +218,9 @@ dialogs:
         newMods: Newly installed Mods
     resourceLoadFailed:
         title: Resources failed to load
-        demoLinkText: shapez demo on Steam
-        descWeb: "One ore more resources could not be loaded. Make sure you have a
-            stable internet connection and try again. If this still doesn't
-            work, make sure to also disable any browser extensions (including
-            adblockers).<br><br> As an alternative, you can also play the
-            <demoOnSteamLinkText>. <br><br> Error Message:"
         descSteamDemo: "One ore more resources could not be loaded. Try restarting the
             game - If that does not help, try reinstalling and verifying the
             game files via Steam. <br><br> Error Message:"
-    steamSsoError:
-        title: Full Version Logout
-        desc: You have been logged out from the Full Browser Version since either your
-            network connection is unstable or you are playing on another
-            device.<br><br> Please make sure you don't have shapez open in any
-            other browser tab or another computer with the same Steam
-            account.<br><br> You can login again in the main menu.
-    steamSsoNoOwnership:
-        title: Full Edition not owned
-        desc: In order to play the Full Edition in your Browser, you need to own both
-            the base game and the Puzzle DLC on your Steam account.<br><br>
-            Please make sure you own both, signed in with the correct Steam
-            account and then try again.
 ingame:
     keybindingsOverlay:
         moveMap: Bevæg dig
@@ -450,40 +360,6 @@ ingame:
         one_miner: 1 Miner
         n_miners: <amount> Miners
         limited_items: Limited to <max_throughput>
-    watermark:
-        title: Demo version
-        desc: Click here to see the Steam version advantages!
-        get_on_steam: Få på steam
-    standaloneAdvantages:
-        no_thanks: Nej tak!
-        points:
-            levels:
-                title: 12 Nye Levels
-                desc: For et total af 26 levels!
-            buildings:
-                title: 22 Nye Bygninger
-                desc: Fully automate your factory!
-            markers:
-                title: ∞ Markers
-                desc: Never get lost in your factory!
-            wires:
-                title: Ledninger
-                desc: En helt ny dimension!
-            darkmode:
-                title: Dark Mode
-                desc: Stop hurting your eyes!
-            support:
-                title: Støt mig
-                desc: Jeg arbejder på det i min fritid!
-            achievements:
-                title: Achievements
-                desc: Hunt them all!
-            mods:
-                title: Modding support!
-                desc: Over 80 mods available!
-        titleV2: "Get the full version now on Steam to unlock:"
-        titleExpiredV2: Demo completed!
-        titleEnjoyingDemo: Enjoy the demo?
     puzzleEditorSettings:
         zoneTitle: Zone
         zoneWidth: Width
@@ -1173,12 +1049,6 @@ about:
 changelog:
     title: Changelog
 demo:
-    features:
-        restoringGames: Genopretter gemte spil
-        importingGames: Importerer gemte spil
-        oneGameLimit: Afgrænset til et gem
-        customizeKeybindings: Tilpasse Tastaturfunktioner
-        exportingBase: Eksporterer hele basen som et billede
     settingNotAvailable: Ikke tilgængelig i demoen.
 tips:
     - Det central NAV modtager alle figurer, ikke kun den aktuelle figur!
@@ -1334,16 +1204,7 @@ mods:
     version: Version
     modWebsite: Website
     openFolder: Open Mods Folder
-    folderOnlyStandalone: Opening the mod folder is only possible when running the standalone.
     browseMods: Browse Mods
     modsInfo: To install and manage mods, copy them to the mods folder within the
         game directory. You can also use the 'Open Mods Folder' button on the
         top right.
-    noModSupport: You need the standalone version on Steam to install mods.
-    togglingComingSoon:
-        title: Coming Soon
-        description: Enabling or disabling mods is currently only possible by copying
-            the mod file from or to the mods/ folder. However, being able to
-            toggle them here is planned for a future update!
-    browserNoSupport: Due to browser restrictions it is currently only possible to
-        install mods in the Steam version - Sorry!

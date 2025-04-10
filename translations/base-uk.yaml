@@ -1,26 +1,3 @@
-steamPage:
-    shortText: shapez.io — це гра про будування фабрик для автоматизації створення
-        та обробки все більш складних форм на нескінченно розширюваній карті.
-    discordLinkShort: Official Discord
-    intro: >-
-        Shapez.io - розслабляюча гра, в якій вам потрібно будувати фабрики для
-        автоматизованого виробництва геометричних фігур.
-
-        З кожним рівнем зростає складність фігур, і вам доведеться розширювати виробництво на нескінченній карті.
-
-        Якщо цього не достатньо, вам також необхідно виробляти експоненціально більше, аби задовільнити потреби що ростуть - може допомогти лише масштабування!
-
-        Спочатку ви лише обробляєте фігури, пізніше їх потрібно буде ще й фарбувати - для цього необхідно буде видобувати та змішувати кольори!
-
-        Купуючи гру в Steam ви отримаєте доступ до повної версії гри, але ви також можете спробувати демо-версію гри на shapez.io та вирішити пізніше!
-    what_others_say: Відгуки людей про shapez.io
-    nothernlion_comment: Ця гра неймовірна - я чудово проводжу у ній час, не
-        помічаючи як швидко він плине.
-    notch_comment: От дідько. Я вже повинен спати, але я щойно розібрався як зробити
-        комп'ютер у shapez.io
-    steam_review_comment: Ця гра вкрала моє життя, і я не хочу його повертати. Дуже
-        крута гра, і вона не зупинить мене постійно підвищувати ефективність
-        ліній.
 global:
     loading: Завантаження
     error: Помилка
@@ -54,57 +31,19 @@ global:
         space: SPACE
     loggingIn: Вхід у систему
     loadingResources: Downloading additional resources (<percentage> %)
-    discount: -<percentage>%
-    discountSummerSale: SPECIAL PROMOTION! Offer ends 7 July
-demoBanners:
-    title: Демо-версія
-    intro: |-
-        Отримайте повну гру <strong>зараз</strong>, щоб розблокувати:<ul>
-            <li>Усі 26 рівнів + нескінченна безкоштовна гра</li>
-            <li>22 нових будівель</li>
-            <li>Підтримка модифікацій</li>
-            <li>Досягнення</li>
-            <li>Темний режим</li>
-            <li>... та багато іншого!</li>
-        </ul>
-    playtimeDisclaimer: Повна версія містить понад <strong>20 години вмісту</strong>.
-    playerCount: <playerCount> гравців як ви зараз грають у shapez на Steam
-    untilEndOfDemo: До кінця демонстрації
-    playtimeDisclaimerDownload: Ви можете продовжити свою збережену гру в повній
-        версії! Натисніть <strong>тут</strong>, щоб завантажити збережену гру.
-    titleV2: "Грайте у повну версію зараз для:"
 mainMenu:
     play: Грати
     continue: Продовжити
     newGame: Нова гра
-    changelog: Список змін
-    subreddit: Reddit
     importSavegame: Імпортувати
-    openSourceHint: Ця гра з відкритим вихідним кодом!
-    discordLink: Офіційний Discord сервер
     helpTranslate: Допоможіть з перекладом!
-    madeBy: Зробив <author-link>
-    browserWarning: Вибачте, але гра, як відомо, працює повільно у вашому браузері!
-        Завантажте повну версію чи Google Chrome, щоб отримати більше
-        задоволення від гри.
     savegameLevel: Рівень <x>
     savegameLevelUnknown: Невідомий рівень
     savegameUnnamed: Без назви
-    puzzleMode: Режим Головоломки
-    back: Назад
-    puzzleDlcText: Вам подобається ущільнювати та оптимізовувати фабрики? Тоді
-        отримайте доповнення Puzzle DLC у Steam для ще більших веселощів!
-    puzzleDlcWishlist: Додай у список бажаного!
-    puzzleDlcViewNow: Переглянути DLC
     mods:
-        title: Активні моди
         warningPuzzleDLC: Гра з модами у Puzzle DLC не є можливою. Будь-ласка відключіть
             усі моди щоб грати у цей режим.
-    playingFullVersion: You are now playing the full version!
-    logout: Logout
     noActiveSavegames: No active savegames found - Click play to start a new game!
-    playFullVersionV2: Bough shapez on Steam? Play the full version in your Browser!
-    playFullVersionStandalone: You can now also play the full version in your Browser!
 dialogs:
     buttons:
         ok: Гаразд
@@ -113,7 +52,6 @@ dialogs:
         later: Пізніше
         restart: Перезавантажити
         reset: Скинути
-        getStandalone: Купити гру
         deleteGame: Я знаю, що роблю
         viewUpdate: Переглянути оновлення
         showUpgrades: Показати поліпшення
@@ -151,15 +89,6 @@ dialogs:
     keybindingsResetOk:
         title: Гарячі клавіші скинуто
         desc: Гарячі клавіші скинуто до їх початкових значень!
-    featureRestriction:
-        title: Демо-версія
-        desc: Ви спробували отримати доступ до функції (<feature>), яка недоступна в
-            демонстраційній версії. Подумайте про отримання повної версії, щоб
-            насолодитися грою сповна!
-    oneSavegameLimit:
-        title: Обмежені збереження
-        desc: Ви можете мати лише одне збереження одночасно в демо-версії. Будь ласка,
-            видаліть існуюче збереження чи купіть повну версію гри!
     updateSummary:
         title: Нове оновлення!
         desc: "Ось зміни з вашої останньої гри:"
@@ -202,9 +131,6 @@ dialogs:
         descItems: "Виберіть попередньо визначений елемент:"
         descShortKey: ... або введіть <strong>код</strong> фігури (Який ви можете
             створити <link>тут</link>)
-    markerDemoLimit:
-        desc: Ви можете створити тільки 2 позначки в демо-версії. Отримайте повну версію
-            гри для створення необмеженної кількості позначок.
     exportScreenshotWarning:
         title: Експортувати знімок
         desc: Ви запросили експорт бази в зображення. Зверніть увагу, що для великої
@@ -296,28 +222,9 @@ dialogs:
         newMods: Нещодавно встановлені моди
     resourceLoadFailed:
         title: Resources failed to load
-        demoLinkText: shapez demo on Steam
-        descWeb: "One ore more resources could not be loaded. Make sure you have a
-            stable internet connection and try again. If this still doesn't
-            work, make sure to also disable any browser extensions (including
-            adblockers).<br><br> As an alternative, you can also play the
-            <demoOnSteamLinkText>. <br><br> Error Message:"
         descSteamDemo: "One ore more resources could not be loaded. Try restarting the
             game - If that does not help, try reinstalling and verifying the
             game files via Steam. <br><br> Error Message:"
-    steamSsoError:
-        title: Full Version Logout
-        desc: You have been logged out from the Full Browser Version since either your
-            network connection is unstable or you are playing on another
-            device.<br><br> Please make sure you don't have shapez open in any
-            other browser tab or another computer with the same Steam
-            account.<br><br> You can login again in the main menu.
-    steamSsoNoOwnership:
-        title: Full Edition not owned
-        desc: In order to play the Full Edition in your Browser, you need to own both
-            the base game and the Puzzle DLC on your Steam account.<br><br>
-            Please make sure you own both, signed in with the correct Steam
-            account and then try again.
 ingame:
     keybindingsOverlay:
         moveMap: Рухатися
@@ -460,40 +367,6 @@ ingame:
         one_miner: 1 Екстрактор
         n_miners: <amount> Екстракторів
         limited_items: Обмежено до <max_throughput>
-    watermark:
-        title: Демо-версія
-        desc: Натисніть сюди аби переглянути переваги Steam версії!
-        get_on_steam: Отримати в Steam
-    standaloneAdvantages:
-        no_thanks: Ні, дякую!
-        points:
-            levels:
-                title: 12 нових Рівнів
-                desc: В цілому 26 рівнів!
-            buildings:
-                title: 22 нових Будівель
-                desc: Для повної автоматизації вашої фабрики!
-            markers:
-                title: ∞ Позначок
-                desc: Забудьте про блукання по фабриці!
-            wires:
-                title: Дроти
-                desc: Цілий новий вимір!
-            darkmode:
-                title: Нічний режим
-                desc: Дайте очам відпочити!
-            support:
-                title: Підтримайте мене
-                desc: Я розробляю гру в свій вільний час!
-            achievements:
-                title: Досягнення
-                desc: Отримайте їх всі!
-            mods:
-                title: Modding support!
-                desc: Over 80 mods available!
-        titleV2: "Get the full version now on Steam to unlock:"
-        titleExpiredV2: Demo completed!
-        titleEnjoyingDemo: Enjoy the demo?
     puzzleEditorSettings:
         zoneTitle: Зона
         zoneWidth: Ширина
@@ -1203,12 +1076,6 @@ about:
 changelog:
     title: Журнал змін
 demo:
-    features:
-        restoringGames: Відновлення збережень
-        importingGames: Імпортування збережень
-        oneGameLimit: Обмежено одним збереженням
-        customizeKeybindings: Налаштування гарячих клавіш
-        exportingBase: Експортування цілої бази у вигляді зображення
     settingNotAvailable: Недоступно в демоверсії.
 tips:
     - Центр приймає фігури різного виду, не лише ті що наразі вимагаються!
@@ -1377,16 +1244,7 @@ mods:
     version: Версія
     modWebsite: Веб-сайт
     openFolder: Відкрити папку модів
-    folderOnlyStandalone: Відкрити папку з модами можна лише у десктопній версії.
     browseMods: Переглянути моди
     modsInfo: Щоб установити моди та керувати ними, скопіюйте їх у папку mods у
         папці гри. Ви також можете використати кнопку 'Відкрити папку модів'
         зверху справа.
-    noModSupport: Для встановлення модів потрібна десктопна версія Steam.
-    togglingComingSoon:
-        title: Незабаром
-        description: Увімкнення або вимкнення модів наразі можливе лише шляхом
-            копіювання файлу моду з папки mods/ або до неї. Однак можливість їх
-            вимкнення та увімкнення тут запланована на майбутні оновлення!
-    browserNoSupport: Due to browser restrictions it is currently only possible to
-        install mods in the Steam version - Sorry!

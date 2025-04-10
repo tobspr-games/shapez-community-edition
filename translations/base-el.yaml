@@ -1,27 +1,3 @@
-steamPage:
-    shortText: Στο shapez.io χτήζεις εργοστάσια για να αυτοματοποιήσεις την
-        δημιουργία και τον συνδιασμό σχημάτων αυξανόμενης πολυπλοκότητας σε έναν
-        ατέλειωτο χάρτη.
-    discordLinkShort: Official Discord
-    intro: >-
-        Shapez.io is a relaxed game in which you have to build factories for the
-        automated production of geometric shapes.
-
-        As the level increases, the shapes become more and more complex, and you have to spread out on the infinite map.
-
-        And as if that wasn't enough, you also have to produce exponentially more to satisfy the demands - the only thing that helps is scaling!
-
-        While you only process shapes at the beginning, you have to color them later - for this you have to extract and mix colors!
-
-        Buying the game on Steam gives you access to the full version, but you can also play a demo on shapez.io first and decide later!
-    what_others_say: What people say about shapez.io
-    nothernlion_comment: This game is great - I'm having a wonderful time playing,
-        and time has flown by.
-    notch_comment: Oh crap. I really should sleep, but I think I just figured out
-        how to make a computer in shapez.io
-    steam_review_comment: This game has stolen my life and I don't want it back.
-        Very chill factory game that won't let me stop making my lines more
-        efficient.
 global:
     loading: Φόρτωση
     error: Σφάλμα
@@ -55,57 +31,19 @@ global:
         space: SPACE
     loggingIn: Logging in
     loadingResources: Downloading additional resources (<percentage> %)
-    discount: -<percentage>%
-    discountSummerSale: SPECIAL PROMOTION! Offer ends 7 July
-demoBanners:
-    title: Demo Version
-    intro: |-
-        Get the full game <strong>now</strong> to unlock:<ul>
-            <li>All 26 levels + infinite Freeplay</li>
-            <li>22 new buildings</li>
-            <li>Mod support</li>
-            <li>Achievements</li>
-            <li>Dark Mode</li>
-            <li>... and a lot more!</li>
-        </ul>
-    playtimeDisclaimer: The full version contains more than <strong>20 hours of content</strong>.
-    playerCount: <playerCount> players like you are currently playing shapez on Steam
-    untilEndOfDemo: Until end of demo
-    playtimeDisclaimerDownload: You can continue your savegame in the full version!
-        Click <strong>here</strong> to download your savegame.
-    titleV2: "Play the full version now for:"
 mainMenu:
     play: Παίξε
-    changelog: Changelog
     importSavegame: Εισαγωγή αποθηκευμένου παιχνιδιού
-    openSourceHint: Αυτό το παιχνίδι είναι ανοιχτού κώδικα!
-    discordLink: Επίσημο Discord Server
     helpTranslate: Βοήθησε με μεταφράσεις!
-    browserWarning: Δυστυχώς, το παιχνίδι τρέχει αργά στο πρόγραμμα περιήγησής σας!
-        Αποκτήστε την αυτόνομη έκδοση ή κατεβάστε το chrome για την πλήρη
-        εμπειρία.
     savegameLevel: Επίπεδο <x>
     savegameLevelUnknown: Άγνωστο Επίπεδο
     continue: Συνέχεια
     newGame: Καινούριο παιχνίδι
-    madeBy: Κατασκευασμένο απο <author-link>
-    subreddit: Reddit
     savegameUnnamed: Unnamed
-    puzzleMode: Λειτουργία παζλ
-    back: Πίσω
-    puzzleDlcText: Σε αρέσει να συμπάγης και να βελτιστοποίεις εργοστάσια; Πάρε την
-        λειτουργεία παζλ στο Steam για ακόμη περισσότερη πλάκα!
-    puzzleDlcWishlist: Βαλτε το στην λίστα επιθυμιών τώρα!
-    puzzleDlcViewNow: View Dlc
     mods:
-        title: Active Mods
         warningPuzzleDLC: Playing the Puzzle DLC is not possible with mods. Please
             disable all mods to play the DLC.
-    playingFullVersion: You are now playing the full version!
-    logout: Logout
     noActiveSavegames: No active savegames found - Click play to start a new game!
-    playFullVersionV2: Bough shapez on Steam? Play the full version in your Browser!
-    playFullVersionStandalone: You can now also play the full version in your Browser!
 dialogs:
     buttons:
         ok: OK
@@ -114,7 +52,6 @@ dialogs:
         later: Αργότερα
         restart: Επανεκκίνηση
         reset: Επαναφορά
-        getStandalone: Απόκτησε την Αυτόνομη έκδοση
         deleteGame: Ξέρω τί κάνω
         viewUpdate: Προβολή ενημέρωσης
         showUpgrades: Εμφάνιση αναβαθμίσεων
@@ -153,16 +90,6 @@ dialogs:
     keybindingsResetOk:
         title: Συνδιασμοί πλήκτρων επαναφέρθηκαν
         desc: Οι συνδιασμών πλήκτρων επαναφέρθηκαν στις προεπιλεγμένες τιμές τους!
-    featureRestriction:
-        title: Έκδοση Demo
-        desc: You tried to access a feature (<feature>) which is not available in the
-            demo. Consider getting the standalone version for the full
-            experience!
-    oneSavegameLimit:
-        title: Περιορισμένα αποθηκευμένα παιχνίδια
-        desc: Στην demo έκδοση μπορείς να έχεις μόνο ένα αποθηκευμένο παιχνίδι. Παρακαλώ
-            διάγραψε το υπάρχον αποθηκευμένο παιχνίδι ή απόκτησε την αθτόνομη
-            έκδοση!
     updateSummary:
         title: Νέα αναβάθμιση!
         desc: "Αυτές είναι οι αλλαγές από την τελευταία φορά που έπαιξες:"
@@ -195,10 +122,6 @@ dialogs:
         desc: Give it a meaningful name, you can also include a <strong>short
             key</strong> of a shape (Which you can generate <link>here</link>)
         titleEdit: Επεξεργασία Σημαδιού
-    markerDemoLimit:
-        desc: Στην έκδωση demo μπορείς να βάλεις μέχρι δύο σημάδια στον χάρτη.
-            Αποκτήστε  την αυτόνομη έκδοση για να μπορείς να βάλεις απεριόριστα
-            σημάδια στον χάρτη!
     massCutConfirm:
         title: Επιβεβαίωση αποκοπής
         desc: Ετοιμάζεσαι να αποκόψεις πολλά κτήρια (<count> φια την ακρίβεια)! Είσαι
@@ -301,28 +224,9 @@ dialogs:
         newMods: Newly installed Mods
     resourceLoadFailed:
         title: Resources failed to load
-        demoLinkText: shapez demo on Steam
-        descWeb: "One ore more resources could not be loaded. Make sure you have a
-            stable internet connection and try again. If this still doesn't
-            work, make sure to also disable any browser extensions (including
-            adblockers).<br><br> As an alternative, you can also play the
-            <demoOnSteamLinkText>. <br><br> Error Message:"
         descSteamDemo: "One ore more resources could not be loaded. Try restarting the
             game - If that does not help, try reinstalling and verifying the
             game files via Steam. <br><br> Error Message:"
-    steamSsoError:
-        title: Full Version Logout
-        desc: You have been logged out from the Full Browser Version since either your
-            network connection is unstable or you are playing on another
-            device.<br><br> Please make sure you don't have shapez open in any
-            other browser tab or another computer with the same Steam
-            account.<br><br> You can login again in the main menu.
-    steamSsoNoOwnership:
-        title: Full Edition not owned
-        desc: In order to play the Full Edition in your Browser, you need to own both
-            the base game and the Puzzle DLC on your Steam account.<br><br>
-            Please make sure you own both, signed in with the correct Steam
-            account and then try again.
 ingame:
     keybindingsOverlay:
         moveMap: Κίνηση
@@ -464,40 +368,6 @@ ingame:
         one_miner: 1 Miner
         n_miners: <amount> Miners
         limited_items: Limited to <max_throughput>
-    watermark:
-        title: Demo version
-        desc: Click here to see the Steam version advantages!
-        get_on_steam: Get on steam
-    standaloneAdvantages:
-        no_thanks: No, thanks!
-        points:
-            levels:
-                title: 12 New Levels
-                desc: For a total of 26 levels!
-            buildings:
-                title: 22 New Buildings
-                desc: Fully automate your factory!
-            markers:
-                title: ∞ Markers
-                desc: Never get lost in your factory!
-            wires:
-                title: Wires
-                desc: An entirely new dimension!
-            darkmode:
-                title: Dark Mode
-                desc: Stop hurting your eyes!
-            support:
-                title: Support me
-                desc: I develop it in my spare time!
-            achievements:
-                title: Achievements
-                desc: Hunt them all!
-            mods:
-                title: Modding support!
-                desc: Over 80 mods available!
-        titleV2: "Get the full version now on Steam to unlock:"
-        titleExpiredV2: Demo completed!
-        titleEnjoyingDemo: Enjoy the demo?
     puzzleEditorSettings:
         zoneTitle: Zone
         zoneWidth: Width
@@ -1213,12 +1083,6 @@ about:
 changelog:
     title: Changelog
 demo:
-    features:
-        restoringGames: Επαναφορά αποθηκευμένων παιχνιδιών
-        importingGames: Εισαγωγή αποθηκευμένων παιχνιδιών
-        oneGameLimit: Περιορίζεται σε ένα αποθηκευμένο παιχνίδι
-        customizeKeybindings: Προσαρμογή συνδιασμών πλήκτρων
-        exportingBase: Εξαγωγή ολόκληρης της βάσης ως εικόνα
     settingNotAvailable: Δεν είναι διαθέσιμο στο demo.
 tips:
     - The hub accepts input of any kind, not just the current shape!
@@ -1372,16 +1236,7 @@ mods:
     version: Version
     modWebsite: Website
     openFolder: Open Mods Folder
-    folderOnlyStandalone: Opening the mod folder is only possible when running the standalone.
     browseMods: Browse Mods
     modsInfo: To install and manage mods, copy them to the mods folder within the
         game directory. You can also use the 'Open Mods Folder' button on the
         top right.
-    noModSupport: You need the standalone version on Steam to install mods.
-    togglingComingSoon:
-        title: Coming Soon
-        description: Enabling or disabling mods is currently only possible by copying
-            the mod file from or to the mods/ folder. However, being able to
-            toggle them here is planned for a future update!
-    browserNoSupport: Due to browser restrictions it is currently only possible to
-        install mods in the Steam version - Sorry!

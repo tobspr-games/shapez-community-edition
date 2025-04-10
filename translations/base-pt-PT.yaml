@@ -1,27 +1,3 @@
-steamPage:
-    shortText: shapez.io é um jogo cujo objetivo é construir fábricas para
-        automatizar a criação e fusão de formas geométricas cada vez mais
-        complexas num mapa infinito.
-    discordLinkShort: Discord Oficial
-    intro: >-
-        Shapez.io é um jogo relaxante onde tens de construir fábricas para
-        autumatizar a produção de formas geométricas.
-
-        Com o aumento do nível, as formas começam a ser cada vez mais e mais complexas, e tu terás de te expandir num mapa infinito.
-
-        E como se isso não fosse suficiente, tu também terás de produzir de forma exponencial para satisfazeres as tuas necessidades - a única coisa que ajuda é aumentar!
-
-        Embora no inicio apenas tenhas de processar formas,  mais tarde, vais ter de as colorir - para isto terás de extrair e misturar cores!
-
-        Comprar o jogo na Steam dar-te-á acesso à versão completa, mas também podes jogar a versão demo em shapez.io primeiro e decidir mais tarde!
-    what_others_say: O que dizem sobre o shapez.io
-    nothernlion_comment: Este é um jogo fantástico - Estou a ter um bom bocado
-        enquanto o jogo, e o tempo parece que voa.
-    notch_comment: Ora bolas. Eu devia ir dormir, mas acho que acabei de descobrir
-        como criar computorizar no shapez.io
-    steam_review_comment: Este jogo roubou a minha vida e não a quero de volta. Jogo
-        de fábrica relaxante que não me deixa parar de fazer as minhas linhas
-        cada vez mais eficientes.
 global:
     loading: A Carregar
     error: Erro
@@ -55,57 +31,19 @@ global:
         space: SPACE
     loggingIn: A conectar
     loadingResources: A Baixar recursos adicionais (<percentage> %)
-    discount: -<percentage>%
-    discountSummerSale: PROMOÇÃO ESPECIAL! A oferta acaba dia 7 de Julho
-demoBanners:
-    title: Versão Demo
-    intro: |-
-        Obtém o jogo completo <strong>agora</strong> para desbloqueares:<ul>
-            <li>Todos os 26 níveis + Freeplay infinito</li>
-            <li>22 novos edifícios</li>
-            <li>Suporte a modos</li>
-            <li>Conquistas</li>
-            <li>Modo escuro</li>
-            <li>... e muito mais!</li>
-        </ul>
-    playtimeDisclaimer: A versão completa contém mais de <strong>20 horas de conteúdo</strong>.
-    playerCount: <playerCount> jogadores como tu estão a jogar shapez na Steam
-    untilEndOfDemo: Até o final da demo
-    playtimeDisclaimerDownload: Podes continuar o teu savegame na versão completa!
-        Cliqua <strong>aqui</strong> para baixares o teu savegame.
-    titleV2: "Reproduzir a versão completa agora para:"
 mainMenu:
     play: Jogar
-    changelog: Changelog
     importSavegame: Importar
-    openSourceHint: Este jogo é código aberto!
-    discordLink: Discord oficial
     helpTranslate: Ajuda a traduzir!
-    browserWarning: Desculpa, mas este jogo parece correr mais lentamente no teu
-        navegador! Compra o jogo completo ou baixa o chrome para melhorares a
-        tua experiência.
     savegameLevel: Nível <x>
     savegameLevelUnknown: Nível desconhecido
     continue: Continuar
     newGame: Novo Jogo
-    madeBy: Criado por <author-link>
-    subreddit: Reddit
     savegameUnnamed: Sem Nome
-    puzzleMode: Modo Puzzle
-    back: Voltar
-    puzzleDlcText: Gostas de compactar e otimizar fábricas? Adquire agora o DLC
-        Puzzle na Steam para ainda mais diversão!
-    puzzleDlcWishlist: Lista de desejos agora!
-    puzzleDlcViewNow: Ver Dlc
     mods:
-        title: Modos Ativados
         warningPuzzleDLC: Jogar o DLC Modo Puzzle não é possível com modos. Por favor
             desativa todos os modos antes de jogares o DLC
-    playingFullVersion: Estás agora a jogar a versão completa!
-    logout: Desconectar
     noActiveSavegames: Não foram encontrados savegames - Clica para começar um jogo novo!
-    playFullVersionV2: Compraste o Shapez na Steam? Joga a versão completa no teu Browser!
-    playFullVersionStandalone: Também podes jogar a versão completa no teu Browser!
 dialogs:
     buttons:
         ok: OK
@@ -114,7 +52,6 @@ dialogs:
         later: Mais tarde
         restart: Recomeçar
         reset: Resetar
-        getStandalone: Compra o jogo completo
         deleteGame: Eu sei o que faço
         viewUpdate: Ver Update
         showUpgrades: Mostrar Upgrades
@@ -152,15 +89,6 @@ dialogs:
     keybindingsResetOk:
         title: Atalhos resetados
         desc: Os Atalhos foram resetados para os respetivos valores pré-definidos!
-    featureRestriction:
-        title: Versão Demo
-        desc: Tentaste aceder a uma funcionalidade (<feature>) que não está disponivel
-            no Demo. Considera adquirir o jogo completo para a melhor
-            experiência do jogo!
-    oneSavegameLimit:
-        title: Savegames limitados
-        desc: Apenas podes ter um savegame de cada vez na versão Demo. Por favor remove
-            o savegame existente ou adquire a versão completa!
     updateSummary:
         title: Nova atualização!
         desc: "Aqui estão as mudanças desde a última vez que jogaste:"
@@ -193,9 +121,6 @@ dialogs:
             <strong>pequeno código</strong> de uma forma. (Pode ser gerado
             <link>aqui</link>)
         titleEdit: Editar Marco
-    markerDemoLimit:
-        desc: Apenas podes criar dois marcos na versão Demo. Adquire o jogo completo
-            para colocar marcos infinitos!
     massCutConfirm:
         title: Confirmar corte
         desc: Estás a cortar muitas construções (<count> para ser exato)! Tens a
@@ -302,28 +227,9 @@ dialogs:
         newMods: Modos instalados recentemente
     resourceLoadFailed:
         title: Falha ao carregar recursos
-        demoLinkText: Versão Shapez demo na Steam
-        descWeb: "Um ou mais recursos não carrega. Verifica se tens uma conexão estável
-            à internet e tenta de novo. Se mesmo assim não funcionar, desativa
-            extensões do browser (incluindo adblockers). <br><br> Como
-            alternativa, também podes jogar a <demoOnSteamLinkText>. <br><br>
-            Mensagem de Erro:"
         descSteamDemo: "Um ou mais recursos não carrega. Tenta reiniciar o jogo - Se
             isto não ajudar, tenta reinstalar e verifica os ficheiros do jogo na
             Steam. <br><br> Mensagem de Erro:"
-    steamSsoError:
-        title: Desconectar da Versão Completa
-        desc: Tu desconectaste da Versão Completa no Browser devido a uma conexão
-            instável ou devido a estares a jogar noutro dispositivo. <br><br>
-            Por favor garante que não tens o shapez aberto noutra tab do teu
-            Browser ou noutro computador com a mesma conta Steam.<br><br> Podes
-            fazer login novamente no menu principal.
-    steamSsoNoOwnership:
-        title: Vesão completa não obtida
-        desc: Para jogares a versão completa no teu Browser, precisas de teres tanto o
-            jogo base como o DLC Puzzle na tua conta Steam.<br><br> Por favor
-            garante que tens ambos, conecta-te com a conta Steam correta e tenta
-            novamente.
 ingame:
     keybindingsOverlay:
         moveMap: Mover
@@ -465,40 +371,6 @@ ingame:
         one_miner: 1 Extrator
         n_miners: <amount> Extratores
         limited_items: Limite de <max_throughput>
-    watermark:
-        title: Versão Demo
-        desc: Clica aqui para veres as vantagens da versão na Steam!
-        get_on_steam: Compra na Steam
-    standaloneAdvantages:
-        no_thanks: Não, obrigado!
-        points:
-            levels:
-                title: 12 Novos Níveis
-                desc: Para um total de 26 Níveis!
-            buildings:
-                title: 22 Novas contruções
-                desc: Para uma fábrica totalmente automatizada!
-            markers:
-                title: Marcos ∞
-                desc: Nunca te percas na tua Fábrica!
-            wires:
-                title: Fios
-                desc: Uma dimensão totalmente nova!!
-            darkmode:
-                title: Modo Escuro
-                desc: Não magoes os teus olhos!
-            support:
-                title: Ajuda-me
-                desc: Eu desenvolvo este jogo no meu tempo livre!
-            achievements:
-                title: Conquistas
-                desc: Tenta obtê-las todas!
-            mods:
-                title: Suporte para Modos!
-                desc: Mais de 80 modos disponíveis!
-        titleV2: "Adquire agora a Versão completa na Steam para desbloquares:"
-        titleExpiredV2: Versão Demo completa!
-        titleEnjoyingDemo: Estás a gostar da versão demo?
     puzzleEditorSettings:
         zoneTitle: Zona
         zoneWidth: Largura
@@ -1215,12 +1087,6 @@ about:
 changelog:
     title: Changelog
 demo:
-    features:
-        restoringGames: Restauro de savegames
-        importingGames: Importação de savegames
-        oneGameLimit: Limitado a um savegame
-        customizeKeybindings: Costumizar Atalhos
-        exportingBase: Exportar base como uma imagem
     settingNotAvailable: Não disponível no Demo.
 tips:
     - O edifício central aceita qualquer entrada, não apenas a da forma atual!
@@ -1386,18 +1252,7 @@ mods:
     version: Versão
     modWebsite: Website
     openFolder: Abrir a pasta dos Modos
-    folderOnlyStandalone: Abrir a pasta dos Modos apenas é possível quando estás a
-        jogar a versão completa.
     browseMods: Pesquisar Modos
     modsInfo: Para instalar e gerir os modos, copia-os para a pasta dos modos dentro
         da pasta do jogo. Tu também podes usar o botão 'Abrir a pasta dos Modos'
         no canto superior direito.
-    noModSupport: Precisas da versão completa na Steam para instalar modos.
-    togglingComingSoon:
-        title: Brevemente
-        description: Ativar ou desativar modos atualmente apenas é possível copiando o
-            ficheiro do modo a partir de ou para a pasta dos modos. No entanto,
-            ser possível ativar ou desativar os modos está planeado para uma
-            atualização futura!
-    browserNoSupport: Devido a restrições no browser atualmente apenas é possível
-        instalar modos na versão Steam - Desculpa!
