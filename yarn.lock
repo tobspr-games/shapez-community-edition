@@ -2762,7 +2762,7 @@ ee-first@1.1.1:
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
   integrity sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==
 
-electron-notarize@^1.1.1, electron-notarize@^1.2.1:
+electron-notarize@^1.1.1:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/electron-notarize/-/electron-notarize-1.2.2.tgz#ebf2b258e8e08c1c9f8ff61dc53d5b16b439daf4"
   integrity sha512-ZStVWYcWI7g87/PgjPJSIIhwQXOaw4/XeXU+pWqMMktSLHaGMLHdyPPN7Cmao7+Cr7fYufA16npdtMndYciHNw==
