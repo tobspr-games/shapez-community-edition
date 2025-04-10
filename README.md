@@ -58,7 +58,6 @@ and does not intend to provide compatibility for older clients.
 
 -   [ffmpeg](https://www.ffmpeg.org/download.html)
 -   [Node.js](https://nodejs.org)
--   [Yarn 1](https://classic.yarnpkg.com/en/docs/install) (not 2, we haven't migrated yet)
 -   [Java](https://www.oracle.com/java/technologies/downloads/) (or [OpenJDK](https://openjdk.org/)) to run the texture packer
 -   [cURL](https://curl.se/download.html)[^1] to download the texture packer
 
@@ -66,16 +65,17 @@ and does not intend to provide compatibility for older clients.
 
 ### Development
 
--   Run `yarn` in the root folder and in `electron/`.
--   Run `yarn gulp` in the root folder to build and serve files.
-    Ignore the browser tab that opens.
--   Open a new terminal and run `yarn start` in `electron/` to open an Electron window.
+-   Run `npm i` in the root folder and in `electron/`.
+-   Run `npm run gulp` in the root folder to build and serve files.
+    If a new browser tab opens, ignore it.
+-   Open a new terminal and run `npm run start` in `electron/` to open an Electron window.
+    -   Use `npm run start -- --dev` to run in development mode.
     -   Tip: If you open the Electron window too early, you can reload it when focused on DevTools.
 
 ### Release
 
--   Run `yarn` in the root folder and in `electron/`.
--   In the root folder, run `yarn package-$PLATFORM-$ARCH` where:
+-   Run `npm i` in the root folder and in `electron/`.
+-   In the root folder, run `npm run package-$PLATFORM-$ARCH` where:
     -   `$PLATFORM` is `win32`, `linux` or `darwin` depending on your system.
     -   `$ARCH` is the target system architecture (`x64` or `arm64`)
 -   The build will be found under `build_output/standalone` as `shapez-...`.
