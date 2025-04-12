@@ -1,7 +1,7 @@
 import { app } from "electron";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { executableDir, userData } from "../config.js";
+import { executableDir, switches, userData } from "../config.js";
 
 export const MOD_FILE_SUFFIX = ".asar";
 
@@ -51,6 +51,10 @@ abstract class DirectoryModLocator implements ModLocator {
     }
 
     async locateMods(): Promise<string[]> {
+        if (switches.safeMode) {
+            return [];
+        }
+
         try {
             const dir = await fs.readdir(this.directory, { withFileTypes: true });
             return dir
