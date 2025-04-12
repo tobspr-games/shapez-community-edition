@@ -1,4 +1,5 @@
 import { Mod } from "@/mods/mod";
+import { ModAuthor } from "@/mods/mod_metadata";
 import { MODS } from "@/mods/modloader";
 import { TextualGameState } from "../core/textual_game_state";
 import { T } from "../translations";
@@ -13,13 +14,17 @@ export class ModsState extends TextualGameState {
     }
 
     protected getInitialContent() {
-        const modElements = MODS.mods.map(mod => this.getModElement(mod));
+        // TODO: implement proper UI for disabled, errored mods etc.
+        const modElements = MODS.allMods.map(info => this.getModElement(info.mod));
+        const hasMods = modElements.length > 0;
+
+        if (!hasMods) {
+            modElements.push(this.getNoModsMessage());
+        }
 
         return (
             <div class="content">
-                <div class={`modsGrid${MODS.anyModsActive() ? "" : " noMods"}`}>
-                    {MODS.anyModsActive() ? modElements : this.getNoModsMessage()}
-                </div>
+                <div class={`modsGrid ${hasMods ? "" : "noMods"}`}>{modElements}</div>
             </div>
         );
     }
@@ -29,7 +34,7 @@ export class ModsState extends TextualGameState {
         return (
             <div class="mod">
                 <div class="title">
-                    <b>{mod.metadata.name}</b> by <i>{mod.metadata.author}</i>
+                    <b>{mod.metadata.name}</b> by <i>{this.formatAuthors(mod.metadata.authors)}</i>
                 </div>
                 <div class="description">{mod.metadata.description}</div>
                 <div class="advanced">
@@ -37,6 +42,10 @@ export class ModsState extends TextualGameState {
                 </div>
             </div>
         );
+    }
+
+    private formatAuthors(authors: readonly ModAuthor[]): string {
+        return authors.map(author => author.name).join(", ");
     }
 
     private getNoModsMessage(): HTMLElement {

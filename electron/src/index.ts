@@ -34,7 +34,7 @@ function createWindow() {
     // The protocol can only be handled after "ready" event
     modProtocol.install();
 
-    win = new BrowserWindow({
+    const window = new BrowserWindow({
         minWidth: 800,
         minHeight: 600,
         useContentSize: true,
@@ -46,24 +46,26 @@ function createWindow() {
         },
     });
 
+    win = window;
+
     if (!switches.dev) {
-        win.removeMenu();
+        window.removeMenu();
     }
 
-    win.on("ready-to-show", () => {
-        win.show();
+    window.on("ready-to-show", () => {
+        window.show();
 
         if (switches.dev && !switches.hideDevtools) {
-            win.webContents.openDevTools();
+            window.webContents.openDevTools();
         }
     });
 
-    ipc.install(win);
-    win.loadURL(pageUrl);
+    ipc.install(window);
+    window.loadURL(pageUrl);
 
     // Redirect any kind of main frame navigation to external applications
-    win.webContents.on("will-navigate", (ev, url) => {
-        if (url === win.webContents.getURL()) {
+    window.webContents.on("will-navigate", (ev, url) => {
+        if (url === window.webContents.getURL()) {
             // Avoid handling reloads externally
             return;
         }
@@ -73,7 +75,7 @@ function createWindow() {
     });
 
     // Also redirect window.open
-    win.webContents.setWindowOpenHandler(({ url }) => {
+    window.webContents.setWindowOpenHandler(({ url }) => {
         openExternalUrl(url);
         return { action: "deny" };
     });

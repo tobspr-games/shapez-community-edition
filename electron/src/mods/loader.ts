@@ -1,12 +1,9 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { DevelopmentModLocator, DistroModLocator, ModLocator, UserModLocator } from "./locator.js";
+import { IpcModMetadata, ModMetadata } from "./metadata.js";
 
 type ModSource = "user" | "distro" | "dev";
-
-// FIXME: temporary type
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type ModMetadata = any;
 
 interface ModLocation {
     source: ModSource;
@@ -18,12 +15,38 @@ interface DisabledMod {
     id: string;
 }
 
-interface Mod extends ModLocation {
+interface IpcMod extends ModLocation {
     disabled: boolean;
-    metadata: ModMetadata;
+    metadata: IpcModMetadata;
 }
 
 const METADATA_FILE = "mod.json";
+
+class Mod {
+    readonly source: ModSource;
+    readonly file: string;
+    readonly metadata: ModMetadata;
+
+    disabled = false;
+
+    constructor(source: ModSource, file: string, metadata: ModMetadata) {
+        this.source = source;
+        this.file = file;
+        this.metadata = metadata;
+    }
+
+    toJSON(): IpcMod {
+        return {
+            source: this.source,
+            file: this.file,
+            disabled: this.disabled,
+            metadata: {
+                ...this.metadata,
+                version: this.metadata.version.format(),
+            },
+        };
+    }
+}
 
 export class ModLoader {
     private mods: Mod[] = [];
@@ -37,6 +60,7 @@ export class ModLoader {
 
     async loadMods(): Promise<void> {
         const mods: Mod[] = [];
+        this.mods = mods;
 
         const locations = await this.locateAllMods();
         for (const location of locations) {
@@ -51,11 +75,7 @@ export class ModLoader {
                 continue;
             }
 
-            mods.push({
-                ...location,
-                disabled: false,
-                metadata,
-            });
+            mods.push(new Mod(location.source, location.file, metadata));
         }
 
         // Check for mods that should be disabled
@@ -65,14 +85,10 @@ export class ModLoader {
                 target.disabled = true;
             }
         }
-
-        this.mods = mods;
     }
 
-    getAllMods(): Mod[] {
-        // This is the IPC response handler for now
-        // FIXME: review the format of get-mods IPC message
-        return [...this.mods];
+    getAllMods(): IpcMod[] {
+        return this.mods.map(mod => mod.toJSON());
     }
 
     isModPresent(id: string): boolean {
@@ -102,7 +118,7 @@ export class ModLoader {
         const filePath = path.join(mod.file, METADATA_FILE);
         try {
             const contents = await fs.readFile(filePath, "utf-8");
-            return JSON.parse(contents);
+            return ModMetadata.parse(JSON.parse(contents));
         } catch (err) {
             // TODO: Collect mod errors, show to the user once all mods are loaded
             console.error("Failed to read mod metadata", err);

@@ -34,18 +34,13 @@ export class ModProtocolHandler {
         try {
             const fileUrl = this.getFileUrlForRequest(request);
             if (fileUrl === undefined) {
-                return new Response(undefined, {
-                    status: 404,
-                    statusText: "Not Found",
-                });
+                return Response.error();
             }
 
-            return net.fetch(fileUrl);
-        } catch {
-            return new Response(undefined, {
-                status: 400,
-                statusText: "Bad Request",
-            });
+            return await net.fetch(fileUrl);
+        } catch (err) {
+            console.error("Failed to fetch:", err);
+            return Response.error();
         }
     }
 

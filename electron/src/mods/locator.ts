@@ -57,7 +57,7 @@ abstract class DirectoryModLocator implements ModLocator {
                 .filter(entry => entry.name.endsWith(MOD_FILE_SUFFIX))
                 .map(entry => path.join(entry.path, entry.name));
         } catch (err) {
-            if ("code" in err && err.code === "ENOENT") {
+            if ((err as NodeJS.ErrnoException).code === "ENOENT") {
                 // The directory does not exist
                 return [];
             }
@@ -86,7 +86,7 @@ abstract class DirectoryModLocator implements ModLocator {
             await this.readDisabledModsFile();
         }
 
-        return [...this.disabledMods];
+        return [...this.disabledMods!];
     }
 
     private async readDisabledModsFile(): Promise<void> {
@@ -100,7 +100,7 @@ abstract class DirectoryModLocator implements ModLocator {
             // Ensure we don't fail twice
             this.disabledMods ??= new Set();
 
-            if ("code" in err && err.code == "ENOENT") {
+            if ((err as NodeJS.ErrnoException).code == "ENOENT") {
                 // Ignore error entirely if the file is missing
                 return;
             }
@@ -116,7 +116,7 @@ abstract class DirectoryModLocator implements ModLocator {
 
     private async writeDisabledModsFile(): Promise<void> {
         try {
-            const contents = JSON.stringify([...this.disabledMods]);
+            const contents = JSON.stringify([...(this.disabledMods ?? new Set())]);
             await fs.writeFile(this.disabledModsFile, contents, "utf-8");
         } catch (err: unknown) {
             // Nothing we can do

@@ -30,7 +30,7 @@ export class MainMenuState extends GameState {
     }
 
     getInnerHTML() {
-        const hasMods = MODS.anyModsActive();
+        const hasMods = MODS.allMods.length > 0;
 
         return `
             <div class="topButtons">
@@ -77,16 +77,10 @@ export class MainMenuState extends GameState {
                                 <button class="styledButton editMods"></button>
                             </div>
                             <div class="modsList">
-                            ${MODS.mods
-                                .map(mod => {
-                                    return `
-                                    <div class="mod">
-                                        <div class="name">${mod.metadata.name}</div>
-                                        <div class="author">by ${mod.metadata.author}</div>
-                                    </div>
-                                `;
-                                })
-                                .join("")}
+                                <div class="mod">
+                                    <div class="name">Mod support in progress</div>
+                                    <div class="author">Not implemented yet</div>
+                                </div>
                             </div>
 
                             <div class="dlcHint">
