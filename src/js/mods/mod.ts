@@ -1,5 +1,5 @@
 import { Application } from "@/application";
-import { ModInterface } from "./mod_interface";
+import { ModInterfaceV2 } from "./mod_interface_v2";
 import { FrozenModMetadata, ModMetadata } from "./mod_metadata";
 import { MOD_SIGNALS } from "./mod_signals";
 import { ModLoader } from "./modloader";
@@ -20,7 +20,7 @@ export abstract class Mod {
     // TODO: Review what properties are necessary while improving ModInterface
     protected readonly app: Application;
     protected readonly modLoader: ModLoader;
-    protected readonly modInterface: ModInterface;
+    protected readonly modInterface: ModInterfaceV2;
     protected readonly signals = MOD_SIGNALS;
 
     // Exposed for convenience
@@ -31,11 +31,12 @@ export abstract class Mod {
     constructor(metadata: ModMetadata, app: Application, modLoader: ModLoader) {
         this.app = app;
         this.modLoader = modLoader;
-        // TODO: ModInterface should accept the mod instance
-        this.modInterface = new ModInterface(modLoader);
 
         this.id = metadata.id;
         this.metadata = freezeMetadata(metadata);
+
+        // ModInterfaceV2 assumes id to be set
+        this.modInterface = new ModInterfaceV2(this, modLoader);
     }
 
     abstract init(): void | Promise<void>;
