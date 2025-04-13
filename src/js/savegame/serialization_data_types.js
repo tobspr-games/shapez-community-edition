@@ -3,8 +3,8 @@ import { GameRoot } from "../game/root";
 import { BasicSerializableObject } from "./serialization";
 /* typehints:end */
 
-import { Vector } from "../core/vector";
 import { round4Digits } from "../core/utils";
+import { Vector } from "../core/vector";
 export const globalJsonSchemaDefs = {};
 
 /**
@@ -1337,7 +1337,7 @@ export class TypeStructuredObject extends BaseDataType {
             return "structured object is not an object";
         }
         for (const key in this.descriptor) {
-            if (!value.hasOwnProperty(key)) {
+            if (!Object.hasOwn(value, key)) {
                 return "structured object is missing key " + key;
             }
             const subError = this.descriptor[key].verifySerializedValue(value[key]);

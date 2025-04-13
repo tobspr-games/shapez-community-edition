@@ -224,8 +224,8 @@ export class GameRoot {
         }
 
         // Finally free all properties
-        for (let prop in this) {
-            if (this.hasOwnProperty(prop)) {
+        for (const prop in this) {
+            if (Object.hasOwn(this, prop)) {
                 delete this[prop];
             }
         }

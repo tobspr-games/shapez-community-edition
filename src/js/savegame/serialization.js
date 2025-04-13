@@ -18,11 +18,11 @@ import {
     TypeNumber,
     TypePair,
     TypePositiveInteger,
+    TypePositiveIntegerOrString,
     TypePositiveNumber,
     TypeString,
     TypeStructuredObject,
     TypeVector,
-    TypePositiveIntegerOrString,
 } from "./serialization_data_types";
 
 /**
@@ -239,12 +239,9 @@ export class BasicSerializableObject {
  */
 export function serializeSchema(obj, schema, mergeWith = {}) {
     for (const key in schema) {
-        if (!obj.hasOwnProperty(key)) {
+        if (!Object.hasOwn(obj, key)) {
             logger.error("Invalid schema, property", key, "does not exist on", obj, "(schema=", schema, ")");
-            assert(
-                obj.hasOwnProperty(key),
-                "serialization: invalid schema, property does not exist on object: " + key
-            );
+            assert(false, "serialization: invalid schema, property does not exist on object: " + key);
         }
         if (!schema[key]) {
             assert(false, "Invalid schema (bad key '" + key + "'): " + JSON.stringify(schema));
@@ -292,7 +289,7 @@ export function deserializeSchema(obj, schema, data, baseclassErrorResult = null
     }
 
     for (const key in schema) {
-        if (!data.hasOwnProperty(key)) {
+        if (!Object.hasOwn(data, key)) {
             logger.error("Data", data, "does not contain", key, "(schema:", schema, ")");
             return "Missing key in schema: " + key + " of class " + obj.constructor.name;
         }
@@ -325,7 +322,7 @@ export function deserializeSchema(obj, schema, data, baseclassErrorResult = null
  */
 export function verifySchema(schema, data) {
     for (const key in schema) {
-        if (!data.hasOwnProperty(key)) {
+        if (!Object.hasOwn(data, key)) {
             logger.error("Data", data, "does not contain", key, "(schema:", schema, ")");
             return "verify: missing key required by schema in stored data: " + key;
         }
@@ -352,7 +349,7 @@ export function extendSchema(base, newOne) {
     /** @type {Schema} */
     const result = Object.assign({}, base);
     for (const key in newOne) {
-        if (result.hasOwnProperty(key)) {
+        if (Object.hasOwn(result, key)) {
             logger.error("Extend schema got duplicate key:", key);
             continue;
         }

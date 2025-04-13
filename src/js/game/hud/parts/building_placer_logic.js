@@ -159,7 +159,7 @@ export class HUDBuildingPlacerLogic extends BaseHUDPart {
             return this.currentBaseRotationGeneral;
         }
         const metaBuilding = this.currentMetaBuilding.get();
-        if (metaBuilding && this.preferredBaseRotations.hasOwnProperty(metaBuilding.getId())) {
+        if (metaBuilding && Object.hasOwn(this.preferredBaseRotations, metaBuilding.getId())) {
             return this.preferredBaseRotations[metaBuilding.getId()];
         } else {
             return this.currentBaseRotationGeneral;
