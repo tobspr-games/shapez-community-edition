@@ -56,9 +56,6 @@ export default {
     // Enables an inspector which shows information about the entity below the cursor
     // enableEntityInspector: true,
     // -----------------------------------------------------------------------------------
-    // Enables ads in the local build (normally they are deactivated there)
-    // testAds: true,
-    // -----------------------------------------------------------------------------------
     // Enables use of (some) existing flags within the puzzle mode context
     // testPuzzleMode: true,
     // -----------------------------------------------------------------------------------

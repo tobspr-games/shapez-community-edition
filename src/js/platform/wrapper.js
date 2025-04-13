@@ -44,13 +44,6 @@ export class PlatformWrapperImplElectron {
     }
 
     /**
-     * Should return if this platform supports ads at all
-     */
-    getSupportsAds() {
-        return false;
-    }
-
-    /**
      * Attempt to restart the app
      */
     performRestart() {
