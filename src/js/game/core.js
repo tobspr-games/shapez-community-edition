@@ -213,9 +213,6 @@ export class GameCore {
             logger.log("Creating new canvas");
             canvas = document.createElement("canvas");
             canvas.id = "ingame_Canvas";
-            canvas.setAttribute("opaque", "true");
-            canvas.setAttribute("webkitOpaque", "true");
-            canvas.setAttribute("mozOpaque", "true");
             this.root.gameState.getDivElement().appendChild(canvas);
             context = canvas.getContext("2d", { alpha: false });
 
