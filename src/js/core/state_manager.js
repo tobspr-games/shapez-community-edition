@@ -69,7 +69,7 @@ export class StateManager {
 
             // Remove all references
             for (const stateKey in this.currentState) {
-                if (this.currentState.hasOwnProperty(stateKey)) {
+                if (Object.hasOwn(this.currentState, stateKey)) {
                     delete this.currentState[stateKey];
                 }
             }
