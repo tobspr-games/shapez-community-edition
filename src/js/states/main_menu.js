@@ -538,7 +538,7 @@ export class MainMenuState extends GameState {
                 <div class="dialogModsMod">
                     <div class="name">${mod.name}</div>
                     <div class="version">${T.mods.version} ${mod.version}</div>
-                    <button class="website styledButton" onclick="window.open('${mod.website.replace(
+                    <button class="website styledButton" onclick="window.open('${mod.website?.replace(
                         /"'/,
                         ""
                     )}')">${T.mods.modWebsite}
