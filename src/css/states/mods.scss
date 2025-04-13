@@ -1,31 +1,41 @@
 #state_ModsState {
+    // TODO: Update dimensions to use less build-time logic
     .modsGrid {
         display: grid;
-        grid-template-columns: 1fr auto;
-        align-items: center;
+        grid-template-columns: repeat(2, 1fr);
+        @include S(gap, 10px);
+    }
 
-        > h1 {
-            justify-self: start;
-        }
+    .modsGrid.noMods {
+        grid-template-columns: unset;
+        place-items: center;
+    }
 
-        .openModsFolder {
-            background-color: $modsColor;
+    .mod {
+        width: 100%;
+        box-sizing: border-box;
+        @include S(padding, 10px);
+
+        @include S(border-radius, 4px);
+        background: #eee;
+
+        @include DarkThemeOverride {
+            background: lighten($darkModeControlsBackground, 5);
         }
     }
 
-    .modsStats {
-        @include PlainText;
+    .mod > .title {
+        text-wrap: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
 
-        .title b {
-            @include Text;
-        }
+    .mod > .description {
+        @include PlainText();
+    }
 
-        .advanced {
-            @include SuperSmallText;
-        }
-
-        @include DarkThemeOverride {
-            background-color: $darkModeGameBackground;
-        }
+    .mod > .advanced {
+        @include PlainText();
+        color: $accentColorDark;
     }
 }

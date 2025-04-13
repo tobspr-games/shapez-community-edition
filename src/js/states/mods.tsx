@@ -22,11 +22,7 @@ export class ModsState extends TextualGameState {
             modElements.push(this.getNoModsMessage());
         }
 
-        return (
-            <div class="content">
-                <div class={`modsGrid ${hasMods ? "" : "noMods"}`}>{modElements}</div>
-            </div>
-        );
+        return <div class={`modsGrid ${hasMods ? "" : "noMods"}`}>{modElements}</div>;
     }
 
     private getModElement(mod: Mod): HTMLElement {
