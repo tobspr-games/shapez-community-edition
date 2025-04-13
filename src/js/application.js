@@ -77,9 +77,6 @@ export class Application {
         // Track if the window is visible
         this.pageVisible = true;
 
-        // Track if the app is paused (cordova)
-        this.applicationPaused = false;
-
         /** @type {TypedTrackedState<boolean>} */
         this.trackedIsRenderable = new TrackedState(this.onAppRenderableStateChanged, this);
 
@@ -230,7 +227,7 @@ export class Application {
      * Returns if the app is currently visible
      */
     isRenderable() {
-        return !this.applicationPaused && this.pageVisible;
+        return this.pageVisible;
     }
 
     onAppRenderableStateChanged(renderable) {

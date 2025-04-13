@@ -42,7 +42,6 @@ export class AnimationFrame {
     }
 
     start() {
-        assertAlways(window.requestAnimationFrame, "requestAnimationFrame is not supported!");
         this.handleAnimationFrame();
     }
 

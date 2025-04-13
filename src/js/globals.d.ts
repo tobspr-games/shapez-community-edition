@@ -52,31 +52,16 @@ declare interface Logger {
     error(...args);
 }
 
-declare interface MobileAccessibility {
-    usePreferredTextZoom(boolean);
-}
-
 declare interface Window {
     // Debugging
     activeClickDetectors: Array<any>;
 
     // Mods
-    $shapez_registerMod: any;
-    anyModLoaded: any;
-
     shapez: any;
 
     APP_ERROR_OCCURED?: boolean;
 
-    webkitRequestAnimationFrame();
-
     assert(condition: boolean, failureMessage: string);
-}
-
-declare interface Navigator {
-    app: any;
-    device: any;
-    splashscreen: any;
 }
 
 // Webpack
@@ -88,21 +73,12 @@ declare interface NodeRequire {
     context(src: string, flag: boolean, regexp: RegExp): WebpackContext;
 }
 
-declare interface Object {
-    entries(obj: object): Array<[string, any]>;
-}
-
 declare interface Math {
     radians(number): number;
     degrees(number): number;
 }
 
 declare type Class<T = unknown> = new (...args: any[]) => T;
-
-declare interface String {
-    padStart(size: number, fill?: string): string;
-    padEnd(size: number, fill: string): string;
-}
 
 declare interface SignalTemplate0 {
     add(receiver: () => string | void, scope: null | any);

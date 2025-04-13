@@ -400,13 +400,6 @@ export function removeAllChildren(elem) {
 }
 
 /**
- * Returns if the game supports this browser
- */
-export function isSupportedBrowser() {
-    return true;
-}
-
-/**
  * Formats an amount of seconds into something like "5s ago"
  * @param {number} secs Seconds
  * @returns {string}
