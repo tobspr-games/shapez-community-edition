@@ -43,10 +43,6 @@ export class PreloadState extends GameState {
         this.startLoading();
     }
 
-    async sendBeacon() {
-        // TODO: Get rid of this analytics stuff
-    }
-
     onLeave() {
         // this.dialogs.cleanup();
     }
@@ -226,8 +222,6 @@ export class PreloadState extends GameState {
 
     showFailMessage(text) {
         logger.error("App init failed:", text);
-
-        const email = "bugs@shapez.io";
 
         const subElement = document.createElement("div");
         subElement.classList.add("failureBox");
