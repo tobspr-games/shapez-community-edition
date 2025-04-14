@@ -3,12 +3,9 @@ import { Storage } from "@/platform/storage";
 /* typehints:end */
 
 import { FsError } from "@/platform/fs_error";
-import { asyncCompressor, compressionPrefix } from "./async_compression";
 import { IS_DEBUG, globalConfig } from "./config";
 import { ExplainedResult } from "./explained_result";
 import { createLogger } from "./logging";
-import { compressX64, decompressX64 } from "./lzstring";
-import { computeCrc } from "./sensitive_utils.encrypt";
 
 import debounce from "debounce-promise";
 
@@ -84,9 +81,8 @@ export class ReadWriteProxy {
      * @param {object} obj
      */
     static serializeObject(obj) {
-        const jsonString = JSON.stringify(obj);
-        const checksum = computeCrc(jsonString + salt);
-        return compressionPrefix + compressX64(checksum + jsonString);
+        // TODO: Remove redundant method
+        return obj;
     }
 
     /**
@@ -94,29 +90,8 @@ export class ReadWriteProxy {
      * @param {object} text
      */
     static deserializeObject(text) {
-        const decompressed = decompressX64(text.substr(compressionPrefix.length));
-        if (!decompressed) {
-            // LZ string decompression failure
-            throw new Error("bad-content / decompression-failed");
-        }
-        if (decompressed.length < 40) {
-            // String too short
-            throw new Error("bad-content / payload-too-small");
-        }
-
-        // Compare stored checksum with actual checksum
-        const checksum = decompressed.substring(0, 40);
-        const jsonString = decompressed.substr(40);
-
-        const desiredChecksum = computeCrc(jsonString + salt);
-
-        if (desiredChecksum !== checksum) {
-            // Checksum mismatch
-            throw new Error("bad-content / checksum-mismatch");
-        }
-
-        const parsed = JSON.parse(jsonString);
-        return parsed;
+        // TODO: Remove redundant method
+        return text;
     }
 
     /**
@@ -140,11 +115,8 @@ export class ReadWriteProxy {
      * @returns {Promise<void>}
      */
     doWriteAsync() {
-        return asyncCompressor
-            .compressObjectAsync(this.currentData)
-            .then(compressed => {
-                return this.storage.writeFileAsync(this.filename, compressed);
-            })
+        return this.storage
+            .writeFileAsync(this.filename, this.currentData)
             .then(() => {
                 logger.log("📄 Wrote", this.filename);
             })
@@ -178,57 +150,10 @@ export class ReadWriteProxy {
                 .then(rawData => {
                     if (rawData == null) {
                         // So, the file has not been found, use default data
-                        return JSON.stringify(this.getDefaultData());
+                        return this.getDefaultData();
                     }
 
-                    if (rawData.startsWith(compressionPrefix)) {
-                        const decompressed = decompressX64(rawData.substr(compressionPrefix.length));
-                        if (!decompressed) {
-                            // LZ string decompression failure
-                            return Promise.reject("bad-content / decompression-failed");
-                        }
-                        if (decompressed.length < 40) {
-                            // String too short
-                            return Promise.reject("bad-content / payload-too-small");
-                        }
-
-                        // Compare stored checksum with actual checksum
-                        const checksum = decompressed.substring(0, 40);
-                        const jsonString = decompressed.slice(40);
-
-                        const desiredChecksum = computeCrc(jsonString + salt);
-
-                        if (desiredChecksum !== checksum) {
-                            // Checksum mismatch
-                            return Promise.reject(
-                                "bad-content / checksum-mismatch: " + desiredChecksum + " vs " + checksum
-                            );
-                        }
-                        return jsonString;
-                    } else {
-                        if (!G_IS_DEV) {
-                            return Promise.reject("bad-content / missing-compression");
-                        }
-                    }
                     return rawData;
-                })
-
-                // Parse JSON, this could throw but that's fine
-                .then(res => {
-                    try {
-                        return JSON.parse(res);
-                    } catch (ex) {
-                        logger.error(
-                            "Failed to parse file content of",
-                            this.filename,
-                            ":",
-                            ex,
-                            "(content was:",
-                            res,
-                            ")"
-                        );
-                        throw new Error("invalid-serialized-data");
-                    }
                 })
 
                 // Verify basic structure

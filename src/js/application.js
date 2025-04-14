@@ -13,7 +13,7 @@ import { MOD_SIGNALS } from "./mods/mod_signals";
 import { MODS } from "./mods/modloader";
 import { ClientAPI } from "./platform/api";
 import { Sound } from "./platform/sound";
-import { Storage } from "./platform/storage";
+import { Storage, STORAGE_SAVES } from "./platform/storage";
 import { PlatformWrapperImplElectron } from "./platform/wrapper";
 import { ApplicationSettings } from "./profile/application_settings";
 import { SavegameManager } from "./savegame/savegame_manager";
@@ -55,7 +55,9 @@ export class Application {
         this.unloaded = false;
 
         // Platform stuff
-        this.storage = new Storage(this);
+        this.storage = new Storage(this, STORAGE_SAVES);
+        await this.storage.initialize();
+
         this.platformWrapper = new PlatformWrapperImplElectron(this);
 
         // Global stuff

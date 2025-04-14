@@ -2,16 +2,13 @@ import { globalConfig, THIRDPARTY_URLS } from "../core/config";
 import { GameState } from "../core/game_state";
 import { DialogWithForm } from "../core/modal_dialog_elements";
 import { FormElementInput } from "../core/modal_dialog_forms";
-import { ReadWriteProxy } from "../core/read_write_proxy";
 import {
     formatSecondsToTimeAgo,
-    generateFileDownload,
     getLogoSprite,
     makeButton,
     makeDiv,
     makeDivElement,
     removeAllChildren,
-    startFileChoose,
     waitNextFrame,
 } from "../core/utils";
 import { HUDModalDialogs } from "../game/hud/parts/modal_dialogs";
@@ -137,58 +134,34 @@ export class MainMenuState extends GameState {
     /**
      * Asks the user to import a savegame
      */
-    requestImportSavegame() {
-        // Create a 'fake' file-input to accept savegames
-        startFileChoose(".bin").then(file => {
-            if (file) {
-                const closeLoader = this.dialogs.showLoadingDialog();
-                waitNextFrame().then(() => {
-                    const reader = new FileReader();
-                    reader.addEventListener("load", event => {
-                        const contents = event.target.result;
-                        let realContent;
+    async requestImportSavegame() {
+        const closeLoader = this.dialogs.showLoadingDialog();
+        await waitNextFrame();
 
-                        try {
-                            realContent = ReadWriteProxy.deserializeObject(contents);
-                        } catch (err) {
-                            closeLoader();
-                            this.dialogs.showWarning(
-                                T.dialogs.importSavegameError.title,
-                                T.dialogs.importSavegameError.text + "<br><br>" + err
-                            );
-                            return;
-                        }
+        const data = await this.app.storage.requestOpenFile("bin");
+        if (data === undefined) {
+            // User canceled the request
+            closeLoader();
+            return;
+        }
 
-                        this.app.savegameMgr.importSavegame(realContent).then(
-                            () => {
-                                closeLoader();
-                                this.dialogs.showWarning(
-                                    T.dialogs.importSavegameSuccess.title,
-                                    T.dialogs.importSavegameSuccess.text
-                                );
+        try {
+            this.app.savegameMgr.importSavegame(data);
+            closeLoader();
+            this.dialogs.showWarning(
+                T.dialogs.importSavegameSuccess.title,
+                T.dialogs.importSavegameSuccess.text
+            );
 
-                                this.renderMainMenu();
-                                this.renderSavegames();
-                            },
-                            err => {
-                                closeLoader();
-                                this.dialogs.showWarning(
-                                    T.dialogs.importSavegameError.title,
-                                    T.dialogs.importSavegameError.text + ":<br><br>" + err
-                                );
-                            }
-                        );
-                    });
-                    reader.addEventListener("error", error => {
-                        this.dialogs.showWarning(
-                            T.dialogs.importSavegameError.title,
-                            T.dialogs.importSavegameError.text + ":<br><br>" + error
-                        );
-                    });
-                    reader.readAsText(file, "utf-8");
-                });
-            }
-        });
+            this.renderMainMenu();
+            this.renderSavegames();
+        } catch (err) {
+            closeLoader();
+            this.dialogs.showWarning(
+                T.dialogs.importSavegameError.title,
+                T.dialogs.importSavegameError.text + ":<br><br>" + err
+            );
+        }
     }
 
     onBackButton() {
@@ -602,9 +575,8 @@ export class MainMenuState extends GameState {
     downloadGame(game) {
         const savegame = this.app.savegameMgr.getSavegameById(game.internalId);
         savegame.readAsync().then(() => {
-            const data = ReadWriteProxy.serializeObject(savegame.currentData);
             const filename = (game.name || "unnamed") + ".bin";
-            generateFileDownload(filename, data);
+            savegame.storage.requestSaveFile(filename, savegame.currentData);
         });
     }
 
