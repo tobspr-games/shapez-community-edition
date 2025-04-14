@@ -54,20 +54,20 @@ export class Application {
 
         this.unloaded = false;
 
+        // Platform stuff
+        this.storage = new Storage(this);
+        this.platformWrapper = new PlatformWrapperImplElectron(this);
+
         // Global stuff
-        this.settings = new ApplicationSettings(this);
+        this.settings = new ApplicationSettings(this, this.storage);
         this.ticker = new AnimationFrame();
         this.stateMgr = new StateManager(this);
-        this.savegameMgr = new SavegameManager(this);
+        // NOTE: SavegameManager uses the passed storage, but savegames always
+        // use Application#storage
+        this.savegameMgr = new SavegameManager(this, this.storage);
         this.inputMgr = new InputDistributor(this);
         this.backgroundResourceLoader = new BackgroundResourcesLoader(this);
         this.clientApi = new ClientAPI(this);
-
-        // Platform dependent stuff
-
-        this.storage = new Storage(this);
-
-        this.platformWrapper = new PlatformWrapperImplElectron(this);
 
         this.sound = new Sound(this);
 

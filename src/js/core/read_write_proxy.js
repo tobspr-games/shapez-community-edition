@@ -1,5 +1,5 @@
 /* typehints:start */
-import { Application } from "../application";
+import { Storage } from "@/platform/storage";
 /* typehints:end */
 
 import { FsError } from "@/platform/fs_error";
@@ -18,9 +18,9 @@ const salt = globalConfig.info.file;
 
 // Helper which only writes / reads if verify() works. Also performs migration
 export class ReadWriteProxy {
-    constructor(app, filename) {
-        /** @type {Application} */
-        this.app = app;
+    constructor(storage, filename) {
+        /** @type {Storage} */
+        this.storage = storage;
 
         this.filename = filename;
 
@@ -143,7 +143,7 @@ export class ReadWriteProxy {
         return asyncCompressor
             .compressObjectAsync(this.currentData)
             .then(compressed => {
-                return this.app.storage.writeFileAsync(this.filename, compressed);
+                return this.storage.writeFileAsync(this.filename, compressed);
             })
             .then(() => {
                 logger.log("📄 Wrote", this.filename);
@@ -158,7 +158,7 @@ export class ReadWriteProxy {
     readAsync() {
         // Start read request
         return (
-            this.app.storage
+            this.storage
                 .readFileAsync(this.filename)
 
                 // Check for errors during read
@@ -297,7 +297,7 @@ export class ReadWriteProxy {
      * @returns {Promise<void>}
      */
     deleteAsync() {
-        return this.app.storage.deleteFileAsync(this.filename);
+        return this.storage.deleteFileAsync(this.filename);
     }
 
     // Internal
