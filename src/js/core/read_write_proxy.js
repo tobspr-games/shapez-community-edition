@@ -3,7 +3,6 @@ import { Application } from "../application";
 /* typehints:end */
 
 import { FsError } from "@/platform/fs_error";
-import { compressObject, decompressObject } from "../savegame/savegame_compressor";
 import { asyncCompressor, compressionPrefix } from "./async_compression";
 import { IS_DEBUG, globalConfig } from "./config";
 import { ExplainedResult } from "./explained_result";
@@ -85,7 +84,7 @@ export class ReadWriteProxy {
      * @param {object} obj
      */
     static serializeObject(obj) {
-        const jsonString = JSON.stringify(compressObject(obj));
+        const jsonString = JSON.stringify(obj);
         const checksum = computeCrc(jsonString + salt);
         return compressionPrefix + compressX64(checksum + jsonString);
     }
@@ -117,8 +116,7 @@ export class ReadWriteProxy {
         }
 
         const parsed = JSON.parse(jsonString);
-        const decoded = decompressObject(parsed);
-        return decoded;
+        return parsed;
     }
 
     /**
@@ -180,7 +178,7 @@ export class ReadWriteProxy {
                 .then(rawData => {
                     if (rawData == null) {
                         // So, the file has not been found, use default data
-                        return JSON.stringify(compressObject(this.getDefaultData()));
+                        return JSON.stringify(this.getDefaultData());
                     }
 
                     if (rawData.startsWith(compressionPrefix)) {
@@ -232,9 +230,6 @@ export class ReadWriteProxy {
                         throw new Error("invalid-serialized-data");
                     }
                 })
-
-                // Decompress
-                .then(compressed => decompressObject(compressed))
 
                 // Verify basic structure
                 .then(contents => {

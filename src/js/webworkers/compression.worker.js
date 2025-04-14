@@ -1,7 +1,6 @@
 import { globalConfig } from "../core/config";
 import { compressX64 } from "../core/lzstring";
 import { computeCrc } from "../core/sensitive_utils.encrypt";
-import { compressObject } from "../savegame/savegame_compressor";
 
 self.addEventListener("message", event => {
     // @ts-ignore
@@ -19,8 +18,7 @@ function performJob(job, data) {
         }
 
         case "compressObject": {
-            const optimized = compressObject(data.obj);
-            const stringified = JSON.stringify(optimized);
+            const stringified = JSON.stringify(data.obj);
 
             const checksum = computeCrc(stringified + globalConfig.info.file);
             return data.compressionPrefix + compressX64(checksum + stringified);
