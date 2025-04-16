@@ -1,26 +1,27 @@
-import zh_CN from "./built-temp/base-zh-CN.json";
-import zh_TW from "./built-temp/base-zh-TW.json";
-import ja from "./built-temp/base-ja.json";
-import kor from "./built-temp/base-kor.json";
+import ar from "./built-temp/base-ar.json";
 import cz from "./built-temp/base-cz.json";
 import da from "./built-temp/base-da.json";
 import de from "./built-temp/base-de.json";
 import es from "./built-temp/base-es.json";
+import fi from "./built-temp/base-fi.json";
 import fr from "./built-temp/base-fr.json";
-import it from "./built-temp/base-it.json";
+import he from "./built-temp/base-he.json";
 import hu from "./built-temp/base-hu.json";
+import it from "./built-temp/base-it.json";
+import ja from "./built-temp/base-ja.json";
+import kor from "./built-temp/base-kor.json";
 import nl from "./built-temp/base-nl.json";
 import no from "./built-temp/base-no.json";
 import pl from "./built-temp/base-pl.json";
-import pt_PT from "./built-temp/base-pt-PT.json";
 import pt_BR from "./built-temp/base-pt-BR.json";
+import pt_PT from "./built-temp/base-pt-PT.json";
 import ro from "./built-temp/base-ro.json";
 import ru from "./built-temp/base-ru.json";
-import fi from "./built-temp/base-fi.json";
 import sv from "./built-temp/base-sv.json";
 import tr from "./built-temp/base-tr.json";
 import uk from "./built-temp/base-uk.json";
-import he from "./built-temp/base-he.json";
+import zh_CN from "./built-temp/base-zh-CN.json";
+import zh_TW from "./built-temp/base-zh-TW.json";
 
 /**
  * @type {Object<string, {name: string, data: any, code: string, region: string}>}
@@ -214,6 +215,14 @@ export const LANGUAGES = {
         name: "עברית",
         data: he,
         code: "he",
+        region: "",
+    },
+
+    "ar": {
+        // arabic
+        name: "العربية",
+        data: ar,
+        code: "ar",
         region: "",
     },
 };
