@@ -3,15 +3,13 @@ import { Storage } from "@/platform/storage";
 /* typehints:end */
 
 import { FsError } from "@/platform/fs_error";
-import { IS_DEBUG, globalConfig } from "./config";
+import { IS_DEBUG } from "./config";
 import { ExplainedResult } from "./explained_result";
 import { createLogger } from "./logging";
 
 import debounce from "debounce-promise";
 
 const logger = createLogger("read_write_proxy");
-
-const salt = globalConfig.info.file;
 
 // Helper which only writes / reads if verify() works. Also performs migration
 export class ReadWriteProxy {
@@ -139,21 +137,10 @@ export class ReadWriteProxy {
                         logger.log("File not found, using default data");
 
                         // File not found or unreadable, assume default file
-                        return Promise.resolve(null);
+                        return Promise.resolve(this.getDefaultData());
                     }
 
                     return Promise.reject("file-error: " + err);
-                })
-
-                // Decrypt data (if its encrypted)
-                // @ts-ignore
-                .then(rawData => {
-                    if (rawData == null) {
-                        // So, the file has not been found, use default data
-                        return this.getDefaultData();
-                    }
-
-                    return rawData;
                 })
 
                 // Verify basic structure
