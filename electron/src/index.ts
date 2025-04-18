@@ -1,7 +1,6 @@
 import { BrowserWindow, app, shell } from "electron";
 import path from "path";
 import { defaultWindowTitle, pageUrl, switches } from "./config.js";
-import { FsJobHandler } from "./fsjob.js";
 import { IpcHandler } from "./ipc.js";
 import { ModLoader } from "./mods/loader.js";
 import { ModProtocolHandler } from "./mods/protocol_handler.js";
@@ -20,15 +19,9 @@ if (!app.requestSingleInstanceLock()) {
     });
 }
 
-// TODO: Implement a redirector/advanced storage system
-// Let mods have own data directories with easy access and
-// split savegames/configs - only implement backups and gzip
-// files if requested. Perhaps, use streaming to make large
-// transfers less "blocking"
-const fsJob = new FsJobHandler("saves");
 const modLoader = new ModLoader();
 const modProtocol = new ModProtocolHandler(modLoader);
-const ipc = new IpcHandler(fsJob, modLoader);
+const ipc = new IpcHandler(modLoader);
 
 function createWindow() {
     // The protocol can only be handled after "ready" event

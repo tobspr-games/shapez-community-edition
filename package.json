@@ -24,7 +24,6 @@
         "ajv": "^6.10.2",
         "circular-json": "^0.5.9",
         "clipboard-copy": "^3.1.0",
-        "crc": "^3.8.0",
         "debounce-promise": "^3.1.2",
         "howler": "^2.1.2",
         "lz-string": "^1.4.4"

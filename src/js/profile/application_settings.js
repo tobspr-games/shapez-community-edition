@@ -2,13 +2,13 @@
 import { Application } from "../application";
 /* typehints:end */
 
-import { ReadWriteProxy } from "../core/read_write_proxy";
-import { BoolSetting, EnumSetting, RangeSetting, BaseSetting } from "./setting_types";
-import { createLogger } from "../core/logging";
 import { ExplainedResult } from "../core/explained_result";
+import { createLogger } from "../core/logging";
+import { ReadWriteProxy } from "../core/read_write_proxy";
 import { THEMES, applyGameTheme } from "../game/theme";
-import { T } from "../translations";
 import { LANGUAGES } from "../languages";
+import { T } from "../translations";
+import { BaseSetting, BoolSetting, EnumSetting, RangeSetting } from "./setting_types";
 
 const logger = createLogger("application_settings");
 
@@ -330,8 +330,11 @@ class SettingsStorage {
 }
 
 export class ApplicationSettings extends ReadWriteProxy {
-    constructor(app) {
-        super(app, "app_settings.bin");
+    constructor(app, storage) {
+        super(storage, "app_settings.bin");
+
+        /** @type {Application} */
+        this.app = app;
 
         this.settingHandles = initializeSettings();
     }

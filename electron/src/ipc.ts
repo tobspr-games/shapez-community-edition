@@ -1,13 +1,13 @@
 import { BrowserWindow, IpcMainInvokeEvent, ipcMain } from "electron";
 import { FsJob, FsJobHandler } from "./fsjob.js";
 import { ModLoader } from "./mods/loader.js";
+import { SavesStorage } from "./storage/saves.js";
 
 export class IpcHandler {
-    private readonly fsJob: FsJobHandler;
+    private readonly savesHandler = new FsJobHandler("saves", new SavesStorage());
     private readonly modLoader: ModLoader;
 
-    constructor(fsJob: FsJobHandler, modLoader: ModLoader) {
-        this.fsJob = fsJob;
+    constructor(modLoader: ModLoader) {
         this.modLoader = modLoader;
     }
 
@@ -20,8 +20,12 @@ export class IpcHandler {
         // ipcMain.handle("open-mods-folder", ...)
     }
 
-    private handleFsJob(_event: IpcMainInvokeEvent, job: FsJob) {
-        return this.fsJob.handleJob(job);
+    private handleFsJob(_event: IpcMainInvokeEvent, job: FsJob<unknown>) {
+        if (job.id !== "saves") {
+            throw new Error("Storages other than saves/ are not implemented yet");
+        }
+
+        return this.savesHandler.handleJob(job);
     }
 
     private async getMods() {

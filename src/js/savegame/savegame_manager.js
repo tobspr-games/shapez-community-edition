@@ -1,3 +1,7 @@
+/* typehints:start */
+import { Application } from "@/application";
+/* typehints:end */
+
 import { globalConfig } from "../core/config";
 import { ExplainedResult } from "../core/explained_result";
 import { createLogger } from "../core/logging";
@@ -17,8 +21,11 @@ export const enumLocalSavegameStatus = {
 };
 
 export class SavegameManager extends ReadWriteProxy {
-    constructor(app) {
-        super(app, "savegames.bin");
+    constructor(app, storage) {
+        super(storage, "savegames.bin");
+
+        /** @type {Application} */
+        this.app = app;
 
         this.currentData = this.getDefaultData();
     }
