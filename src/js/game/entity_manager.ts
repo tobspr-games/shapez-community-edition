@@ -1,10 +1,10 @@
-import { arrayDeleteValue, newEmptyMap, fastArrayDeleteValue } from "../core/utils";
-import { Component } from "./component";
-import { GameRoot } from "./root";
-import { Entity } from "./entity";
-import { BasicSerializableObject, types } from "../savegame/serialization";
-import { createLogger } from "../core/logging";
 import { globalConfig } from "../core/config";
+import { createLogger } from "../core/logging";
+import { newEmptyMap } from "../core/utils";
+import { BasicSerializableObject, types } from "../savegame/serialization";
+import { Component } from "./component";
+import { Entity } from "./entity";
+import { GameRoot } from "./root";
 
 const logger = createLogger("entity_manager");
 
@@ -14,27 +14,23 @@ const logger = createLogger("entity_manager");
 // This is slower but we need it for the street path generation
 
 export class EntityManager extends BasicSerializableObject {
-    constructor(root) {
+    readonly root: GameRoot;
+    readonly entities = new Map<number, Entity>();
+
+    // We store a separate list with entities to destroy, since we don't destroy
+    // them instantly
+    private destroyList: Entity[] = [];
+
+    // Store a map from componentid to entities - This is used by the game system
+    // for faster processing
+    private readonly componentToEntity: Record<string, Set<Entity>> = newEmptyMap();
+
+    // Store the next uid to use
+    private nextUid = 10000;
+
+    constructor(root: GameRoot) {
         super();
-
-        /** @type {GameRoot} */
         this.root = root;
-
-        /** @type {Array<Entity>} */
-        this.entities = [];
-
-        // We store a separate list with entities to destroy, since we don't destroy
-        // them instantly
-        /** @type {Array<Entity>} */
-        this.destroyList = [];
-
-        // Store a map from componentid to entities - This is used by the game system
-        // for faster processing
-        /** @type {Object.<string, Array<Entity>>} */
-        this.componentToEntity = newEmptyMap();
-
-        // Store the next uid to use
-        this.nextUid = 10000;
     }
 
     static getId() {
@@ -48,7 +44,7 @@ export class EntityManager extends BasicSerializableObject {
     }
 
     getStatsText() {
-        return this.entities.length + " entities [" + this.destroyList.length + " to kill]";
+        return this.entities.size + " entities [" + this.destroyList.length + " to kill]";
     }
 
     // Main update
@@ -58,12 +54,14 @@ export class EntityManager extends BasicSerializableObject {
 
     /**
      * Registers a new entity
-     * @param {Entity} entity
-     * @param {number=} uid Optional predefined uid
+     * @param uid Optional predefined uid
      */
-    registerEntity(entity, uid = null) {
+    registerEntity(entity: Entity, uid: number | null = null) {
         if (G_IS_DEV && !globalConfig.debug.disableSlowAsserts) {
-            assert(this.entities.indexOf(entity) < 0, `RegisterEntity() called twice for entity ${entity}`);
+            assert(
+                this.entities.get(entity.uid) !== entity,
+                `RegisterEntity() called twice for entity ${entity}`
+            );
         }
         assert(!entity.destroyed, `Attempting to register destroyed entity ${entity}`);
 
@@ -72,102 +70,78 @@ export class EntityManager extends BasicSerializableObject {
             assert(uid >= 0 && uid < Number.MAX_SAFE_INTEGER, "Invalid uid passed: " + uid);
         }
 
-        this.entities.push(entity);
+        // Give each entity a unique id
+        entity.uid = uid ? uid : this.generateUid();
+        entity.registered = true;
+
+        this.entities.set(entity.uid, entity);
 
         // Register into the componentToEntity map
         for (const componentId in entity.components) {
             if (entity.components[componentId]) {
-                if (this.componentToEntity[componentId]) {
-                    this.componentToEntity[componentId].push(entity);
-                } else {
-                    this.componentToEntity[componentId] = [entity];
-                }
+                const set = (this.componentToEntity[componentId] ??= new Set());
+                set.add(entity);
             }
         }
-
-        // Give each entity a unique id
-        entity.uid = uid ? uid : this.generateUid();
-        entity.registered = true;
 
         this.root.signals.entityAdded.dispatch(entity);
     }
 
     /**
      * Generates a new uid
-     * @returns {number}
      */
-    generateUid() {
+    generateUid(): number {
         return this.nextUid++;
     }
 
     /**
      * Call to attach a new component after the creation of the entity
-     * @param {Entity} entity
-     * @param {Component} component
      */
-    attachDynamicComponent(entity, component) {
+    attachDynamicComponent(entity: Entity, component: Component) {
         entity.addComponent(component, true);
-        const componentId = /** @type {typeof Component} */ (component.constructor).getId();
-        if (this.componentToEntity[componentId]) {
-            this.componentToEntity[componentId].push(entity);
-        } else {
-            this.componentToEntity[componentId] = [entity];
-        }
+        const componentId = /** @type {typeof Component} */ component.constructor.getId();
+        const set = (this.componentToEntity[componentId] ??= new Set());
+        set.add(entity);
         this.root.signals.entityGotNewComponent.dispatch(entity);
     }
 
     /**
      * Call to remove a component after the creation of the entity
-     * @param {Entity} entity
-     * @param {typeof Component} component
      */
-    removeDynamicComponent(entity, component) {
+    removeDynamicComponent(entity: Entity, component: typeof Component) {
         entity.removeComponent(component, true);
-        const componentId = /** @type {typeof Component} */ (component.constructor).getId();
+        const componentId = /** @type {typeof Component} */ component.constructor.getId();
 
-        fastArrayDeleteValue(this.componentToEntity[componentId], entity);
+        this.componentToEntity[componentId].delete(entity);
         this.root.signals.entityComponentRemoved.dispatch(entity);
     }
 
     /**
-     * Finds an entity buy its uid, kinda slow since it loops over all entities
-     * @param {number} uid
-     * @param {boolean=} errorWhenNotFound
-     * @returns {Entity}
+     * Finds an entity by its uid
      */
-    findByUid(uid, errorWhenNotFound = true) {
-        const arr = this.entities;
-        for (let i = 0, len = arr.length; i < len; ++i) {
-            const entity = arr[i];
-            if (entity.uid === uid) {
-                if (entity.queuedForDestroy || entity.destroyed) {
-                    if (errorWhenNotFound) {
-                        logger.warn("Entity with UID", uid, "not found (destroyed)");
-                    }
-                    return null;
-                }
-                return entity;
+    findByUid(uid: number, errorWhenNotFound = true): Entity {
+        const entity = this.entities.get(uid);
+
+        if (entity === undefined || entity.queuedForDestroy || entity.destroyed) {
+            if (errorWhenNotFound) {
+                logger.warn("Entity with UID", uid, "not found (destroyed)");
             }
+
+            return null;
         }
-        if (errorWhenNotFound) {
-            logger.warn("Entity with UID", uid, "not found");
-        }
-        return null;
+
+        return entity;
     }
 
     /**
      * Returns a map which gives a mapping from UID to Entity.
      * This map is not updated.
-     *
-     * @returns {Map<number, Entity>}
      */
-    getFrozenUidSearchMap() {
+    getFrozenUidSearchMap(): Map<number, Entity> {
         const result = new Map();
-        const array = this.entities;
-        for (let i = 0, len = array.length; i < len; ++i) {
-            const entity = array[i];
+        for (const [uid, entity] of this.entities) {
             if (!entity.queuedForDestroy && !entity.destroyed) {
-                result.set(entity.uid, entity);
+                result.set(uid, entity);
             }
         }
         return result;
@@ -175,21 +149,19 @@ export class EntityManager extends BasicSerializableObject {
 
     /**
      * Returns all entities having the given component
-     * @param {typeof Component} componentHandle
-     * @returns {Array<Entity>} entities
      */
-    getAllWithComponent(componentHandle) {
-        return this.componentToEntity[componentHandle.getId()] || [];
+    getAllWithComponent(componentHandle: typeof Component): Entity[] {
+        // TODO: Convert usages to set as well
+        return [...(this.componentToEntity[componentHandle.getId()] ?? new Set())];
     }
 
     /**
      * Unregisters all components of an entity from the component to entity mapping
-     * @param {Entity} entity
      */
-    unregisterEntityComponents(entity) {
+    unregisterEntityComponents(entity: Entity) {
         for (const componentId in entity.components) {
             if (entity.components[componentId]) {
-                arrayDeleteValue(this.componentToEntity[componentId], entity);
+                this.componentToEntity[componentId].delete(entity);
             }
         }
     }
@@ -200,7 +172,7 @@ export class EntityManager extends BasicSerializableObject {
             const entity = this.destroyList[i];
 
             // Remove from entities list
-            arrayDeleteValue(this.entities, entity);
+            this.entities.delete(entity.uid);
 
             // Remove from componentToEntity list
             this.unregisterEntityComponents(entity);
@@ -216,9 +188,8 @@ export class EntityManager extends BasicSerializableObject {
 
     /**
      * Queues an entity for destruction
-     * @param {Entity} entity
      */
-    destroyEntity(entity) {
+    destroyEntity(entity: Entity) {
         if (entity.destroyed) {
             logger.error("Tried to destroy already destroyed entity:", entity.uid);
             return;
