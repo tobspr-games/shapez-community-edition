@@ -149,10 +149,17 @@ export class EntityManager extends BasicSerializableObject {
 
     /**
      * Returns all entities having the given component
+     * @deprecated use {@link getEntitiesWithComponent} instead
      */
     getAllWithComponent(componentHandle: typeof Component): Entity[] {
-        // TODO: Convert usages to set as well
         return [...(this.componentToEntity[componentHandle.getId()] ?? new Set())];
+    }
+
+    /**
+     * A version of {@link getAllWithComponent} that returns a Set
+     */
+    getEntitiesWithComponent(componentHandle: typeof Component): Set<Entity> {
+        return new Set(this.componentToEntity[componentHandle.getId()] ?? []);
     }
 
     /**

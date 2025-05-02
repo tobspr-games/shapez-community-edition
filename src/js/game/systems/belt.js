@@ -7,12 +7,11 @@ import { AtlasSprite } from "../../core/sprites";
 import { fastArrayDeleteValue } from "../../core/utils";
 import { enumDirection, enumDirectionToVector, enumInvertedDirections, Vector } from "../../core/vector";
 import { BeltPath } from "../belt_path";
-import { arrayBeltVariantToRotation, MetaBeltBuilding } from "../buildings/belt";
 import { getCodeFromBuildingData } from "../building_codes";
+import { arrayBeltVariantToRotation, MetaBeltBuilding } from "../buildings/belt";
 import { BeltComponent } from "../components/belt";
 import { Entity } from "../entity";
 import { GameSystem } from "../game_system";
-import { GameSystemWithFilter } from "../game_system_with_filter";
 import { MapChunkView } from "../map_chunk_view";
 import { defaultBuildingVariant } from "../meta_building";
 
@@ -424,10 +423,9 @@ export class BeltSystem extends GameSystem {
 
         const result = [];
 
-        const beltEntities = this.root.entityMgr.getAllWithComponent(BeltComponent);
+        const beltEntities = this.root.entityMgr.getEntitiesWithComponent(BeltComponent);
 
-        for (let i = 0; i < beltEntities.length; ++i) {
-            const entity = beltEntities[i];
+        for (const entity of beltEntities) {
             if (visitedUids.has(entity.uid)) {
                 continue;
             }
