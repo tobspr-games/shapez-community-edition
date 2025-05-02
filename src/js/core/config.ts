@@ -110,12 +110,6 @@ export const globalConfig = {
 
     rendering: {},
     debug,
-
-    // Secret vars
-    info: {
-        // Binary file salt
-        file: "Ec'])@^+*9zMevK3uMV4432x9%iK'=",
-    },
 };
 
 export const IS_MOBILE = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
