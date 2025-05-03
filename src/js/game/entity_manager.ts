@@ -56,7 +56,7 @@ export class EntityManager extends BasicSerializableObject {
      * Registers a new entity
      * @param uid Optional predefined uid
      */
-    registerEntity(entity: Entity, uid: number | null = null) {
+    registerEntity(entity: Entity, uid = this.generateUid()) {
         if (G_IS_DEV && !globalConfig.debug.disableSlowAsserts) {
             assert(
                 this.entities.get(entity.uid) !== entity,
@@ -65,13 +65,13 @@ export class EntityManager extends BasicSerializableObject {
         }
         assert(!entity.destroyed, `Attempting to register destroyed entity ${entity}`);
 
-        if (G_IS_DEV && !globalConfig.debug.disableSlowAsserts && uid !== null) {
+        if (G_IS_DEV && !globalConfig.debug.disableSlowAsserts) {
             assert(!this.findByUid(uid, false), "Entity uid already taken: " + uid);
             assert(uid >= 0 && uid < Number.MAX_SAFE_INTEGER, "Invalid uid passed: " + uid);
         }
 
         // Give each entity a unique id
-        entity.uid = uid ? uid : this.generateUid();
+        entity.uid = uid;
         entity.registered = true;
 
         this.entities.set(entity.uid, entity);
