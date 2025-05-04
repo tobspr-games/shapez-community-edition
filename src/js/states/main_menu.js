@@ -138,14 +138,14 @@ export class MainMenuState extends GameState {
         const closeLoader = this.dialogs.showLoadingDialog();
         await waitNextFrame();
 
-        const data = await this.app.storage.requestOpenFile("bin");
-        if (data === undefined) {
-            // User canceled the request
-            closeLoader();
-            return;
-        }
-
         try {
+            const data = await this.app.storage.requestOpenFile("bin");
+            if (data === undefined) {
+                // User canceled the request
+                closeLoader();
+                return;
+            }
+
             this.app.savegameMgr.importSavegame(data);
             closeLoader();
             this.dialogs.showWarning(
