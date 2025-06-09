@@ -1,7 +1,6 @@
 import { decodeAsync } from "@msgpack/msgpack";
 
 onmessage = (event) => {
-    console.time("Compression")
     const decompressionStream = new DecompressionStream("gzip")
     const stream = new ReadableStream({
         start(controller) {
@@ -11,6 +10,5 @@ onmessage = (event) => {
     });
     decodeAsync(stream.pipeThrough(decompressionStream)).then(val => {
         postMessage(val)
-        console.timeEnd("Compression")
     })
 }
