@@ -4,12 +4,11 @@ import { ModLoader } from "./mods/loader.js";
 import { SavesStorage } from "./storage/saves.js";
 
 export class IpcHandler {
+    private readonly savesHandler = new FsJobHandler("saves", new SavesStorage());
     private readonly modLoader: ModLoader;
-    private readonly fsHandlers = new Map<string, FsJobHandler<unknown>>()
 
     constructor(modLoader: ModLoader) {
         this.modLoader = modLoader;
-        this.fsHandlers.set("saves", new FsJobHandler("saves", new SavesStorage()));
     }
 
     install(window: BrowserWindow) {
@@ -22,12 +21,11 @@ export class IpcHandler {
     }
 
     private handleFsJob(_event: IpcMainInvokeEvent, job: FsJob<unknown>) {
-        const handler = this.fsHandlers.get(job.id)
-        if (typeof handler === 'undefined') {
-            throw Error(`unknown id: ${job.id}`)
+        if (job.id !== "saves") {
+            throw new Error("Storages other than saves/ are not implemented yet");
         }
 
-        return handler.handleJob(job)
+        return this.savesHandler.handleJob(job);
     }
 
     private async getMods() {
