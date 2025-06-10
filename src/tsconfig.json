@@ -6,7 +6,7 @@
         "module": "es2022",
         "moduleResolution": "bundler",
         "noEmit": true,
-        "target": "ES2022",
+        "target": "ES2024",
         /* JSX Compilation */
         "paths": {
             "@/*": ["./js/*"]

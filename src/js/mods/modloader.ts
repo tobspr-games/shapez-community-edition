@@ -108,7 +108,9 @@ export class ModLoader {
         const modules = import.meta.webpackContext("../", {
             recursive: true,
             regExp: /\.[jt]sx?$/,
-            exclude: /\.d\.ts$/,
+            // NOTE: Worker scripts are executed if not explicitly excluded, which causes
+            // infinite recursion!
+            exclude: /\/webworkers\/|\.d\.ts$/,
         });
 
         Array.from(modules.keys()).forEach(key => {

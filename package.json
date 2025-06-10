@@ -21,6 +21,7 @@
         "package-all": "gulp --cwd gulp package.standalone.all"
     },
     "dependencies": {
+        "@msgpack/msgpack": "^3.1.2",
         "ajv": "^6.10.2",
         "circular-json": "^0.5.9",
         "clipboard-copy": "^3.1.0",
