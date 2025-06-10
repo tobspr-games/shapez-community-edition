@@ -120,7 +120,6 @@ export class FsJobHandler {
         const parentDir = path.dirname(file);
         await fs.mkdir(parentDir, { recursive: true });
 
-        console.log(contents);
         await fs.writeFile(file, contents);
     }
 
