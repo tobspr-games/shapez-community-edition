@@ -2,7 +2,6 @@ import { BrowserWindow, dialog, FileFilter } from "electron";
 import fs from "fs/promises";
 import path from "path";
 import { userData } from "./config.js";
-import { StorageInterface } from "./storage/interface.js";
 
 interface GenericFsJob {
     id: string;
@@ -11,30 +10,28 @@ interface GenericFsJob {
 export type InitializeFsJob = GenericFsJob & { type: "initialize" };
 type ListFsJob = GenericFsJob & { type: "list"; filename: string };
 type ReadFsJob = GenericFsJob & { type: "read"; filename: string };
-type WriteFsJob<T> = GenericFsJob & { type: "write"; filename: string; contents: T };
+type WriteFsJob = GenericFsJob & { type: "write"; filename: string; contents: Uint8Array };
 type DeleteFsJob = GenericFsJob & { type: "delete"; filename: string };
 
 type OpenExternalFsJob = GenericFsJob & { type: "open-external"; extension: string };
-type SaveExternalFsJob<T> = GenericFsJob & { type: "save-external"; filename: string; contents: T };
+type SaveExternalFsJob = GenericFsJob & { type: "save-external"; filename: string; contents: Uint8Array };
 
-export type FsJob<T> =
+export type FsJob =
     | InitializeFsJob
     | ListFsJob
     | ReadFsJob
-    | WriteFsJob<T>
+    | WriteFsJob
     | DeleteFsJob
     | OpenExternalFsJob
-    | SaveExternalFsJob<T>;
-type FsJobResult<T> = T | string[] | void;
+    | SaveExternalFsJob;
+type FsJobResult = Uint8Array | string[] | void;
 
-export class FsJobHandler<T> {
+export class FsJobHandler {
     readonly rootDir: string;
-    private readonly storage: StorageInterface<T>;
     private initialized = false;
 
-    constructor(subDir: string, storage: StorageInterface<T>) {
+    constructor(subDir: string) {
         this.rootDir = path.join(userData, subDir);
-        this.storage = storage;
     }
 
     async initialize(): Promise<void> {
@@ -47,7 +44,7 @@ export class FsJobHandler<T> {
         this.initialized = true;
     }
 
-    handleJob(job: FsJob<T>): Promise<FsJobResult<T>> {
+    handleJob(job: FsJob): Promise<FsJobResult> {
         switch (job.type) {
             case "initialize":
                 return this.initialize();
@@ -63,18 +60,18 @@ export class FsJobHandler<T> {
             case "list":
                 return this.list(filename);
             case "read":
-                return this.storage.read(filename);
+                return fs.readFile(filename);
             case "write":
                 return this.write(filename, job.contents);
             case "delete":
-                return this.storage.delete(filename);
+                return fs.unlink(filename);
         }
 
         // @ts-expect-error this method can actually receive garbage
         throw new Error(`Unknown FS job type: ${job.type}`);
     }
 
-    private async openExternal(extension: string): Promise<T | undefined> {
+    private async openExternal(extension: string): Promise<Uint8Array | undefined> {
         const filters = this.getFileDialogFilters(extension === "*" ? undefined : extension);
         const window = BrowserWindow.getAllWindows()[0]!;
 
@@ -83,10 +80,10 @@ export class FsJobHandler<T> {
             return undefined;
         }
 
-        return await this.storage.read(result.filePaths[0]);
+        return await fs.readFile(result.filePaths[0]);
     }
 
-    private async saveExternal(filename: string, contents: T): Promise<void> {
+    private async saveExternal(filename: string, contents: Uint8Array): Promise<void> {
         // Try to guess extension
         const ext = filename.indexOf(".") < 1 ? filename.split(".").at(-1)! : undefined;
         const filters = this.getFileDialogFilters(ext);
@@ -97,7 +94,7 @@ export class FsJobHandler<T> {
             return;
         }
 
-        return await this.storage.write(result.filePath, contents);
+        return await fs.writeFile(result.filePath, contents);
     }
 
     private getFileDialogFilters(extension?: string): FileFilter[] {
@@ -118,12 +115,13 @@ export class FsJobHandler<T> {
         return fs.readdir(subdir);
     }
 
-    private async write(file: string, contents: T): Promise<void> {
+    private async write(file: string, contents: Uint8Array): Promise<void> {
         // The target directory might not exist, ensure it does
         const parentDir = path.dirname(file);
         await fs.mkdir(parentDir, { recursive: true });
 
-        await this.storage.write(file, contents);
+        console.log(contents);
+        await fs.writeFile(file, contents);
     }
 
     private safeFileName(name: string) {
