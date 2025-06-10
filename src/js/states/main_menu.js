@@ -146,7 +146,7 @@ export class MainMenuState extends GameState {
                 return;
             }
 
-            this.app.savegameMgr.importSavegame(data);
+            await this.app.savegameMgr.importSavegame(data);
             closeLoader();
             this.dialogs.showWarning(
                 T.dialogs.importSavegameSuccess.title,
