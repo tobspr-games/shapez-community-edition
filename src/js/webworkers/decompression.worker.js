@@ -12,5 +12,5 @@ onmessage = async event => {
         decodeAsync(stream.pipeThrough(decompressionStream)).then(val => {
             postMessage(val);
         });
-    })
+    });
 };

@@ -2,16 +2,16 @@ import { Application } from "@/application";
 import { FsError } from "./fs_error";
 
 // @ts-expect-error This works in the animation_frame file so it has to work here too, right?
-import DecompressionWorker from "@/webworkers/decompression.worker"
+import DecompressionWorker from "@/webworkers/decompression.worker";
 // @ts-expect-error ...
-import CompressionWorker from "@/webworkers/compression.worker"
+import CompressionWorker from "@/webworkers/compression.worker";
 
 export const STORAGE_SAVES = "saves";
 export const STORAGE_MOD_PREFIX = "mod/";
 
-const COMPRESSION_IDS = [ STORAGE_SAVES ]
-const decompression_worker = new DecompressionWorker()
-const compression_worker = new CompressionWorker()
+const COMPRESSION_IDS = [STORAGE_SAVES];
+const decompression_worker = new DecompressionWorker();
+const compression_worker = new CompressionWorker();
 
 export class Storage {
     readonly app: Application;
@@ -40,38 +40,36 @@ export class Storage {
      * Tries to decompress a string
      */
     private async decompress(data) {
-        if (!COMPRESSION_IDS.includes(this.id))
-            return data
-        const array = await data
+        if (!COMPRESSION_IDS.includes(this.id)) return data;
+        const array = await data;
         return new Promise((resolve, reject) => {
             decompression_worker.onmessage = (event: MessageEvent<unknown>) => {
-                resolve(event.data)
-            }
-            decompression_worker.onerror = (_event) => reject()
-            decompression_worker.postMessage(array, [array.buffer])
-        })
+                resolve(event.data);
+            };
+            decompression_worker.onerror = _event => reject();
+            decompression_worker.postMessage(array, [array.buffer]);
+        });
     }
 
     /**
      * Tries to compress a string
      */
     private async compress(contents) {
-        if (!COMPRESSION_IDS.includes(this.id))
-            return contents
+        if (!COMPRESSION_IDS.includes(this.id)) return contents;
         return new Promise((resolve, reject) => {
             compression_worker.onmessage = (event: MessageEvent<unknown>) => {
-                resolve(event.data)
-            }
-            compression_worker.onerror = (_event) => reject()
-            compression_worker.postMessage(contents)
-        })
+                resolve(event.data);
+            };
+            compression_worker.onerror = _event => reject();
+            compression_worker.postMessage(contents);
+        });
     }
 
     /**
      * Reads a string asynchronously
      */
     async readFileAsync(filename: string): Promise<unknown> {
-        return this.decompress(this.invokeFsJob({ type: "read", filename }))
+        return this.decompress(this.invokeFsJob({ type: "read", filename }));
     }
 
     /**
@@ -86,7 +84,7 @@ export class Storage {
      * decompressed file contents, or undefined if the operation was canceled
      */
     async requestOpenFile(extension: string): Promise<unknown> {
-        return this.decompress(this.invokeFsJob({ type: "open-external", extension }))
+        return this.decompress(this.invokeFsJob({ type: "open-external", extension }));
     }
 
     /**

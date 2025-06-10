@@ -15,5 +15,5 @@ onmessage = async event => {
             .then(buffer => {
                 postMessage(new Uint8Array(buffer), [buffer]);
             });
-    })
+    });
 };
