@@ -23,6 +23,7 @@ export class DefaultCompression implements Compression {
             resolve(response.result);
         });
 
+        this.scheduleWorkerTermination(worker);
         worker.postMessage(data);
         return promise;
     }
@@ -43,7 +44,13 @@ export class DefaultCompression implements Compression {
             resolve(response.result);
         });
 
+        this.scheduleWorkerTermination(worker);
         worker.postMessage(data, [data.buffer]);
         return promise;
+    }
+
+    private scheduleWorkerTermination(worker: Worker): void {
+        worker.addEventListener("message", () => worker.terminate(), { once: true });
+        worker.addEventListener("error", () => worker.terminate(), { once: true });
     }
 }
