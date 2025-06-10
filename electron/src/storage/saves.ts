@@ -1,7 +1,4 @@
-import { encode } from "@msgpack/msgpack";
-import fs from "node:fs";
-import { pipeline } from "node:stream/promises";
-import { createGzip } from "node:zlib";
+import { readFile, writeFile, unlink } from "node:fs/promises";
 import { StorageInterface } from "./interface.js";
 
 /**
@@ -10,25 +7,14 @@ import { StorageInterface } from "./interface.js";
  */
 export class SavesStorage implements StorageInterface<unknown> {
     async read(file: string): Promise<unknown> {
-        return fs.promises.readFile(file);
+        return readFile(file);
     }
 
-    async write(file: string, contents: unknown): Promise<void> {
-        const stream = fs.createWriteStream(file);
-        const gzip = createGzip();
-
-        try {
-            const encoded = encode(contents);
-            const blob = new Blob([encoded]);
-
-            return await pipeline(blob.stream(), gzip, stream);
-        } finally {
-            gzip.close();
-            stream.close();
-        }
+    async write(file: string, contents: Uint8Array): Promise<void> {
+        return writeFile(file, contents);
     }
 
     delete(file: string): Promise<void> {
-        return fs.promises.unlink(file);
+        return unlink(file);
     }
 }

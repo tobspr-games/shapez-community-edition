@@ -2,13 +2,16 @@ import { Application } from "@/application";
 import { FsError } from "./fs_error";
 
 // @ts-expect-error This works in the animation_frame file so it has to work here too, right?
-import DecompressionWorker from "../webworkers/decompression.worker"
+import DecompressionWorker from "@/webworkers/decompression.worker"
+// @ts-expect-error ...
+import CompressionWorker from "@/webworkers/compression.worker"
 
 export const STORAGE_SAVES = "saves";
 export const STORAGE_MOD_PREFIX = "mod/";
 
-const DECOMPRESSION_IDS = [ STORAGE_SAVES ]
+const COMPRESSION_IDS = [ STORAGE_SAVES ]
 const decompression_worker = new DecompressionWorker()
+const compression_worker = new CompressionWorker()
 
 export class Storage {
     readonly app: Application;
@@ -29,23 +32,38 @@ export class Storage {
     /**
      * Writes a string to a file asynchronously
      */
-    writeFileAsync(filename: string, contents: unknown): Promise<void> {
-        return this.invokeFsJob({ type: "write", filename, contents });
+    async writeFileAsync(filename: string, contents: unknown): Promise<void> {
+        return this.invokeFsJob({ type: "write", filename, contents: await this.compress(contents) });
     }
 
     /**
      * Tries to decompress a string
      */
     private async decompress(data) {
-        if (!DECOMPRESSION_IDS.includes(this.id))
+        if (!COMPRESSION_IDS.includes(this.id))
             return data
-        let array = await data
+        const array = await data
         return new Promise((resolve, reject) => {
             decompression_worker.onmessage = (event: MessageEvent<unknown>) => {
                 resolve(event.data)
             }
             decompression_worker.onerror = (_event) => reject()
             decompression_worker.postMessage(array, [array.buffer])
+        })
+    }
+
+    /**
+     * Tries to compress a string
+     */
+    private async compress(contents) {
+        if (!COMPRESSION_IDS.includes(this.id))
+            return contents
+        return new Promise((resolve, reject) => {
+            compression_worker.onmessage = (event: MessageEvent<unknown>) => {
+                resolve(event.data)
+            }
+            compression_worker.onerror = (_event) => reject()
+            compression_worker.postMessage(contents)
         })
     }
 
@@ -76,8 +94,8 @@ export class Storage {
      * picks a file, the passed contents will be compressed and written to
      * that file.
      */
-    requestSaveFile(filename: string, contents: unknown): Promise<unknown> {
-        return this.invokeFsJob({ type: "save-external", filename, contents });
+    async requestSaveFile(filename: string, contents: unknown): Promise<unknown> {
+        return this.invokeFsJob({ type: "save-external", filename, contents: await this.compress(contents) });
     }
 
     private invokeFsJob(data: object) {

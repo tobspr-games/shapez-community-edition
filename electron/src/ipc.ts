@@ -20,7 +20,7 @@ export class IpcHandler {
         // ipcMain.handle("open-mods-folder", ...)
     }
 
-    private handleFsJob(_event: IpcMainInvokeEvent, job: FsJob<unknown>) {
+    private async handleFsJob(_event: IpcMainInvokeEvent, job: FsJob<unknown>) {
         if (job.id !== "saves") {
             throw new Error("Storages other than saves/ are not implemented yet");
         }
