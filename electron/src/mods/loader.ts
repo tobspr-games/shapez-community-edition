@@ -1,3 +1,4 @@
+import EventEmitter from "node:events";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { DevelopmentModLocator, DistroModLocator, ModLocator, UserModLocator } from "./locator.js";
@@ -48,14 +49,29 @@ class Mod {
     }
 }
 
-export class ModLoader {
+export class ModLoader extends EventEmitter {
     private mods: Mod[] = [];
     private readonly locators = new Map<ModSource, ModLocator>();
 
     constructor() {
+        super();
+
         this.locators.set("user", new UserModLocator());
         this.locators.set("distro", new DistroModLocator());
-        this.locators.set("dev", new DevelopmentModLocator());
+
+        const devLocator = new DevelopmentModLocator();
+        this.locators.set("dev", devLocator);
+
+        // If requested, restart automatically when dev mods are modified
+        devLocator.fsWatcher?.on("all", () => this.forceReload());
+    }
+
+    /**
+     * Resets modloader state and reloads all mods, then triggers page reload.
+     */
+    async forceReload() {
+        await this.loadMods();
+        this.emit("forcereload");
     }
 
     async loadMods(): Promise<void> {

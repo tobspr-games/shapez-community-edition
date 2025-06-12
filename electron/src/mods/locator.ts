@@ -1,3 +1,4 @@
+import chokidar, { FSWatcher } from "chokidar";
 import { app } from "electron";
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -10,6 +11,7 @@ const USER_MODS_DIR = path.join(userData, "mods");
 const DISTRO_MODS_DIR = path.join(executableDir, "mods");
 
 const DEV_SWITCH = "load-mod";
+const DEV_WATCH_SWITCH = "watch";
 const DEV_USER_MOD_PREFIX = "@/";
 
 export interface ModLocator {
@@ -153,6 +155,7 @@ export class DistroModLocator extends DirectoryModLocator {
 
 export class DevelopmentModLocator implements ModLocator {
     readonly priority = 0;
+    readonly fsWatcher: FSWatcher | null = null;
 
     private readonly modFiles: string[] = [];
     private readonly disabledMods = new Set<string>();
@@ -166,6 +169,19 @@ export class DevelopmentModLocator implements ModLocator {
 
         const resolved = switchValue.split(",").map(f => this.resolveFile(f));
         this.modFiles.push(...resolved);
+
+        const watchMode = app.commandLine.hasSwitch(DEV_WATCH_SWITCH);
+        if (!watchMode || this.modFiles.length === 0) {
+            // Skip setting up chokidar
+            return;
+        }
+
+        this.fsWatcher = chokidar.watch(this.modFiles, {
+            persistent: false,
+            ignoreInitial: true,
+            awaitWriteFinish: true,
+            atomic: true,
+        });
     }
 
     locateMods(): Promise<string[]> {

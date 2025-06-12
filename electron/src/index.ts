@@ -56,6 +56,12 @@ function createWindow() {
     ipc.install(window);
     window.loadURL(pageUrl);
 
+    modLoader.on("forcereload", () => {
+        // TODO: Find a better way to manage cache when force
+        // reloading (use a non-persistent session?)
+        window.webContents.session.clearData({ dataTypes: ["cache"] }).then(() => window.reload());
+    });
+
     // Redirect any kind of main frame navigation to external applications
     window.webContents.on("will-navigate", (ev, url) => {
         if (url === window.webContents.getURL()) {
