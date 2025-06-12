@@ -142,7 +142,7 @@ async function serveHTML({ version = "web-dev" }) {
         gulp.series(sounds.sfx, sounds.copy)
     );
     gulp.watch(
-        ["../res_raw/sounds/music/**/*.mp3", "../res_raw/sounds/music/**/*.wav"],
+        ["../res_raw/sounds/music/**/*.ogg", "../res_raw/sounds/music/**/*.wav"],
         gulp.series(sounds.music, sounds.copy)
     );
 
