@@ -51,6 +51,10 @@ export class MapView extends BaseMap {
      * @param {Entity} entity
      */
     onEntityChanged(entity) {
+        if (!this.root.gameInitialized) {
+            return;
+        }
+
         const staticComp = entity.components.StaticMapEntity;
         if (staticComp) {
             const rect = staticComp.getTileSpaceBounds();
