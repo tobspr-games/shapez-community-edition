@@ -2,7 +2,6 @@ import path from "path/posix";
 import gulp from "gulp";
 import { buildFolder } from "./config.js";
 
-import gulpAudiosprite from "gulp-audiosprite";
 import gulpClean from "gulp-clean";
 import gulpCache from "gulp-cache";
 import gulpPlumber from "gulp-plumber";
@@ -56,7 +55,7 @@ export function music() {
 // Encodes the game music in high quality for the standalone
 export function musicHQ() {
     return gulp
-        .src([path.join(soundsDir, "music", "**", "*.wav"), path.join(soundsDir, "music", "**", "*.mp3")])
+        .src([path.join(soundsDir, "music", "**", "*.wav"), path.join(soundsDir, "music", "**", "*.mp3"), path.join(soundsDir, "music", "**", "*.ogg")])
         .pipe(gulpPlumber())
         .pipe(
             gulpCache(
@@ -78,21 +77,14 @@ export function musicHQ() {
         .pipe(gulp.dest(path.join(builtSoundsDir, "music")));
 }
 
-// Encodes the ui sounds
-export function sfxGenerateSprites() {
+// copies the ui sounds
+export function sfxCopySounds() {
     return gulp
         .src([path.join(soundsDir, "sfx", "**", "*.wav"), path.join(soundsDir, "sfx", "**", "*.mp3")])
         .pipe(gulpPlumber())
-        .pipe(
-            gulpAudiosprite({
-                format: "howler",
-                output: "sfx",
-                gap: 0.1,
-                export: "mp3",
-            })
-        )
-        .pipe(gulp.dest(path.join(builtSoundsDir)));
+        .pipe(gulp.dest(path.join(builtSoundsDir, "sfx")));
 }
+
 export function sfxOptimize() {
     return gulp
         .src([path.join(builtSoundsDir, "sfx.mp3")])
@@ -109,13 +101,8 @@ export function sfxOptimize() {
         )
         .pipe(gulp.dest(path.join(builtSoundsDir)));
 }
-export function sfxCopyAtlas() {
-    return gulp
-        .src([path.join(builtSoundsDir, "sfx.json")])
-        .pipe(gulp.dest(path.join("..", "src", "js", "built-temp")));
-}
 
-export const sfx = gulp.series(sfxGenerateSprites, sfxOptimize, sfxCopyAtlas);
+export const sfx = gulp.series(sfxCopySounds, sfxOptimize);
 
 export function copy() {
     return gulp
