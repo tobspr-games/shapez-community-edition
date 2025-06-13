@@ -8,7 +8,6 @@ import { GameRoot } from "@/core/draw_parameters";
 const logger = createLogger("sound");
 
 export const SOUNDS = {
-    // Menu and such
     uiClick: "ui_click.ogg",
     uiError: "ui_error.ogg",
     dialogError: "dialog_error.ogg",
@@ -28,7 +27,7 @@ export const SOUNDS = {
 };
 
 export const MUSIC = {
-    theme: {
+    ingame: {
         beltsgobrrrr: "theme/BeltsGoBrrrr.ogg",
         blueprint: "theme/Blueprint.ogg",
         chiliagon: "theme/Chiliagon.ogg",
@@ -47,8 +46,34 @@ export const MUSIC = {
         split: "puzzle/Split.ogg",
         think: "puzzle/Think.ogg",
     },
-    menu: "menu.ogg",
+    menu: {
+        menu: "menu.ogg",
+    },
 };
+
+function isObject(item: unknown): item is object {
+    return typeof item === "object" && !Array.isArray(item) && item !== null;
+}
+
+function deepForEachProp(
+    obj: Record<string, Record<string, string> | string>,
+    closure: (key: string, value: string, upperKey: string) => void,
+    upperKey: keyof typeof obj = ""
+) {
+    for (const [key, value] of Object.entries(obj)) {
+        if (isObject(value)) {
+            deepForEachProp(value, closure, key);
+        } else {
+            closure(key, value, upperKey);
+        }
+    }
+}
+
+// https://stackoverflow.com/a/37401010
+// https://stackoverflow.com/a/70766304
+function randomValueFromObject<T extends object>(obj: T): T[keyof T] {
+    return obj[Object.keys(obj)[~~(Math.random() * Object.keys(obj).length)]];
+}
 
 interface SoundInstanceInterface {
     load(): Promise<void>;
@@ -103,6 +128,7 @@ class SoundInstance implements SoundInstanceInterface {
     play(volume: number) {
         if (this.elm && this.gainNode) {
             this.gainNode.gain.value = volume;
+            this.elm.currentTime = 0;
             this.elm.play();
         }
     }
@@ -129,13 +155,15 @@ class SoundInstance implements SoundInstanceInterface {
 }
 
 class MusicInstance extends SoundInstance implements MusicInstanceInterface {
-    constructor(key: string, path: string) {
+    readonly type: string;
+    constructor(key: string, path: string, type: string) {
         super(key, path);
+        this.type = type;
     }
 
     stop() {
         if (this.elm) {
-            this.elm.pause()
+            this.elm.pause();
         }
     }
 
@@ -148,27 +176,6 @@ class MusicInstance extends SoundInstance implements MusicInstanceInterface {
             this.gainNode.gain.value = volume;
         }
     }
-}
-
-function isObject(item: unknown): item is object {
-    return typeof item === "object" && !Array.isArray(item) && item !== null;
-}
-
-function deepForEachProp(
-    obj: Record<string, Record<string, string> | string>,
-    closure: (key: string, value: string) => void
-) {
-    for (const [key, value] of Object.entries(obj)) {
-        if (isObject(value)) {
-            deepForEachProp(value, closure);
-        } else {
-            closure(key, value);
-        }
-    }
-}
-
-function randomValueFromObject<T extends object>(obj: T): T[keyof T] {
-    return obj[Object.keys(obj)[Math.floor(Math.random() * Object.keys(obj).length)]];
 }
 
 export class Sound {
@@ -198,8 +205,8 @@ export class Sound {
      * Initializes the sound
      */
     initialize() {
-        deepForEachProp(MUSIC, (musicKey, musicPath) => {
-            this.music[musicPath] = new MusicInstance(musicKey, `res/sounds/music/${musicPath}`);
+        deepForEachProp(MUSIC, (musicKey, musicPath, musicType) => {
+            this.music[musicPath] = new MusicInstance(musicKey, `res/sounds/music/${musicPath}`, musicType);
         });
         deepForEachProp(SOUNDS, (soundKey, soundPath) => {
             this.sounds[soundPath] = new SoundInstance(soundKey, `res/sounds/${soundPath}`);
@@ -327,21 +334,30 @@ export class Sound {
         this.sounds[key].play(clamp(volume));
     }
 
-    playThemeMusic({key}: {key: "menu" | "puzzle" | "ingame"}) {
-        const music = this.music[key];
-        if (key && !music) {
-            logger.warn("Music", key, "not found, probably not loaded yet");
+    playThemeMusic({ type, shuffle }: { type: string; shuffle: boolean }) {
+        if (!(type in MUSIC)) {
+            logger.warn(`Music type ${type} not found in MUSIC`);
+            return;
         }
-        if (this.currentMusic !== music) {
-            if (this.currentMusic) {
-                logger.log("Stopping", this.currentMusic.key);
-                this.currentMusic.stop();
-            }
-            this.currentMusic = music;
-            if (music && this.pageIsVisible) {
-                logger.log("Starting", this.currentMusic.key);
-                music.play(this.musicVolume);
-            }
+        if (this.currentMusic && this.currentMusic.type === type) {
+            return;
         }
+        if (this.currentMusic) {
+            this.stopThemeMusic();
+        }
+        for (const path of Object.values(MUSIC[type])) {
+            // @ts-expect-error Typescript thinks `type` isn't a key of `MUSIC`
+            this.music[path].elm.onended = () => {
+                if (shuffle) {
+                    this.music[randomValueFromObject(MUSIC[this.currentMusic.type])].play(this.musicVolume);
+                }
+            };
+        }
+        (this.currentMusic = this.music[randomValueFromObject(MUSIC[type])]).play(this.musicVolume);
+    }
+
+    stopThemeMusic() {
+        // TODO: add more options for smoothing out and other stuff
+        this.currentMusic.stop();
     }
 }
