@@ -53,6 +53,11 @@ export class GameCreationPayload {
     }
 }
 
+// utils
+function randomValueFromObject(obj) {
+    return obj[Object.keys(obj)[Math.floor(Math.random() * Object.keys(obj).length)]];
+}
+
 export class InGameState extends GameState {
     constructor() {
         super("InGameState");
@@ -244,9 +249,9 @@ export class InGameState extends GameState {
                         this.creationPayload.gameModeId &&
                         this.creationPayload.gameModeId.includes("puzzle")
                     ) {
-                        this.app.sound.playThemeMusic(MUSIC.puzzle);
+                        this.app.sound.playThemeMusic({shuffle});
                     } else {
-                        this.app.sound.playThemeMusic(MUSIC.theme);
+                        this.app.sound.playThemeMusic(randomValueFromObject(MUSIC.theme));
                     }
 
                     this.loadingOverlay.loadingIndicator.innerText = "";

@@ -15,23 +15,17 @@ const logger = createLogger("background_loader");
 
 const MAIN_MENU_ASSETS = {
     sprites: ["logo.png"],
-    sounds: [SOUNDS.uiClick, SOUNDS.uiError, SOUNDS.dialogError, SOUNDS.dialogOk],
+    sounds: [...Array.from(Object.values(MUSIC)), ...Array.from(Object.values(SOUNDS))],
     atlas: [],
     css: [],
 };
 
 const INGAME_ASSETS = {
     sprites: [],
-    sounds: [
-        ...Array.from(Object.values(MUSIC)),
-        ...Array.from(Object.values(SOUNDS)).filter(sound => !MAIN_MENU_ASSETS.sounds.includes(sound)),
-    ],
+    sounds: [],
     atlas: atlasFiles,
     css: ["async-resources.css"],
 };
-
-MAIN_MENU_ASSETS.sounds = [...Array.from(Object.values(MUSIC)), ...Array.from(Object.values(SOUNDS))];
-INGAME_ASSETS.sounds = [];
 
 const LOADER_TIMEOUT_PER_RESOURCE = 180000;
 
@@ -72,7 +66,7 @@ export class BackgroundResourcesLoader {
      *
      * @param {object} param0
      * @param {string[]} param0.sprites
-     * @param {string[]} param0.sounds
+     * @param {(string | Record<string, string>)[]} param0.sounds
      * @param {AtlasDefinition[]} param0.atlas
      * @param {string[]} param0.css
      */
@@ -121,7 +115,7 @@ export class BackgroundResourcesLoader {
 
         // SFX & Music
         for (let i = 0; i < sounds.length; ++i) {
-            promiseFunctions.push(() =>
+            promiseFunctions.push(progress =>
                 timeoutPromise(this.app.sound.loadSound(sounds[i]), LOADER_TIMEOUT_PER_RESOURCE).catch(
                     err => {
                         logger.warn("Failed to load sound, will not be available:", sounds[i], err);
