@@ -1,3 +1,5 @@
+/// <reference types="webpack/module" />
+
 // Globals defined by webpack
 
 declare const G_IS_DEV: boolean;
@@ -22,23 +24,6 @@ declare const shapez: any;
 
 declare const ipcRenderer: any;
 
-declare interface ImportMeta {
-    webpackContext(
-        request: string,
-        options?: {
-            recursive?: boolean;
-            regExp?: RegExp;
-            include?: RegExp;
-            exclude?: RegExp;
-            preload?: boolean | number;
-            prefetch?: boolean | number;
-            chunkName?: string;
-            exports?: string | string[][];
-            mode?: "sync" | "eager" | "weak" | "lazy" | "lazy-once";
-        }
-    ): webpack.Context;
-}
-
 declare interface CanvasRenderingContext2D {
     beginCircle(x: number, y: number, r: number): void;
 }
@@ -51,44 +36,16 @@ declare interface Logger {
     error(...args);
 }
 
-declare interface MobileAccessibility {
-    usePreferredTextZoom(boolean);
-}
-
 declare interface Window {
     // Debugging
     activeClickDetectors: Array<any>;
 
     // Mods
-    $shapez_registerMod: any;
-    anyModLoaded: any;
-
     shapez: any;
 
     APP_ERROR_OCCURED?: boolean;
 
-    webkitRequestAnimationFrame();
-
     assert(condition: boolean, failureMessage: string);
-}
-
-declare interface Navigator {
-    app: any;
-    device: any;
-    splashscreen: any;
-}
-
-// Webpack
-declare interface WebpackContext {
-    keys(): Array<string>;
-}
-
-declare interface NodeRequire {
-    context(src: string, flag: boolean, regexp: RegExp): WebpackContext;
-}
-
-declare interface Object {
-    entries(obj: object): Array<[string, any]>;
 }
 
 declare interface Math {
@@ -97,18 +54,6 @@ declare interface Math {
 }
 
 declare type Class<T = unknown> = new (...args: any[]) => T;
-
-declare interface String {
-    padStart(size: number, fill?: string): string;
-    padEnd(size: number, fill: string): string;
-}
-
-declare interface SignalTemplate0 {
-    add(receiver: () => string | void, scope: null | any);
-    dispatch(): string | void;
-    remove(receiver: () => string | void);
-    removeAll();
-}
 
 declare class TypedTrackedState<T> {
     constructor(callbackMethod?: (value: T) => void, callbackScope?: any);
