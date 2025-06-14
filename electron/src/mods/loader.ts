@@ -63,7 +63,7 @@ export class ModLoader extends EventEmitter {
         this.locators.set("dev", devLocator);
 
         // If requested, restart automatically when dev mods are modified
-        devLocator.fsWatcher?.on("all", () => this.forceReload());
+        devLocator.fsWatcher?.on("all", this.delayedForceReload());
     }
 
     /**
@@ -113,6 +113,16 @@ export class ModLoader extends EventEmitter {
 
     getModById(id: string): Mod | undefined {
         return this.mods.find(mod => mod.metadata.id === id);
+    }
+
+    private delayedForceReload() {
+        // Debounce the force reload manually as chokidar won't aggregate events the way we want
+        // NOTE: The delay chosen here (250ms) is quite arbitrary!
+        let timeout: NodeJS.Timeout | undefined = undefined;
+        return () => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => this.forceReload(), 250);
+        };
     }
 
     private async locateAllMods(): Promise<ModLocation[]> {

@@ -179,8 +179,6 @@ export class DevelopmentModLocator implements ModLocator {
         this.fsWatcher = chokidar.watch(this.modFiles, {
             persistent: false,
             ignoreInitial: true,
-            awaitWriteFinish: true,
-            atomic: true,
         });
     }
 
