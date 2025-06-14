@@ -12,7 +12,6 @@ declare function assertAlways(
 declare const abstract: void;
 
 declare const G_APP_ENVIRONMENT: string;
-declare const G_HAVE_ASSERT: boolean;
 declare const G_BUILD_TIME: number;
 
 declare const G_BUILD_COMMIT_HASH: string;

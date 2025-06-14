@@ -17,7 +17,6 @@ export function setGlobalApp(app) {
 }
 
 export const BUILD_OPTIONS = {
-    HAVE_ASSERT: G_HAVE_ASSERT,
     APP_ENVIRONMENT: G_APP_ENVIRONMENT,
     IS_DEV: G_IS_DEV,
     IS_RELEASE: G_IS_RELEASE,

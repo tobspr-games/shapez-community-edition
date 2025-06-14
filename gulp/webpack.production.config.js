@@ -18,7 +18,6 @@ const globalDefs = {
     "G_ALL_UI_IMAGES": JSON.stringify(getAllResourceImages()),
 
     "G_IS_RELEASE": "true",
-    "G_HAVE_ASSERT": "false",
 };
 
 /** @type {import("webpack").RuleSetRule[]} */

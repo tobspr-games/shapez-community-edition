@@ -17,7 +17,6 @@ const globalDefs = {
     G_ALL_UI_IMAGES: JSON.stringify(getAllResourceImages()),
 
     G_IS_RELEASE: "false",
-    G_HAVE_ASSERT: "true",
 };
 
 /** @type {import("webpack").RuleSetRule[]} */
