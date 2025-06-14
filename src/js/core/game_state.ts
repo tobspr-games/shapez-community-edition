@@ -1,4 +1,3 @@
-import { MUSIC } from "@/platform/sound";
 import type { Application } from "../application";
 import { ClickDetector } from "./click_detector";
 import { globalConfig } from "./config";
@@ -219,8 +218,8 @@ export class GameState {
     /**
      * Should return the theme music for this state
      */
-    getThemeMusic(): string | null {
-        return MUSIC.menu;
+    getThemeMusic(): string {
+        return "menu";
     }
 
     /**
