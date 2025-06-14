@@ -9,12 +9,12 @@ import { AtlasDefinition, atlasFiles } from "./atlas_definitions";
 import { Loader } from "./loader";
 import { createLogger } from "./logging";
 import { Signal } from "./signal";
-import { clamp, getLogoSprite, timeoutPromise } from "./utils";
+import { clamp, timeoutPromise } from "./utils";
 
 const logger = createLogger("background_loader");
 
 const MAIN_MENU_ASSETS = {
-    sprites: [getLogoSprite()],
+    sprites: ["logo.png"],
     sounds: [SOUNDS.uiClick, SOUNDS.uiError, SOUNDS.dialogError, SOUNDS.dialogOk],
     atlas: [],
     css: [],

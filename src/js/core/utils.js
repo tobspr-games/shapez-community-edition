@@ -400,13 +400,6 @@ export function removeAllChildren(elem) {
 }
 
 /**
- * Returns if the game supports this browser
- */
-export function isSupportedBrowser() {
-    return true;
-}
-
-/**
  * Formats an amount of seconds into something like "5s ago"
  * @param {number} secs Seconds
  * @returns {string}
@@ -657,13 +650,6 @@ export function getRomanNumber(number) {
 
     romanLiteralsCache[number] = formatted;
     return formatted;
-}
-
-/**
- * Returns the appropriate logo sprite path
- */
-export function getLogoSprite() {
-    return "logo.png";
 }
 
 /**

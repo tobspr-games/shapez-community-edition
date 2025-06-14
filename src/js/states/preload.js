@@ -2,7 +2,6 @@ import { CHANGELOG } from "../changelog";
 import { globalConfig } from "../core/config";
 import { GameState } from "../core/game_state";
 import { createLogger } from "../core/logging";
-import { getLogoSprite } from "../core/utils";
 import { getRandomHint } from "../game/hints";
 import { HUDModalDialogs } from "../game/hud/parts/modal_dialogs";
 import { T, autoDetectLanguageId, updateApplicationLanguage } from "../translations";
@@ -235,7 +234,7 @@ export class PreloadState extends GameState {
 
         subElement.innerHTML = `
                 <div class="logo">
-                    <img src="res/${getLogoSprite()}" alt="Shapez.io Logo">
+                    <img src="res/logo.png" alt="Shapez.io Logo">
                 </div>
                 <div class="failureInner">
                     <div class="errorHeader">
