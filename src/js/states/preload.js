@@ -88,7 +88,7 @@ export class PreloadState extends GameState {
 
             .then(() => {
                 const language = this.app.settings.getLanguage();
-                updateApplicationLanguage(language);
+                return updateApplicationLanguage(language);
             })
 
             .then(() => this.setStatus("Initializing sounds", 30))

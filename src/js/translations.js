@@ -81,6 +81,16 @@ export function autoDetectLanguageId() {
     return "en";
 }
 
+/**
+ * Loads translation data for the specified language
+ * @param {string} code
+ * @param {string | ""} region
+ */
+export async function loadTranslationData(code, region) {
+    const locale = code + (region === "" ? "" : `-${region}`);
+    return (await import(`./built-temp/base-${locale}.json`)).default;
+}
+
 export function matchDataRecursive(dest, src, addNewKeys = false) {
     if (typeof dest !== "object" || typeof src !== "object") {
         return;
@@ -113,7 +123,7 @@ export function matchDataRecursive(dest, src, addNewKeys = false) {
     }
 }
 
-export function updateApplicationLanguage(id) {
+export async function updateApplicationLanguage(id) {
     logger.log("Setting application language:", id);
 
     const data = LANGUAGES[id];
@@ -123,8 +133,13 @@ export function updateApplicationLanguage(id) {
         return;
     }
 
-    if (data.data) {
+    if (id !== "en") {
         logger.log("Applying translations ...");
-        matchDataRecursive(T, data.data);
+        const translations = await loadTranslationData(data.code, data.region);
+
+        matchDataRecursive(T, translations);
     }
+
+    // Translation overrides are used by mods
+    matchDataRecursive(T, data.overrides, true);
 }
