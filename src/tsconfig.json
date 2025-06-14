@@ -13,6 +13,7 @@
         },
         "jsx": "react-jsx",
         "jsxImportSource": "@",
+        "types": [],
         // remove when comfortable
         "exactOptionalPropertyTypes": false,
         "noImplicitAny": false,

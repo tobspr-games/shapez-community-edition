@@ -1,35 +1,35 @@
 /* typehints:start */
-import { ModLoader } from "./modloader";
-import { GameSystem } from "../game/game_system";
 import { Component } from "../game/component";
+import { GameSystem } from "../game/game_system";
 import { MetaBuilding } from "../game/meta_building";
+import { ModLoader } from "./modloader";
 /* typehints:end */
 
-import { defaultBuildingVariant } from "../game/meta_building";
+import { gComponentRegistry, gItemRegistry, gMetaBuildingRegistry } from "../core/global_registries";
+import { Loader } from "../core/loader";
 import { AtlasSprite, SpriteAtlasLink } from "../core/sprites";
+import { Vector } from "../core/vector";
+import { BaseItem } from "../game/base_item";
+import { gBuildingVariants, registerBuildingVariant } from "../game/building_codes";
+import { MODS_ADDITIONAL_SYSTEMS } from "../game/game_system_manager";
+import { BaseHUDPart } from "../game/hud/base_hud_part";
+import { HUDModalDialogs } from "../game/hud/parts/modal_dialogs";
+import { MODS_ADDITIONAL_ITEMS } from "../game/item_resolver";
+import { KEYMAPPINGS } from "../game/key_action_mapper";
+import { MODS_ADDITIONAL_SHAPE_MAP_WEIGHTS } from "../game/map_chunk";
+import { MOD_CHUNK_DRAW_HOOKS } from "../game/map_chunk_view";
+import { defaultBuildingVariant } from "../game/meta_building";
+import { GameRoot } from "../game/root";
 import {
     enumShortcodeToSubShape,
     enumSubShape,
     enumSubShapeToShortcode,
     MODS_ADDITIONAL_SUB_SHAPE_DRAWERS,
 } from "../game/shape_definition";
-import { Loader } from "../core/loader";
+import { THEMES } from "../game/theme";
 import { LANGUAGES } from "../languages";
 import { matchDataRecursive, T } from "../translations";
-import { gBuildingVariants, registerBuildingVariant } from "../game/building_codes";
-import { gComponentRegistry, gItemRegistry, gMetaBuildingRegistry } from "../core/global_registries";
-import { MODS_ADDITIONAL_SHAPE_MAP_WEIGHTS } from "../game/map_chunk";
-import { MODS_ADDITIONAL_SYSTEMS } from "../game/game_system_manager";
-import { MOD_CHUNK_DRAW_HOOKS } from "../game/map_chunk_view";
-import { KEYMAPPINGS } from "../game/key_action_mapper";
-import { HUDModalDialogs } from "../game/hud/parts/modal_dialogs";
-import { THEMES } from "../game/theme";
 import { ModMetaBuilding } from "./mod_meta_building";
-import { BaseHUDPart } from "../game/hud/base_hud_part";
-import { Vector } from "../core/vector";
-import { GameRoot } from "../game/root";
-import { BaseItem } from "../game/base_item";
-import { MODS_ADDITIONAL_ITEMS } from "../game/item_resolver";
 
 /**
  * @typedef {{new(...args: any[]): any, prototype: any}} constructable
@@ -186,10 +186,7 @@ export class ModInterface {
             throw new Error("Unknown language: " + language);
         }
 
-        matchDataRecursive(data.data, translations, true);
-        if (language === "en") {
-            matchDataRecursive(T, translations, true);
-        }
+        matchDataRecursive((data.overrides ??= {}), translations, true);
     }
 
     /**

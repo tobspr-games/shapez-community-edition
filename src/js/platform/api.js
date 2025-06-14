@@ -3,7 +3,6 @@ import { Application } from "../application";
 /* typehints:end */
 
 import { createLogger } from "../core/logging";
-import { compressX64 } from "../core/lzstring";
 import { DialogWithForm } from "../core/modal_dialog_elements";
 import { FormElementInput } from "../core/modal_dialog_forms";
 import { timeoutPromise } from "../core/utils";
@@ -252,7 +251,8 @@ export class ClientAPI {
             method: "POST",
             body: {
                 ...payload,
-                data: compressX64(JSON.stringify(payload.data)),
+                // FIXME: Server expects lzstring compressed payload
+                data: JSON.stringify(payload.data),
             },
         });
     }

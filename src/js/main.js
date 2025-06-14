@@ -5,7 +5,6 @@ import "./mods/modloader";
 
 import { Application } from "./application";
 import { IS_DEBUG } from "./core/config";
-import { initDrawUtils } from "./core/draw_utils";
 import { createLogger, logSection } from "./core/logging";
 import { initComponentRegistry } from "./game/component_registry";
 import { initGameModeRegistry } from "./game/game_mode_registry";
@@ -43,7 +42,6 @@ console.log("%cDEVCODE BUILT IN", "color: #f77");
 
 logSection("Boot Process", "#f9a825");
 
-initDrawUtils();
 initComponentRegistry();
 initItemRegistry();
 initMetaBuildingRegistry();

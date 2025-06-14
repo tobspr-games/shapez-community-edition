@@ -371,7 +371,8 @@ export class HUDBuildingPlacer extends HUDBuildingPlacerLogic {
             parameters.context.fillStyle = "rgba(255, 0, 0, 0.2)";
         }
 
-        parameters.context.beginRoundedRect(
+        parameters.context.beginPath();
+        parameters.context.roundRect(
             entityBounds.x * globalConfig.tileSize - drawBorder,
             entityBounds.y * globalConfig.tileSize - drawBorder,
             entityBounds.w * globalConfig.tileSize + 2 * drawBorder,

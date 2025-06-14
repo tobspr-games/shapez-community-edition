@@ -4,7 +4,6 @@ import { DialogWithForm } from "../core/modal_dialog_elements";
 import { FormElementInput } from "../core/modal_dialog_forms";
 import {
     formatSecondsToTimeAgo,
-    getLogoSprite,
     makeButton,
     makeDiv,
     makeDivElement,
@@ -42,7 +41,7 @@ export class MainMenuState extends GameState {
             </video>
 
             <div class="logo">
-                <img src="res/${getLogoSprite()}" alt="shapez.io Logo"
+                <img src="res/logo.png" alt="shapez.io Logo"
                     width="${Math.round((710 / 3) * this.app.getEffectiveUiScale())}"
                     height="${Math.round((180 / 3) * this.app.getEffectiveUiScale())}"
                 >
@@ -314,10 +313,6 @@ export class MainMenuState extends GameState {
 
     onRedditClicked() {
         this.app.platformWrapper.openExternalLink(THIRDPARTY_URLS.reddit);
-    }
-
-    onTwitterLinkClicked() {
-        this.app.platformWrapper.openExternalLink(THIRDPARTY_URLS.twitter);
     }
 
     onPatreonLinkClicked() {

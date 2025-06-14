@@ -114,7 +114,7 @@ export class ModLoader {
         });
 
         Array.from(modules.keys()).forEach(key => {
-            const module: object = modules(key);
+            const module = modules(key) as object;
             for (const member in module) {
                 if (member === "default") {
                     continue;

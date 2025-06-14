@@ -2,12 +2,7 @@
 import { Application } from "../application";
 /* typehints:end */
 import { BufferMaintainer } from "../core/buffer_maintainer";
-import {
-    disableImageSmoothing,
-    enableImageSmoothing,
-    getBufferStats,
-    registerCanvas,
-} from "../core/buffer_utils";
+import { getBufferStats, registerCanvas } from "../core/buffer_utils";
 import { globalConfig } from "../core/config";
 import { getDeviceDPI, resizeHighDPICanvas } from "../core/dpi_manager";
 import { DrawParameters } from "../core/draw_parameters";
@@ -218,9 +213,6 @@ export class GameCore {
             logger.log("Creating new canvas");
             canvas = document.createElement("canvas");
             canvas.id = "ingame_Canvas";
-            canvas.setAttribute("opaque", "true");
-            canvas.setAttribute("webkitOpaque", "true");
-            canvas.setAttribute("mozOpaque", "true");
             this.root.gameState.getDivElement().appendChild(canvas);
             context = canvas.getContext("2d", { alpha: false });
 
@@ -244,11 +236,8 @@ export class GameCore {
         // Oof, use :not() instead
         canvas.classList.toggle("unsmoothed", !globalConfig.smoothing.smoothMainCanvas);
 
-        if (globalConfig.smoothing.smoothMainCanvas) {
-            enableImageSmoothing(context);
-        } else {
-            disableImageSmoothing(context);
-        }
+        context.imageSmoothingEnabled = globalConfig.smoothing.smoothMainCanvas;
+        context.imageSmoothingQuality = globalConfig.smoothing.quality;
 
         this.root.canvas = canvas;
         this.root.context = context;

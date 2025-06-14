@@ -2,7 +2,6 @@ import { CHANGELOG } from "../changelog";
 import { globalConfig } from "../core/config";
 import { GameState } from "../core/game_state";
 import { createLogger } from "../core/logging";
-import { getLogoSprite } from "../core/utils";
 import { getRandomHint } from "../game/hints";
 import { HUDModalDialogs } from "../game/hud/parts/modal_dialogs";
 import { T, autoDetectLanguageId, updateApplicationLanguage } from "../translations";
@@ -42,10 +41,6 @@ export class PreloadState extends GameState {
         this.progressElement = this.htmlElement.querySelector("#ll_progressbar span");
 
         this.startLoading();
-    }
-
-    async sendBeacon() {
-        // TODO: Get rid of this analytics stuff
     }
 
     onLeave() {
@@ -88,7 +83,7 @@ export class PreloadState extends GameState {
 
             .then(() => {
                 const language = this.app.settings.getLanguage();
-                updateApplicationLanguage(language);
+                return updateApplicationLanguage(language);
             })
 
             .then(() => this.setStatus("Initializing sounds", 30))
@@ -228,14 +223,12 @@ export class PreloadState extends GameState {
     showFailMessage(text) {
         logger.error("App init failed:", text);
 
-        const email = "bugs@shapez.io";
-
         const subElement = document.createElement("div");
         subElement.classList.add("failureBox");
 
         subElement.innerHTML = `
                 <div class="logo">
-                    <img src="res/${getLogoSprite()}" alt="Shapez.io Logo">
+                    <img src="res/logo.png" alt="Shapez.io Logo">
                 </div>
                 <div class="failureInner">
                     <div class="errorHeader">

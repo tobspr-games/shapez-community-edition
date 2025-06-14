@@ -375,7 +375,7 @@ export class ApplicationSettings extends ReadWriteProxy {
      * @param {string} key
      */
     getSetting(key) {
-        assert(this.getAllSettings().hasOwnProperty(key), "Setting not known: " + key);
+        assert(Object.hasOwn(this.getAllSettings(), key), "Setting not known: " + key);
         return this.getAllSettings()[key];
     }
 
