@@ -9,19 +9,6 @@ import { Rectangle } from "./rectangle";
 
 const logger = createLogger("draw_utils");
 
-export function initDrawUtils() {
-    CanvasRenderingContext2D.prototype.beginCircle = function (x, y, r) {
-        this.beginPath();
-
-        if (r < 0.05) {
-            this.rect(x, y, 1, 1);
-            return;
-        }
-
-        this.arc(x, y, r, 0, 2.0 * Math.PI);
-    };
-}
-
 /**
  *
  * @param {object} param0
