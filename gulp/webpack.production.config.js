@@ -23,12 +23,6 @@ const globalDefs = {
 /** @type {import("webpack").RuleSetRule[]} */
 const moduleRules = [
     {
-        test: /\.json$/,
-        enforce: "pre",
-        use: resolve("./loader.compressjson.cjs"),
-        type: "javascript/auto",
-    },
-    {
         test: /\.jsx?$/,
         enforce: "pre",
         exclude: /node_modules/,
@@ -94,7 +88,6 @@ export default {
     resolve: {
         fallback: { fs: false },
         alias: {
-            "global-compression": resolve("../src/js/core/lzstring.js"),
             "@": resolve("../src/js/"),
         },
         fullySpecified: false,
