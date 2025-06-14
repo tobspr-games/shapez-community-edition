@@ -5,23 +5,6 @@ import { fastArrayDelete } from "./utils";
 const logger = createLogger("buffer_utils");
 
 /**
- * Enables images smoothing on a context
- * @param {CanvasRenderingContext2D} context
- */
-export function enableImageSmoothing(context) {
-    context.imageSmoothingEnabled = true;
-    context.imageSmoothingQuality = globalConfig.smoothing.quality;
-}
-
-/**
- * Disables image smoothing on a context
- * @param {CanvasRenderingContext2D} context
- */
-export function disableImageSmoothing(context) {
-    context.imageSmoothingEnabled = false;
-}
-
-/**
  * @typedef {{
  *   canvas: HTMLCanvasElement,
  *   context: CanvasRenderingContext2D
@@ -175,11 +158,8 @@ export function makeOffscreenBuffer(w, h, { smooth = true, reusable = true, labe
     // @ts-ignore
     canvas.label = label;
 
-    if (smooth) {
-        enableImageSmoothing(context);
-    } else {
-        disableImageSmoothing(context);
-    }
+    context.imageSmoothingEnabled = smooth;
+    context.imageSmoothingQuality = globalConfig.smoothing.quality;
 
     if (reusable) {
         registerCanvas(canvas, context);
