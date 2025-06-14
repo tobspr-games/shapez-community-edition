@@ -315,10 +315,6 @@ export class MainMenuState extends GameState {
         this.app.platformWrapper.openExternalLink(THIRDPARTY_URLS.reddit);
     }
 
-    onTwitterLinkClicked() {
-        this.app.platformWrapper.openExternalLink(THIRDPARTY_URLS.twitter);
-    }
-
     onPatreonLinkClicked() {
         this.app.platformWrapper.openExternalLink(THIRDPARTY_URLS.patreon);
     }
