@@ -59,7 +59,8 @@ export class HUDMinerHighlight extends BaseHUDPart {
             const entity = connectedEntities[i];
             const staticComp = entity.components.StaticMapEntity;
 
-            parameters.context.beginRoundedRect(
+            parameters.context.beginPath();
+            parameters.context.roundRect(
                 staticComp.origin.x * globalConfig.tileSize + 5,
                 staticComp.origin.y * globalConfig.tileSize + 5,
                 globalConfig.tileSize - 10,
@@ -81,7 +82,8 @@ export class HUDMinerHighlight extends BaseHUDPart {
 
         // Background
         parameters.context.fillStyle = THEME.map.connectedMiners.background;
-        parameters.context.beginRoundedRect(
+        parameters.context.beginPath();
+        parameters.context.roundRect(
             tooltipLocation.x + 5 * scale,
             tooltipLocation.y - 3 * scale,
             (isCapped ? 100 : 65) * scale,

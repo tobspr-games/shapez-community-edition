@@ -40,7 +40,6 @@ declare interface ImportMeta {
 }
 
 declare interface CanvasRenderingContext2D {
-    beginRoundedRect(x: number, y: number, w: number, h: number, r: number): void;
     beginCircle(x: number, y: number, r: number): void;
 }
 
