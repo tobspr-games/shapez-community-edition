@@ -6,7 +6,6 @@ import { GameLoadingOverlay } from "../game/game_loading_overlay";
 import { KeyActionMapper } from "../game/key_action_mapper";
 import { Savegame } from "../savegame/savegame";
 import { GameCore } from "../game/core";
-import { MUSIC } from "../platform/sound";
 import { enumGameModeIds } from "../game/game_mode";
 import { MOD_SIGNALS } from "../mods/mod_signals";
 import { HUDModalDialogs } from "../game/hud/parts/modal_dialogs";
@@ -246,9 +245,9 @@ export class InGameState extends GameState {
                         this.creationPayload.gameModeId &&
                         this.creationPayload.gameModeId.includes("puzzle")
                     ) {
-                        this.app.sound.playThemeMusic(MUSIC.puzzle);
+                        this.app.sound.playThemeMusic({type: "puzzle", shuffle: true});
                     } else {
-                        this.app.sound.playThemeMusic(MUSIC.theme);
+                        this.app.sound.playThemeMusic({type: "ingame", shuffle: true});
                     }
 
                     this.loadingOverlay.loadingIndicator.innerText = "";

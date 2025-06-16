@@ -2,9 +2,7 @@ import path from "path/posix";
 import gulp from "gulp";
 import { buildFolder } from "./config.js";
 
-import gulpAudiosprite from "gulp-audiosprite";
 import gulpClean from "gulp-clean";
-import gulpCache from "gulp-cache";
 import gulpPlumber from "gulp-plumber";
 import gulpFluentFfmpeg from "gulp-fluent-ffmpeg";
 
@@ -16,116 +14,33 @@ export function clear() {
     return gulp.src(builtSoundsDir, { read: false, allowEmpty: true }).pipe(gulpClean({ force: true }));
 }
 
-const filters = ["volume=0.2"];
-
-const fileCache = new gulpCache.Cache({
-    cacheDirName: "shapezio-precompiled-sounds",
-});
-
-function getFileCacheValue(file) {
-    const { _isVinyl, base, cwd, contents, history, stat, path } = file;
-    const encodedContents = Buffer.from(contents).toString("base64");
-    return { _isVinyl, base, cwd, contents: encodedContents, history, stat, path };
-}
-
-// Encodes the game music
-export function music() {
+export function musicCopy() {
     return gulp
-        .src([path.join(soundsDir, "music", "**", "*.wav"), path.join(soundsDir, "music", "**", "*.mp3")])
+        .src(path.join(soundsDir, "music", "**", "*.ogg"))
         .pipe(gulpPlumber())
-        .pipe(
-            gulpCache(
-                gulpFluentFfmpeg("mp3", function (cmd) {
-                    return cmd
-                        .audioBitrate(48)
-                        .audioChannels(1)
-                        .audioFrequency(22050)
-                        .audioCodec("libmp3lame")
-                        .audioFilters(["volume=0.15"]);
-                }),
-                {
-                    name: "music",
-                    fileCache,
-                    value: getFileCacheValue,
-                }
-            )
-        )
         .pipe(gulp.dest(path.join(builtSoundsDir, "music")));
 }
 
-// Encodes the game music in high quality for the standalone
-export function musicHQ() {
-    return gulp
-        .src([path.join(soundsDir, "music", "**", "*.wav"), path.join(soundsDir, "music", "**", "*.mp3")])
-        .pipe(gulpPlumber())
-        .pipe(
-            gulpCache(
-                gulpFluentFfmpeg("mp3", function (cmd) {
-                    return cmd
-                        .audioBitrate(256)
-                        .audioChannels(2)
-                        .audioFrequency(44100)
-                        .audioCodec("libmp3lame")
-                        .audioFilters(["volume=0.15"]);
-                }),
-                {
-                    name: "music-high-quality",
-                    fileCache,
-                    value: getFileCacheValue,
-                }
-            )
-        )
-        .pipe(gulp.dest(path.join(builtSoundsDir, "music")));
-}
-
-// Encodes the ui sounds
-export function sfxGenerateSprites() {
+export function sfxOptimize() {
     return gulp
         .src([path.join(soundsDir, "sfx", "**", "*.wav"), path.join(soundsDir, "sfx", "**", "*.mp3")])
         .pipe(gulpPlumber())
-        .pipe(
-            gulpAudiosprite({
-                format: "howler",
-                output: "sfx",
-                gap: 0.1,
-                export: "mp3",
-            })
-        )
+        .pipe(gulpFluentFfmpeg("ogg"))
         .pipe(gulp.dest(path.join(builtSoundsDir)));
-}
-export function sfxOptimize() {
-    return gulp
-        .src([path.join(builtSoundsDir, "sfx.mp3")])
-        .pipe(gulpPlumber())
-        .pipe(
-            gulpFluentFfmpeg("mp3", function (cmd) {
-                return cmd
-                    .audioBitrate(128)
-                    .audioChannels(1)
-                    .audioFrequency(22050)
-                    .audioCodec("libmp3lame")
-                    .audioFilters(filters);
-            })
-        )
-        .pipe(gulp.dest(path.join(builtSoundsDir)));
-}
-export function sfxCopyAtlas() {
-    return gulp
-        .src([path.join(builtSoundsDir, "sfx.json")])
-        .pipe(gulp.dest(path.join("..", "src", "js", "built-temp")));
 }
 
-export const sfx = gulp.series(sfxGenerateSprites, sfxOptimize, sfxCopyAtlas);
+export const music = gulp.series(musicCopy);
+export const sfx = gulp.series(sfxOptimize);
 
 export function copy() {
     return gulp
-        .src(path.join(builtSoundsDir, "**", "*.mp3"))
+        .src([path.join(builtSoundsDir, "**", "*.mp3"), path.join(builtSoundsDir, "**", "*.ogg")])
         .pipe(gulpPlumber())
         .pipe(gulp.dest(path.join(buildFolder, "res", "sounds")));
 }
 
-export const buildall = gulp.parallel(music, sfx);
-export const buildallHQ = gulp.parallel(musicHQ, sfx);
+export const buildall = gulp.parallel(musicCopy, sfx);
+export const buildallHQ = gulp.parallel(musicCopy, sfx);
 
 export const fullbuild = gulp.series(clear, buildall, copy);
 export const fullbuildHQ = gulp.series(clear, buildallHQ, copy);
