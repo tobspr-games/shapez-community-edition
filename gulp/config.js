@@ -20,19 +20,3 @@ export const imageResourcesGlobs = [
 ];
 
 export const browserSync = BrowserSync.create();
-
-// Check environment variables
-
-const envVars = [
-    "SHAPEZ_CLI_SERVER_HOST",
-    "SHAPEZ_CLI_APPLE_ID",
-    "SHAPEZ_CLI_APPLE_CERT_NAME",
-    "SHAPEZ_CLI_GITHUB_USER",
-    "SHAPEZ_CLI_GITHUB_TOKEN",
-];
-
-for (let i = 0; i < envVars.length; ++i) {
-    if (!process.env[envVars[i]]) {
-        console.warn("Unset environment variable, might cause issues:", envVars[i]);
-    }
-}
