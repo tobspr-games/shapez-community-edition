@@ -17,17 +17,11 @@ async function buildHtml() {
     return gulp
         .src("../src/html/index.html")
         .pipe(
-            gulpDom(
-                /** @this {Document} **/ function () {
-                    const document = this;
-
-                    let loadingCss = fs.readFileSync(path.join("preloader", "preloader.css")).toString();
-
-                    const style = document.createElement("style");
-                    style.textContent = loadingCss;
-                    document.head.appendChild(style);
-                }
-            )
+            gulpDom(function () {
+                const style = this.createElement("style");
+                style.textContent = fs.readFileSync(path.join("preloader", "preloader.css"), "utf-8");
+                this.head.appendChild(style);
+            })
         )
         .pipe(
             gulpHtmlmin({
@@ -39,7 +33,6 @@ async function buildHtml() {
                 minifyJS: true,
                 minifyCSS: true,
                 quoteCharacter: '"',
-                useShortDoctype: true,
             })
         )
         .pipe(gulpRename("index.html"))
