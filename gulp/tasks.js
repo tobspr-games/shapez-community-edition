@@ -184,7 +184,6 @@ const prepare = {
     dev: variant =>
         gulp.series(
             utils.cleanup,
-            environment.prepare,
             gulp.parallel(
                 utils.copyAdditionalBuildFiles,
                 gulp.series(imgres.buildAtlas, gulp.parallel(imgres.atlasToJson, imgres.atlas)),
@@ -255,7 +254,6 @@ for (const variant in BUILD_VARIANTS) {
         pack[variant] = {};
         for (const task of packageTasks) {
             pack[variant][task] = gulp.series(
-                environment.prepare,
                 full,
                 utils.cleanBuildOutputFolder,
                 standalone[variant].prepare.all,

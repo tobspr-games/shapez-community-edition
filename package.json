@@ -8,6 +8,7 @@
     "private": true,
     "type": "module",
     "scripts": {
+        "postinstall": "gulp -f gulp/environment.js prepare",
         "gulp": "gulp --cwd gulp",
         "lint": "eslint .",
         "prettier-all": "prettier --write .",
