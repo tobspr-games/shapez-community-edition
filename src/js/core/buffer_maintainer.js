@@ -1,7 +1,6 @@
 import { GameRoot } from "../game/root";
-import { clearBufferBacklog, freeCanvas, getBufferStats, makeOffscreenBuffer } from "./buffer_utils";
+import { clearBufferBacklog, freeCanvas, makeOffscreenBuffer } from "./buffer_utils";
 import { createLogger } from "./logging";
-import { round1Digit } from "./utils";
 
 /**
  * @typedef {{
@@ -35,7 +34,7 @@ export class BufferMaintainer {
      * Returns the buffer stats
      */
     getStats() {
-        let stats = {
+        const stats = {
             rootKeys: 0,
             subKeys: 0,
             vramBytes: 0,
@@ -59,25 +58,16 @@ export class BufferMaintainer {
      * for a few iterations
      */
     garbargeCollect() {
-        let totalKeys = 0;
-        let deletedKeys = 0;
         const minIteration = this.iterationIndex;
 
         this.cache.forEach((subCache, key) => {
-            let unusedSubKeys = [];
+            const unusedSubKeys = [];
 
             // Filter sub cache
             subCache.forEach((cacheEntry, subKey) => {
-                if (
-                    cacheEntry.lastUse < minIteration ||
-                    // @ts-ignore
-                    cacheEntry.canvas._contextLost
-                ) {
+                if (cacheEntry.lastUse < minIteration) {
                     unusedSubKeys.push(subKey);
                     freeCanvas(cacheEntry.canvas);
-                    ++deletedKeys;
-                } else {
-                    ++totalKeys;
                 }
             });
 
@@ -89,30 +79,6 @@ export class BufferMaintainer {
 
         // Make sure our backlog never gets too big
         clearBufferBacklog();
-
-        // if (G_IS_DEV) {
-        //     const bufferStats = getBufferStats();
-        //     const mbUsed = round1Digit(bufferStats.vramUsage / (1024 * 1024));
-        //     logger.log(
-        //         "GC: Remove",
-        //         (deletedKeys + "").padStart(4),
-        //         ", Remain",
-        //         (totalKeys + "").padStart(4),
-        //         "(",
-        //         (bufferStats.bufferCount + "").padStart(4),
-        //         "total",
-        //         ")",
-
-        //         "(",
-        //         (bufferStats.backlogSize + "").padStart(4),
-        //         "backlog",
-        //         ")",
-
-        //         "VRAM:",
-        //         mbUsed,
-        //         "MB"
-        //     );
-        // }
 
         ++this.iterationIndex;
     }
@@ -180,7 +146,7 @@ export class BufferMaintainer {
      *
      */
     getForKeyOrNullNoUpdate({ key, subKey }) {
-        let parent = this.cache.get(key);
+        const parent = this.cache.get(key);
         if (!parent) {
             return null;
         }

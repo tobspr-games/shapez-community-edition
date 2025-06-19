@@ -1,11 +1,11 @@
+import { freeCanvas, makeOffscreenBuffer } from "../core/buffer_utils";
 import { globalConfig } from "../core/config";
 import { DrawParameters } from "../core/draw_parameters";
-import { BaseMap } from "./map";
-import { freeCanvas, makeOffscreenBuffer } from "../core/buffer_utils";
 import { Entity } from "./entity";
-import { THEME } from "./theme";
-import { MapChunkView } from "./map_chunk_view";
+import { BaseMap } from "./map";
 import { MapChunkAggregate } from "./map_chunk_aggregate";
+import { MapChunkView } from "./map_chunk_view";
+import { THEME } from "./theme";
 
 /**
  * This is the view of the map, it extends the map which is the raw model and allows
@@ -239,12 +239,6 @@ export class MapView extends BaseMap {
             // eslint-disable-next-line no-constant-condition
             if (this.root.hud.parts.buildingPlacer.currentMetaBuilding.get() && false) {
                 key = "placing";
-            }
-
-            // @ts-ignore`
-            if (this.cachedBackgroundCanvases[key]._contextLost) {
-                freeCanvas(this.cachedBackgroundCanvases[key]);
-                this.internalInitializeCachedBackgroundCanvases();
             }
 
             parameters.context.fillStyle = parameters.context.createPattern(
