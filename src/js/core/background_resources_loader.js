@@ -35,12 +35,6 @@ INGAME_ASSETS.sounds = [];
 
 const LOADER_TIMEOUT_PER_RESOURCE = 180000;
 
-// Cloudflare does not send content-length headers with brotli compression,
-// so store the actual (compressed) file sizes so we can show a progress bar.
-const HARDCODED_FILE_SIZES = {
-    "async-resources.css": 2216145,
-};
-
 export class BackgroundResourcesLoader {
     /**
      *
@@ -86,7 +80,7 @@ export class BackgroundResourcesLoader {
         /**
          * @type {((progressHandler: (progress: number) => void) => Promise<void>)[]}
          */
-        let promiseFunctions = [];
+        const promiseFunctions = [];
 
         // CSS
         for (let i = 0; i < css.length; ++i) {
@@ -127,7 +121,7 @@ export class BackgroundResourcesLoader {
 
         // SFX & Music
         for (let i = 0; i < sounds.length; ++i) {
-            promiseFunctions.push(progress =>
+            promiseFunctions.push(() =>
                 timeoutPromise(this.app.sound.loadSound(sounds[i]), LOADER_TIMEOUT_PER_RESOURCE).catch(
                     err => {
                         logger.warn("Failed to load sound, will not be available:", sounds[i], err);
@@ -143,7 +137,7 @@ export class BackgroundResourcesLoader {
 
         let progress = 0;
         this.resourceStateChangedSignal.dispatch({ progress });
-        let promises = [];
+        const promises = [];
 
         for (let i = 0; i < promiseFunctions.length; i++) {
             let lastIndividualProgress = 0;
@@ -180,27 +174,12 @@ export class BackgroundResourcesLoader {
     preloadWithProgress(src, progressHandler) {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
-            let notifiedNotComputable = false;
 
             xhr.open("GET", src, true);
             xhr.responseType = "arraybuffer";
             xhr.onprogress = function (ev) {
                 if (ev.lengthComputable) {
                     progressHandler(ev.loaded / ev.total);
-                } else {
-                    if (window.location.search.includes("alwaysLogFileSize")) {
-                        console.warn("Progress:", src, ev.loaded);
-                    }
-
-                    if (HARDCODED_FILE_SIZES[src]) {
-                        progressHandler(clamp(ev.loaded / HARDCODED_FILE_SIZES[src]));
-                    } else {
-                        if (!notifiedNotComputable) {
-                            notifiedNotComputable = true;
-                            console.warn("Progress not computable:", src, ev.loaded);
-                            progressHandler(0);
-                        }
-                    }
                 }
             };
 
@@ -208,10 +187,6 @@ export class BackgroundResourcesLoader {
                 if (!xhr.status.toString().match(/^2/)) {
                     reject(src + ": " + xhr.status + " " + xhr.statusText);
                 } else {
-                    if (!notifiedNotComputable) {
-                        progressHandler(1);
-                    }
-
                     const options = {};
                     const headers = xhr.getAllResponseHeaders();
                     const contentType = headers.match(/^Content-Type:\s*(.*?)$/im);
@@ -228,7 +203,7 @@ export class BackgroundResourcesLoader {
 
     internalPreloadCss(src, progressHandler) {
         return this.preloadWithProgress(src, progressHandler).then(blobSrc => {
-            var styleElement = document.createElement("link");
+            const styleElement = document.createElement("link");
             styleElement.href = blobSrc;
             styleElement.rel = "stylesheet";
             styleElement.setAttribute("media", "all");

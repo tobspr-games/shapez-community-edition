@@ -4,7 +4,6 @@ import "./core/polyfills";
 import "./mods/modloader";
 
 import { Application } from "./application";
-import { IS_DEBUG } from "./core/config";
 import { createLogger, logSection } from "./core/logging";
 import { initComponentRegistry } from "./game/component_registry";
 import { initGameModeRegistry } from "./game/game_mode_registry";
@@ -27,7 +26,7 @@ console.log(
 
 console.log("Environment: %c" + G_APP_ENVIRONMENT, "color: #fff");
 
-if (G_IS_DEV && IS_DEBUG) {
+if (G_IS_DEV) {
     console.log("\n%c🛑 DEBUG ENVIRONMENT 🛑\n", "color: #f77");
 }
 

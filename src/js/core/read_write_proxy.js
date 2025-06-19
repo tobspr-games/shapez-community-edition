@@ -3,7 +3,6 @@ import { Storage } from "@/platform/storage";
 /* typehints:end */
 
 import { FsError } from "@/platform/fs_error";
-import { IS_DEBUG } from "./config";
 import { ExplainedResult } from "./explained_result";
 import { createLogger } from "./logging";
 
@@ -23,7 +22,7 @@ export class ReadWriteProxy {
         this.currentData = null;
 
         // TODO: EXTREMELY HACKY! To verify we need to do this a step later
-        if (G_IS_DEV && IS_DEBUG) {
+        if (G_IS_DEV) {
             setTimeout(() => {
                 assert(
                     this.verify(this.getDefaultData()).result,

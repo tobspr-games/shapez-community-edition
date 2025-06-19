@@ -1,16 +1,5 @@
 import debug from "./config.local";
 
-export const IS_DEBUG =
-    G_IS_DEV &&
-    typeof window !== "undefined" &&
-    window.location.port === "3005" &&
-    (window.location.host.indexOf("localhost:") >= 0 || window.location.host.indexOf("192.168.0.") >= 0) &&
-    window.location.search.indexOf("nodebug") < 0;
-
-export const SUPPORT_TOUCH = false;
-
-const smoothCanvas = true;
-
 export const THIRDPARTY_URLS = {
     discord: "https://discord.gg/HN7EVzV",
     github: "https://github.com/tobspr-games/shapez.io",
@@ -25,13 +14,10 @@ export const THIRDPARTY_URLS = {
         25: "https://www.youtube.com/watch?v=7OCV1g40Iew&",
         26: "https://www.youtube.com/watch?v=gfm6dS1dCoY",
     },
-
-    modBrowser: "https://shapez.mod.io/",
 };
 
 export const globalConfig = {
     // Size of a single tile in Pixels.
-    // NOTICE: Update webpack.production.config too!
     tileSize: 32,
     halfTileSize: 16,
 
@@ -45,9 +31,6 @@ export const globalConfig = {
     statisticsGraphSlices: 100,
     analyticsSliceDurationSeconds: G_IS_DEV ? 1 : 10,
 
-    minimumTickRate: 25,
-    maximumTickRate: 500,
-
     // Map
     mapChunkSize: 16,
     chunkAggregateSize: 4,
@@ -57,15 +40,12 @@ export const globalConfig = {
     maxBeltShapeBundleSize: 20,
 
     // Belt speeds
-    // NOTICE: Update webpack.production.config too!
     beltSpeedItemsPerSecond: 2,
     minerSpeedItemsPerSecond: 0, // COMPUTED
 
     defaultItemDiameter: 20,
 
     itemSpacingOnBelts: 0.63,
-
-    wiresSpeedItemsPerSecond: 6,
 
     undergroundBeltMaxTilesByTier: [5, 9],
 
@@ -91,27 +71,19 @@ export const globalConfig = {
         stacker: 1 / 8,
     },
 
-    // Zooming
-    initialZoom: 1.9,
-    minZoomLevel: 0.1,
-    maxZoomLevel: 3,
-
-    // Global game speed
-    gameSpeed: 1,
-
     warmupTimeSecondsFast: 0.25,
     warmupTimeSecondsRegular: 0.25,
 
     smoothing: {
-        smoothMainCanvas: smoothCanvas && true,
+        smoothMainCanvas: true,
         quality: "low" as ImageSmoothingQuality, // Low is CRUCIAL for mobile performance!
     },
 
-    rendering: {},
     debug,
 };
 
-export const IS_MOBILE = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+export const IS_MOBILE = navigator.userAgentData.mobile;
+export const SUPPORT_TOUCH = IS_MOBILE;
 
 // Automatic calculations
 globalConfig.minerSpeedItemsPerSecond = globalConfig.beltSpeedItemsPerSecond / 5;
