@@ -95,17 +95,6 @@ if (globalConfig.debug.disableMapOverview) {
     globalConfig.mapChunkOverviewMinZoom = 0;
 }
 
-// Stuff for making the trailer
-if (G_IS_DEV && globalConfig.debug.renderForTrailer) {
-    globalConfig.debug.framePausesBetweenTicks = 32;
-    // globalConfig.mapChunkOverviewMinZoom = 0.0;
-    // globalConfig.debug.instantBelts = true;
-    // globalConfig.debug.instantProcessors = true;
-    // globalConfig.debug.instantMiners = true;
-    globalConfig.debug.disableSavegameWrite = true;
-    // globalConfig.beltSpeedItemsPerSecond *= 2;
-}
-
 if (globalConfig.debug.fastGameEnter) {
     globalConfig.debug.noArtificialDelays = true;
 }

@@ -77,9 +77,6 @@ export default {
     // When using fastGameEnter, controls whether a new game is started or the last one is resumed
     // resumeGameOnFastEnter: true,
     // -----------------------------------------------------------------------------------
-    // Special option used to render the trailer
-    // renderForTrailer: true,
-    // -----------------------------------------------------------------------------------
     // Whether to render changes
     // renderChanges: true,
     // -----------------------------------------------------------------------------------
