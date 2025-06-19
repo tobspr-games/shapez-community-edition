@@ -27,13 +27,10 @@ export default Object.fromEntries(
             }
 
             function copyPrefab() {
-                const requiredFiles = [
-                    path.join(electronBaseDir, "preload.cjs"),
-                    path.join(electronBaseDir, "node_modules", "**", "*.*"),
-                    path.join(electronBaseDir, "node_modules", "**", ".*"),
-                    path.join(electronBaseDir, "favicon*"),
-                ];
-                return gulp.src(requiredFiles, { base: electronBaseDir }).pipe(gulp.dest(tempDestBuildDir));
+                const requiredFiles = ["preload.cjs", "node_modules/**/*", "favicon*"];
+                return gulp
+                    .src(requiredFiles, { cwd: electronBaseDir, cwdbase: true, dot: true })
+                    .pipe(gulp.dest(tempDestBuildDir));
             }
 
             async function transpileTypeScript() {

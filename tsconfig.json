@@ -1,6 +1,6 @@
 {
     "extends": ["@tsconfig/node-lts/tsconfig"],
-    "include": ["./*", "./electron/**/*", "./gulp/**/*"],
+    "include": ["./*", "./gulp/**/*"],
     "compilerOptions": {
         "allowJs": true,
         "checkJs": true,

@@ -4,6 +4,7 @@ import path from "path/posix";
 export const baseDir = path.resolve("..");
 export const buildFolder = path.join(baseDir, "build");
 export const buildOutputFolder = path.join(baseDir, "build_output");
+export const generatedCodeFolder = path.join(baseDir, "src/js/built-temp");
 
 // Globs for atlas resources
 export const rawImageResourcesGlobs = ["../res_raw/atlas.json", "../res_raw/**/*.png"];
@@ -20,19 +21,3 @@ export const imageResourcesGlobs = [
 ];
 
 export const browserSync = BrowserSync.create();
-
-// Check environment variables
-
-const envVars = [
-    "SHAPEZ_CLI_SERVER_HOST",
-    "SHAPEZ_CLI_APPLE_ID",
-    "SHAPEZ_CLI_APPLE_CERT_NAME",
-    "SHAPEZ_CLI_GITHUB_USER",
-    "SHAPEZ_CLI_GITHUB_TOKEN",
-];
-
-for (let i = 0; i < envVars.length; ++i) {
-    if (!process.env[envVars[i]]) {
-        console.warn("Unset environment variable, might cause issues:", envVars[i]);
-    }
-}

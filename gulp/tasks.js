@@ -9,6 +9,7 @@ import {
     browserSync,
     buildFolder,
     buildOutputFolder,
+    generatedCodeFolder,
     imageResourcesGlobs,
     nonImageResourcesGlobs,
     rawImageResourcesGlobs,
@@ -20,16 +21,15 @@ import gulpClean from "gulp-clean";
 import gulpWebserver from "gulp-webserver";
 
 import * as css from "./css.js";
-import * as docs from "./docs.js";
+import * as environment from "./environment.js";
 import html from "./html.js";
 import * as imgres from "./image-resources.js";
 import js from "./js.js";
-import * as localConfig from "./local-config.js";
 import * as sounds from "./sounds.js";
 import standalone from "./standalone.js";
 import * as translations from "./translations.js";
 
-export { css, docs, html, imgres, js, localConfig, sounds, standalone, translations };
+export { css, environment, html, imgres, js, sounds, standalone, translations };
 
 /////////////////////  BUILD TASKS  /////////////////////
 
@@ -41,9 +41,7 @@ function cleanBuildOutputFolder() {
     return gulp.src(buildOutputFolder, { read: false, allowEmpty: true }).pipe(gulpClean({ force: true }));
 }
 function cleanBuildTempFolder() {
-    return gulp
-        .src(path.join("..", "src", "js", "built-temp"), { read: false, allowEmpty: true })
-        .pipe(gulpClean({ force: true }));
+    return gulp.src(generatedCodeFolder, { read: false, allowEmpty: true }).pipe(gulpClean({ force: true }));
 }
 function cleanImageBuildFolder() {
     return gulp
@@ -184,7 +182,6 @@ const prepare = {
     dev: variant =>
         gulp.series(
             utils.cleanup,
-            localConfig.findOrCreate,
             gulp.parallel(
                 utils.copyAdditionalBuildFiles,
                 gulp.series(imgres.buildAtlas, gulp.parallel(imgres.atlasToJson, imgres.atlas)),
@@ -255,7 +252,6 @@ for (const variant in BUILD_VARIANTS) {
         pack[variant] = {};
         for (const task of packageTasks) {
             pack[variant][task] = gulp.series(
-                localConfig.findOrCreate,
                 full,
                 utils.cleanBuildOutputFolder,
                 standalone[variant].prepare.all,
@@ -269,7 +265,6 @@ for (const variant in BUILD_VARIANTS) {
 }
 
 export const main = {
-    prepareDocs: docs.prepareDocs,
     webserver,
 };
 

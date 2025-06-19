@@ -1,8 +1,7 @@
-import fs from "fs/promises";
-import path from "path/posix";
 import gulp from "gulp";
-import { buildFolder } from "./config.js";
+import path from "path/posix";
 import atlas2Json from "./atlas2json.js";
+import { buildFolder } from "./config.js";
 
 import childProcess from "child_process";
 import { promisify } from "util";
@@ -15,18 +14,14 @@ const execute = command => {
     return promise;
 };
 
-import gulpImagemin from "gulp-imagemin";
-import imageminJpegtran from "imagemin-jpegtran";
-import imageminGifsicle from "imagemin-gifsicle";
-import imageminPngquant from "imagemin-pngquant";
-import gulpIf from "gulp-if";
 import gulpCached from "gulp-cached";
 import gulpClean from "gulp-clean";
-import { nonImageResourcesGlobs, imageResourcesGlobs } from "./config.js";
-
-// Link to download LibGDX runnable-texturepacker.jar
-const runnableTPSource =
-    "https://libgdx-nightlies.s3.eu-central-1.amazonaws.com/libgdx-runnables/runnable-texturepacker.jar";
+import gulpIf from "gulp-if";
+import gulpImagemin from "gulp-imagemin";
+import imageminGifsicle from "imagemin-gifsicle";
+import imageminJpegtran from "imagemin-jpegtran";
+import imageminPngquant from "imagemin-pngquant";
+import { imageResourcesGlobs, nonImageResourcesGlobs } from "./config.js";
 
 // Lossless options
 const minifyImagesOptsLossless = () => [
@@ -85,21 +80,6 @@ export async function buildAtlas() {
     const dest = JSON.stringify("../res_built/atlas");
 
     try {
-        // First check whether Java is installed
-        await execute("java -version");
-        // Now check and try downloading runnable-texturepacker.jar (22MB)
-        try {
-            await fs.access("./runnable-texturepacker.jar");
-        } catch {
-            const escapedLink = JSON.stringify(runnableTPSource);
-
-            try {
-                await execute(`curl -o runnable-texturepacker.jar ${escapedLink}`);
-            } catch {
-                throw new Error("Failed to download runnable-texturepacker.jar!");
-            }
-        }
-
         await execute(`java -jar runnable-texturepacker.jar ${source} ${dest} atlas0 ${config}`);
     } catch {
         console.warn("Building atlas failed. Java not found / unsupported version?");
@@ -113,7 +93,7 @@ export async function atlasToJson() {
 
 // Copies the atlas to the final destination
 export function atlas() {
-    return gulp.src(["../res_built/atlas/*.png"]).pipe(gulp.dest(resourcesDestFolder));
+    return gulp.src("../res_built/atlas/*.png").pipe(gulp.dest(resourcesDestFolder));
 }
 
 // Copies the atlas to the final destination after optimizing it (lossy compression)
