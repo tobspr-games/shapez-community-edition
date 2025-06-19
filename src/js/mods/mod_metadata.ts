@@ -33,6 +33,6 @@ export interface ModInfo {
     mod: Mod;
 }
 
-export interface FrozenModMetadata extends Readonly<ModMetadata> {
+export interface FrozenModMetadata extends Readonly<Omit<ModMetadata, "authors">> {
     authors: ReadonlyArray<Readonly<ModAuthor>>;
 }
