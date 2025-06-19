@@ -93,7 +93,7 @@ export async function atlasToJson() {
 
 // Copies the atlas to the final destination
 export function atlas() {
-    return gulp.src(["../res_built/atlas/*.png"]).pipe(gulp.dest(resourcesDestFolder));
+    return gulp.src("../res_built/atlas/*.png").pipe(gulp.dest(resourcesDestFolder));
 }
 
 // Copies the atlas to the final destination after optimizing it (lossy compression)
