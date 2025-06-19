@@ -1,15 +1,15 @@
-import { GameState } from "../core/game_state";
-import { logSection, createLogger } from "../core/logging";
-import { waitNextFrame } from "../core/utils";
 import { globalConfig } from "../core/config";
-import { GameLoadingOverlay } from "../game/game_loading_overlay";
-import { KeyActionMapper } from "../game/key_action_mapper";
-import { Savegame } from "../savegame/savegame";
+import { GameState } from "../core/game_state";
+import { createLogger, logSection } from "../core/logging";
+import { waitNextFrame } from "../core/utils";
 import { GameCore } from "../game/core";
-import { MUSIC } from "../platform/sound";
+import { GameLoadingOverlay } from "../game/game_loading_overlay";
 import { enumGameModeIds } from "../game/game_mode";
-import { MOD_SIGNALS } from "../mods/mod_signals";
 import { HUDModalDialogs } from "../game/hud/parts/modal_dialogs";
+import { KeyActionMapper } from "../game/key_action_mapper";
+import { MOD_SIGNALS } from "../mods/mod_signals";
+import { MUSIC } from "../platform/sound";
+import { Savegame } from "../savegame/savegame";
 import { T } from "../translations";
 
 const logger = createLogger("state/ingame");
@@ -194,7 +194,6 @@ export class InGameState extends GameState {
         }
         this.stageLeavingGame();
         this.doSave().then(() => {
-            this.stageDestroyed();
             this.moveToState(stateId, payload);
         });
     }
@@ -219,7 +218,6 @@ export class InGameState extends GameState {
     onInitializationFailure(err) {
         if (this.switchStage(GAME_LOADING_STATES.initFailed)) {
             logger.error("Init failure:", err);
-            this.stageDestroyed();
             this.moveToState("MainMenuState", { loadError: err });
         }
     }

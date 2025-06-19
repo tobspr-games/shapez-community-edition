@@ -2,7 +2,7 @@
 import { Application } from "../application";
 /* typehints:end */
 import { BufferMaintainer } from "../core/buffer_maintainer";
-import { getBufferStats, registerCanvas } from "../core/buffer_utils";
+import { getBufferStats } from "../core/buffer_utils";
 import { globalConfig } from "../core/config";
 import { getDeviceDPI, resizeHighDPICanvas } from "../core/dpi_manager";
 import { DrawParameters } from "../core/draw_parameters";
@@ -35,12 +35,6 @@ import { SoundProxy } from "./sound_proxy";
 import { GameTime } from "./time/game_time";
 
 const logger = createLogger("ingame/core");
-
-// Store the canvas so we can reuse it later
-/** @type {HTMLCanvasElement} */
-let lastCanvas = null;
-/** @type {CanvasRenderingContext2D} */
-let lastContext = null;
 
 /**
  * The core manages the root and represents the whole game. It wraps the root, since
@@ -208,51 +202,23 @@ export class GameCore {
      * Initializes the render canvas
      */
     internalInitCanvas() {
-        let canvas, context;
-        if (!lastCanvas) {
-            logger.log("Creating new canvas");
-            canvas = document.createElement("canvas");
-            canvas.id = "ingame_Canvas";
-            this.root.gameState.getDivElement().appendChild(canvas);
-            context = canvas.getContext("2d", { alpha: false });
-
-            lastCanvas = canvas;
-            lastContext = context;
-        } else {
-            logger.log("Reusing canvas");
-            if (lastCanvas.parentElement) {
-                lastCanvas.parentElement.removeChild(lastCanvas);
-            }
-            this.root.gameState.getDivElement().appendChild(lastCanvas);
-
-            canvas = lastCanvas;
-            context = lastContext;
-
-            lastContext.clearRect(0, 0, lastCanvas.width, lastCanvas.height);
-        }
-
-        canvas.classList.toggle("smoothed", globalConfig.smoothing.smoothMainCanvas);
-
-        // Oof, use :not() instead
-        canvas.classList.toggle("unsmoothed", !globalConfig.smoothing.smoothMainCanvas);
+        logger.log("Creating new canvas");
+        const canvas = document.createElement("canvas");
+        canvas.id = "ingame_Canvas";
+        this.root.gameState.getDivElement().appendChild(canvas);
+        const context = canvas.getContext("2d", { alpha: false });
 
         context.imageSmoothingEnabled = globalConfig.smoothing.smoothMainCanvas;
         context.imageSmoothingQuality = globalConfig.smoothing.quality;
 
         this.root.canvas = canvas;
         this.root.context = context;
-
-        registerCanvas(canvas, context);
     }
 
     /**
      * Destructs the root, freeing all resources
      */
     destruct() {
-        if (lastCanvas && lastCanvas.parentElement) {
-            lastCanvas.parentElement.removeChild(lastCanvas);
-        }
-
         this.root.destruct();
         delete this.root;
         this.root = null;
