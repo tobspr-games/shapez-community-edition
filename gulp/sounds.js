@@ -1,12 +1,12 @@
-import path from "path/posix";
 import gulp from "gulp";
-import { buildFolder } from "./config.js";
+import path from "path/posix";
+import { buildFolder, generatedCodeFolder } from "./config.js";
 
 import gulpAudiosprite from "gulp-audiosprite";
-import gulpClean from "gulp-clean";
 import gulpCache from "gulp-cache";
-import gulpPlumber from "gulp-plumber";
+import gulpClean from "gulp-clean";
 import gulpFluentFfmpeg from "gulp-fluent-ffmpeg";
+import gulpPlumber from "gulp-plumber";
 
 // Gather some basic infos
 const soundsDir = path.join("..", "res_raw", "sounds");
@@ -110,9 +110,7 @@ export function sfxOptimize() {
         .pipe(gulp.dest(path.join(builtSoundsDir)));
 }
 export function sfxCopyAtlas() {
-    return gulp
-        .src([path.join(builtSoundsDir, "sfx.json")])
-        .pipe(gulp.dest(path.join("..", "src", "js", "built-temp")));
+    return gulp.src([path.join(builtSoundsDir, "sfx.json")]).pipe(gulp.dest(generatedCodeFolder));
 }
 
 export const sfx = gulp.series(sfxGenerateSprites, sfxOptimize, sfxCopyAtlas);

@@ -9,6 +9,7 @@ import {
     browserSync,
     buildFolder,
     buildOutputFolder,
+    generatedCodeFolder,
     imageResourcesGlobs,
     nonImageResourcesGlobs,
     rawImageResourcesGlobs,
@@ -40,9 +41,7 @@ function cleanBuildOutputFolder() {
     return gulp.src(buildOutputFolder, { read: false, allowEmpty: true }).pipe(gulpClean({ force: true }));
 }
 function cleanBuildTempFolder() {
-    return gulp
-        .src(path.join("..", "src", "js", "built-temp"), { read: false, allowEmpty: true })
-        .pipe(gulpClean({ force: true }));
+    return gulp.src(generatedCodeFolder, { read: false, allowEmpty: true }).pipe(gulpClean({ force: true }));
 }
 function cleanImageBuildFolder() {
     return gulp
