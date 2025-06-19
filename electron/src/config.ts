@@ -18,6 +18,5 @@ export const pageUrl = app.isPackaged
 
 export const switches = {
     dev: app.commandLine.hasSwitch("dev"),
-    hideDevtools: app.commandLine.hasSwitch("hide-devtools"),
     safeMode: app.commandLine.hasSwitch("safe-mode"),
 };

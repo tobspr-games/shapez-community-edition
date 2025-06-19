@@ -47,10 +47,6 @@ function createWindow() {
 
     window.on("ready-to-show", () => {
         window.show();
-
-        if (switches.dev && !switches.hideDevtools) {
-            window.webContents.openDevTools();
-        }
     });
 
     ipc.install(window);
