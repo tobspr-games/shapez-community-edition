@@ -78,7 +78,6 @@ export class ModInterface {
     }
 
     registerSprite(spriteId, base64string) {
-        assert(base64string.startsWith("data:image"));
         const img = new Image();
 
         const sprite = new AtlasSprite(spriteId);
