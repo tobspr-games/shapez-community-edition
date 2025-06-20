@@ -1,14 +1,14 @@
 #ingame_HUD_PlacementHints {
     position: fixed;
-    @include S(top, 60px);
-    @include S(right, 10px);
+    top: 6rem;
+    right: 1rem;
 
     display: grid;
 
-    @include S(padding, 6px);
-    @include S(border-radius, $globalBorderRadius);
-    @include S(width, 240px);
-    @include S(grid-column-gap, 5px);
+    padding: 0.6rem;
+    border-radius: $globalBorderRadius;
+    width: 24rem;
+    grid-column-gap: 0.5rem;
 
     background: $ingameHudBg;
     grid-template-columns: 1fr auto;
@@ -28,7 +28,7 @@
 
     .buildingLabel {
         @include PlainText;
-        @include S(margin-bottom, 2px);
+        margin-bottom: 0.2rem;
         color: #fff;
         text-transform: uppercase;
         grid-column: 1 / 3;
@@ -55,7 +55,7 @@
         label {
             color: lighten($colorGreenBright, 10);
             font-weight: bold;
-            @include S(margin-right, 5px);
+            margin-right: 0.5rem;
         }
     }
 
@@ -67,17 +67,17 @@
         align-items: center;
         .keybinding {
             position: relative;
-            @include S(margin-left, 5px);
+            margin-left: 0.5rem;
         }
     }
 
     .buildingImage {
         grid-column: 2 / 3;
         grid-row: 1 / 3;
-        @include S(width, 100px);
-        @include S(height, 100px);
+        width: 10rem;
+        height: 10rem;
         background: top left / 100% 100% no-repeat;
-        @include S(border-radius, $globalBorderRadius);
+        border-radius: $globalBorderRadius;
         transition: opacity 0.1s ease-in-out;
     }
 
@@ -97,15 +97,15 @@
 
 #ingame_HUD_PlacerVariants {
     position: absolute;
-    @include S(right, 10px);
-    @include S(top, 200px);
+    right: 1rem;
+    top: 20rem;
     display: flex;
-    @include S(grid-gap, 5px);
+    grid-gap: 0.5rem;
     flex-direction: column;
     align-items: flex-end;
 
     &.compact {
-        @include S(top, 150px);
+        top: 15rem;
     }
 
     .explanation {
@@ -125,22 +125,22 @@
 
     .variants {
         display: grid;
-        @include S(grid-gap, 5px);
+        grid-gap: 0.5rem;
 
         .variant {
             pointer-events: all;
             cursor: pointer;
 
             grid-row: 2 / 3;
-            @include S(border-radius, $globalBorderRadius);
+            border-radius: $globalBorderRadius;
             background: rgba($ingameHudBg, 0.5);
             opacity: 0.5;
             display: inline-flex;
             vertical-align: top;
             position: relative;
             align-items: center;
-            @include S(padding, 3px);
-            @include S(grid-gap, 10px);
+            padding: 0.3rem;
+            grid-gap: 1rem;
 
             transition: background-color 0.12s ease-in-out;
 
@@ -154,30 +154,30 @@
                 background-color: rgba($colorBlueBright, 0.8);
             }
 
-            $iconSize: 25px;
+            $iconSize: 2.5rem;
 
             .iconWrap {
                 grid-column: 1 / 2;
                 grid-row: 1 / 2;
                 position: relative;
-                @include S(width, $iconSize);
-                @include S(height, $iconSize);
+                width: $iconSize;
+                height: $iconSize;
                 background: center center / contain no-repeat;
 
                 &[data-tile-w="2"] {
-                    @include S(width, 2 * $iconSize);
+                    width: 2 * $iconSize;
                 }
                 &[data-tile-h="2"] {
-                    @include S(height, 2 * $iconSize);
+                    height: 2 * $iconSize;
                 }
                 &[data-tile-h="3"] {
-                    @include S(height, 3 * $iconSize);
+                    height: 3 * $iconSize;
                 }
                 &[data-tile-w="3"] {
-                    @include S(width, 3 * $iconSize);
+                    width: 3 * $iconSize;
                 }
                 &[data-tile-w="4"] {
-                    @include S(width, 4 * $iconSize);
+                    width: 4 * $iconSize;
                 }
             }
 

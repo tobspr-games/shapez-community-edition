@@ -1,9 +1,9 @@
 #ingame_HUD_PuzzleDLCLogo {
     position: absolute;
-    @include S(width, 120px);
-    @include S(height, 40px);
-    @include S(left, 40px);
-    @include S(top, 7px);
+    width: 12rem;
+    height: 4rem;
+    left: 4rem;
+    top: 0.7rem;
 
     & {
         /* @load-async */

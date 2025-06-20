@@ -1,6 +1,6 @@
 #state_PreloadState {
     .changelogDialogEntry {
-        @include S(margin-top, 10px);
+        margin-top: 1rem;
 
         width: 100%;
         flex-direction: column;
@@ -8,7 +8,7 @@
         padding: 10px;
         box-sizing: border-box;
         background: #eef1f4;
-        @include S(border-radius, $globalBorderRadius);
+        border-radius: $globalBorderRadius;
 
         @include DarkThemeOverride {
             background: #33343c;
@@ -27,21 +27,21 @@
 
         .changes {
             @include PlainText;
-            @include S(padding-left, 15px);
-            @include S(margin-top, 10px);
+            padding-left: 1.5rem;
+            margin-top: 1rem;
             strong {
                 background: $colorBlueBright;
                 color: #fff;
                 text-transform: uppercase;
-                @include S(padding, 1px, 2px);
-                @include S(margin-right, 3px);
+                padding: 0.1rem 0.2rem;
+                margin-right: 0.3rem;
             }
             a {
                 color: $colorBlueBright;
             }
             li {
                 @include SuperSmallText;
-                @include S(margin-bottom, 5px);
+                margin-bottom: 0.5rem;
             }
         }
     }
@@ -61,10 +61,10 @@
 
         .logo {
             img {
-                @include S(width, 240px);
+                width: 24rem;
             }
 
-            @include S(margin-bottom, 30px);
+            margin-bottom: 3rem;
         }
 
         @include InlineAnimation(0.3s ease-in-out) {
@@ -78,13 +78,13 @@
 
         .failureInner {
             // background: darken($mainBgColor, 6);
-            @include S(max-width, 350px);
+            max-width: 35rem;
             margin: 0 20px;
             text-align: left;
 
             @include BoxShadow3D(#fff);
-            @include S(padding, 15px);
-            @include S(border-radius, $globalBorderRadius);
+            padding: 1.5rem;
+            border-radius: $globalBorderRadius;
             @include DropShadow;
 
             .errorHeader {
@@ -99,13 +99,12 @@
                 overflow-wrap: break-word;
                 hyphens: auto;
                 // border: dotted #666;
-                // @include S(border-width, 1px, 0);
-                @include S(padding, 10px, 0);
-                @include S(margin-top, 10px);
+                padding: 1rem 0;
+                margin-top: 1rem;
             }
 
             .supportHelp {
-                @include S(margin-top, 10px);
+                margin-top: 1rem;
                 @include PlainText;
 
                 .email {
@@ -118,7 +117,7 @@
             .lower {
                 display: flex;
                 align-items: center;
-                @include S(margin-top, 16px);
+                margin-top: 1.6rem;
 
                 i {
                     flex-grow: 1;
@@ -130,7 +129,7 @@
                 button.resetApp {
                     @include Button3D($colorRedBright);
                     @include PlainText;
-                    @include S(padding, 5px, 8px, 4px);
+                    padding: 0.5rem 0.8rem 0.4rem;
                     color: #fff;
                 }
             }

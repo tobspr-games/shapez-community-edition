@@ -1,24 +1,24 @@
-$globalBorderRadius: 6px;
+$globalBorderRadius: 0.6rem;
 
 // Font sizes and line heights
-$superHeadingFontSize: 25px;
-$superHeadingLineHeight: 24px;
+$superHeadingFontSize: 2.5rem;
+$superHeadingLineHeight: 2.4rem;
 
-$headingFontSize: 19px;
-$headingLineHeight: 21px;
+$headingFontSize: 1.9rem;
+$headingLineHeight: 2.1rem;
 
-$textFontSize: 16px;
-$textLineHeight: 21px;
+$textFontSize: 1.6rem;
+$textLineHeight: 2.1rem;
 
-$plainTextFontSize: 13px;
-$plainTextLineHeight: 17px;
+$plainTextFontSize: 1.3rem;
+$plainTextLineHeight: 1.7rem;
 
-$superDuperSmallTextFontSize: 8px;
-$superDuperSmallTextLineHeight: 9px;
-$superSmallTextFontSize: 10px;
-$superSmallTextLineHeight: 13px;
-$buttonFontSize: 14px;
-$buttonLineHeight: 18px;
+$superDuperSmallTextFontSize: 0.8rem;
+$superDuperSmallTextLineHeight: 0.9rem;
+$superSmallTextFontSize: 1rem;
+$superSmallTextLineHeight: 1.3rem;
+$buttonFontSize: 1.4rem;
+$buttonLineHeight: 1.8rem;
 
 // Main background color
 $mainBgColor: #dee1ea;
@@ -61,43 +61,43 @@ $mainFont: "GameFont", sans-serif;
 }
 
 @mixin SuperDuperSmallText {
-    font-size: D($superDuperSmallTextFontSize);
-    line-height: D($superDuperSmallTextLineHeight);
+    font-size: $superDuperSmallTextFontSize;
+    line-height: $superDuperSmallTextLineHeight;
     @include DebugText(green);
 }
 
 @mixin SuperSmallText {
-    font-size: D($superSmallTextFontSize);
-    line-height: D($superSmallTextLineHeight);
+    font-size: $superSmallTextFontSize;
+    line-height: $superSmallTextLineHeight;
     @include DebugText(green);
 }
 
 @mixin PlainText {
-    font-size: D($plainTextFontSize);
-    line-height: D($plainTextLineHeight);
+    font-size: $plainTextFontSize;
+    line-height: $plainTextLineHeight;
     @include DebugText(red);
 }
 
 @mixin Text {
-    font-size: D($textFontSize);
-    line-height: D($textLineHeight);
+    font-size: $textFontSize;
+    line-height: $textLineHeight;
     @include DebugText(blue);
 }
 
 @mixin Heading {
-    font-size: D($headingFontSize);
-    line-height: D($headingLineHeight);
+    font-size: $headingFontSize;
+    line-height: $headingLineHeight;
     @include DebugText(yellow);
 }
 
 @mixin SuperHeading {
-    font-size: D($superHeadingFontSize);
-    line-height: D($superHeadingLineHeight);
+    font-size: $superHeadingFontSize;
+    line-height: $superHeadingLineHeight;
     @include DebugText(orange);
 }
 
 @mixin ButtonText {
-    font-size: D($buttonFontSize);
-    line-height: D($buttonLineHeight);
+    font-size: $buttonFontSize;
+    line-height: $buttonLineHeight;
     @include DebugText(purple);
 }

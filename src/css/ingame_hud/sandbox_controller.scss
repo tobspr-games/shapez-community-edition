@@ -1,9 +1,9 @@
 #ingame_HUD_SandboxController {
     position: absolute;
     background: $ingameHudBg;
-    @include S(padding, 5px);
-    @include S(bottom, 10px);
-    @include S(left, 10px);
+    padding: 0.5rem;
+    bottom: 1rem;
+    left: 1rem;
 
     @include SuperSmallText;
     color: #eee;
@@ -19,29 +19,29 @@
     }
 
     .plusMinus {
-        @include S(margin-top, 4px);
+        margin-top: 0.4rem;
         display: grid;
         grid-template-columns: 1fr auto auto;
         align-items: center;
-        @include S(grid-gap, 4px);
+        grid-gap: 0.4rem;
 
         button {
             @include PlainText;
-            @include S(padding, 0);
+            padding: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            @include S(width, 15px);
-            @include S(height, 15px);
+            width: 1.5rem;
+            height: 1.5rem;
         }
     }
 
     .additionalOptions {
         display: flex;
         flex-direction: column;
-        @include S(margin-top, 10px);
+        margin-top: 1rem;
         button {
-            @include S(margin-bottom, 2px);
+            margin-bottom: 0.2rem;
             @include SuperSmallText;
         }
     }

@@ -1,18 +1,18 @@
 #ingame_HUD_Waypoints_Hint {
     position: absolute;
-    @include S(right, 10px);
-    @include S(bottom, 10px);
+    right: 1rem;
+    bottom: 1rem;
 
     display: flex;
     flex-direction: column;
 
     @include PlainText;
-    @include S(width, 150px);
+    width: 15rem;
     background: $ingameHudBg;
-    @include S(padding, 7px);
+    padding: 0.7rem;
 
     color: #eee;
-    @include S(border-radius, $globalBorderRadius);
+    border-radius: $globalBorderRadius;
 
     .desc {
         @include SuperSmallText;
@@ -29,8 +29,8 @@
 
 #ingame_HUD_Waypoints {
     position: absolute;
-    @include S(right, 10px);
-    @include S(top, 45px);
+    right: 1rem;
+    top: 4.5rem;
     display: flex;
     flex-direction: column;
     @include DarkThemeInvert();
@@ -39,14 +39,14 @@
     overflow-x: hidden;
     overflow-y: auto;
     pointer-events: all;
-    @include S(padding-right, 5px);
-    @include S(padding-bottom, 5px);
-    @include S(padding-top, 5px);
+    padding-right: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
 
     // Scrollbar
     &::-webkit-scrollbar {
-        @include S(width, 2px);
-        @include S(height, 6px);
+        width: 0.2rem;
+        height: 0.6rem;
     }
 
     .waypoint {
@@ -54,13 +54,13 @@
         pointer-events: all;
         cursor: pointer;
         color: #333438;
-        @include S(padding-left, 11px);
+        padding-left: 1.1rem;
         display: grid;
         grid-template-columns: 1fr auto;
         align-items: center;
         & {
             /* @load-async */
-            background: uiResource("icons/waypoint.png") left 50% / #{D(8px)} no-repeat;
+            background: uiResource("icons/waypoint.png") left 50% / 0.8rem no-repeat;
         }
 
         &.layer--wires {
@@ -69,7 +69,7 @@
         }
 
         opacity: 0.7;
-        @include S(margin-bottom, 1px);
+        margin-bottom: 0.1rem;
         font-weight: bold;
 
         &:hover {
@@ -77,9 +77,9 @@
         }
 
         .editButton {
-            @include S(width, 10px);
-            @include S(height, 10px);
-            @include S(margin-left, 4px);
+            width: 1rem;
+            height: 1rem;
+            margin-left: 0.4rem;
             & {
                 /* @load-async */
                 background: uiResource("icons/edit_key.png") center center / 70% no-repeat;
@@ -96,22 +96,22 @@
 
         &.hub {
             // Transform because there is a canvas before
-            @include S(margin-left, -2px);
+            margin-left: -0.2rem;
 
             grid-template-columns: auto 1fr;
             background: none !important;
-            @include S(padding-left, 0);
+            padding-left: 0;
             canvas {
-                @include S(width, 12px);
-                @include S(height, 12px);
-                @include S(margin-right, 1px);
+                width: 1.2rem;
+                height: 1.2rem;
+                margin-right: 0.1rem;
             }
         }
 
         &.shapeIcon {
             canvas {
-                @include S(width, 15px);
-                @include S(height, 15px);
+                width: 1.5rem;
+                height: 1.5rem;
                 pointer-events: none;
                 // Double invert, to make sure it has the right color
                 @include DarkThemeInvert();

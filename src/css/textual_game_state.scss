@@ -2,7 +2,7 @@
     display: grid;
     grid-template-rows: auto 1fr;
     box-sizing: border-box;
-    @include S(padding, 32px);
+    padding: 3.2rem;
     height: 100vh;
 
     .headerBar {
@@ -21,15 +21,15 @@
         }
 
         .backButton {
-            @include S(width, 30px);
-            @include S(height, 30px);
-            @include S(margin-right, 10px);
-            @include S(margin-left, -5px);
+            width: 3rem;
+            height: 3rem;
+            margin-right: 1rem;
+            margin-left: -0.5rem;
             & {
                 background: uiResource("icons/state_back_button.png") center center / 70% no-repeat;
             }
         }
-        @include S(margin-bottom, 20px);
+        margin-bottom: 2rem;
     }
 
     > .container {
@@ -41,8 +41,8 @@
         > .content {
             width: 100%;
             background: #fff;
-            @include S(border-radius, $globalBorderRadius);
-            @include S(padding, 10px);
+            border-radius: $globalBorderRadius;
+            padding: 1rem;
             height: 100%;
             overflow-y: auto;
             box-sizing: border-box;
@@ -55,8 +55,8 @@
             .categoryLabel {
                 display: block;
                 text-transform: uppercase;
-                @include S(margin-top, 15px);
-                @include S(margin-bottom, 15px);
+                margin-top: 1.5rem;
+                margin-bottom: 1.5rem;
                 @include Heading;
             }
         }

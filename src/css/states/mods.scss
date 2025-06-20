@@ -3,7 +3,7 @@
     .modsGrid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        @include S(gap, 10px);
+        gap: 1rem;
     }
 
     .modsGrid.noMods {
@@ -14,9 +14,9 @@
     .mod {
         width: 100%;
         box-sizing: border-box;
-        @include S(padding, 10px);
+        padding: 1rem;
 
-        @include S(border-radius, 4px);
+        border-radius: 0.4rem;
         background: #eee;
 
         @include DarkThemeOverride {

@@ -54,33 +54,10 @@
 
     $borderSize: 1.5px;
     $borderColor: rgb(18, 20, 24);
-
-    // box-shadow: 0 0 0 D($borderSize) $borderColor, 0 D($size) 0 0px rgba(mix(darken($bgColor, 9), #b0e2ff, 95%), 1),
-    //     0 D($size) 0 D($borderSize) $borderColor;
-
-    // box-shadow: 0 0 0 D($borderSize) $borderColor, 0 D($size) 0 D($borderSize) $borderColor,
-    //     D(-$size * 1.5) D($size * 2) 0 D($borderSize) rgba(0, 0, 0, 0.1);
-
-    // transition: box-shadow 0.1s ease-in-out;
-
-    // @if $pressEffect {
-    //     &.pressed {
-    //         transform: none !important;
-    //         $pSize: max(0, $size - 1.5px);
-    //         transition: none !important;
-    //         box-shadow: 0 0 0 D($borderSize) $borderColor, 0 D($pSize) 0 0px rgba(mix(darken($bgColor, 9), #b0e2ff, 95%), 1),
-    //             0 D($pSize) 0 D($borderSize) $borderColor;
-    //         top: D($size - $pSize);
-    //     }
-    // }
 }
 
-@mixin BoxShadow($x, $y, $blur, $offset, $color) {
-    box-shadow: D($x) D($y) D($blur) D($offset) $color;
-}
-
-@mixin DropShadow($yOffset: 2px, $blur: 2px, $amount: 0.2) {
-    @include BoxShadow(0, $yOffset, $blur, 0, rgba(#000, $amount));
+@mixin DropShadow($yOffset: 0.2rem, $blur: 0.2rem, $amount: 0.2) {
+    box-shadow: 0 $yOffset $blur 0 rgba(#000, $amount);
 }
 
 @mixin Button3D($bgColor, $pressEffect: true) {

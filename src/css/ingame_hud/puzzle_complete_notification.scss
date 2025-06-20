@@ -13,7 +13,7 @@
 
     & {
         /* @load-async */
-        background: rgba(#333538, 0.95) uiResource("dialog_bg_pattern.png") top left / #{D(10px)} repeat;
+        background: rgba(#333538, 0.95) uiResource("dialog_bg_pattern.png") top left / 1rem repeat;
     }
 
     @include InlineAnimation(0.1s ease-in-out) {
@@ -24,8 +24,8 @@
 
     > .dialog {
         // background: rgba(#222428, 0.5);
-        @include S(border-radius, $globalBorderRadius);
-        @include S(padding, 30px);
+        border-radius: $globalBorderRadius;
+        padding: 3rem;
 
         @include InlineAnimation(0.5s ease-in-out) {
             0% {
@@ -43,8 +43,8 @@
         > .title {
             @include SuperHeading;
             text-transform: uppercase;
-            @include S(font-size, 30px);
-            @include S(margin-bottom, 40px);
+            font-size: 3rem;
+            margin-bottom: 4rem;
             color: $colorGreenBright !important;
 
             @include InlineAnimation(0.5s ease-in-out) {
@@ -82,19 +82,19 @@
             > .stepLike {
                 display: flex;
                 flex-direction: column;
-                @include S(margin-bottom, 10px);
+                margin-bottom: 1rem;
                 @include SuperSmallText;
 
                 > .buttons {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    @include S(margin, 10px, 0);
+                    margin: 1rem 0;
 
                     > button {
-                        @include S(width, 60px);
-                        @include S(height, 60px);
-                        @include S(margin, 0, 10px);
+                        width: 6rem;
+                        height: 6rem;
+                        margin: 0 1rem;
                         box-sizing: border-box;
                         border-radius: 50%;
                         transition:
@@ -134,7 +134,7 @@
 
             > .buttonBar {
                 display: flex;
-                @include S(margin-top, 20px);
+                margin-top: 2rem;
 
                 button.continue {
                     background: #555;
@@ -149,18 +149,18 @@
                 }
 
                 > button {
-                    @include S(min-width, 100px);
-                    @include S(padding, 8px, 16px);
-                    @include S(margin, 0, 6px);
+                    min-width: 10rem;
+                    padding: 0.8rem 1.6rem;
+                    margin: 0 0.6rem;
                 }
             }
 
             > .actions {
                 position: absolute;
-                @include S(bottom, 40px);
+                bottom: 4rem;
 
                 display: grid;
-                @include S(grid-gap, 15px);
+                grid-gap: 1.5rem;
                 grid-auto-flow: column;
 
                 button {

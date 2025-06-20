@@ -1,39 +1,41 @@
+@use "sass:math";
+
 #ingame_HUD_ShapeViewer {
-    $dims: 170px;
+    $dims: 17rem;
 
     .content {
         display: flex;
-        @include S(width, $dims);
+        width: $dims;
         width: 100%;
         flex-direction: column;
         overflow-x: hidden;
 
         &[data-layers="3"],
         &[data-layers="4"] {
-            @include S(width, 2 * $dims);
+            width: 2 * $dims;
             .renderArea {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
-                @include S(grid-row-gap, 15px);
+                grid-row-gap: 1.5rem;
             }
         }
 
         .renderArea {
             display: grid;
             width: 100%;
-            @include S(grid-row-gap, 10px);
+            grid-row-gap: 1rem;
             place-items: center;
         }
 
         .infoArea {
             align-self: flex-end;
-            @include S(margin-top, 10px);
+            margin-top: 1rem;
             display: flex;
             flex-direction: column;
             overflow: hidden;
 
             button {
-                @include S(margin, 0);
+                margin: 0;
                 @include PlainText;
             }
         }
@@ -45,16 +47,16 @@
             @include DarkThemeOverride {
                 background: rgba(0, 10, 20, 0.2);
             }
-            @include S(width, 150px);
-            @include S(height, 100px);
+            width: 15rem;
+            height: 10rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            @include S(border-radius, $globalBorderRadius);
+            border-radius: $globalBorderRadius;
 
             > canvas {
-                @include S(width, 50px);
-                @include S(height, 50px);
+                width: 5rem;
+                height: 5rem;
             }
 
             .quad {
@@ -66,27 +68,27 @@
                 align-items: center;
                 box-sizing: border-box;
 
-                $arrowDims: 23px;
-                $spacing: 9px;
-                @include S(padding, 6px);
+                $arrowDims: 2.3rem;
+                $spacing: 0.9rem;
+                padding: 0.6rem;
 
                 .colorLabel {
                     text-transform: uppercase;
                     @include SuperSmallText;
-                    @include S(font-size, 9px);
+                    font-size: 0.9rem;
                 }
 
                 .emptyLabel {
                     text-transform: uppercase;
                     @include SuperSmallText;
-                    @include S(font-size, 9px);
+                    font-size: 0.9rem;
                 }
 
                 &::after {
                     content: " ";
                     background: rgba(0, 10, 20, 0.5);
-                    @include S(width, $arrowDims);
-                    @include S(height, 1px);
+                    width: $arrowDims;
+                    height: 0.1rem;
                     position: absolute;
                     transform: rotate(45deg);
                     transform-origin: 50% 50%;
@@ -104,8 +106,8 @@
                     justify-content: flex-end;
 
                     &::after {
-                        @include S(left, $spacing);
-                        @include S(bottom, $arrowDims / 2 + $spacing);
+                        left: $spacing;
+                        bottom: math.div($arrowDims, 2) + $spacing;
                         transform: rotate(-45deg);
                     }
                 }
@@ -117,8 +119,8 @@
                     justify-content: flex-end;
 
                     &::after {
-                        @include S(left, $spacing);
-                        @include S(top, $arrowDims / 2 + $spacing);
+                        left: $spacing;
+                        top: math.div($arrowDims, 2) + $spacing;
                         transform: rotate(45deg);
                     }
                 }
@@ -130,8 +132,8 @@
                     justify-content: flex-start;
 
                     &::after {
-                        @include S(right, $spacing);
-                        @include S(top, $arrowDims / 2 + $spacing);
+                        right: $spacing;
+                        top: math.div($arrowDims, 2) + $spacing;
                         transform: rotate(135deg);
                     }
                 }
@@ -143,8 +145,8 @@
                     justify-content: flex-start;
 
                     &::after {
-                        @include S(right, $spacing);
-                        @include S(bottom, $arrowDims / 2 + $spacing);
+                        right: $spacing;
+                        bottom: math.div($arrowDims, 2) + $spacing;
                         transform: rotate(225deg);
                     }
                 }

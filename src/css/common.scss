@@ -70,17 +70,17 @@ button {
 .styledButton {
     text-transform: uppercase;
     box-sizing: content-box;
-    @include S(padding, 3px, 10px);
+    padding: 0.3rem 1rem;
     @include ButtonText;
     border: 0;
     background: $colorBlueBright;
     color: #fff;
-    @include S(border-radius, 0.8 * $globalBorderRadius);
+    border-radius: 0.8 * $globalBorderRadius;
     transition: opacity 0.12s ease-in-out;
 
     .keybinding {
-        @include S(bottom, -2.5px);
-        @include S(right, -2px);
+        bottom: -0.25rem;
+        right: -0.2rem;
     }
 
     &:hover {
@@ -95,8 +95,8 @@ button {
 
 input[type="text"],
 input[type="email"] {
-    @include S(padding, 11px, 12px);
-    @include S(margin, 10px, 0);
+    padding: 1.1rem 1.2rem;
+    margin: 1rem 0;
     border: 0;
     display: block;
     text-align: left;
@@ -107,7 +107,7 @@ input[type="email"] {
     user-select: text !important;
     pointer-events: all !important;
     @include Text;
-    @include S(border-radius, $globalBorderRadius);
+    border-radius: $globalBorderRadius;
     &::placeholder {
         color: #fff;
         opacity: 0.4;
@@ -127,8 +127,8 @@ input[type="email"] {
     &.input-token {
         @include SuperHeading;
         text-align: center;
-        @include S(letter-spacing, 30px);
-        @include S(padding-left, 30px);
+        letter-spacing: 3rem;
+        padding-left: 3rem;
     }
 }
 
@@ -171,8 +171,8 @@ canvas {
 
 // Scrollbar
 ::-webkit-scrollbar {
-    @include S(width, 6px);
-    @include S(height, 6px);
+    width: 0.6rem;
+    height: 0.6rem;
 }
 
 ::-webkit-scrollbar-track {
@@ -181,7 +181,7 @@ canvas {
 
 ::-webkit-scrollbar-thumb {
     // border-radius: 4px;
-    @include S(border-radius, $globalBorderRadius);
+    border-radius: $globalBorderRadius;
     background: #cdd0d4;
 }
 
@@ -224,8 +224,8 @@ canvas {
     color: #393747;
     &::after {
         content: " ";
-        @include S(width, 35px);
-        @include S(height, 35px);
+        width: 3.5rem;
+        height: 3.5rem;
         display: inline-block;
         vertical-align: middle;
 
@@ -247,10 +247,10 @@ canvas {
 
 .prefab_LoadingProgressIndicator {
     @include PlainText;
-    @include S(margin-top, 20px);
+    margin-top: 2rem;
     width: 100%;
     color: #336c9f;
-    @include S(height, 20px);
+    height: 2rem;
     text-transform: uppercase;
     text-align: center;
 }
@@ -273,15 +273,15 @@ canvas {
         }
 
         & {
-            background: uiResource("loading.svg") center center / #{D(40px)} no-repeat;
+            background: uiResource("loading.svg") center center / 4rem no-repeat;
         }
     }
 
     .prefab_GameHint {
         position: absolute;
-        @include S(left, 20px);
-        @include S(right, 20px);
-        @include S(bottom, 60px);
+        left: 2rem;
+        right: 2rem;
+        bottom: 6rem;
         @include Text;
         color: #666;
 
@@ -292,9 +292,9 @@ canvas {
 
     .loadingStatus {
         position: absolute;
-        @include S(left, 20px);
-        @include S(right, 20px);
-        @include S(bottom, 30px);
+        left: 2rem;
+        right: 2rem;
+        bottom: 3rem;
         @include Text;
         @include PlainText;
         color: #aaa;
@@ -309,7 +309,7 @@ canvas {
         align-items: center;
         > .bar {
             display: none;
-            @include S(margin-top, 15px);
+            margin-top: 1.5rem;
             width: 80vw;
             @include BoxShadow3D(lighten($mainBgColor, 10), $size: 1px);
             position: relative;
@@ -322,7 +322,7 @@ canvas {
                 bottom: 0;
                 z-index: 1;
                 @include BoxShadow3D($themeColor, $size: 1px);
-                @include S(border-radius, $globalBorderRadius);
+                border-radius: $globalBorderRadius;
                 transform-origin: 0% 50%;
                 @include InlineAnimation(1.3s ease-in-out infinite) {
                     0% {
@@ -344,7 +344,7 @@ canvas {
                 position: relative;
                 z-index: 2;
                 display: inline-flex;
-                @include S(padding, 5px);
+                padding: 0.5rem;
                 @include PlainText;
             }
         }
@@ -358,10 +358,10 @@ canvas {
 .checkbox {
     $bgColor: darken($mainBgColor, 3);
     background-color: $bgColor;
-    @include S(width, 35px);
-    @include S(height, 17px);
+    width: 3.5rem;
+    height: 1.7rem;
     display: flex;
-    @include S(padding, 3px);
+    padding: 0.3rem;
     box-sizing: content-box;
     cursor: pointer;
     pointer-events: all;
@@ -370,7 +370,7 @@ canvas {
         background-color 0.3s ease-in-out,
         box-shadow 0.4s ease-in-out !important;
     position: relative;
-    @include S(border-radius, 20px);
+    border-radius: 2rem;
     @include BoxShadow3D($bgColor, $size: 2px);
     &.loading {
         opacity: 0.2;
@@ -379,20 +379,20 @@ canvas {
         background-color: darken($bgColor, 5);
     }
     .knob {
-        @include S(width, 20px);
-        @include S(height, 17px);
+        width: 2rem;
+        height: 1.7rem;
         display: inline-block;
         transition: margin-left 0.4s ease-in-out !important;
         background: #fff;
         position: relative;
-        @include S(border-radius, 20px);
+        border-radius: 2rem;
         @include BoxShadow3D(#fff, $size: 1px);
     }
     &.checked {
         background-color: $themeColor;
         @include BoxShadow3D($themeColor, $size: 2px);
         .knob {
-            @include S(margin-left, 15px);
+            margin-left: 1.5rem;
         }
         &:hover {
             background-color: lighten($themeColor, 15);
@@ -413,7 +413,7 @@ canvas {
     justify-content: center;
 
     label {
-        @include S(margin-right, 5px);
+        margin-right: 0.5rem;
         &,
         & * {
             @include PlainText;
@@ -424,14 +424,14 @@ canvas {
 input.rangeInput {
     cursor: pointer;
     background-color: transparent;
-    @include S(width, 100px);
-    @include S(height, 16px);
+    width: 10rem;
+    height: 1.6rem;
 
     &::-webkit-slider-runnable-track {
         background-color: darken($mainBgColor, 3);
         color: darken($mainBgColor, 3);
-        // @include S(height, 16px);
-        @include S(border-radius, 8px);
+        // height: 1.6rem;
+        border-radius: 0.8rem;
     }
 
     @include DarkThemeOverride {
@@ -440,13 +440,13 @@ input.rangeInput {
         }
 
         &::-webkit-slider-thumb {
-            box-shadow: inset 0 0 0 D(10px) #eee;
+            box-shadow: inset 0 0 0 1rem #eee;
         }
     }
 
     &::-webkit-slider-thumb {
         appearance: none;
-        box-shadow: inset 0 0 0 D(10px) $themeColor;
+        box-shadow: inset 0 0 0 1rem $themeColor;
         border-radius: 50%;
 
         transition: box-shadow 0.3s;
@@ -454,7 +454,7 @@ input.rangeInput {
 
     &:hover {
         &::-webkit-slider-thumb {
-            box-shadow: inset 0 0 0 D(10px) lighten($themeColor, 15);
+            box-shadow: inset 0 0 0 1rem lighten($themeColor, 15);
         }
     }
 }
@@ -463,33 +463,33 @@ input.rangeInput {
     background: #fff;
     text-transform: uppercase;
     font-family: inherit;
-    @include S(padding, 1.5px, 3px, 2px);
+    padding: 0.15rem 0.3rem 0.2rem;
     @include PlainText;
-    @include S(border-radius, 0.5 * $globalBorderRadius);
+    border-radius: 0.5 * $globalBorderRadius;
     &,
     > span {
-        @include S(font-size, 9px);
-        @include S(line-height, 11px);
+        font-size: 0.9rem;
+        line-height: 1.1rem;
     }
 
     color: $accentColorDark;
     text-align: center;
     justify-content: center;
     align-items: center;
-    @include S(min-width, 12px);
+    min-width: 1.2rem;
     display: inline-flex;
     position: absolute;
-    @include S(bottom, 0px);
-    @include S(right, 0px);
+    bottom: 0rem;
+    right: 0rem;
     z-index: 999;
     box-sizing: border-box;
-    @include S(height, 12px);
+    height: 1.2rem;
     overflow: hidden;
-    border: #{D(0px)} solid $accentColorDark;
+    border: 0rem solid $accentColorDark;
     .keybinding_space {
-        @include S(font-size, 17px);
-        @include S(line-height, 11px);
-        @include S(margin-top, -12px);
+        font-size: 1.7rem;
+        line-height: 1.1rem;
+        margin-top: -1.2rem;
     }
 }
 

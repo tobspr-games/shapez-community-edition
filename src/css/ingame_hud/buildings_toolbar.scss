@@ -1,20 +1,20 @@
 .ingame_buildingsToolbar {
     position: absolute;
-    @include S(bottom, 10px);
+    bottom: 1rem;
     left: 50%;
     transform: translateX(-50%);
 
     display: grid;
     grid-template-rows: auto auto;
     justify-items: center;
-    @include S(grid-gap, 4px);
+    grid-gap: 0.4rem;
 
     background: transparent;
     transition: transform 120ms ease-in-out;
     will-change: transform;
 
     &:not(.visible) {
-        transform: translateX(-50%) translateY(#{D(100px)});
+        transform: translateX(-50%) translateY(10rem);
     }
 
     .buildings {
@@ -22,11 +22,11 @@
         grid-auto-flow: column;
         justify-items: center;
         align-self: center;
-        grid-gap: D(2px);
+        grid-gap: 0.2rem;
         grid-row: 2 / 3;
 
-        @include S(border-radius, $globalBorderRadius);
-        @include S(padding, 2px);
+        border-radius: $globalBorderRadius;
+        padding: 0.2rem;
         background-color: rgba($ingameHudBg, 0.07);
 
         @include DarkThemeOverride {
@@ -37,13 +37,13 @@
             grid-row: 1 / 2;
 
             .building {
-                @include S(width, 30px);
-                @include S(height, 30px);
+                width: 3rem;
+                height: 3rem;
                 background-size: 45%;
 
                 &:not(.unlocked) {
                     &::before {
-                        background-size: #{D(13px)};
+                        background-size: 1.3rem;
                     }
                 }
             }
@@ -51,9 +51,9 @@
 
         .building {
             display: flex;
-            @include S(width, 40px);
+            width: 4rem;
             position: relative;
-            @include S(height, 40px);
+            height: 4rem;
 
             @at-root html[data-tutorial-step="1_1_extractor"] &[data-id="miner"]:not(.selected),
                 html[data-tutorial-step="1_2_conveyor"] &[data-id="belt"]:not(.selected),
@@ -67,8 +67,8 @@
                         background: uiResource("icons/tutorial_arrow.png") center center / contain no-repeat;
                     }
 
-                    @include S(width, 25px);
-                    @include S(height, 25px);
+                    width: 2.5rem;
+                    height: 2.5rem;
                     position: absolute;
                     left: 50%;
                     bottom: 100%;
@@ -79,8 +79,8 @@
                         }
                     }
                 }
-                @include S(border-radius, $globalBorderRadius);
-                box-shadow: 0 0 D(10px) D(5px) rgba(74, 237, 134, 0.5) !important;
+                border-radius: $globalBorderRadius;
+                box-shadow: 0 0 1rem 0.5rem rgba(74, 237, 134, 0.5) !important;
                 background: rgba(74, 237, 134, 0.5) !important;
             }
 
@@ -100,7 +100,7 @@
             }
 
             &:not(.unlocked) {
-                @include S(width, 25px);
+                width: 2.5rem;
                 .icon {
                     opacity: 0.15;
                 }
@@ -122,7 +122,7 @@
 
             &.unlocked {
                 .icon {
-                    @include S(border-radius, $globalBorderRadius * 0.9);
+                    border-radius: $globalBorderRadius * 0.9;
 
                     pointer-events: all;
                     transition: all 0.12s ease-in-out;
@@ -146,7 +146,7 @@
                         background-color: rgba(lighten($colorBlueBright, 9), 0.4);
                     }
                     // transform: scale(1.05);
-                    // @include S(border-radius, $globalBorderRadius);
+                    // border-radius: $globalBorderRadius;
 
                     .keybinding {
                         color: #111;
@@ -163,7 +163,7 @@
                     grid-auto-flow: column;
 
                     position: absolute;
-                    @include S(top, -15px);
+                    top: -1.5rem;
                     left: 50%;
                     transform: translateX(-50%) !important;
                     transition: all 0.12s ease-in-out;
@@ -172,8 +172,8 @@
                     cursor: pointer;
                     pointer-events: all;
 
-                    @include S(width, 12px);
-                    @include S(height, 12px);
+                    width: 1.2rem;
+                    height: 1.2rem;
 
                     &:hover {
                         opacity: 0.5;

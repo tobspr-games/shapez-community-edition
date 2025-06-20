@@ -1,27 +1,27 @@
 #ingame_HUD_Notifications {
     position: absolute;
-    @include S(bottom, 60px);
-    @include S(right, 10px);
+    bottom: 6rem;
+    right: 1rem;
 
     .notification {
         background: rgba(#333438, 0.8);
-        @include S(border-radius, $globalBorderRadius);
-        @include S(margin-top, 3px);
+        border-radius: $globalBorderRadius;
+        margin-top: 0.3rem;
         color: #fff;
         @include SuperSmallText;
-        @include S(padding, 7px, 10px);
-        @include S(width, 150px);
+        padding: 0.7rem 1rem;
+        width: 15rem;
 
         @include DarkThemeOverride {
             background-color: rgba(#55595d, 0.8);
         }
 
         &[data-icon] {
-            @include S(background-position-x, 8px);
+            background-position-x: 0.8rem;
             background-position-y: center;
-            @include S(padding-left, 35px);
+            padding-left: 3.5rem;
             background-repeat: no-repeat;
-            @include S(background-size, 15px);
+            background-size: 1.5rem;
         }
 
         transform-origin: 100% 50%;
