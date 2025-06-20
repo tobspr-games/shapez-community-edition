@@ -1,13 +1,8 @@
 $globalBorderRadius: 6px;
 
-// When to reduce control elements size for small devices
-$layoutExpandMinWidth: 340px;
-
 // Font sizes and line heights
 $superHeadingFontSize: 25px;
 $superHeadingLineHeight: 24px;
-
-$breakTooltipShowStatsPx: 1023px;
 
 $headingFontSize: 19px;
 $headingLineHeight: 21px;
@@ -40,21 +35,12 @@ $themeColor: #393747;
 $ingameHudBg: rgba(#33343b, 0.9);
 $modsColor: rgb(214, 60, 228);
 
-$text3dColor: #f4ffff;
-
 $darkModeGameBackground: #535866;
 $darkModeControlsBackground: darken($darkModeGameBackground, 5);
 
 // Dialog properties
 $modalDialogBg: rgba(160, 165, 180, 0.8);
 $dialogBgColor: lighten($mainBgColor, 10);
-
-$lightFontWeight: normal;
-$boldFontWeight: 600;
-
-$iconSizeSmall: 30px;
-$iconSizeMedium: 40px;
-$iconSizeLarge: 60px;
 
 // Poppins 500
 // Rubik 400
@@ -65,8 +51,6 @@ $iconSizeLarge: 60px;
 $mainFont: "GameFont", sans-serif;
 // $mainFont: "DK Canoodle";
 // $mainFont: "MADE Florence Sans";
-$numberFont: $mainFont;
-$textFont: $mainFont;
 
 @mixin DebugText($color) {
     // font-size: 3px;

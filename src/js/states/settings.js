@@ -30,8 +30,8 @@ export class SettingsState extends TextualGameState {
                     : ""
             }
 
-            <button class="styledButton categoryButton manageMods">${T.mods.title}
-                <span class="newBadge">${T.settings.newBadge}</span>
+            <button class="styledButton categoryButton manageMods">
+            ${T.mods.title}
             </button>
 
 

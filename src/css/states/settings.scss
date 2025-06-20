@@ -85,30 +85,6 @@
                 }
             }
 
-            button.manageMods {
-                background-color: lighten($modsColor, 38);
-                color: $modsColor;
-                display: flex;
-                @include S(padding-right, 5px);
-                .newBadge {
-                    color: #fff;
-                    @include S(border-radius, $globalBorderRadius);
-                    background: $modsColor;
-                    margin-left: auto;
-                    @include S(padding, 0, 3px, 0, 3px);
-
-                    @include InlineAnimation(1.3s ease-in-out infinite) {
-                        50% {
-                            transform: rotate(0deg) scale(1.1);
-                        }
-                    }
-                }
-
-                &.active {
-                    background-color: $colorGreenBright;
-                }
-            }
-
             .versionbar {
                 @include S(margin-top, 10px);
 

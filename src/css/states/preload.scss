@@ -96,7 +96,7 @@
                 display: block;
                 color: #666;
                 text-align: left;
-                @include BreakText;
+                overflow-wrap: break-word;
                 hyphens: auto;
                 // border: dotted #666;
                 // @include S(border-width, 1px, 0);
@@ -139,7 +139,7 @@
 
     /* Animations */
     .status {
-        transform: scale(0.7) $hardwareAcc;
+        transform: scale(0.7);
         opacity: 0;
         @include StateAnim(transform, opacity);
     }

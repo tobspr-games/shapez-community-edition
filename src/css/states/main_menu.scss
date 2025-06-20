@@ -130,25 +130,6 @@
         }
         position: relative;
         @include S(left, -8px);
-
-        .updateLabel {
-            position: absolute;
-            transform: translateX(50%) rotate(-5deg);
-            color: #fff;
-            @include PlainText;
-            font-weight: bold;
-            @include S(right, 40px);
-            @include S(bottom, 20px);
-            background: $modsColor;
-            @include S(border-radius, $globalBorderRadius);
-            @include S(padding, 0, 5px, 1px, 5px);
-
-            @include InlineAnimation(1.3s ease-in-out infinite) {
-                50% {
-                    transform: translateX(50%) rotate(-7deg) scale(1.1);
-                }
-            }
-        }
     }
 
     .sideContainer {
@@ -173,35 +154,6 @@
             border: D(1px) solid rgba(#000, 0.1);
             overflow: hidden;
 
-            > .badge {
-                color: #fff;
-                text-transform: uppercase;
-                font-weight: bold;
-                position: absolute;
-                @include S(top, 10px);
-                @include S(right, 10px);
-
-                transform: translateX(50%) rotate(10deg);
-                @include Heading;
-                font-weight: bold;
-
-                @include InlineAnimation(1.3s ease-in-out infinite) {
-                    50% {
-                        transform: translateX(50%) rotate(12deg) scale(1.1);
-                    }
-                }
-            }
-
-            > .hint {
-                @include SuperDuperSmallText;
-                @include S(margin-top, 10px);
-                @include S(width, 200px);
-            }
-
-            > .dlcLogo {
-                @include S(width, 120px);
-            }
-
             > button {
                 @include S(margin-top, 20px);
                 @include Heading;
@@ -214,9 +166,6 @@
                 @include S(height, 118px);
                 @include S(width, 250px);
                 background: uiResource("puzzle_460x215_15.png") center D(-5px) / cover repeat;
-                .dlcLogo {
-                    display: none;
-                }
 
                 > button {
                     pointer-events: all;
@@ -425,15 +374,6 @@
             }
         }
 
-        .modeButtons {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            @include S(grid-column-gap, 10px);
-            align-items: start;
-            height: 100%;
-            width: 100%;
-        }
-
         .savegamesMount {
             width: 100%;
             display: flex;
@@ -604,27 +544,6 @@
                     }
                 }
             }
-        }
-    }
-
-    .bottomContainer {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: row;
-        @include S(padding-top, 10px);
-        height: 100%;
-        width: 100%;
-        box-sizing: border-box;
-
-        .buttons {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            @include S(grid-column-gap, 10px);
-            align-items: start;
-            height: 100%;
-            width: 100%;
-            box-sizing: border-box;
         }
     }
 

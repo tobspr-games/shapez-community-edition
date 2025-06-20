@@ -45,7 +45,6 @@ export class MainMenuState extends GameState {
                     width="${Math.round((710 / 3) * this.app.getEffectiveUiScale())}"
                     height="${Math.round((180 / 3) * this.app.getEffectiveUiScale())}"
                 >
-                ${/*showUpdateLabel ? `<span class="updateLabel">MODS UPDATE!</span>` : ""*/ ""}
             </div>
 
             <div class="mainWrapper" data-columns="2">

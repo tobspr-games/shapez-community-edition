@@ -22,8 +22,7 @@
             display: grid;
             width: 100%;
             @include S(grid-row-gap, 10px);
-            align-items: center;
-            justify-items: center;
+            place-items: center;
         }
 
         .infoArea {

@@ -31,7 +31,7 @@ body {
     color: #555;
     user-select: none;
     background: inherit;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     @include Text;
@@ -64,7 +64,7 @@ button {
     pointer-events: all;
     cursor: pointer;
     position: relative;
-    @include TextShadow3D;
+    color: $legacyTextShadow3DColor;
 }
 
 .styledButton {
@@ -113,7 +113,7 @@ input[type="email"] {
         opacity: 0.4;
     }
     transition: background-color 0.1s ease-in-out !important;
-    @include TextShadow3D(#fff);
+    color: #fff;
     @include BoxShadow3D(lighten($mainBgColor, 30));
     &:focus {
         @include BoxShadow3D(lighten($mainBgColor, 35));
@@ -212,17 +212,13 @@ canvas {
     display: inline-block;
 }
 
-.badged {
-    color: color($purple, 300);
-}
-
 .prefab_LoadingTextWithAnim {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     text-transform: uppercase;
     @include Text;
-    @include TextShadow3D;
+    color: $legacyTextShadow3DColor;
     opacity: 1;
     z-index: 20;
     color: #393747;
@@ -317,7 +313,7 @@ canvas {
             width: 80vw;
             @include BoxShadow3D(lighten($mainBgColor, 10), $size: 1px);
             position: relative;
-            @include TextShadow3D(#fff);
+            color: #fff;
             height: 2px;
             .inner {
                 position: absolute !important;
@@ -374,7 +370,7 @@ canvas {
         background-color 0.3s ease-in-out,
         box-shadow 0.4s ease-in-out !important;
     position: relative;
-    @include BorderRadius(20px);
+    @include S(border-radius, 20px);
     @include BoxShadow3D($bgColor, $size: 2px);
     &.loading {
         opacity: 0.2;
@@ -389,7 +385,7 @@ canvas {
         transition: margin-left 0.4s ease-in-out !important;
         background: #fff;
         position: relative;
-        @include BorderRadius(20px);
+        @include S(border-radius, 20px);
         @include BoxShadow3D(#fff, $size: 1px);
     }
     &.checked {

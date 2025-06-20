@@ -27,7 +27,7 @@ body {
     color: #555;
     user-select: none;
     background: inherit !important;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
 }
