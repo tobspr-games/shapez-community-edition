@@ -7,7 +7,7 @@ import { Loader } from "./core/loader";
 import { createLogger } from "./core/logging";
 import { StateManager } from "./core/state_manager";
 import { TrackedState } from "./core/tracked_state";
-import { getPlatformName, waitNextFrame } from "./core/utils";
+import { getPlatformName, round2Digits, waitNextFrame } from "./core/utils";
 import { Vector } from "./core/vector";
 import { MOD_SIGNALS } from "./mods/mod_signals";
 import { MODS } from "./mods/modloader";
@@ -321,7 +321,7 @@ export class Application {
             }
 
             const scale = this.getEffectiveUiScale();
-            waitNextFrame().then(() => document.documentElement.style.setProperty("--ui-scale", `${scale}`));
+            document.documentElement.style.fontSize = `${round2Digits(scale * 10)}px`;
             window.focus();
         }
     }

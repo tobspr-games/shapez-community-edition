@@ -9,8 +9,7 @@
 
 // Helper method to scale a value, for use in calc() etc
 @function D($v) {
-    $baseValue: strip-unit($v) * 1px;
-    @return calc(#{$baseValue} * var(--ui-scale));
+    @return strip-unit($v) * 0.1rem;
 }
 
 // Helper method to scale a property value

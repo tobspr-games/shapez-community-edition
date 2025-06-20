@@ -67,11 +67,8 @@ export class ModInterface {
         this.modLoader = modLoader;
     }
 
+    /** @deprecated */
     registerCss(cssString) {
-        // Preprocess css
-        cssString = cssString.replace(/\$scaled\(([^)]*)\)/gim, (substr, expression) => {
-            return "calc((" + expression + ") * var(--ui-scale))";
-        });
         const element = document.createElement("style");
         element.textContent = cssString;
         document.head.appendChild(element);
