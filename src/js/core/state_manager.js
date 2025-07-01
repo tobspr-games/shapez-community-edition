@@ -95,12 +95,8 @@ export class StateManager {
         const dialogParent = document.createElement("div");
         dialogParent.classList.add("modalDialogParent");
         document.body.appendChild(dialogParent);
-        try {
-            this.currentState.internalEnterCallback(payload);
-        } catch (ex) {
-            console.error(ex);
-            throw ex;
-        }
+
+        this.currentState.internalEnterCallback(payload);
 
         this.app.sound.playThemeMusic(this.currentState.getThemeMusic());
 

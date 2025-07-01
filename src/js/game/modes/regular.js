@@ -275,7 +275,7 @@ function generateUpgrades() {
                     try {
                         ShapeDefinition.fromShortKey(shape);
                     } catch (ex) {
-                        throw new Error("Invalid upgrade goal: '" + ex + "' for shape" + shape);
+                        throw new Error("Invalid upgrade goal for shape " + shape, { cause: ex });
                     }
                 });
             });
@@ -305,7 +305,7 @@ export function generateLevelDefinitions() {
             try {
                 ShapeDefinition.fromShortKey(shape);
             } catch (ex) {
-                throw new Error("Invalid tutorial goal: '" + ex + "' for shape" + shape);
+                throw new Error("Invalid tutorial goal for shape " + shape, { cause: ex });
             }
         });
     }

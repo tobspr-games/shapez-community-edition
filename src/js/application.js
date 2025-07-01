@@ -52,7 +52,7 @@ export class Application {
         try {
             await MODS.initMods();
         } catch (ex) {
-            alert("Failed to load mods (launch with --dev for more info): \n\n" + ex);
+            throw new Error("Failed to initialize mods", { cause: ex });
         }
 
         this.unloaded = false;

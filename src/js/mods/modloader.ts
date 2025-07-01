@@ -2,7 +2,6 @@ import { GLOBAL_APP } from "@/core/globals";
 import { SavegameStoredMods } from "@/savegame/savegame_typedefs";
 import { createLogger } from "../core/logging";
 import { DisabledMod } from "./disabled_mod";
-import { ErroredMod } from "./errored_mod";
 import { Mod, ModConstructor } from "./mod";
 import { ModInfo, ModMetadata, ModQueueEntry } from "./mod_metadata";
 import { MOD_SIGNALS } from "./mod_signals";
@@ -84,22 +83,16 @@ export class ModLoader {
             queue.map(async e => ({ entry: e, mod: await this.loadMod(e) }))
         );
 
-        // Initialize all mods sequentially and collect errors
+        // Initialize all mods sequentially
         // TODO: Also collect early errors from the main process
         for (const { entry, mod } of loadedMods) {
-            try {
-                await mod.init();
-            } catch (err) {
-                if (err instanceof Error) {
-                    mod.errors.push(err);
-                }
-            }
-
             this.mods.set(mod.id, {
                 source: entry.source,
                 file: entry.file,
                 mod,
             });
+
+            await mod.init();
         }
     }
 
@@ -139,13 +132,7 @@ export class ModLoader {
             return new DisabledMod(entry.metadata, this.app, this);
         }
 
-        try {
-            return await this.createModInstance(entry.metadata);
-        } catch (err) {
-            const mod = new ErroredMod(entry.metadata, this.app, this);
-            mod.errors.push(err instanceof Error ? err : new Error(err.toString()));
-            return mod;
-        }
+        return await this.createModInstance(entry.metadata);
     }
 
     private async createModInstance(metadata: ModMetadata): Promise<Mod> {
