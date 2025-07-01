@@ -1,4 +1,5 @@
 import { net, protocol } from "electron";
+import { lstat, readdir } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { ModLoader } from "./loader.js";
@@ -31,20 +32,50 @@ export class ModProtocolHandler {
     }
 
     private async handler(request: GlobalRequest): Promise<GlobalResponse> {
+        const fileUrl = this.getFileUrlForRequest(request);
+        if (fileUrl === undefined) {
+            return Response.error();
+        }
+
         try {
-            const fileUrl = this.getFileUrlForRequest(request);
-            if (fileUrl === undefined) {
-                return Response.error();
+            return await net.fetch(fileUrl.toString());
+        } catch (err) {
+            // Check if this is a directory request
+            const directoryIndex = await this.getDirectoryIndex(fileUrl);
+            if (directoryIndex !== null) {
+                return directoryIndex;
             }
 
-            return await net.fetch(fileUrl);
-        } catch (err) {
             console.error("Failed to fetch:", err);
             return Response.error();
         }
     }
 
-    private getFileUrlForRequest(request: GlobalRequest): string | undefined {
+    private async getDirectoryIndex(fileUrl: URL): Promise<GlobalResponse | null> {
+        if (!fileUrl.pathname.endsWith("/")) {
+            return null;
+        }
+
+        // Remove the trailing slash
+        fileUrl.pathname = fileUrl.pathname.slice(0, -1);
+
+        try {
+            const stats = await lstat(fileUrl);
+            if (!stats.isDirectory()) {
+                return null;
+            }
+
+            const dir = await readdir(fileUrl, { withFileTypes: true });
+            const result = dir.map(entry => entry.name + (entry.isDirectory() ? "/" : ""));
+
+            return Response.json(result);
+        } catch (err) {
+            console.error("Failed to get directory index:", err);
+            return null;
+        }
+    }
+
+    private getFileUrlForRequest(request: GlobalRequest): URL | undefined {
         // mod://mod-id/path/to/file
         const modUrl = new URL(request.url);
         const mod = this.modLoader.getModById(modUrl.hostname);
@@ -58,10 +89,10 @@ export class ModProtocolHandler {
         // Check if the path escapes the bundle as per Electron example
         // NOTE: this means file names cannot start with ..
         const relative = path.relative(bundle, filePath);
-        if (relative === "" || relative.startsWith("..") || path.isAbsolute(relative)) {
+        if (relative.startsWith("..") || path.isAbsolute(relative)) {
             return undefined;
         }
 
-        return pathToFileURL(filePath).toString();
+        return pathToFileURL(filePath);
     }
 }
