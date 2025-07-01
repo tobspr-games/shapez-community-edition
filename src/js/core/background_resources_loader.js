@@ -115,13 +115,24 @@ export class BackgroundResourcesLoader {
 
         // SFX & Music
         for (let i = 0; i < sounds.length; ++i) {
-            promiseFunctions.push(progress =>
-                timeoutPromise(this.app.sound.loadSound(sounds[i]), LOADER_TIMEOUT_PER_RESOURCE).catch(
-                    err => {
+            const key = sounds[i];
+            if (typeof sounds[i] === "object" && !Array.isArray(sounds[i]) && sounds[i] !== null) {
+                for (const key of Object.values(sounds[i])) {
+                    promiseFunctions.push(progress =>
+                        timeoutPromise(this.app.sound.loadSound(key), LOADER_TIMEOUT_PER_RESOURCE).catch(
+                            err => {
+                                logger.warn("Failed to load sound, will not be available:", sounds[i], err);
+                            }
+                        )
+                    );
+                }
+            } else {
+                promiseFunctions.push(progress =>
+                    timeoutPromise(this.app.sound.loadSound(key), LOADER_TIMEOUT_PER_RESOURCE).catch(err => {
                         logger.warn("Failed to load sound, will not be available:", sounds[i], err);
-                    }
-                )
-            );
+                    })
+                );
+            }
         }
 
         const originalAmount = promiseFunctions.length;

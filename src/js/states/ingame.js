@@ -247,9 +247,15 @@ export class InGameState extends GameState {
                         this.creationPayload.gameModeId &&
                         this.creationPayload.gameModeId.includes("puzzle")
                     ) {
+<<<<<<< HEAD
                         this.app.sound.playThemeMusic({ type: "puzzle", shuffle: true });
                     } else {
                         this.app.sound.playThemeMusic({ type: "ingame", shuffle: true });
+=======
+                        this.app.sound.playThemeMusic({type: "puzzle", shuffle: true});
+                    } else {
+                        this.app.sound.playThemeMusic({type: "ingame", shuffle: true});
+>>>>>>> 7f99e593cdae8d039d994eb90ca9428c8af8a98a
                     }
 
                     this.loadingOverlay.loadingIndicator.innerText = "";
