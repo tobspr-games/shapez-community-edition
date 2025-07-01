@@ -1,3 +1,5 @@
+/// <reference lib="WebWorker" />
+
 // We clamp high deltas so 30 fps is fairly ok
 const bgFps = 30;
 const desiredMsDelay = 1000 / bgFps;
@@ -9,7 +11,6 @@ function tick() {
     const delta = now - lastTick;
     lastTick = now;
 
-    // @ts-ignore
     self.postMessage({ delta });
 }
 

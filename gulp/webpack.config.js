@@ -53,18 +53,6 @@ const moduleRules = [
             fullySpecified: false,
         },
     },
-    {
-        test: /\.worker\.[jt]s$/,
-        use: [
-            {
-                loader: "worker-loader",
-                options: {
-                    filename: "[fullhash].worker.js",
-                    inline: "fallback",
-                },
-            },
-        ],
-    },
 ];
 
 /** @type {import("webpack").Configuration} */
@@ -98,7 +86,4 @@ export default {
         }),
     ],
     module: { rules: moduleRules },
-    experiments: {
-        topLevelAwait: true,
-    },
 };

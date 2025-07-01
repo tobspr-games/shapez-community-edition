@@ -1,8 +1,5 @@
 import { Signal } from "./signal";
 
-// @ts-ignore
-import BackgroundAnimationFrameEmitterWorker from "../webworkers/background_animation_frame_emittter.worker";
-
 import { createLogger } from "./logging";
 const logger = createLogger("animation_frame");
 
@@ -21,7 +18,9 @@ export class AnimationFrame {
 
         this.boundMethod = this.handleAnimationFrame.bind(this);
 
-        this.backgroundWorker = new BackgroundAnimationFrameEmitterWorker();
+        this.backgroundWorker = new Worker(
+            new URL("../webworkers/background_animation_frame_emittter", import.meta.url)
+        );
         this.backgroundWorker.addEventListener("error", err => {
             logger.error("Error in background fps worker:", err);
         });

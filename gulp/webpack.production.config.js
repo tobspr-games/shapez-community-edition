@@ -62,18 +62,6 @@ const moduleRules = [
             fullySpecified: false,
         },
     },
-    {
-        test: /\.worker\.[jt]s$/,
-        use: [
-            {
-                loader: "worker-loader",
-                options: {
-                    filename: "[fullhash].worker.js",
-                    inline: "fallback",
-                },
-            },
-        ],
-    },
 ];
 
 /** @type {import("webpack").Configuration} */
@@ -94,35 +82,19 @@ export default {
         extensions: [".ts", ".js", ".tsx", ".jsx"],
     },
     stats: { optimizationBailout: true },
-    devtool: false,
     optimization: {
-        noEmitOnErrors: true,
         removeAvailableModules: true,
-        removeEmptyChunks: true,
-        mergeDuplicateChunks: true,
-        flagIncludedChunks: true,
-        providedExports: true,
-        usedExports: true,
-        concatenateModules: true,
-        sideEffects: true,
         minimizer: [
             new TerserPlugin({
                 parallel: true,
                 terserOptions: {
                     ecma: 2020,
-                    parse: {},
                     module: true,
-                    toplevel: true,
-                    keep_classnames: true,
                     keep_fnames: true,
                     compress: {
-                        arguments: false,
-                        drop_console: false,
                         global_defs: globalDefs,
-                        keep_fargs: true,
                         keep_infinity: true,
                         passes: 2,
-                        module: true,
                         pure_funcs: [
                             "Math.radians",
                             "Math.degrees",
@@ -141,23 +113,11 @@ export default {
                             "Math.pow",
                             "Math.atan2",
                         ],
-                        toplevel: true,
                         unsafe_math: true,
-                        unsafe_arrows: false,
                     },
-                    mangle: {
-                        eval: true,
-                        keep_classnames: true,
-                        keep_fnames: true,
-                        module: true,
-                        toplevel: true,
-                    },
-                    output: {
+                    format: {
                         comments: false,
                         ascii_only: true,
-                        beautify: false,
-                        braces: false,
-                        ecma: 2020,
                     },
                 },
             }),
@@ -175,8 +135,5 @@ export default {
     performance: {
         maxEntrypointSize: 5120000,
         maxAssetSize: 5120000,
-    },
-    experiments: {
-        topLevelAwait: true,
     },
 };
