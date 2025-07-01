@@ -1,6 +1,7 @@
 import { net, protocol } from "electron";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+import { lstat, readdir } from "node:fs";
 import { ModLoader } from "./loader.js";
 
 export const MOD_SCHEME = "mod";
@@ -32,12 +33,19 @@ export class ModProtocolHandler {
 
     private async handler(request: GlobalRequest): Promise<GlobalResponse> {
         try {
+            const url = new URL(request.url);
             const fileUrl = this.getFileUrlForRequest(request);
             if (fileUrl === undefined) {
                 return Response.error();
             }
-
-            return await net.fetch(fileUrl);
+            console.log(fileUrl)
+            if ((await lstat(fileUrl)).isDirectory()) {
+                const contents = await readdir(fileUrl, { withFileTypes: true })
+                return Response.json(contents.map(name => url.pathname + name))
+            }
+            else {
+                return await net.fetch(fileUrl);
+            }
         } catch (err) {
             console.error("Failed to fetch:", err);
             return Response.error();
