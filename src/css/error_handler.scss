@@ -1,0 +1,89 @@
+:root {
+    // Provide a fallback font-size for UI scale calculations before the app loads
+    // TODO: perhaps use this as the primary source of UI scale?
+    font-size: #{"round(clamp(1px, calc(min(100vw, 100vh) * 0.019), 100px), 0.01px)"};
+}
+
+#errorHandler {
+    --background-primary: hsl(0deg 40% 18%);
+    --background-container: hsl(0deg 40% 10%);
+    --foreground: hsl(0deg 100% 95%);
+
+    --background-button: rgba(255 255 255 / 0.05);
+    --background-button-hover: rgba(255 255 255 / 0.03);
+    --background-button-active: hsl(from var(--background-container) h s l / 0.4);
+    --background-button-success: hsl(130deg 40% 25%);
+
+    background: var(--background-primary);
+    color: var(--foreground);
+
+    font-size: 1.2rem;
+    line-height: 1.3;
+
+    display: grid;
+    padding: 3rem;
+    gap: 0.8rem;
+
+    grid-template-rows: auto 1fr 1fr auto;
+    grid-template-columns: auto minmax(20rem, 20%);
+
+    pre {
+        background: var(--background-container);
+        border-radius: 0.3rem;
+
+        font-size: 85%;
+        padding: 0.2rem 0.4rem;
+        overflow-y: auto;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+        pointer-events: all;
+    }
+
+    button {
+        background: var(--background-button);
+        border-radius: 0.3rem;
+        color: inherit;
+        transition: 0.15s ease-out background-color;
+
+        padding: 0.6rem 0.6rem 0.8rem;
+        min-width: 10rem;
+        width: 15%;
+        font-size: inherit;
+
+        &:hover {
+            background: var(--background-button-hover);
+        }
+
+        &:active {
+            background: var(--background-button-active);
+        }
+
+        &.success {
+            background: var(--background-button-success);
+        }
+    }
+
+    .header,
+    .actions {
+        grid-column: 1 / 3;
+    }
+
+    .stackTrace {
+        grid-row: 2 / 4;
+    }
+
+    .loadedMods,
+    .buildInformation {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        gap: 0.2rem;
+        overflow: auto;
+    }
+
+    .actions {
+        display: flex;
+        padding-top: 1rem;
+        gap: 1rem;
+        justify-content: end;
+    }
+}

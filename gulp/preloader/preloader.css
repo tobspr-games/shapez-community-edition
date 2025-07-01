@@ -26,7 +26,7 @@ html {
 body {
     color: #555;
     user-select: none;
-    background: inherit !important;
+    background: inherit;
     overflow-wrap: break-word;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;

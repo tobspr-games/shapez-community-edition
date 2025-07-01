@@ -1,5 +1,6 @@
 import { AnimationFrame } from "./core/animation_frame";
 import { BackgroundResourcesLoader } from "./core/background_resources_loader";
+import { ErrorHandler } from "./core/error_handler";
 import { GameState } from "./core/game_state";
 import { setGlobalApp } from "./core/globals";
 import { InputDistributor } from "./core/input_distributor";
@@ -40,6 +41,8 @@ export class Application {
      */
     async boot() {
         console.log("Booting ...");
+
+        this.errorHandler = new ErrorHandler();
 
         logger.log("Creating application, platform =", getPlatformName());
         setGlobalApp(this);
