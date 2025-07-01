@@ -1,7 +1,7 @@
 import { net, protocol } from "electron";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { lstat, readdir } from "node:fs";
+import { lstat, readdir } from "node:fs/promises";
 import { ModLoader } from "./loader.js";
 
 export const MOD_SCHEME = "mod";
@@ -38,10 +38,9 @@ export class ModProtocolHandler {
             if (fileUrl === undefined) {
                 return Response.error();
             }
-            console.log(fileUrl)
-            if ((await lstat(fileUrl)).isDirectory()) {
-                const contents = await readdir(fileUrl, { withFileTypes: true })
-                return Response.json(contents.map(name => url.pathname + name))
+            if ((await lstat(new URL(fileUrl))).isDirectory()) {
+                const contents = await readdir(new URL(fileUrl))
+                return Response.json(contents.map(name => path.join(url.pathname, name)))
             }
             else {
                 return await net.fetch(fileUrl);
