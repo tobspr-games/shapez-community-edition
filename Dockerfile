@@ -24,7 +24,6 @@ COPY sync-translations.js ./
 COPY translations ./translations
 COPY src/js ./src/js
 COPY res_raw ./res_raw
-COPY .git ./.git
 COPY electron ./electron
 
 WORKDIR /shapez.io/gulp
