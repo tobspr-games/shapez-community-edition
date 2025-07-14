@@ -307,15 +307,21 @@ export class StaticMapEntityComponent extends Component {
             return;
         }
 
+        const tileCenter = new Vector(globalConfig.halfTileSize, globalConfig.halfTileSize);
+        const rotatedTileCenter = tileCenter.rotateFastMultipleOf90(this.rotation);
+        const cornerX = worldX + tileCenter.x - rotatedTileCenter.x;
+        const cornerY = worldY + tileCenter.y - rotatedTileCenter.y;
+        const offset = size.rotateFastMultipleOf90(this.rotation);
+
         const transform = parameters.context.getTransform();
         const matrix = new DOMMatrix().rotate(0, 0, -this.rotation).multiplySelf(transform);
         let { x: x1, y: y1 } = matrix.transformPoint(
-            new DOMPoint(worldX - extrudePixels * size.x, worldY - extrudePixels * size.y)
+            new DOMPoint(cornerX - extrudePixels * offset.x, cornerY - extrudePixels * offset.y)
         );
         let { x: x2, y: y2 } = matrix.transformPoint(
             new DOMPoint(
-                worldX + globalConfig.tileSize * size.x + extrudePixels * size.x,
-                worldY + globalConfig.tileSize * size.y + extrudePixels * size.y
+                cornerX + globalConfig.tileSize * offset.x + extrudePixels * offset.x,
+                cornerY + globalConfig.tileSize * offset.y + extrudePixels * offset.y
             )
         );
         if (x1 > x2) {
