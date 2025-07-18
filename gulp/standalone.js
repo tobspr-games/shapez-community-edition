@@ -1,4 +1,4 @@
-import packager from "electron-packager";
+import { packager } from "@electron/packager";
 import fs from "fs/promises";
 import gulp from "gulp";
 import path from "path/posix";

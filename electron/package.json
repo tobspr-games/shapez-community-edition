@@ -15,7 +15,7 @@
     },
     "devDependencies": {
         "@types/semver": "^7.7.0",
-        "electron": "^31.3.0",
+        "electron": "^37.2.3",
         "typescript": "^5.8.2"
     }
 }
