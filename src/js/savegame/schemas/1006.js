@@ -1,5 +1,5 @@
 import { gMetaBuildingRegistry } from "../../core/global_registries";
-import { createLogger } from "../../core/logging.js";
+import { createLogger } from "../../core/logging";
 import { getCodeFromBuildingData } from "../../game/building_codes.js";
 import { enumBalancerVariants, MetaBalancerBuilding } from "../../game/buildings/balancer.js";
 import { MetaBeltBuilding } from "../../game/buildings/belt.js";

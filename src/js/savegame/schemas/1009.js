@@ -1,4 +1,4 @@
-import { createLogger } from "../../core/logging.js";
+import { createLogger } from "../../core/logging";
 import { RegularGameMode } from "../../game/modes/regular.js";
 import { SavegameInterface_V1008 } from "./1008.js";
 
