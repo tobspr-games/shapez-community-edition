@@ -23,7 +23,6 @@
     "dependencies": {
         "@msgpack/msgpack": "^3.1.2",
         "ajv": "^6.10.2",
-        "circular-json": "^0.5.9",
         "clipboard-copy": "^3.1.0",
         "debounce-promise": "^3.1.2",
         "howler": "^2.1.2"

@@ -1,5 +1,4 @@
 import { globalConfig } from "../core/config";
-import circularJson from "circular-json";
 
 /*
 Logging functions
@@ -35,80 +34,6 @@ export function createLogger(context) {
     return new Logger(context);
 }
 
-/**
- * Serializes an error
- * @param {Error|ErrorEvent} err
- */
-export function serializeError(err) {
-    if (!err) {
-        return null;
-    }
-    const result = {
-        type: err.constructor.name,
-    };
-
-    if (err instanceof Error) {
-        result.message = err.message;
-        result.name = err.name;
-        result.stack = err.stack;
-        result.type = "{type.Error}";
-    } else if (err instanceof ErrorEvent) {
-        result.filename = err.filename;
-        result.message = err.message;
-        result.lineno = err.lineno;
-        result.colno = err.colno;
-        result.type = "{type.ErrorEvent}";
-
-        if (err.error) {
-            result.error = serializeError(err.error);
-        } else {
-            result.error = "{not-provided}";
-        }
-    } else {
-        result.type = "{unkown-type:" + typeof err + "}";
-    }
-
-    return result;
-}
-
-/**
- * Serializes an event
- * @param {Event} event
- */
-function serializeEvent(event) {
-    let result = {
-        type: "{type.Event:" + typeof event + "}",
-    };
-    result.eventType = event.type;
-    return result;
-}
-
-/**
- * Prepares a json payload
- * @param {string} key
- * @param {any} value
- */
-function preparePayload(key, value) {
-    if (value instanceof Error || value instanceof ErrorEvent) {
-        return serializeError(value);
-    }
-    if (value instanceof Event) {
-        return serializeEvent(value);
-    }
-    if (typeof value === "undefined") {
-        return null;
-    }
-    return value;
-}
-
-/**
- * Stringifies an object containing circular references and errors
- * @param {any} payload
- */
-export function stringifyObjectContainingErrors(payload) {
-    return circularJson.stringify(payload, preparePayload);
-}
-
 export function globalDebug(context, ...args) {
     if (G_IS_DEV) {
         logInternal(context, console.log, prepareArgsForLogging(args));
@@ -134,31 +59,6 @@ function prepareArgsForLogging(args) {
         result.push(args[i]);
     }
     return result;
-}
-
-/**
- * @param {Array<any>} args
- */
-function internalBuildStringFromArgs(args) {
-    let result = [];
-
-    for (let i = 0; i < args.length; ++i) {
-        let arg = args[i];
-        if (
-            typeof arg === "string" ||
-            typeof arg === "number" ||
-            typeof arg === "boolean" ||
-            arg === null ||
-            arg === undefined
-        ) {
-            result.push("" + arg);
-        } else if (arg instanceof Error) {
-            result.push(arg.message);
-        } else {
-            result.push("[object]");
-        }
-    }
-    return result.join(" ");
 }
 
 export function logSection(name, color) {
