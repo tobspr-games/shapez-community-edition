@@ -10,8 +10,6 @@ import gulpPostcss from "gulp-postcss";
 import gulpRename from "gulp-rename";
 import postcssAssets from "postcss-assets";
 import postcssCriticalSplit from "postcss-critical-split";
-import postcssPresetEnv from "postcss-preset-env";
-import postcssRoundSubpixels from "postcss-round-subpixels";
 
 // The assets plugin copies the files
 const postcssAssetsPlugin = postcssAssets({
@@ -24,12 +22,6 @@ const postcssAssetsPlugin = postcssAssets({
 const postcssPlugins = prod => {
     const plugins = [postcssAssetsPlugin];
     if (prod) {
-        plugins.unshift(
-            postcssPresetEnv({
-                browsers: ["> 0.1%"],
-            })
-        );
-
         plugins.push(
             cssMqpacker({
                 sort: true,
@@ -45,8 +37,7 @@ const postcssPlugins = prod => {
                         zindex: true,
                     },
                 ],
-            }),
-            postcssRoundSubpixels()
+            })
         );
     }
     return plugins;

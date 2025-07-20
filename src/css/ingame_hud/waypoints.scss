@@ -17,7 +17,8 @@
     .desc {
         @include SuperSmallText;
         color: #babcbf;
-        .keybinding {
+
+        kbd {
             position: relative;
         }
 

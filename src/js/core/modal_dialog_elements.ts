@@ -208,7 +208,6 @@ export class Dialog<T extends string = never, U extends unknown[] = []> {
                     // if (this.app.settings.getShowKeyboardShortcuts()) {
                     // Show keybinding
                     const spacer = document.createElement("kbd");
-                    spacer.classList.add("keybinding");
                     spacer.innerHTML = getStringForKeyCode(isEnter ? kbEnter : kbCancel);
                     button.appendChild(spacer);
                     // }

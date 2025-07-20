@@ -65,7 +65,8 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        .keybinding {
+
+        kbd {
             position: relative;
             margin-left: 0.5rem;
         }
@@ -113,10 +114,11 @@
         grid-row: 1 / 2;
         @include SuperSmallText;
         text-align: right;
-        .keybinding {
+        font-weight: bold !important;
+
+        .kbd {
             position: relative;
         }
-        font-weight: bold !important;
 
         @include DarkThemeOverride {
             color: rgba(#fff, 0.5);

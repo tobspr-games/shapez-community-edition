@@ -165,6 +165,8 @@
                 font-weight: bold;
             }
 
+            // FIXME: Translations are still using code.keybinding instead of kbd
+            kbd,
             .keybinding {
                 position: relative;
                 background: #eee;

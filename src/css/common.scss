@@ -78,7 +78,7 @@ button {
     border-radius: 0.8 * $globalBorderRadius;
     transition: opacity 0.12s ease-in-out;
 
-    .keybinding {
+    kbd {
         bottom: -0.25rem;
         right: -0.2rem;
     }
@@ -459,6 +459,8 @@ input.rangeInput {
     }
 }
 
+// FIXME: Translations are still using code.keybinding instead of kbd
+kbd,
 .keybinding {
     background: #fff;
     text-transform: uppercase;
@@ -486,11 +488,6 @@ input.rangeInput {
     height: 1.2rem;
     overflow: hidden;
     border: 0rem solid $accentColorDark;
-    .keybinding_space {
-        font-size: 1.7rem;
-        line-height: 1.1rem;
-        margin-top: -1.2rem;
-    }
 }
 
 iframe {

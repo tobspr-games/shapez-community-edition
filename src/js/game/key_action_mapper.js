@@ -387,7 +387,6 @@ export class Keybinding {
             return null;
         }
         const spacer = document.createElement("kbd");
-        spacer.classList.add("keybinding");
         spacer.innerHTML = getStringForKeyCode(this.keyCode);
         elem.appendChild(spacer);
         return spacer;
