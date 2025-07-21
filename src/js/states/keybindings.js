@@ -1,6 +1,7 @@
+import { getStringForKeyCode } from "@/core/keycodes";
 import { Dialog } from "../core/modal_dialog_elements";
 import { TextualGameState } from "../core/textual_game_state";
-import { getStringForKeyCode, KEYMAPPINGS } from "../game/key_action_mapper";
+import { KEYMAPPINGS } from "../game/key_action_mapper";
 import { SOUNDS } from "../platform/sound";
 import { T } from "../translations";
 

@@ -1,11 +1,11 @@
 import type { Application } from "../application";
 
-import { getStringForKeyCode } from "../game/key_action_mapper";
 import { SOUNDS } from "../platform/sound";
 import { T } from "../translations";
 import { ClickDetector, ClickDetectorConstructorArgs } from "./click_detector";
 import { globalConfig } from "./config";
 import { InputReceiver, KeydownEvent } from "./input_receiver";
+import { getStringForKeyCode } from "./keycodes";
 import { createLogger } from "./logging";
 import { FormElement } from "./modal_dialog_forms";
 import { Signal, STOP_PROPAGATION } from "./signal";
