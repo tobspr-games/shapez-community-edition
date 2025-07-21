@@ -123,6 +123,13 @@ export class HUDSettingsMenu extends BaseHUDPart {
         this.update();
     }
 
+    cleanup() {
+        super.cleanup();
+
+        // Detach the input receiver when leaving InGameState
+        this.root.app.inputMgr.makeSureDetached(this.inputReceiver);
+    }
+
     update() {
         this.domAttach.update(this.visible);
     }
