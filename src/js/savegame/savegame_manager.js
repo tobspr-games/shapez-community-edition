@@ -1,11 +1,13 @@
+/* typehints:start */
+import { Application } from "@/application";
+/* typehints:end */
+
+import { globalConfig } from "../core/config";
 import { ExplainedResult } from "../core/explained_result";
 import { createLogger } from "../core/logging";
 import { ReadWriteProxy } from "../core/read_write_proxy";
-import { globalConfig } from "../core/config";
 import { Savegame } from "./savegame";
 const logger = createLogger("savegame_manager");
-
-const Rusha = require("rusha");
 
 /**
  * @typedef {import("./savegame_typedefs").SavegamesData} SavegamesData
@@ -19,8 +21,11 @@ export const enumLocalSavegameStatus = {
 };
 
 export class SavegameManager extends ReadWriteProxy {
-    constructor(app) {
-        super(app, "savegames.bin");
+    constructor(app, storage) {
+        super(storage, "savegames.bin");
+
+        /** @type {Application} */
+        this.app = app;
 
         this.currentData = this.getDefaultData();
     }
@@ -217,9 +222,7 @@ export class SavegameManager extends ReadWriteProxy {
      * Helper method to generate a new internal savegame id
      */
     generateInternalId() {
-        return Rusha.createHash()
-            .update(Date.now() + "/" + Math.random())
-            .digest("hex");
+        return self.crypto.randomUUID();
     }
 
     // End

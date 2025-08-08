@@ -16,9 +16,9 @@
 
     .prefab_GameHint {
         position: absolute;
-        @include S(bottom, 40px);
-        @include S(left, 20px);
-        @include S(right, 20px);
+        bottom: 4rem;
+        left: 2rem;
+        right: 2rem;
         @include PlainText;
         text-align: center;
 

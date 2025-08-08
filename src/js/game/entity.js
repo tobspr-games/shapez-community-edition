@@ -7,7 +7,6 @@ import { GameRoot } from "./root";
 import { globalConfig } from "../core/config";
 import { enumDirectionToVector, enumDirectionToAngle } from "../core/vector";
 import { BasicSerializableObject, types } from "../savegame/serialization";
-import { EntityComponentStorage } from "./entity_components";
 import { Loader } from "../core/loader";
 import { drawRotatedSprite } from "../core/draw_utils";
 import { gComponentRegistry } from "../core/global_registries";
@@ -27,8 +26,9 @@ export class Entity extends BasicSerializableObject {
 
         /**
          * The components of the entity
+         * @type {import("./entity_components").EntityComponentStorage}
          */
-        this.components = new EntityComponentStorage();
+        this.components = {};
 
         /**
          * Whether this entity was registered on the @see EntityManager so far
@@ -99,7 +99,7 @@ export class Entity extends BasicSerializableObject {
         });
 
         for (const key in this.components) {
-            /** @type {Component} */ (this.components[key]).copyAdditionalStateTo(clone.components[key]);
+            this.components[key].copyAdditionalStateTo(clone.components[key]);
         }
 
         return clone;

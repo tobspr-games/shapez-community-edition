@@ -1,19 +1,3 @@
-steamPage:
-    shortText: shapez.ioは無限のマップ内で様々な"形"を資源とし、段々と複雑になっていく形の作成や合成の自動化を目指して工場を構築するゲームです。
-    discordLinkShort: 公式Discord
-    intro: >-
-        工場の自動化ゲームはお好きですか？　それならここに来て正解です！
-
-        shapez.ioは、様々な幾何学形状の自動生産工場を建設する、リラックスして遊べるゲームです。レベルが上がるにつれ生産すべき形はどんどん複雑になり、無限に広がるマップに工場を拡張していくことになります。
-
-        しかし、それだけでは不十分です。指数関数的に増大していく形状の要求量に対応する必要があり――「スケーリング」が、唯一の対抗策と成り得ます。また、最初は形状を加工するだけですが、後々着色も必要になってきます。色を抽出して混ぜ合わせましょう！
-
-        Steamでゲームを購入するとフルバージョンで遊べますが、まずshapez.ioでデモをプレイし、その後で決めることもできます！
-    what_others_say: shapez.ioプレイヤーの反応：
-    nothernlion_comment: これはすごいゲーム。プレイ体験が最高な上に時間の溶け方が尋常でない。
-    notch_comment: いややばいって。マジで寝なきゃなんだけど、今ならshapez.ioで計算機組めそうな気がする。
-    steam_review_comment: このゲームは私の生活を奪い去っていったが、返して欲しいとは思わない。
-        いくらでも気の向くままに生産ラインを効率化させてくれる、そんなとても穏やかな工場ゲームだ。
 global:
     loading: ロード中
     error: エラー
@@ -47,55 +31,19 @@ global:
         space: SPACE
     loggingIn: Logging in
     loadingResources: 追加リソースのダウンロード（<percentage>％）
-    discount: -<percentage>%
-    discountSummerSale: SPECIAL PROMOTION! Offer ends 7 July
-demoBanners:
-    title: デモ版
-    intro: |-
-        ゲーム本編を<strong>今すぐ</strong>ゲットしてアンロックしよう。<ul>
-            <li>全26レベル＋無限のフリープレイ</li>
-            <li>22の新棟</li>
-            <li>Mod対応</li>
-            <li>実績</li>
-            <li>ダークモード</li>
-            <li>...などなど、盛りだくさんです</li>
-        </ul>
-    playtimeDisclaimer: フルバージョンには、<strong>20時間以上のコンテンツ</strong>が含まれています。
-    playerCount: <playerCount> あなたと同じようなプレイヤーがSteamでshapezをプレイしています。
-    untilEndOfDemo: デモ終了まで
-    playtimeDisclaimerDownload: フルバージョンでセーブゲームを続けることができます！
-        セーブゲームをダウンロードするには、<strong>こちら</strong>をクリックしてください。
-    titleV2: 今すぐフルバージョンをプレイしてください。
 mainMenu:
     play: プレイ
     continue: 続きから
     newGame: 新規ゲーム
-    changelog: 更新履歴
-    subreddit: Reddit
     importSavegame: インポート
-    openSourceHint: このゲームはオープンソースです
-    discordLink: 公式Discordサーバー
     helpTranslate: 翻訳にご協力ください！
-    madeBy: <author-link>によって作られました
-    browserWarning: このゲームはお使いのブラウザでは速度が落ちることがあります。スタンドアローン版を入手するか、Chromeでプレイすることで解決できます。
     savegameLevel: レベル <x>
     savegameLevelUnknown: 不明なレベル
     savegameUnnamed: 無名のデータ
-    puzzleMode: Puzzle Mode
-    back: Back
-    puzzleDlcText: Do you enjoy compacting and optimizing factories? Get the Puzzle
-        DLC now on Steam for even more fun!
-    puzzleDlcWishlist: Wishlist now!
-    puzzleDlcViewNow: View Dlc
     mods:
-        title: Active Mods
         warningPuzzleDLC: Playing the Puzzle DLC is not possible with mods. Please
             disable all mods to play the DLC.
-    playingFullVersion: You are now playing the full version!
-    logout: Logout
     noActiveSavegames: No active savegames found - Click play to start a new game!
-    playFullVersionV2: Bough shapez on Steam? Play the full version in your Browser!
-    playFullVersionStandalone: You can now also play the full version in your Browser!
 dialogs:
     buttons:
         ok: OK
@@ -104,7 +52,6 @@ dialogs:
         later: 後で
         restart: 再起動
         reset: リセット
-        getStandalone: スタンドアローン版を入手
         deleteGame: 何が起きるか理解しています
         viewUpdate: アップデートを見る
         showUpgrades: アップグレード表示
@@ -140,12 +87,6 @@ dialogs:
     keybindingsResetOk:
         title: キー設定のリセット
         desc: キー設定を初期値に設定しました！
-    featureRestriction:
-        title: デモ版
-        desc: アクセスした要素 (<feature>) はデモ版では利用できません。スタンドアローン版の入手をご検討ください！
-    oneSavegameLimit:
-        title: セーブデータ制限
-        desc: デモ版ではひとつのセーブデータのみ保持できます。既存のデータを削除するか、スタンドアローン版の入手をご検討ください！
     updateSummary:
         title: 新アップデート！
         desc: "前回からの変更点:"
@@ -179,8 +120,6 @@ dialogs:
         title: 信号を設定
         descItems: "プリセットを選択:"
         descShortKey: もしくは形を表す<strong>短いキー</strong>を入力してください。 (<link>ここ</link>から生成できます)
-    markerDemoLimit:
-        desc: デモ版ではマーカー設置は2つまでに制限されています。スタンドアローン版は無制限です！
     exportScreenshotWarning:
         title: スクリーンショット出力
         desc: スクリーンショット出力を実行します。この処理は工場の全体像があまりに大きいと、 ゲームが遅くなったりクラッシュしてしまう可能性があります！
@@ -266,28 +205,9 @@ dialogs:
         newMods: Newly installed Mods
     resourceLoadFailed:
         title: Resources failed to load
-        demoLinkText: shapez demo on Steam
-        descWeb: "One ore more resources could not be loaded. Make sure you have a
-            stable internet connection and try again. If this still doesn't
-            work, make sure to also disable any browser extensions (including
-            adblockers).<br><br> As an alternative, you can also play the
-            <demoOnSteamLinkText>. <br><br> Error Message:"
         descSteamDemo: "One ore more resources could not be loaded. Try restarting the
             game - If that does not help, try reinstalling and verifying the
             game files via Steam. <br><br> Error Message:"
-    steamSsoError:
-        title: Full Version Logout
-        desc: You have been logged out from the Full Browser Version since either your
-            network connection is unstable or you are playing on another
-            device.<br><br> Please make sure you don't have shapez open in any
-            other browser tab or another computer with the same Steam
-            account.<br><br> You can login again in the main menu.
-    steamSsoNoOwnership:
-        title: Full Edition not owned
-        desc: In order to play the Full Edition in your Browser, you need to own both
-            the base game and the Puzzle DLC on your Steam account.<br><br>
-            Please make sure you own both, signed in with the correct Steam
-            account and then try again.
 ingame:
     keybindingsOverlay:
         moveMap: マップ移動
@@ -416,40 +336,6 @@ ingame:
         one_miner: 1個の抽出機
         n_miners: <amount>個の抽出機
         limited_items: <max_throughput>に制限
-    watermark:
-        title: デモバージョン
-        desc: Steamバージョンの特典を確認するには、ここをクリックしてください！
-        get_on_steam: steamで購入
-    standaloneAdvantages:
-        no_thanks: いいえ、結構です
-        points:
-            levels:
-                title: 新しい12個のレベル
-                desc: 全部で26個のレベルになります！
-            buildings:
-                title: 新しい18個の設置物
-                desc: あなたの工場を完全自動化しましょう！
-            markers:
-                title: 無限個のマップマーカー
-                desc: これでもうあなたの工場を見失いません！
-            wires:
-                title: ワイヤ
-                desc: 新次元の体験を得られます！
-            darkmode:
-                title: ダークモード
-                desc: 目に優しい！
-            support:
-                title: 製作者をサポート
-                desc: 余暇に制作しています！
-            achievements:
-                title: アチーブメント
-                desc: 取り尽くせ！
-            mods:
-                title: Modding support!
-                desc: Over 80 mods available!
-        titleV2: "Get the full version now on Steam to unlock:"
-        titleExpiredV2: Demo completed!
-        titleEnjoyingDemo: Enjoy the demo?
     puzzleEditorSettings:
         zoneTitle: Zone
         zoneWidth: Width
@@ -551,7 +437,7 @@ buildings:
         quad:
             name: 切断機 (四分割)
             description: 形を四分割します。<strong>ひとつの出力しか使わない場合、他の出力を破棄しないと詰まって停止してしまうことに注意してください！</strong>
-    rotater:
+    rotator:
         default:
             name: 回転機
             description: 形を時計回りに90度回転します。
@@ -655,7 +541,7 @@ buildings:
         default:
             name: 仮想切断機
             description: 形状の信号を2つに切断できます。
-        rotater:
+        rotator:
             name: 仮想回転機
             description: 形状の信号を時計回りに回転させます。
         unstacker:
@@ -689,7 +575,7 @@ storyRewards:
         desc:
             <strong>切断機</strong>が利用可能になりました。これは入力された形を、<strong>向きを考慮せず上下の直線で</strong>半分に切断します！　<br><br>利用しない側の出力に注意しましょう、破棄しなければ<strong>詰まって停止してしまいます。</strong>
             - このために<strong>ゴミ箱</strong>も用意しました。入力アイテムをすべて破棄できます！
-    reward_rotater:
+    reward_rotator:
         title: 回転
         desc: <strong>回転機</strong>が利用可能になりました！　形を時計回り方向に90度回転させます。
     reward_painter:
@@ -709,7 +595,7 @@ storyRewards:
     reward_tunnel:
         title: トンネル
         desc: <strong>トンネル</strong>が利用可能になりました。他のベルトや建造物の地下を通してベルトが配置可能です！
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: 反時計回りの回転
         desc: <strong>回転機</strong>のバリエーションが利用可能になりました。反時計回りの回転ができるようになります！　回転機を選択し、<strong>'T'キーを押すことで方向の切り替えができます。</strong>
     reward_miner_chainable:
@@ -747,7 +633,7 @@ storyRewards:
         title: ブループリント
         desc: 工場の建造物の<strong>コピー＆ペースト</strong>が利用可能になりました！
             範囲選択(CTRLキーを押したままマウスドラッグ)した状態で、'C'キーを押すことでコピーができます。<br><br>ただしペーストは<strong>タダではありません。</strong><strong>ブループリントの形</strong>を生産する必要があります！(たった今納品した形です)
-    reward_rotater_180:
+    reward_rotator_180:
         title: 回転（180°）
         desc: <strong>回転機</strong>のバリエーションが利用可能になりました！　180°の回転ができるようになります！（サプライズ！ :D）
     reward_wires_painter_and_levers:
@@ -983,7 +869,7 @@ keybindings:
         underground_belt: トンネル
         miner: 抽出機
         cutter: 切断機
-        rotater: 回転機
+        rotator: 回転機
         stacker: 積層機
         mixer: 混色機
         painter: 着色機
@@ -1044,12 +930,6 @@ about:
 changelog:
     title: 更新履歴
 demo:
-    features:
-        restoringGames: セーブデータのリストア
-        importingGames: セーブデータのインポート
-        oneGameLimit: セーブデータの1個制限
-        customizeKeybindings: キー設定のカスタマイズ
-        exportingBase: 工場の全体像の画像出力
     settingNotAvailable: デモ版では利用できません。
 tips:
     - ハブは現在指定されている形状だけではなく、あらゆる種類の入力を受け付けることができます。
@@ -1199,16 +1079,7 @@ mods:
     version: Version
     modWebsite: Website
     openFolder: Open Mods Folder
-    folderOnlyStandalone: Opening the mod folder is only possible when running the standalone.
     browseMods: Browse Mods
     modsInfo: To install and manage mods, copy them to the mods folder within the
         game directory. You can also use the 'Open Mods Folder' button on the
         top right.
-    noModSupport: You need the standalone version on Steam to install mods.
-    togglingComingSoon:
-        title: Coming Soon
-        description: Enabling or disabling mods is currently only possible by copying
-            the mod file from or to the mods/ folder. However, being able to
-            toggle them here is planned for a future update!
-    browserNoSupport: Due to browser restrictions it is currently only possible to
-        install mods in the Steam version - Sorry!

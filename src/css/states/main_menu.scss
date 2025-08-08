@@ -2,7 +2,7 @@
     display: grid;
     align-items: center;
     justify-content: center;
-    grid-template-rows: D(95px) 1fr D(100px);
+    grid-template-rows: 9.5rem 1fr 10rem;
     grid-template-columns: 1fr;
 
     // background: #aaacb4 center center / cover !important;
@@ -10,26 +10,25 @@
 
     .topButtons {
         position: absolute;
-        @include S(top, 25px);
-        @include S(right, 25px);
+        top: 2.5rem;
+        right: 2.5rem;
         display: flex;
         flex-direction: row;
         z-index: 20;
-        @include S(gap, 9px);
+        gap: 0.9rem;
 
         .settingsButton,
         .exitAppButton,
         .languageChoose {
-            @include S(width, 35px);
-            @include S(height, 35px);
+            width: 3.5rem;
+            height: 3.5rem;
             pointer-events: all;
             border-radius: 50%;
-            box-shadow: 0 D(2px) D(3px) rgba(#000, 0.1);
+            box-shadow: 0 0.2rem 0.3rem rgba(#000, 0.1);
             background: rgba(#fff, 1) uiResource("icons/main_menu_settings.png") center center / 70% no-repeat;
 
             cursor: pointer;
             transition: opacity 0.12s ease-in-out;
-            @include IncreasedClickArea(2px);
             opacity: 0.85;
             &:hover {
                 opacity: 1;
@@ -76,7 +75,7 @@
         opacity: 0;
         display: none;
         transform: translate(50%, 50%);
-        filter: blur(D(10px));
+        filter: blur(1rem);
 
         $opacity: 0.4;
         &.loaded {
@@ -95,12 +94,12 @@
     }
 
     .mainWrapper {
-        @include S(margin-top, 15px);
+        margin-top: 1.5rem;
         align-items: start;
         justify-items: center;
         align-self: center;
         justify-self: center;
-        @include S(grid-column-gap, 20px);
+        grid-column-gap: 2rem;
         display: grid;
 
         position: relative;
@@ -111,7 +110,7 @@
             grid-template-columns: 1fr;
         }
         &[data-columns="2"] {
-            grid-template-columns: D(290px) 1fr;
+            grid-template-columns: 29rem 1fr;
         }
     }
 
@@ -123,44 +122,14 @@
         z-index: 20;
 
         flex-direction: column;
-        @include S(padding-top, 0px);
+        padding-top: 0rem;
 
         img {
-            @include S(width, 710px / 3);
-            @include S(height, 180px / 3);
+            width: 710px / 3;
+            height: 180px / 3;
         }
         position: relative;
-        @include S(left, -8px);
-
-        .updateLabel {
-            position: absolute;
-            transform: translateX(50%) rotate(-5deg);
-            color: #fff;
-            @include PlainText;
-            font-weight: bold;
-            @include S(right, 40px);
-            @include S(bottom, 20px);
-            background: $modsColor;
-            @include S(border-radius, $globalBorderRadius);
-            @include S(padding, 0, 5px, 1px, 5px);
-
-            @include InlineAnimation(1.3s ease-in-out infinite) {
-                50% {
-                    transform: translateX(50%) rotate(-7deg) scale(1.1);
-                }
-            }
-        }
-    }
-
-    .betaWarning {
-        @include S(width, 400px);
-        @include PlainText;
-        background: $colorRedBright;
-        @include S(padding, 10px);
-        @include S(border-radius, $globalBorderRadius);
-        color: #fff;
-        @include S(margin-top, 10px);
-        border: #{D(2px)} solid rgba(0, 10, 20, 0.1);
+        left: -0.8rem;
     }
 
     .sideContainer {
@@ -168,297 +137,7 @@
         width: 100%;
         grid-column: 2 / 3;
         flex-direction: column;
-        @include S(grid-gap, 20px);
-
-        .mainNews {
-            background: linear-gradient(220deg, rgb(74, 93, 201), rgb(93, 255, 150));
-            &::before {
-                background: uiResource("shapez2.png") center center / 100% no-repeat;
-                content: "";
-                @include S(width, 100px);
-                @include S(height, 100px);
-                position: absolute;
-                top: 55%;
-                right: 8%;
-                pointer-events: none;
-                transform: translateY(-50%);
-                transition: transform 0.5s ease-in-out;
-            }
-
-            // .close {
-            //     position: absolute;
-            //     pointer-events: all;
-            //     background: uiResource("icons/main_menu_exit.png") center center / 50% no-repeat;
-            //     display: inline-flex;
-            //     @include S(width, 15px);
-            //     @include S(height, 15px);
-            //     @include S(top, 2px);
-            //     opacity: 0.3;
-            //     @include S(right, 2px);
-            //     z-index: 200;
-            //     transition: opacity 0.12s ease-in-out;
-            //     &:hover {
-            //         opacity: 0.7;
-            //     }
-            // }
-
-            &:hover::before {
-                transform: translate(0, -51%);
-            }
-
-            box-shadow: 0 D(9px) D(15px) rgba(#000, 0.2);
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            @include S(height, 60px);
-
-            pointer-events: all;
-            flex-grow: 1;
-            z-index: 100;
-            position: relative;
-            grid-row: 2 / 3;
-            @include S(border-radius, $globalBorderRadius);
-            justify-content: center;
-            @include S(padding, 10px);
-            @include S(padding-right, 100px);
-            box-sizing: border-box;
-            transition: opacity 0.12s ease-in-out;
-            cursor: pointer;
-            &:hover {
-                opacity: 0.85;
-            }
-
-            .text {
-                @include SuperSmallText;
-                @include S(width, 100px);
-                color: rgba(#000, 1);
-            }
-        }
-
-        .standaloneBanner {
-            background: transparent;
-            @include S(border-radius, $globalBorderRadius);
-            @include S(min-width, 320px);
-            @include S(max-width, 370px);
-            width: 100%;
-            box-sizing: border-box;
-            grid-row: 1 / 3;
-
-            display: flex;
-            flex-direction: column;
-            margin: 0;
-
-            strong {
-                font-weight: 700 !important;
-            }
-
-            .onlinePlayerCount {
-                color: #333;
-                display: none;
-                @include S(margin-top, 15px);
-                @include SuperSmallText;
-                @include S(height, 15px);
-                text-align: center;
-            }
-
-            h3 {
-                @include Heading;
-                font-weight: bold;
-                @include S(margin-bottom, 20px);
-                text-align: center;
-                color: #222;
-                text-shadow: 0 D(1px) D(5px) rgba(#fff, 0.7);
-            }
-
-            p {
-                @include Text;
-                color: #333;
-            }
-
-            ul {
-                @include S(margin-top, 5px);
-                @include S(padding-left, 20px);
-                li {
-                    @include Text;
-                    color: #fff;
-                }
-            }
-
-            .playtimeDisclaimer {
-                color: #333;
-                @include S(margin-top, 15px);
-                @include SuperSmallText;
-                text-align: center;
-            }
-
-            .steamLink {
-                align-self: center;
-                justify-self: center;
-                width: 100%;
-                @include S(height, 40px * 1.2);
-                @include S(width, 180px * 1.2);
-                background: #171a23 center center / contain no-repeat;
-                // overflow: hidden;
-                display: block;
-                cursor: pointer;
-                @include S(margin-top, 15px);
-                pointer-events: all;
-                transition: all 0.12s ease-in;
-                transition-property: opacity, transform;
-                position: relative;
-                @include S(border-radius, $globalBorderRadius);
-                color: transparent;
-
-                box-shadow: 0 D(3px) D(7px) rgba(#000, 0.3);
-                &:hover {
-                    opacity: 0.9;
-                }
-
-                @include InlineAnimation(1s ease-in-out infinite) {
-                    50% {
-                        transform: scale(1.02, 1.03);
-                    }
-                }
-
-                > .discount {
-                    position: absolute;
-                    @include S(top, -7px);
-                    @include S(right, -5px);
-                    background: #4c6b22;
-                    color: #c5ea3f;
-                    @include S(border-radius, $globalBorderRadius);
-                    @include S(padding, 1px, 3px, 1px, 4px);
-                    @include PlainText;
-                    text-transform: uppercase;
-                    transform: rotate(5deg);
-                }
-            }
-            .specialOffer {
-                color: #000000;
-                @include PlainText;
-                align-self: center;
-                text-align: center;
-                @include S(margin-top, 5px);
-                @include InlineAnimation(1s ease-in-out infinite) {
-                    50% {
-                        transform: scale(1.02, 1.03) translateY(2%);
-                    }
-                }
-            }
-
-            .points {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                width: 100%;
-                @include S(grid-gap, 5px);
-            }
-
-            .point {
-                display: grid;
-                grid-template-columns: #{D(27px)} auto;
-                grid-template-rows: 1fr 1fr;
-                background: #fff #{D(10px)} center / #{D(17px)} no-repeat;
-                @include S(grid-row-gap, 2px);
-                align-items: center;
-                @include S(padding, 6px);
-                @include S(border-radius, $globalBorderRadius);
-                @include S(height, 26px);
-                box-shadow: 0 D(5px) D(10px) rgba(#000, 0.2);
-
-                > strong {
-                    grid-column: 2 / 3;
-                    grid-row: 1 / 2;
-                    @include PlainText;
-                    @include S(font-size, 12px);
-                    line-height: 0.8em;
-                    white-space: nowrap;
-                    text-transform: uppercase;
-                    font-weight: bold;
-                    align-self: end;
-                }
-
-                > p {
-                    grid-column: 2 / 3;
-                    grid-row: 2 / 3;
-                    @include SuperSmallText;
-                    @include S(font-size, 8px);
-                    line-height: 1em;
-                    align-self: center;
-
-                    opacity: 0.8;
-                }
-
-                &.levels {
-                    background-image: uiResource("res/ui/icons/advantage_new_levels.png");
-                    > strong {
-                        color: #f13555;
-                    }
-                }
-
-                &.upgrades {
-                    background-image: uiResource("res/ui/icons/advantage_upgrades.png");
-                    > strong {
-                        color: #8a00ff;
-                    }
-                }
-
-                &.buildings {
-                    background-image: uiResource("res/ui/icons/advantage_buildings.png");
-                    > strong {
-                        color: #3fce8b;
-                    }
-                }
-
-                &.wires {
-                    background-image: uiResource("res/ui/icons/advantage_wires.png");
-                    > strong {
-                        color: #ef2fdb;
-                    }
-                }
-
-                &.markers {
-                    background-image: uiResource("res/ui/icons/advantage_markers.png");
-                    > strong {
-                        color: #4294ff;
-                    }
-                }
-
-                &.mods {
-                    background-image: uiResource("res/ui/icons/advantage_mods.png");
-                    > strong {
-                        color: #8a00ff;
-                    }
-                }
-
-                &.savegames {
-                    background-image: uiResource("res/ui/icons/advantage_savegames.png");
-                    > strong {
-                        color: #ff9500;
-                    }
-                }
-
-                &.darkmode {
-                    background-image: uiResource("res/ui/icons/advantage_dark_mode.png");
-                    > strong {
-                        color: #292c32;
-                    }
-                }
-
-                &.support {
-                    background-image: uiResource("res/ui/icons/advantage_support.png");
-                    > strong {
-                        color: #e72d2d;
-                    }
-                }
-
-                &.achievements {
-                    background-image: uiResource("res/ui/icons/advantage_achievements.png");
-                    > strong {
-                        color: #ffac0f;
-                    }
-                }
-            }
-        }
+        grid-gap: 2rem;
 
         .puzzleContainer {
             display: flex;
@@ -470,118 +149,38 @@
             width: 100%;
             box-sizing: border-box;
             position: relative;
-            @include S(border-radius, $globalBorderRadius);
-            box-shadow: 0 D(5px) D(10px) rgba(#000, 0.4);
-            border: D(1px) solid rgba(#000, 0.1);
+            border-radius: $globalBorderRadius;
+            box-shadow: 0 0.5rem 1rem rgba(#000, 0.4);
+            border: 0.1rem solid rgba(#000, 0.1);
             overflow: hidden;
 
-            > .badge {
-                color: #fff;
-                text-transform: uppercase;
-                font-weight: bold;
-                position: absolute;
-                @include S(top, 10px);
-                @include S(right, 10px);
-
-                transform: translateX(50%) rotate(10deg);
-                @include Heading;
-                font-weight: bold;
-
-                @include InlineAnimation(1.3s ease-in-out infinite) {
-                    50% {
-                        transform: translateX(50%) rotate(12deg) scale(1.1);
-                    }
-                }
-            }
-
-            > .hint {
-                @include SuperDuperSmallText;
-                @include S(margin-top, 10px);
-                @include S(width, 200px);
-            }
-
-            > .dlcLogo {
-                @include S(width, 120px);
-            }
-
             > button {
-                @include S(margin-top, 20px);
+                margin-top: 2rem;
                 @include Heading;
-                @include S(padding, 10px, 30px);
+                padding: 1rem 3rem;
                 background-color: #333;
                 color: #fff;
             }
 
             &.owned {
-                @include S(height, 118px);
-                @include S(width, 250px);
-                background: uiResource("puzzle_460x215_15.png") center D(-5px) / cover repeat;
-                .dlcLogo {
-                    display: none;
-                }
+                height: 11.8rem;
+                width: 25rem;
+                background: uiResource("puzzle_460x215_15.png") center -0.5rem / cover repeat;
 
                 > button {
                     pointer-events: all;
-                    @include S(padding, 4px, 10px);
+                    padding: 0.4rem 1rem;
                     margin: 0;
                     background: #47c599;
                     box-sizing: border-box;
                     position: absolute;
-                    @include S(top, 10px);
-                    @include S(right, 10px);
+                    top: 1rem;
+                    right: 1rem;
                     z-index: 100;
                     @include PlainText;
                     z-index: 200;
                     color: #111215;
-                    box-shadow: 0 D(2px) D(9px) rgba(#000, 0.4);
-                }
-            }
-
-            &.notOwned {
-                @include S(height, 200px);
-                @include S(width, 250px);
-                border: 0;
-                background: uiResource("puzzle_460x215_15.png") center D(-5px) / 100% repeat;
-                .dlcLogo {
-                    display: none;
-                }
-                &::before {
-                    content: "";
-                    position: absolute;
-                    top: 0;
-                    right: 0;
-                    bottom: 0;
-                    left: 0;
-                    background: linear-gradient(180deg, rgba(#222529, 0.1) 40%, rgba(#222529, 1) 70%);
-                }
-
-                p {
-                    position: absolute;
-                    left: 0;
-                    right: 0;
-                    @include S(bottom, 35px);
-                    z-index: 50;
-                    box-sizing: border-box;
-                    display: block;
-                    @include PlainText;
-                    color: rgba(#fff, 0.9);
-                    @include S(padding, 10px);
-                    @include SuperSmallText;
-                }
-                > button {
-                    pointer-events: all;
-                    @include S(padding, 4px, 10px);
-                    margin: 0;
-                    background: #47c599;
-                    box-sizing: border-box;
-                    position: absolute;
-                    @include S(bottom, 10px);
-                    @include S(right, 10px);
-                    z-index: 100;
-                    @include PlainText;
-                    z-index: 200;
-                    color: #111215;
-                    box-shadow: 0 D(2px) D(4px) rgba(#000, 1);
+                    box-shadow: 0 0.2rem 0.9rem rgba(#000, 0.4);
                 }
             }
         }
@@ -596,11 +195,11 @@
             position: relative;
             text-align: left;
             align-items: flex-start;
-            @include S(width, 250px);
-            @include S(padding, 15px);
-            @include S(padding-bottom, 10px);
-            @include S(border-radius, $globalBorderRadius);
-            box-shadow: 0 D(5px) D(15px) rgba(#000, 0.2);
+            width: 25rem;
+            padding: 1.5rem;
+            padding-bottom: 1rem;
+            border-radius: $globalBorderRadius;
+            box-shadow: 0 0.5rem 1.5rem rgba(#000, 0.2);
 
             .header {
                 display: flex;
@@ -608,12 +207,12 @@
                 align-items: center;
                 text-transform: uppercase;
 
-                @include S(margin-bottom, 10px);
+                margin-bottom: 1rem;
 
                 .editMods {
                     margin-left: auto;
-                    @include S(width, 20px);
-                    @include S(height, 20px);
+                    width: 2rem;
+                    height: 2rem;
                     padding: 0;
                     opacity: 0.5;
                     background: transparent center center/ 80% no-repeat;
@@ -635,7 +234,7 @@
 
             .dlcHint {
                 @include SuperSmallText;
-                @include S(margin-top, 10px);
+                margin-top: 1rem;
                 width: 100%;
 
                 display: grid;
@@ -647,11 +246,11 @@
             .mod {
                 background: #eee;
                 width: 100%;
-                @include S(border-radius, $globalBorderRadius);
-                @include S(padding, 5px);
+                border-radius: $globalBorderRadius;
+                padding: 0.5rem;
                 box-sizing: border-box;
                 @include PlainText;
-                @include S(margin-bottom, 5px);
+                margin-bottom: 0.5rem;
                 display: flex;
                 flex-direction: column;
 
@@ -668,14 +267,14 @@
 
             .modsList {
                 box-sizing: border-box;
-                @include S(height, 100px);
-                @include S(padding, 5px);
-                border: D(1px) solid #eee;
+                height: 10rem;
+                padding: 0.5rem;
+                border: 0.1rem solid #eee;
                 overflow-y: scroll;
                 width: 100%;
                 display: flex;
                 flex-direction: column;
-                @include S(border-radius, $globalBorderRadius);
+                border-radius: $globalBorderRadius;
                 pointer-events: all;
 
                 :last-child {
@@ -691,15 +290,15 @@
         justify-content: center;
         flex-direction: column;
         background: rgba(#fff, 0.9);
-        @include S(border-radius, $globalBorderRadius);
+        border-radius: $globalBorderRadius;
         height: 100%;
-        box-shadow: 0 D(9px) D(15px) rgba(#000, 0.2);
+        box-shadow: 0 0.9rem 1.5rem rgba(#000, 0.2);
         width: 100%;
         position: relative;
         align-self: center;
         justify-self: center;
         grid-column: 1 / 2;
-        @include S(max-width, 400px);
+        max-width: 40rem;
         overflow: hidden;
         box-sizing: border-box;
 
@@ -716,8 +315,8 @@
             width: 100%;
             background: rgba(0, 20, 40, 0.05);
 
-            @include S(padding, 10px);
-            @include S(grid-gap, 10px);
+            padding: 1rem;
+            grid-gap: 1rem;
             max-width: 100%;
             box-sizing: border-box;
 
@@ -725,14 +324,14 @@
             .continueButton {
                 @include SuperHeading;
                 width: 100%;
-                @include S(padding, 15px, 10px);
-                letter-spacing: 0.1em !important;
-                @include IncreasedClickArea(0px);
+                padding: 1.5rem 1rem;
+                letter-spacing: 0.1em;
                 box-sizing: border-box;
                 font-weight: bold;
-                color: #fff;
                 background-color: $colorGreenBright;
-                transition: transform 0.12s ease-in-out, background-color 0.12s ease-in-out;
+                transition:
+                    transform 0.12s ease-in-out,
+                    background-color 0.12s ease-in-out;
 
                 grid-column: 1 / 2;
                 min-width: auto;
@@ -758,109 +357,19 @@
                 grid-row: 1 / 1;
                 min-width: auto;
 
-                @include S(grid-gap, 5px);
+                grid-gap: 0.5rem;
                 width: 100%;
 
                 > button {
-                    @include S(padding, 3px, 6px);
+                    padding: 0.3rem 0.6rem;
                     width: 100%;
                     white-space: nowrap;
                     margin: 0 !important;
                     box-sizing: border-box;
                 }
 
-                .importButton {
-                    @include IncreasedClickArea(0px);
-                }
-
-                .newGameButton {
-                    @include IncreasedClickArea(0px);
-                }
-
                 .modsButton {
-                    @include IncreasedClickArea(0px);
                     background-color: $modsColor !important;
-                }
-            }
-        }
-
-        .modeButtons {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            @include S(grid-column-gap, 10px);
-            align-items: start;
-            height: 100%;
-            width: 100%;
-        }
-
-        .steamSso {
-            cursor: default;
-            pointer-events: all;
-            display: inline-flex;
-            @include S(padding, 10px);
-            color: #000;
-            flex-direction: column;
-            line-height: 1em;
-            @include S(gap, 3px);
-            position: relative;
-            background: rgba(0, 20, 40, 0.05);
-            width: 100%;
-            box-sizing: border-box;
-            margin-top: auto;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            align-items: center;
-
-            .description {
-                @include SuperSmallText;
-                color: rgba(0, 10, 20, 0.5);
-                @include DarkThemeOverride {
-                    color: rgba(#fff, 0.7);
-                }
-            }
-            // &:hover {
-            //     .tooltip {
-            //         opacity: 1;
-            //     }
-            // }
-
-            a.ssoSignIn {
-                background: #171a23 uiResource("steam_signin.png") center center / contain no-repeat;
-                width: 100%;
-                box-sizing: border-box;
-
-                @include S(height, 19px);
-                @include S(width, 110px);
-
-                display: inline-flex;
-                @include S(border-radius, $globalBorderRadius * 0.5);
-                transition: opacity 0.12s ease-in-out;
-                overflow: hidden;
-                text-indent: -999em;
-                &:hover {
-                    opacity: 0.9;
-                }
-
-                box-shadow: 0 D(1.5px) D(4px) rgba(#000, 0.21);
-            }
-
-            a.ssoSignOut {
-                width: 100%;
-                background: $colorRedBright;
-                color: #fff !important;
-                display: flex;
-                align-items: center;
-                box-sizing: border-box;
-                justify-content: center;
-                @include SuperSmallText;
-                text-transform: uppercase;
-
-                @include S(border-radius, $globalBorderRadius * 0.5);
-
-                box-shadow: 0 D(1.5px) D(4px) rgba(#000, 0.21);
-                @include S(padding, 2px, 9px);
-                &:hover {
-                    opacity: 0.95;
                 }
             }
         }
@@ -870,9 +379,9 @@
             display: flex;
             flex-grow: 1;
             flex-direction: column;
-            @include S(padding, 10px);
+            padding: 1rem;
             box-sizing: border-box;
-            @include S(min-height, 150px);
+            min-height: 15rem;
 
             .savegamesNone {
                 align-items: center;
@@ -881,7 +390,7 @@
                 @include PlainText;
                 flex-grow: 1;
                 text-align: center;
-                @include S(padding, 0, 20px);
+                padding: 0 2rem;
                 opacity: 0.5;
 
                 @include DarkThemeOverride {
@@ -893,22 +402,22 @@
                 overflow-y: auto;
                 width: 100%;
                 pointer-events: all;
-                @include S(padding-right, 5px);
-                margin-right: D(-5px);
-                @include S(max-height, 150px);
+                padding-right: 0.5rem;
+                margin-right: -0.5rem;
+                max-height: 15rem;
                 display: grid;
                 grid-auto-flow: row;
-                @include S(grid-gap, 5px);
+                grid-gap: 0.5rem;
 
                 .savegame {
                     background: #eee;
-                    @include S(border-radius, $globalBorderRadius);
-                    @include S(padding, 5px);
+                    border-radius: $globalBorderRadius;
+                    padding: 0.5rem;
                     display: grid;
                     grid-template-columns: 1fr 1fr auto auto;
                     grid-template-rows: auto auto;
-                    @include S(grid-column-gap, 4px);
-                    @include S(grid-row-gap, 1px);
+                    grid-column-gap: 0.4rem;
+                    grid-row-gap: 0.1rem;
 
                     .playtime {
                         grid-column: 2 / 3;
@@ -933,7 +442,7 @@
 
                         > span {
                             display: inline-flex;
-                            @include S(max-width, 140px);
+                            max-width: 14rem;
                             overflow: hidden;
                         }
                     }
@@ -945,7 +454,6 @@
                         padding: 0;
                         align-self: center;
                         justify-self: center;
-                        @include IncreasedClickArea(0px);
                         background: #44484a center center / 40% no-repeat;
                     }
 
@@ -964,9 +472,8 @@
                         & {
                             background-image: uiResource("icons/download.png");
                         }
-                        @include S(width, 15px);
-                        @include IncreasedClickArea(0px);
-                        @include S(height, 15px);
+                        width: 1.5rem;
+                        height: 1.5rem;
                         background-size: 80%;
                         align-self: start;
                         border-radius: 0;
@@ -983,13 +490,12 @@
                         grid-column: 3 / 4;
                         grid-row: 2 / 3;
                         background-color: transparent;
-                        @include IncreasedClickArea(0px);
 
                         & {
                             background-image: uiResource("icons/delete.png");
                         }
-                        @include S(width, 15px);
-                        @include S(height, 15px);
+                        width: 1.5rem;
+                        height: 1.5rem;
                         align-self: end;
                         background-size: 80%;
                         border-radius: 0;
@@ -1004,19 +510,18 @@
 
                     button.renameGame {
                         background-color: transparent;
-                        @include IncreasedClickArea(2px);
 
                         & {
                             background-image: uiResource("icons/edit_key.png");
                         }
-                        @include S(width, 10px);
-                        @include S(height, 10px);
+                        width: 1rem;
+                        height: 1rem;
                         align-self: center;
                         justify-self: center;
                         border-radius: 0;
                         background-size: 90%;
                         opacity: 0.4;
-                        @include S(margin-left, 4px);
+                        margin-left: 0.4rem;
 
                         &:hover {
                             opacity: 0.5;
@@ -1029,9 +534,9 @@
                         grid-column: 4 / 5;
                         grid-row: 1 / 3;
                         margin: 0;
-                        @include S(width, 32px);
+                        width: 3.2rem;
                         height: 100%;
-                        @include S(margin-left, 4px);
+                        margin-left: 0.4rem;
 
                         @include DarkThemeOverride {
                             background-color: lighten($darkModeControlsBackground, 10);
@@ -1042,35 +547,14 @@
         }
     }
 
-    .bottomContainer {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: row;
-        @include S(padding-top, 10px);
-        height: 100%;
-        width: 100%;
-        box-sizing: border-box;
-
-        .buttons {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            @include S(grid-column-gap, 10px);
-            align-items: start;
-            height: 100%;
-            width: 100%;
-            box-sizing: border-box;
-        }
-    }
-
     .socialLinks {
         position: fixed;
         z-index: 100;
         display: flex;
         flex-direction: row;
-        @include S(gap, 9px);
-        @include S(top, 25px);
-        @include S(left, 25px);
+        gap: 0.9rem;
+        top: 2.5rem;
+        left: 2.5rem;
 
         @media (max-aspect-ratio: 1460/1000) {
             position: unset;
@@ -1088,8 +572,8 @@
             align-items: center;
             position: relative;
             cursor: pointer;
-            @include S(gap, 3px);
-            @include S(width, 35px);
+            gap: 0.3rem;
+            width: 3.5rem;
 
             .label {
                 @include SuperSmallText;
@@ -1111,11 +595,11 @@
 
             .thirdpartyLogo {
                 display: inline-flex;
-                @include S(width, 35px);
-                @include S(height, 35px);
+                width: 3.5rem;
+                height: 3.5rem;
                 background: rgba(#fff, 0.9) center center / contain no-repeat;
                 border-radius: 50%;
-                box-shadow: 0 D(2px) D(3px) rgba(#000, 0.1);
+                box-shadow: 0 0.2rem 0.3rem rgba(#000, 0.1);
 
                 transition: background-color 0.12s ease-in-out;
 
@@ -1135,21 +619,11 @@
                     background-image: uiResource("main_menu/reddit.svg");
                     background-size: 65%;
                 }
-                &.twitterLogo {
-                    background-image: uiResource("main_menu/twitter.svg");
-                    background-size: 60%;
-                    background-position: 60% 58%;
-                }
 
                 &.patreonLogo {
                     background-image: uiResource("main_menu/patreon.svg");
                     background-size: 60%;
                     background-position: 60% 60%;
-                }
-
-                &.steamLogo {
-                    background-image: uiResource("main_menu/steam.svg");
-                    background-size: 105%;
                 }
             }
         }
@@ -1164,46 +638,13 @@
         z-index: 20;
         width: 100%;
         box-sizing: border-box;
-        @include S(gap, 30px);
-        @include S(padding, 15px, 25px, 15px, 20px);
-
-        &.wegameDisclaimer {
-            @include SuperSmallText;
-            display: grid;
-            justify-content: center;
-            text-align: center;
-
-            > .disclaimer {
-                grid-column: 2 / 3;
-
-                @include DarkThemeOverride {
-                    color: #fff;
-                }
-            }
-
-            > .rating {
-                grid-column: 3 / 4;
-                justify-self: end;
-                align-self: end;
-
-                @include S(width, 32px);
-                @include S(height, 40px);
-                background: green;
-                cursor: pointer !important;
-                pointer-events: all;
-                @include S(border-radius, 4px);
-                overflow: hidden;
-
-                & {
-                    background: #fff uiResource("wegame_isbn_rating.jpg") center center / contain no-repeat;
-                }
-            }
-        }
+        gap: 3rem;
+        padding: 1.5rem 2.5rem 1.5rem 2rem;
 
         .author {
             margin-left: auto;
             display: flex;
-            @include S(width, 110px);
+            width: 11rem;
             justify-content: flex-end;
 
             a {
@@ -1217,8 +658,7 @@
 
                 img {
                     transition: opacity 0.12s ease-in-out;
-                    @include S(width, 82px * 0.8);
-                    @include S(height, 25px * 0.8);
+                    width: 6rem;
                     filter: invert(100%);
                     opacity: 0.75;
                 }
@@ -1230,10 +670,10 @@
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            @include S(gap, 15px);
+            gap: 1.5rem;
             > a {
                 @include SuperSmallText;
-                @include S(padding, 2px);
+                padding: 0.2rem;
                 font-weight: bold;
                 color: #000;
                 opacity: 0.6;

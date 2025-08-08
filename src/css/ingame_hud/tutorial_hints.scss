@@ -1,10 +1,10 @@
 #ingame_HUD_TutorialHints {
     position: absolute;
-    @include S(left, 10px);
-    @include S(bottom, 10px);
+    left: 1rem;
+    bottom: 1rem;
 
     @include StyleBelowWidth(1430px) {
-        @include S(bottom, 50px);
+        bottom: 5rem;
     }
 
     display: flex;
@@ -16,11 +16,11 @@
 
     transition-property: background-color, transform, bottom, left;
 
-    @include S(padding, 5px);
+    padding: 0.5rem;
     video {
         transition: all 0.2s ease-in-out;
         transition-property: opacity, width;
-        @include S(width, 0px);
+        width: 0rem;
         opacity: 0;
         z-index: 10;
         position: relative;
@@ -30,9 +30,9 @@
         color: #333438;
         display: grid;
         align-items: center;
-        @include S(grid-gap, 2px);
+        grid-gap: 0.2rem;
         grid-template-columns: 1fr;
-        @include S(margin-bottom, 3px);
+        margin-bottom: 0.3rem;
         z-index: 11;
         position: relative;
 
@@ -44,10 +44,10 @@
             justify-content: flex-start;
             align-items: center;
             &::before {
-                @include S(margin-right, 4px);
+                margin-right: 0.4rem;
                 content: " ";
-                @include S(width, 12px);
-                @include S(height, 12px);
+                width: 1.2rem;
+                height: 1.2rem;
                 display: inline-block;
                 & {
                     /* @load-async */
@@ -58,7 +58,6 @@
 
         button.toggleHint {
             @include PlainText;
-            @include IncreasedClickArea(0px);
         }
     }
 
@@ -101,12 +100,12 @@
             @include InlineAnimation(0.2s ease-in-out) {
                 0% {
                     opacity: 0;
-                    @include S(width, 0px);
+                    width: 0rem;
                 }
             }
 
             opacity: 1;
-            @include S(width, 500px);
+            width: 50rem;
         }
         button.toggleHint {
             .hide {

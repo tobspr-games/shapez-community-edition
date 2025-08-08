@@ -1,6 +1,7 @@
+import { getStringForKeyCode } from "@/core/keycodes";
 import { Dialog } from "../core/modal_dialog_elements";
 import { TextualGameState } from "../core/textual_game_state";
-import { getStringForKeyCode, KEYMAPPINGS } from "../game/key_action_mapper";
+import { KEYMAPPINGS } from "../game/key_action_mapper";
 import { SOUNDS } from "../platform/sound";
 import { T } from "../translations";
 
@@ -93,7 +94,7 @@ export class KeybindingsState extends TextualGameState {
             type: "info",
         });
 
-        dialog.inputReciever.keydown.add(({ keyCode, shift, alt, event }) => {
+        dialog.inputReceiver.keydown.add(({ keyCode, shift, alt, event }) => {
             if (keyCode === 27) {
                 this.dialogs.closeDialog(dialog);
                 return;
@@ -103,7 +104,11 @@ export class KeybindingsState extends TextualGameState {
                 event.preventDefault();
             }
 
-            if (event.target && event.target.tagName === "BUTTON" && keyCode === 1) {
+            if (
+                event.target &&
+                /** @type {HTMLElement} */ (event.target).tagName === "BUTTON" &&
+                keyCode === 1
+            ) {
                 return;
             }
 
@@ -121,7 +126,7 @@ export class KeybindingsState extends TextualGameState {
             this.updateKeybindings();
         });
 
-        dialog.inputReciever.backButton.add(() => {});
+        dialog.inputReceiver.backButton.add(() => {});
         this.dialogs.internalShowDialog(dialog);
 
         this.app.sound.playUiSound(SOUNDS.dialogOk);

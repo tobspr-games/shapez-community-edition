@@ -1,24 +1,23 @@
-import { BaseHUDPart } from "../base_hud_part";
-import { clamp, makeDiv, smoothPulse } from "../../../core/utils";
-import { GameRoot } from "../../root";
-import { MinerComponent } from "../../components/miner";
-import { DynamicDomAttach } from "../dynamic_dom_attach";
-import { TrackedState } from "../../../core/tracked_state";
-import { cachebust } from "../../../core/cachebust";
-import { T } from "../../../translations";
-import { enumItemProcessorTypes, ItemProcessorComponent } from "../../components/item_processor";
-import { ShapeItem } from "../../items/shape_item";
-import { WireComponent } from "../../components/wire";
-import { LeverComponent } from "../../components/lever";
-import { DrawParameters } from "../../../core/draw_parameters";
 import { globalConfig } from "../../../core/config";
-import { Vector } from "../../../core/vector";
-import { MetaMinerBuilding } from "../../buildings/miner";
+import { DrawParameters } from "../../../core/draw_parameters";
 import { gMetaBuildingRegistry } from "../../../core/global_registries";
-import { MetaBeltBuilding } from "../../buildings/belt";
-import { MetaTrashBuilding } from "../../buildings/trash";
+import { TrackedState } from "../../../core/tracked_state";
+import { clamp, makeDiv, smoothPulse } from "../../../core/utils";
+import { Vector } from "../../../core/vector";
 import { SOUNDS } from "../../../platform/sound";
+import { T } from "../../../translations";
+import { MetaBeltBuilding } from "../../buildings/belt";
+import { MetaMinerBuilding } from "../../buildings/miner";
+import { MetaTrashBuilding } from "../../buildings/trash";
+import { enumItemProcessorTypes, ItemProcessorComponent } from "../../components/item_processor";
+import { LeverComponent } from "../../components/lever";
+import { MinerComponent } from "../../components/miner";
+import { WireComponent } from "../../components/wire";
+import { ShapeItem } from "../../items/shape_item";
+import { GameRoot } from "../../root";
 import { THEME } from "../../theme";
+import { BaseHUDPart } from "../base_hud_part";
+import { DynamicDomAttach } from "../dynamic_dom_attach";
 
 // @todo: Make dictionary
 const tutorialsByLevel = [
@@ -188,12 +187,9 @@ export class HUDInteractiveTutorial extends BaseHUDPart {
     onHintChanged(hintId) {
         this.elementDescription.innerHTML = T.ingame.interactiveTutorial.hints[hintId];
         document.documentElement.setAttribute("data-tutorial-step", hintId);
-        const folder = G_WEGAME_VERSION
-            ? "interactive_tutorial.cn.noinline"
-            : "interactive_tutorial.noinline";
 
         this.elementGif.style.backgroundImage =
-            "url('" + cachebust("res/ui/" + folder + "/" + hintId + ".gif") + "')";
+            "url('res/ui/interactive_tutorial.noinline/" + hintId + ".gif')";
         this.element.classList.toggle("animEven");
         this.element.classList.toggle("animOdd");
         if (hintId) {
@@ -261,7 +257,8 @@ export class HUDInteractiveTutorial extends BaseHUDPart {
                     parameters.context.fillStyle = "rgba(74, 237, 134, " + (0.5 - animation * 0.2) + ")";
                     parameters.context.strokeStyle = "rgb(74, 237, 134)";
                     parameters.context.lineWidth = 2;
-                    parameters.context.beginRoundedRect(
+                    parameters.context.beginPath();
+                    parameters.context.roundRect(
                         closest.x * globalConfig.tileSize - 2 * animation,
                         closest.y * globalConfig.tileSize - 2 * animation,
                         globalConfig.tileSize + 4 * animation,
@@ -427,7 +424,8 @@ export class HUDInteractiveTutorial extends BaseHUDPart {
                     parameters.context.fillStyle = "rgba(74, 237, 134, " + (0.5 - animation * 0.2) + ")";
                     parameters.context.strokeStyle = "rgb(74, 237, 134)";
                     parameters.context.lineWidth = 2;
-                    parameters.context.beginRoundedRect(
+                    parameters.context.beginPath();
+                    parameters.context.roundRect(
                         slot.x - 2 * animation,
                         slot.y - 2 * animation,
                         globalConfig.tileSize + 4 * animation,

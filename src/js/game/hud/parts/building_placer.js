@@ -1,3 +1,4 @@
+import { makeOffscreenBuffer } from "../../../core/buffer_utils";
 import { ClickDetector } from "../../../core/click_detector";
 import { globalConfig } from "../../../core/config";
 import { DrawParameters } from "../../../core/draw_parameters";
@@ -5,21 +6,20 @@ import { drawRotatedSprite } from "../../../core/draw_utils";
 import { Loader } from "../../../core/loader";
 import { clamp, makeDiv, removeAllChildren } from "../../../core/utils";
 import {
+    Vector,
+    enumDirection,
     enumDirectionToAngle,
     enumDirectionToVector,
     enumInvertedDirections,
-    Vector,
-    enumDirection,
 } from "../../../core/vector";
 import { T } from "../../../translations";
+import { getCodeFromBuildingData } from "../../building_codes";
 import { KEYMAPPINGS } from "../../key_action_mapper";
 import { defaultBuildingVariant } from "../../meta_building";
+import { layers } from "../../root";
 import { THEME } from "../../theme";
 import { DynamicDomAttach } from "../dynamic_dom_attach";
 import { HUDBuildingPlacerLogic } from "./building_placer_logic";
-import { makeOffscreenBuffer } from "../../../core/buffer_utils";
-import { layers } from "../../root";
-import { getCodeFromBuildingData } from "../../building_codes";
 
 export class HUDBuildingPlacer extends HUDBuildingPlacerLogic {
     /**
@@ -130,7 +130,7 @@ export class HUDBuildingPlacer extends HUDBuildingPlacerLogic {
             const binding = this.root.keyMapper.getBinding(rawBinding);
             this.buildingInfoElements.hotkey.innerHTML = T.ingame.buildingPlacement.hotkeyLabel.replace(
                 "<key>",
-                "<code class='keybinding'>" + binding.getKeyCodeString() + "</code>"
+                "<kbd>" + binding.getKeyCodeString() + "</kbd>"
             );
         } else {
             this.buildingInfoElements.hotkey.innerHTML = "";
@@ -197,11 +197,11 @@ export class HUDBuildingPlacer extends HUDBuildingPlacerLogic {
             ["explanation"],
             T.ingame.buildingPlacement.cycleBuildingVariants.replace(
                 "<key>",
-                "<code class='keybinding'>" +
+                "<kbd>" +
                     this.root.keyMapper
                         .getBinding(KEYMAPPINGS.placement.cycleBuildingVariants)
                         .getKeyCodeString() +
-                    "</code>"
+                    "</kbd>"
             )
         );
 
@@ -303,17 +303,14 @@ export class HUDBuildingPlacer extends HUDBuildingPlacerLogic {
         const mouseTile = worldPos.toTileSpace();
 
         // Compute best rotation variant
-        const {
-            rotation,
-            rotationVariant,
-            connectedEntities,
-        } = metaBuilding.computeOptimalDirectionAndRotationVariantAtTile({
-            root: this.root,
-            tile: mouseTile,
-            rotation: this.currentBaseRotation,
-            variant: this.currentVariant.get(),
-            layer: metaBuilding.getLayer(),
-        });
+        const { rotation, rotationVariant, connectedEntities } =
+            metaBuilding.computeOptimalDirectionAndRotationVariantAtTile({
+                root: this.root,
+                tile: mouseTile,
+                rotation: this.currentBaseRotation,
+                variant: this.currentVariant.get(),
+                layer: metaBuilding.getLayer(),
+            });
 
         // Check if there are connected entities
         if (connectedEntities) {
@@ -374,7 +371,8 @@ export class HUDBuildingPlacer extends HUDBuildingPlacerLogic {
             parameters.context.fillStyle = "rgba(255, 0, 0, 0.2)";
         }
 
-        parameters.context.beginRoundedRect(
+        parameters.context.beginPath();
+        parameters.context.roundRect(
             entityBounds.x * globalConfig.tileSize - drawBorder,
             entityBounds.y * globalConfig.tileSize - drawBorder,
             entityBounds.w * globalConfig.tileSize + 2 * drawBorder,

@@ -36,11 +36,6 @@ export class MetaHubBuilding extends MetaBuilding {
         return null;
     }
 
-    getSprite() {
-        // We render it ourself
-        return null;
-    }
-
     getIsRemovable() {
         return false;
     }

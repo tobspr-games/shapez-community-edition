@@ -1,6 +1,6 @@
 import { makeOffscreenBuffer } from "../../../core/buffer_utils";
 import { globalConfig } from "../../../core/config";
-import { clamp, formatBigNumber, round2Digits } from "../../../core/utils";
+import { clamp, formatBigNumber } from "../../../core/utils";
 import { T } from "../../../translations";
 import { enumAnalyticsDataSource } from "../../production_analytics";
 import { GameRoot } from "../../root";
@@ -92,9 +92,7 @@ export class HUDShapeStatisticsHandle {
 
         switch (dataSource) {
             case enumAnalyticsDataSource.stored: {
-                this.counter.innerText = formatBigNumber(
-                    this.root.hubGoals.storedShapes[this.definition.getHash()] || 0
-                );
+                this.counter.innerText = formatBigNumber(this.root.hubGoals.getShapesStored(this.definition));
                 break;
             }
             case enumAnalyticsDataSource.delivered:

@@ -1,8 +1,5 @@
 import { Signal } from "./signal";
 
-// @ts-ignore
-import BackgroundAnimationFrameEmitterWorker from "../webworkers/background_animation_frame_emittter.worker";
-
 import { createLogger } from "./logging";
 const logger = createLogger("animation_frame");
 
@@ -11,7 +8,9 @@ const resetDtMs = 16;
 
 export class AnimationFrame {
     constructor() {
+        /** @type {Signal<[number]>} */
         this.frameEmitted = new Signal();
+        /** @type {Signal<[number]>} */
         this.bgFrameEmitted = new Signal();
 
         this.lastTime = performance.now();
@@ -19,7 +18,9 @@ export class AnimationFrame {
 
         this.boundMethod = this.handleAnimationFrame.bind(this);
 
-        this.backgroundWorker = new BackgroundAnimationFrameEmitterWorker();
+        this.backgroundWorker = new Worker(
+            new URL("../webworkers/background_animation_frame_emittter", import.meta.url)
+        );
         this.backgroundWorker.addEventListener("error", err => {
             logger.error("Error in background fps worker:", err);
         });
@@ -40,7 +41,6 @@ export class AnimationFrame {
     }
 
     start() {
-        assertAlways(window.requestAnimationFrame, "requestAnimationFrame is not supported!");
         this.handleAnimationFrame();
     }
 
@@ -51,11 +51,7 @@ export class AnimationFrame {
             dt = resetDtMs;
         }
 
-        try {
-            this.frameEmitted.dispatch(dt);
-        } catch (ex) {
-            console.error(ex);
-        }
+        this.frameEmitted.dispatch(dt);
         this.lastTime = time;
         window.requestAnimationFrame(this.boundMethod);
     }

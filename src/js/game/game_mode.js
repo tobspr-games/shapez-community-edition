@@ -2,12 +2,12 @@
 import { GameRoot } from "./root";
 /* typehints:end */
 
-import { Rectangle } from "../core/rectangle";
 import { gGameModeRegistry } from "../core/global_registries";
-import { types, BasicSerializableObject } from "../savegame/serialization";
-import { MetaBuilding } from "./meta_building";
+import { Rectangle } from "../core/rectangle";
+import { BasicSerializableObject } from "../savegame/serialization";
 import { MetaItemProducerBuilding } from "./buildings/item_producer";
 import { BaseHUDPart } from "./hud/base_hud_part";
+import { MetaBuilding } from "./meta_building";
 
 /** @enum {string} */
 export const enumGameModeIds = {
@@ -110,11 +110,6 @@ export class GameMode extends BasicSerializableObject {
     /** @returns {boolean} */
     hasResources() {
         return true;
-    }
-
-    /** @returns {boolean} */
-    hasAchievements() {
-        return false;
     }
 
     /** @returns {number} */

@@ -8,8 +8,8 @@ import { GameRoot } from "../root";
 import { ShapeDefinition } from "../shape_definition";
 import { HUDBetaOverlay } from "./parts/beta_overlay";
 import { HUDBlueprintPlacer } from "./parts/blueprint_placer";
-import { HUDBuildingsToolbar } from "./parts/buildings_toolbar";
 import { HUDBuildingPlacer } from "./parts/building_placer";
+import { HUDBuildingsToolbar } from "./parts/buildings_toolbar";
 import { HUDColorBlindHelper } from "./parts/color_blind_helper";
 import { HUDChangesDebugger } from "./parts/debug_changes";
 import { HUDDebugInfo } from "./parts/debug_info";
@@ -19,7 +19,6 @@ import { enumNotificationType } from "./parts/notifications";
 import { HUDSettingsMenu } from "./parts/settings_menu";
 import { HUDShapeTooltip } from "./parts/shape_tooltip";
 import { HUDVignetteOverlay } from "./parts/vignette_overlay";
-import { TrailerMaker } from "./trailer_maker";
 
 export class GameHUD {
     /**
@@ -34,17 +33,18 @@ export class GameHUD {
      */
     initialize() {
         this.signals = {
-            buildingSelectedForPlacement: /** @type {TypedSignal<[MetaBuilding|null]>} */ (new Signal()),
-            selectedPlacementBuildingChanged: /** @type {TypedSignal<[MetaBuilding|null]>} */ (new Signal()),
-            shapePinRequested: /** @type {TypedSignal<[ShapeDefinition]>} */ (new Signal()),
-            shapeUnpinRequested: /** @type {TypedSignal<[string]>} */ (new Signal()),
-            notification: /** @type {TypedSignal<[string, enumNotificationType]>} */ (new Signal()),
-            buildingsSelectedForCopy: /** @type {TypedSignal<[Array<number>]>} */ (new Signal()),
-            pasteBlueprintRequested: /** @type {TypedSignal<[]>} */ (new Signal()),
-            viewShapeDetailsRequested: /** @type {TypedSignal<[ShapeDefinition]>} */ (new Signal()),
-            unlockNotificationFinished: /** @type {TypedSignal<[]>} */ (new Signal()),
+            buildingSelectedForPlacement: /** @type {Signal<[MetaBuilding|null]>} */ (new Signal()),
+            selectedPlacementBuildingChanged: /** @type {Signal<[MetaBuilding|null]>} */ (new Signal()),
+            shapePinRequested: /** @type {Signal<[ShapeDefinition]>} */ (new Signal()),
+            shapeUnpinRequested: /** @type {Signal<[string]>} */ (new Signal()),
+            notification: /** @type {Signal<[string, enumNotificationType]>} */ (new Signal()),
+            buildingsSelectedForCopy: /** @type {Signal<[Array<number>]>} */ (new Signal()),
+            pasteBlueprintRequested: /** @type {Signal<[]>} */ (new Signal()),
+            viewShapeDetailsRequested: /** @type {Signal<[ShapeDefinition]>} */ (new Signal()),
+            unlockNotificationFinished: /** @type {Signal<[]>} */ (new Signal()),
         };
 
+        /** @type {import("./hud_parts").HudParts} */
         this.parts = {
             buildingsToolbar: new HUDBuildingsToolbar(this.root),
 
@@ -106,12 +106,6 @@ export class GameHUD {
         }
 
         this.root.keyMapper.getBinding(KEYMAPPINGS.ingame.toggleHud).add(this.toggleUi, this);
-
-        /* dev:start */
-        if (G_IS_DEV && globalConfig.debug.renderForTrailer) {
-            this.trailerMaker = new TrailerMaker(this.root);
-        }
-        /* dev:end*/
     }
 
     /**
@@ -177,12 +171,6 @@ export class GameHUD {
         for (const key in this.parts) {
             this.parts[key].update();
         }
-
-        /* dev:start */
-        if (this.trailerMaker) {
-            this.trailerMaker.update();
-        }
-        /* dev:end*/
     }
 
     /**

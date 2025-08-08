@@ -5,9 +5,9 @@ import { LANGUAGES } from "./languages";
 const logger = createLogger("translations");
 
 // @ts-ignore
-const baseTranslations = require("./built-temp/base-en.json");
+import baseTranslations from "./built-temp/base-en.json";
 
-export let T = baseTranslations;
+export const T = baseTranslations;
 
 if (G_IS_DEV && globalConfig.debug.testTranslations) {
     // Replaces all translations by fake translations to see whats translated and what not
@@ -67,18 +67,11 @@ function mapLanguageCodeToId(languageKey) {
  * @returns {string}
  */
 export function autoDetectLanguageId() {
-    let languages = [];
-    if (navigator.languages) {
-        languages = navigator.languages.slice();
-    } else if (navigator.language) {
-        languages = [navigator.language];
-    } else {
-        logger.warn("Navigator has no languages prop");
-    }
+    const languages = navigator.languages;
 
-    for (let i = 0; i < languages.length; ++i) {
-        logger.log("Trying to find language target for", languages[i]);
-        const trans = mapLanguageCodeToId(languages[i]);
+    for (const language of languages) {
+        logger.log("Trying to find language target for", language);
+        const trans = mapLanguageCodeToId(language);
         if (trans) {
             return trans;
         }
@@ -86,6 +79,16 @@ export function autoDetectLanguageId() {
 
     // Fallback
     return "en";
+}
+
+/**
+ * Loads translation data for the specified language
+ * @param {string} code
+ * @param {string | ""} region
+ */
+export async function loadTranslationData(code, region) {
+    const locale = code + (region === "" ? "" : `-${region}`);
+    return (await import(`./built-temp/base-${locale}.json`)).default;
 }
 
 export function matchDataRecursive(dest, src, addNewKeys = false) {
@@ -120,7 +123,7 @@ export function matchDataRecursive(dest, src, addNewKeys = false) {
     }
 }
 
-export function updateApplicationLanguage(id) {
+export async function updateApplicationLanguage(id) {
     logger.log("Setting application language:", id);
 
     const data = LANGUAGES[id];
@@ -130,8 +133,13 @@ export function updateApplicationLanguage(id) {
         return;
     }
 
-    if (data.data) {
+    if (id !== "en") {
         logger.log("Applying translations ...");
-        matchDataRecursive(T, data.data);
+        const translations = await loadTranslationData(data.code, data.region);
+
+        matchDataRecursive(T, translations);
     }
+
+    // Translation overrides are used by mods
+    matchDataRecursive(T, data.overrides, true);
 }

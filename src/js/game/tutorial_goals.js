@@ -4,15 +4,15 @@
  */
 export const enumHubGoalRewards = {
     reward_cutter_and_trash: "reward_cutter_and_trash",
-    reward_rotater: "reward_rotater",
+    reward_rotator: "reward_rotator",
     reward_painter: "reward_painter",
     reward_mixer: "reward_mixer",
     reward_stacker: "reward_stacker",
     reward_balancer: "reward_balancer",
     reward_tunnel: "reward_tunnel",
 
-    reward_rotater_ccw: "reward_rotater_ccw",
-    reward_rotater_180: "reward_rotater_180",
+    reward_rotator_ccw: "reward_rotator_ccw",
+    reward_rotator_180: "reward_rotator_180",
     reward_miner_chainable: "reward_miner_chainable",
     reward_underground_belt_tier_2: "reward_underground_belt_tier_2",
     reward_belt_reader: "reward_belt_reader",

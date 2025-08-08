@@ -1,9 +1,9 @@
 #ingame_HUD_PuzzleDLCLogo {
     position: absolute;
-    @include S(width, 120px);
-    @include S(height, 40px);
-    @include S(left, 40px);
-    @include S(top, 7px);
+    width: 12rem;
+    height: 4rem;
+    left: 4rem;
+    top: 0.7rem;
 
     & {
         /* @load-async */
@@ -15,10 +15,5 @@
             /* @load-async */
             background: uiResource("puzzle_dlc_logo_inverse.png") center center / contain no-repeat;
         }
-    }
-
-    &.china {
-        /* @load-async */
-        background: uiResource("puzzle_dlc_logo_china.png") center center / contain no-repeat !important;
     }
 }

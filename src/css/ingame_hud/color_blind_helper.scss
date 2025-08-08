@@ -4,8 +4,8 @@
     @include SuperSmallText;
     color: #fff;
     background: $ingameHudBg;
-    @include S(padding, 5px);
-    @include S(top, 20px);
+    padding: 0.5rem;
+    top: 2rem;
     left: 50%;
     transform: translateX(-50%);
     text-transform: uppercase;

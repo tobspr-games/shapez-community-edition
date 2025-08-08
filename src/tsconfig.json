@@ -1,0 +1,28 @@
+{
+    "extends": ["@tsconfig/strictest/tsconfig"],
+    "include": ["./js/**/*"],
+    "compilerOptions": {
+        "allowJs": true,
+        "module": "es2022",
+        "moduleResolution": "bundler",
+        "noEmit": true,
+        "target": "ES2024",
+        /* JSX Compilation */
+        "paths": {
+            "@/*": ["./js/*"]
+        },
+        "jsx": "react-jsx",
+        "jsxImportSource": "@",
+        "types": [],
+        // remove when comfortable
+        "exactOptionalPropertyTypes": false,
+        "noImplicitAny": false,
+        "noImplicitOverride": false,
+        "noImplicitReturns": false,
+        "noPropertyAccessFromIndexSignature": false,
+        "noUncheckedIndexedAccess": false,
+        "strictNullChecks": false,
+        // eslint warns for this
+        "noUnusedLocals": true
+    }
+}

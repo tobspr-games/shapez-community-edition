@@ -56,12 +56,6 @@ export default {
     // Enables an inspector which shows information about the entity below the cursor
     // enableEntityInspector: true,
     // -----------------------------------------------------------------------------------
-    // Enables ads in the local build (normally they are deactivated there)
-    // testAds: true,
-    // -----------------------------------------------------------------------------------
-    // Allows unlocked achievements to be logged to console in the local build
-    // testAchievements: true,
-    // -----------------------------------------------------------------------------------
     // Enables use of (some) existing flags within the puzzle mode context
     // testPuzzleMode: true,
     // -----------------------------------------------------------------------------------
@@ -82,9 +76,6 @@ export default {
     // -----------------------------------------------------------------------------------
     // When using fastGameEnter, controls whether a new game is started or the last one is resumed
     // resumeGameOnFastEnter: true,
-    // -----------------------------------------------------------------------------------
-    // Special option used to render the trailer
-    // renderForTrailer: true,
     // -----------------------------------------------------------------------------------
     // Whether to render changes
     // renderChanges: true,
@@ -115,9 +106,6 @@ export default {
     // -----------------------------------------------------------------------------------
     // Disables slow asserts, useful for debugging performance
     // disableSlowAsserts: true,
-    // -----------------------------------------------------------------------------------
-    // Allows to load a mod from an external source for developing it
-    // externalModUrl: "http://localhost:3005/combined.js",
     // -----------------------------------------------------------------------------------
     // Visualizes the shape grouping on belts
     // showShapeGrouping: true

@@ -9,7 +9,7 @@ import {
 import { Entity } from "../entity";
 import { GameSystemWithFilter } from "../game_system_with_filter";
 import { isTruthyItem } from "../items/boolean_item";
-import { ColorItem, COLOR_ITEM_SINGLETONS } from "../items/color_item";
+import { COLOR_ITEM_SINGLETONS, ColorItem } from "../items/color_item";
 import { ShapeItem } from "../items/shape_item";
 
 /**
@@ -48,17 +48,17 @@ const MAX_QUEUED_CHARGES = 2;
  */
 
 /**
- * @type {Object<string, (ProcessorImplementationPayload) => void>}
+ * @type {Object<string, (arg: ProcessorImplementationPayload) => void>}
  */
 export const MOD_ITEM_PROCESSOR_HANDLERS = {};
 
 /**
- * @type {Object<string, (ProccessingRequirementsImplementationPayload) => boolean>}
+ * @type {Object<string, (arg: ProccessingRequirementsImplementationPayload) => boolean>}
  */
 export const MODS_PROCESSING_REQUIREMENTS = {};
 
 /**
- * @type {Object<string, ({entity: Entity}) => boolean>}
+ * @type {Object<string, (arg: {entity: Entity}) => boolean>}
  */
 export const MODS_CAN_PROCESS = {};
 
@@ -67,15 +67,15 @@ export class ItemProcessorSystem extends GameSystemWithFilter {
         super(root, [ItemProcessorComponent]);
 
         /**
-         * @type {Object<enumItemProcessorTypes, function(ProcessorImplementationPayload) : string>}
+         * @type {Object<enumItemProcessorTypes, (arg: ProcessorImplementationPayload) => void>}
          */
         this.handlers = {
             [enumItemProcessorTypes.balancer]: this.process_BALANCER,
             [enumItemProcessorTypes.cutter]: this.process_CUTTER,
             [enumItemProcessorTypes.cutterQuad]: this.process_CUTTER_QUAD,
-            [enumItemProcessorTypes.rotater]: this.process_ROTATER,
-            [enumItemProcessorTypes.rotaterCCW]: this.process_ROTATER_CCW,
-            [enumItemProcessorTypes.rotater180]: this.process_ROTATER_180,
+            [enumItemProcessorTypes.rotator]: this.process_ROTATOR,
+            [enumItemProcessorTypes.rotatorCCW]: this.process_ROTATOR_CCW,
+            [enumItemProcessorTypes.rotator180]: this.process_ROTATOR_180,
             [enumItemProcessorTypes.stacker]: this.process_STACKER,
             [enumItemProcessorTypes.trash]: this.process_TRASH,
             [enumItemProcessorTypes.mixer]: this.process_MIXER,
@@ -416,7 +416,7 @@ export class ItemProcessorSystem extends GameSystemWithFilter {
     /**
      * @param {ProcessorImplementationPayload} payload
      */
-    process_ROTATER(payload) {
+    process_ROTATOR(payload) {
         const inputItem = /** @type {ShapeItem} */ (payload.items.get(0));
         assert(inputItem instanceof ShapeItem, "Input for rotation is not a shape");
         const inputDefinition = inputItem.definition;
@@ -430,7 +430,7 @@ export class ItemProcessorSystem extends GameSystemWithFilter {
     /**
      * @param {ProcessorImplementationPayload} payload
      */
-    process_ROTATER_CCW(payload) {
+    process_ROTATOR_CCW(payload) {
         const inputItem = /** @type {ShapeItem} */ (payload.items.get(0));
         assert(inputItem instanceof ShapeItem, "Input for rotation is not a shape");
         const inputDefinition = inputItem.definition;
@@ -444,7 +444,7 @@ export class ItemProcessorSystem extends GameSystemWithFilter {
     /**
      * @param {ProcessorImplementationPayload} payload
      */
-    process_ROTATER_180(payload) {
+    process_ROTATOR_180(payload) {
         const inputItem = /** @type {ShapeItem} */ (payload.items.get(0));
         assert(inputItem instanceof ShapeItem, "Input for rotation is not a shape");
         const inputDefinition = inputItem.definition;

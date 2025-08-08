@@ -11,7 +11,6 @@ import { gMetaBuildingRegistry } from "../core/global_registries";
 import { MetaGoalAcceptorBuilding } from "../game/buildings/goal_acceptor";
 import { createLogger } from "../core/logging";
 import { BaseItem } from "../game/base_item";
-import trim from "trim";
 import { enumColors } from "../game/colors";
 import { COLOR_ITEM_SINGLETONS } from "../game/items/color_item";
 import { ShapeDefinition } from "../game/shape_definition";
@@ -117,7 +116,7 @@ export class PuzzleSerializer {
             return null;
         }
 
-        code = trim(code);
+        code = code.trim();
         const codeLower = code.toLowerCase();
 
         if (enumColors[codeLower]) {

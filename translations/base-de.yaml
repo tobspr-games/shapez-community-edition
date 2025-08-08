@@ -1,27 +1,3 @@
-steamPage:
-    shortText: In shapez.io nutzt du die vorhandenen Ressourcen, um mit deinen
-        Maschinen durch Kombination immer komplexere Formen zu erschaffen.
-    discordLinkShort: Offizieller Discord
-    intro: >-
-        Du magst Automatisierungsspiele? Dann bist du hier genau richtig!
-
-        Shapez.io ist ein entspanntes Spiel, in dem du Fabriken zur automatisierten Produktion von geometrischen Formen bauen musst.
-
-        Mit steigendem Level werden die Formen immer komplexer und du musst dich auf der unendlich großen Karte ausbreiten.
-
-        Das ist noch nicht alles, denn du musst exponentiell mehr produzieren, um die Anforderungen zu erfüllen - Da hilft nur skalieren!
-
-        Während du am Anfang nur Formen verarbeitest, müssen diese später auch eingefärbt werden. Die benötigten Farben können extrahiert und gemischt werden.
-
-        Der Kauf des Spiels auf Steam gibt dir Zugriff auf die Vollversion, aber du kannst die Demo auf shapez.io auch zuerst ausprobieren und dich später entscheiden!
-    what_others_say: Was andere über shapez.io sagen
-    nothernlion_comment: This game is great - I'm having a wonderful time playing,
-        and time has flown by.
-    notch_comment: Oh crap. I really should sleep, but I think I just figured out
-        how to make a computer in shapez.io
-    steam_review_comment: This game has stolen my life and I don't want it back.
-        Very chill factory game that won't let me stop making my lines more
-        efficient.
 global:
     loading: Laden
     error: Fehler
@@ -55,59 +31,20 @@ global:
         shift: UMSCH
         space: LEER
     loadingResources: Lade zusätzliche Ressourcen (<percentage> %)
-    discount: -<percentage>%
-    discountSummerSale: SONDERANGEBOT! Angebot endet am 7. Juli
-demoBanners:
-    title: Demoversion
-    titleV2: "Spiele jetzt die Vollversion für:"
-    intro: |-
-        Kaufe die Vollversion <strong>jetzt</strong> für:<ul>
-            <li>Alle 26 Level + unendlich Freeplay</li>
-            <li>22 weitere Gebäude</li>
-            <li>Mod Support</li>
-            <li>Errungenschaften</li>
-            <li>Dunkler-Modus</li>
-            <li>... und noch viel mehr!</li>
-        </ul>
-    playtimeDisclaimer: Die Vollversion bietet mehr als <strong>20 Stunden Spielspaß</strong>.
-    playerCount: <playerCount> Spieler wie du spielen shapez gerade auf Steam
-    untilEndOfDemo: Bis zum Ende der Demo
-    playtimeDisclaimerDownload: Du kannst deinen Speicherstand in der Vollversion
-        fortsetzen! Klicke <strong>hier</strong> um ihn herunterzuladen.
 mainMenu:
     play: Spielen
     continue: Fortsetzen
     newGame: Neues Spiel
-    changelog: Änderungshistorie
-    subreddit: Reddit
     importSavegame: Import
-    openSourceHint: Dieses Spiel ist quelloffen!
-    discordLink: Offizieller Discord Server
     helpTranslate: Hilf beim Übersetzen!
-    madeBy: Ein Spiel von <author-link>
-    browserWarning: Sorry, aber das Spiel wird in deinem Browser langsamer laufen!
-        Kaufe die Vollversion oder verwende Google Chrome für die beste
-        Erfahrung.
     savegameLevel: Level <x>
     savegameLevelUnknown: Unbekanntes Level
     savegameUnnamed: Unbenannt
-    puzzleMode: Puzzlemodus
-    back: Zurück
-    puzzleDlcText: Du hast Spaß daran, deine Fabriken zu optimieren und effizienter
-        zu machen? Hol dir das Puzzle-DLC auf Steam für noch mehr Spaß!
-    puzzleDlcWishlist: Jetzt zur Wunschliste hinzufügen!
-    puzzleDlcViewNow: DLC anzeigen
     mods:
-        title: Aktive Mods
         warningPuzzleDLC: Das Puzzle-DLC und Mods sind nicht kompatibel. Bitte
             deaktiviere zuerst alle Mods, um das DLC zu spielen.
-    playFullVersionV2: Du hast shapez schon auf Steam gekauft? Spiel jetzt die
-        Vollversion im Browser!
-    playingFullVersion: Du spielst jetzt die Vollversion!
-    logout: Ausloggen
     noActiveSavegames: Keine Speicherstände gefunden - Klicke Spielen um ein neues
         Spiel zu starten!
-    playFullVersionStandalone: You can now also play the full version in your Browser!
 puzzleMenu:
     play: Spielen
     edit: Bearbeiten
@@ -177,7 +114,6 @@ dialogs:
         later: Später
         restart: Neustart
         reset: Zurücksetzen
-        getStandalone: Zur Vollversion
         deleteGame: Ich weiß, was ich tue
         viewUpdate: Update anzeigen
         showUpgrades: Upgrades anzeigen
@@ -215,14 +151,6 @@ dialogs:
     keybindingsResetOk:
         title: Tastenbelegung zurückgesetzt
         desc: Die Tastenbelegung wurde auf den Standard zurückgesetzt!
-    featureRestriction:
-        title: Demoversion
-        desc: Du hast ein Feature benutzt (<feature>), welches nicht in der Demo
-            enthalten ist. Erwerbe die Vollversion für das ganze Erlebnis!
-    oneSavegameLimit:
-        title: Begrenzte Speicherstände
-        desc: Du kannst in der Demo nur einen Speicherstand haben. Bitte lösche den
-            existierenden oder hole dir die Vollversion!
     updateSummary:
         title: Neues Update!
         desc: "Hier sind die Änderungen, seitdem du das letzte Mal gespielt hast:"
@@ -269,9 +197,6 @@ dialogs:
             (<link>Hier</link> geht es zum Generator).
     editConstantProducer:
         title: Item wählen
-    markerDemoLimit:
-        desc: Du kannst nur 2 Markierungen in der Demo benutzen. Hole dir die
-            Vollversion, um unbegrenzt viele Markierungen zu setzen!
     exportScreenshotWarning:
         title: Bildschirmfoto exportieren
         desc: Hier kannst du ein Bildschirmfoto von deiner ganzen Fabrik erstellen. Für
@@ -363,29 +288,9 @@ dialogs:
         newMods: Neu installierte Mods
     resourceLoadFailed:
         title: Resources failed to load
-        demoLinkText: shapez demo on Steam
-        descWeb: "One ore more resources could not be loaded. Make sure you have a
-            stable internet connection and try again. If this still doesn't
-            work, make sure to also disable any browser extensions (including
-            adblockers).<br><br> As an alternative, you can also play the
-            <demoOnSteamLinkText>. <br><br> Error Message:"
         descSteamDemo: "One ore more resources could not be loaded. Try restarting the
             game - If that does not help, try reinstalling and verifying the
             game files via Steam. <br><br> Error Message:"
-    steamSsoError:
-        title: Ausgeloggt aus Vollversion
-        desc: Du wurdest aus der Browser-Vollversion ausgeloggt da entweder deine
-            Internetverbindung instabil ist, oder du auf einem anderen Gerät
-            spielst.<br><br> Bitte stelle sicher dass du shapez nicht in einem
-            anderen Browser-Tab offen hast oder auf einem weiteren Computer mit
-            demselben Steam-Account. <br><br> Du kannst dich dann erneut im
-            Hauptmenü einloggen.
-    steamSsoNoOwnership:
-        title: Vollversion nötig
-        desc: Um die Vollversion im Browser zu spielen brauchst du sowohl das Basispiel
-            als auch das Puzzle DLC auf deinem Steam Account.<br><br> Bitte
-            stelle sicher, dass du beide gekauft hast und den richtigen Steam
-            Account verwendest. Danach kannst du es erneut versuchen.
 ingame:
     keybindingsOverlay:
         moveMap: Bewegen
@@ -526,40 +431,6 @@ ingame:
         one_miner: Ein Extraktor
         n_miners: <amount> Extraktoren
         limited_items: Begrenzt auf <max_throughput>
-    watermark:
-        title: Demoversion
-        desc: Klicke hier, um die Vorteile der Vollversion zu sehen!
-        get_on_steam: Zur Vollversion
-    standaloneAdvantages:
-        no_thanks: Nein, danke!
-        points:
-            levels:
-                title: 19 Neue Level
-                desc: Über 20 Stunden weitere Inhalte!
-            wires:
-                title: Wires-Ebene
-                desc: Eine ganz neue Dimension!
-            darkmode:
-                title: Dark-Mode
-                desc: Gönn deinen Augen eine Auszeit!
-            buildings:
-                title: 22 Neue Gebäude
-                desc: Automatisiere deine Fabrik!
-            achievements:
-                title: 45 Errungenschaften
-                desc: Hol sie dir alle!
-            markers:
-                title: ∞ Markierungen
-                desc: Verliere nie den Überblick!
-            support:
-                title: Unterstütze Mich
-                desc: Ich entwickle das Spiel in meiner Freizeit!
-            mods:
-                title: Mod-Support!
-                desc: Über 80 Mods verfügbar!
-        titleV2: "Hol dir jetzt die Vollversion auf Steam für:"
-        titleExpiredV2: Demo abgeschlossen!
-        titleEnjoyingDemo: Gefällt dir die Demo?
     puzzleEditorSettings:
         zoneTitle: Zone
         zoneWidth: Breite
@@ -668,7 +539,7 @@ buildings:
             name: Schneider (vierfach)
             description: Zerschneidet Formen in vier Teile. <strong>Benutze oder zerstöre
                 alle Viertel, sonst verstopft die Maschine!</strong>
-    rotater:
+    rotator:
         default:
             name: Rotierer (90°)
             description: Rotiert Formen im Uhrzeigersinn um 90 Grad.
@@ -799,7 +670,7 @@ buildings:
         default:
             name: Virtueller Schneider
             description: Schneidet die Form virtuell in zwei Hälften.
-        rotater:
+        rotator:
             name: Virtueller Rotierer
             description: Dreht die Form virtuell im Uhrzeigersinn.
         unstacker:
@@ -839,7 +710,7 @@ storyRewards:
             sonst <b>verstopft und blockiert er</b> - Zu diesem Zweck habe ich
             dir den <strong>Mülleimer</strong> gegeben. Er entsorgt alles, was
             du ihm fütterst!
-    reward_rotater:
+    reward_rotator:
         title: Rotieren
         desc: Der <strong>Rotierer</strong> wurde freigeschaltet! Er rotiert Formen im
             Uhrzeigersinn um 90 Grad.
@@ -869,7 +740,7 @@ storyRewards:
         title: Tunnel
         desc: Der <strong>Tunnel</strong> wurde freigeschaltet! Du kannst Items nun
             unter Gebäuden oder Fließbändern hindurchleiten.
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Gegen den UZS rotieren
         desc: Du hast eine zweite Variante des <strong>Rotierers</strong>
             freigeschaltet! Damit können Items gegen den Uhrzeigersinn gedreht
@@ -926,7 +797,7 @@ storyRewards:
             <strong>nicht kostenlos</strong>! Du musst
             <strong>Blaupausenformen</strong> produzieren, um die Kopierkosten
             zu decken (Welche du gerade produziert hast).
-    reward_rotater_180:
+    reward_rotator_180:
         title: Rotierer (180°)
         desc: Du hast eine weitere Variante des <strong>Rotierers</strong>
             freigeschaltet! Mit ihm kannst du Formen um 180° drehen
@@ -1012,20 +883,10 @@ mods:
     version: Version
     modWebsite: Webseite
     openFolder: Modordner öffnen
-    folderOnlyStandalone: Du kannst den Modordner nur in der Vollversion öffnen.
     browseMods: Mods durchsuchen
     modsInfo: Um Mods zu installieren und zu verwalten, kopiere sie in den Modordner
         im Spielverzeichnis. Diesen kannst du auch mit dem 'Modordner
         öffnen'-Knopf oben rechts aufrufen.
-    noModSupport: Du brauchst die Steam-Vollversion, um Mods zu installieren.
-    togglingComingSoon:
-        title: Demnächst
-        description: Du kannst Mods aktuell nur (de-)aktivieren, indem du die
-            entsprechende Datei in den Modordner einfügst, oder löschst. Das
-            (De-)Aktivieren der Mods in diesem Menü ist allerdings schon für ein
-            späteres Update geplant!
-    browserNoSupport: Aufgrund von Browser-Einschränkungen kannst du aktuell nur in
-        der Steam-Version Mods installieren - Sorry!
 settings:
     title: Einstellungen
     categories:
@@ -1246,7 +1107,7 @@ keybindings:
         underground_belt: Tunnel
         miner: Extraktor
         cutter: Schneider
-        rotater: Rotierer (90°)
+        rotator: Rotierer (90°)
         stacker: Stapler
         mixer: Farbmischer
         painter: Färber
@@ -1309,12 +1170,6 @@ about:
 changelog:
     title: Änderungshistorie
 demo:
-    features:
-        restoringGames: Spielstände wiederherstellen
-        importingGames: Spielstände importieren
-        oneGameLimit: Beschränkt auf einen Spielstand
-        customizeKeybindings: Tastenbelegung anpassen
-        exportingBase: Ganze Fabrik als Foto exportieren
     settingNotAvailable: Nicht verfügbar in der Demo.
 backendErrors:
     ratelimit: Du führst deine Aktionen zu schnell aus. Bitte warte kurz.

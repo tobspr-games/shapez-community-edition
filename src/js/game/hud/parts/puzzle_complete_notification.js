@@ -24,7 +24,7 @@ export class HUDPuzzleCompleteNotification extends BaseHUDPart {
     }
 
     createElements(parent) {
-        this.inputReciever = new InputReceiver("puzzle-complete");
+        this.inputReceiver = new InputReceiver("puzzle-complete");
 
         this.element = makeDiv(parent, "ingame_HUD_PuzzleCompleteNotification", ["noBlur"]);
 
@@ -86,13 +86,13 @@ export class HUDPuzzleCompleteNotification extends BaseHUDPart {
 
     show() {
         this.root.soundProxy.playUi(SOUNDS.levelComplete);
-        this.root.app.inputMgr.makeSureAttachedAndOnTop(this.inputReciever);
+        this.root.app.inputMgr.makeSureAttachedAndOnTop(this.inputReceiver);
         this.visible = true;
         this.timeOfCompletion = this.root.time.now();
     }
 
     cleanup() {
-        this.root.app.inputMgr.makeSureDetached(this.inputReciever);
+        this.root.app.inputMgr.makeSureDetached(this.inputReceiver);
     }
 
     isBlockingOverlay() {

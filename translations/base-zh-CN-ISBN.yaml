@@ -1,23 +1,3 @@
-steamPage:
-    shortText: “唯一能限制您的，只有您的想象力！” 《异形工厂》（Shapez.io）
-        是一款在无限拓展的地图上，通过建造各类工厂设施，来自动化生产与组合出愈加复杂图形的游戏。
-    discordLinkShort: 官方 Discord 服务器
-    intro: |-
-        “奇形怪状，放飞想象！”
-        “自动生产，尽情创造！”
-        《异形工厂》（Shapez.io）是一款能让您尽情发挥创造力，充分享受思维乐趣的IO游戏。
-        游戏很轻松，只需建造工厂，布好设施，无需操作即能自动创造出各种各样的几何图形。
-        挑战很烧脑，随着等级提升，需要创造的图形将会越来越复杂，同时您还需要在无限扩展的地图中持续扩建优化您的工厂。
-        以为这就是全部了吗？ 不！图形的生产需求将会指数性增长，持续的扩大规模和熵增带来的无序，将会是令人头痛的问题！
-        这还不是全部！ 一开始我们创造了图形，然后我们需要学会提取和混合来让它们五颜六色。
-        然后，还有吗？ 当然，唯有思维，方能无限。
-
-        欢迎免费体验试玩版：“让您的想象力插上翅膀！”
-        和最聪明的玩家一起挑战，请访问 Steam 游戏商城购买《异形工厂》（Shapez.io）的完整版,
-    what_others_say: 来看看玩家们对《异形工厂》（Shapez.io）的评价
-    nothernlion_comment: 非常棒的有游戏，我的游戏过程充满乐趣，不觉时间飞逝。
-    notch_comment: 哦，天哪！我真得该去睡了！但我想我刚刚搞定如何在游戏里面制造一台电脑出来。
-    steam_review_comment: 这是一个不知不觉偷走你时间，但你并不会想要追回的游戏。非常烧脑的挑战，让我这样的完美主义者停不下来，总是希望可以再高效一些。
 global:
     loading: 加载中
     error: 错误
@@ -51,46 +31,19 @@ global:
         space: 空格键
     loggingIn: 登录
     loadingResources: Downloading additional resources (<percentage> %)
-    discount: -<percentage>%
-    discountSummerSale: SPECIAL PROMOTION! Offer ends 7 July
-demoBanners:
-    title: 试玩版
-    intro: 购买完整版以解锁所有游戏内容！
-    playtimeDisclaimer: The full version contains more than <strong>20 hours of content</strong>.
-    playerCount: <playerCount> players like you are currently playing shapez on Steam
-    untilEndOfDemo: Until end of demo
-    playtimeDisclaimerDownload: You can continue your savegame in the full version!
-        Click <strong>here</strong> to download your savegame.
-    titleV2: "Play the full version now for:"
 mainMenu:
     play: 开始游戏
-    changelog: 更新日志
     importSavegame: 读取存档
-    openSourceHint: 本游戏已开源！
-    discordLink: 官方Discord服务器
     helpTranslate: 帮助我们翻译！
-    browserWarning: 很抱歉, 本游戏在当前浏览器上可能运行缓慢! 使用 谷歌浏览器 或者购买完整版以得到更好的体验。
     savegameLevel: 第<x>关
     savegameLevelUnknown: 未知关卡
     continue: 继续游戏
     newGame: 新游戏
-    madeBy: 作者：<author-link>
-    subreddit: Reddit
     savegameUnnamed: 存档未命名
-    puzzleMode: 谜题模式
-    back: 返回
-    puzzleDlcText: 新增谜题模式将带给您更多的游戏乐趣！
-    puzzleDlcWishlist: 添加心愿单！
-    puzzleDlcViewNow: View Dlc
     mods:
-        title: Active Mods
         warningPuzzleDLC: Playing the Puzzle DLC is not possible with mods. Please
             disable all mods to play the DLC.
-    playingFullVersion: You are now playing the full version!
-    logout: Logout
     noActiveSavegames: No active savegames found - Click play to start a new game!
-    playFullVersionV2: Bough shapez on Steam? Play the full version in your Browser!
-    playFullVersionStandalone: You can now also play the full version in your Browser!
 dialogs:
     buttons:
         ok: 确认
@@ -99,7 +52,6 @@ dialogs:
         later: 以后
         restart: 重新开始
         reset: 重置
-        getStandalone: 获取完整版
         deleteGame: 我没疯！我知道我在做什么！
         viewUpdate: 查看更新
         showUpgrades: 显示设施升级
@@ -134,12 +86,6 @@ dialogs:
     keybindingsResetOk:
         title: 重置按键设定
         desc: 成功重置所有按键设定！
-    featureRestriction:
-        title: 试玩版
-        desc: 您尝试使用了<feature>一项功能。该功能在试玩版中不可用。请考虑购买完整版以获得更好的体验。
-    oneSavegameLimit:
-        title: 存档数量限制
-        desc: 试玩版中只能保存一份存档。请删除旧存档或者购买完整版！
     updateSummary:
         title: 新内容更新啦！
         desc: "以下为游戏最新更新内容:"
@@ -165,8 +111,6 @@ dialogs:
             填写一个有意义的名称, 还可以同时包含一个形状的 <strong>短代码</strong> (您可以 <link>点击这里</link>
             生成短代码)
         titleEdit: 编辑地图标记
-    markerDemoLimit:
-        desc: 在试玩版中您只能创建两个地图标记。请获取完整版以创建更多标记。
     massCutConfirm:
         title: 确认剪切
         desc: 您将要剪切很多设施，准确来说有<count>种！ 您确定要这么做吗？
@@ -253,28 +197,9 @@ dialogs:
         newMods: Newly installed Mods
     resourceLoadFailed:
         title: Resources failed to load
-        demoLinkText: shapez demo on Steam
-        descWeb: "One ore more resources could not be loaded. Make sure you have a
-            stable internet connection and try again. If this still doesn't
-            work, make sure to also disable any browser extensions (including
-            adblockers).<br><br> As an alternative, you can also play the
-            <demoOnSteamLinkText>. <br><br> Error Message:"
         descSteamDemo: "One ore more resources could not be loaded. Try restarting the
             game - If that does not help, try reinstalling and verifying the
             game files via Steam. <br><br> Error Message:"
-    steamSsoError:
-        title: Full Version Logout
-        desc: You have been logged out from the Full Browser Version since either your
-            network connection is unstable or you are playing on another
-            device.<br><br> Please make sure you don't have shapez open in any
-            other browser tab or another computer with the same Steam
-            account.<br><br> You can login again in the main menu.
-    steamSsoNoOwnership:
-        title: Full Edition not owned
-        desc: In order to play the Full Edition in your Browser, you need to own both
-            the base game and the Puzzle DLC on your Steam account.<br><br>
-            Please make sure you own both, signed in with the correct Steam
-            account and then try again.
 ingame:
     keybindingsOverlay:
         moveMap: 移动地图
@@ -397,40 +322,6 @@ ingame:
         one_miner: 1 个开采器
         n_miners: <amount> 个开采器
         limited_items: 限制在 <max_throughput>
-    watermark:
-        title: 试玩版
-        desc: 点击这里了解完整版内容
-        get_on_steam: 在Steam商城购买
-    standaloneAdvantages:
-        no_thanks: 不需要，谢谢
-        points:
-            levels:
-                title: 12 个全新关卡!
-                desc: 总共 26 个不同关卡!
-            buildings:
-                title: 22 个全新设施！
-                desc: 呈现完全体的全自动工厂！
-            markers:
-                title: 无限数量地图标记
-                desc: 地图再大，不会迷路！
-            wires:
-                title: 电线更新包
-                desc: 发挥创造力的全新维度！
-            darkmode:
-                title: 暗色模式
-                desc: 优雅且护眼的配色！
-            support:
-                title: 支持作者
-                desc: 我使用闲暇时间开发游戏！
-            achievements:
-                title: 成就
-                desc: 挑战全成就解锁!
-            mods:
-                title: Modding support!
-                desc: Over 80 mods available!
-        titleV2: "Get the full version now on Steam to unlock:"
-        titleExpiredV2: Demo completed!
-        titleEnjoyingDemo: Enjoy the demo?
     puzzleEditorSettings:
         zoneTitle: 区域
         zoneWidth: 宽度
@@ -503,7 +394,7 @@ buildings:
         quad:
             name: 切割机（四向）
             description: 将输入的图形切成四块。<strong>如果您只需要其中一块图形，使用<strong>垃圾桶</strong>清除其他图形，否则切割机会停止工作！</strong>
-    rotater:
+    rotator:
         default:
             name: 旋转机
             description: 将<strong>图形</strong>顺时针旋转90度。
@@ -629,7 +520,7 @@ buildings:
         default:
             name: 虚拟切割机
             description: 模拟将<strong>图形</strong>切割成两半。
-        rotater:
+        rotator:
             name: 模拟旋转机
             description: 模拟顺时针旋转<strong>图形</strong>。
         unstacker:
@@ -663,7 +554,7 @@ storyRewards:
         desc: 恭喜！您解锁了<strong>切割机</strong>，不管如何放置，它只会从上到下切开<strong>图形</strong>！
             <br>注意一定要处理掉切割后废弃的<strong>图形</strong>，不然它会<strong>阻塞</strong>传送带，
             <br>使用<strong>垃圾桶</strong>，它会清除所有放进去的图形！
-    reward_rotater:
+    reward_rotator:
         title: 旋转
         desc: 恭喜！您解锁了<strong>旋转机</strong>。它会顺时针将输入的<strong>图形旋转90度</strong>。
     reward_painter:
@@ -684,7 +575,7 @@ storyRewards:
     reward_tunnel:
         title: 隧道
         desc: 恭喜！您解锁了<strong>隧道</strong>。它可放置在<strong>传送带</strong>或<strong>设施</strong>下方以运送物品。
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: 逆时针旋转
         desc:
             恭喜！您解锁了<strong>旋转机</strong>的<strong>逆时针</strong>变体。它可以逆时针旋转<strong>图形</strong>。
@@ -735,7 +626,7 @@ storyRewards:
         title: 传送带读取器
         desc: 恭喜！您解锁了<strong>传送带读取器</strong>！它能够测量传送带上的生产率。
             <br><br>等您解锁了<strong>电线层</strong>后，它将会极其有用！
-    reward_rotater_180:
+    reward_rotator_180:
         title: 旋转机（180度）
         desc: 恭喜！您解锁了<strong>旋转器（180度）</strong>！它能帮您把一个图形旋转180度(惊喜! :D)
     reward_display:
@@ -941,7 +832,7 @@ keybindings:
         underground_belt: 隧道
         miner: 开采器
         cutter: 切割机
-        rotater: 旋转机
+        rotator: 旋转机
         stacker: 堆叠机
         mixer: 混色器
         painter: 上色器
@@ -1007,12 +898,6 @@ about:
 changelog:
     title: 版本日志
 demo:
-    features:
-        restoringGames: 恢复存档
-        importingGames: 导入存档
-        oneGameLimit: 最多一个存档
-        customizeKeybindings: 按键设定
-        exportingBase: 导出工厂截图
     settingNotAvailable: 在试玩版中不可用。
 tips:
     - 基地接受所有创造后输入的图形！并不限于现有的图形！
@@ -1153,16 +1038,7 @@ mods:
     version: Version
     modWebsite: Website
     openFolder: Open Mods Folder
-    folderOnlyStandalone: Opening the mod folder is only possible when running the standalone.
     browseMods: Browse Mods
     modsInfo: To install and manage mods, copy them to the mods folder within the
         game directory. You can also use the 'Open Mods Folder' button on the
         top right.
-    noModSupport: You need the standalone version on Steam to install mods.
-    togglingComingSoon:
-        title: Coming Soon
-        description: Enabling or disabling mods is currently only possible by copying
-            the mod file from or to the mods/ folder. However, being able to
-            toggle them here is planned for a future update!
-    browserNoSupport: Due to browser restrictions it is currently only possible to
-        install mods in the Steam version - Sorry!

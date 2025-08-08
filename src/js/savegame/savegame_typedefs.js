@@ -10,12 +10,6 @@
  * }[]} SavegameStoredMods
  *
  * @typedef {{
- *   failedMam: boolean,
- *   trashedCount: number,
- *   usedInverseRotater: boolean
- * }} SavegameStats
- *
- * @typedef {{
  *   camera: any,
  *   time: any,
  *   entityMgr: any,
@@ -32,7 +26,6 @@
  * @typedef {{
  *   version: number,
  *   dump: SerializedGame,
- *   stats: SavegameStats,
  *   lastUpdate: number,
  *   mods: SavegameStoredMods
  * }} SavegameData
@@ -50,8 +43,6 @@
  *   savegames: Array<SavegameMetadata>
  * }} SavegamesData
  */
-
-import { MetaBuilding } from "../game/meta_building";
 
 // Notice: Update backend too
 /**

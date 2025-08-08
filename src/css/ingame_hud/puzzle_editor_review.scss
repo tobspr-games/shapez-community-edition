@@ -1,17 +1,16 @@
 #ingame_HUD_PuzzleEditorReview {
     position: absolute;
-    @include S(top, 17px);
-    @include S(right, 10px);
+    top: 1.7rem;
+    right: 1rem;
 
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    backdrop-filter: blur(D(1px));
-    padding: D(3px);
+    backdrop-filter: blur(0.1rem);
+    padding: 0.3rem;
 
     > .button {
         @include ButtonText;
-        @include IncreasedClickArea(0px);
         pointer-events: all;
         cursor: pointer;
         position: relative;
@@ -20,7 +19,7 @@
         text-transform: uppercase;
         transition-property: opacity, transform;
         @include PlainText;
-        @include S(padding-right, 25px);
+        padding-right: 2.5rem;
         opacity: 1;
 
         @include DarkThemeInvert;
@@ -35,14 +34,14 @@
 
         & {
             /* @load-async */
-            background: uiResource("icons/state_next_button.png") right center / D(15px) no-repeat;
+            background: uiResource("icons/state_next_button.png") right center / 1.5rem no-repeat;
         }
     }
 
     > .content {
         @include SuperDuperSmallText;
-        @include S(width, 180px);
-        @include S(padding-right, 25px);
+        width: 18rem;
+        padding-right: 2.5rem;
         text-align: right;
         text-transform: uppercase;
         color: $accentColorDark;

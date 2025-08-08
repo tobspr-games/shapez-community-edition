@@ -11,7 +11,7 @@ import {
     enumDirectionToVector,
     enumInvertedDirections,
 } from "../../core/vector";
-import { enumUndergroundBeltMode, UndergroundBeltComponent } from "../components/underground_belt";
+import { UndergroundBeltComponent, enumUndergroundBeltMode } from "../components/underground_belt";
 import { Entity } from "../entity";
 import { GameSystemWithFilter } from "../game_system_with_filter";
 
@@ -243,7 +243,7 @@ export class UndergroundBeltSystem extends GameSystemWithFilter {
      * @param {Entity} entity
      * @returns {import("../components/underground_belt").LinkedUndergroundBelt}
      */
-    findRecieverForSender(entity) {
+    findReceiverForSender(entity) {
         const staticComp = entity.components.StaticMapEntity;
         const undergroundComp = entity.components.UndergroundBelt;
         const searchDirection = staticComp.localDirectionToWorld(enumDirection.top);
@@ -299,7 +299,7 @@ export class UndergroundBeltSystem extends GameSystemWithFilter {
         let cacheEntry = undergroundComp.cachedLinkedEntity;
         if (!cacheEntry) {
             // Need to recompute cache
-            cacheEntry = undergroundComp.cachedLinkedEntity = this.findRecieverForSender(entity);
+            cacheEntry = undergroundComp.cachedLinkedEntity = this.findReceiverForSender(entity);
         }
 
         if (!cacheEntry.entity) {

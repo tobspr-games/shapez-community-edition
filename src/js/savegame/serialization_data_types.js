@@ -8,6 +8,15 @@ import { round4Digits } from "../core/utils";
 export const globalJsonSchemaDefs = {};
 
 /**
+ * @typedef {import("../core/factory").Factory<T>} FactoryTemplate<T>
+ * @template T
+ */
+/**
+ * @typedef {import("../core/singleton_factory").SingletonFactory<T>} SingletonFactoryTemplate<T>
+ * @template {{ getId(): string }} T
+ */
+
+/**
  *
  * @param {import("./serialization").Schema} schema
  */
@@ -48,6 +57,7 @@ export class BaseDataType {
     /**
      * Serializes a given raw value
      * @param {any} value
+     * @returns {unknown}
      * @abstract
      */
     serialize(value) {
@@ -1034,7 +1044,8 @@ export class TypeKeyValueMap extends BaseDataType {
             const serialized = this.valueType.serialize(value[key]);
             if (!this.includeEmptyValues && typeof serialized === "object") {
                 if (
-                    serialized.$ &&
+                    "$" in serialized &&
+                    "data" in serialized &&
                     typeof serialized.data === "object" &&
                     Object.keys(serialized.data).length === 0
                 ) {

@@ -1,11 +1,11 @@
+import { freeCanvas, makeOffscreenBuffer } from "../core/buffer_utils";
 import { globalConfig } from "../core/config";
 import { DrawParameters } from "../core/draw_parameters";
-import { BaseMap } from "./map";
-import { freeCanvas, makeOffscreenBuffer } from "../core/buffer_utils";
 import { Entity } from "./entity";
-import { THEME } from "./theme";
-import { MapChunkView } from "./map_chunk_view";
+import { BaseMap } from "./map";
 import { MapChunkAggregate } from "./map_chunk_aggregate";
+import { MapChunkView } from "./map_chunk_view";
+import { THEME } from "./theme";
 
 /**
  * This is the view of the map, it extends the map which is the raw model and allows
@@ -51,6 +51,10 @@ export class MapView extends BaseMap {
      * @param {Entity} entity
      */
     onEntityChanged(entity) {
+        if (!this.root.gameInitialized) {
+            return;
+        }
+
         const staticComp = entity.components.StaticMapEntity;
         if (staticComp) {
             const rect = staticComp.getTileSpaceBounds();
@@ -229,9 +233,6 @@ export class MapView extends BaseMap {
     drawBackground(parameters) {
         // Render tile grid
         if (!this.root.app.settings.getAllSettings().disableTileGrid || !this.root.gameMode.hasResources()) {
-            const dpi = this.backgroundCacheDPI;
-            parameters.context.scale(1 / dpi, 1 / dpi);
-
             let key = "regular";
 
             // Disabled rn because it can be really annoying
@@ -240,24 +241,23 @@ export class MapView extends BaseMap {
                 key = "placing";
             }
 
-            // @ts-ignore`
-            if (this.cachedBackgroundCanvases[key]._contextLost) {
-                freeCanvas(this.cachedBackgroundCanvases[key]);
-                this.internalInitializeCachedBackgroundCanvases();
-            }
-
             parameters.context.fillStyle = parameters.context.createPattern(
                 this.cachedBackgroundCanvases[key],
                 "repeat"
             );
-            parameters.context.fillRect(
-                parameters.visibleRect.x * dpi,
-                parameters.visibleRect.y * dpi,
-                parameters.visibleRect.w * dpi,
-                parameters.visibleRect.h * dpi
-            );
-            parameters.context.scale(dpi, dpi);
+        } else {
+            parameters.context.fillStyle = THEME.map.background;
         }
+
+        const dpi = this.backgroundCacheDPI;
+        parameters.context.scale(1 / dpi, 1 / dpi);
+        parameters.context.fillRect(
+            parameters.visibleRect.x * dpi,
+            parameters.visibleRect.y * dpi,
+            parameters.visibleRect.w * dpi,
+            parameters.visibleRect.h * dpi
+        );
+        parameters.context.scale(dpi, dpi);
 
         this.drawVisibleChunks(parameters, MapChunkView.prototype.drawBackgroundLayer);
     }

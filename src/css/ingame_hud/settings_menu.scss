@@ -1,15 +1,14 @@
 #ingame_HUD_SettingsMenu {
     .statsElement {
         position: absolute;
-        @include S(left, 30px);
-        @include S(right, 30px);
-        @include S(bottom, 30px);
+        left: 3rem;
+        right: 3rem;
+        bottom: 3rem;
         color: #fff;
         display: grid;
         grid-template-rows: auto auto;
         grid-auto-columns: 1fr;
-        align-items: center;
-        justify-items: center;
+        place-items: center;
 
         strong {
             text-transform: uppercase;
@@ -32,8 +31,8 @@
     .buttons {
         display: grid;
         grid-auto-flow: column;
-        @include S(grid-gap, 50px);
-        @include S(margin-top, -10px);
+        grid-gap: 5rem;
+        margin-top: -1rem;
 
         button {
             background: transparent;
@@ -41,8 +40,8 @@
 
             content: "";
             opacity: 0.8;
-            @include S(width, 35px);
-            @include S(height, 35px);
+            width: 3.5rem;
+            height: 3.5rem;
 
             &.settings {
                 /* @load-async */

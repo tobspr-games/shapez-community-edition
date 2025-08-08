@@ -1,20 +1,18 @@
 #ingame_HUD_GameMenu {
     position: absolute;
-    @include S(top, 10px);
-    @include S(right, 10px);
+    top: 1rem;
+    right: 1rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    @include S(grid-gap, 6px);
+    grid-gap: 0.6rem;
 
-    backdrop-filter: blur(D(1px));
+    backdrop-filter: blur(0.1rem);
 
     > button,
     > .button {
         @include PlainText;
-        @include IncreasedClickArea(0px);
-        background: green;
-        @include S(width, 30px);
-        @include S(height, 30px);
+        width: 3rem;
+        height: 3rem;
 
         pointer-events: all;
         cursor: pointer;

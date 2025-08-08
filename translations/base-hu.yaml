@@ -1,24 +1,3 @@
-steamPage:
-    shortText: A shapez-ben gyárak építésével kell automatizálni az egyre
-        összetettebb alakzatok gyártását és kombinálását egy végtelen méretű
-        térképen.
-    discordLinkShort: Hivatalos Discord
-    intro: >-
-        Szereted az automatizálós játékokat? Akkor jó helyen vagy!
-
-        A Shapez egy nyugtató játék, amelyben gyárakat kell építened, hogy geometrikus alakzatokat gyárts és automatizálj. Ahogy szintet lépsz, az alakzatok egyre összetettebbek lesznek, és tovább kell terjeszkedned a végtelen pályán.
-
-        És ha ez nem lenne elég, exponenciálisan többet kell termelned az igények kielégítése érdekében - az egyetlen dolog, ami segít, az a termelés mennyisége! Az alakzatokat a játék elején csak feldolgoznod kell, később azonban színezned is kell őket - ehhez bányászni és keverni kell a színeket!
-
-        A játék Steamen történő megvásárlása hozzáférést biztosít a teljes verzióhoz, de kipróbálhatod a játékot a shapez oldalon, és később dönthetsz!
-    what_others_say: Mit mondanak mások a shapez-ról
-    nothernlion_comment: Ez a játék nagyszerű - Csodás élmény vele játszani, az idő
-        meg csak repül.
-    notch_comment: Basszus... aludnom kéne, de épp most jöttem rá, hogyan tudok
-        számítógépet építeni a shapez-ban!
-    steam_review_comment: Ez a játék ellopta az életemet, de nem kérem vissza!
-        Nagyon nyugis gyárépítős játék, amiben nem győzöm a futószalagjaimat
-        optimalizálni.
 global:
     loading: Betöltés
     error: Hiba
@@ -52,57 +31,19 @@ global:
         space: SZÓKÖZ
     loggingIn: Bejelentkezés
     loadingResources: Downloading additional resources (<percentage> %)
-    discount: -<percentage>%
-    discountSummerSale: SPECIAL PROMOTION! Offer ends 7 July
-demoBanners:
-    title: Demó verzió
-    intro: |-
-        Szerezd meg a teljes játékot <strong>most</strong> a feloldáshoz:<ul>
-            <li>Mind a 26 szint + végtelen szabadjáték</li>
-            <li>22 új épület</li>
-            <li>Mod támogatás</li>
-            <li>Eredmények</li>
-            <li>Sötét üzemmód</li>
-            <li>... és még sok más!</li>
-        </ul>
-    playtimeDisclaimer: A teljes verzió több mint <strong>20 órányi tartalmat</strong> tartalmaz.
-    playerCount: <playerCount> hozzád hasonló játékosok jelenleg shapez-t játszanak
-        a Steamen
-    untilEndOfDemo: A demó végéig
-    playtimeDisclaimerDownload: Folytathatja a mentést a teljes verzióban!
-        Kattintson <strong>ide</strong> a mentett játék letöltéséhez.
-    titleV2: "Játssz a teljes verzióval most:"
 mainMenu:
     play: Játék
     continue: Folytatás
     newGame: Új Játék
-    changelog: Változások
-    subreddit: Reddit
     importSavegame: Importálás
-    openSourceHint: Nyílt forráskód
-    discordLink: Hivatalos Discord Szerver
     helpTranslate: Segíts fordítani!
-    madeBy: Készítette <author-link>
-    browserWarning: A játék ezen a böngészőn problémásan futhat. Vásárold meg az
-        Önálló Verziót, vagy töltsd le a Chrome-ot a teljes játékélményért.
     savegameLevel: <x>. szint
     savegameLevelUnknown: Ismeretlen szint
     savegameUnnamed: Névtelen
-    puzzleMode: Fejtörő Mód
-    back: Vissza
-    puzzleDlcText: Szereted optimalizálni a gyáraid méretét és hatákonyságát?
-        Szerezd meg a Puzzle DLC-t a Steamen most!
-    puzzleDlcWishlist: Kívánságlistára vele!
-    puzzleDlcViewNow: View Dlc
     mods:
-        title: Active Mods
         warningPuzzleDLC: Playing the Puzzle DLC is not possible with mods. Please
             disable all mods to play the DLC.
-    playingFullVersion: You are now playing the full version!
-    logout: Logout
     noActiveSavegames: No active savegames found - Click play to start a new game!
-    playFullVersionV2: Bough shapez on Steam? Play the full version in your Browser!
-    playFullVersionStandalone: You can now also play the full version in your Browser!
 dialogs:
     buttons:
         ok: OK
@@ -111,7 +52,6 @@ dialogs:
         later: Később
         restart: Újrakezdés
         reset: Visszaállítás
-        getStandalone: Teljes Verzió
         deleteGame: Játék Törlése
         viewUpdate: Frissítés Megtekintése
         showUpgrades: Fejlesztések
@@ -150,14 +90,6 @@ dialogs:
     keybindingsResetOk:
         title: Gyorsbillentyűk visszaállítva
         desc: A gyorsbillentyűk az eredeti értékekre visszaállítva!
-    featureRestriction:
-        title: Demó Verzió
-        desc: Egy olyan funkciót próbáltál elérni (<feature>), amely nem elérhető a
-            Demóban. Vásárold meg an Önálló verziót a teljes játékélményért!
-    oneSavegameLimit:
-        title: Egy Játékmentés
-        desc: A Demó verzióban egyszerre csak egy játékmentésed lehet. Töröld a meglévő
-            mentésedet, vagy vásárold meg az Önálló verziót!
     updateSummary:
         title: Új frissítés!
         desc: "Íme a változások a legutóbbi játékod óta:"
@@ -201,9 +133,6 @@ dialogs:
         descItems: "Válassz egy előre definiált elemet:"
         descShortKey: ... vagy írd be egy alakzat <strong>gyorskódját</strong>, amit
             <link>itt</link> generálhatsz le)
-    markerDemoLimit:
-        desc: A Demó verzióban csak két Jelölőd lehet. Vásárold meg az Önálló verziót,
-            hogy feloldd ezt a korlátozást!
     exportScreenshotWarning:
         title: Képernyőkép exportálása
         desc: A teljes bázisod képének lementését választottad. Vedd figyelembe, hogy ez
@@ -293,28 +222,9 @@ dialogs:
         newMods: Newly installed Mods
     resourceLoadFailed:
         title: Resources failed to load
-        demoLinkText: shapez demo on Steam
-        descWeb: "One ore more resources could not be loaded. Make sure you have a
-            stable internet connection and try again. If this still doesn't
-            work, make sure to also disable any browser extensions (including
-            adblockers).<br><br> As an alternative, you can also play the
-            <demoOnSteamLinkText>. <br><br> Error Message:"
         descSteamDemo: "One ore more resources could not be loaded. Try restarting the
             game - If that does not help, try reinstalling and verifying the
             game files via Steam. <br><br> Error Message:"
-    steamSsoError:
-        title: Full Version Logout
-        desc: You have been logged out from the Full Browser Version since either your
-            network connection is unstable or you are playing on another
-            device.<br><br> Please make sure you don't have shapez open in any
-            other browser tab or another computer with the same Steam
-            account.<br><br> You can login again in the main menu.
-    steamSsoNoOwnership:
-        title: Full Edition not owned
-        desc: In order to play the Full Edition in your Browser, you need to own both
-            the base game and the Puzzle DLC on your Steam account.<br><br>
-            Please make sure you own both, signed in with the correct Steam
-            account and then try again.
 ingame:
     keybindingsOverlay:
         moveMap: Mozgatás
@@ -455,40 +365,6 @@ ingame:
         one_miner: 1 Bánya
         n_miners: <amount> Bánya
         limited_items: Maximum <max_throughput>
-    watermark:
-        title: Demó verzió
-        desc: Kattints ide, hogy megnézd az Önálló Verzió előnyeit!
-        get_on_steam: Megvásárlás Steamen
-    standaloneAdvantages:
-        no_thanks: Nem, köszönöm!
-        points:
-            levels:
-                title: 12 Új Szint
-                desc: Összesen 26
-            buildings:
-                title: 22 Új Épület
-                desc: Egy teljesen automatikus gyárhoz!
-            markers:
-                title: ∞ Jelölő
-                desc: Hogy mindig tudd, mi hol van!
-            wires:
-                title: Vezetékek
-                desc: Egy teljesen új dimenzióhoz!
-            darkmode:
-                title: Sötét Mód
-                desc: Ha már fáj a szemed!
-            support:
-                title: Támogass
-                desc: A játékot továbbfejlesztem szabadidőmben
-            achievements:
-                title: Steam Achievementek
-                desc: Szerezd meg mindet!
-            mods:
-                title: Modding support!
-                desc: Over 80 mods available!
-        titleV2: "Get the full version now on Steam to unlock:"
-        titleExpiredV2: Demo completed!
-        titleEnjoyingDemo: Enjoy the demo?
     puzzleEditorSettings:
         zoneTitle: Zóna
         zoneWidth: Szélesség
@@ -599,7 +475,7 @@ buildings:
             description: Négyfelé vágja az alakzatokat. <strong>Ha csak az egyik részét
                 akarod használni, ne felejtsd el a többit a Kukába küldeni,
                 különben eldugul!</strong>
-    rotater:
+    rotator:
         default:
             name: Forgató
             description: Elforgatja az alakzatot 90 fokkal, az óramutató irányában.
@@ -720,7 +596,7 @@ buildings:
         default:
             name: Virtuális Vágó
             description: Virtuálisan félbevág egy alakzatot.
-        rotater:
+        rotator:
             name: Virtuális Forgató
             description: Virtuálisan elforgat egy alakzatot, az óramutató járásával
                 megegyező és ellenkező irányba is.
@@ -762,7 +638,7 @@ storyRewards:
             irányától</strong>!<br><br>Szabadulj meg a feleslegtől, ellenkező
             esetben <strong>eldugulhat a rendszer</strong> - Ezért kaptál egy
             <strong>Kukát</strong>, amely elpusztít mindent, amit belevezetsz!
-    reward_rotater:
+    reward_rotator:
         title: Forgatás
         desc: Feloldottad a <strong>Forgatót</strong>, amely az óramutató járásával 90
             fokban forgatja el az alakzatokat.
@@ -786,7 +662,7 @@ storyRewards:
         title: Alagút
         desc: Feloldottad az <strong>Alagutat</strong> - Átvihetsz egy futószalagot
             másik futószalag, vagy akár épület alatt!
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Ellentétes Forgatás
         desc: Feloldottad a <strong>Forgató</strong> ellentétes irányú variánsát,
             amellyel az óramutató járásával ellentétes irányban forgathatsz
@@ -854,7 +730,7 @@ storyRewards:
         desc: Feloldottad a <strong>Futószalag-mérőt</strong>! Segítségével megmérheted
             a Futószalag átmenő teljesítményét.<br><br>Várj csak, amíg feloldod
             a Vezetékeket - utána lesz csak igazán hasznos!
-    reward_rotater_180:
+    reward_rotator_180:
         title: Forgató (180°)
         desc: Feloldottad a <strong>180 fokos Forgatót</strong>, amellyel megfordíthatsz
             egy alakzatot 180 fokban (Meglepő, mi? :D)
@@ -1132,7 +1008,7 @@ keybindings:
         underground_belt: Alagút
         miner: Bánya
         cutter: Vágó
-        rotater: Forgató
+        rotator: Forgató
         stacker: Egyesítő
         mixer: Színkeverő
         painter: Festő
@@ -1193,12 +1069,6 @@ about:
 changelog:
     title: Változások
 demo:
-    features:
-        restoringGames: Mentések visszaállítása
-        importingGames: Mentések importálása
-        oneGameLimit: Egyetlen játékmentés elérhető
-        customizeKeybindings: Gyorsbillentyűk beállítása
-        exportingBase: Képernyőkép készítése a teljes bázisról
     settingNotAvailable: Nem elérhető a Demó Verzióban.
 tips:
     - A Központ mindenféle bemenetet elfogad, nemcsak az éppen aktuálisan kívánt
@@ -1361,16 +1231,7 @@ mods:
     version: Version
     modWebsite: Website
     openFolder: Open Mods Folder
-    folderOnlyStandalone: Opening the mod folder is only possible when running the standalone.
     browseMods: Browse Mods
     modsInfo: To install and manage mods, copy them to the mods folder within the
         game directory. You can also use the 'Open Mods Folder' button on the
         top right.
-    noModSupport: You need the standalone version on Steam to install mods.
-    togglingComingSoon:
-        title: Coming Soon
-        description: Enabling or disabling mods is currently only possible by copying
-            the mod file from or to the mods/ folder. However, being able to
-            toggle them here is planned for a future update!
-    browserNoSupport: Due to browser restrictions it is currently only possible to
-        install mods in the Steam version - Sorry!

@@ -1,24 +1,3 @@
-steamPage:
-    shortText: shapez.io est un jeu qui consiste à construire des usines pour
-        automatiser la création et la combinaison de formes de plus en plus
-        complexes sur une carte infinie.
-    discordLinkShort: Discord officiel
-    intro: >-
-        Vous aimez les jeux d’automatisation ? Ce jeu est pour vous !
-
-        shapez.io est un jeu calme où vous devrez construire des usines pour produire automatiquement des formes géométriques. À mesure que le niveau augmente, les formes deviennent de plus en plus complexes, et vous devrez vous étendre sur la carte infinie.
-
-        Et en plus, vous devrez aussi produire de plus en plus pour satisfaire la demande. La seule solution est de construire en plus grand ! Au début vous ne ferez que découper les formes, mais plus tard vous devrez les peindre — et pour ça vous devrez extraire et mélanger des couleurs !
-
-        En achetant le jeu sur Steam, vous aurez accès à la version complète, mais vous pouvez aussi jouer à une démo sur shapez.io et vous décider ensuite !
-    what_others_say: Ce que les gens pensent de Shapez.io
-    nothernlion_comment: Ce jeu est génial - Je passe un merveilleux moment à jouer,
-        et le temps s'est envolé.
-    notch_comment: Mince ! Je devrais vraiment me coucher, mais je crois que j'ai
-        trouvé comment faire un ordinateur dans Shapez.io
-    steam_review_comment: Ce jeu a volé ma vie et je ne veux pas la récupérer. Jeu
-        d'usine très cool qui ne me laissera pas arrêter de rendre mes lignes
-        plus efficaces.
 global:
     loading: Chargement
     error: Erreur
@@ -52,59 +31,19 @@ global:
         space: ESPACE
     loggingIn: Se connecter
     loadingResources: Chargement de ressources supplémentaires (<percentage> %)
-    discount: -<percentage>%
-    discountSummerSale: SPECIAL PROMOTION! Offer ends 7 July
-demoBanners:
-    title: Version de démo
-    intro: >-
-        Achetez la version complète <strong>maintenant</strong> et
-        débloquez:<ul>
-            <li>Les 26 niveaux + jeu libre infini</li>
-            <li>22 nouveaux bâtiments</li>
-            <li>Mods autorisés</li>
-            <li>Achievements</li>
-            <li>Mode sombre</li>
-            <li>... et bien plus encore !</li>
-        </ul>
-    playtimeDisclaimer: La version complète offre plus de <strong>20 heures de contenu</strong>.
-    playerCount: <playerCount> joueurs comme vous jouent actuellement à shapez sur Steam
-    untilEndOfDemo: Jusqu'à la fin de la démo
-    playtimeDisclaimerDownload: Vous pouvez continuer votre sauvegarde dans la
-        version complète ! Cliquez <strong>ici</strong> pour télécharger votre
-        sauvegarde.
-    titleV2: "Jouez la version complète pour :"
 mainMenu:
     play: Jouer
     continue: Continuer
     newGame: Nouvelle partie
-    changelog: Historique
-    subreddit: Reddit
     importSavegame: Importer
-    openSourceHint: Ce jeu est open source !
-    discordLink: Serveur Discord officiel
     helpTranslate: Contribuez à la traduction !
-    madeBy: Créé par <author-link>
-    browserWarning: Désolé, ce jeu sera lent sur votre navigateur web !
-        Procurez-vous la version complète ou téléchargez Chrome pour une
-        meilleure expérience.
     savegameLevel: Niveau <x>
     savegameLevelUnknown: Niveau inconnu
     savegameUnnamed: Sans titre
-    puzzleMode: Mode Puzzle
-    back: Retour
-    puzzleDlcText: Vous aimez compacter et optimiser vos usines ? Achetez le DLC sur
-        Steam dès maintenant pour encore plus d'amusement!
-    puzzleDlcWishlist: Ajoute à ta liste de souhaits maintenant !
-    puzzleDlcViewNow: Voir le DLC
     mods:
-        title: Mods Actifs
         warningPuzzleDLC: Jouer au DLC Puzzle n'est pas possible avec des mods.
             Désactivez-les pour jouer au DLC.
-    playingFullVersion: You are now playing the full version!
-    logout: Logout
     noActiveSavegames: No active savegames found - Click play to start a new game!
-    playFullVersionV2: Bough shapez on Steam? Play the full version in your Browser!
-    playFullVersionStandalone: You can now also play the full version in your Browser!
 dialogs:
     buttons:
         ok: OK
@@ -113,7 +52,6 @@ dialogs:
         later: Plus tard
         restart: Relancer
         reset: Réinitialiser
-        getStandalone: Obtenir la version complète
         deleteGame: Je sais ce que je fais
         viewUpdate: Voir les mises à jour
         showUpgrades: Montrer les améliorations
@@ -150,16 +88,6 @@ dialogs:
     keybindingsResetOk:
         title: Réinitialisation des contrôles
         desc: Les contrôles ont été remis à défaut !
-    featureRestriction:
-        title: Version de démo
-        desc: Vous avez essayé d’accéder à la fonction « <feature> » qui n’est pas
-            disponible dans la démo. Pensez à acheter la version complète pour
-            une expérience optimale !
-    oneSavegameLimit:
-        title: Sauvegardes limitées
-        desc: Vous ne pouvez avoir qu’une seule sauvegarde en même temps dans la version
-            démo. Merci d’effacer celle en cours ou bien de vous procurer la
-            version complète !
     updateSummary:
         title: Nouvelle mise à jour !
         desc: "Voici les changements depuis votre dernière session de jeu :"
@@ -204,9 +132,6 @@ dialogs:
         descItems: "Choisissez un objet prédéfini :"
         descShortKey: …ou entrez le <strong>raccourci</strong> d’une forme (que vous
             pouvez générer <link>ici</link>)
-    markerDemoLimit:
-        desc: Vous ne pouvez créer que deux balises dans la démo. Achetez la version
-            complète pour en placer autant que vous voulez !
     exportScreenshotWarning:
         title: Exporter une capture d’écran
         desc: Vous avez demandé à exporter une capture d’écran de votre base. Soyez
@@ -298,28 +223,9 @@ dialogs:
         newMods: Newly installed Mods
     resourceLoadFailed:
         title: Resources failed to load
-        demoLinkText: shapez demo on Steam
-        descWeb: "One ore more resources could not be loaded. Make sure you have a
-            stable internet connection and try again. If this still doesn't
-            work, make sure to also disable any browser extensions (including
-            adblockers).<br><br> As an alternative, you can also play the
-            <demoOnSteamLinkText>. <br><br> Error Message:"
         descSteamDemo: "One ore more resources could not be loaded. Try restarting the
             game - If that does not help, try reinstalling and verifying the
             game files via Steam. <br><br> Error Message:"
-    steamSsoError:
-        title: Full Version Logout
-        desc: You have been logged out from the Full Browser Version since either your
-            network connection is unstable or you are playing on another
-            device.<br><br> Please make sure you don't have shapez open in any
-            other browser tab or another computer with the same Steam
-            account.<br><br> You can login again in the main menu.
-    steamSsoNoOwnership:
-        title: Full Edition not owned
-        desc: In order to play the Full Edition in your Browser, you need to own both
-            the base game and the Puzzle DLC on your Steam account.<br><br>
-            Please make sure you own both, signed in with the correct Steam
-            account and then try again.
 ingame:
     keybindingsOverlay:
         moveMap: Déplacer
@@ -464,40 +370,6 @@ ingame:
         one_miner: 1 extracteur
         n_miners: <amount> extracteurs
         limited_items: Limité à <max_throughput>
-    watermark:
-        title: Version de démo
-        desc: Cliquez ici pour voir les avantages de la version Steam !
-        get_on_steam: Acheter sur Steam
-    standaloneAdvantages:
-        no_thanks: Non merci !
-        points:
-            levels:
-                title: 12 nouveaux niveaux
-                desc: Pour un total de 26 niveaux !
-            buildings:
-                title: 22 nouveaux bâtiments
-                desc: Automatisez entièrement votre usine !
-            markers:
-                title: Balises ∞
-                desc: Ne vous perdez plus jamais dans votre usine !
-            wires:
-                title: Câbles
-                desc: Une toute nouvelle dimension !
-            darkmode:
-                title: Mode sombre
-                desc: Plus jamais mal aux yeux !
-            support:
-                title: Me soutenir
-                desc: Je le développe pendant mon temps libre !
-            achievements:
-                title: Succès
-                desc: Débloquez-les tous !
-            mods:
-                title: Modding support!
-                desc: Over 80 mods available!
-        titleV2: "Get the full version now on Steam to unlock:"
-        titleExpiredV2: Demo completed!
-        titleEnjoyingDemo: Enjoy the demo?
     puzzleEditorSettings:
         zoneTitle: Zone
         zoneWidth: Largeur
@@ -610,7 +482,7 @@ buildings:
             description: Coupe une forme en quatre parties. <strong>Si vous n’utilisez pas
                 toutes les parties, assurez-vous de détruire les autres ou
                 sinon, gare au blocage !</strong>
-    rotater:
+    rotator:
         default:
             name: Pivoteur
             description: Fait pivoter une forme de 90 degrés vers la droite.
@@ -741,7 +613,7 @@ buildings:
         default:
             name: Découpeur virtuel
             description: Découpe virtuellement une forme.
-        rotater:
+        rotator:
             name: Pivoteur virtuel
             description: Fait pivoter virtuellement la forme de 90 degrés vers la droite.
         unstacker:
@@ -781,7 +653,7 @@ storyRewards:
             déchets, ou sinon <strong>il se bouchera et se bloquera</strong> - À
             cet effet, je vous ai donné la <strong>poubelle</strong>, qui
             détruit tout ce que vous mettez dedans !
-    reward_rotater:
+    reward_rotator:
         title: Rotation
         desc: Le <strong>pivoteur</strong> a été débloqué ! Il pivote les formes de 90
             degrés vers la droite.
@@ -814,7 +686,7 @@ storyRewards:
         title: Tunnel
         desc: Le <strong>tunnel</strong> a été débloqué. Vous pouvez maintenant faire
             passer des formes sous les convoyeurs et les bâtiments !
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Pivoteur inversé
         desc: Vous avez débloqué une variante du <strong>pivoteur</strong>. Elle permet
             de faire pivoter vers la gauche ! Pour le construire, sélectionnez
@@ -871,7 +743,7 @@ storyRewards:
             copier.<br><br> Coller n’est <strong>pas gratuit</strong>, vous
             devez produire <strong>des formes de plans</strong> pour vous le
             payer (les mêmes que celles que vous venez de livrer).
-    reward_rotater_180:
+    reward_rotator_180:
         title: Retourneur
         desc: Vous avez débloqué le <strong>retourneur</strong> ! Il permet de faire
             pivoter une forme de 180 degrés (Surprise ! :D)
@@ -1169,7 +1041,7 @@ keybindings:
         underground_belt: Tunnel
         miner: Extracteur
         cutter: Découpeur
-        rotater: Pivoteur
+        rotator: Pivoteur
         stacker: Assembleur
         mixer: Mélangeur de couleur
         painter: Station de peinture
@@ -1231,12 +1103,6 @@ about:
 changelog:
     title: Historique
 demo:
-    features:
-        restoringGames: Charger des sauvegardes
-        importingGames: Importer des sauvegardes
-        oneGameLimit: Limité à une sauvegarde
-        customizeKeybindings: Personnalisation des contrôles
-        exportingBase: Exporter une image de toute la base
     settingNotAvailable: Indisponible dans la démo.
 tips:
     - Le centre accepte n’importe quelle forme, pas seulement la forme actuelle !
@@ -1410,19 +1276,7 @@ mods:
     version: Version
     modWebsite: Page web
     openFolder: Ouvrir le dossier des mods
-    folderOnlyStandalone: Ouvrir le dossier des mods est uniquement possible avec la
-        version complète
     browseMods: Chercher les Mods
     modsInfo: Pour installer et gérer les mods, copier-les dans le dossier Mods dans
         le répertoire du jeu. Vous pouvez aussi utiliser le bouton 'Ouvrir le
         dossier des Mods' en haut à droite
-    noModSupport: Vous avez besoin de la version complète sur Steam pour installer
-        des mods.
-    togglingComingSoon:
-        title: Bientôt disponible
-        description: Activer ou désactiver un mod est pour le moment possible qu'en
-            copiant le fichier du mod depuis ou vers le dossier des mods.
-            Cependant, activer ou désactiver un mod est prévu pour une mise à
-            jour future !
-    browserNoSupport: Due to browser restrictions it is currently only possible to
-        install mods in the Steam version - Sorry!

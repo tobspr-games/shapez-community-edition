@@ -11,6 +11,7 @@ import { GameRoot } from "./root";
 
 const logger = createLogger("camera");
 
+// @TODO: unused signal
 export const USER_INTERACT_MOVE = "move";
 export const USER_INTERACT_ZOOM = "zoom";
 export const USER_INTERACT_TOUCHEND = "touchend";
@@ -60,6 +61,7 @@ export class Camera extends BasicSerializableObject {
         this.keyboardForce = new Vector();
 
         // Signal which gets emitted once the user changed something
+        /** @type {Signal<[string]>} */
         this.userInteraction = new Signal();
 
         /** @type {Vector} */
@@ -84,10 +86,10 @@ export class Camera extends BasicSerializableObject {
         this.touchPostMoveVelocity = new Vector(0, 0);
 
         // Handlers
-        this.downPreHandler = /** @type {TypedSignal<[Vector, enumMouseButton]>} */ (new Signal());
-        this.movePreHandler = /** @type {TypedSignal<[Vector]>} */ (new Signal());
-        // this.pinchPreHandler = /** @type {TypedSignal<[Vector]>} */ (new Signal());
-        this.upPostHandler = /** @type {TypedSignal<[Vector]>} */ (new Signal());
+        this.downPreHandler = /** @type {Signal<[Vector, enumMouseButton]>} */ (new Signal());
+        this.movePreHandler = /** @type {Signal<[Vector]>} */ (new Signal());
+        // this.pinchPreHandler = /** @type {Signal<[Vector]>} */ (new Signal());
+        this.upPostHandler = /** @type {Signal<[Vector]>} */ (new Signal());
 
         this.internalInitEvents();
         this.clampZoomLevel();

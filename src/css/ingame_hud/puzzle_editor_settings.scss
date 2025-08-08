@@ -1,15 +1,15 @@
 #ingame_HUD_PuzzleEditorSettings {
     position: absolute;
     background: $ingameHudBg;
-    @include S(padding, 10px);
-    @include S(bottom, 60px);
-    @include S(left, 10px);
+    padding: 1rem;
+    bottom: 6rem;
+    left: 1rem;
 
     @include SuperSmallText;
     color: #eee;
     display: flex;
     flex-direction: column;
-    @include S(border-radius, $globalBorderRadius);
+    border-radius: $globalBorderRadius;
 
     > .section {
         > label {
@@ -17,30 +17,29 @@
         }
 
         .plusMinus {
-            @include S(margin-top, 5px);
+            margin-top: 0.5rem;
             display: grid;
             grid-template-columns: 1fr auto auto auto;
             align-items: center;
-            @include S(grid-gap, 5px);
+            grid-gap: 0.5rem;
 
             label {
-                @include S(margin-right, 10px);
+                margin-right: 1rem;
             }
 
             button {
                 @include PlainText;
-                @include S(padding, 0);
+                padding: 0;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                @include S(width, 15px);
-                @include S(height, 15px);
-                @include IncreasedClickArea(0px);
+                width: 1.5rem;
+                height: 1.5rem;
             }
 
             .value {
                 text-align: center;
-                @include S(min-width, 15px);
+                min-width: 1.5rem;
             }
         }
 
@@ -48,9 +47,9 @@
             > .buttonBar {
                 display: flex;
                 align-items: center;
-                @include S(margin-top, 10px);
+                margin-top: 1rem;
                 > button {
-                    @include S(margin-right, 4px);
+                    margin-right: 0.4rem;
                     @include SuperSmallText;
                     &:last-child {
                         margin-right: 0;
@@ -61,7 +60,7 @@
             > .buildingsButton {
                 display: grid;
                 align-items: center;
-                @include S(margin-top, 4px);
+                margin-top: 0.4rem;
                 > button {
                     @include SuperSmallText;
                 }

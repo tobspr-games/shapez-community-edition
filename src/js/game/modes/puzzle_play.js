@@ -33,7 +33,7 @@ import { gMetaBuildingRegistry } from "../../core/global_registries";
 import { HUDPuzzleNextPuzzle } from "../hud/parts/next_puzzle";
 
 const logger = createLogger("puzzle-play");
-const copy = require("clipboard-copy");
+import copy from "clipboard-copy";
 
 export class PuzzlePlayGameMode extends PuzzleGameMode {
     static getId() {
@@ -177,7 +177,7 @@ export class PuzzlePlayGameMode extends PuzzleGameMode {
             }
         );
 
-        return new Promise(resolve => {
+        return new /** @type {typeof Promise<void>} */ (Promise)(resolve => {
             optionSelected.add(option => {
                 const closeLoading = this.root.hud.parts.dialogs.showLoadingDialog();
 

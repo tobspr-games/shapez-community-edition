@@ -101,7 +101,7 @@ export class BaseHUDPart {
     /**
      * Helper method to construct a new click detector
      * @param {Element} element The element to listen on
-     * @param {function} handler The handler to call on this object
+     * @param {import("../../core/signal").SignalReceiver<[]>} handler The handler to call on this object
      * @param {import("../../core/click_detector").ClickDetectorConstructorArgs=} args Click detector arguments
      *
      */

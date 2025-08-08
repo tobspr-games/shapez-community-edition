@@ -41,13 +41,9 @@ export function prepareHighDPIContext(context, smooth = true) {
 
     if (smooth) {
         context.imageSmoothingEnabled = true;
-        context.webkitImageSmoothingEnabled = true;
-
-        // @ts-ignore
         context.imageSmoothingQuality = globalConfig.smoothing.quality;
     } else {
         context.imageSmoothingEnabled = false;
-        context.webkitImageSmoothingEnabled = false;
     }
 }
 

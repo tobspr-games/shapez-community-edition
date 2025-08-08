@@ -1,21 +1,21 @@
 #ingame_HUD_InteractiveTutorial {
     position: absolute;
-    @include S(left, 10px);
-    @include S(bottom, 10px);
+    left: 1rem;
+    bottom: 1rem;
 
     @include StyleBelowWidth(1430px) {
-        @include S(bottom, 10px + 40px);
+        bottom: 5rem;
     }
 
-    @include S(width, 150px);
+    width: 15rem;
 
     background: $ingameHudBg;
-    @include S(padding, 7px);
+    padding: 0.7rem;
     color: #eee;
     display: flex;
     flex-direction: column;
 
-    @include S(border-radius, $globalBorderRadius);
+    border-radius: $globalBorderRadius;
 
     @include MakeAnimationWrappedEvenOdd(0.5s ease-in-out) {
         0% {
@@ -49,11 +49,11 @@
     }
 
     .helperGif {
-        @include S(margin-top, 5px);
-        @include S(width, 150px);
-        @include S(height, 150px);
+        margin-top: 0.5rem;
+        width: 15rem;
+        height: 15rem;
         background: center center / cover no-repeat;
         transition: opacity 0.1s ease-out;
-        @include S(border-radius, $globalBorderRadius);
+        border-radius: $globalBorderRadius;
     }
 }

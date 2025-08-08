@@ -2,12 +2,7 @@
 import { Application } from "../application";
 /* typehints:end */
 import { BufferMaintainer } from "../core/buffer_maintainer";
-import {
-    disableImageSmoothing,
-    enableImageSmoothing,
-    getBufferStats,
-    registerCanvas,
-} from "../core/buffer_utils";
+import { getBufferStats } from "../core/buffer_utils";
 import { globalConfig } from "../core/config";
 import { getDeviceDPI, resizeHighDPICanvas } from "../core/dpi_manager";
 import { DrawParameters } from "../core/draw_parameters";
@@ -17,6 +12,7 @@ import { Rectangle } from "../core/rectangle";
 import { ORIGINAL_SPRITE_SCALE } from "../core/sprites";
 import { lerp, randomInt, round2Digits } from "../core/utils";
 import { Vector } from "../core/vector";
+import { MOD_SIGNALS } from "../mods/mod_signals";
 import { Savegame } from "../savegame/savegame";
 import { SavegameSerializer } from "../savegame/savegame_serializer";
 import { AutomaticSave } from "./automatic_save";
@@ -24,6 +20,7 @@ import { MetaHubBuilding } from "./buildings/hub";
 import { Camera } from "./camera";
 import { DynamicTickrate } from "./dynamic_tickrate";
 import { EntityManager } from "./entity_manager";
+import { GameMode } from "./game_mode";
 import { GameSystemManager } from "./game_system_manager";
 import { HubGoals } from "./hub_goals";
 import { GameHUD } from "./hud/hud";
@@ -31,22 +28,13 @@ import { KeyActionMapper } from "./key_action_mapper";
 import { GameLogic } from "./logic";
 import { MapView } from "./map_view";
 import { defaultBuildingVariant } from "./meta_building";
-import { GameMode } from "./game_mode";
 import { ProductionAnalytics } from "./production_analytics";
 import { GameRoot } from "./root";
 import { ShapeDefinitionManager } from "./shape_definition_manager";
-import { AchievementProxy } from "./achievement_proxy";
 import { SoundProxy } from "./sound_proxy";
 import { GameTime } from "./time/game_time";
-import { MOD_SIGNALS } from "../mods/mod_signals";
 
 const logger = createLogger("ingame/core");
-
-// Store the canvas so we can reuse it later
-/** @type {HTMLCanvasElement} */
-let lastCanvas = null;
-/** @type {CanvasRenderingContext2D} */
-let lastContext = null;
 
 /**
  * The core manages the root and represents the whole game. It wraps the root, since
@@ -101,7 +89,7 @@ export class GameCore {
         const root = this.root;
 
         // This isn't nice, but we need it right here
-        root.keyMapper = new KeyActionMapper(root, this.root.gameState.inputReciever);
+        root.keyMapper = new KeyActionMapper(root, this.root.gameState.inputReceiver);
 
         // Init game mode
         root.gameMode = GameMode.create(root, gameModeId, parentState.creationPayload.gameModeParameters);
@@ -115,7 +103,6 @@ export class GameCore {
         root.logic = new GameLogic(root);
         root.hud = new GameHUD(root);
         root.time = new GameTime(root);
-        root.achievementProxy = new AchievementProxy(root);
         root.automaticSave = new AutomaticSave(root);
         root.soundProxy = new SoundProxy(root);
 
@@ -142,7 +129,7 @@ export class GameCore {
 
         // @todo Find better place
         if (G_IS_DEV && globalConfig.debug.manualTickOnly) {
-            this.root.gameState.inputReciever.keydown.add(key => {
+            this.root.gameState.inputReceiver.keydown.add(key => {
                 if (key.keyCode === 84) {
                     // 'T'
 
@@ -154,9 +141,6 @@ export class GameCore {
 
                     // Update analytics
                     root.productionAnalytics.update();
-
-                    // Check achievements
-                    root.achievementProxy.update();
                 }
             });
         }
@@ -218,57 +202,23 @@ export class GameCore {
      * Initializes the render canvas
      */
     internalInitCanvas() {
-        let canvas, context;
-        if (!lastCanvas) {
-            logger.log("Creating new canvas");
-            canvas = document.createElement("canvas");
-            canvas.id = "ingame_Canvas";
-            canvas.setAttribute("opaque", "true");
-            canvas.setAttribute("webkitOpaque", "true");
-            canvas.setAttribute("mozOpaque", "true");
-            this.root.gameState.getDivElement().appendChild(canvas);
-            context = canvas.getContext("2d", { alpha: false });
+        logger.log("Creating new canvas");
+        const canvas = document.createElement("canvas");
+        canvas.id = "ingame_Canvas";
+        this.root.gameState.getDivElement().appendChild(canvas);
+        const context = canvas.getContext("2d", { alpha: false });
 
-            lastCanvas = canvas;
-            lastContext = context;
-        } else {
-            logger.log("Reusing canvas");
-            if (lastCanvas.parentElement) {
-                lastCanvas.parentElement.removeChild(lastCanvas);
-            }
-            this.root.gameState.getDivElement().appendChild(lastCanvas);
-
-            canvas = lastCanvas;
-            context = lastContext;
-
-            lastContext.clearRect(0, 0, lastCanvas.width, lastCanvas.height);
-        }
-
-        canvas.classList.toggle("smoothed", globalConfig.smoothing.smoothMainCanvas);
-
-        // Oof, use :not() instead
-        canvas.classList.toggle("unsmoothed", !globalConfig.smoothing.smoothMainCanvas);
-
-        if (globalConfig.smoothing.smoothMainCanvas) {
-            enableImageSmoothing(context);
-        } else {
-            disableImageSmoothing(context);
-        }
+        context.imageSmoothingEnabled = globalConfig.smoothing.smoothMainCanvas;
+        context.imageSmoothingQuality = globalConfig.smoothing.quality;
 
         this.root.canvas = canvas;
         this.root.context = context;
-
-        registerCanvas(canvas, context);
     }
 
     /**
      * Destructs the root, freeing all resources
      */
     destruct() {
-        if (lastCanvas && lastCanvas.parentElement) {
-            lastCanvas.parentElement.removeChild(lastCanvas);
-        }
-
         this.root.destruct();
         delete this.root;
         this.root = null;
@@ -290,9 +240,6 @@ export class GameCore {
 
             // Update analytics
             root.productionAnalytics.update();
-
-            // Check achievements
-            root.achievementProxy.update();
         }
 
         // Update automatic save after everything finished
@@ -440,7 +387,7 @@ export class GameCore {
         this.overlayAlpha = lerp(this.overlayAlpha, desiredOverlayAlpha, 0.25);
 
         // On low performance, skip the fade
-        if (this.root.entityMgr.entities.length > 5000 || this.root.dynamicTickrate.averageFps < 50) {
+        if (this.root.entityMgr.entities.size > 5000 || this.root.dynamicTickrate.averageFps < 50) {
             this.overlayAlpha = desiredOverlayAlpha;
         }
 

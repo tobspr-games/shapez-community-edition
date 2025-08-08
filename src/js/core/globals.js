@@ -12,19 +12,14 @@ export let GLOBAL_APP = null;
  * @param {Application} app
  */
 export function setGlobalApp(app) {
-    assert(!GLOBAL_APP, "Create application twice!");
+    assert(!GLOBAL_APP, "Tried to set GLOBAL_APP twice");
     GLOBAL_APP = app;
 }
 
 export const BUILD_OPTIONS = {
-    HAVE_ASSERT: G_HAVE_ASSERT,
     APP_ENVIRONMENT: G_APP_ENVIRONMENT,
-    CHINA_VERSION: G_CHINA_VERSION,
-    WEGAME_VERSION: G_WEGAME_VERSION,
     IS_DEV: G_IS_DEV,
     IS_RELEASE: G_IS_RELEASE,
-    IS_BROWSER: G_IS_BROWSER,
-    IS_STANDALONE: G_IS_STANDALONE,
     BUILD_TIME: G_BUILD_TIME,
     BUILD_COMMIT_HASH: G_BUILD_COMMIT_HASH,
     BUILD_VERSION: G_BUILD_VERSION,

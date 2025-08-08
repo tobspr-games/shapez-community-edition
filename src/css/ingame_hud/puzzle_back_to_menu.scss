@@ -1,13 +1,13 @@
 #ingame_HUD_PuzzleBackToMenu {
     position: absolute;
-    @include S(top, 10px);
-    @include S(left, 0px);
+    top: 1rem;
+    left: 0rem;
 
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    backdrop-filter: blur(D(1px));
-    padding: D(3px);
+    backdrop-filter: blur(0.1rem);
+    padding: 0.3rem;
 
     > .button {
         @include PlainText;
@@ -19,8 +19,8 @@
         transition-property: opacity, transform;
         text-transform: uppercase;
         @include PlainText;
-        @include S(width, 30px);
-        @include S(height, 30px);
+        width: 3rem;
+        height: 3rem;
 
         @include DarkThemeInvert;
 
@@ -35,7 +35,7 @@
 
         & {
             /* @load-async */
-            background: uiResource("icons/state_back_button.png") center center / D(15px) no-repeat;
+            background: uiResource("icons/state_back_button.png") center center / 1.5rem no-repeat;
         }
     }
 }

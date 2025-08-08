@@ -2,7 +2,7 @@
 * {
     margin: 0;
     padding: 0;
-    touch-action: pan-x pan-y !important;
+    touch-action: pan-x pan-y;
     pointer-events: none;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
@@ -21,18 +21,7 @@ body {
 }
 
 html {
-    position: fixed;
-    // scroll-behavior: smooth;
     background: $mainBgColor;
-    // Disable zooming and thus
-    -ms-touch-action: pan-x, pan-y;
-    touch-action: pan-x, pan-y;
-    -ms-content-zooming: none;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: #dee1ea;
     @include DarkThemeOverride {
         background: $darkModeGameBackground;
     }
@@ -41,77 +30,11 @@ html {
 body {
     color: #555;
     user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    background: inherit !important;
-    text-transform: none;
-    white-space: normal;
-    word-break: normal;
-    word-spacing: normal;
-    word-wrap: break-word;
-    font-style: normal;
-    line-break: auto;
-    font-stretch: 100%;
+    background: inherit;
+    overflow-wrap: break-word;
     text-rendering: optimizeLegibility;
-    text-decoration: none;
-    text-size-adjust: 100%;
-    letter-spacing: normal;
-    scrollbar-width: 6px;
     -webkit-font-smoothing: antialiased;
-    // -webkit-overflow-scrolling: touch; /* stop scrolling immediately */
-    -webkit-touch-callout: none;
-    /* prevent callout to copy image, etc when tap to hold */
-    -webkit-text-size-adjust: none;
-    /* prevent webkit from resizing text to fit */
-    // Internet explorer
-    scrollbar-face-color: #888;
-    scrollbar-track-color: rgba(255, 255, 255, 0.1);
-    // Firefox
-    scrollbar-color: #cdd0d4 rgba(#000, 0.05);
-    overflow: hidden;
     @include Text;
-    &.externalAdOpen {
-        &::before {
-            text-transform: uppercase;
-            @include SuperSmallText;
-            content: "Loading Advertisement...";
-            color: #333;
-            position: fixed;
-            top: 0;
-            pointer-events: all;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(50, 60, 70, 0.8);
-            z-index: 999999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            @include InlineAnimation(1s ease-in-out infinite) {
-                50% {
-                    transform: scale(1.05);
-                }
-            }
-        }
-    }
-    // For recording the bg video
-    // filter: blur(5px);
-    // &::after {
-    //   position: fixed;
-    //   top: 0;
-    //   left: 0;
-    //   right: 0;
-    //   bottom: 0;
-    //   z-index: 9999;
-    //   content: " ";
-    //   background: rgba($ingameHudBg, 0.5);
-    // }
-}
-
-img {
-    -webkit-touch-callout: none;
-    /* prevent callout to copy image, etc when tap to hold */
 }
 
 i {
@@ -132,8 +55,6 @@ input,
 textarea,
 select {
     font-size: inherit;
-    font-weight: inherit;
-    font-family: inherit;
     line-height: inherit;
 }
 
@@ -143,70 +64,25 @@ button {
     pointer-events: all;
     cursor: pointer;
     position: relative;
-    @include TextShadow3D;
-    &.prefab_BuyButtonWithResources {
-        display: flex;
-        box-sizing: border-box;
-        @include S(padding, 6px, 4px);
-        // letter-spacing: 0;
-        background-color: color($cyan, 400);
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        @include S(width, 85px);
-        &.tooExpensive {
-            color: $colorRedBright;
-            background-color: #555;
-            cursor: default;
-        }
-        .cost_entry {
-            display: flex;
-            flex-grow: 1;
-            justify-content: center;
-            align-items: center;
-        }
-        b {
-            display: flex;
-            flex-grow: 1;
-            justify-content: center;
-            align-items: center;
-        }
-        &.tooExpensive {
-            cursor: default !important;
-            background-color: #565859 !important;
-            b {
-                color: $colorRedBright !important;
-            }
-            .cost_entry {
-                opacity: 0.6;
-            }
-        }
-    }
+    color: $legacyTextShadow3DColor;
 }
 
 .styledButton {
-    background: $themeColor;
     text-transform: uppercase;
     box-sizing: content-box;
-    @include S(padding, 3px, 10px);
-    @include IncreasedClickArea(10px);
-    @include TextShadow3D(#fff, $borderColor: #28292a);
+    padding: 0.3rem 1rem;
     @include ButtonText;
     border: 0;
     background: $colorBlueBright;
     color: #fff;
-
-    @include S(border-radius, 0.8 * $globalBorderRadius);
-    // border: #{D(1px)} solid rgba(0, 10, 20, 0.2);
-    @include S(border-bottom-width, 2px);
-    // color: $accentColorDark;
-    letter-spacing: 0em !important;
-    // box-shadow: 0 #{D(1px)} #{D(2px)} 0 rgba(0, 10, 20, 0.2);
-    .keybinding {
-        @include S(bottom, -2.5px);
-        @include S(right, -2px);
-    }
+    border-radius: 0.8 * $globalBorderRadius;
     transition: opacity 0.12s ease-in-out;
+
+    kbd {
+        bottom: -0.25rem;
+        right: -0.2rem;
+    }
+
     &:hover {
         opacity: 0.9;
     }
@@ -217,17 +93,11 @@ button {
     /* WebKit/Blink Browsers */
 }
 
-::-moz-selection {
-    background: $colorGreenBright;
-    /* Gecko Browsers */
-}
-
 input[type="text"],
 input[type="email"] {
-    @include S(padding, 11px, 12px);
-    @include S(margin, 10px, 0);
+    padding: 1.1rem 1.2rem;
+    margin: 1rem 0;
     border: 0;
-    cursor: text;
     display: block;
     text-align: left;
     box-sizing: border-box;
@@ -237,14 +107,13 @@ input[type="email"] {
     user-select: text !important;
     pointer-events: all !important;
     @include Text;
-    @include IncreasedClickArea(15px);
-    @include S(border-radius, $globalBorderRadius);
+    border-radius: $globalBorderRadius;
     &::placeholder {
         color: #fff;
         opacity: 0.4;
     }
     transition: background-color 0.1s ease-in-out !important;
-    @include TextShadow3D(#fff);
+    color: #fff;
     @include BoxShadow3D(lighten($mainBgColor, 30));
     &:focus {
         @include BoxShadow3D(lighten($mainBgColor, 35));
@@ -258,8 +127,8 @@ input[type="email"] {
     &.input-token {
         @include SuperHeading;
         text-align: center;
-        @include S(letter-spacing, 30px);
-        @include S(padding-left, 30px);
+        letter-spacing: 3rem;
+        padding-left: 3rem;
     }
 }
 
@@ -282,8 +151,6 @@ a {
 
 a {
     text-decoration: none;
-    cursor: pointer;
-    pointer-events: all;
 }
 
 i {
@@ -292,35 +159,20 @@ i {
 
 input {
     user-select: text;
-    -moz-user-select: text;
     pointer-events: all;
-    cursor: text;
     border-radius: 0;
 }
 
 canvas {
     pointer-events: all;
-    // image-rendering: pixelated;
-    // &.smoothed {
-    // }1
-    // &.unsmoothed {
-    // }
-    letter-spacing: 0 !important;
     transform: translateZ(0);
     backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-}
-
-.fontPreload {
-    position: absolute;
-    top: -100px;
-    left: -100px;
 }
 
 // Scrollbar
 ::-webkit-scrollbar {
-    @include S(width, 6px);
-    @include S(height, 6px);
+    width: 0.6rem;
+    height: 0.6rem;
 }
 
 ::-webkit-scrollbar-track {
@@ -329,27 +181,12 @@ canvas {
 
 ::-webkit-scrollbar-thumb {
     // border-radius: 4px;
-    @include S(border-radius, $globalBorderRadius);
+    border-radius: $globalBorderRadius;
     background: #cdd0d4;
 }
 
 ::-webkit-scrollbar-thumb:hover {
     background: #d8dce0;
-}
-
-#uiTestPlaybackCursor {
-    position: fixed;
-    top: 100px;
-    left: 100px;
-    z-index: 9999;
-    border-radius: 50%;
-    background: rgba(255, 255, 0, 0.4);
-    width: 24px;
-    height: 24px;
-    border: 3px solid rgba(0, 0, 0, 0.5);
-    margin-top: -12px;
-    margin-left: -12px;
-    box-sizing: border-box;
 }
 
 .pressed:not(.noPressEffect) {
@@ -375,25 +212,20 @@ canvas {
     display: inline-block;
 }
 
-.badged {
-    color: color($purple, 300);
-}
-
-.prefab_LoadingTextWithAnim,
-.prefab_LoadingTextWithAnimDelayed {
+.prefab_LoadingTextWithAnim {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     text-transform: uppercase;
     @include Text;
-    @include TextShadow3D;
+    color: $legacyTextShadow3DColor;
     opacity: 1;
     z-index: 20;
     color: #393747;
     &::after {
         content: " ";
-        @include S(width, 35px);
-        @include S(height, 35px);
+        width: 3.5rem;
+        height: 3.5rem;
         display: inline-block;
         vertical-align: middle;
 
@@ -413,65 +245,14 @@ canvas {
     }
 }
 
-.prefab_LoadingTextWithAnimDelayed {
-    @include InlineAnimation(0.6s ease-in-out) {
-        0% {
-            opacity: 0;
-        }
-        50% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
-    }
-}
-
 .prefab_LoadingProgressIndicator {
     @include PlainText;
-    @include S(margin-top, 20px);
+    margin-top: 2rem;
     width: 100%;
     color: #336c9f;
-    @include S(height, 20px);
+    height: 2rem;
     text-transform: uppercase;
     text-align: center;
-}
-
-.prefab_FeatureComingSoon {
-    position: relative;
-    &::after {
-        @include S(top, -5px);
-        @include S(left, -5px);
-        @include S(right, -5px);
-        @include S(bottom, -5px);
-        content: "Coming soon!";
-        z-index: 10000;
-        background: rgba(lighten($mainBgColor, 0), 0.4);
-        @include S(border-radius, $globalBorderRadius);
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        pointer-events: all;
-        @include PlainText;
-        text-transform: uppercase;
-    }
-    opacity: 0.6;
-    > * {
-        opacity: 0.5 !important;
-    }
-}
-
-.prefab_InfoIcon {
-    @include S(width, 25px);
-    @include S(height, 25px);
-    z-index: 100;
-    opacity: 0.8;
-    cursor: pointer;
-    pointer-events: all;
-    display: inline-block;
-    position: relative;
-    @include IncreasedClickArea(10px);
 }
 
 .gameState.prefab_LoadingState {
@@ -492,15 +273,15 @@ canvas {
         }
 
         & {
-            background: uiResource("loading.svg") center center / #{D(40px)} no-repeat;
+            background: uiResource("loading.svg") center center / 4rem no-repeat;
         }
     }
 
     .prefab_GameHint {
         position: absolute;
-        @include S(left, 20px);
-        @include S(right, 20px);
-        @include S(bottom, 60px);
+        left: 2rem;
+        right: 2rem;
+        bottom: 6rem;
         @include Text;
         color: #666;
 
@@ -511,9 +292,9 @@ canvas {
 
     .loadingStatus {
         position: absolute;
-        @include S(left, 20px);
-        @include S(right, 20px);
-        @include S(bottom, 30px);
+        left: 2rem;
+        right: 2rem;
+        bottom: 3rem;
         @include Text;
         @include PlainText;
         color: #aaa;
@@ -528,11 +309,11 @@ canvas {
         align-items: center;
         > .bar {
             display: none;
-            @include S(margin-top, 15px);
+            margin-top: 1.5rem;
             width: 80vw;
             @include BoxShadow3D(lighten($mainBgColor, 10), $size: 1px);
             position: relative;
-            @include TextShadow3D(#fff);
+            color: #fff;
             height: 2px;
             .inner {
                 position: absolute !important;
@@ -541,7 +322,7 @@ canvas {
                 bottom: 0;
                 z-index: 1;
                 @include BoxShadow3D($themeColor, $size: 1px);
-                @include S(border-radius, $globalBorderRadius);
+                border-radius: $globalBorderRadius;
                 transform-origin: 0% 50%;
                 @include InlineAnimation(1.3s ease-in-out infinite) {
                     0% {
@@ -563,7 +344,7 @@ canvas {
                 position: relative;
                 z-index: 2;
                 display: inline-flex;
-                @include S(padding, 5px);
+                padding: 0.5rem;
                 @include PlainText;
             }
         }
@@ -577,17 +358,19 @@ canvas {
 .checkbox {
     $bgColor: darken($mainBgColor, 3);
     background-color: $bgColor;
-    @include S(width, 35px);
-    @include S(height, 17px);
+    width: 3.5rem;
+    height: 1.7rem;
     display: flex;
-    @include S(padding, 3px);
+    padding: 0.3rem;
     box-sizing: content-box;
     cursor: pointer;
     pointer-events: all;
-    transition: opacity 0.2s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.4s ease-in-out !important;
+    transition:
+        opacity 0.2s ease-in-out,
+        background-color 0.3s ease-in-out,
+        box-shadow 0.4s ease-in-out !important;
     position: relative;
-    @include BorderRadius(20px);
-    @include IncreasedClickArea(10px);
+    border-radius: 2rem;
     @include BoxShadow3D($bgColor, $size: 2px);
     &.loading {
         opacity: 0.2;
@@ -596,20 +379,20 @@ canvas {
         background-color: darken($bgColor, 5);
     }
     .knob {
-        @include S(width, 20px);
-        @include S(height, 17px);
+        width: 2rem;
+        height: 1.7rem;
         display: inline-block;
         transition: margin-left 0.4s ease-in-out !important;
         background: #fff;
         position: relative;
-        @include BorderRadius(20px);
+        border-radius: 2rem;
         @include BoxShadow3D(#fff, $size: 1px);
     }
     &.checked {
         background-color: $themeColor;
         @include BoxShadow3D($themeColor, $size: 2px);
         .knob {
-            @include S(margin-left, 15px);
+            margin-left: 1.5rem;
         }
         &:hover {
             background-color: lighten($themeColor, 15);
@@ -630,7 +413,7 @@ canvas {
     justify-content: center;
 
     label {
-        @include S(margin-right, 5px);
+        margin-right: 0.5rem;
         &,
         & * {
             @include PlainText;
@@ -641,14 +424,14 @@ canvas {
 input.rangeInput {
     cursor: pointer;
     background-color: transparent;
-    @include S(width, 100px);
-    @include S(height, 16px);
+    width: 10rem;
+    height: 1.6rem;
 
     &::-webkit-slider-runnable-track {
         background-color: darken($mainBgColor, 3);
         color: darken($mainBgColor, 3);
-        // @include S(height, 16px);
-        @include S(border-radius, 8px);
+        // height: 1.6rem;
+        border-radius: 0.8rem;
     }
 
     @include DarkThemeOverride {
@@ -657,14 +440,13 @@ input.rangeInput {
         }
 
         &::-webkit-slider-thumb {
-            box-shadow: inset 0 0 0 D(10px) #eee;
+            box-shadow: inset 0 0 0 1rem #eee;
         }
     }
 
     &::-webkit-slider-thumb {
         appearance: none;
-        -webkit-appearance: none;
-        box-shadow: inset 0 0 0 D(10px) $themeColor;
+        box-shadow: inset 0 0 0 1rem $themeColor;
         border-radius: 50%;
 
         transition: box-shadow 0.3s;
@@ -672,104 +454,43 @@ input.rangeInput {
 
     &:hover {
         &::-webkit-slider-thumb {
-            box-shadow: inset 0 0 0 D(10px) lighten($themeColor, 15);
+            box-shadow: inset 0 0 0 1rem lighten($themeColor, 15);
         }
     }
 }
 
+// FIXME: Translations are still using code.keybinding instead of kbd
+kbd,
 .keybinding {
     background: #fff;
     text-transform: uppercase;
-    @include S(padding, 1.5px, 3px, 2px);
+    font-family: inherit;
+    padding: 0.15rem 0.3rem 0.2rem;
     @include PlainText;
-    @include S(border-radius, 0.5 * $globalBorderRadius);
+    border-radius: 0.5 * $globalBorderRadius;
     &,
     > span {
-        @include S(font-size, 9px);
-        @include S(line-height, 11px);
-        font-weight: bold !important;
-        text-shadow: none !important;
-        // font-family: Arial, sans-serif !important;
+        font-size: 0.9rem;
+        line-height: 1.1rem;
     }
 
-    font-weight: bold;
     color: $accentColorDark;
     text-align: center;
     justify-content: center;
     align-items: center;
-    @include S(min-width, 12px);
+    min-width: 1.2rem;
     display: inline-flex;
     position: absolute;
-    @include S(bottom, 0px);
-    @include S(right, 0px);
+    bottom: 0rem;
+    right: 0rem;
     z-index: 999;
     box-sizing: border-box;
-    @include S(height, 12px);
+    height: 1.2rem;
     overflow: hidden;
-    border: #{D(0px)} solid $accentColorDark;
-    .keybinding_space {
-        @include S(font-size, 17px);
-        @include S(line-height, 11px);
-        @include S(margin-top, -12px);
-    }
-}
-
-.xpaystation-widget-lightbox {
-    z-index: 19999;
-    .xpaystation-widget-lightbox-overlay {
-        background: rgba($mainBgColor, 0.94);
-    }
-    &,
-    iframe {
-        pointer-events: all;
-        user-select: all;
-    }
+    border: 0rem solid $accentColorDark;
 }
 
 iframe {
     pointer-events: all;
     user-select: all;
-}
-
-// Steam overlay fix
-#steamOverlayCanvasFix {
-    position: fixed;
-    top: 0px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.01;
-    pointer-events: none;
-    z-index: -1;
-}
-
-.sentry-error-embed-wrapper {
-    z-index: 10000;
-    background: rgba(0, 0, 0, 0.9);
-    * {
-        text-shadow: none !important;
-        pointer-events: all;
-    }
-}
-
-.cpmsrendertarget {
-    &,
-    * {
-        pointer-events: all;
-    }
-    background: rgba($mainBgColor, 0.94) !important;
-    .cpmsvideoclosebanner {
-        font-family: GameFont !important;
-        font-size: 16px !important;
-        border-radius: 2px !important;
-        background: $themeColor !important;
-        @include BoxShadow3D(darken($mainBgColor, 12));
-        color: #eee !important;
-        &:active {
-            @include BoxShadow3D(darken($mainBgColor, 12), $size: 1px);
-            transform: translateY(2px);
-        }
-    }
 }

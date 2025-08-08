@@ -1,4 +1,3 @@
-import { queryParamOptions } from "../../../core/query_parameters";
 import { makeDiv } from "../../../core/utils";
 import { BaseHUDPart } from "../base_hud_part";
 import { DynamicDomAttach } from "../dynamic_dom_attach";
@@ -140,7 +139,7 @@ export class HUDSandboxController extends BaseHUDPart {
 
     initialize() {
         // Allow toggling the controller overlay
-        this.root.gameState.inputReciever.keydown.add(key => {
+        this.root.gameState.inputReceiver.keydown.add(key => {
             if (key.keyCode === 117) {
                 // F6
                 this.toggle();

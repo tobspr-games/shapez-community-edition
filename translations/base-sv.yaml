@@ -1,26 +1,3 @@
-steamPage:
-    shortText: shapez.io är ett spel som går ut på att automatisera skapandet av
-        former med ökande komplexitet inom den oändligt stora världen.
-    discordLinkShort: Officiell Discord
-    intro: >-
-        Shapez.io är att avslappnat spel där man ska bygga fabriker för att
-        automatisera produktionen av geometriska former.
-
-        Formerna blir svårare och mer komplexa vartefter nivån ökar och du blir tvungen att sprida ut dig över den oändliga kartan.
-
-        Och som om det inte vore nog så som behöver du samtidigt producera exponentiellt mer för att mätta efterfrågan - den enda lösningar är att skala upp produktionen!
-
-        I början skapar man bara former, men senare behöver du även färga dem - för att uppnå detta behöver du samla och blanda färger!
-
-        På Steam kan du köpa den fulla versionen av spelet, men du kan även spela demot på shapez.io först och bestämma dig senare!
-    what_others_say: Vad folk säger om shapez.io
-    nothernlion_comment: This game is great - I'm having a wonderful time playing,
-        and time has flown by.
-    notch_comment: Oh crap. I really should sleep, but I think I just figured out
-        how to make a computer in shapez.io
-    steam_review_comment: This game has stolen my life and I don't want it back.
-        Very chill factory game that won't let me stop making my lines more
-        efficient.
 global:
     loading: Laddar
     error: Fel
@@ -54,58 +31,19 @@ global:
         space: MELLANSLAG
     loggingIn: Loggar in
     loadingResources: Downloading additional resources (<percentage> %)
-    discount: -<percentage>%
-    discountSummerSale: SPECIAL PROMOTION! Offer ends 7 July
-demoBanners:
-    title: Demo-version
-    intro: |-
-        Skaffa hela spelet <strong>nu</strong> för att låsa upp:<ul>
-            <li>Alla 26 nivåer + oändligt Freeplay</li>
-            <li>22 nya byggnader</li>
-            <li>Mod-stöd</li>
-            <li>Resultat</li>
-            <li>Mörkt läge</li>
-            <li>... och mycket mer!</li>
-        </ul>
-    playtimeDisclaimer: Den fullständiga versionen innehåller mer än <strong>20
-        timmars innehåll</strong>.
-    playerCount: <playerCount> spelare som du spelar just nu shapez på Steam
-    untilEndOfDemo: Till slutet av demonstrationen
-    playtimeDisclaimerDownload: Du kan fortsätta ditt savegame i den fullständiga
-        versionen! Klicka <strong>här</strong> för att ladda ner ditt savegame.
-    titleV2: "Spela den fullständiga versionen nu för:"
 mainMenu:
     play: Spela
-    changelog: Ändringslogg
     importSavegame: Importera
-    openSourceHint: Detta spelet har öppen källkod!
-    discordLink: Officiell Discord Server
     helpTranslate: Hjälp till att översätta!
-    browserWarning: Förlåt, men det är känt att spelet spelar långsamt i din
-        webbläsare! Skaffa den fristående versionen eller ladda ned Chrome för
-        en bättre upplevelse.
     savegameLevel: Nivå <x>
     savegameLevelUnknown: Okänd Nivå
     continue: Fortsätt
     newGame: Nytt spel
-    madeBy: Skapad av <author-link>
-    subreddit: Reddit
     savegameUnnamed: Namnlöst
-    puzzleMode: Pusselläge
-    back: Tillbaka
-    puzzleDlcText: Tycker du om att komprimera och optimera fabriker? Skaffa
-        pussel-DLCn nu på Steam för ännu mer kul!
-    puzzleDlcWishlist: Önskelista nu!
-    puzzleDlcViewNow: Se DLC
     mods:
-        title: Active Mods
         warningPuzzleDLC: Playing the Puzzle DLC is not possible with mods. Please
             disable all mods to play the DLC.
-    playingFullVersion: You are now playing the full version!
-    logout: Logout
     noActiveSavegames: No active savegames found - Click play to start a new game!
-    playFullVersionV2: Bough shapez on Steam? Play the full version in your Browser!
-    playFullVersionStandalone: You can now also play the full version in your Browser!
 dialogs:
     buttons:
         ok: OK
@@ -114,7 +52,6 @@ dialogs:
         later: Senare
         restart: Starta Om
         reset: Återställ
-        getStandalone: Skaffa Fristående
         deleteGame: Jag vet vad jag gör
         viewUpdate: Se Uppdatering
         showUpgrades: Visa Uppgraderingar
@@ -152,15 +89,6 @@ dialogs:
     keybindingsResetOk:
         title: Tangentbindningarna återställts
         desc: Alla tangentbindningar har återställts till sina standardvärden!
-    featureRestriction:
-        title: Demoversion
-        desc: Du försökte komma åt en funktion (<feature>) som inte är tillgänglig i
-            demoversionen. Överväg att skaffa den fristående versionen för den
-            fulla upplevelsen!
-    oneSavegameLimit:
-        title: Begränsad mängd sparfiler
-        desc: Du kan bara ha en sparfil åt gången i demoversionen. Var snäll och ta bort
-            den befintliga eller skaffa den fristående versionen!
     updateSummary:
         title: Ny uppdatering!
         desc: "Här är ändringarna sen du senast spelade:"
@@ -191,9 +119,6 @@ dialogs:
             <strong>kortkommando</strong> av en form (som du kan skapa
             <link>här</link>)
         titleEdit: Ändra Markör
-    markerDemoLimit:
-        desc: Du kan endast skapa två anpassade markörer i demoversionen. Skaffa den
-            fristående versionen för obegränsade markörer!
     massCutConfirm:
         title: Bekräfta Klippning
         desc: Du klipper många byggnader (<count> för att vara exakt)! Är du säker på
@@ -296,28 +221,9 @@ dialogs:
         newMods: Newly installed Mods
     resourceLoadFailed:
         title: Resources failed to load
-        demoLinkText: shapez demo on Steam
-        descWeb: "One ore more resources could not be loaded. Make sure you have a
-            stable internet connection and try again. If this still doesn't
-            work, make sure to also disable any browser extensions (including
-            adblockers).<br><br> As an alternative, you can also play the
-            <demoOnSteamLinkText>. <br><br> Error Message:"
         descSteamDemo: "One ore more resources could not be loaded. Try restarting the
             game - If that does not help, try reinstalling and verifying the
             game files via Steam. <br><br> Error Message:"
-    steamSsoError:
-        title: Full Version Logout
-        desc: You have been logged out from the Full Browser Version since either your
-            network connection is unstable or you are playing on another
-            device.<br><br> Please make sure you don't have shapez open in any
-            other browser tab or another computer with the same Steam
-            account.<br><br> You can login again in the main menu.
-    steamSsoNoOwnership:
-        title: Full Edition not owned
-        desc: In order to play the Full Edition in your Browser, you need to own both
-            the base game and the Puzzle DLC on your Steam account.<br><br>
-            Please make sure you own both, signed in with the correct Steam
-            account and then try again.
 ingame:
     keybindingsOverlay:
         moveMap: Flytta
@@ -456,40 +362,6 @@ ingame:
         one_miner: 1 Miner
         n_miners: <amount> Extraktor
         limited_items: Begränsad till <max_throughput>
-    watermark:
-        title: Demoversion
-        desc: Klicka här för att se fördelarna med Steam-versionen!
-        get_on_steam: Skaffa på Steam
-    standaloneAdvantages:
-        no_thanks: Nej tack!
-        points:
-            levels:
-                title: 12 nya nivåer!
-                desc: Totalt 26 nivåer!
-            buildings:
-                title: 22 nya byggnader!
-                desc: Helautomatisera din fabrik!
-            markers:
-                title: ∞ med markeringar!
-                desc: Tappa aldrig bort dig i din fabrik längre!
-            wires:
-                title: Kablar
-                desc: En helt ny dimension!
-            darkmode:
-                title: Mörkt läge
-                desc: Sluta skada dina ögon!
-            support:
-                title: Stöd mig
-                desc: Jag utvecklar det på min fritid!
-            achievements:
-                title: Achievements
-                desc: Hunt them all!
-            mods:
-                title: Modding support!
-                desc: Over 80 mods available!
-        titleV2: "Get the full version now on Steam to unlock:"
-        titleExpiredV2: Demo completed!
-        titleEnjoyingDemo: Enjoy the demo?
     puzzleEditorSettings:
         zoneTitle: Zone
         zoneWidth: Width
@@ -575,7 +447,7 @@ buildings:
             description: Klipper former i fyra delar. <strong>Om du endast använder en del,
                 se till att förstöra de andra, annars kommer de blockera
                 maskinen!</strong>
-    rotater:
+    rotator:
         default:
             name: Roterare
             description: Roterar former 90 grader.
@@ -718,7 +590,7 @@ buildings:
         default:
             name: Virtuell skärare
             description: Skär virtuellt formen till två halvor.
-        rotater:
+        rotator:
             name: Virtuell roterare
             description: Roterar virtuellt formen, både medurs och moturs.
         unstacker:
@@ -757,7 +629,7 @@ storyRewards:
             otherwise <strong>it will clog and stall</strong> - For this purpose
             I have given you the <strong>trash</strong>, which destroys
             everything you put into it!
-    reward_rotater:
+    reward_rotator:
         title: Rotation
         desc: <strong>Roteraren</strong> har blivit upplåst! Den roterar former 90
             grader medsols.
@@ -786,7 +658,7 @@ storyRewards:
         title: Tunnel
         desc: <strong>Tunneln</strong> blivit upplåst- Du kan nu transportera saker
             under rullband och byggnader med den!
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Motsols rotation
         desc: Du har låst upp en variant av <strong>roteraren</strong> - Den låter dig
             rotera saker motsols! För att bygga den, välj roteraren och
@@ -860,7 +732,7 @@ storyRewards:
         desc: You have now unlocked the <strong>belt reader</strong>! It allows you to
             measure the throughput of a belt.<br><br>And wait until you unlock
             wires - then it gets really useful!
-    reward_rotater_180:
+    reward_rotator_180:
         title: Roterare (180 grader)
         desc: Du låste precis upp <strong>roteraren</strong>! - Den låter dig rotera
             former med 180 grader (Vilken överraskning! :D)
@@ -887,7 +759,7 @@ storyRewards:
         title: Virtual Processing
         desc: I just gave a whole bunch of new buildings which allow you to
             <strong>simulate the processing of shapes</strong>!<br><br> You can
-            now simulate a cutter, rotater, stacker and more on the wires layer!
+            now simulate a cutter, rotator, stacker and more on the wires layer!
             With this you now have three options to continue the game:<br><br> -
             Build an <strong>automated machine</strong> to create any possible
             shape requested by the HUB (I recommend to try it!).<br><br> - Build
@@ -1116,7 +988,7 @@ keybindings:
         underground_belt: Tunnel
         miner: Extraktor
         cutter: Klippare
-        rotater: Roterare
+        rotator: Roterare
         stacker: Staplare
         mixer: Färgblandare
         painter: Färgläggare
@@ -1183,12 +1055,6 @@ about:
 changelog:
     title: Changelog
 demo:
-    features:
-        restoringGames: Återställer sparfiler
-        importingGames: Importerar sparfiler
-        oneGameLimit: Limiterad till endast en sparfil
-        customizeKeybindings: Finjustera snabbtangenter
-        exportingBase: Exportera hela fabriken som en bild
     settingNotAvailable: Inte tillgänglig i demoversionen.
 tips:
     - Hubben accepterar alla sorters former, inte bara den nuvarande formen!
@@ -1342,16 +1208,7 @@ mods:
     version: Version
     modWebsite: Website
     openFolder: Open Mods Folder
-    folderOnlyStandalone: Opening the mod folder is only possible when running the standalone.
     browseMods: Browse Mods
     modsInfo: To install and manage mods, copy them to the mods folder within the
         game directory. You can also use the 'Open Mods Folder' button on the
         top right.
-    noModSupport: You need the standalone version on Steam to install mods.
-    togglingComingSoon:
-        title: Coming Soon
-        description: Enabling or disabling mods is currently only possible by copying
-            the mod file from or to the mods/ folder. However, being able to
-            toggle them here is planned for a future update!
-    browserNoSupport: Due to browser restrictions it is currently only possible to
-        install mods in the Steam version - Sorry!

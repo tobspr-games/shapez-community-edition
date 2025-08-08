@@ -1,26 +1,26 @@
 #state_AboutState {
     > .container .content {
-        @include S(max-width, 600px);
+        max-width: 60rem;
         @include PlainText;
         padding: 0;
         background: transparent;
     }
 
     .head {
-        @include S(padding, 20px);
+        padding: 2rem;
 
         img {
             display: block;
             margin: 0 auto;
-            @include S(max-width, 200px);
+            max-width: 20rem;
         }
     }
 
     .text {
-        @include S(margin, 10px);
+        margin: 1rem;
     }
 
     a {
-        @include S(margin, 0, 3px);
+        margin: 0 0.3rem;
     }
 }

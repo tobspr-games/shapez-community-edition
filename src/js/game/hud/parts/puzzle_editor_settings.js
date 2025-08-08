@@ -93,7 +93,7 @@ export class HUDPuzzleEditorSettings extends BaseHUDPart {
 
     trim() {
         // Now, find the center
-        const buildings = this.root.entityMgr.entities.slice();
+        const buildings = [...this.root.entityMgr.entities.values()];
 
         if (buildings.length === 0) {
             // nothing to do
@@ -150,8 +150,7 @@ export class HUDPuzzleEditorSettings extends BaseHUDPart {
                     }
 
                     for (const key in building.components) {
-                        /** @type {import("../../../core/global_registries").Component} */ (building
-                            .components[key]).copyAdditionalStateTo(result.components[key]);
+                        building.components[key].copyAdditionalStateTo(result.components[key]);
                     }
                 }
             });

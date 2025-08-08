@@ -2,13 +2,13 @@
 import { Application } from "../application";
 /* typehints:end */
 
-import { ReadWriteProxy } from "../core/read_write_proxy";
-import { BoolSetting, EnumSetting, RangeSetting, BaseSetting } from "./setting_types";
-import { createLogger } from "../core/logging";
 import { ExplainedResult } from "../core/explained_result";
+import { createLogger } from "../core/logging";
+import { ReadWriteProxy } from "../core/read_write_proxy";
 import { THEMES, applyGameTheme } from "../game/theme";
-import { T } from "../translations";
 import { LANGUAGES } from "../languages";
+import { T } from "../translations";
+import { BaseSetting, BoolSetting, EnumSetting, RangeSetting } from "./setting_types";
 
 const logger = createLogger("application_settings");
 
@@ -140,7 +140,7 @@ function initializeSettings() {
             options: Object.keys(LANGUAGES),
             valueGetter: key => key,
             textGetter: key => LANGUAGES[key].name,
-            category: G_CHINA_VERSION || G_WEGAME_VERSION ? null : enumCategories.general,
+            category: enumCategories.general,
             restartRequired: true,
             changeCb: (app, id) => null,
             magicValue: "auto-detect",
@@ -189,7 +189,7 @@ function initializeSettings() {
             },
             /**
              * @param {Application} app
-             */ app => G_IS_STANDALONE
+             */ app => true
         ),
 
         new BoolSetting(
@@ -217,9 +217,6 @@ function initializeSettings() {
                     applyGameTheme(id);
                     document.documentElement.setAttribute("data-theme", id);
                 },
-            enabledCb: /**
-             * @param {Application} app
-             */ app => app.restrictionMgr.getHasExtendedSettings(),
         }),
 
         new EnumSetting("autosaveInterval", {
@@ -278,9 +275,6 @@ function initializeSettings() {
             category: enumCategories.performance,
             restartRequired: false,
             changeCb: (app, id) => {},
-            enabledCb: /**
-             * @param {Application} app
-             */ app => app.restrictionMgr.getHasExtendedSettings(),
         }),
 
         new BoolSetting("lowQualityMapResources", enumCategories.performance, (app, value) => {}),
@@ -294,7 +288,7 @@ function initializeSettings() {
 class SettingsStorage {
     constructor() {
         this.uiScale = "regular";
-        this.fullscreen = G_IS_STANDALONE;
+        this.fullscreen = true;
 
         this.soundVolume = 1.0;
         this.musicVolume = 1.0;
@@ -336,8 +330,11 @@ class SettingsStorage {
 }
 
 export class ApplicationSettings extends ReadWriteProxy {
-    constructor(app) {
-        super(app, "app_settings.bin");
+    constructor(app, storage) {
+        super(storage, "app_settings.bin");
+
+        /** @type {Application} */
+        this.app = app;
 
         this.settingHandles = initializeSettings();
     }
@@ -378,7 +375,7 @@ export class ApplicationSettings extends ReadWriteProxy {
      * @param {string} key
      */
     getSetting(key) {
-        assert(this.getAllSettings().hasOwnProperty(key), "Setting not known: " + key);
+        assert(Object.hasOwn(this.getAllSettings(), key), "Setting not known: " + key);
         return this.getAllSettings()[key];
     }
 
@@ -513,7 +510,7 @@ export class ApplicationSettings extends ReadWriteProxy {
         }
 
         // MODS
-        if (!THEMES[data.settings.theme] || !this.app.restrictionMgr.getHasExtendedSettings()) {
+        if (!THEMES[data.settings.theme]) {
             console.log("Resetting theme because its no longer available: " + data.settings.theme);
             data.settings.theme = "light";
         }
@@ -705,7 +702,7 @@ export class ApplicationSettings extends ReadWriteProxy {
         }
 
         // MODS
-        if (!THEMES[data.settings.theme] || !this.app.restrictionMgr.getHasExtendedSettings()) {
+        if (!THEMES[data.settings.theme]) {
             console.log("Resetting theme because its no longer available: " + data.settings.theme);
             data.settings.theme = "light";
         }

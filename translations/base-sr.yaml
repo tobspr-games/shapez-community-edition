@@ -1,25 +1,3 @@
-steamPage:
-    shortText: shapez.io je igra o pravljenju fabrika za automatizaciju stvaranja i
-        spajanja sve složenijih oblika na beskonačno velikoj mapi.
-    discordLinkShort: Oficijalni Diskord
-    intro: >-
-        Shapez.io je opuštena igra u kojoj gradite fabrike za automatizaciju
-        proizvodnje geometrijskih oblika.
-
-        Kako se nivo povećava, oblici postaju sve složeniji, tako da morate da proširite fabriku na beskonačno velikoj mapi.
-
-        I ako sve to nije dovoljno, moraćete da proizvodite sve više i više oblika kako bi zadovoljili zahteve proizvodnje - jedina stvar koja pomaže je skaliranje!
-
-        Na početku je dovoljno samo da prerađujete oblike, ali kasnije morate da ih farbate - za ovaj posao morate da vadite i mešate boje!
-
-        Kupovinom ove igre na Steam-u dobijate pristup punoj verziji igre, ali prvo možete da odigrate probnu verziju na shapez.io pa onda da se odlučite kasnije!
-    what_others_say: Šta pričaju ljudi o shapez.io
-    nothernlion_comment: Igra je sjajna - vreme je proletelo, divno sam se proveo igrajući.
-    notch_comment: Dođavola. Stvarno bi trebao da spavam, ali mislim da sam upravo
-        shvatio kako da napravim računar u shapez.io
-    steam_review_comment: Ova igra mi je ukrala život i više ga ne želim nazad.
-        Veoma opuštena igra o građenju fabrika, koja me stalno tera da
-        prerađujem fabrike kako bi bile efikasnije.
 global:
     loading: Učitavanje
     error: Greška
@@ -53,57 +31,19 @@ global:
         space: SPACE
     loggingIn: Prijavljivanje
     loadingResources: Downloading additional resources (<percentage> %)
-    discount: -<percentage>%
-    discountSummerSale: SPECIAL PROMOTION! Offer ends 7 July
-demoBanners:
-    title: Probna Verzija
-    intro: |-
-        Get the full game <strong>now</strong> to unlock:<ul>
-            <li>All 26 levels + infinite Freeplay</li>
-            <li>22 new buildings</li>
-            <li>Mod support</li>
-            <li>Achievements</li>
-            <li>Dark Mode</li>
-            <li>... and a lot more!</li>
-        </ul>
-    playtimeDisclaimer: The full version contains more than <strong>20 hours of content</strong>.
-    playerCount: <playerCount> players like you are currently playing shapez on Steam
-    untilEndOfDemo: Until end of demo
-    playtimeDisclaimerDownload: You can continue your savegame in the full version!
-        Click <strong>here</strong> to download your savegame.
-    titleV2: "Play the full version now for:"
 mainMenu:
     play: Igraj
     continue: Nastavi
     newGame: Nova Igra
-    changelog: Promene
-    subreddit: Reddit
     importSavegame: Uvezi
-    openSourceHint: Ova igra je otvorenog koda!
-    discordLink: Oficijalni Diskord server
     helpTranslate: Pomozite sa prevođenjem!
-    madeBy: Napravio <author-link>
-    browserWarning: Izvinjavamo se, pošto je poznato da se ova igra koči u
-        pretraživaču! Za puno iskustvo nabavite samostalnu verziju ili koristite
-        chrome.
     savegameLevel: Nivo <x>
     savegameLevelUnknown: Nepoznat Nivo
     savegameUnnamed: Neimenovano
-    puzzleMode: Slagalice
-    back: Nazad
-    puzzleDlcText: Uživate u optimizovanju i minimizovanju fabrika? Nabavite
-        ekspanziju sa Slagalicama na Steam-u, za još više zabave!
-    puzzleDlcWishlist: Dodaj na listu želja!
-    puzzleDlcViewNow: Pogledaj ekspanziju
     mods:
-        title: Active Mods
         warningPuzzleDLC: Playing the Puzzle DLC is not possible with mods. Please
             disable all mods to play the DLC.
-    playingFullVersion: You are now playing the full version!
-    logout: Logout
     noActiveSavegames: No active savegames found - Click play to start a new game!
-    playFullVersionV2: Bough shapez on Steam? Play the full version in your Browser!
-    playFullVersionStandalone: You can now also play the full version in your Browser!
 dialogs:
     buttons:
         ok: OK
@@ -112,7 +52,6 @@ dialogs:
         later: Kasnije
         restart: Ponovo pokreni
         reset: Resetuj
-        getStandalone: Nabavite samostalnu igru
         deleteGame: Znam šta radim
         viewUpdate: Pogledajte ažuriranje
         showUpgrades: Prikaži Nadogradnje
@@ -151,14 +90,6 @@ dialogs:
     keybindingsResetOk:
         title: Podešavanja tastera su resetovana
         desc: Podešavanja tastera su resetovana na njihove početne vrednosti!
-    featureRestriction:
-        title: Probna Verzija
-        desc: Pokušali ste da pristupite funkciji (<feature>) koja nije dostupna u demo
-            verziji. Za puno iskustvo, nabavite samostalnu igru!
-    oneSavegameLimit:
-        title: Ograničen broj sačuvanih igara
-        desc: Možete imati samo jednu sačuvanu igru u probnoj verziji. Izbrišite
-            postojeću ili nabavite samostalnu igru!
     updateSummary:
         title: Novo ažuriranje!
         desc: "Ovo su promene od zadnjeg igranja:"
@@ -194,9 +125,6 @@ dialogs:
         titleEdit: Uredi Putokaz
         desc: Dajte mu neko smisleno ime, možete koristiti i <strong>kratak kod</strong>
             oblika (Koji možete da generišete <link>ovde</link>)
-    markerDemoLimit:
-        desc: U probnoj verziji možete imati samo dva putokaza istovremeno. Nabavite
-            samostalnu igru za beskonačno mnogo putokaza!
     exportScreenshotWarning:
         title: Izvezi sliku ekrana
         desc: Hoćete da izvezete sliku cele fabrike kao snimak ekrana. Ovaj proces može
@@ -291,28 +219,9 @@ dialogs:
         newMods: Newly installed Mods
     resourceLoadFailed:
         title: Resources failed to load
-        demoLinkText: shapez demo on Steam
-        descWeb: "One ore more resources could not be loaded. Make sure you have a
-            stable internet connection and try again. If this still doesn't
-            work, make sure to also disable any browser extensions (including
-            adblockers).<br><br> As an alternative, you can also play the
-            <demoOnSteamLinkText>. <br><br> Error Message:"
         descSteamDemo: "One ore more resources could not be loaded. Try restarting the
             game - If that does not help, try reinstalling and verifying the
             game files via Steam. <br><br> Error Message:"
-    steamSsoError:
-        title: Full Version Logout
-        desc: You have been logged out from the Full Browser Version since either your
-            network connection is unstable or you are playing on another
-            device.<br><br> Please make sure you don't have shapez open in any
-            other browser tab or another computer with the same Steam
-            account.<br><br> You can login again in the main menu.
-    steamSsoNoOwnership:
-        title: Full Edition not owned
-        desc: In order to play the Full Edition in your Browser, you need to own both
-            the base game and the Puzzle DLC on your Steam account.<br><br>
-            Please make sure you own both, signed in with the correct Steam
-            account and then try again.
 ingame:
     keybindingsOverlay:
         moveMap: Kretanje
@@ -452,40 +361,6 @@ ingame:
         one_miner: 1 Rudar
         n_miners: <amount> Rudara
         limited_items: Ograničeno na <max_throughput>
-    watermark:
-        title: Probna Verzija
-        desc: Kliknite ovde da pogledate prednosti Steam verzije!
-        get_on_steam: Nabavite na Steam-u
-    standaloneAdvantages:
-        no_thanks: Neka, hvala!
-        points:
-            levels:
-                title: 12 Novih Nivoa
-                desc: Ukupno 26 nivoa!
-            buildings:
-                title: 22 Novih Građevina
-                desc: U potpunosti automatizujte fabriku!
-            markers:
-                title: ∞ Putokaza
-                desc: Nikada se nećete izgubiti u fabrici!
-            wires:
-                title: Žice
-                desc: Potpuno nova dimenzija!
-            darkmode:
-                title: Tamna Tema
-                desc: Recite stop bolu u očima!
-            support:
-                title: Podržite me
-                desc: Razvijam igru u slobodno vreme!
-            achievements:
-                title: Dostignuća
-                desc: Osvojite ih sve!
-            mods:
-                title: Modding support!
-                desc: Over 80 mods available!
-        titleV2: "Get the full version now on Steam to unlock:"
-        titleExpiredV2: Demo completed!
-        titleEnjoyingDemo: Enjoy the demo?
     puzzleEditorSettings:
         zoneTitle: Zone
         zoneWidth: Širina
@@ -584,7 +459,7 @@ buildings:
             name: Rezač (četvorostruki)
             description: Reže oblike na četiri dela. <strong>Ako se koristi samo jedan deo,
                 ostali se moraju uništiti kako bi sprečili zastoj!</strong>
-    rotater:
+    rotator:
         default:
             name: Obrtač (↻)
             description: Okreće oblike za 90 stepeni u smeru kazaljke na satu.
@@ -714,7 +589,7 @@ buildings:
         default:
             name: Virtuelni Rezač
             description: Virtuelno reže oblik na dve polovine.
-        rotater:
+        rotator:
             name: Virtuelni Obrtač
             description: Virtuelno okreće oblike, i u smeru kazaljke na satu i suprotno od
                 smera kazaljke na satu.
@@ -754,7 +629,7 @@ storyRewards:
             suprotnom će se<strong>začepiti i stati sa radom</strong> - Baš zbog
             toga imate <strong>Smeće</strong>, koje uništava sve što uđe u
             njega!
-    reward_rotater:
+    reward_rotator:
         title: Obrtanje
         desc: <strong>Obrtač</strong> je otključan! On okreće oblike za 90 stepeni u
             smeru kazaljke na satu.
@@ -782,7 +657,7 @@ storyRewards:
         title: Tunel
         desc: <strong>Tunel</strong> je otključan - Omogućava prenos stvari ispod traka
             i ostalih građevina!
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Rotacija u smeru suprotnom od kazaljke na satu
         desc: Varijacija <strong>obrtača</strong> je otključana - Omogućuje okretanje u
             smeru suprotnom od kazaljke na satu! Odaberi obrtač i
@@ -853,7 +728,7 @@ storyRewards:
         desc: <strong>Čitač Trake</strong> je otključan! On meri propusnost pokretne
             trake.<br><br>Biće vam od velike pomoći, samo se stripite dok ne
             otključate žice!
-    reward_rotater_180:
+    reward_rotator_180:
         title: Obrtač (180 stepeni)
         desc: Otključali ste <strong>obrtač</strong> od 180 stepeni! - On može da okreće
             oblike za 180 stepeni (Iznenađenje! :D)
@@ -1116,7 +991,7 @@ keybindings:
         underground_belt: Tunel
         miner: Rudar
         cutter: Rezač
-        rotater: Obrtač (↻)
+        rotator: Obrtač (↻)
         stacker: Slagač
         mixer: Mešalica boja
         painter: Farbač
@@ -1179,12 +1054,6 @@ about:
 changelog:
     title: Promene
 demo:
-    features:
-        restoringGames: Obnavljanje sačuvanih igara
-        importingGames: Uvoz sačuvanih igara
-        oneGameLimit: Ograničenje od jedne sačuvane igre
-        customizeKeybindings: Prilagođena Podešavanja Tastera
-        exportingBase: Izvoz slike cele fabrike kao snimak ekrana
     settingNotAvailable: Nije dostupno u demo verziji.
 tips:
     - Središte prihvata oblike bilo koje vrste, ne samo trenutni oblik!
@@ -1346,16 +1215,7 @@ mods:
     version: Version
     modWebsite: Website
     openFolder: Open Mods Folder
-    folderOnlyStandalone: Opening the mod folder is only possible when running the standalone.
     browseMods: Browse Mods
     modsInfo: To install and manage mods, copy them to the mods folder within the
         game directory. You can also use the 'Open Mods Folder' button on the
         top right.
-    noModSupport: You need the standalone version on Steam to install mods.
-    togglingComingSoon:
-        title: Coming Soon
-        description: Enabling or disabling mods is currently only possible by copying
-            the mod file from or to the mods/ folder. However, being able to
-            toggle them here is planned for a future update!
-    browserNoSupport: Due to browser restrictions it is currently only possible to
-        install mods in the Steam version - Sorry!

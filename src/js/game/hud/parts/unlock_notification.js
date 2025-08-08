@@ -24,16 +24,14 @@ export class HUDUnlockNotification extends BaseHUDPart {
         }
 
         this.buttonShowTimeout = null;
-
-        this.root.app.gameAnalytics.noteMinor("game.started");
     }
 
     shouldPauseGame() {
-        return !G_IS_STANDALONE && this.visible;
+        return false;
     }
 
     createElements(parent) {
-        this.inputReciever = new InputReceiver("unlock-notification");
+        this.inputReceiver = new InputReceiver("unlock-notification");
 
         this.element = makeDiv(parent, "ingame_HUD_UnlockNotification", ["noBlur"]);
 
@@ -69,9 +67,7 @@ export class HUDUnlockNotification extends BaseHUDPart {
             return;
         }
 
-        this.root.app.gameAnalytics.noteMinor("game.level.complete-" + level);
-
-        this.root.app.inputMgr.makeSureAttachedAndOnTop(this.inputReciever);
+        this.root.app.inputMgr.makeSureAttachedAndOnTop(this.inputReceiver);
         this.elemTitle.innerText = T.ingame.levelCompleteNotification.levelTitle.replace(
             "<level>",
             ("" + level).padStart(2, "0")
@@ -122,7 +118,7 @@ export class HUDUnlockNotification extends BaseHUDPart {
     }
 
     cleanup() {
-        this.root.app.inputMgr.makeSureDetached(this.inputReciever);
+        this.root.app.inputMgr.makeSureDetached(this.inputReceiver);
         if (this.buttonShowTimeout) {
             clearTimeout(this.buttonShowTimeout);
             this.buttonShowTimeout = null;
@@ -134,44 +130,35 @@ export class HUDUnlockNotification extends BaseHUDPart {
     }
 
     requestClose() {
-        this.root.app.adProvider.showVideoAd().then(() => {
-            this.close();
+        this.close();
 
-            this.root.hud.signals.unlockNotificationFinished.dispatch();
+        this.root.hud.signals.unlockNotificationFinished.dispatch();
 
-            if (
-                this.root.hubGoals.level > this.root.gameMode.getLevelDefinitions().length - 1 &&
-                this.root.app.restrictionMgr.getIsStandaloneMarketingActive()
-            ) {
-                this.root.hud.parts.standaloneAdvantages.show(true);
-            }
+        if (!this.root.app.settings.getAllSettings().offerHints) {
+            return;
+        }
 
-            if (!this.root.app.settings.getAllSettings().offerHints) {
-                return;
-            }
+        if (this.root.hubGoals.level === 3) {
+            const { showUpgrades } = this.root.hud.parts.dialogs.showInfo(
+                T.dialogs.upgradesIntroduction.title,
+                T.dialogs.upgradesIntroduction.desc,
+                ["showUpgrades:good:timeout"]
+            );
+            showUpgrades.add(() => this.root.hud.parts.shop.show());
+        }
 
-            if (this.root.hubGoals.level === 3) {
-                const { showUpgrades } = this.root.hud.parts.dialogs.showInfo(
-                    T.dialogs.upgradesIntroduction.title,
-                    T.dialogs.upgradesIntroduction.desc,
-                    ["showUpgrades:good:timeout"]
-                );
-                showUpgrades.add(() => this.root.hud.parts.shop.show());
-            }
-
-            if (this.root.hubGoals.level === 5) {
-                const { showKeybindings } = this.root.hud.parts.dialogs.showInfo(
-                    T.dialogs.keybindingsIntroduction.title,
-                    T.dialogs.keybindingsIntroduction.desc,
-                    ["showKeybindings:misc", "ok:good:timeout"]
-                );
-                showKeybindings.add(() => this.root.gameState.goToKeybindings());
-            }
-        });
+        if (this.root.hubGoals.level === 5) {
+            const { showKeybindings } = this.root.hud.parts.dialogs.showInfo(
+                T.dialogs.keybindingsIntroduction.title,
+                T.dialogs.keybindingsIntroduction.desc,
+                ["showKeybindings:misc", "ok:good:timeout"]
+            );
+            showKeybindings.add(() => this.root.gameState.goToKeybindings());
+        }
     }
 
     close() {
-        this.root.app.inputMgr.makeSureDetached(this.inputReciever);
+        this.root.app.inputMgr.makeSureDetached(this.inputReceiver);
         if (this.buttonShowTimeout) {
             clearTimeout(this.buttonShowTimeout);
             this.buttonShowTimeout = null;

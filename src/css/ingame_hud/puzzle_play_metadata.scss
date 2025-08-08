@@ -1,18 +1,18 @@
 #ingame_HUD_PuzzlePlayMetadata {
     position: absolute;
 
-    @include S(top, 70px);
-    @include S(left, 10px);
+    top: 7rem;
+    left: 1rem;
 
     display: flex;
     flex-direction: column;
-    @include S(width, 200px);
+    width: 20rem;
 
     > .info {
         display: flex;
         flex-direction: column;
         @include SuperSmallText;
-        @include S(margin-bottom, 5px);
+        margin-bottom: 0.5rem;
 
         > label {
             text-transform: uppercase;
@@ -35,7 +35,7 @@
         justify-self: end;
         align-self: end;
         flex-direction: row;
-        @include S(margin-bottom, 10px);
+        margin-bottom: 1rem;
         opacity: 0.8;
         @include DarkThemeInvert;
         @include DarkThemeOverride {
@@ -48,8 +48,8 @@
             align-self: start;
             justify-self: start;
             font-weight: bold;
-            @include S(margin-right, 10px);
-            @include S(padding-left, 14px);
+            margin-right: 1rem;
+            padding-left: 1.4rem;
             opacity: 0.7;
             display: inline-flex;
             align-items: center;
@@ -57,7 +57,7 @@
 
             & {
                 /* @load-async */
-                background: uiResource("icons/puzzle_plays.png") #{D(2px)} center / #{D(8px)} #{D(8px)} no-repeat;
+                background: uiResource("icons/puzzle_plays.png") 0.2rem center / 0.8rem 0.8rem no-repeat;
             }
         }
 
@@ -69,25 +69,25 @@
             align-self: start;
             justify-self: start;
             font-weight: bold;
-            @include S(padding-left, 14px);
+            padding-left: 1.4rem;
             opacity: 0.7;
             & {
                 /* @load-async */
-                background: uiResource("icons/puzzle_upvotes.png") #{D(2px)} center / #{D(8px)} #{D(8px)} no-repeat;
+                background: uiResource("icons/puzzle_upvotes.png") 0.2rem center / 0.8rem 0.8rem no-repeat;
             }
         }
     }
 
     > .key {
         button {
-            @include S(margin-top, 2px);
+            margin-top: 0.2rem;
         }
     }
 
     button {
         @include SuperSmallText;
         align-self: start;
-        @include S(min-width, 50px);
+        min-width: 5rem;
 
         &.report {
             background-color: $accentColorDark;
@@ -100,7 +100,7 @@
         flex-direction: column;
 
         > button {
-            @include S(margin-bottom, 4px);
+            margin-bottom: 0.4rem;
         }
     }
 }
@@ -108,7 +108,7 @@
 #ingame_HUD_PuzzlePlayTitle {
     position: absolute;
 
-    @include S(top, 18px);
+    top: 1.8rem;
     left: 50%;
     transform: translateX(-50%);
     text-transform: uppercase;

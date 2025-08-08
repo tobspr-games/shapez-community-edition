@@ -1,10 +1,12 @@
-const path = require("path");
-const { BUILD_VARIANTS } = require("./build_variants");
+import gulp from "gulp";
+import webpack from "webpack";
+import { BUILD_VARIANTS } from "./build_variants.js";
+import { buildFolder } from "./config.js";
 
-function requireUncached(module) {
-    delete require.cache[require.resolve(module)];
-    return require(module);
-}
+import webpackConfig from "./webpack.config.js";
+import webpackProductionConfig from "./webpack.production.config.js";
+
+import webpackStream from "webpack-stream";
 
 /**
  * PROVIDES (per <variant>)
@@ -15,115 +17,28 @@ function requireUncached(module) {
  *
  */
 
-function gulptasksJS($, gulp, buildFolder, browserSync) {
-    //// DEV
-
-    for (const variant in BUILD_VARIANTS) {
-        const data = BUILD_VARIANTS[variant];
-
-        gulp.task("js." + variant + ".dev.watch", () => {
-            return gulp
-                .src("../src/js/main.js")
-                .pipe(
-                    $.webpackStream(
-                        requireUncached("./webpack.config.js")({
-                            ...data.buildArgs,
-                            standalone: data.standalone,
-                            watch: true,
-                        })
-                    )
-                )
-                .pipe(gulp.dest(buildFolder))
-                .pipe(browserSync.stream());
-        });
-
-        if (!data.standalone) {
-            // WEB
-
-            gulp.task("js." + variant + ".dev", () => {
+// TODO: Move webpack config to build_variants.js and use a separate
+// build variant for development
+export default Object.fromEntries(
+    Object.entries(BUILD_VARIANTS).map(([variant, data]) => {
+        const dev = {
+            build() {
                 return gulp
                     .src("../src/js/main.js")
-                    .pipe(
-                        $.webpackStream(
-                            requireUncached("./webpack.config.js")({
-                                ...data.buildArgs,
-                            })
-                        )
-                    )
+                    .pipe(webpackStream(webpackConfig, webpack))
                     .pipe(gulp.dest(buildFolder));
-            });
+            },
+        };
 
-            gulp.task("js." + variant + ".prod.transpiled", () => {
+        const prod = {
+            build() {
                 return gulp
                     .src("../src/js/main.js")
-                    .pipe(
-                        $.webpackStream(
-                            requireUncached("./webpack.production.config.js")({
-                                es6: false,
-                                environment: data.environment,
-                                ...data.buildArgs,
-                            })
-                        )
-                    )
-                    .pipe($.rename("bundle-transpiled.js"))
+                    .pipe(webpackStream(webpackProductionConfig, webpack))
                     .pipe(gulp.dest(buildFolder));
-            });
+            },
+        };
 
-            gulp.task("js." + variant + ".prod.es6", () => {
-                return gulp
-                    .src("../src/js/main.js")
-                    .pipe(
-                        $.webpackStream(
-                            requireUncached("./webpack.production.config.js")({
-                                es6: true,
-                                environment: data.environment,
-                                ...data.buildArgs,
-                            })
-                        )
-                    )
-                    .pipe(gulp.dest(buildFolder));
-            });
-            gulp.task(
-                "js." + variant + ".prod",
-
-                // transpiled currently not used
-                // gulp.parallel("js." + variant + ".prod.transpiled", "js." + variant + ".prod.es6")
-                gulp.parallel("js." + variant + ".prod.es6")
-            );
-        } else {
-            // STANDALONE
-            gulp.task("js." + variant + ".dev", () => {
-                return gulp
-                    .src("../src/js/main.js")
-                    .pipe(
-                        $.webpackStream(
-                            requireUncached("./webpack.config.js")({
-                                ...data.buildArgs,
-                                standalone: true,
-                            })
-                        )
-                    )
-                    .pipe(gulp.dest(buildFolder));
-            });
-            gulp.task("js." + variant + ".prod", () => {
-                return gulp
-                    .src("../src/js/main.js")
-                    .pipe(
-                        $.webpackStream(
-                            requireUncached("./webpack.production.config.js")({
-                                ...data.buildArgs,
-                                environment: "prod",
-                                es6: true,
-                                standalone: true,
-                            })
-                        )
-                    )
-                    .pipe(gulp.dest(buildFolder));
-            });
-        }
-    }
-}
-
-module.exports = {
-    gulptasksJS,
-};
+        return [variant, { dev, prod }];
+    })
+);

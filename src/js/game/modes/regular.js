@@ -1,43 +1,40 @@
 /* typehints:start */
-import { GameRoot } from "../root";
 import { MetaBuilding } from "../meta_building";
+import { GameRoot } from "../root";
 /* typehints:end */
 
+import { IS_MOBILE } from "../../core/config";
 import { findNiceIntegerValue } from "../../core/utils";
+import { MOD_SIGNALS } from "../../mods/mod_signals";
+import { MetaBlockBuilding } from "../buildings/block";
 import { MetaConstantProducerBuilding } from "../buildings/constant_producer";
 import { MetaGoalAcceptorBuilding } from "../buildings/goal_acceptor";
+import { MetaItemProducerBuilding } from "../buildings/item_producer";
 import { enumGameModeIds, enumGameModeTypes, GameMode } from "../game_mode";
+import { HUDConstantSignalEdit } from "../hud/parts/constant_signal_edit";
+import { HUDGameMenu } from "../hud/parts/game_menu";
+import { HUDInteractiveTutorial } from "../hud/parts/interactive_tutorial";
+import { HUDKeybindingOverlay } from "../hud/parts/keybinding_overlay";
+import { HUDLayerPreview } from "../hud/parts/layer_preview";
+import { HUDLeverToggle } from "../hud/parts/lever_toggle";
+import { HUDMassSelector } from "../hud/parts/mass_selector";
+import { HUDMinerHighlight } from "../hud/parts/miner_highlight";
+import { HUDNotifications } from "../hud/parts/notifications";
+import { HUDPinnedShapes } from "../hud/parts/pinned_shapes";
+import { HUDScreenshotExporter } from "../hud/parts/screenshot_exporter";
+import { HUDShapeViewer } from "../hud/parts/shape_viewer";
+import { HUDShop } from "../hud/parts/shop";
+import { HUDStatistics } from "../hud/parts/statistics";
+import { HUDPartTutorialHints } from "../hud/parts/tutorial_hints";
+import { HUDTutorialVideoOffer } from "../hud/parts/tutorial_video_offer";
+import { HUDUnlockNotification } from "../hud/parts/unlock_notification";
+import { HUDWaypoints } from "../hud/parts/waypoints";
+import { HUDWireInfo } from "../hud/parts/wire_info";
+import { HUDWiresOverlay } from "../hud/parts/wires_overlay";
+import { HUDWiresToolbar } from "../hud/parts/wires_toolbar";
 import { ShapeDefinition } from "../shape_definition";
 import { enumHubGoalRewards } from "../tutorial_goals";
-import { HUDWiresToolbar } from "../hud/parts/wires_toolbar";
-import { HUDUnlockNotification } from "../hud/parts/unlock_notification";
-import { HUDMassSelector } from "../hud/parts/mass_selector";
-import { HUDShop } from "../hud/parts/shop";
-import { HUDWaypoints } from "../hud/parts/waypoints";
-import { HUDStatistics } from "../hud/parts/statistics";
-import { HUDWireInfo } from "../hud/parts/wire_info";
-import { HUDLeverToggle } from "../hud/parts/lever_toggle";
-import { HUDPinnedShapes } from "../hud/parts/pinned_shapes";
-import { HUDNotifications } from "../hud/parts/notifications";
-import { HUDScreenshotExporter } from "../hud/parts/screenshot_exporter";
-import { HUDWiresOverlay } from "../hud/parts/wires_overlay";
-import { HUDShapeViewer } from "../hud/parts/shape_viewer";
-import { HUDLayerPreview } from "../hud/parts/layer_preview";
-import { HUDTutorialVideoOffer } from "../hud/parts/tutorial_video_offer";
-import { HUDMinerHighlight } from "../hud/parts/miner_highlight";
-import { HUDGameMenu } from "../hud/parts/game_menu";
-import { HUDConstantSignalEdit } from "../hud/parts/constant_signal_edit";
-import { IS_MOBILE } from "../../core/config";
-import { HUDKeybindingOverlay } from "../hud/parts/keybinding_overlay";
-import { HUDWatermark } from "../hud/parts/watermark";
-import { HUDStandaloneAdvantages } from "../hud/parts/standalone_advantages";
-import { HUDPartTutorialHints } from "../hud/parts/tutorial_hints";
-import { HUDInteractiveTutorial } from "../hud/parts/interactive_tutorial";
-import { MetaBlockBuilding } from "../buildings/block";
-import { MetaItemProducerBuilding } from "../buildings/item_producer";
-import { MOD_SIGNALS } from "../../mods/mod_signals";
-import { finalGameShape, generateLevelsForVariant } from "./levels";
-import { WEB_STEAM_SSO_AUTHENTICATED } from "../../core/steam_sso";
+import { finalGameShape, REGULAR_MODE_LEVELS } from "./levels";
 
 /** @typedef {{
  *   shape: string,
@@ -65,20 +62,20 @@ const preparementShape = "CpRpCp--:SwSwSwSw";
 // Tiers need % of the previous tier as requirement too
 const tierGrowth = 2.5;
 
-const chinaShapes = G_WEGAME_VERSION || G_CHINA_VERSION;
-
-const upgradesCache = {};
+// TODO: Convert this file to TS and fix types. Maybe split the levels and upgrades as well
+let upgradesCache = null;
 
 /**
  * Generates all upgrades
- * @returns {Object<string, UpgradeTiers>} */
-function generateUpgrades(limitedVersion = false, difficulty = 1) {
-    if (upgradesCache[limitedVersion]) {
-        return upgradesCache[limitedVersion];
+ * @returns {Object<string, UpgradeTiers>}
+ */
+function generateUpgrades() {
+    if (upgradesCache) {
+        return upgradesCache;
     }
 
     const fixedImprovements = [0.5, 0.5, 1, 1, 2, 1, 1];
-    const numEndgameUpgrades = limitedVersion ? 0 : 1000 - fixedImprovements.length - 1;
+    const numEndgameUpgrades = 1000 - fixedImprovements.length - 1;
 
     function generateInfiniteUnlocks() {
         return new Array(numEndgameUpgrades).fill(null).map((_, i) => ({
@@ -151,9 +148,7 @@ function generateUpgrades(limitedVersion = false, difficulty = 1) {
             {
                 required: [
                     {
-                        shape: chinaShapes
-                            ? "CyCyCyCy:CyCyCyCy:RyRyRyRy:RuRuRuRu"
-                            : "CbRbRbCb:CwCwCwCw:WbWbWbWb",
+                        shape: "CbRbRbCb:CwCwCwCw:WbWbWbWb",
                         amount: 50000,
                     },
                 ],
@@ -212,7 +207,7 @@ function generateUpgrades(limitedVersion = false, difficulty = 1) {
             {
                 required: [
                     {
-                        shape: chinaShapes ? "CuCuCuCu:CwCwCwCw:Sb--Sr--" : "RpRpRpRp:CwCwCwCw",
+                        shape: "RpRpRpRp:CwCwCwCw",
                         amount: 6500,
                     },
                 ],
@@ -247,9 +242,6 @@ function generateUpgrades(limitedVersion = false, difficulty = 1) {
             const tierHandle = upgradeTiers[i];
             tierHandle.improvement = fixedImprovements[i];
 
-            tierHandle.required.forEach(required => {
-                required.amount = Math.round(required.amount * difficulty);
-            });
             const originalRequired = tierHandle.required.slice();
 
             for (let k = currentTierRequirements.length - 1; k >= 0; --k) {
@@ -283,14 +275,14 @@ function generateUpgrades(limitedVersion = false, difficulty = 1) {
                     try {
                         ShapeDefinition.fromShortKey(shape);
                     } catch (ex) {
-                        throw new Error("Invalid upgrade goal: '" + ex + "' for shape" + shape);
+                        throw new Error("Invalid upgrade goal for shape " + shape, { cause: ex });
                     }
                 });
             });
         }
     }
 
-    upgradesCache[limitedVersion] = upgrades;
+    upgradesCache = upgrades;
     return upgrades;
 }
 
@@ -299,21 +291,25 @@ let levelDefinitionsCache = null;
 /**
  * Generates the level definitions
  */
-export function generateLevelDefinitions(app) {
+export function generateLevelDefinitions() {
+    // NOTE: This cache is useless in production, but is there because of the G_IS_DEV validation
     if (levelDefinitionsCache) {
         return levelDefinitionsCache;
     }
-    const levelDefinitions = generateLevelsForVariant(app);
+
+    const levelDefinitions = REGULAR_MODE_LEVELS;
     MOD_SIGNALS.modifyLevelDefinitions.dispatch(levelDefinitions);
+
     if (G_IS_DEV) {
         levelDefinitions.forEach(({ shape }) => {
             try {
                 ShapeDefinition.fromShortKey(shape);
             } catch (ex) {
-                throw new Error("Invalid tutorial goal: '" + ex + "' for shape" + shape);
+                throw new Error("Invalid tutorial goal for shape " + shape, { cause: ex });
             }
         });
     }
+
     levelDefinitionsCache = levelDefinitions;
     return levelDefinitions;
 }
@@ -356,15 +352,8 @@ export class RegularGameMode extends GameMode {
             this.additionalHudParts.keybindingOverlay = HUDKeybindingOverlay;
         }
 
-        if (this.root.app.restrictionMgr.getIsStandaloneMarketingActive()) {
-            this.additionalHudParts.watermark = HUDWatermark;
-            this.additionalHudParts.standaloneAdvantages = HUDStandaloneAdvantages;
-        }
-
         if (this.root.app.settings.getAllSettings().offerHints) {
-            if (!G_WEGAME_VERSION) {
-                this.additionalHudParts.tutorialHints = HUDPartTutorialHints;
-            }
+            this.additionalHudParts.tutorialHints = HUDPartTutorialHints;
             this.additionalHudParts.interactiveTutorial = HUDInteractiveTutorial;
         }
 
@@ -377,25 +366,12 @@ export class RegularGameMode extends GameMode {
         ];
     }
 
-    get difficultyMultiplicator() {
-        if (G_IS_STANDALONE || WEB_STEAM_SSO_AUTHENTICATED) {
-            if (G_IS_STEAM_DEMO) {
-                return 0.75;
-            }
-            return 1;
-        }
-        return 0.5;
-    }
-
     /**
      * Should return all available upgrades
      * @returns {Object<string, UpgradeTiers>}
      */
     getUpgrades() {
-        return generateUpgrades(
-            !this.root.app.restrictionMgr.getHasExtendedUpgrades(),
-            this.difficultyMultiplicator
-        );
+        return generateUpgrades();
     }
 
     /**
@@ -403,7 +379,7 @@ export class RegularGameMode extends GameMode {
      * @returns {Array<LevelDefinition>}
      */
     getLevelDefinitions() {
-        return generateLevelDefinitions(this.root.app);
+        return generateLevelDefinitions();
     }
 
     /**
@@ -412,11 +388,6 @@ export class RegularGameMode extends GameMode {
      * @returns {boolean}
      */
     getIsFreeplayAvailable() {
-        return this.root.app.restrictionMgr.getHasExtendedLevelsAndFreeplay();
-    }
-
-    /** @returns {boolean} */
-    hasAchievements() {
         return true;
     }
 }

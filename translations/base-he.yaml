@@ -1,23 +1,3 @@
-steamPage:
-    shortText: shapez.io הוא משחק בנוגע לבניית מפעלים אוטמטים ליצירה של צורת מסובכות
-        יותר ויותר במפה אין סופית.
-    discordLinkShort: דיסקורד רשמי
-    intro: >-
-        אתה אוהב משחקי אוטומציה? אתה במקום הנכון!
-
-        shapez.io הוא משחק שלווה שבו אתה בונה מפעל בשביל ליצור צורות גאומטריות אוטומטית. ככל שמתקדמים השלבים, הצורות נהיות יותר ויותר מסובכות, ואתה צריך להפתח על המפה האין סופית.
-
-        ואם זה לא היה מספיק, אתה צריך ליצור יותר ויותר צורות  בשביל לספק את הדרישה - הדבר היחיד שיכול לעזור זה להגדיל את המפעל! בזמן שבהתחלה אתה רק צריך לערוך צורות, בהמשך אתה צריך לצבוע אותם בעזרת צבעים שאתה מערבב.
-
-        קניית המשחק בsteam תתן לך גישה למשחק המלא, אבל אתה יכול לשחק משחק דמו בhttps://shapez.io/ ולהחליט אחר כך.
-    what_others_say: What people say about shapez.io
-    nothernlion_comment: This game is great - I'm having a wonderful time playing,
-        and time has flown by.
-    notch_comment: Oh crap. I really should sleep, but I think I just figured out
-        how to make a computer in shapez.io
-    steam_review_comment: This game has stolen my life and I don't want it back.
-        Very chill factory game that won't let me stop making my lines more
-        efficient.
 global:
     loading: טוען
     error: שגיאה
@@ -51,56 +31,19 @@ global:
         space: SPACE
     loggingIn: Logging in
     loadingResources: Downloading additional resources (<percentage> %)
-    discount: -<percentage>%
-    discountSummerSale: SPECIAL PROMOTION! Offer ends 7 July
-demoBanners:
-    title: גרסאת דמו
-    intro: |-
-        Get the full game <strong>now</strong> to unlock:<ul>
-            <li>All 26 levels + infinite Freeplay</li>
-            <li>22 new buildings</li>
-            <li>Mod support</li>
-            <li>Achievements</li>
-            <li>Dark Mode</li>
-            <li>... and a lot more!</li>
-        </ul>
-    playtimeDisclaimer: The full version contains more than <strong>20 hours of content</strong>.
-    playerCount: <playerCount> players like you are currently playing shapez on Steam
-    untilEndOfDemo: Until end of demo
-    playtimeDisclaimerDownload: You can continue your savegame in the full version!
-        Click <strong>here</strong> to download your savegame.
-    titleV2: "Play the full version now for:"
 mainMenu:
     play: שחק
     continue: המשך
     newGame: משחק חדש
-    changelog: עדכונים
-    subreddit: רדיט
     importSavegame: יבוא
-    openSourceHint: המשחק הזה הוא עם קוד פתוח!
-    discordLink: שרת הדסקורד הרשמי
     helpTranslate: תעזור לתרגם!
-    madeBy: <author-link> :יוצר המשחק
-    browserWarning: מצטערים, אבל המשחק רק באיטיות על הדפדפן שלך! תשיג את הגרסא
-        להורדה או שתוריד גוגל לחוויה המלאה.
     savegameLevel: שלב <x>
     savegameLevelUnknown: שלב לא ידוע
     savegameUnnamed: ללא שם
-    puzzleMode: Puzzle Mode
-    back: Back
-    puzzleDlcText: Do you enjoy compacting and optimizing factories? Get the Puzzle
-        DLC now on Steam for even more fun!
-    puzzleDlcWishlist: Wishlist now!
-    puzzleDlcViewNow: View Dlc
     mods:
-        title: Active Mods
         warningPuzzleDLC: Playing the Puzzle DLC is not possible with mods. Please
             disable all mods to play the DLC.
-    playingFullVersion: You are now playing the full version!
-    logout: Logout
     noActiveSavegames: No active savegames found - Click play to start a new game!
-    playFullVersionV2: Bough shapez on Steam? Play the full version in your Browser!
-    playFullVersionStandalone: You can now also play the full version in your Browser!
 dialogs:
     buttons:
         ok: אישור
@@ -109,7 +52,6 @@ dialogs:
         later: מאוחר יותר
         restart: פתיחה מחדש
         reset: אפס
-        getStandalone: השג את הגרסא להורדה
         deleteGame: אני יודע מה אני עושה
         viewUpdate: צפה בעדכון
         showUpgrades: הצג שדרוגים
@@ -145,14 +87,6 @@ dialogs:
     keybindingsResetOk:
         title: אפס את המקשים
         desc: זה יחזיר את כל המקשים להגדרה המקורית!
-    featureRestriction:
-        title: גראת דמו
-        desc: ניסית להשתמש בפיצ'ר (<feature>) שהוא לא זמין בדמו. תשיג את הגרסה להורדה
-            בשביל החוויה המלאה!
-    oneSavegameLimit:
-        title: הגבלת שמירה
-        desc: אתה יכול לשמור רק שמירה אחת בכל זמן נתון בגרסת הדמו. אתה יכול למחוק את
-            האחד הנוכחי או להשיג את הגרסה להורדה!
     updateSummary:
         title: עדכון חדש!
         desc: "כאן כל השינויים מאז ששיחקת לאחרונה:"
@@ -193,9 +127,6 @@ dialogs:
         descItems: "תבחר מההבאים:"
         descShortKey: ... או שתשתמש ב <strong>קוד קצר</strong> של צורה (שאתה יכול לייצר
             <link>כאן</link>)
-    markerDemoLimit:
-        desc: אתה יכול ליצור רק שני סימונים בגרסאת הדמו. תשיג את הגרסה להורדה בשביל כמול
-            לא מוגבלת של סימונים!
     exportScreenshotWarning:
         title: יצוא צילום מסך
         desc: אתה ביקשת לייצא את המפעל שלך כצילום מסך. בבקשה תהיה מודע שזה יכול להיות די
@@ -282,28 +213,9 @@ dialogs:
         newMods: Newly installed Mods
     resourceLoadFailed:
         title: Resources failed to load
-        demoLinkText: shapez demo on Steam
-        descWeb: "One ore more resources could not be loaded. Make sure you have a
-            stable internet connection and try again. If this still doesn't
-            work, make sure to also disable any browser extensions (including
-            adblockers).<br><br> As an alternative, you can also play the
-            <demoOnSteamLinkText>. <br><br> Error Message:"
         descSteamDemo: "One ore more resources could not be loaded. Try restarting the
             game - If that does not help, try reinstalling and verifying the
             game files via Steam. <br><br> Error Message:"
-    steamSsoError:
-        title: Full Version Logout
-        desc: You have been logged out from the Full Browser Version since either your
-            network connection is unstable or you are playing on another
-            device.<br><br> Please make sure you don't have shapez open in any
-            other browser tab or another computer with the same Steam
-            account.<br><br> You can login again in the main menu.
-    steamSsoNoOwnership:
-        title: Full Edition not owned
-        desc: In order to play the Full Edition in your Browser, you need to own both
-            the base game and the Puzzle DLC on your Steam account.<br><br>
-            Please make sure you own both, signed in with the correct Steam
-            account and then try again.
 ingame:
     keybindingsOverlay:
         moveMap: הזזה
@@ -436,40 +348,6 @@ ingame:
         one_miner: חוצב 1
         n_miners: <amount> חוצבים
         limited_items: מוגבל ל<max_throughput>
-    watermark:
-        title: גרסת דמו
-        desc: לחץ פה בשביל לראות את היתרונות של הגרסה להורדה!
-        get_on_steam: Steamהשג ב
-    standaloneAdvantages:
-        no_thanks: "!לא, תודה"
-        points:
-            levels:
-                title: 12 שלבים חדשים
-                desc: '!סה"כ  26 שלבים'
-            buildings:
-                title: 22 מבנים חדשים
-                desc: "!אפשרות להפוך את המפעל לאוטומטי לגמרי"
-            achievements:
-                title: הישגים
-                desc: "!השג את כולם"
-            markers:
-                title: סימונים ∞
-                desc: "!אף פעם לא תלך לאיבוד במפעל שלך"
-            wires:
-                title: כבלים
-                desc: "!מימד חדש לגמרי"
-            darkmode:
-                title: תצוגה כהה
-                desc: "!תפסיק להכאיב לעיניים שלך"
-            support:
-                title: תמוך בי
-                desc: "!אני יצרתי רת המשחק הזה בזמני החופשי"
-            mods:
-                title: Modding support!
-                desc: Over 80 mods available!
-        titleV2: "Get the full version now on Steam to unlock:"
-        titleExpiredV2: Demo completed!
-        titleEnjoyingDemo: Enjoy the demo?
     puzzleEditorSettings:
         zoneTitle: Zone
         zoneWidth: Width
@@ -573,7 +451,7 @@ buildings:
             name: חותך (מרובע)
             description: חותך את הצורות לארבעה חלקים. <strong>אם אתה משתמש רק בחלק אחד,
                 תוודא שאתה הורס את השאר החלקים או שיווצר סתימה!</strong>
-    rotater:
+    rotator:
         default:
             name: מסובב
             description: מסובב חלקים עם כיוון השעון ב90 מעלות.
@@ -691,7 +569,7 @@ buildings:
         default:
             name: חותך וירטואלי
             description: חותך באופן וירטואלי את הצורה לשני חצאים.
-        rotater:
+        rotator:
             name: מסובב וירטואלי
             description: מסובב באופן וירטואלי את הצורה עם כיוון השעון.
         unstacker:
@@ -726,7 +604,7 @@ storyRewards:
             <strong>לא משנה איזה כיוון הוא</strong>!<br><br>וודא שאתה נפתר
             מהשאריות, אחרת <strong>הוא יסתם ויתקע</strong> - בשביל המטרה הזאת
             אני הבאתי לך את ה<strong>פח</strong>, שהורס כל מה שאתה מכניס אליו!
-    reward_rotater:
+    reward_rotator:
         title: סיבוב
         desc: קיבלת גישה ל<strong>מסובב</strong> ! הוא מסובב צורות עם כיוון השעון ב90
             מעלות.
@@ -754,7 +632,7 @@ storyRewards:
         title: מנהרה
         desc: קיבלת גישה ל<strong>מנהרה</strong> - אתה יכול עכשיו להעביר חפצים מתחת
             למסועים ומבנים עם זה!
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: סיבוב נגד כיוון השעון
         desc: קיבלת גישה לצורה נוספת של <strong>מסובב</strong> - זה מאפשר לך לסובב צורות
             נגד כיוון השעון! בשביל לבנות את זה, תבחר מסובב, ו<strong>תלחץ 'T'
@@ -801,7 +679,7 @@ storyRewards:
             (החזק CTRL, וגרור עם העכבר), ואז לחץ 'C' בשביל להעתיק את
             זה.<br><br>הדבקה זה <strong>לא חינם</strong>, אתה צריך ליצר
             <strong>צורת תבנית</strong> בשביל לקנות את זה! (אלו שבדיוק יצרת).
-    reward_rotater_180:
+    reward_rotator_180:
         title: מסובב (180°)
         desc: קיבלת גישה <strong>מסובב</strong> 180 מעלות! - זה מאפשר לך לסובב צורה ב
             180 מעולות (הפתעה! :D)
@@ -1056,7 +934,7 @@ keybindings:
         underground_belt: מנהרה
         miner: חוצב
         cutter: חותך
-        rotater: מסובב
+        rotator: מסובב
         stacker: מחבר
         mixer: מערבב
         painter: צובע
@@ -1117,12 +995,6 @@ about:
 changelog:
     title: עדכונים
 demo:
-    features:
-        restoringGames: שחזור משחקים שמורים
-        importingGames: יבוא משחקים שמורים
-        oneGameLimit: מוגבל לשמירה אחת
-        customizeKeybindings: מקשים בהתאמה אישית
-        exportingBase: יצוא כל המפעל כתמונה
     settingNotAvailable: .הגדרה לא זמינה בדמו
 tips:
     - "!ההאב יקבל כל צורה, לא רק את הצורה הנדרשת עכשיו"
@@ -1275,16 +1147,7 @@ mods:
     version: Version
     modWebsite: Website
     openFolder: Open Mods Folder
-    folderOnlyStandalone: Opening the mod folder is only possible when running the standalone.
     browseMods: Browse Mods
     modsInfo: To install and manage mods, copy them to the mods folder within the
         game directory. You can also use the 'Open Mods Folder' button on the
         top right.
-    noModSupport: You need the standalone version on Steam to install mods.
-    togglingComingSoon:
-        title: Coming Soon
-        description: Enabling or disabling mods is currently only possible by copying
-            the mod file from or to the mods/ folder. However, being able to
-            toggle them here is planned for a future update!
-    browserNoSupport: Due to browser restrictions it is currently only possible to
-        install mods in the Steam version - Sorry!

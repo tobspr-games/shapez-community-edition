@@ -21,8 +21,7 @@ export class BaseGameSpeed extends BasicSerializableObject {
     }
 
     getId() {
-        // @ts-ignore
-        return this.constructor.getId();
+        return /** @type {typeof BaseGameSpeed} */ (this.constructor).getId();
     }
 
     static getSchema() {

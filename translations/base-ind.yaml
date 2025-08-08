@@ -1,24 +1,3 @@
-steamPage:
-    shortText: shapez.io adalah game tentang membangun pabrik untuk mengotomatiskan
-        pembuatan dan pemrosesan bentuk-bentuk yang semakin lama semakin
-        kompleks di dalam peta yang meluas tanpa batas.
-    discordLinkShort: Server Discord Resmi
-    intro: >-
-        Kamu suka game otomasi? Maka kamu berada di tempat yang tepat!
-
-        shapez.io adalah game santai dimana kamu harus membuat pabrik untuk mengotomatiskan produksi bentuk-bentuk geometris. Semakin meningkatnya level, bentuk-bentuknya menjadi lebih kompleks, dan kamu perlu meluaskan pabrikmu semakin jauh lagi.
-
-        Dan jita itu tidak cukup, kamu juga perlu memproduksi bentuk secara eksponensial untuk memenuhkan kebutuhan - hal yang membantu hanyalah memperbesar pabrik! Walaupun kamu hanya perlu memproses bentuk di awal, nantinya kamu harus memberinya warna - dengan mengekstrak dan mencampur warna!
-
-        Membeli game ini di Steam memberikan kamu akses ke versi lengkap, namun kamu juga dapat mencoba demo dan memutuskan nanti!
-    what_others_say: Apa yang orang lain katakan tentang shapez.io
-    nothernlion_comment: Game ini bagus - Saya sangat menikmati waktu saya ketika
-        memainkan game ini, dan waktu telah berlalu.
-    notch_comment: Oh sial. Saya benar-benar harus tidur, namun sepertinya saya baru
-        menemukan bagaimana cara membuat komputer di shapez.io
-    steam_review_comment: Game ini telah mencuri hidup saya dan saya tidak
-        menginginkannya kembali. Game pembuatan pabrik yang sangat santai yang
-        tidak akan membiarkan saya berhenti membuat pabrik saya lebih efisien.
 global:
     loading: Memuat
     error: Terjadi kesalahan
@@ -52,56 +31,19 @@ global:
         space: SPACE
     loggingIn: Logging in
     loadingResources: Downloading additional resources (<percentage> %)
-    discount: -<percentage>%
-    discountSummerSale: SPECIAL PROMOTION! Offer ends 7 July
-demoBanners:
-    title: Versi Demo
-    intro: |-
-        Get the full game <strong>now</strong> to unlock:<ul>
-            <li>All 26 levels + infinite Freeplay</li>
-            <li>22 new buildings</li>
-            <li>Mod support</li>
-            <li>Achievements</li>
-            <li>Dark Mode</li>
-            <li>... and a lot more!</li>
-        </ul>
-    playtimeDisclaimer: The full version contains more than <strong>20 hours of content</strong>.
-    playerCount: <playerCount> players like you are currently playing shapez on Steam
-    untilEndOfDemo: Until end of demo
-    playtimeDisclaimerDownload: You can continue your savegame in the full version!
-        Click <strong>here</strong> to download your savegame.
-    titleV2: "Play the full version now for:"
 mainMenu:
     play: Mulai Permainan
     continue: Lanjutkan
     newGame: Permainan Baru
-    changelog: Catatan Perubahan
-    subreddit: Reddit
     importSavegame: Impor Data Simpanan
-    openSourceHint: Game ini open source!
-    discordLink: Server Discord Resmi
     helpTranslate: Bantu Terjemahkan!
-    madeBy: Dibuat oleh <author-link>
-    browserWarning: Maaf, tetapi permainan ini biasanya lambat pada browser kamu!
-        Dapatkan versi lengkap atau unduh Chrome untuk pengalaman sepenuhnya.
     savegameLevel: Level <x>
     savegameLevelUnknown: Level tidak diketahui
     savegameUnnamed: Tidak Dinamai
-    puzzleMode: Puzzle Mode
-    back: Back
-    puzzleDlcText: Do you enjoy compacting and optimizing factories? Get the Puzzle
-        DLC now on Steam for even more fun!
-    puzzleDlcWishlist: Wishlist now!
-    puzzleDlcViewNow: View Dlc
     mods:
-        title: Active Mods
         warningPuzzleDLC: Playing the Puzzle DLC is not possible with mods. Please
             disable all mods to play the DLC.
-    playingFullVersion: You are now playing the full version!
-    logout: Logout
     noActiveSavegames: No active savegames found - Click play to start a new game!
-    playFullVersionV2: Bough shapez on Steam? Play the full version in your Browser!
-    playFullVersionStandalone: You can now also play the full version in your Browser!
 dialogs:
     buttons:
         ok: OK
@@ -110,7 +52,6 @@ dialogs:
         later: Nanti
         restart: Mulai Ulang
         reset: Setel Ulang
-        getStandalone: Dapatkan Versi Lengkap
         deleteGame: Aku tahu apa yang aku lakukan
         viewUpdate: Tampilkan Update
         showUpgrades: Tunjukkan Tingkatan
@@ -148,15 +89,6 @@ dialogs:
     keybindingsResetOk:
         title: Setel Ulang
         desc: Tombol-tombol pintas sudah disetel ulang ke pengaturan awalnya!
-    featureRestriction:
-        title: Versi Demo
-        desc: Kamu mencoba untuk mengakses fitur (<feature>) yang tidak tersedia pada
-            versi demo. Pertimbangkan untuk mendapatkan versi lengkap untuk
-            pengalaman sepenuhnya!
-    oneSavegameLimit:
-        title: Penyimpanan Permainan Terbatas
-        desc: Kamu hanya dapat memiliki satu data simpanan dalam versi demo. Harap hapus
-            yang telah ada atau dapatkan versi lengkap!
     updateSummary:
         title: Update Baru!
         desc: "Berikut perubahan-perubahan yang telah dibuat sejak kamu main terakhir
@@ -197,9 +129,6 @@ dialogs:
         desc: Berikan nama yang berguna, kamu juga bisa memasukkan <strong>short key
             </strong> dari sebuah bentuk (Yang bisa kamu buat sendiri
             <link>disini</link>)
-    markerDemoLimit:
-        desc: Kamu hanya dapat membuat dua penanda pada versi demo. Dapatkan versi
-            lengkap untuk penanda-penanda tak terbatas!
     exportScreenshotWarning:
         title: Ekspor Screenshot
         desc: Kamu meminta untuk mengekspor pabrikmu sebagai screenshot. Harap ketahui
@@ -294,28 +223,9 @@ dialogs:
         newMods: Newly installed Mods
     resourceLoadFailed:
         title: Resources failed to load
-        demoLinkText: shapez demo on Steam
-        descWeb: "One ore more resources could not be loaded. Make sure you have a
-            stable internet connection and try again. If this still doesn't
-            work, make sure to also disable any browser extensions (including
-            adblockers).<br><br> As an alternative, you can also play the
-            <demoOnSteamLinkText>. <br><br> Error Message:"
         descSteamDemo: "One ore more resources could not be loaded. Try restarting the
             game - If that does not help, try reinstalling and verifying the
             game files via Steam. <br><br> Error Message:"
-    steamSsoError:
-        title: Full Version Logout
-        desc: You have been logged out from the Full Browser Version since either your
-            network connection is unstable or you are playing on another
-            device.<br><br> Please make sure you don't have shapez open in any
-            other browser tab or another computer with the same Steam
-            account.<br><br> You can login again in the main menu.
-    steamSsoNoOwnership:
-        title: Full Edition not owned
-        desc: In order to play the Full Edition in your Browser, you need to own both
-            the base game and the Puzzle DLC on your Steam account.<br><br>
-            Please make sure you own both, signed in with the correct Steam
-            account and then try again.
 ingame:
     keybindingsOverlay:
         moveMap: Geser
@@ -459,40 +369,6 @@ ingame:
         one_miner: 1 Ekstraktor
         n_miners: <amount> Ekstraktor
         limited_items: Terbatas hingga <max_throughput>
-    watermark:
-        title: Versi Demo
-        desc: Klik disini untuk melihat keunggulan pada versi Steam!
-        get_on_steam: Dapatkan di Steam
-    standaloneAdvantages:
-        no_thanks: Tidak, terima kasih!
-        points:
-            levels:
-                title: 12 Level Baru
-                desc: Dengan total 26 level!
-            buildings:
-                title: 22 Bangunan Baru
-                desc: Untuk membuat pabrik yang otomatis sepenuhnya!
-            markers:
-                title: ∞ Penanda
-                desc: Kamu tidak akan tersesat di pabrikmu sendiri!
-            wires:
-                title: Kabel
-                desc: Sebuah dimensi yang benar-benar berbeda!
-            darkmode:
-                title: Mode Gelap
-                desc: Berhenti merusak matamu!
-            support:
-                title: Dukung saya
-                desc: Saya membuat game ini di waktu luang!
-            achievements:
-                title: Achievements
-                desc: Hunt them all!
-            mods:
-                title: Modding support!
-                desc: Over 80 mods available!
-        titleV2: "Get the full version now on Steam to unlock:"
-        titleExpiredV2: Demo completed!
-        titleEnjoyingDemo: Enjoy the demo?
     puzzleEditorSettings:
         zoneTitle: Zone
         zoneWidth: Width
@@ -597,7 +473,7 @@ buildings:
             description: Memotong bentuk-bentuk menjadi empat bagian. <strong> Apabila kamu
                 hanya menggunakan satu bagian, pastikan kamu lenyapkan
                 bagian-bagian lain atau mesin akan tersumbat dan macet!</strong>
-    rotater:
+    rotator:
         default:
             name: Pemutar
             description: Memutar bentuk searah jarum jam sebesar 90 derajat.
@@ -734,7 +610,7 @@ buildings:
         default:
             name: Pemotong Virtual
             description: Memotong bentuk menjadi dua bagian secara virtual.
-        rotater:
+        rotator:
             name: Pemutar Virtual
             description: Memutar bentuk searah jarum jam secara virtual.
         unstacker:
@@ -774,7 +650,7 @@ storyRewards:
             tidak <strong>ini dapat tersumbat dan macet</strong> - Oleh karena
             itu kamu diberikan <strong>tong sampah</strong>, yang menghapus
             semua yang kamu masukkan!
-    reward_rotater:
+    reward_rotator:
         title: Memutar
         desc: <strong>Pemutar</strong> telah dibuka! Ia memutar bentuk-bentuk searah
             jarum jam sebesar 90 derajat.
@@ -806,7 +682,7 @@ storyRewards:
         desc: <strong>Terowongan</strong> telah dibuka – Sekarang kamu dapat memindahkan
             bentuk-bentuk melalui terowongan di bawah sabuk-sabuk konveyor dan
             bangungan-bangunan dengannya!
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Memutar Berlawanan Arah Jarum Jam
         desc: Kamu telah membuka varian dari <strong>Pemutar</strong> - Bangunan ini
             memungkinkan kamu untuk memutar bentuk-bentuk berlawanan arah jarum
@@ -888,7 +764,7 @@ storyRewards:
             memungkinkan kamu untuk mengukur penghasilan dalam sebuah sabuk
             konveyor.<br><br> Dan tunggu sampai kamu membuka kabel - maka
             bangunan ini akan sangat berguna!
-    reward_rotater_180:
+    reward_rotator_180:
         title: Pemutar (180 derajat)
         desc: Kamu telah membuka <strong>pemutar</strong> 180 derajat! - Bangunan ini
             memungkinkan kamu untuk memutar bentuk dalam 180 derajat (Kejutan!
@@ -1162,7 +1038,7 @@ keybindings:
         underground_belt: Terowongan
         miner: Ekstraktor
         cutter: Pemotong
-        rotater: Pemutar
+        rotator: Pemutar
         stacker: Penumpuk
         mixer: Pencampur Warna
         painter: Pengecat
@@ -1225,12 +1101,6 @@ about:
 changelog:
     title: Catatan Perubahan
 demo:
-    features:
-        restoringGames: Mengembalikan simpanan permainan
-        importingGames: Memasukkan simpanan permainan
-        oneGameLimit: Terbatas pada satu simpanan permainan
-        customizeKeybindings: Sesuaikan tombol-tombol pintas
-        exportingBase: Mengekspor keseluruhan pangkalan pusat sebagai gambar
     settingNotAvailable: Tidak tersedia dalam versi demo.
 tips:
     - Bangunan pusat akan menerima segala input, tidak hanya bentuk sekarang!
@@ -1406,16 +1276,7 @@ mods:
     version: Version
     modWebsite: Website
     openFolder: Open Mods Folder
-    folderOnlyStandalone: Opening the mod folder is only possible when running the standalone.
     browseMods: Browse Mods
     modsInfo: To install and manage mods, copy them to the mods folder within the
         game directory. You can also use the 'Open Mods Folder' button on the
         top right.
-    noModSupport: You need the standalone version on Steam to install mods.
-    togglingComingSoon:
-        title: Coming Soon
-        description: Enabling or disabling mods is currently only possible by copying
-            the mod file from or to the mods/ folder. However, being able to
-            toggle them here is planned for a future update!
-    browserNoSupport: Due to browser restrictions it is currently only possible to
-        install mods in the Steam version - Sorry!

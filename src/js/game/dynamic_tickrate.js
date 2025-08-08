@@ -1,6 +1,5 @@
-import { GameRoot } from "./root";
 import { createLogger } from "../core/logging";
-import { globalConfig } from "../core/config";
+import { GameRoot } from "./root";
 
 const logger = createLogger("dynamic_tickrate");
 
@@ -29,10 +28,6 @@ export class DynamicTickrate {
             this.setTickRate(fixedRate);
         } else {
             this.setTickRate(this.root.app.settings.getDesiredFps());
-
-            if (G_IS_DEV && globalConfig.debug.renderForTrailer) {
-                this.setTickRate(300);
-            }
         }
     }
 
@@ -64,10 +59,6 @@ export class DynamicTickrate {
      * Increases the tick rate marginally
      */
     increaseTickRate() {
-        if (G_IS_DEV && globalConfig.debug.renderForTrailer) {
-            return;
-        }
-
         const desiredFps = this.root.app.settings.getDesiredFps();
         this.setTickRate(Math.round(Math.min(desiredFps, this.currentTickRate * 1.2)));
     }
@@ -76,10 +67,6 @@ export class DynamicTickrate {
      * Decreases the tick rate marginally
      */
     decreaseTickRate() {
-        if (G_IS_DEV && globalConfig.debug.renderForTrailer) {
-            return;
-        }
-
         const desiredFps = this.root.app.settings.getDesiredFps();
         this.setTickRate(Math.round(Math.max(desiredFps / 2, this.currentTickRate * 0.8)));
     }

@@ -55,7 +55,7 @@
         .dialogInner {
             opacity: 1;
         }
-        backdrop-filter: blur(D(3px));
+        backdrop-filter: blur(0.3rem);
     }
 
     .dialogInner {
@@ -73,19 +73,19 @@
 
         .text {
             text-transform: uppercase;
-            @include S(margin-bottom, 10px);
+            margin-bottom: 1rem;
         }
     }
 
     > .dialogInner {
         background: #fff;
-        max-height: calc(100vh - #{D(40px)});
-        @include S(border-radius, $globalBorderRadius);
+        max-height: calc(100vh - 4rem);
+        border-radius: $globalBorderRadius;
         display: flex;
         flex-direction: column;
-        @include S(padding, 12px);
+        padding: 1.2rem;
 
-        box-shadow: 0 D(5px) D(15px) rgba(#000, 0.1);
+        box-shadow: 0 0.5rem 1.5rem rgba(#000, 0.1);
         pointer-events: all;
 
         @include DarkThemeOverride {
@@ -95,15 +95,15 @@
         &.optionChooserDialog {
             .optionParent {
                 display: grid;
-                @include S(grid-gap, 5px);
-                @include S(padding-right, 5px);
+                grid-gap: 0.5rem;
+                padding-right: 0.5rem;
                 grid-template-columns: 1fr 1fr;
                 .option {
-                    @include S(border-radius, $globalBorderRadius);
+                    border-radius: $globalBorderRadius;
 
                     pointer-events: all;
                     cursor: pointer;
-                    @include S(padding, 10px);
+                    padding: 1rem;
 
                     background: #eee;
 
@@ -128,13 +128,13 @@
             display: grid;
             align-items: center;
             grid-template-columns: 1fr auto;
-            @include S(margin-bottom, 10px);
+            margin-bottom: 1rem;
 
             @include DarkThemeInvert();
             > .closeButton {
                 opacity: 0.7;
-                @include S(width, 20px);
-                @include S(height, 20px);
+                width: 2rem;
+                height: 2rem;
                 cursor: pointer;
                 pointer-events: all;
                 transition: opacity 0.2s ease-in-out;
@@ -151,7 +151,7 @@
             @include PlainText;
             overflow-y: auto;
             pointer-events: all;
-            @include S(width, 350px);
+            width: 35rem;
 
             @include DarkThemeOverride {
                 color: #aaa;
@@ -165,6 +165,8 @@
                 font-weight: bold;
             }
 
+            // FIXME: Translations are still using code.keybinding instead of kbd
+            kbd,
             .keybinding {
                 position: relative;
                 background: #eee;
@@ -174,7 +176,7 @@
             }
 
             h3 {
-                @include S(margin-top, 10px);
+                margin-top: 1rem;
             }
 
             input {
@@ -192,30 +194,20 @@
                 }
             }
 
-            ul.bucketList {
-                padding-left: 30px;
-
-                li {
-                    display: list-item;
-                }
-            }
-
             .ingameItemChooser {
-                @include S(margin, 10px, 0);
+                margin: 1rem 0;
                 display: grid;
-                @include S(grid-column-gap, 3px);
-                @include S(grid-row-gap, 5px);
+                grid-column-gap: 0.3rem;
+                grid-row-gap: 0.5rem;
                 grid-template-columns: repeat(10, 1fr);
-                align-items: center;
-                justify-items: center;
+                place-items: center;
 
                 canvas {
                     pointer-events: all;
-                    @include S(width, 25px);
-                    @include S(height, 25px);
+                    width: 2.5rem;
+                    height: 2.5rem;
                     position: relative;
                     cursor: pointer;
-                    @include IncreasedClickArea(3px);
 
                     &:hover {
                         opacity: 0.9;
@@ -225,11 +217,11 @@
 
             .dialogModsMod {
                 background: rgba(0, 0, 0, 0.05);
-                @include S(padding, 5px);
-                @include S(margin, 10px, 0);
-                @include S(border-radius, $globalBorderRadius);
+                padding: 0.5rem;
+                margin: 1rem 0;
+                border-radius: $globalBorderRadius;
                 display: grid;
-                grid-template-columns: 1fr D(100px);
+                grid-template-columns: 1fr 10rem;
 
                 @include DarkThemeOverride {
                     background: rgba(0, 0, 0, 0.2);
@@ -245,21 +237,18 @@
                     @include SuperSmallText;
                     opacity: 0.5;
                 }
-
-                .name {
-                }
             }
         }
 
         > .buttons {
-            @include S(margin-top, 15px);
+            margin-top: 1.5rem;
             display: flex;
             justify-content: flex-end;
             > button {
-                @include S(margin-left, 8px);
+                margin-left: 0.8rem;
                 @include Text;
-                @include S(min-width, 60px);
-                @include S(padding, 5px, 15px);
+                min-width: 6rem;
+                padding: 0.5rem 1.5rem;
 
                 transition: opacity 0.12s ease-in-out;
                 &:hover {

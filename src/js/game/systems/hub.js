@@ -17,8 +17,6 @@ const HUB_SIZE_PIXELS = HUB_SIZE_TILES * globalConfig.tileSize;
 export class HubSystem extends GameSystemWithFilter {
     constructor(root) {
         super(root, [HubComponent]);
-
-        this.hubSprite = Loader.getSprite("sprites/buildings/hub.png");
     }
 
     /**
@@ -62,8 +60,6 @@ export class HubSystem extends GameSystemWithFilter {
         });
 
         context.clearRect(0, 0, w, h);
-
-        this.hubSprite.draw(context, 0, 0, w, h);
 
         if (this.root.hubGoals.isEndOfDemoReached()) {
             // End of demo
@@ -181,7 +177,7 @@ export class HubSystem extends GameSystemWithFilter {
             redrawMethod: this.redrawHubBaseTexture.bind(this),
         });
 
-        const extrude = 8;
+        const extrude = 2 * 4;
         drawSpriteClipped({
             parameters,
             sprite: canvas,

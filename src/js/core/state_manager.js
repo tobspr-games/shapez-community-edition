@@ -2,10 +2,10 @@
 import { Application } from "../application";
 /* typehints:end*/
 
+import { MOD_SIGNALS } from "../mods/mod_signals";
 import { GameState } from "./game_state";
 import { createLogger } from "./logging";
-import { waitNextFrame, removeAllChildren } from "./utils";
-import { MOD_SIGNALS } from "../mods/mod_signals";
+import { removeAllChildren, waitNextFrame } from "./utils";
 
 const logger = createLogger("state_manager");
 
@@ -34,7 +34,7 @@ export class StateManager {
         // Create a dummy to retrieve the key
         const dummy = new stateClass();
         assert(dummy instanceof GameState, "Not a state!");
-        const key = dummy.getKey();
+        const key = dummy.key;
         assert(!this.stateClasses[key], `State '${key}' is already registered!`);
         this.stateClasses[key] = stateClass;
     }
@@ -61,7 +61,7 @@ export class StateManager {
         }
 
         if (this.currentState) {
-            if (key === this.currentState.getKey()) {
+            if (key === this.currentState.key) {
                 logger.error(`State '${key}' is already active!`);
                 return false;
             }
@@ -69,7 +69,7 @@ export class StateManager {
 
             // Remove all references
             for (const stateKey in this.currentState) {
-                if (this.currentState.hasOwnProperty(stateKey)) {
+                if (Object.hasOwn(this.currentState, stateKey)) {
                     delete this.currentState[stateKey];
                 }
             }
@@ -88,24 +88,19 @@ export class StateManager {
         document.body.id = "state_" + key;
 
         if (this.currentState.getRemovePreviousContent()) {
-            document.body.innerHTML = this.currentState.internalGetFullHtml();
+            const content = this.currentState.internalGetWrappedContent();
+            document.body.append(content);
         }
 
         const dialogParent = document.createElement("div");
         dialogParent.classList.add("modalDialogParent");
         document.body.appendChild(dialogParent);
-        try {
-            this.currentState.internalEnterCallback(payload);
-        } catch (ex) {
-            console.error(ex);
-            throw ex;
-        }
+
+        this.currentState.internalEnterCallback(payload);
 
         this.app.sound.playThemeMusic(this.currentState.getThemeMusic());
 
         this.currentState.onResized(this.app.screenWidth, this.app.screenHeight);
-
-        this.app.analytics.trackStateEnter(key);
 
         window.history.pushState(
             {

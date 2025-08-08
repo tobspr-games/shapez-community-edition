@@ -1321,7 +1321,8 @@ export class BeltPath extends BasicSerializableObject {
             const nextDistanceAndItem = this.items[i];
             const worldPos = this.computePositionFromProgress(progress).toWorldSpaceCenterOfTile();
             parameters.context.fillStyle = "#268e4d";
-            parameters.context.beginRoundedRect(worldPos.x - 5, worldPos.y - 5, 10, 10, 3);
+            parameters.context.beginPath();
+            parameters.context.roundRect(worldPos.x - 5, worldPos.y - 5, 10, 10, 3);
             parameters.context.fill();
             parameters.context.font = "6px GameFont";
             parameters.context.fillStyle = "#111";

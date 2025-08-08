@@ -1,27 +1,3 @@
-steamPage:
-    shortText: shapez.io er et spill som handler om å bygge fabrikker for å
-        automatisere produksjon og kombinasjon av former med økende kompleksitet
-        på et uendelig ekspanderende brett.
-    discordLinkShort: Offissiell Discord
-    intro: >-
-        Shapez.io er et avslappende spill der du skal bygge fabrikker
-        for  automatisert produksjon av geometriske former.
-
-        Etterhvert som du når høyere nivåer blir formene mer og mer komplekse, og du må spre deg ut over det uendelige kartet.
-
-        Og som om det ikke var nok må du også produsere eksponensielt for å tilfredsstille etterspørselen - det eneste som hjelper er skalering!
-
-        Mens du kun produserer former i starten må du fargelegge de senere - for å gjøre dette må du hente ut og blande farger!
-
-        Ved å kjøpe spillet på Steam får du tilgang til fullversjonen, men du kan også spille en demo på shapez.io først og bestemme deg senere!
-    what_others_say: Hva sier andre om shapez.io
-    nothernlion_comment: Dette er et fantastisk spill - Jeg storkoser meg når jeg
-        spiller det, og tiden bare flyr avgårde.
-    notch_comment: Oops. Jeg burde egentlig sove, men jeg tror jeg nettop fant ut
-        hvordan man lager en PC i shapez.io
-    steam_review_comment: Dette spillet har sjålet livet mitt, og jeg vil ikke ha
-        det tilbake. Veldig avslappende fabrikkspill som ikke stopper meg fra å
-        lage båndene mere effektive.
 global:
     loading: Laster
     error: Feil
@@ -55,57 +31,19 @@ global:
         space: MELLOMROM
     loggingIn: Logger inn
     loadingResources: Laster ned tilleggsressurser (<percentage> %)
-    discount: -<percentage>%
-    discountSummerSale: SPECIAL PROMOTION! Offer ends 7 July
-demoBanners:
-    title: Demo Versjon
-    intro: |-
-        Få hele spillet <strong>nå</strong> for å låse opp:<ul>
-            <li>Alle 26 nivåer + uendelig Freeplay</li>
-            <li>22 nye bygg</li>
-            <li>Mod støtte</li>
-            <li>Prestasjoner</li>
-            <li>Mørk modus</li>
-            <li>... og mye mer!</li>
-        </ul>
-    playtimeDisclaimer: Fullversjonen inneholder mer enn <strong>20 timer med innhold</strong>.
-    playerCount: <playerCount> spillere som deg spiller for øyeblikket shapez på Steam
-    untilEndOfDemo: Helt til slutten av demoen
-    playtimeDisclaimerDownload: Du kan fortsette lagringsspillet i fullversjonen!
-        Klikk <strong>her</strong> for å laste ned savegame.
-    titleV2: "Spill fullversjonen nå for:"
 mainMenu:
     play: Spill
-    changelog: Endringshistorikk
     importSavegame: Importer
-    openSourceHint: Dette spillet er åpen kildekode!
-    discordLink: Offisiel Discord-Server
     helpTranslate: Hjelp oversetting!
-    browserWarning: Beklager, men spillet er kjent for å kjøre sakte i din
-        nettleser! Skaff deg den frittstående versjonen, eller last ned Chrome
-        for den fulle opplevelsen.
     savegameLevel: Nivå <x>
     savegameLevelUnknown: Ukjent Nivå
     continue: Fortsett
     newGame: Nytt Spill
-    madeBy: Laget av <author-link>
-    subreddit: Reddit
     savegameUnnamed: Ingen Navn
-    puzzleMode: Puzzle Modus
-    back: Tilbake
-    puzzleDlcText: Liker du å bygge kompate og optimaliserte fabrikker? Skaff deg
-        Puzzle tilleggspakken nå på Steam for mere moro!
-    puzzleDlcWishlist: Legg i ønskeliste nå!
-    puzzleDlcViewNow: View Dlc
     mods:
-        title: Active Mods
         warningPuzzleDLC: Playing the Puzzle DLC is not possible with mods. Please
             disable all mods to play the DLC.
-    playingFullVersion: You are now playing the full version!
-    logout: Logout
     noActiveSavegames: No active savegames found - Click play to start a new game!
-    playFullVersionV2: Bough shapez on Steam? Play the full version in your Browser!
-    playFullVersionStandalone: You can now also play the full version in your Browser!
 dialogs:
     buttons:
         ok: OK
@@ -114,7 +52,6 @@ dialogs:
         later: Senere
         restart: Omstart
         reset: Nullstill
-        getStandalone: Få frittstående
         deleteGame: Jeg vet hva jeg gjør
         viewUpdate: Vis Oppdatering
         showUpgrades: Vis Oppgraderinger
@@ -151,15 +88,6 @@ dialogs:
     keybindingsResetOk:
         title: Hurtigtaster tilbakestillt
         desc: Hurtigtastene har blitt tilbakestillt til standard!
-    featureRestriction:
-        title: Demoversjon
-        desc: Du prøvde å benytte deg av en funksjon (<feature>) som ikke er
-            tilgjengelig i demoen. Vurder å skaffe den frittstående versjonen
-            for den fulle opplevelsen!
-    oneSavegameLimit:
-        title: Begrenset antall Lagringsfiler
-        desc: Du kan du ha en lagringsfil om gangen i demoversjonen. Vennligst slett den
-            eksisterende, eller skaff den frittstående versjonen!
     updateSummary:
         title: Ny oppdatering!!
         desc: "Her er endringene siden sist du spilte:"
@@ -193,9 +121,6 @@ dialogs:
         desc: Gi den et meningsfult navn, du kan også inkludere <strong>korte
             koder</strong> av en form (Som du kan generere <link>her</link>)
         titleEdit: Rediger markør
-    markerDemoLimit:
-        desc: Du kan kun ha to markører i demoverjsonen. Skaff deg den frittstående
-            versjonen for ubegrensede markører!
     exportScreenshotWarning:
         title: Eksporter skjermbilde
         desc: Du forespurte å eksportere bilde av basen din som et skjermbilde. Vær obs
@@ -295,28 +220,9 @@ dialogs:
         newMods: Newly installed Mods
     resourceLoadFailed:
         title: Resources failed to load
-        demoLinkText: shapez demo on Steam
-        descWeb: "One ore more resources could not be loaded. Make sure you have a
-            stable internet connection and try again. If this still doesn't
-            work, make sure to also disable any browser extensions (including
-            adblockers).<br><br> As an alternative, you can also play the
-            <demoOnSteamLinkText>. <br><br> Error Message:"
         descSteamDemo: "One ore more resources could not be loaded. Try restarting the
             game - If that does not help, try reinstalling and verifying the
             game files via Steam. <br><br> Error Message:"
-    steamSsoError:
-        title: Full Version Logout
-        desc: You have been logged out from the Full Browser Version since either your
-            network connection is unstable or you are playing on another
-            device.<br><br> Please make sure you don't have shapez open in any
-            other browser tab or another computer with the same Steam
-            account.<br><br> You can login again in the main menu.
-    steamSsoNoOwnership:
-        title: Full Edition not owned
-        desc: In order to play the Full Edition in your Browser, you need to own both
-            the base game and the Puzzle DLC on your Steam account.<br><br>
-            Please make sure you own both, signed in with the correct Steam
-            account and then try again.
 ingame:
     keybindingsOverlay:
         moveMap: Beveg
@@ -455,40 +361,6 @@ ingame:
         one_miner: 1 Utgraver
         n_miners: <amount> Utgravere
         limited_items: Begrenset til <max_throughput>
-    watermark:
-        title: Demo versjon
-        desc: Trykk her for å se fordelene med Steam verjsonen!
-        get_on_steam: Få på Steam
-    standaloneAdvantages:
-        no_thanks: Nei takk!
-        points:
-            levels:
-                title: 12 Nye Nivåer
-                desc: Tilsvarer totalt 26 nivåer!
-            buildings:
-                title: 22 Nye Bygninger
-                desc: Fullautomatiser din fabrikk!
-            markers:
-                title: ∞ Markører
-                desc: Aldri gå deg vill i din fabrikk!
-            wires:
-                title: Kabler
-                desc: En helt ny dimensjon!
-            darkmode:
-                title: Mørkmodus
-                desc: Slutt å skade øynene dine!
-            support:
-                title: Støtt meg
-                desc: Jeg utvikler dette på min fritid!
-            achievements:
-                title: Prestasjoner
-                desc: Skaff dem alle!
-            mods:
-                title: Modding support!
-                desc: Over 80 mods available!
-        titleV2: "Get the full version now on Steam to unlock:"
-        titleExpiredV2: Demo completed!
-        titleEnjoyingDemo: Enjoy the demo?
     puzzleEditorSettings:
         zoneTitle: Sone
         zoneWidth: Bredde
@@ -582,7 +454,7 @@ buildings:
             description: Kutter objekter til 4 biter. <strong>Hvis du bare skal bruke den
                 ene biten, sørg for å ødelegge den andre biten ellers vil det
                 stoppe opp!</strong>
-    rotater:
+    rotator:
         default:
             name: Roter
             description: Roter former med klokken, 90 grader.
@@ -723,7 +595,7 @@ buildings:
         default:
             name: Virituell Kutter
             description: Kutt former virituelt i to deler.
-        rotater:
+        rotator:
             name: Virituell Roterer
             description: Virituelt roterer formen, både med klokken og mot klokken.
         unstacker:
@@ -763,7 +635,7 @@ storyRewards:
             <strong>vil det samle seg og tette</strong> - For dette formålet så
             har jeg gitt deg en <strong>søppelkasse</strong>, som ødelegger alt
             du kaster i den!
-    reward_rotater:
+    reward_rotator:
         title: Rotering
         desc: <strong>Rotereren</strong> har blitt tilgjengelig! Den roterer objekter
             med klokken 90 grader.
@@ -792,7 +664,7 @@ storyRewards:
         title: Tunnel
         desc: <strong>Tunnelen</strong> har blitt tilgjengelig - Du kan nå transportere
             objekter under samlebånd og bygninger med den!
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Rotering mot klokken
         desc: Du har åpnte en variant av <strong>rotereren</strong> - Den tillater
             rotasjoner mot klokken! For å bygge den, velg rotereren og
@@ -864,7 +736,7 @@ storyRewards:
         desc: Du har låst opp <strong>belte leseren</strong>! Den lar deg måle trafikken
             på et belte.<br><br>Og vent til du låser opp kabler - da blir den
             veldig nyttig!
-    reward_rotater_180:
+    reward_rotator_180:
         title: Roterer (180 grader)
         desc: Du åpnet opp 180 graders <strong>rotereren</strong>! - Den lar deg rotere
             en form 180 grader (Overraskelse! :D)
@@ -1125,7 +997,7 @@ keybindings:
         underground_belt: Tunnel
         miner: Utdrager
         cutter: Kutter
-        rotater: Roter
+        rotator: Roter
         stacker: Stabler
         mixer: Fargemikser
         painter: Maler
@@ -1190,12 +1062,6 @@ about:
 changelog:
     title: Endringshistorikk
 demo:
-    features:
-        restoringGames: Gjenopprette lagringsfiler
-        importingGames: Importer lagringsfiler
-        oneGameLimit: Begrenset til en lagringsfil
-        customizeKeybindings: Forandre Hurtigtaster
-        exportingBase: Eksporter hele basen som bilde
     settingNotAvailable: Ikke tilgjengelig i demoversjonen.
 tips:
     - Hovedbygningen godtar alle mulige former, ikke kun nåværende form!
@@ -1354,16 +1220,7 @@ mods:
     version: Version
     modWebsite: Website
     openFolder: Open Mods Folder
-    folderOnlyStandalone: Opening the mod folder is only possible when running the standalone.
     browseMods: Browse Mods
     modsInfo: To install and manage mods, copy them to the mods folder within the
         game directory. You can also use the 'Open Mods Folder' button on the
         top right.
-    noModSupport: You need the standalone version on Steam to install mods.
-    togglingComingSoon:
-        title: Coming Soon
-        description: Enabling or disabling mods is currently only possible by copying
-            the mod file from or to the mods/ folder. However, being able to
-            toggle them here is planned for a future update!
-    browserNoSupport: Due to browser restrictions it is currently only possible to
-        install mods in the Steam version - Sorry!

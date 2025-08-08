@@ -15,7 +15,6 @@ import {
     removeAllChildren,
 } from "../../../core/utils";
 import { Vector } from "../../../core/vector";
-import { ACHIEVEMENTS } from "../../../platform/achievement_provider";
 import { T } from "../../../translations";
 import { BaseItem } from "../../base_item";
 import { MetaHubBuilding } from "../../buildings/hub";
@@ -45,7 +44,7 @@ export class HUDWaypoints extends BaseHUDPart {
      */
     createElements(parent) {
         // Create the helper box on the lower right when zooming out
-        if (this.root.app.settings.getAllSettings().offerHints && !G_WEGAME_VERSION) {
+        if (this.root.app.settings.getAllSettings().offerHints) {
             this.hintElement = makeDiv(
                 parent,
                 "ingame_HUD_Waypoints_Hint",
@@ -54,9 +53,9 @@ export class HUDWaypoints extends BaseHUDPart {
             <strong class='title'>${T.ingame.waypoints.waypoints}</strong>
             <span class='desc'>${T.ingame.waypoints.description.replace(
                 "<keybinding>",
-                `<code class='keybinding'>${this.root.keyMapper
+                `<kbd>${this.root.keyMapper
                     .getBinding(KEYMAPPINGS.navigation.createMarker)
-                    .getKeyCodeString()}</code>`
+                    .getKeyCodeString()}</kbd>`
             )}</span>
         `
             );
@@ -121,12 +120,10 @@ export class HUDWaypoints extends BaseHUDPart {
         }
 
         // Catch mouse and key events
-        if (!G_WEGAME_VERSION) {
-            this.root.camera.downPreHandler.add(this.onMouseDown, this);
-            this.root.keyMapper
-                .getBinding(KEYMAPPINGS.navigation.createMarker)
-                .add(() => this.requestSaveMarker({}));
-        }
+        this.root.camera.downPreHandler.add(this.onMouseDown, this);
+        this.root.keyMapper
+            .getBinding(KEYMAPPINGS.navigation.createMarker)
+            .add(() => this.requestSaveMarker({}));
 
         /**
          * Stores at how much opacity the markers should be rendered on the map.
@@ -313,17 +310,6 @@ export class HUDWaypoints extends BaseHUDPart {
             const center = worldPos || this.root.camera.center;
 
             dialog.buttonSignals.ok.add(() => {
-                // Show info that you can have only N markers in the demo,
-                // actually show this *after* entering the name so you want the
-                // standalone even more (I'm evil :P)
-                if (this.waypoints.length > this.root.app.restrictionMgr.getMaximumWaypoints()) {
-                    this.root.hud.parts.dialogs.showFeatureRestrictionInfo(
-                        "",
-                        T.dialogs.markerDemoLimit.desc
-                    );
-                    return;
-                }
-
                 // Actually create the waypoint
                 this.addWaypoint(markerNameInput.getValue(), center);
             });
@@ -349,10 +335,6 @@ export class HUDWaypoints extends BaseHUDPart {
         this.root.hud.signals.notification.dispatch(
             T.ingame.waypoints.creationSuccessNotification,
             enumNotificationType.success
-        );
-        this.root.signals.achievementCheck.dispatch(
-            ACHIEVEMENTS.mapMarkers15,
-            this.waypoints.length - 1 // Disregard HUB
         );
 
         // Re-render the list and thus add it
@@ -607,7 +589,8 @@ export class HUDWaypoints extends BaseHUDPart {
             // Render the background rectangle
             parameters.context.globalAlpha = this.currentMarkerOpacity * (isSelected ? 1 : 0.7);
             parameters.context.fillStyle = "rgba(255, 255, 255, 0.7)";
-            parameters.context.beginRoundedRect(bounds.x, bounds.y, bounds.w, bounds.h, 6);
+            parameters.context.beginPath();
+            parameters.context.roundRect(bounds.x, bounds.y, bounds.w, bounds.h, 6);
             parameters.context.fill();
 
             // Render the text

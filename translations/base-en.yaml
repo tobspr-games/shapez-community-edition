@@ -20,31 +20,6 @@
 #
 
 ---
-steamPage:
-    # This is the short text appearing on the steam page
-    shortText: shapez is a game about building factories to automate the creation and processing of increasingly complex shapes across an infinitely expanding map.
-
-    # This is the text shown above the Discord link
-    discordLinkShort: Official Discord
-
-    intro: >-
-        Do you like automation games? Then you are in the right place!
-
-        shapez is a relaxed game in which you have to build factories for the automated production of geometric shapes. As the level increases, the shapes become more and more complex, and you have to spread out on the infinite map.
-
-        And as if that wasn't enough, you also have to produce exponentially more to satisfy the demands - the only thing that helps is scaling! While you only have to process shapes at the beginning, you will later have to color them - by extracting and mixing colors!
-
-        Buying the game on Steam gives you access to the full version, but you can also play a demo at shapez first and decide later!
-
-    what_others_say: What people say about shapez
-
-    nothernlion_comment: >-
-        This game is great - I'm having a wonderful time playing, and time has flown by.
-    notch_comment: >-
-        Oh crap. I really should sleep, but I think I just figured out how to make a computer in shapez
-    steam_review_comment: >-
-        This game has stolen my life and I don't want it back. Very chill factory game that won't let me stop making my lines more efficient.
-
 global:
     loading: Loading
     error: Error
@@ -57,9 +32,6 @@ global:
 
     # What symbol to use to separate the integer part from the fractional part of a number, e.g. "0.4"
     decimalSeparator: "."
-
-    discount: -<percentage>%
-    discountSummerSale: "SPECIAL PROMOTION! Offer ends 7 July"
 
     # The suffix for large numbers, e.g. 1.3k, 400.2M, etc.
     suffix:
@@ -97,67 +69,19 @@ global:
         shift: SHIFT
         space: SPACE
 
-demoBanners:
-    # This is the "advertisement" shown in the main menu and other various places
-    title: Demo
-    titleV2: >-
-        Play the full version now for:
-
-    intro: >-
-        Get the full game <strong>now</strong> to unlock:<ul>
-            <li>All 26 levels + infinite Freeplay</li>
-            <li>22 new buildings</li>
-            <li>Mod support</li>
-            <li>Achievements</li>
-            <li>Dark Mode</li>
-            <li>... and a lot more!</li>
-        </ul>
-    playtimeDisclaimer: >-
-        The full version contains more than <strong>20 hours of additional content</strong>!
-
-    playtimeDisclaimerDownload: >-
-        You can continue your savegame in the full version! Click <strong>here</strong> to download your savegame.
-
-    playerCount: >-
-        <playerCount> players like you are playing shapez on Steam right now
-    untilEndOfDemo: Until end of demo
-
 mainMenu:
     play: Play
     continue: Continue
     newGame: New Game
-    changelog: Changelog
-    subreddit: Reddit
     importSavegame: Import
-    openSourceHint: This game is open source!
-    discordLink: Official Discord Server
     helpTranslate: Help translate!
-    madeBy: Made by <author-link>
     noActiveSavegames: No active savegames found - Click play to start a new game!
-
-    playFullVersionV2: Bought shapez on Steam? Play the full version in your Browser!
-    playFullVersionStandalone: You can now also play the full version in your Browser!
-    playingFullVersion: You are now playing the full version!
-    logout: Logout
-
-    # This is shown when using firefox and other browsers which are not supported.
-    browserWarning: >-
-        Sorry, but the game is known to run slowly on your browser! Get the full version or download Google Chrome for the full experience.
 
     savegameLevel: Level <x>
     savegameLevelUnknown: Unknown Level
     savegameUnnamed: Unnamed
-    puzzleMode: Puzzle Mode
-    back: Back
-
-    puzzleDlcText: >-
-        Do you enjoy compacting and optimizing factories?
-        Get the Puzzle DLC now on Steam for even more fun!
-    puzzleDlcWishlist: Wishlist now!
-    puzzleDlcViewNow: View Dlc
 
     mods:
-        title: Active Mods
         warningPuzzleDLC: >-
             Playing the Puzzle DLC is not possible with mods. Please disable all mods to play the DLC.
 
@@ -234,7 +158,6 @@ dialogs:
         later: Later
         restart: Restart
         reset: Reset
-        getStandalone: Get on Steam
         deleteGame: I know what I am doing
         viewUpdate: View Update
         showUpgrades: Show Upgrades
@@ -286,14 +209,6 @@ dialogs:
     keybindingsResetOk:
         title: Keybindings reset
         desc: All keybindings have been reset to their defaults values!
-
-    featureRestriction:
-        title: Demo Version
-        desc: You tried to access a feature (<feature>) which is not available in the demo. Consider getting the full version on Steam for the best experience!
-
-    oneSavegameLimit:
-        title: Limited savegames
-        desc: You can only have one savegame at a time in the demo version. Please remove the existing one or get the full version on Steam!
 
     updateSummary:
         title: New update!
@@ -348,9 +263,6 @@ dialogs:
 
     editConstantProducer:
         title: Set Item
-
-    markerDemoLimit:
-        desc: You can only create two custom markers in the demo. Get the full version on Steam for unlimited markers!
 
     exportScreenshotWarning:
         title: Export screenshot
@@ -464,31 +376,10 @@ dialogs:
     resourceLoadFailed:
         title: Resources failed to load
 
-        demoLinkText: shapez demo on Steam
-        descWeb: >-
-            One ore more resources could not be loaded. Make sure you have a stable internet connection and try again.
-            If this still doesn't work, make sure to also disable any browser extensions (including adblockers).<br><br>
-            As an alternative, you can also play the <demoOnSteamLinkText>.
-            <br><br>
-            Error Message:
-
         descSteamDemo: >-
             One ore more resources could not be loaded. Try restarting the game - If that does not help, try reinstalling and verifying the game files via Steam.
             <br><br>
             Error Message:
-
-    steamSsoError:
-        title: Full Version Logout
-        desc: >-
-            You have been logged out from the Full Browser Version since either your network connection is unstable or you are playing on another device.<br><br>
-            Please make sure you don't have shapez open in any other browser tab or another computer with the same Steam account.<br><br>
-            You can login again in the main menu.
-
-    steamSsoNoOwnership:
-        title: Full Edition not owned
-        desc: >-
-            In order to play the Full Edition in your Browser, you need to own both the base game and the Puzzle DLC on your Steam account.<br><br>
-            Please make sure you own both, signed in with the correct Steam account and then try again.
 
 ingame:
     # This is shown in the top left corner and displays useful keybindings in
@@ -674,53 +565,6 @@ ingame:
         n_miners: <amount> Extractors
         limited_items: Limited to <max_throughput>
 
-    # Pops up in the demo every few minutes
-    watermark:
-        title: Demo version
-        desc: Click here to see the advantages of the full version!
-        get_on_steam: Get on Steam
-
-    standaloneAdvantages:
-        titleV2: >-
-            Play the full version now on Steam to unlock:
-        titleExpiredV2: Demo completed!
-        titleEnjoyingDemo: Enjoying the demo?
-
-        no_thanks: No, thanks!
-
-        points:
-            levels:
-                title: 19 New Levels
-                desc: >-
-                    Over 20 hours of additional content!
-            wires:
-                title: Wires
-                desc: An entirely new dimension!
-
-            darkmode:
-                title: Dark Mode
-                desc: Stop hurting your eyes!
-
-            buildings:
-                title: 22 New Buildings
-                desc: Fully automate your factory!
-
-            achievements:
-                title: 45 Achievements
-                desc: Hunt them all!
-
-            mods:
-                title: Modding support!
-                desc: Over 80 mods available!
-
-            markers:
-                title: ∞ Markers
-                desc: Never get lost in your factory!
-
-            support:
-                title: Support me
-                desc: I develop shapez in my spare time!
-
     # puzzle mode
     puzzleEditorSettings:
         zoneTitle: Zone
@@ -840,9 +684,9 @@ buildings:
             name: Cutter (Quad)
             description: Cuts shapes into four parts. <strong>If you use only one part, be sure to destroy the other parts or it will clog and stall!</strong>
 
-    rotater:
+    rotator:
         default:
-            name: &rotater Rotator
+            name: &rotator Rotator
             description: Rotates shapes clockwise by 90 degrees.
         ccw:
             name: Rotator (CCW)
@@ -965,7 +809,7 @@ buildings:
             name: &virtual_processor Virtual Cutter
             description: Virtually cuts the shape into two halves.
 
-        rotater:
+        rotator:
             name: Virtual Rotator
             description: Virtually rotates the shape clockwise.
 
@@ -1009,7 +853,7 @@ storyRewards:
             You just unlocked the <strong>cutter</strong>, which cuts shapes in half from top to bottom <strong>regardless of its orientation</strong>!<br><br>Be sure to get rid of the waste, or
             otherwise <strong>it will clog and stall</strong> - For this purpose I have given you the <strong>trash</strong>, which destroys everything you put into it!
 
-    reward_rotater:
+    reward_rotator:
         title: Rotating
         desc: The <strong>rotator</strong> has been unlocked! It rotates shapes clockwise by 90 degrees.
 
@@ -1037,7 +881,7 @@ storyRewards:
         title: Tunnel
         desc: The <strong>tunnel</strong> has been unlocked - You can now tunnel items below belts and buildings with it!
 
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: CCW Rotating
         desc: >-
             You have unlocked a variant of the <strong>rotator</strong> - It allows you to rotate shapes counter-clockwise! To build it, select the rotator and
@@ -1090,7 +934,7 @@ storyRewards:
             You can now <strong>copy and paste</strong> parts of your factory! Select an area (Hold CTRL, then drag with your mouse), and press 'C' to copy it.<br><br>Pasting it is
             <strong>not free</strong>, you need to produce <strong>blueprint shapes</strong> to afford it! (Those you just delivered).
 
-    reward_rotater_180:
+    reward_rotator_180:
         title: Rotator (180°)
         desc: You just unlocked the 180 degrees <strong>rotator</strong>! - It allows you to rotate a shape by 180 degrees (Surprise! :D)
 
@@ -1171,17 +1015,10 @@ mods:
     version: Version
     modWebsite: Website
     openFolder: Open Mods Folder
-    folderOnlyStandalone: Opening the mod folder is only possible when running the full version on Steam.
     browseMods: Browse Mods
 
     modsInfo: >-
         To install and manage mods, copy them to the mods folder (use the 'Open Mods Folder' button). Be sure to restart the game afterwards, otherwise the mods will not show up.
-    noModSupport: Get the full version on Steam to install mods!
-    browserNoSupport: Due to browser restrictions it is currently only possible to install mods in the Steam version - Sorry!
-
-    togglingComingSoon:
-        title: Coming Soon
-        description: Enabling or disabling mods is currently only possible by copying the mod file from or to the mods/ folder. However, being able to toggle them here is planned for a future update!
 
 settings:
     title: Settings
@@ -1435,7 +1272,7 @@ keybindings:
         underground_belt: *underground_belt
         miner: *miner
         cutter: *cutter
-        rotater: *rotater
+        rotator: *rotator
         stacker: *stacker
         mixer: *mixer
         painter: *painter
@@ -1505,13 +1342,6 @@ changelog:
     title: Changelog
 
 demo:
-    features:
-        restoringGames: Restoring savegames
-        importingGames: Importing savegames
-        oneGameLimit: Limited to one savegame
-        customizeKeybindings: Customizing Keybindings
-        exportingBase: Exporting whole Base as Image
-
     settingNotAvailable: Not available in the demo.
 
 backendErrors:
@@ -1594,3 +1424,13 @@ tips:
     - Press F4 to show your FPS and Tick Rate.
     - Press F4 twice to show the tile of your mouse and camera.
     - You can click a pinned shape on the left side to unpin it.
+
+errorHandler:
+    title: Unhandled Error!
+    labels:
+        buildInformation: "Build Information:"
+        loadedMods: "Loaded Mods:"
+    actions:
+        copy: Copy
+        copyDone: Copied!
+        restart: Restart

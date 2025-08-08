@@ -1,28 +1,20 @@
 /* typehints:start */
-import { Application } from "../application";
+import { Storage } from "@/platform/storage";
 /* typehints:end */
 
-import { sha1, CRC_PREFIX, computeCrc } from "./sensitive_utils.encrypt";
-import { createLogger } from "./logging";
-import { FILE_NOT_FOUND } from "../platform/storage";
-import { accessNestedPropertyReverse } from "./utils";
-import { IS_DEBUG, globalConfig } from "./config";
+import { FsError } from "@/platform/fs_error";
 import { ExplainedResult } from "./explained_result";
-import { decompressX64, compressX64 } from "./lzstring";
-import { asyncCompressor, compressionPrefix } from "./async_compression";
-import { compressObject, decompressObject } from "../savegame/savegame_compressor";
+import { createLogger } from "./logging";
 
-const debounce = require("debounce-promise");
+import debounce from "debounce-promise";
 
 const logger = createLogger("read_write_proxy");
 
-const salt = accessNestedPropertyReverse(globalConfig, ["file", "info"]);
-
 // Helper which only writes / reads if verify() works. Also performs migration
 export class ReadWriteProxy {
-    constructor(app, filename) {
-        /** @type {Application} */
-        this.app = app;
+    constructor(storage, filename) {
+        /** @type {Storage} */
+        this.storage = storage;
 
         this.filename = filename;
 
@@ -30,7 +22,7 @@ export class ReadWriteProxy {
         this.currentData = null;
 
         // TODO: EXTREMELY HACKY! To verify we need to do this a step later
-        if (G_IS_DEV && IS_DEBUG) {
+        if (G_IS_DEV) {
             setTimeout(() => {
                 assert(
                     this.verify(this.getDefaultData()).result,
@@ -86,9 +78,8 @@ export class ReadWriteProxy {
      * @param {object} obj
      */
     static serializeObject(obj) {
-        const jsonString = JSON.stringify(compressObject(obj));
-        const checksum = computeCrc(jsonString + salt);
-        return compressionPrefix + compressX64(checksum + jsonString);
+        // TODO: Remove redundant method
+        return obj;
     }
 
     /**
@@ -96,32 +87,8 @@ export class ReadWriteProxy {
      * @param {object} text
      */
     static deserializeObject(text) {
-        const decompressed = decompressX64(text.substr(compressionPrefix.length));
-        if (!decompressed) {
-            // LZ string decompression failure
-            throw new Error("bad-content / decompression-failed");
-        }
-        if (decompressed.length < 40) {
-            // String too short
-            throw new Error("bad-content / payload-too-small");
-        }
-
-        // Compare stored checksum with actual checksum
-        const checksum = decompressed.substring(0, 40);
-        const jsonString = decompressed.substr(40);
-
-        const desiredChecksum = checksum.startsWith(CRC_PREFIX)
-            ? computeCrc(jsonString + salt)
-            : sha1(jsonString + salt);
-
-        if (desiredChecksum !== checksum) {
-            // Checksum mismatch
-            throw new Error("bad-content / checksum-mismatch");
-        }
-
-        const parsed = JSON.parse(jsonString);
-        const decoded = decompressObject(parsed);
-        return decoded;
+        // TODO: Remove redundant method
+        return text;
     }
 
     /**
@@ -145,11 +112,8 @@ export class ReadWriteProxy {
      * @returns {Promise<void>}
      */
     doWriteAsync() {
-        return asyncCompressor
-            .compressObjectAsync(this.currentData)
-            .then(compressed => {
-                return this.app.storage.writeFileAsync(this.filename, compressed);
-            })
+        return this.storage
+            .writeFileAsync(this.filename, this.currentData)
             .then(() => {
                 logger.log("📄 Wrote", this.filename);
             })
@@ -163,83 +127,20 @@ export class ReadWriteProxy {
     readAsync() {
         // Start read request
         return (
-            this.app.storage
+            this.storage
                 .readFileAsync(this.filename)
 
                 // Check for errors during read
                 .catch(err => {
-                    if (err === FILE_NOT_FOUND) {
+                    if (err instanceof FsError && err.isFileNotFound()) {
                         logger.log("File not found, using default data");
 
                         // File not found or unreadable, assume default file
-                        return Promise.resolve(null);
+                        return Promise.resolve(this.getDefaultData());
                     }
 
                     return Promise.reject("file-error: " + err);
                 })
-
-                // Decrypt data (if its encrypted)
-                // @ts-ignore
-                .then(rawData => {
-                    if (rawData == null) {
-                        // So, the file has not been found, use default data
-                        return JSON.stringify(compressObject(this.getDefaultData()));
-                    }
-
-                    if (rawData.startsWith(compressionPrefix)) {
-                        const decompressed = decompressX64(rawData.substr(compressionPrefix.length));
-                        if (!decompressed) {
-                            // LZ string decompression failure
-                            return Promise.reject("bad-content / decompression-failed");
-                        }
-                        if (decompressed.length < 40) {
-                            // String too short
-                            return Promise.reject("bad-content / payload-too-small");
-                        }
-
-                        // Compare stored checksum with actual checksum
-                        const checksum = decompressed.substring(0, 40);
-                        const jsonString = decompressed.substr(40);
-
-                        const desiredChecksum = checksum.startsWith(CRC_PREFIX)
-                            ? computeCrc(jsonString + salt)
-                            : sha1(jsonString + salt);
-
-                        if (desiredChecksum !== checksum) {
-                            // Checksum mismatch
-                            return Promise.reject(
-                                "bad-content / checksum-mismatch: " + desiredChecksum + " vs " + checksum
-                            );
-                        }
-                        return jsonString;
-                    } else {
-                        if (!G_IS_DEV) {
-                            return Promise.reject("bad-content / missing-compression");
-                        }
-                    }
-                    return rawData;
-                })
-
-                // Parse JSON, this could throw but that's fine
-                .then(res => {
-                    try {
-                        return JSON.parse(res);
-                    } catch (ex) {
-                        logger.error(
-                            "Failed to parse file content of",
-                            this.filename,
-                            ":",
-                            ex,
-                            "(content was:",
-                            res,
-                            ")"
-                        );
-                        throw new Error("invalid-serialized-data");
-                    }
-                })
-
-                // Decompress
-                .then(compressed => decompressObject(compressed))
 
                 // Verify basic structure
                 .then(contents => {
@@ -307,7 +208,7 @@ export class ReadWriteProxy {
      * @returns {Promise<void>}
      */
     deleteAsync() {
-        return this.app.storage.deleteFileAsync(this.filename);
+        return this.storage.deleteFileAsync(this.filename);
     }
 
     // Internal

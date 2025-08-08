@@ -1,16 +1,16 @@
 #ingame_HUD_PuzzleEditorControls {
     position: absolute;
 
-    @include S(top, 70px);
-    @include S(left, 10px);
+    top: 7rem;
+    left: 1rem;
 
     display: flex;
     flex-direction: column;
     @include SuperDuperSmallText;
-    @include S(width, 200px);
+    width: 20rem;
 
     > span {
-        @include S(margin-bottom, 10px);
+        margin-bottom: 1rem;
 
         strong {
             font-weight: bold;
@@ -23,7 +23,7 @@
 #ingame_HUD_PuzzleEditorTitle {
     position: absolute;
 
-    @include S(top, 18px);
+    top: 1.8rem;
     left: 50%;
     transform: translateX(-50%);
     text-transform: uppercase;

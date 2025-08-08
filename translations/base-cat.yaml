@@ -1,27 +1,3 @@
-steamPage:
-    shortText: shapez.io és un joc que té com a objectiu construir i automatitzar
-        fàbriques per tal de produir figures cada cop més complexes en un mapa
-        infinit.
-    discordLinkShort: Official Discord
-    intro: >-
-        Shapez.io es un joc relaxant en el qual has de construir fàbriques per a
-        la producció automàtica de formes geomètriques.
-
-        A mesura que el nivell augmenta, les formes esdevenen més complexes, i has d'explorar el mapa infinit.
-
-        Per si això no era suficient, la demanda de formes creixerà exponencialment, pel que hauràs d'escalar les teves fàbriques!
-
-        Mentre que al principi només processes formes, més envant les hauràs de colorejar, pel que necessitaràs extreure y mesclar colors!
-
-        Si compres el joc a Steam tendràs accés al joc complet, però també pots jugar a la demo a shapez.io primer i decidir-te més tard!
-    what_others_say: What people say about shapez.io
-    nothernlion_comment: This game is great - I'm having a wonderful time playing,
-        and time has flown by.
-    notch_comment: Oh crap. I really should sleep, but I think I just figured out
-        how to make a computer in shapez.io
-    steam_review_comment: This game has stolen my life and I don't want it back.
-        Very chill factory game that won't let me stop making my lines more
-        efficient.
 global:
     loading: Carregant
     error: Error
@@ -55,57 +31,19 @@ global:
         space: ESPAI
     loggingIn: Logging in
     loadingResources: Downloading additional resources (<percentage> %)
-    discount: -<percentage>%
-    discountSummerSale: SPECIAL PROMOTION! Offer ends 7 July
-demoBanners:
-    title: Demo - Versió de prova
-    intro: |-
-        Get the full game <strong>now</strong> to unlock:<ul>
-            <li>All 26 levels + infinite Freeplay</li>
-            <li>22 new buildings</li>
-            <li>Mod support</li>
-            <li>Achievements</li>
-            <li>Dark Mode</li>
-            <li>... and a lot more!</li>
-        </ul>
-    playtimeDisclaimer: The full version contains more than <strong>20 hours of content</strong>.
-    playerCount: <playerCount> players like you are currently playing shapez on Steam
-    untilEndOfDemo: Until end of demo
-    playtimeDisclaimerDownload: You can continue your savegame in the full version!
-        Click <strong>here</strong> to download your savegame.
-    titleV2: "Play the full version now for:"
 mainMenu:
     play: Jugar
     continue: Continuar
     newGame: Nou joc
-    changelog: Historial de canvis
-    subreddit: Reddit
     importSavegame: Importar
-    openSourceHint: Aquest joc es de codi obert!
-    discordLink: Servidor Discord oficial
     helpTranslate: Ajuda a traduir-lo!
-    madeBy: Creat per <author-link>
-    browserWarning: Disculpa, però el joc funcionarà lent al teu navegador!
-        Aconsegueix el joc complet o descarrega't chrome per una millor
-        experiència.
     savegameLevel: Nivell <x>
     savegameLevelUnknown: Nivell desconegut
     savegameUnnamed: Unnamed
-    puzzleMode: Puzzle Mode
-    back: Back
-    puzzleDlcText: Do you enjoy compacting and optimizing factories? Get the Puzzle
-        DLC now on Steam for even more fun!
-    puzzleDlcWishlist: Wishlist now!
-    puzzleDlcViewNow: View Dlc
     mods:
-        title: Active Mods
         warningPuzzleDLC: Playing the Puzzle DLC is not possible with mods. Please
             disable all mods to play the DLC.
-    playingFullVersion: You are now playing the full version!
-    logout: Logout
     noActiveSavegames: No active savegames found - Click play to start a new game!
-    playFullVersionV2: Bough shapez on Steam? Play the full version in your Browser!
-    playFullVersionStandalone: You can now also play the full version in your Browser!
 dialogs:
     buttons:
         ok: OK
@@ -114,7 +52,6 @@ dialogs:
         later: Més tard
         restart: Tornar a començar
         reset: Reiniciar
-        getStandalone: Obtenir versió completa
         deleteGame: Sé el que faig
         viewUpdate: Veure actualitzacions
         showUpgrades: Mostrar millores
@@ -152,16 +89,6 @@ dialogs:
     keybindingsResetOk:
         title: Cambiar dreceres de teclat
         desc: Les dreceres han tornat en el seu estat predeterminat!
-    featureRestriction:
-        title: Demo - Versió de prova
-        desc: Has intentat accedir a una característica (<feature>) que no està
-            disponible en la demo. Considera obtenir el joc complet per a una
-            experiència completa!
-    oneSavegameLimit:
-        title: Partides guardades limitades
-        desc: Només pots tenir una sola partida guardada a la versió de demostració. Si
-            vols, elimina la ja existent o fes-te amb la versió completa del
-            joc!
     updateSummary:
         title: Nova actualització!
         desc: "Aquí tens els canvis des de l'últim cop que vas jugar:"
@@ -199,9 +126,6 @@ dialogs:
         titleEdit: Editar Marcador
         desc: Give it a meaningful name, you can also include a <strong>short
             key</strong> of a shape (Which you can generate <link>here</link>)
-    markerDemoLimit:
-        desc: En la Demo només pots crear dos marcadors, aconsegueix la versió completa
-            per gaudir de l'experiència completa!
     exportScreenshotWarning:
         title: Exportar Captura de Pantalla
         desc: Has demanat exportar la teva/teua base com una captura de pantalla. Tin en
@@ -296,28 +220,9 @@ dialogs:
         newMods: Newly installed Mods
     resourceLoadFailed:
         title: Resources failed to load
-        demoLinkText: shapez demo on Steam
-        descWeb: "One ore more resources could not be loaded. Make sure you have a
-            stable internet connection and try again. If this still doesn't
-            work, make sure to also disable any browser extensions (including
-            adblockers).<br><br> As an alternative, you can also play the
-            <demoOnSteamLinkText>. <br><br> Error Message:"
         descSteamDemo: "One ore more resources could not be loaded. Try restarting the
             game - If that does not help, try reinstalling and verifying the
             game files via Steam. <br><br> Error Message:"
-    steamSsoError:
-        title: Full Version Logout
-        desc: You have been logged out from the Full Browser Version since either your
-            network connection is unstable or you are playing on another
-            device.<br><br> Please make sure you don't have shapez open in any
-            other browser tab or another computer with the same Steam
-            account.<br><br> You can login again in the main menu.
-    steamSsoNoOwnership:
-        title: Full Edition not owned
-        desc: In order to play the Full Edition in your Browser, you need to own both
-            the base game and the Puzzle DLC on your Steam account.<br><br>
-            Please make sure you own both, signed in with the correct Steam
-            account and then try again.
 ingame:
     keybindingsOverlay:
         moveMap: Moure
@@ -458,40 +363,6 @@ ingame:
         one_miner: 1 Miner
         n_miners: <amount> Miners
         limited_items: Limitat a <max_throughput>
-    watermark:
-        title: Versió demo
-        desc: Premeu aquí per veure les avantatges d'Steam!
-        get_on_steam: Comprar a Steam
-    standaloneAdvantages:
-        no_thanks: No, gràcies!
-        points:
-            levels:
-                title: 12 Nivells now
-                desc: Per a un total de 26 nivells!
-            buildings:
-                title: 22 Nous edificis
-                desc: Automatitza la teva fàbrica completament!
-            markers:
-                title: ∞ Marcadors
-                desc: Mai et perdis per el mapa!
-            wires:
-                title: Cables
-                desc: Una nova dimensió!
-            darkmode:
-                title: Mode Oscur
-                desc: Deixa de fer-te mal als ulls!
-            support:
-                title: Dona'm suport
-                desc: EL desenvolupo en el meu temps lliure!
-            achievements:
-                title: Achievements
-                desc: Hunt them all!
-            mods:
-                title: Modding support!
-                desc: Over 80 mods available!
-        titleV2: "Get the full version now on Steam to unlock:"
-        titleExpiredV2: Demo completed!
-        titleEnjoyingDemo: Enjoy the demo?
     puzzleEditorSettings:
         zoneTitle: Zone
         zoneWidth: Width
@@ -590,7 +461,7 @@ buildings:
             name: Tallador (Quàdruple)
             description: Talla figures en quatre parts. <strong>Si no utilitzes totes les
                 parts, assegura't de destruir les altres o es pararà!</strong>
-    rotater:
+    rotator:
         default:
             name: Rotador
             description: Rota formes en sentit horari 90 graus.
@@ -726,7 +597,7 @@ buildings:
         default:
             name: Tallador virtual
             description: Talla la forma virtual en dues parts.
-        rotater:
+        rotator:
             name: Rotador Virtual
             description: Rota la forma virtual, tant en sentit horari com antihorari.
         unstacker:
@@ -766,7 +637,7 @@ storyRewards:
             otherwise <strong>it will clog and stall</strong> - For this purpose
             I have given you the <strong>trash</strong>, which destroys
             everything you put into it!
-    reward_rotater:
+    reward_rotator:
         title: Rotar
         desc: El <strong>Rotador</strong> s'ha desbloquejat! Rota formes en sentit
             horari 90 graus.
@@ -796,7 +667,7 @@ storyRewards:
         title: Túnel
         desc: El <strong>túnel</strong> s'ha desbloquejat - Ara pots passar objectes a
             través d'edificis i cintes transportadores!
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Rotació antihorària
         desc: Has desbloquejat una variant del <strong>rotador</strong> - Et permet
             rotar en sentit antihorari! Per tal de construir-lo, selecciona el
@@ -869,7 +740,7 @@ storyRewards:
         desc: You have now unlocked the <strong>belt reader</strong>! It allows you to
             measure the throughput of a belt.<br><br>And wait until you unlock
             wires - then it gets really useful!
-    reward_rotater_180:
+    reward_rotator_180:
         title: Rotador (180 graus)
         desc: Acabes de desbloquejar un altre <strong>rotador</strong>!. Et permet rotar
             una forma 180 graus.
@@ -1135,7 +1006,7 @@ keybindings:
         underground_belt: Túnel
         miner: Extractor
         cutter: Tallador
-        rotater: Rotador
+        rotator: Rotador
         stacker: Apilador
         mixer: Mesclador de colors
         painter: Pintor
@@ -1198,12 +1069,6 @@ about:
 changelog:
     title: Registre de Canvis
 demo:
-    features:
-        restoringGames: Restaurar partides guardats
-        importingGames: Importar partides guardats
-        oneGameLimit: Limitat a una partida guardada.
-        customizeKeybindings: Personalitzar teclats
-        exportingBase: Exportar la base com a Imatge
     settingNotAvailable: No disponible en la versió de demostració.
 tips:
     - El NEXE accepta qualsevol tipus d’entrada, no només la forma actual.
@@ -1372,16 +1237,7 @@ mods:
     version: Version
     modWebsite: Website
     openFolder: Open Mods Folder
-    folderOnlyStandalone: Opening the mod folder is only possible when running the standalone.
     browseMods: Browse Mods
     modsInfo: To install and manage mods, copy them to the mods folder within the
         game directory. You can also use the 'Open Mods Folder' button on the
         top right.
-    noModSupport: You need the standalone version on Steam to install mods.
-    togglingComingSoon:
-        title: Coming Soon
-        description: Enabling or disabling mods is currently only possible by copying
-            the mod file from or to the mods/ folder. However, being able to
-            toggle them here is planned for a future update!
-    browserNoSupport: Due to browser restrictions it is currently only possible to
-        install mods in the Steam version - Sorry!

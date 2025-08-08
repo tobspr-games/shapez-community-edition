@@ -1,205 +1,162 @@
-const { existsSync } = require("fs");
-// @ts-ignore
-const path = require("path");
-const atlasToJson = require("./atlas2json");
+import gulp from "gulp";
+import path from "path/posix";
+import atlas2Json from "./atlas2json.js";
+import { buildFolder } from "./config.js";
 
-const execute = command =>
-    require("child_process").execSync(command, {
+import childProcess from "child_process";
+import { promisify } from "util";
+const exec = promisify(childProcess.exec);
+const execute = command => {
+    const promise = exec(command, {
         encoding: "utf-8",
     });
+    promise.child.stderr.pipe(process.stderr);
+    return promise;
+};
 
-// Globs for atlas resources
-const rawImageResourcesGlobs = ["../res_raw/atlas.json", "../res_raw/**/*.png"];
+import gulpCached from "gulp-cached";
+import gulpClean from "gulp-clean";
+import gulpIf from "gulp-if";
+import gulpImagemin from "gulp-imagemin";
+import imageminGifsicle from "imagemin-gifsicle";
+import imageminJpegtran from "imagemin-jpegtran";
+import imageminPngquant from "imagemin-pngquant";
+import { imageResourcesGlobs, nonImageResourcesGlobs } from "./config.js";
 
-// Globs for non-ui resources
-const nonImageResourcesGlobs = ["../res/**/*.woff2", "../res/*.ico", "../res/**/*.webm"];
+// Lossless options
+const minifyImagesOptsLossless = () => [
+    imageminJpegtran({
+        progressive: true,
+    }),
+    gulpImagemin.svgo({}),
+    gulpImagemin.optipng({
+        optimizationLevel: 3,
+    }),
+    imageminGifsicle({
+        optimizationLevel: 3,
+        colors: 128,
+    }),
+];
 
-// Globs for ui resources
-const imageResourcesGlobs = ["../res/**/*.png", "../res/**/*.svg", "../res/**/*.jpg", "../res/**/*.gif"];
+// Lossy options
+const minifyImagesOpts = () => [
+    gulpImagemin.mozjpeg({
+        quality: 80,
+        maxMemory: 1024 * 1024 * 8,
+    }),
+    gulpImagemin.svgo({}),
+    imageminPngquant({
+        speed: 1,
+        strip: true,
+        quality: [0.65, 0.9],
+        dithering: false,
+        verbose: false,
+    }),
+    gulpImagemin.optipng({
+        optimizationLevel: 3,
+    }),
+    imageminGifsicle({
+        optimizationLevel: 3,
+        colors: 128,
+    }),
+];
 
-// Link to download LibGDX runnable-texturepacker.jar
-const runnableTPSource = "https://libgdx-nightlies.s3.eu-central-1.amazonaws.com/libgdx-runnables/runnable-texturepacker.jar";
+// Where the resources folder are
+const resourcesDestFolder = path.join(buildFolder, "res");
 
-function gulptasksImageResources($, gulp, buildFolder) {
-    // Lossless options
-    const minifyImagesOptsLossless = () => [
-        $.imageminJpegtran({
-            progressive: true,
-        }),
-        $.imagemin.svgo({}),
-        $.imagemin.optipng({
-            optimizationLevel: 3,
-        }),
-        $.imageminGifsicle({
-            optimizationLevel: 3,
-            colors: 128,
-        }),
-    ];
-
-    // Lossy options
-    const minifyImagesOpts = () => [
-        $.imagemin.mozjpeg({
-            quality: 80,
-            maxMemory: 1024 * 1024 * 8,
-        }),
-        $.imagemin.svgo({}),
-        $.imageminPngquant({
-            speed: 1,
-            strip: true,
-            quality: [0.65, 0.9],
-            dithering: false,
-            verbose: false,
-        }),
-        $.imagemin.optipng({
-            optimizationLevel: 3,
-        }),
-        $.imageminGifsicle({
-            optimizationLevel: 3,
-            colors: 128,
-        }),
-    ];
-
-    // Where the resources folder are
-    const resourcesDestFolder = path.join(buildFolder, "res");
-
-    /**
-     * Determines if an atlas must use lossless compression
-     * @param {string} fname
-     */
-    function fileMustBeLossless(fname) {
-        return fname.indexOf("lossless") >= 0;
-    }
-
-    /////////////// ATLAS /////////////////////
-
-    gulp.task("imgres.buildAtlas", cb => {
-        const config = JSON.stringify("../res_raw/atlas.json");
-        const source = JSON.stringify("../res_raw");
-        const dest = JSON.stringify("../res_built/atlas");
-
-        try {
-            // First check whether Java is installed
-            execute("java -version");
-            // Now check and try downloading runnable-texturepacker.jar (22MB)
-            if (!existsSync("./runnable-texturepacker.jar")) {
-                const safeLink = JSON.stringify(runnableTPSource);
-                const commands = [
-                    // linux/macos if installed
-                    `wget -O runnable-texturepacker.jar ${safeLink}`,
-                    // linux/macos, latest windows 10
-                    `curl -o runnable-texturepacker.jar ${safeLink}`,
-                    // windows 10 / updated windows 7+
-                    "powershell.exe -Command (new-object System.Net.WebClient)" +
-                        `.DownloadFile(${safeLink.replace(/"/g, "'")}, 'runnable-texturepacker.jar')`,
-                    // windows 7+, vulnerability exploit
-                    `certutil.exe -urlcache -split -f ${safeLink} runnable-texturepacker.jar`,
-                ];
-
-                while (commands.length) {
-                    try {
-                        execute(commands.shift());
-                        break;
-                    } catch {
-                        if (!commands.length) {
-                            throw new Error("Failed to download runnable-texturepacker.jar!");
-                        }
-                    }
-                }
-            }
-
-            execute(`java -jar runnable-texturepacker.jar ${source} ${dest} atlas0 ${config}`);
-        } catch {
-            console.warn("Building atlas failed. Java not found / unsupported version?");
-        }
-        cb();
-    });
-
-    // Converts .atlas LibGDX files to JSON
-    gulp.task("imgres.atlasToJson", cb => {
-        atlasToJson.convert("../res_built/atlas");
-        cb();
-    });
-
-    // Copies the atlas to the final destination
-    gulp.task("imgres.atlas", () => {
-        return gulp.src(["../res_built/atlas/*.png"]).pipe(gulp.dest(resourcesDestFolder));
-    });
-
-    // Copies the atlas to the final destination after optimizing it (lossy compression)
-    gulp.task("imgres.atlasOptimized", () => {
-        return gulp
-            .src(["../res_built/atlas/*.png"])
-            .pipe(
-                $.if(
-                    fname => fileMustBeLossless(fname.history[0]),
-                    $.imagemin(minifyImagesOptsLossless()),
-                    $.imagemin(minifyImagesOpts())
-                )
-            )
-            .pipe(gulp.dest(resourcesDestFolder));
-    });
-
-    //////////////////// RESOURCES //////////////////////
-
-    // Copies all resources which are no ui resources
-    gulp.task("imgres.copyNonImageResources", () => {
-        return gulp.src(nonImageResourcesGlobs).pipe(gulp.dest(resourcesDestFolder));
-    });
-
-    // Copies all ui resources
-    gulp.task("imgres.copyImageResources", () => {
-        return gulp
-            .src(imageResourcesGlobs)
-
-            .pipe($.cached("imgres.copyImageResources"))
-            .pipe(gulp.dest(path.join(resourcesDestFolder)));
-    });
-
-    // Copies all ui resources and optimizes them
-    gulp.task("imgres.copyImageResourcesOptimized", () => {
-        return gulp
-            .src(imageResourcesGlobs)
-            .pipe(
-                $.if(
-                    fname => fileMustBeLossless(fname.history[0]),
-                    $.imagemin(minifyImagesOptsLossless()),
-                    $.imagemin(minifyImagesOpts())
-                )
-            )
-            .pipe(gulp.dest(path.join(resourcesDestFolder)));
-    });
-
-    // Copies all resources and optimizes them
-    gulp.task(
-        "imgres.allOptimized",
-        gulp.parallel(
-            "imgres.buildAtlas",
-            "imgres.atlasToJson",
-            "imgres.atlasOptimized",
-            "imgres.copyNonImageResources",
-            "imgres.copyImageResourcesOptimized"
-        )
-    );
-
-    // Cleans up unused images which are instead inline into the css
-    gulp.task("imgres.cleanupUnusedCssInlineImages", () => {
-        return gulp
-            .src(
-                [
-                    path.join(buildFolder, "res", "ui", "**", "*.png"),
-                    path.join(buildFolder, "res", "ui", "**", "*.jpg"),
-                    path.join(buildFolder, "res", "ui", "**", "*.svg"),
-                    path.join(buildFolder, "res", "ui", "**", "*.gif"),
-                ],
-                { read: false }
-            )
-            .pipe($.if(fname => fname.history[0].indexOf("noinline") < 0, $.clean({ force: true })));
-    });
+/**
+ * Determines if an atlas must use lossless compression
+ * @param {string} fname
+ */
+function fileMustBeLossless(fname) {
+    return fname.indexOf("lossless") >= 0;
 }
 
-module.exports = {
-    rawImageResourcesGlobs,
-    nonImageResourcesGlobs,
-    imageResourcesGlobs,
-    gulptasksImageResources,
-};
+/////////////// ATLAS /////////////////////
+
+export async function buildAtlas() {
+    const config = JSON.stringify("../res_raw/atlas.json");
+    const source = JSON.stringify("../res_raw");
+    const dest = JSON.stringify("../res_built/atlas");
+
+    try {
+        await execute(`java -jar runnable-texturepacker.jar ${source} ${dest} atlas0 ${config}`);
+    } catch {
+        console.warn("Building atlas failed. Java not found / unsupported version?");
+    }
+}
+
+// Converts .atlas LibGDX files to JSON
+export async function atlasToJson() {
+    atlas2Json("../res_built/atlas");
+}
+
+// Copies the atlas to the final destination
+export function atlas() {
+    return gulp.src("../res_built/atlas/*.png").pipe(gulp.dest(resourcesDestFolder));
+}
+
+// Copies the atlas to the final destination after optimizing it (lossy compression)
+export function atlasOptimized() {
+    return gulp
+        .src(["../res_built/atlas/*.png"])
+        .pipe(
+            gulpIf(
+                fname => fileMustBeLossless(fname.history[0]),
+                gulpImagemin(minifyImagesOptsLossless()),
+                gulpImagemin(minifyImagesOpts())
+            )
+        )
+        .pipe(gulp.dest(resourcesDestFolder));
+}
+
+//////////////////// RESOURCES //////////////////////
+
+// Copies all resources which are no ui resources
+export function copyNonImageResources() {
+    return gulp.src(nonImageResourcesGlobs).pipe(gulp.dest(resourcesDestFolder));
+}
+
+// Copies all ui resources
+export function copyImageResources() {
+    return gulp
+        .src(imageResourcesGlobs)
+        .pipe(gulpCached("imgres.copyImageResources"))
+        .pipe(gulp.dest(path.join(resourcesDestFolder)));
+}
+
+// Copies all ui resources and optimizes them
+export function copyImageResourcesOptimized() {
+    return gulp
+        .src(imageResourcesGlobs)
+        .pipe(
+            gulpIf(
+                fname => fileMustBeLossless(fname.history[0]),
+                gulpImagemin(minifyImagesOptsLossless()),
+                gulpImagemin(minifyImagesOpts())
+            )
+        )
+        .pipe(gulp.dest(path.join(resourcesDestFolder)));
+}
+
+// Copies all resources and optimizes them
+export const allOptimized = gulp.parallel(
+    gulp.series(buildAtlas, atlasToJson, atlasOptimized),
+    copyNonImageResources,
+    copyImageResourcesOptimized
+);
+
+// Cleans up unused images which are instead inline into the css
+export function cleanupUnusedCssInlineImages() {
+    return gulp
+        .src(
+            [
+                path.join(buildFolder, "res", "ui", "**", "*.png"),
+                path.join(buildFolder, "res", "ui", "**", "*.jpg"),
+                path.join(buildFolder, "res", "ui", "**", "*.svg"),
+                path.join(buildFolder, "res", "ui", "**", "*.gif"),
+            ],
+            { read: false }
+        )
+        .pipe(gulpIf(fname => fname.history[0].indexOf("noinline") < 0, gulpClean({ force: true })));
+}

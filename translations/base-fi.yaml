@@ -1,27 +1,3 @@
-steamPage:
-    shortText: shapez.io on peli tehtaiden rakentamisesta, joiden avulla
-        automatisoidaan yhä monimutkaisempien muotojen luonti ja yhdisteleminen
-        loputtomassa maailmassa.
-    discordLinkShort: Virallinen Discord
-    intro: >-
-        Shapez.io on rento peli, jossa sinun täytyy rakentaa tehtaita
-        geometristen muotojen automatisoituun tuotantoon.
-
-        Kun taso nousee, muodot tulevat entistä vaikeammiksi ja sinun täytyy laajentua loputtomassa kartassa.
-
-        Ja jos tämä ei ollut tarpeeksi, niin sinun täytyy tuottaa eksponentiaalisesti enemmän täyttääksesi tarpeet - ainut asia mikä auttaa on skaalautuminen!
-
-        Vaikka alussa vain prosessoit muotoja, myöhemmin niitä pitää myös maalata - tätä varten sinun täytyy kerätä ja sekoittaa värejä
-
-        Pelin ostaminen Steamista antaa sinulle pääsyn pelin täysversioon, mutta voit myös pelata kokeiluversiota ensin sivuillamme shapez.io ja päättää myöhemmin!
-    what_others_say: Muiden mielipiteitä shapez.io:sta
-    nothernlion_comment: This game is great - I'm having a wonderful time playing,
-        and time has flown by.
-    notch_comment: Oh crap. I really should sleep, but I think I just figured out
-        how to make a computer in shapez.io
-    steam_review_comment: This game has stolen my life and I don't want it back.
-        Very chill factory game that won't let me stop making my lines more
-        efficient.
 global:
     loading: Ladataan
     error: Virhe
@@ -55,58 +31,20 @@ global:
         space: VÄLILYÖNTI
     loggingIn: Logging in
     loadingResources: Downloading additional resources (<percentage> %)
-    discount: -<percentage>%
-    discountSummerSale: SPECIAL PROMOTION! Offer ends 7 July
-demoBanners:
-    title: Demoversio
-    intro: |-
-        Hanki koko peli <strong>jatkossa</strong> avataksesi sen:<ul>
-            <li>Kaikki 26 tasoa + ääretön ilmaispeli</li>
-            <li>22 uutta rakennusta</li>
-            <li>Mod-tuki</li>
-            <li>Saavutukset</li>
-            <li>Tumma tila</li>
-            <li>... ja paljon muuta!</li>
-        </ul>
-    playtimeDisclaimer: Täysversio sisältää yli <strong>20 tuntia sisältöä</strong>.
-    playerCount: <playerCount> kaltaisesi pelaajat pelaavat parhaillaan shapezia
-        Steamissa.
-    untilEndOfDemo: Demon loppuun asti
-    playtimeDisclaimerDownload: Voit jatkaa tallentamistasi täysversiossa! Lataa
-        tallennettava peli napsauttamalla <strong>tätä</strong>.
-    titleV2: "Pelaa täysversiota nyt:"
 mainMenu:
     play: Pelaa
     continue: Jatka
     newGame: Uusi Peli
-    changelog: Muutosloki
-    subreddit: Reddit
     importSavegame: Tuo peli
-    openSourceHint: Tämä on avoimen lähdekoodin peli!
-    discordLink: Virallinen Discord -palvelin
     helpTranslate: Auta kääntämään!
-    madeBy: Pelin on tehnyt <author-link>
-    browserWarning: Anteeksi, mutta pelin tiedetään toimivan huonosti selaimellasi!
-        Hanki pelin täysversio tai lataa Google Chrome täyttä tukea varten.
     savegameLevel: Taso <x>
     savegameLevelUnknown: Tuntematon taso
     savegameUnnamed: Nimetön
-    puzzleMode: Pulmatila
-    back: Takaisin
-    puzzleDlcText: Nautitko tehtaiden pienentämisestä ja optimoinnista? Hanki pulma
-        DLC nyt Steamista lisähuviksi!
-    puzzleDlcWishlist: Lisää nyt toivelistallesi!
-    puzzleDlcViewNow: Katso DLC
     mods:
-        title: Aktiiviset modit
         warningPuzzleDLC: Pulma DLC:n pelaaminen ei ole mahdollista modien kanssa. kytke
             kaikki modit pois päältä pelataksesi DLC:tä.
-    playingFullVersion: Pelaat nyt täyttä versiota!
-    logout: Kirjaudu ulos
     noActiveSavegames: Aktiivisia pelitallennuksia ei löytynyt - Klikkaa pelaa
         aloittaaksesi uuden pelin!
-    playFullVersionV2: Ostitko Shapezin Steamista? Pelaa täyttä versiota selaimellasi!
-    playFullVersionStandalone: Voit nyt myös pelatatäyttä versiota selaimellasi!
 dialogs:
     buttons:
         ok: OK
@@ -115,7 +53,6 @@ dialogs:
         later: Myöhemmin
         restart: Käynnistä uudelleen
         reset: Nollaa
-        getStandalone: Hanki täysversio
         deleteGame: Tiedän mitä olen tekemässä
         viewUpdate: Näytä päivitys
         showUpgrades: Näytä päivitykset
@@ -152,14 +89,6 @@ dialogs:
     keybindingsResetOk:
         title: Pikanäppäimet nollattiin
         desc: Pikanäppäimet nollattiin oletusarvoihin!
-    featureRestriction:
-        title: Demoversio
-        desc: Yritit käyttää ominaisuutta (<feature>), joka ei ole saatavilla
-            demoversiossa. Hanki täysversio avataksesi kaikki ominaisuudet!
-    oneSavegameLimit:
-        title: Rajoitetut tallennukset
-        desc: Sinulla voi olla demoversiossa vain yksi tallennus kerrallaan. Poista
-            vanha tallennus tai hanki täysversio pelistä!
     updateSummary:
         title: Uusi päivitys!
         desc: "Tässä uudet muutokset edellisen pelikertasi jälkeen:"
@@ -193,9 +122,6 @@ dialogs:
         desc: Anna merkille kuvaava nimi. Voit myös liittää <strong>lyhyen
             koodin</strong> muodosta. (Jonka voit luoda <link>täällä</link>.)
         titleEdit: Muokkaa merkkiä
-    markerDemoLimit:
-        desc: Voit tehdä vain kaksi mukautettua merkkiä demoversiossa. Hanki täysversio
-            saadaksesi loputtoman määrän merkkejä!
     exportScreenshotWarning:
         title: Vie kuvakaappaus
         desc: Pyysit tukikohtasi viemistä kuvakaappauksena. Huomaa, että tämä voi olla
@@ -291,28 +217,9 @@ dialogs:
         newMods: Newly installed Mods
     resourceLoadFailed:
         title: Resources failed to load
-        demoLinkText: shapez demo on Steam
-        descWeb: "One ore more resources could not be loaded. Make sure you have a
-            stable internet connection and try again. If this still doesn't
-            work, make sure to also disable any browser extensions (including
-            adblockers).<br><br> As an alternative, you can also play the
-            <demoOnSteamLinkText>. <br><br> Error Message:"
         descSteamDemo: "One ore more resources could not be loaded. Try restarting the
             game - If that does not help, try reinstalling and verifying the
             game files via Steam. <br><br> Error Message:"
-    steamSsoError:
-        title: Full Version Logout
-        desc: You have been logged out from the Full Browser Version since either your
-            network connection is unstable or you are playing on another
-            device.<br><br> Please make sure you don't have shapez open in any
-            other browser tab or another computer with the same Steam
-            account.<br><br> You can login again in the main menu.
-    steamSsoNoOwnership:
-        title: Full Edition not owned
-        desc: In order to play the Full Edition in your Browser, you need to own both
-            the base game and the Puzzle DLC on your Steam account.<br><br>
-            Please make sure you own both, signed in with the correct Steam
-            account and then try again.
 ingame:
     keybindingsOverlay:
         moveMap: Liiku
@@ -452,40 +359,6 @@ ingame:
         one_miner: 1 poimija
         n_miners: <amount> poimijaa
         limited_items: Rajoitettu <max_throughput>
-    watermark:
-        title: Kokeiluversio
-        desc: Napsauta tästä nähdäksesi Steam version edut!
-        get_on_steam: Hanki Steamista
-    standaloneAdvantages:
-        no_thanks: Ei kiitos!
-        points:
-            levels:
-                title: 12 Uutta tasoa
-                desc: Yhteensä 26 tasoa!
-            buildings:
-                title: 22 Uutta laitetta
-                desc: Automatisoi tehtaasi täysin!
-            markers:
-                title: ∞ Merkit
-                desc: Älä koskaan eksy tehtaassasi!
-            wires:
-                title: Johdot
-                desc: Täysin uusi ulottuvuus!
-            darkmode:
-                title: Tumma teema
-                desc: Jotta silmiisi ei sattuisi!
-            support:
-                title: Tue minua
-                desc: Kehitän peliä vapaa-ajallani!
-            achievements:
-                title: Saavutukset
-                desc: Metsästä kaikki!
-            mods:
-                title: Modding support!
-                desc: Over 80 mods available!
-        titleV2: "Get the full version now on Steam to unlock:"
-        titleExpiredV2: Demo completed!
-        titleEnjoyingDemo: Enjoy the demo?
     puzzleEditorSettings:
         zoneTitle: Zone
         zoneWidth: Width
@@ -586,7 +459,7 @@ buildings:
             description: Leikkaa muotoja ylhäältä alaspäin ja tuottaa muodon molemmat
                 puoliskot. <strong>Jos käytät vain yhden puoliskon, tuhoa toinen
                 puolisko tai se jumittaa leikkurin!</strong>
-    rotater:
+    rotator:
         default:
             name: Kääntäjä
             description: Kääntää muotoja 90 astetta myötäpäivään.
@@ -718,7 +591,7 @@ buildings:
         default:
             name: Virtuaalileikkuri
             description: Leikkaa tavara virtuaalisesti kahteen puoliskoon.
-        rotater:
+        rotator:
             name: Virtuaalikääntäjä
             description: Käännä tavara virtuaalisesti, sekä myötäpäivään että vastapäivään.
         unstacker:
@@ -757,7 +630,7 @@ storyRewards:
             hankkiutua eroon jätteestä, tai muuten <strong>se tukkii ja
             pysäyttää leikkurin</strong> - Siksi olen antanut sinulle
             <strong>roskiksen</strong>, joka tuhoaa kaiken sinne laitetun!
-    reward_rotater:
+    reward_rotator:
         title: Kääntö
         desc: Avasit <strong>Kääntäjän</strong>! Se kääntää muotoja myötäpäivään 90
             astetta.
@@ -785,7 +658,7 @@ storyRewards:
         title: Tunneli
         desc: Avasit <strong>Tunnelin</strong> - Nyt voit kuljettaa tavaroita
             kuljettimilla laitteiden ja toisten kuljettimien alta!
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Kääntö vastapäivään
         desc: Avasit uuden version <strong>Kääntäjästä</strong> - Se sallii kääntämisen
             vastapäivään! Sen voi rakentaa valitsemalla kääntäjän ja
@@ -855,7 +728,7 @@ storyRewards:
         desc: Olet avannut <strong>Kuljetinanturin</strong>! Voit mitata kuljettimen
             tehokkuutta.<br><br>Ja odotahan vain, kunhan saat Johdot auki.
             Sitten tämä on kätevä!
-    reward_rotater_180:
+    reward_rotator_180:
         title: Kääntäjä (180°)
         desc: Avasit juuri 180-asteen <strong>Kääntäjän</strong>! - Sillä voit kääntää
             muotoa 180 astetta (Ylläripylläri! :D)
@@ -1110,7 +983,7 @@ keybindings:
         underground_belt: Tunneli
         miner: Poimija
         cutter: Leikkuri
-        rotater: Kääntäjä
+        rotator: Kääntäjä
         stacker: Pinoaja
         mixer: Värinsekoittaja
         painter: Maalain
@@ -1173,12 +1046,6 @@ about:
 changelog:
     title: Muutosloki
 demo:
-    features:
-        restoringGames: Tallennusten palautus
-        importingGames: Tallennettujen pelien tuonti
-        oneGameLimit: Rajoitettu yhteen tallennukseen
-        customizeKeybindings: Pikanäppäinten mukautus
-        exportingBase: Viedään koko tukikohta kuvana
     settingNotAvailable: Ei saatavilla demoversiossa.
 tips:
     - Keskusrakennus huolii minkä tahansa muodon, ei ainoastaan tarvittua muotoa!
@@ -1334,16 +1201,7 @@ mods:
     version: Version
     modWebsite: Website
     openFolder: Open Mods Folder
-    folderOnlyStandalone: Opening the mod folder is only possible when running the standalone.
     browseMods: Browse Mods
     modsInfo: To install and manage mods, copy them to the mods folder within the
         game directory. You can also use the 'Open Mods Folder' button on the
         top right.
-    noModSupport: You need the standalone version on Steam to install mods.
-    togglingComingSoon:
-        title: Coming Soon
-        description: Enabling or disabling mods is currently only possible by copying
-            the mod file from or to the mods/ folder. However, being able to
-            toggle them here is planned for a future update!
-    browserNoSupport: Due to browser restrictions it is currently only possible to
-        install mods in the Steam version - Sorry!

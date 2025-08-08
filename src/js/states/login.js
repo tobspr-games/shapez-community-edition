@@ -54,7 +54,9 @@ export class LoginState extends GameState {
                     T.dialogs.offlineMode.desc,
                     ["retry", "playOffline:bad"]
                 );
-                signals.retry.add(() => setTimeout(() => this.tryLogin(), 2000), this);
+                signals.retry.add(() => {
+                    setTimeout(() => this.tryLogin(), 2000);
+                }, this);
                 signals.playOffline.add(this.finishLoading, this);
             } else {
                 this.finishLoading();

@@ -1,5 +1,5 @@
 import { gMetaBuildingRegistry } from "../../../core/global_registries";
-import { globalWarn } from "../../../core/logging";
+import { Logger } from "../../../core/logging";
 import { STOP_PROPAGATION } from "../../../core/signal";
 import { makeDiv, safeModulo } from "../../../core/utils";
 import { MetaBlockBuilding } from "../../buildings/block";
@@ -11,6 +11,8 @@ import { MetaBuilding } from "../../meta_building";
 import { GameRoot } from "../../root";
 import { BaseHUDPart } from "../base_hud_part";
 import { DynamicDomAttach } from "../dynamic_dom_attach";
+
+const logger = new Logger("hud/base_toolbar");
 
 export class HUDBaseToolbar extends BaseHUDPart {
     /**
@@ -106,7 +108,9 @@ export class HUDBaseToolbar extends BaseHUDPart {
                 const binding = actionMapper.getBinding(rawBinding);
                 binding.add(() => this.selectBuildingForPlacement(metaBuilding));
             } else {
-                globalWarn("Building has no keybinding:", metaBuilding.getId());
+                // FIXME: This check shouldn't be here. Once registries rework is done,
+                // check for keybindings while finalizing the buildings registry
+                logger.warn("Building has no keybinding:", metaBuilding.getId());
             }
 
             const itemContainer = makeDiv(

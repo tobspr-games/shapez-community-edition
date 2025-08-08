@@ -1,29 +1,8 @@
 import { globalConfig } from "./config";
-import { fastArrayDelete } from "./utils";
 import { createLogger } from "./logging";
+import { fastArrayDelete } from "./utils";
 
 const logger = createLogger("buffer_utils");
-
-/**
- * Enables images smoothing on a context
- * @param {CanvasRenderingContext2D} context
- */
-export function enableImageSmoothing(context) {
-    context.imageSmoothingEnabled = true;
-    context.webkitImageSmoothingEnabled = true;
-
-    // @ts-ignore
-    context.imageSmoothingQuality = globalConfig.smoothing.quality;
-}
-
-/**
- * Disables image smoothing on a context
- * @param {CanvasRenderingContext2D} context
- */
-export function disableImageSmoothing(context) {
-    context.imageSmoothingEnabled = false;
-    context.webkitImageSmoothingEnabled = false;
-}
 
 /**
  * @typedef {{
@@ -103,15 +82,7 @@ export function clearBufferBacklog() {
  * @returns {[HTMLCanvasElement, CanvasRenderingContext2D]}
  */
 export function makeOffscreenBuffer(w, h, { smooth = true, reusable = true, label = "buffer" }) {
-    assert(w > 0 && h > 0, "W or H < 0");
-    if (w % 1 !== 0 || h % 1 !== 0) {
-        // console.warn("Subpixel offscreen buffer size:", w, h);
-    }
-    if (w < 1 || h < 1) {
-        logger.error("Offscreen buffer size < 0:", w, "x", h);
-        w = Math.max(1, w);
-        h = Math.max(1, h);
-    }
+    assert(w >= 1 && h >= 1, "Invalid offscreen buffer size: W or H < 1");
 
     const recommendedSize = 1024 * 1024;
     if (w * h > recommendedSize) {
@@ -161,29 +132,13 @@ export function makeOffscreenBuffer(w, h, { smooth = true, reusable = true, labe
 
         // Initial state
         context.save();
-
-        canvas.addEventListener("webglcontextlost", () => {
-            console.warn("canvas::webglcontextlost", canvas);
-            // @ts-ignore
-            canvas._contextLost = true;
-        });
-        canvas.addEventListener("contextlost", () => {
-            console.warn("canvas::contextlost", canvas);
-            // @ts-ignore
-            canvas._contextLost = true;
-        });
     }
-    // @ts-ignore
-    canvas._contextLost = false;
 
     // @ts-ignore
     canvas.label = label;
 
-    if (smooth) {
-        enableImageSmoothing(context);
-    } else {
-        disableImageSmoothing(context);
-    }
+    context.imageSmoothingEnabled = smooth;
+    context.imageSmoothingQuality = globalConfig.smoothing.quality;
 
     if (reusable) {
         registerCanvas(canvas, context);

@@ -5,8 +5,6 @@ import { round3Digits } from "./utils";
 export const ORIGINAL_SPRITE_SCALE = "0.75";
 export const FULL_CLIP_RECT = new Rectangle(0, 0, 1, 1);
 
-const EXTRUDE = 0.1;
-
 export class BaseSprite {
     /**
      * Returns the raw handle
@@ -27,7 +25,6 @@ export class BaseSprite {
      * @param {number} h
      */
     draw(context, x, y, w, h) {
-        // eslint-disable-line no-unused-vars
         abstract;
     }
 }
@@ -227,10 +224,10 @@ export class AtlasSprite extends BaseSprite {
             srcH,
 
             // dest pos and size
-            destX - EXTRUDE,
-            destY - EXTRUDE,
-            destW + 2 * EXTRUDE,
-            destH + 2 * EXTRUDE
+            destX,
+            destY,
+            destW,
+            destH
         );
     }
 
@@ -291,10 +288,10 @@ export class AtlasSprite extends BaseSprite {
             srcH,
 
             // dest pos and size
-            destX - EXTRUDE,
-            destY - EXTRUDE,
-            destW + 2 * EXTRUDE,
-            destH + 2 * EXTRUDE
+            destX,
+            destY,
+            destW,
+            destH
         );
     }
 
@@ -370,8 +367,8 @@ export class AtlasSprite extends BaseSprite {
                 height: ${round3Digits(heightRelative * 100.0)}%;
                 background-repeat: repeat;
                 background-position: ${round3Digits(bgXRelative * 100.0)}% ${round3Digits(
-            bgYRelative * 100.0
-        )}%;
+                    bgYRelative * 100.0
+                )}%;
                 background-size: ${round3Digits(bgW * 100.0)}% ${round3Digits(bgH * 100.0)}%;
             "></span>
         `;

@@ -4,7 +4,6 @@ import { enumColors } from "./colors";
 import { ShapeItem } from "./items/shape_item";
 import { GameRoot } from "./root";
 import { enumSubShape, ShapeDefinition } from "./shape_definition";
-import { ACHIEVEMENTS } from "../platform/achievement_provider";
 
 const logger = createLogger("shape_definition_manager");
 
@@ -97,12 +96,12 @@ export class ShapeDefinitionManager extends BasicSerializableObject {
         const rightSide = definition.cloneFilteredByQuadrants([2, 3]);
         const leftSide = definition.cloneFilteredByQuadrants([0, 1]);
 
-        this.root.signals.achievementCheck.dispatch(ACHIEVEMENTS.cutShape, null);
-
-        return /** @type {[ShapeDefinition, ShapeDefinition]} */ (this.operationCache[key] = [
-            this.registerOrReturnHandle(rightSide),
-            this.registerOrReturnHandle(leftSide),
-        ]);
+        return /** @type {[ShapeDefinition, ShapeDefinition]} */ (
+            this.operationCache[key] = [
+                this.registerOrReturnHandle(rightSide),
+                this.registerOrReturnHandle(leftSide),
+            ]
+        );
     }
 
     /**
@@ -113,18 +112,19 @@ export class ShapeDefinitionManager extends BasicSerializableObject {
     shapeActionCutQuad(definition) {
         const key = "cut-quad/" + definition.getHash();
         if (this.operationCache[key]) {
-            return /** @type {[ShapeDefinition, ShapeDefinition, ShapeDefinition, ShapeDefinition]} */ (this
-                .operationCache[key]);
+            return /** @type {[ShapeDefinition, ShapeDefinition, ShapeDefinition, ShapeDefinition]} */ (
+                this.operationCache[key]
+            );
         }
 
-        return /** @type {[ShapeDefinition, ShapeDefinition, ShapeDefinition, ShapeDefinition]} */ (this.operationCache[
-            key
-        ] = [
-            this.registerOrReturnHandle(definition.cloneFilteredByQuadrants([0])),
-            this.registerOrReturnHandle(definition.cloneFilteredByQuadrants([1])),
-            this.registerOrReturnHandle(definition.cloneFilteredByQuadrants([2])),
-            this.registerOrReturnHandle(definition.cloneFilteredByQuadrants([3])),
-        ]);
+        return /** @type {[ShapeDefinition, ShapeDefinition, ShapeDefinition, ShapeDefinition]} */ (
+            this.operationCache[key] = [
+                this.registerOrReturnHandle(definition.cloneFilteredByQuadrants([0])),
+                this.registerOrReturnHandle(definition.cloneFilteredByQuadrants([1])),
+                this.registerOrReturnHandle(definition.cloneFilteredByQuadrants([2])),
+                this.registerOrReturnHandle(definition.cloneFilteredByQuadrants([3])),
+            ]
+        );
     }
 
     /**
@@ -140,11 +140,9 @@ export class ShapeDefinitionManager extends BasicSerializableObject {
 
         const rotated = definition.cloneRotateCW();
 
-        this.root.signals.achievementCheck.dispatch(ACHIEVEMENTS.rotateShape, null);
-
-        return /** @type {ShapeDefinition} */ (this.operationCache[key] = this.registerOrReturnHandle(
-            rotated
-        ));
+        return /** @type {ShapeDefinition} */ (
+            this.operationCache[key] = this.registerOrReturnHandle(rotated)
+        );
     }
 
     /**
@@ -160,9 +158,9 @@ export class ShapeDefinitionManager extends BasicSerializableObject {
 
         const rotated = definition.cloneRotateCCW();
 
-        return /** @type {ShapeDefinition} */ (this.operationCache[key] = this.registerOrReturnHandle(
-            rotated
-        ));
+        return /** @type {ShapeDefinition} */ (
+            this.operationCache[key] = this.registerOrReturnHandle(rotated)
+        );
     }
 
     /**
@@ -178,9 +176,9 @@ export class ShapeDefinitionManager extends BasicSerializableObject {
 
         const rotated = definition.cloneRotate180();
 
-        return /** @type {ShapeDefinition} */ (this.operationCache[key] = this.registerOrReturnHandle(
-            rotated
-        ));
+        return /** @type {ShapeDefinition} */ (
+            this.operationCache[key] = this.registerOrReturnHandle(rotated)
+        );
     }
 
     /**
@@ -195,12 +193,10 @@ export class ShapeDefinitionManager extends BasicSerializableObject {
             return /** @type {ShapeDefinition} */ (this.operationCache[key]);
         }
 
-        this.root.signals.achievementCheck.dispatch(ACHIEVEMENTS.stackShape, null);
-
         const stacked = lowerDefinition.cloneAndStackWith(upperDefinition);
-        return /** @type {ShapeDefinition} */ (this.operationCache[key] = this.registerOrReturnHandle(
-            stacked
-        ));
+        return /** @type {ShapeDefinition} */ (
+            this.operationCache[key] = this.registerOrReturnHandle(stacked)
+        );
     }
 
     /**
@@ -215,12 +211,10 @@ export class ShapeDefinitionManager extends BasicSerializableObject {
             return /** @type {ShapeDefinition} */ (this.operationCache[key]);
         }
 
-        this.root.signals.achievementCheck.dispatch(ACHIEVEMENTS.paintShape, null);
-
         const colorized = definition.cloneAndPaintWith(color);
-        return /** @type {ShapeDefinition} */ (this.operationCache[key] = this.registerOrReturnHandle(
-            colorized
-        ));
+        return /** @type {ShapeDefinition} */ (
+            this.operationCache[key] = this.registerOrReturnHandle(colorized)
+        );
     }
 
     /**
@@ -235,9 +229,9 @@ export class ShapeDefinitionManager extends BasicSerializableObject {
             return /** @type {ShapeDefinition} */ (this.operationCache[key]);
         }
         const colorized = definition.cloneAndPaintWith4Colors(colors);
-        return /** @type {ShapeDefinition} */ (this.operationCache[key] = this.registerOrReturnHandle(
-            colorized
-        ));
+        return /** @type {ShapeDefinition} */ (
+            this.operationCache[key] = this.registerOrReturnHandle(colorized)
+        );
     }
 
     /**
@@ -261,9 +255,9 @@ export class ShapeDefinitionManager extends BasicSerializableObject {
      * @returns {ShapeDefinition}
      */
     getDefinitionFromSimpleShapes(subShapes, color = enumColors.uncolored) {
-        const shapeLayer = /** @type {import("./shape_definition").ShapeLayer} */ (subShapes.map(
-            subShape => ({ subShape, color })
-        ));
+        const shapeLayer = /** @type {import("./shape_definition").ShapeLayer} */ (
+            subShapes.map(subShape => ({ subShape, color }))
+        );
 
         return this.registerOrReturnHandle(new ShapeDefinition({ layers: [shapeLayer] }));
     }

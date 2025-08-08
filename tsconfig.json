@@ -1,0 +1,15 @@
+{
+    "extends": ["@tsconfig/node-lts/tsconfig"],
+    "include": ["./*", "./gulp/**/*"],
+    "compilerOptions": {
+        "allowJs": true,
+        "checkJs": true,
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+        "noEmit": true,
+        "resolveJsonModule": true,
+
+        // remove when comfortable
+        "strict": false
+    }
+}

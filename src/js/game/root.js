@@ -1,34 +1,32 @@
-/* eslint-disable no-unused-vars */
-import { Signal } from "../core/signal";
-import { RandomNumberGenerator } from "../core/rng";
 import { createLogger } from "../core/logging";
+import { RandomNumberGenerator } from "../core/rng";
+import { Signal } from "../core/signal";
 
 // Type hints
 /* typehints:start */
-import { GameTime } from "./time/game_time";
-import { EntityManager } from "./entity_manager";
-import { GameSystemManager } from "./game_system_manager";
-import { AchievementProxy } from "./achievement_proxy";
-import { GameHUD } from "./hud/hud";
-import { MapView } from "./map_view";
-import { Camera } from "./camera";
+import { Application } from "../application";
+import { BufferMaintainer } from "../core/buffer_maintainer";
+import { Vector } from "../core/vector";
+import { Savegame } from "../savegame/savegame";
 import { InGameState } from "../states/ingame";
 import { AutomaticSave } from "./automatic_save";
-import { Application } from "../application";
-import { SoundProxy } from "./sound_proxy";
-import { Savegame } from "../savegame/savegame";
-import { GameLogic } from "./logic";
-import { ShapeDefinitionManager } from "./shape_definition_manager";
-import { HubGoals } from "./hub_goals";
-import { BufferMaintainer } from "../core/buffer_maintainer";
-import { ProductionAnalytics } from "./production_analytics";
-import { Entity } from "./entity";
-import { ShapeDefinition } from "./shape_definition";
 import { BaseItem } from "./base_item";
+import { Camera } from "./camera";
 import { DynamicTickrate } from "./dynamic_tickrate";
-import { KeyActionMapper } from "./key_action_mapper";
-import { Vector } from "../core/vector";
+import { Entity } from "./entity";
+import { EntityManager } from "./entity_manager";
 import { GameMode } from "./game_mode";
+import { GameSystemManager } from "./game_system_manager";
+import { HubGoals } from "./hub_goals";
+import { GameHUD } from "./hud/hud";
+import { KeyActionMapper } from "./key_action_mapper";
+import { GameLogic } from "./logic";
+import { MapView } from "./map_view";
+import { ProductionAnalytics } from "./production_analytics";
+import { ShapeDefinition } from "./shape_definition";
+import { ShapeDefinitionManager } from "./shape_definition_manager";
+import { SoundProxy } from "./sound_proxy";
+import { GameTime } from "./time/game_time";
 /* typehints:end */
 
 const logger = createLogger("game/root");
@@ -125,9 +123,6 @@ export class GameRoot {
         /** @type {SoundProxy} */
         this.soundProxy = null;
 
-        /** @type {AchievementProxy} */
-        this.achievementProxy = null;
-
         /** @type {ShapeDefinitionManager} */
         this.shapeDefinitionMgr = null;
 
@@ -145,53 +140,49 @@ export class GameRoot {
 
         this.signals = {
             // Entities
-            entityManuallyPlaced: /** @type {TypedSignal<[Entity]>} */ (new Signal()),
-            entityAdded: /** @type {TypedSignal<[Entity]>} */ (new Signal()),
-            entityChanged: /** @type {TypedSignal<[Entity]>} */ (new Signal()),
-            entityGotNewComponent: /** @type {TypedSignal<[Entity]>} */ (new Signal()),
-            entityComponentRemoved: /** @type {TypedSignal<[Entity]>} */ (new Signal()),
-            entityQueuedForDestroy: /** @type {TypedSignal<[Entity]>} */ (new Signal()),
-            entityDestroyed: /** @type {TypedSignal<[Entity]>} */ (new Signal()),
+            entityManuallyPlaced: /** @type {Signal<[Entity]>} */ (new Signal()),
+            entityAdded: /** @type {Signal<[Entity]>} */ (new Signal()),
+            entityChanged: /** @type {Signal<[Entity]>} */ (new Signal()),
+            entityGotNewComponent: /** @type {Signal<[Entity]>} */ (new Signal()),
+            entityComponentRemoved: /** @type {Signal<[Entity]>} */ (new Signal()),
+            entityQueuedForDestroy: /** @type {Signal<[Entity]>} */ (new Signal()),
+            entityDestroyed: /** @type {Signal<[Entity]>} */ (new Signal()),
 
             // Global
-            resized: /** @type {TypedSignal<[number, number]>} */ (new Signal()),
-            readyToRender: /** @type {TypedSignal<[]>} */ (new Signal()),
-            aboutToDestruct: /** @type {TypedSignal<[]>} */ new Signal(),
+            resized: /** @type {Signal<[number, number]>} */ (new Signal()),
+            readyToRender: /** @type {Signal<[]>} */ (new Signal()),
+            aboutToDestruct: /** @type {Signal<[]>} */ new Signal(),
 
             // Game Hooks
-            gameSaved: /** @type {TypedSignal<[]>} */ (new Signal()), // Game got saved
-            gameRestored: /** @type {TypedSignal<[]>} */ (new Signal()), // Game got restored
+            gameSaved: /** @type {Signal<[]>} */ (new Signal()), // Game got saved
+            gameRestored: /** @type {Signal<[]>} */ (new Signal()), // Game got restored
 
-            gameFrameStarted: /** @type {TypedSignal<[]>} */ (new Signal()), // New frame
+            gameFrameStarted: /** @type {Signal<[]>} */ (new Signal()), // New frame
 
-            storyGoalCompleted: /** @type {TypedSignal<[number, string]>} */ (new Signal()),
-            upgradePurchased: /** @type {TypedSignal<[string]>} */ (new Signal()),
+            storyGoalCompleted: /** @type {Signal<[number, string]>} */ (new Signal()),
+            upgradePurchased: /** @type {Signal<[string]>} */ (new Signal()),
 
             // Called right after game is initialized
-            postLoadHook: /** @type {TypedSignal<[]>} */ (new Signal()),
+            postLoadHook: /** @type {Signal<[]>} */ (new Signal()),
 
-            shapeDelivered: /** @type {TypedSignal<[ShapeDefinition]>} */ (new Signal()),
-            itemProduced: /** @type {TypedSignal<[BaseItem]>} */ (new Signal()),
+            shapeDelivered: /** @type {Signal<[ShapeDefinition]>} */ (new Signal()),
+            itemProduced: /** @type {Signal<[BaseItem]>} */ (new Signal()),
 
-            bulkOperationFinished: /** @type {TypedSignal<[]>} */ (new Signal()),
-            immutableOperationFinished: /** @type {TypedSignal<[]>} */ (new Signal()),
+            bulkOperationFinished: /** @type {Signal<[]>} */ (new Signal()),
+            immutableOperationFinished: /** @type {Signal<[]>} */ (new Signal()),
 
-            editModeChanged: /** @type {TypedSignal<[Layer]>} */ (new Signal()),
+            editModeChanged: /** @type {Signal<[Layer]>} */ (new Signal()),
 
             // Called to check if an entity can be placed, second parameter is an additional offset.
             // Use to introduce additional placement checks
-            prePlacementCheck: /** @type {TypedSignal<[Entity, Vector]>} */ (new Signal()),
+            prePlacementCheck: /** @type {Signal<[Entity, Vector]>} */ (new Signal()),
 
             // Called before actually placing an entity, use to perform additional logic
             // for freeing space before actually placing.
-            freeEntityAreaBeforeBuild: /** @type {TypedSignal<[Entity]>} */ (new Signal()),
-
-            // Called with an achievement key and necessary args to validate it can be unlocked.
-            achievementCheck: /** @type {TypedSignal<[string, any]>} */ (new Signal()),
-            bulkAchievementCheck: /** @type {TypedSignal<(string|any)[]>} */ (new Signal()),
+            freeEntityAreaBeforeBuild: /** @type {Signal<[Entity]>} */ (new Signal()),
 
             // Puzzle mode
-            puzzleComplete: /** @type {TypedSignal<[]>} */ (new Signal()),
+            puzzleComplete: /** @type {Signal<[]>} */ (new Signal()),
         };
 
         // RNG's
@@ -233,8 +224,8 @@ export class GameRoot {
         }
 
         // Finally free all properties
-        for (let prop in this) {
-            if (this.hasOwnProperty(prop)) {
+        for (const prop in this) {
+            if (Object.hasOwn(this, prop)) {
                 delete this[prop];
             }
         }

@@ -9,7 +9,7 @@ import { enumMinerVariants, MetaMinerBuilding } from "./buildings/miner";
 import { MetaMixerBuilding } from "./buildings/mixer";
 import { enumPainterVariants, MetaPainterBuilding } from "./buildings/painter";
 import { MetaReaderBuilding } from "./buildings/reader";
-import { enumRotaterVariants, MetaRotaterBuilding } from "./buildings/rotater";
+import { enumRotatorVariants, MetaRotatorBuilding } from "./buildings/rotator";
 import { MetaStackerBuilding } from "./buildings/stacker";
 import { MetaStorageBuilding } from "./buildings/storage";
 import { enumUndergroundBeltVariants, MetaUndergroundBeltBuilding } from "./buildings/underground_belt";
@@ -29,15 +29,15 @@ const typed = x => x;
  */
 export const enumHubGoalRewardsToContentUnlocked = {
     [enumHubGoalRewards.reward_cutter_and_trash]: typed([[MetaCutterBuilding, defaultBuildingVariant]]),
-    [enumHubGoalRewards.reward_rotater]: typed([[MetaRotaterBuilding, defaultBuildingVariant]]),
+    [enumHubGoalRewards.reward_rotator]: typed([[MetaRotatorBuilding, defaultBuildingVariant]]),
     [enumHubGoalRewards.reward_painter]: typed([[MetaPainterBuilding, defaultBuildingVariant]]),
     [enumHubGoalRewards.reward_mixer]: typed([[MetaMixerBuilding, defaultBuildingVariant]]),
     [enumHubGoalRewards.reward_stacker]: typed([[MetaStackerBuilding, defaultBuildingVariant]]),
     [enumHubGoalRewards.reward_balancer]: typed([[MetaBalancerBuilding, defaultBuildingVariant]]),
     [enumHubGoalRewards.reward_tunnel]: typed([[MetaUndergroundBeltBuilding, defaultBuildingVariant]]),
 
-    [enumHubGoalRewards.reward_rotater_ccw]: typed([[MetaRotaterBuilding, enumRotaterVariants.ccw]]),
-    [enumHubGoalRewards.reward_rotater_180]: typed([[MetaRotaterBuilding, enumRotaterVariants.rotate180]]),
+    [enumHubGoalRewards.reward_rotator_ccw]: typed([[MetaRotatorBuilding, enumRotatorVariants.ccw]]),
+    [enumHubGoalRewards.reward_rotator_180]: typed([[MetaRotatorBuilding, enumRotatorVariants.rotate180]]),
     [enumHubGoalRewards.reward_miner_chainable]: typed([[MetaMinerBuilding, enumMinerVariants.chainable]]),
     [enumHubGoalRewards.reward_underground_belt_tier_2]: typed([
         [MetaUndergroundBeltBuilding, enumUndergroundBeltVariants.tier2],

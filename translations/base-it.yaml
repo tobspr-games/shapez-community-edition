@@ -1,27 +1,3 @@
-steamPage:
-    shortText: In shapez.io potrai costruire delle fabbriche per automatizzare la
-        creazione e la combinazione di forme sempre più complesse, in una mappa
-        infinita.
-    discordLinkShort: Discord ufficiale
-    intro: >-
-        Shapez.io è un gioco tranquillo nel quale dovrai costruire delle
-        fabbriche per la produzione automatizzata di forme geometriche.
-
-        All'aumentare del livello, le forme diventeranno sempre più complesse e dovrai espanderti sempre di più nella mappa infinita.
-
-        E come se non bastasse, dovrai produrre esponenzialmente di più per soddisfare le richieste, l'unica possibilità è andare su grande scala!
-
-        All'inizio lavorerai solo con le forme, ma in seguito dovrai colorarle; a questo scopo dovrai estrarre e mescolare i colori!
-
-        Comprare il gioco su Steam ti garantirà l'accesso alla versone completa, ma puoi anche giocare una demo su shapez.io e decidere in seguito!
-    what_others_say: "Hanno detto di shapez.io:"
-    nothernlion_comment: This game is great - I'm having a wonderful time playing,
-        and time has flown by.
-    notch_comment: Oh crap. I really should sleep, but I think I just figured out
-        how to make a computer in shapez.io
-    steam_review_comment: This game has stolen my life and I don't want it back.
-        Very chill factory game that won't let me stop making my lines more
-        efficient.
 global:
     loading: Caricamento
     error: Errore
@@ -55,58 +31,20 @@ global:
         space: SPAZIO
     loggingIn: Logging in
     loadingResources: Downloading additional resources (<percentage> %)
-    discount: -<percentage>%
-    discountSummerSale: SPECIAL PROMOTION! Offer ends 7 July
-demoBanners:
-    title: Versione Demo
-    intro: |-
-        Acquista il gioco completo <strong>ora</strong> per sbloccarlo:<ul>
-            <li>Tutti i 26 livelli + gioco libero infinito</li>
-            <li>22 nuovi edifici</li>
-            <li>Supporto mod</li>
-            <li>Risultati</li>
-            <li>Modalità scura</li>
-            <li>... e molto altro ancora!</li>
-        </ul>
-    playtimeDisclaimer: La versione completa contiene oltre <strong>20 ore di contenuti</strong>.
-    playerCount: <playerCount> giocatori come te stanno attualmente giocando a
-        shapez su Steam
-    untilEndOfDemo: Fino alla fine della demo
-    playtimeDisclaimerDownload: Puoi continuare il tuo salvataggio nella versione
-        completa! Fai clic <strong>qui</strong> per scaricare il tuo
-        salvataggio.
-    titleV2: "Play the full version now for:"
 mainMenu:
     play: Gioca
-    changelog: Registro modifiche
     importSavegame: Importa
-    openSourceHint: Questo gioco è open source!
-    discordLink: Server ufficiale Discord
     helpTranslate: Aiutaci a tradurre!
-    browserWarning: Ci spiace, ma il gioco è molto lento su questo browser! Ottieni
-        la versione completa oppure scarica Chrome per l'intera esperienza.
     savegameLevel: Livello <x>
     savegameLevelUnknown: Livello sconosciuto
     continue: Continua
     newGame: Nuova partita
-    madeBy: Creato da <author-link>
-    subreddit: Reddit
     savegameUnnamed: Senza nome
-    puzzleMode: Modalità puzzle
-    back: Back
-    puzzleDlcText: Ti piace miniaturizzare e ottimizzare le tue fabbriche? Ottini il
-        Puzzle DLC ora su steam per un divertimento ancora maggiore!
-    puzzleDlcWishlist: Aggiungi alla lista dei desideri ora!
-    puzzleDlcViewNow: View Dlc
     mods:
-        title: Active Mods
-        warningPuzzleDLC: Playing the Puzzle DLC is not possible with mods. Please
-            disable all mods to play the DLC.
-    playingFullVersion: You are now playing the full version!
-    logout: Logout
-    noActiveSavegames: No active savegames found - Click play to start a new game!
-    playFullVersionV2: Bough shapez on Steam? Play the full version in your Browser!
-    playFullVersionStandalone: You can now also play the full version in your Browser!
+        warningPuzzleDLC: Non è possibile giocare al Puzzle DLC con le mods. Per favore
+            disabilita tutte le mod per poter giocare al DLC.
+    noActiveSavegames: Nessun salvataggio trovato - Clicca su gioca per iniziare una
+        nuova partita!
 dialogs:
     buttons:
         ok: OK
@@ -115,7 +53,6 @@ dialogs:
         later: Più tardi
         restart: Riavvia
         reset: Reset
-        getStandalone: Ottieni la versione completa
         deleteGame: So cosa sto facendo
         viewUpdate: Mostra aggiornamento
         showUpgrades: Mostra miglioramenti
@@ -152,17 +89,8 @@ dialogs:
         desc: Così riporterai tutti comandi al loro stato predefinto. Per favore
             conferma.
     keybindingsResetOk:
-        title: Successo nel reset dei comandi
+        title: Comandi resettati con successo
         desc: I comandi predefiniti sono stati ripristinati!
-    featureRestriction:
-        title: Versione Demo
-        desc: Hai provato ad accedere ad una caratteristica (<feature>) che non è
-            disponibile nella Demo. Considera di prendere la versione completa
-            per l'intera esperienza!
-    oneSavegameLimit:
-        title: Salvataggi limitati
-        desc: Puoi avere solo un salvataggio nella versione Demo. Perfavore rimuovi il
-            salvataggio già esistente o prendi la versione completa!
     updateSummary:
         title: Nuovo aggiornamento!
         desc: "Qui puoi trovare i cambiamenti dall'ultima volta che hai giocato:"
@@ -185,7 +113,7 @@ dialogs:
             costruzione delle fabbriche. Qui ce ne sono un paio, ma dovresti
             <strong>controllare i comandi</strong>!<br><br> <code
             class='keybinding'>CTRL</code> + Drag: Seleziona l'area da copiare /
-            cancella.<br> <code class='keybinding'>SHIFT</code>: Tieni premuto
+            cancellare.<br> <code class='keybinding'>SHIFT</code>: Tieni premuto
             per costruire copie dell'edificio.<br> <code
             class='keybinding'>ALT</code>: Inverti l'orientamento dei nastri
             trasportatori.<br>"
@@ -195,9 +123,6 @@ dialogs:
             <strong>codice</strong> di una forma (Che puoi generare
             <link>qui</link>)
         titleEdit: Modifica etichetta
-    markerDemoLimit:
-        desc: Puoi creare solo due etichette personalizzate nella Demo. Ottieni la
-            versione completa per avere etichette personalizzate illimitati!
     massCutConfirm:
         title: Conferma taglio
         desc: Stai tagliando molte strutture (<count> per essere precisi)! Sei sicuro di
@@ -295,46 +220,28 @@ dialogs:
         desc: Sei sicuro di voler cancellare '<title>'? Questa azione non può essere
             annullata!
     modsDifference:
-        title: Mod Warning
-        desc: The currently installed mods differ from the mods the savegame was created
-            with. This might cause the savegame to break or not load at all. Are
-            you sure you want to continue?
-        missingMods: Missing Mods
-        newMods: Newly installed Mods
+        title: Attenzione
+        desc: Le mod attualmente installate differiscono rispetto alle mod con cui è
+            stato creato il salvataggio. Questo potrebbe causare la corruzione o
+            il mancato caricamento dei dati di salvataggio. Sei sicuro di voler
+            continuare?
+        missingMods: Mods mancanti
+        newMods: Mods installate di recente
     resourceLoadFailed:
-        title: Resources failed to load
-        demoLinkText: shapez demo on Steam
-        descWeb: "One ore more resources could not be loaded. Make sure you have a
-            stable internet connection and try again. If this still doesn't
-            work, make sure to also disable any browser extensions (including
-            adblockers).<br><br> As an alternative, you can also play the
-            <demoOnSteamLinkText>. <br><br> Error Message:"
-        descSteamDemo: "One ore more resources could not be loaded. Try restarting the
-            game - If that does not help, try reinstalling and verifying the
-            game files via Steam. <br><br> Error Message:"
-    steamSsoError:
-        title: Full Version Logout
-        desc: You have been logged out from the Full Browser Version since either your
-            network connection is unstable or you are playing on another
-            device.<br><br> Please make sure you don't have shapez open in any
-            other browser tab or another computer with the same Steam
-            account.<br><br> You can login again in the main menu.
-    steamSsoNoOwnership:
-        title: Full Edition not owned
-        desc: In order to play the Full Edition in your Browser, you need to own both
-            the base game and the Puzzle DLC on your Steam account.<br><br>
-            Please make sure you own both, signed in with the correct Steam
-            account and then try again.
+        title: Impossibile caricare le risorse
+        descSteamDemo: "Impossibile caricare una o più risorse. Prova a riavviare il
+            gioco - Se questo non aiuta, prova a reinstallare e verificare i
+            file di gioco da Steam. <br><br> Messaggio di errore:"
 ingame:
     keybindingsOverlay:
         moveMap: Sposta
         selectBuildings: Seleziona area
         stopPlacement: Concludi posizionamento
         rotateBuilding: Ruota edificio
-        placeMultiple: Posiziona multiplo
+        placeMultiple: Posizionamento multiplo
         reverseOrientation: Inverti orientamento
         disableAutoOrientation: Disabilita orientamento automatico
-        toggleHud: Mostra/Nascondi HUD
+        toggleHud: Mostra/Nascondi interfaccia
         placeBuilding: Posiziona costruzione
         createMarker: Crea etichetta
         delete: Cancella
@@ -346,7 +253,7 @@ ingame:
         clearSelection: Annulla selezione
         pipette: Contagocce
         switchLayers: Cambia livello
-        clearBelts: Clear belts
+        clearBelts: Sgombra nastri
     buildingPlacement:
         cycleBuildingVariants: Premi <key> per cambiare variante.
         hotkeyLabel: "Hotkey: <key>"
@@ -403,7 +310,7 @@ ingame:
     waypoints:
         waypoints: Punti di interesse
         hub: HUB
-        description: Clic sinistro su un etichetta per raggiungerla, clic destro per
+        description: Click sinistro su un etichetta per raggiungerla, click destro per
             cancellarla. <br><br>Premi <keybinding> per creare un etichetta
             dalla visuale corrente, oppure <strong>click destro</strong> per
             creare un etichetta nella posizione selezionata.
@@ -419,7 +326,7 @@ ingame:
             1_3_expand: "Questo <strong>NON</strong> è un idle game! Costruisci più
                 estrattori e nastri per raggiungere l'obiettivo più
                 velocemente.<br><br>Suggerimento: Tieni premuto
-                <strong>MAIUSC</strong> per piazzare estrattori multipli, e usa
+                <strong>MAIUSC</strong> per piazzare estrattori i, e usa
                 <strong>R</strong> per ruotarli."
             2_1_place_cutter: "Ora posiziona un <strong>Taglierino</strong> per tagliare i
                 cerchi in due metà!<br><br> PS: Il taglierino taglia sempre
@@ -447,7 +354,7 @@ ingame:
             21_4_press_button: "Premi l'interruttore per fargli <strong>emettere un segnale
                 di verità </strong> e fargli quindi attivare il
                 vernciatore.<br><br> PS: Non c'è bisogno che tu connetta tutti
-                gli imput! Prova a collegarne solo due."
+                gli input! Prova a collegarne solo due."
             1_2_hold_and_drag: Mantenere e trascinare
     colors:
         red: Rosso
@@ -455,7 +362,7 @@ ingame:
         blue: Blu
         yellow: Giallo
         purple: Magenta
-        cyan: Azzurro
+        cyan: Ciano
         white: Bianco
         uncolored: Senza colore
         black: Nero
@@ -467,40 +374,6 @@ ingame:
         one_miner: 1 trivella
         n_miners: <amount> trivelle
         limited_items: Limitato a <max_throughput>
-    watermark:
-        title: Versione demo
-        desc: Clicca qui per vedere i vantaggi della versione Completa!
-        get_on_steam: Ottieni su Steam
-    standaloneAdvantages:
-        no_thanks: No, grazie!
-        points:
-            levels:
-                title: 12 nuovi livelli!
-                desc: Per un totale di 26 livelli!
-            buildings:
-                title: 22 nuovi edifici
-                desc: Automatizza completamente la tua fabbrica!
-            markers:
-                title: ∞ etichette
-                desc: Non perderti nella tua fabbrica!
-            wires:
-                title: Cavi
-                desc: Un'intera nuova dimensione!
-            darkmode:
-                title: Modalità scura
-                desc: Smettila di maltrattare i tuoi occhi!
-            support:
-                title: Sostienimi
-                desc: Lo sviluppo nel tempo libero!
-            achievements:
-                title: Achievement
-                desc: Collezionali tutti!
-            mods:
-                title: Modding support!
-                desc: Over 80 mods available!
-        titleV2: "Get the full version now on Steam to unlock:"
-        titleExpiredV2: Demo completed!
-        titleEnjoyingDemo: Enjoy the demo?
     puzzleEditorSettings:
         zoneTitle: Zona
         zoneWidth: Larghezza
@@ -535,8 +408,7 @@ ingame:
         title: Puzzle completato!
         titleLike: "Clicca il cuore se ti è piaciuto:"
         titleRating: Quanto è stato difficile il puzzle?
-        titleRatingDesc: La tua valutazione mi aiuterà a darti raccomandazioni migliori
-            in futuro
+        titleRatingDesc: La tua valutazione mi aiuterà a darti suggerimenti migliori in futuro
         continueBtn: Continua a giocare
         menuBtn: Menù
         nextPuzzle: Puzzle successivo
@@ -548,7 +420,7 @@ ingame:
         completionRate: Tasso di completamento
 shopUpgrades:
     belt:
-        name: Nastri, distribuzione e tunnel
+        name: Nastri, distributori e tunnel
         description: Velocità x<currentMult> → x<newMult>
     miner:
         name: Estrazione
@@ -591,7 +463,7 @@ buildings:
             name: Taglierino (4x)
             description: Taglia le forme in quattro parti. <strong>Se usi meno di quattro
                 parti, distruggi le altre o la macchina si fermerà!</strong>
-    rotater:
+    rotator:
         default:
             name: Ruotatore
             description: Ruota le forme di 90 gradi in senso orario.
@@ -740,7 +612,7 @@ buildings:
         default:
             name: Taglierino virtuale
             description: Taglia virtualmente la forma in due metà.
-        rotater:
+        rotator:
             name: Ruotatore virtuale
             description: Ruota virtualmente la forma, sia in senso orario sia antiorario.
         unstacker:
@@ -781,7 +653,7 @@ storyRewards:
             altrimenti <strong>si intaserà e andrà in stallo </strong> - Per
             questo ti ho dato il <strong>cestino</strong>, che distrugge tutto
             quello che riceve!
-    reward_rotater:
+    reward_rotator:
         title: Rotazione
         desc: Il <strong>ruotatore</strong> è stato sbloccato! Ruota le forme di 90
             gradi in senso orario.
@@ -798,14 +670,14 @@ storyRewards:
             puoi combinare due colori mediante la <strong>sintesi
             additiva</strong>!
     reward_splitter:
-        title: Separatore/Agrregatore
+        title: Separatore/Aggregatore
         desc: Il <strong>separatore</strong> è stato sbloccato! è una variante del
-            <strong>bilanciatore</strong> - Accetta un imput e lo divide in due!
+            <strong>bilanciatore</strong> - Accetta un input e lo divide in due!
     reward_tunnel:
         title: Tunnel
         desc: Il <strong>tunnel</strong> è stato sbloccato! In questo modo puoi
             trasportare oggetti al di sotto di nastri ed edifici!
-    reward_rotater_ccw:
+    reward_rotator_ccw:
         title: Rotazione antioraria
         desc: Hai sbloccato una variante del <strong>ruotatore</strong>! Consente di
             ruotare in senso antiorario! Per costruirla, seleziona il ruotatore
@@ -885,7 +757,7 @@ storyRewards:
         desc: Hai sbloccato il <strong>lettore di nastri</strong>! Consente di misurare
             la portata di un nastro.<br><br>E aspetta di sbloccare i cavi,
             allora sì che sarà molto utile!
-    reward_rotater_180:
+    reward_rotator_180:
         title: Ruotatore (180 gradi)
         desc: Hai appena sbloccato il <strong>ruotatore</strong> a 180 gradi! Consente
             di ruotare una forma di 180 gradi (Sorpresa! :D)
@@ -995,11 +867,14 @@ settings:
                 dark: Scuro
                 light: Chiaro
         refreshRate:
-            title: Obiettivo della simulazione
-            description: Se hai un monitor a 144Hz, cambia la frequenza di aggiornamento, in
-                modo tale che il gioco possa correttamente simulare alla
-                frequenza di aggiornamento più alta. Questo potrebbe abbasare i
-                frame al secondo se il tuo computer è troppo lento.
+            title: Tick Rate
+            description: Questo determina quanti tick di gioco avvengono al secondo. In
+                generale ad un maggior tick rate corrisponde una maggiore
+                precisione ma performance peggiore. Se hai un monitor con una
+                frequenza superiore a 60Hz, aumenta questo valore, in modo tale
+                che il gioco possa correttamente simulare alla frequenza di
+                aggiornamento più alta. Questo potrebbe abbassare i frame al
+                secondo se il tuo computer è troppo lento.
         alwaysMultiplace:
             title: Posizionamento multiplo
             description: Se abilitato, tutti gli edifici rimarranno selezionati dopo il
@@ -1118,7 +993,7 @@ settings:
                 premere 'ALT'.
     rangeSliderPercentage: <amount> %
     tickrateHz: <amount> Hz
-    newBadge: New!
+    newBadge: Novità!
 keybindings:
     title: Comandi
     hint: "Suggerimento: Usa spesso CTRL, MAIUSC e ALT! Abilitano opzioni di
@@ -1132,7 +1007,7 @@ keybindings:
         massSelect: Selezione di massa
         buildings: Scorciatoie edifici
         placementModifiers: Modificatori piazzamento
-        mods: Provided by Mods
+        mods: Fornito dalle mod
     mappings:
         confirm: Conferma
         back: Indietro
@@ -1146,13 +1021,13 @@ keybindings:
         createMarker: Crea Etichetta
         menuOpenShop: Miglioramenti
         menuOpenStats: Statistiche
-        toggleHud: Mostra/Nascondi HUD
+        toggleHud: Mostra/Nascondi interfaccia
         toggleFPSInfo: Mostra/Nascondi FPS e info debug
         belt: Nastro Trasportatore
         underground_belt: Tunnel
         miner: Estrattore
         cutter: Taglierino
-        rotater: Ruotatore
+        rotator: Ruotatore
         stacker: Impilatrice
         mixer: Miscelatore di vernice
         painter: Verniciatore
@@ -1219,12 +1094,6 @@ about:
 changelog:
     title: Registro modifiche
 demo:
-    features:
-        restoringGames: Recupero salvataggi
-        importingGames: Importazione salvataggi
-        oneGameLimit: Limite di un salvataggio
-        customizeKeybindings: Scorciatoie personalizzabili
-        exportingBase: Esportazione dell'intera base come immagine
     settingNotAvailable: Non disponibile nella demo.
 tips:
     - L'hub centrale accetta qualsiasi forma, non solo l'obiettivo corrente!
@@ -1235,7 +1104,7 @@ tips:
     - Tenere premuto <b>CTRL</b> consente di trascinare i nastri senza
       auto-orientamento.
     - I rapporti rimangono uguali, fintanto che tutti i miglioramenti sono allo
-      stesso livello,
+      stesso livello.
     - L'esecuzione seriale è più efficiente di quella parallela.
     - Più avanti nel gioco sbloccherai altre varianti degli edifici!
     - Puoi usare <b>T</b> per cambiare variante.
@@ -1331,7 +1200,7 @@ puzzleMenu:
         noProducers: Per favore posiziona un Produttore costante!
         noGoalAcceptors: Per favore posiziona un accettore di obiettivi!
         goalAcceptorNoItem: Uno o più degli accettori di obiettivi non hanno un oggetto
-            assegnato. Consgnagli una forma per impostare l'obiettivo.
+            assegnato. Consegna una forma per impostare l'obiettivo.
         goalAcceptorRateNotMet: Uno o più degli accettori di obiettivi non ricevono
             abbastanza oggetti. Assicurati che gli indicatori siano verdi per
             tutti gli accettori.
@@ -1389,20 +1258,11 @@ backendErrors:
     no-permission: Non hai i permessi per eseguire questa azione.
 mods:
     title: Mods
-    author: Author
-    version: Version
-    modWebsite: Website
-    openFolder: Open Mods Folder
-    folderOnlyStandalone: Opening the mod folder is only possible when running the standalone.
-    browseMods: Browse Mods
-    modsInfo: To install and manage mods, copy them to the mods folder within the
-        game directory. You can also use the 'Open Mods Folder' button on the
-        top right.
-    noModSupport: You need the standalone version on Steam to install mods.
-    togglingComingSoon:
-        title: Coming Soon
-        description: Enabling or disabling mods is currently only possible by copying
-            the mod file from or to the mods/ folder. However, being able to
-            toggle them here is planned for a future update!
-    browserNoSupport: Due to browser restrictions it is currently only possible to
-        install mods in the Steam version - Sorry!
+    author: Autore
+    version: Versione
+    modWebsite: Sito
+    openFolder: Apri cartella delle Mod
+    browseMods: Sfoglia Mods
+    modsInfo: Per installare e gestire le mod, copiale nella cartella 'mods'
+        all'interno della directory del gioco. Puoi usare anche il tasto 'Apri
+        cartella delle Mod' in alto a destra.

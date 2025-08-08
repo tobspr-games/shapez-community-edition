@@ -1,15 +1,10 @@
 import { CHANGELOG } from "../changelog";
-import { cachebust } from "../core/cachebust";
-import { globalConfig, THIRDPARTY_URLS } from "../core/config";
+import { globalConfig } from "../core/config";
 import { GameState } from "../core/game_state";
 import { createLogger } from "../core/logging";
-import { queryParamOptions } from "../core/query_parameters";
-import { authorizeViaSSOToken } from "../core/steam_sso";
-import { getLogoSprite, timeoutPromise } from "../core/utils";
 import { getRandomHint } from "../game/hints";
 import { HUDModalDialogs } from "../game/hud/parts/modal_dialogs";
-import { PlatformWrapperImplBrowser } from "../platform/browser/wrapper";
-import { autoDetectLanguageId, T, updateApplicationLanguage } from "../translations";
+import { T, autoDetectLanguageId, updateApplicationLanguage } from "../translations";
 
 const logger = createLogger("state/preload");
 
@@ -40,53 +35,12 @@ export class PreloadState extends GameState {
         this.lastHintShown = -1000;
         this.nextHintDuration = 0;
 
+        /** @type {HTMLElement} */
         this.statusText = this.htmlElement.querySelector("#ll_preload_status");
+        /** @type {HTMLElement} */
         this.progressElement = this.htmlElement.querySelector("#ll_progressbar span");
 
         this.startLoading();
-    }
-
-    async fetchDiscounts() {
-        await timeoutPromise(
-            fetch("https://analytics.shapez.io/v1/discounts")
-                .then(res => res.json())
-                .then(data => {
-                    globalConfig.currentDiscount = Number(
-                        data["1318690"].data.price_overview.discount_percent
-                    );
-                    logger.log("Fetched current discount:", globalConfig.currentDiscount);
-                }),
-            2000
-        ).catch(err => {
-            logger.warn("Failed to fetch current discount:", err);
-        });
-    }
-
-    async sendBeacon() {
-        if (G_IS_STANDALONE && !G_IS_STEAM_DEMO) {
-            return;
-        }
-        if (queryParamOptions.campaign) {
-            fetch(
-                "https://analytics.shapez.io/campaign/" +
-                    queryParamOptions.campaign +
-                    "?lpurl=nocontent&fbclid=" +
-                    (queryParamOptions.fbclid || "") +
-                    "&gclid=" +
-                    (queryParamOptions.gclid || "")
-            ).catch(err => {
-                console.warn("Failed to send beacon:", err);
-            });
-        }
-        if (queryParamOptions.embedProvider) {
-            fetch(
-                "https://analytics.shapez.io/campaign/embed_" +
-                    queryParamOptions.embedProvider +
-                    "?lpurl=nocontent"
-            ).catch(err => {
-                console.warn("Failed to send beacon:", err);
-            });
-        }
     }
 
     onLeave() {
@@ -95,54 +49,13 @@ export class PreloadState extends GameState {
 
     startLoading() {
         this.setStatus("Booting")
-            .then(() => {
-                try {
-                    window.localStorage.setItem("local_storage_feature_detection", "1");
-                } catch (ex) {
-                    throw new Error(
-                        "Could not access local storage. Make sure you are not playing in incognito mode and allow thirdparty cookies!"
-                    );
-                }
-            })
             .then(() => this.setStatus("Creating platform wrapper", 3))
-
-            .then(() => this.sendBeacon())
-            .then(() => authorizeViaSSOToken(this.app, this.dialogs))
-
             .then(() => this.app.platformWrapper.initialize())
-
-            .then(() => this.setStatus("Initializing local storage", 6))
-            .then(() => {
-                const wrapper = this.app.platformWrapper;
-                if (wrapper instanceof PlatformWrapperImplBrowser) {
-                    try {
-                        window.localStorage.setItem("local_storage_test", "1");
-                        window.localStorage.removeItem("local_storage_test");
-                    } catch (ex) {
-                        logger.error("Failed to read/write local storage:", ex);
-                        return new Promise(() => {
-                            alert(
-                                "Your brower does not support thirdparty cookies or you have disabled it in your security settings.\n\n" +
-                                    "In Chrome this setting is called 'Block third-party cookies and site data'.\n\n" +
-                                    "Please allow third party cookies and then reload the page."
-                            );
-                            // Never return
-                        });
-                    }
-                }
-            })
 
             .then(() => this.setStatus("Creating storage", 9))
             .then(() => {
                 return this.app.storage.initialize();
             })
-
-            .then(() => this.setStatus("Initializing libraries", 12))
-            .then(() => this.app.analytics.initialize())
-            .then(() => this.app.gameAnalytics.initialize())
-
-            .then(() => this.setStatus("Connecting to api", 15))
-            .then(() => this.fetchDiscounts())
 
             .then(() => this.setStatus("Initializing settings", 20))
             .then(() => {
@@ -158,10 +71,6 @@ export class PreloadState extends GameState {
 
             .then(() => this.setStatus("Initializing language", 25))
             .then(() => {
-                if (G_CHINA_VERSION || G_WEGAME_VERSION) {
-                    return this.app.settings.updateLanguage("zh-CN");
-                }
-
                 if (this.app.settings.getLanguage() === "auto-detect") {
                     const language = autoDetectLanguageId();
                     logger.log("Setting language to", language);
@@ -174,17 +83,12 @@ export class PreloadState extends GameState {
 
             .then(() => {
                 const language = this.app.settings.getLanguage();
-                updateApplicationLanguage(language);
+                return updateApplicationLanguage(language);
             })
 
             .then(() => this.setStatus("Initializing sounds", 30))
             .then(() => {
                 return this.app.sound.initialize();
-            })
-
-            .then(() => this.setStatus("Initializing restrictions", 34))
-            .then(() => {
-                return this.app.restrictionMgr.initialize();
             })
 
             .then(() => this.setStatus("Initializing savegames", 38))
@@ -222,14 +126,6 @@ export class PreloadState extends GameState {
                     return;
                 }
 
-                if (G_CHINA_VERSION || G_WEGAME_VERSION) {
-                    return;
-                }
-
-                if (G_IS_STEAM_DEMO || !G_IS_STANDALONE) {
-                    return;
-                }
-
                 return this.app.storage
                     .readFileAsync("lastversion.bin")
                     .catch(err => {
@@ -259,9 +155,7 @@ export class PreloadState extends GameState {
                         for (let i = 0; i < changelogEntries.length; ++i) {
                             const entry = changelogEntries[i];
                             dialogHtml += `
-                            <div class="changelogDialogEntry" data-changelog-skin="${
-                                entry.skin || "default"
-                            }">
+                            <div class="changelogDialogEntry">
                                 <span class="version">${entry.version}</span>
                                 <span class="date">${entry.date}</span>
                                 <ul class="changes">
@@ -271,7 +165,7 @@ export class PreloadState extends GameState {
                         `;
                         }
 
-                        return new Promise(resolve => {
+                        return new /** @type {typeof Promise<void>} */ (Promise)(resolve => {
                             this.dialogs.showInfo(T.dialogs.updateSummary.title, dialogHtml).ok.add(resolve);
                         });
                     });
@@ -289,9 +183,6 @@ export class PreloadState extends GameState {
     }
 
     update() {
-        if (G_CHINA_VERSION || G_WEGAME_VERSION) {
-            return;
-        }
         const now = performance.now();
         if (now - this.lastHintShown > this.nextHintDuration) {
             this.lastHintShown = now;
@@ -323,9 +214,6 @@ export class PreloadState extends GameState {
     setStatus(text, progress) {
         logger.log("✅ " + text);
 
-        if (G_CHINA_VERSION || G_WEGAME_VERSION) {
-            return Promise.resolve();
-        }
         this.currentStatus = text;
         this.statusText.innerText = text;
         this.progressElement.style.width = 80 + (progress / 100) * 20 + "%";
@@ -335,14 +223,12 @@ export class PreloadState extends GameState {
     showFailMessage(text) {
         logger.error("App init failed:", text);
 
-        const email = "bugs@shapez.io";
-
         const subElement = document.createElement("div");
         subElement.classList.add("failureBox");
 
         subElement.innerHTML = `
                 <div class="logo">
-                    <img src="${cachebust("res/" + getLogoSprite())}" alt="Shapez.io Logo">
+                    <img src="res/logo.png" alt="Shapez.io Logo">
                 </div>
                 <div class="failureInner">
                     <div class="errorHeader">

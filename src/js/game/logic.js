@@ -4,7 +4,6 @@ import { STOP_PROPAGATION } from "../core/signal";
 import { round2Digits } from "../core/utils";
 import { enumDirection, enumDirectionToVector, enumInvertedDirections, Vector } from "../core/vector";
 import { getBuildingDataFromCode } from "./building_codes";
-import { Component } from "./component";
 import { enumWireVariant } from "./components/wire";
 import { Entity } from "./entity";
 import { CHUNK_OVERLAY_RES } from "./map_chunk_view";
@@ -473,9 +472,9 @@ export class GameLogic {
      * Clears all belts and items
      */
     clearAllBeltsAndItems() {
-        for (const entity of this.root.entityMgr.entities) {
+        for (const entity of this.root.entityMgr.entities.values()) {
             for (const component of Object.values(entity.components)) {
-                /** @type {Component} */ (component).clear();
+                /** @type {import("./component").Component} */ (component).clear();
             }
         }
     }

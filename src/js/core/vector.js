@@ -489,7 +489,6 @@ export class Vector {
             }
             default: {
                 assertAlways(false, "Invalid fast inplace rotation: " + angle);
-                return this;
             }
         }
         // return new Vector(this.x * cos - this.y * sin, this.x * sin + this.y * cos);
@@ -519,7 +518,6 @@ export class Vector {
             }
             default: {
                 assertAlways(false, "Invalid fast inplace rotation: " + angle);
-                return new Vector();
             }
         }
     }
@@ -593,7 +591,6 @@ export class Vector {
             }
             default:
                 assertAlways(false, "Invalid angle: " + angle);
-                return;
         }
     }
 
@@ -603,7 +600,7 @@ export class Vector {
      * @returns {Boolean}
      */
     equalsEpsilon(v, epsilon = 1e-5) {
-        return Math.abs(this.x - v.x) < 1e-5 && Math.abs(this.y - v.y) < epsilon;
+        return Math.abs(this.x - v.x) < epsilon && Math.abs(this.y - v.y) < epsilon;
     }
 
     /**

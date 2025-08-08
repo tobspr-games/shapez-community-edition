@@ -1,67 +1,39 @@
 import { AnimationFrame } from "./core/animation_frame";
 import { BackgroundResourcesLoader } from "./core/background_resources_loader";
-import { IS_MOBILE } from "./core/config";
+import { ErrorHandler } from "./core/error_handler";
 import { GameState } from "./core/game_state";
-import { GLOBAL_APP, setGlobalApp } from "./core/globals";
+import { setGlobalApp } from "./core/globals";
 import { InputDistributor } from "./core/input_distributor";
 import { Loader } from "./core/loader";
-import { createLogger, logSection } from "./core/logging";
+import { createLogger } from "./core/logging";
 import { StateManager } from "./core/state_manager";
 import { TrackedState } from "./core/tracked_state";
-import { getPlatformName, waitNextFrame } from "./core/utils";
+import { getPlatformName, round2Digits, waitNextFrame } from "./core/utils";
 import { Vector } from "./core/vector";
-import { AdProviderInterface } from "./platform/ad_provider";
-import { NoAdProvider } from "./platform/ad_providers/no_ad_provider";
-import { NoAchievementProvider } from "./platform/browser/no_achievement_provider";
-import { AnalyticsInterface } from "./platform/analytics";
-import { GoogleAnalyticsImpl } from "./platform/browser/google_analytics";
-import { SoundImplBrowser } from "./platform/browser/sound";
-import { PlatformWrapperImplBrowser } from "./platform/browser/wrapper";
-import { PlatformWrapperImplElectron } from "./platform/electron/wrapper";
-import { PlatformWrapperInterface } from "./platform/wrapper";
+import { MOD_SIGNALS } from "./mods/mod_signals";
+import { MODS } from "./mods/modloader";
+import { ClientAPI } from "./platform/api";
+import { Sound } from "./platform/sound";
+import { Storage, STORAGE_SAVES } from "./platform/storage";
+import { PlatformWrapperImplElectron } from "./platform/wrapper";
 import { ApplicationSettings } from "./profile/application_settings";
 import { SavegameManager } from "./savegame/savegame_manager";
 import { AboutState } from "./states/about";
 import { ChangelogState } from "./states/changelog";
 import { InGameState } from "./states/ingame";
 import { KeybindingsState } from "./states/keybindings";
-import { MainMenuState } from "./states/main_menu";
-import { MobileWarningState } from "./states/mobile_warning";
-import { PreloadState } from "./states/preload";
-import { SettingsState } from "./states/settings";
-import { ShapezGameAnalytics } from "./platform/browser/game_analytics";
-import { RestrictionManager } from "./core/restriction_manager";
-import { PuzzleMenuState } from "./states/puzzle_menu";
-import { ClientAPI } from "./platform/api";
 import { LoginState } from "./states/login";
-import { WegameSplashState } from "./states/wegame_splash";
-import { MODS } from "./mods/modloader";
-import { MOD_SIGNALS } from "./mods/mod_signals";
+import { MainMenuState } from "./states/main_menu";
 import { ModsState } from "./states/mods";
+import { PreloadState } from "./states/preload";
+import { PuzzleMenuState } from "./states/puzzle_menu";
+import { SettingsState } from "./states/settings";
 
 /**
- * @typedef {import("./platform/achievement_provider").AchievementProviderInterface} AchievementProviderInterface
  * @typedef {import("./platform/sound").SoundInterface} SoundInterface
- * @typedef {import("./platform/storage").StorageInterface} StorageInterface
  */
 
 const logger = createLogger("application");
-
-// Set the name of the hidden property and the change event for visibility
-let pageHiddenPropName, pageVisibilityEventName;
-if (typeof document.hidden !== "undefined") {
-    // Opera 12.10 and Firefox 18 and later support
-    pageHiddenPropName = "hidden";
-    pageVisibilityEventName = "visibilitychange";
-    // @ts-ignore
-} else if (typeof document.msHidden !== "undefined") {
-    pageHiddenPropName = "msHidden";
-    pageVisibilityEventName = "msvisibilitychange";
-    // @ts-ignore
-} else if (typeof document.webkitHidden !== "undefined") {
-    pageHiddenPropName = "webkitHidden";
-    pageVisibilityEventName = "webkitvisibilitychange";
-}
 
 export class Application {
     /**
@@ -70,66 +42,45 @@ export class Application {
     async boot() {
         console.log("Booting ...");
 
-        assert(!GLOBAL_APP, "Tried to construct application twice");
+        this.errorHandler = new ErrorHandler();
+
         logger.log("Creating application, platform =", getPlatformName());
         setGlobalApp(this);
-        MODS.app = this;
 
         // MODS
 
         try {
             await MODS.initMods();
         } catch (ex) {
-            alert("Failed to load mods (launch with --dev for more info): \n\n" + ex);
+            throw new Error("Failed to initialize mods", { cause: ex });
         }
 
         this.unloaded = false;
 
+        // Platform stuff
+        this.storage = new Storage(this, STORAGE_SAVES);
+        await this.storage.initialize();
+
+        this.platformWrapper = new PlatformWrapperImplElectron(this);
+
         // Global stuff
-        this.settings = new ApplicationSettings(this);
+        this.settings = new ApplicationSettings(this, this.storage);
         this.ticker = new AnimationFrame();
         this.stateMgr = new StateManager(this);
-        this.savegameMgr = new SavegameManager(this);
+        // NOTE: SavegameManager uses the passed storage, but savegames always
+        // use Application#storage
+        this.savegameMgr = new SavegameManager(this, this.storage);
         this.inputMgr = new InputDistributor(this);
         this.backgroundResourceLoader = new BackgroundResourcesLoader(this);
         this.clientApi = new ClientAPI(this);
 
-        // Restrictions (Like demo etc)
-        this.restrictionMgr = new RestrictionManager(this);
-
-        // Platform dependent stuff
-
-        /** @type {StorageInterface} */
-        this.storage = null;
-
-        /** @type {SoundInterface} */
-        this.sound = null;
-
-        /** @type {PlatformWrapperInterface} */
-        this.platformWrapper = null;
-
-        /** @type {AchievementProviderInterface} */
-        this.achievementProvider = null;
-
-        /** @type {AdProviderInterface} */
-        this.adProvider = null;
-
-        /** @type {AnalyticsInterface} */
-        this.analytics = null;
-
-        /** @type {ShapezGameAnalytics} */
-        this.gameAnalytics = null;
-
-        this.initPlatformDependentInstances();
+        this.sound = new Sound(this);
 
         // Track if the window is focused (only relevant for browser)
         this.focused = true;
 
         // Track if the window is visible
         this.pageVisible = true;
-
-        // Track if the app is paused (cordova)
-        this.applicationPaused = false;
 
         /** @type {TypedTrackedState<boolean>} */
         this.trackedIsRenderable = new TrackedState(this.onAppRenderableStateChanged, this);
@@ -153,16 +104,7 @@ export class Application {
 
         Loader.linkAppAfterBoot(this);
 
-        if (G_WEGAME_VERSION) {
-            this.stateMgr.moveToState("WegameSplashState");
-        }
-
-        // Check for mobile
-        else if (IS_MOBILE) {
-            this.stateMgr.moveToState("MobileWarningState");
-        } else {
-            this.stateMgr.moveToState("PreloadState");
-        }
+        this.stateMgr.moveToState("PreloadState");
 
         // Starting rendering
         this.ticker.frameEmitted.add(this.onFrameEmitted, this);
@@ -175,34 +117,12 @@ export class Application {
     }
 
     /**
-     * Initializes all platform instances
-     */
-    initPlatformDependentInstances() {
-        logger.log("Creating platform dependent instances (standalone=", G_IS_STANDALONE, ")");
-
-        if (G_IS_STANDALONE) {
-            this.platformWrapper = new PlatformWrapperImplElectron(this);
-        } else {
-            this.platformWrapper = new PlatformWrapperImplBrowser(this);
-        }
-
-        // Start with empty ad provider
-        this.adProvider = new NoAdProvider(this);
-        this.sound = new SoundImplBrowser(this);
-        this.analytics = new GoogleAnalyticsImpl(this);
-        this.gameAnalytics = new ShapezGameAnalytics(this);
-        this.achievementProvider = new NoAchievementProvider(this);
-    }
-
-    /**
      * Registers all game states
      */
     registerStates() {
         /** @type {Array<typeof GameState>} */
         const states = [
-            WegameSplashState,
             PreloadState,
-            MobileWarningState,
             MainMenuState,
             InGameState,
             SettingsState,
@@ -237,7 +157,7 @@ export class Application {
         // Unload events
         window.addEventListener("beforeunload", this.onBeforeUnload.bind(this), true);
 
-        document.addEventListener(pageVisibilityEventName, this.handleVisibilityChange.bind(this), false);
+        document.addEventListener("visibilitychange", this.handleVisibilityChange.bind(this), false);
 
         // Track touches so we can update the focus appropriately
         document.addEventListener("touchstart", this.updateFocusAfterUserInteraction.bind(this), true);
@@ -278,7 +198,7 @@ export class Application {
      */
     handleVisibilityChange(event) {
         window.focus();
-        const pageVisible = !document[pageHiddenPropName];
+        const pageVisible = !document.hidden;
         if (pageVisible !== this.pageVisible) {
             this.pageVisible = pageVisible;
             logger.log("Visibility changed:", this.pageVisible);
@@ -312,7 +232,7 @@ export class Application {
      * Returns if the app is currently visible
      */
     isRenderable() {
-        return !this.applicationPaused && this.pageVisible;
+        return this.pageVisible;
     }
 
     onAppRenderableStateChanged(renderable) {
@@ -334,28 +254,13 @@ export class Application {
     }
 
     onAppPlayingStateChanged(playing) {
-        try {
-            this.adProvider.setPlayStatus(playing);
-        } catch (ex) {
-            console.warn("Play status changed");
-        }
+        // TODO: Check for usages and alternatives. This can be turned into a singal.
     }
 
     /**
      * Internal before-unload handler
      */
-    onBeforeUnload(event) {
-        logSection("BEFORE UNLOAD HANDLER", "#f77");
-        const currentState = this.stateMgr.getCurrentState();
-
-        if (!G_IS_DEV && currentState && currentState.getHasUnloadConfirmation()) {
-            if (!G_IS_STANDALONE) {
-                // Need to show a "Are you sure you want to exit"
-                event.preventDefault();
-                event.returnValue = "Are you sure you want to exit?";
-            }
-        }
-    }
+    onBeforeUnload(event) {}
 
     /**
      * Deinitializes the application
@@ -419,7 +324,7 @@ export class Application {
             }
 
             const scale = this.getEffectiveUiScale();
-            waitNextFrame().then(() => document.documentElement.style.setProperty("--ui-scale", `${scale}`));
+            document.documentElement.style.fontSize = `${round2Digits(scale * 10)}px`;
             window.focus();
         }
     }

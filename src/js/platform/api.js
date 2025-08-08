@@ -1,8 +1,10 @@
 /* typehints:start */
 import { Application } from "../application";
 /* typehints:end */
+
 import { createLogger } from "../core/logging";
-import { compressX64 } from "../core/lzstring";
+import { DialogWithForm } from "../core/modal_dialog_elements";
+import { FormElementInput } from "../core/modal_dialog_forms";
 import { timeoutPromise } from "../core/utils";
 import { T } from "../translations";
 
@@ -24,12 +26,7 @@ export class ClientAPI {
     }
 
     getEndpoint() {
-        if (G_IS_DEV) {
-            return "http://localhost:15001";
-        }
-        if (window.location.host === "beta.shapez.io") {
-            return "https://api-staging.shapez.io";
-        }
+        // TODO: Custom Puzzle DLC server / extract API into a mod?
         return "https://api.shapez.io";
     }
 
@@ -100,32 +97,51 @@ export class ClientAPI {
      * @returns {Promise<{token: string}>}
      */
     apiTryLogin() {
-        if (!G_IS_STANDALONE) {
-            let token = window.localStorage.getItem("steam_sso_auth_token");
-            if (!token && G_IS_DEV) {
-                token = window.prompt(
-                    "Please enter the auth token for the puzzle DLC (If you have none, you can't login):"
-                );
-                window.localStorage.setItem("dev_api_auth_token", token);
-            }
+        // TODO: Wrap the dialogs hack properly (with a meaningful error at least)
+        // ...AND REDUCE THIS BOILERPLATE!!!
+        let token = window.localStorage.getItem("dev_api_auth_token");
+
+        if (token !== null) {
             return Promise.resolve({ token });
         }
 
-        return timeoutPromise(ipcRenderer.invoke("steam:get-ticket"), 15000).then(
-            ticket => {
-                logger.log("Got auth ticket:", ticket);
-                return this._request("/v1/public/login", {
-                    method: "POST",
-                    body: {
-                        token: ticket,
-                    },
+        const state = this.app.stateMgr.getCurrentState();
+        if (!("dialogs" in state)) {
+            return Promise.reject(new Error("Failed to show token input dialog"));
+        }
+
+        /** @type {import("../game/hud/parts/modal_dialogs").HUDModalDialogs} */
+        // @ts-ignore
+        const dialogs = state.dialogs;
+
+        const apiTokenInput = new FormElementInput({
+            id: "apiToken",
+            placeholder: "",
+            validator: value => value.trim().length > 0,
+        });
+
+        const dialog = new DialogWithForm({
+            app: this.app,
+            title: "API Login",
+            desc: "Enter the Puzzle DLC API token:",
+            formElements: [apiTokenInput],
+            buttons: ["cancel", "ok:good"],
+            closeButton: false,
+        });
+
+        return new Promise((resolve, reject) => {
+            dialog.buttonSignals.ok.add(() => {
+                resolve({
+                    token: apiTokenInput.getValue(),
                 });
-            },
-            err => {
-                logger.error("Failed to get auth ticket from steam: ", err);
-                throw err;
-            }
-        );
+            });
+
+            dialog.buttonSignals.cancel.add(() => {
+                reject(new Error("Token input dismissed"));
+            });
+
+            dialogs.internalShowDialog(dialog);
+        });
     }
 
     /**
@@ -235,7 +251,8 @@ export class ClientAPI {
             method: "POST",
             body: {
                 ...payload,
-                data: compressX64(JSON.stringify(payload.data)),
+                // FIXME: Server expects lzstring compressed payload
+                data: JSON.stringify(payload.data),
             },
         });
     }

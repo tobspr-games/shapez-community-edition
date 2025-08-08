@@ -1,12 +1,7 @@
+import { getStringForKeyCode, KEYCODE_LMB, KEYCODE_MMB, KEYCODE_RMB } from "@/core/keycodes";
 import { makeDiv } from "../../../core/utils";
 import { T } from "../../../translations";
-import {
-    getStringForKeyCode,
-    KEYCODE_LMB,
-    KEYCODE_MMB,
-    KEYCODE_RMB,
-    KEYMAPPINGS,
-} from "../../key_action_mapper";
+import { KEYMAPPINGS } from "../../key_action_mapper";
 import { enumHubGoalRewards } from "../../tutorial_goals";
 import { BaseHUDPart } from "../base_hud_part";
 import { DynamicDomAttach } from "../dynamic_dom_attach";
@@ -290,13 +285,13 @@ export class HUDKeybindingOverlay extends BaseHUDPart {
 
                 switch (key) {
                     case KEYCODE_LMB:
-                        html += `<code class="keybinding leftMouse"></code>`;
+                        html += `<kbd class="leftMouse"></kbd>`;
                         break;
                     case KEYCODE_RMB:
-                        html += `<code class="keybinding rightMouse"></code>`;
+                        html += `<kbd class="rightMouse"></kbd>`;
                         break;
                     case KEYCODE_MMB:
-                        html += `<code class="keybinding middleMouse"></code>`;
+                        html += `<kbd class="middleMouse"></kbd>`;
                         break;
                     case DIVIDER_TOKEN:
                         html += `<i></i>`;
@@ -305,9 +300,9 @@ export class HUDKeybindingOverlay extends BaseHUDPart {
                         html += `+`;
                         break;
                     default:
-                        html += `<code class="keybinding">${getStringForKeyCode(
+                        html += `<kbd>${getStringForKeyCode(
                             mapper.getBinding(/** @type {KeyCode} */ (key)).keyCode
-                        )}</code>`;
+                        )}</kbd>`;
                 }
             }
             html += `<label>${handle.label}</label>`;

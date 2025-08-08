@@ -7,27 +7,20 @@
 }
 
 @import "resources";
-@import "trigonometry";
-@import "material_colors";
-@import "dynamic_ui";
 @import "variables";
 
 @import "mixins";
 @import "common";
-@import "animations";
 @import "game_state";
 @import "textual_game_state";
-@import "adinplay";
-@import "changelog_skins";
+@import "error_handler";
 
-@import "states/wegame_splash";
 @import "states/preload";
 @import "states/main_menu";
 @import "states/ingame";
 @import "states/keybindings";
 @import "states/settings";
 @import "states/about";
-@import "states/mobile_warning";
 @import "states/changelog";
 @import "states/puzzle_menu";
 @import "states/mods";
@@ -48,14 +41,12 @@
 @import "ingame_hud/debug_info";
 @import "ingame_hud/entity_debugger";
 @import "ingame_hud/tutorial_hints";
-@import "ingame_hud/watermark";
 @import "ingame_hud/blueprint_placer";
 @import "ingame_hud/waypoints";
 @import "ingame_hud/interactive_tutorial";
 @import "ingame_hud/color_blind_helper";
 @import "ingame_hud/shape_viewer";
 @import "ingame_hud/sandbox_controller";
-@import "ingame_hud/standalone_advantages";
 @import "ingame_hud/puzzle_back_to_menu";
 @import "ingame_hud/puzzle_editor_review";
 @import "ingame_hud/puzzle_dlc_logo";
@@ -101,7 +92,6 @@ ingame_HUD_wires_toolbar,
 ingame_HUD_BlueprintPlacer,
 ingame_HUD_Waypoints_Hint,
 ingame_HUD_WatermarkClicker,
-ingame_HUD_Watermark,
 ingame_HUD_ColorBlindBelowTileHelper,
 ingame_HUD_SandboxController,
 
@@ -112,7 +102,6 @@ ingame_HUD_BetaOverlay,
 ingame_HUD_Shop,
 ingame_HUD_Statistics,
 ingame_HUD_ShapeViewer,
-ingame_HUD_StandaloneAdvantages,
 ingame_HUD_UnlockNotification,
 ingame_HUD_PuzzleCompleteNotification,
 ingame_HUD_SettingsMenu,
@@ -129,7 +118,9 @@ $zindex: 100;
 }
 
 body.uiHidden {
-    > div:not(.ingameDialog):not(#ingame_HUD_SettingsMenu):not(#ingame_HUD_ModalDialogs):not(#ingame_HUD_UnlockNotification):not(#ingame_HUD_PuzzleCompleteNotification) {
+    > div:not(.ingameDialog):not(#ingame_HUD_SettingsMenu):not(#ingame_HUD_ModalDialogs):not(
+            #ingame_HUD_UnlockNotification
+        ):not(#ingame_HUD_PuzzleCompleteNotification) {
         display: none !important;
     }
 }

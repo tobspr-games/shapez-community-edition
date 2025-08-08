@@ -1,6 +1,6 @@
 import { BaseSavegameInterface } from "../savegame_interface.js";
 
-const schema = require("./1000.json");
+import schema from "./1000.json";
 
 export class SavegameInterface_V1000 extends BaseSavegameInterface {
     getVersion() {
