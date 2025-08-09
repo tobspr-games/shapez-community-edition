@@ -836,8 +836,8 @@ settings:
                 large: Grande
                 huge: Enorme
         scrollWheelSensitivity:
-            title: Sensibilidade do zoom
-            description: Define o quão sensível é o zoom (Roda do rato ou trackpad).
+            title: Sensibilidade do aproximar
+            description: Define o quão sensível é o aproximar (Roda do rato ou trackpad).
             sensitivity:
                 super_slow: Muito lento
                 slow: Lento
@@ -974,14 +974,13 @@ settings:
                 velocidade depende da definição de velocidade de movimentação.
         zoomToCursor:
             title: Aproximar no cursor
-            description: Se ativado o zoom será na direção da posição do teu rato, de outra
+            description: Se ativado o aproximar será na direção da posição do teu rato, de outra
                 forma será para o centro do ecrã.
         mapResourcesScale:
             title: Tamanho de Recursos no Mapa
-            description: Controla o tamanho das formas na visão geral do mapa (aplicando
-                zoom out).
+            description: Controla o tamanho das formas na visão geral do mapa (ao afastar a visão).
         shapeTooltipAlwaysOn:
-            title: Shape Tooltip - Mostrar Sempre
+            title: Dica da ferramenta de forma - Mostrar Sempre
             description: Mostrar sempre a shape tooltip quando passar sobre construções, em
                 vez de pressionar 'ALT'.
     rangeSliderPercentage: <amount> %
@@ -991,7 +990,7 @@ keybindings:
     title: Atalhos
     hint: "Dica: Utiliza o CTRL, o SHIFT e o ALT! Eles permitem diferentes opções de
         posicionamento."
-    resetKeybindings: Resetar Atalhos
+    resetKeybindings: Repor Atalhos
     categoryLabels:
         general: Aplicação
         ingame: Jogo
@@ -1009,8 +1008,8 @@ keybindings:
         mapMoveDown: Mover para baixo
         mapMoveLeft: Mover para a esquerda
         centerMap: Centrar o mapa
-        mapZoomIn: Zoom in
-        mapZoomOut: Zoom out
+        mapZoomIn: Aproximar
+        mapZoomOut: Afastar
         createMarker: Criar Marco
         menuOpenShop: Upgrades
         menuOpenStats: Estatísticas
@@ -1069,7 +1068,7 @@ keybindings:
         goal_acceptor: Recetor de Objetivo
         block: Bloqueador
         massSelectClear: Limpar tapetes rolante
-        showShapeTooltip: Mostrar shape output tooltip
+        showShapeTooltip: Mostrar dica do processador de forma
 about:
     title: Sobre o Jogo
     body: >-
