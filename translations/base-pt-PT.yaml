@@ -64,7 +64,7 @@ dialogs:
         text: "Erro ao importar o teu jogo salvo:"
     importSavegameSuccess:
         title: Jogo salvo importado
-        text: O teu jogo guardado foi importado com sucesso.
+        text: O teu jogo salvo foi importado com sucesso.
     gameLoadFailure:
         title: O jogo está indisponível
         text: "Erro ao carregar o teu jogo salvo:"
