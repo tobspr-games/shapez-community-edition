@@ -30,7 +30,7 @@ global:
         shift: SHIFT
         space: SPACE
     loggingIn: A conectar
-    loadingResources: A Baixar recursos adicionais (<percentage> %)
+    loadingResources: A descarregar recursos adicionais (<percentage> %)
 mainMenu:
     play: Jogar
     importSavegame: Importar
@@ -43,7 +43,7 @@ mainMenu:
     mods:
         warningPuzzleDLC: Jogar o DLC Modo Puzzle não é possível com modos. Por favor
             desativa todos os modos antes de jogares o DLC
-    noActiveSavegames: Não foram encontrados savegames - Clica para começar um jogo novo!
+    noActiveSavegames: Não foram encontrados jogo salvos - Clica para começar um jogo novo!
 dialogs:
     buttons:
         ok: OK
@@ -51,9 +51,9 @@ dialogs:
         cancel: Cancelar
         later: Mais tarde
         restart: Recomeçar
-        reset: Resetar
+        reset: Repor
         deleteGame: Eu sei o que faço
-        viewUpdate: Ver Update
+        viewUpdate: Ver atualização
         showUpgrades: Mostrar Upgrades
         showKeybindings: Mostrar Atalhos
         retry: Tentar novamente
@@ -61,20 +61,20 @@ dialogs:
         playOffline: Jogar Offline
     importSavegameError:
         title: Erro de importação
-        text: "Erro ao importar o teu savegame:"
+        text: "Erro ao importar o teu jogo salvo:"
     importSavegameSuccess:
-        title: Savegame importado
-        text: O teu savegame foi importado com sucesso.
+        title: Jogo salvo importado
+        text: O teu jogo salvo foi importado com sucesso.
     gameLoadFailure:
-        title: O jogo está em baixo
-        text: "Erro ao carregar o teu savegame:"
+        title: O jogo está indisponível
+        text: "Erro ao carregar o teu jogo salvo:"
     confirmSavegameDelete:
         title: Confirmar eliminação
         text: Tens a certeza que queres apagar o seguinte jogo?<br><br> '<savegameName>'
             no nível <savegameLevel><br><br> Isto não pode ser desfeito!
     savegameDeletionError:
         title: Erro de eliminação
-        text: "Erro ao eliminar o teu savegame:"
+        text: "Erro ao eliminar o teu jogo salvo:"
     restartRequired:
         title: Necessário reiniciar
         text: Precisas de reiniciar o jogo para aplicar as mudanças.
@@ -83,20 +83,20 @@ dialogs:
         desc: Pressiona a tecla ou botão do rato que pretendes definir, ou Escape para
             cancelar.
     resetKeybindingsConfirmation:
-        title: Resetar Atalhos
-        desc: Isto irá resetar todos os Atalhos para os seus valores pré-definidos.
+        title: Repor Atalhos
+        desc: Isto irá repor todos os Atalhos para os seus valores pré-definidos.
             Confirma por favor.
     keybindingsResetOk:
-        title: Atalhos resetados
-        desc: Os Atalhos foram resetados para os respetivos valores pré-definidos!
+        title: Atalhos repostos
+        desc: Os Atalhos foram repostos para os respetivos valores pré-definidos!
     updateSummary:
         title: Nova atualização!
         desc: "Aqui estão as mudanças desde a última vez que jogaste:"
     upgradesIntroduction:
-        title: Desbloqueia upgrades
+        title: Desbloqueia melhorias
         desc: Todas as formas geométricas que produzes podem ser usadas para desbloquear
-            upgrades - <strong>Não destruas as tuas fábricas antigas!</strong> A
-            aba dos upgrades pode ser encontrada no canto superior direito do
+            melhorias - <strong>Não destruas as tuas fábricas antigas!</strong> A
+            aba das melhorias pode ser encontrada no canto superior direito do
             ecrã.
     massDeleteConfirm:
         title: Confirmar eliminação
@@ -129,7 +129,7 @@ dialogs:
         title: Exportar captura de ecrã
         desc: Tu estás a pedir pra exportar a tua base como uma captura de ecrã. Por
             favor tem em atenção que isto pode ser um pouco lento para uma base
-            muito grande até mesmo bloquear o teu jogo!
+            muito grande e até mesmo bloquear o teu jogo!
     massCutInsufficientConfirm:
         title: Confirma o corte
         desc: Não consegues pagar para colar esta área! Tens a certeza que pretendes
@@ -140,8 +140,8 @@ dialogs:
         descShortKey: ... ou insere o <strong>pequeno código</strong> de uma forma (Pode
             ser gerado <link>aqui</link>)
     renameSavegame:
-        title: Renomear Savegame
-        desc: Podes renomear o teu savegame aqui.
+        title: Renomear jogo salvo
+        desc: Podes renomear o teu jogo salvo aqui.
     tutorialVideoAvailable:
         title: Tutorial Disponível
         desc: Existe um vídeo de tutorial disponível para este nível! Gostarias de o
@@ -175,8 +175,8 @@ dialogs:
             em modo offline. Por favor assegura-te de que tens uma boa conexão
             de internet.
     puzzleDownloadError:
-        title: Falha no Download
-        desc: "Falha ao fazer o download do puzzle:"
+        title: Falha na descarga
+        desc: "Falha ao fazer a descarga do puzzle:"
     puzzleSubmitError:
         title: Erro ao submeter
         desc: "Falha ao submeter o teu puzzle:"
@@ -193,12 +193,12 @@ dialogs:
         title: Recomendação
         desc: Eu recomendo <strong>fortemente</strong> a jogares no modo normal até ao
             nível 12 antes de tentares o "puzzle DLC", caso contrário poderás
-            encontrar mecanicas às quais ainda não foste introduzido. Mesmo
+            encontrar mecânicas às quais ainda não foste introduzido. Mesmo
             assim queres continuar?
     puzzleShare:
         title: Pequeno código copiado
         desc: O pequeno código do puzzle (<key>) foi copiado para a tua área de
-            transferências! Poderá ser introduzido no menu puzzle para teres
+            transferência! Poderá ser introduzido no menu puzzle para teres
             acesso ao puzzle.
     puzzleReport:
         title: Reportar Puzzle
@@ -207,7 +207,7 @@ dialogs:
             unsolvable: Não solucionável
             trolling: Trolling
     puzzleReportComplete:
-        title: Obrigado pelo teu feedback!
+        title: Obrigado pelo teu comentário!
         desc: O puzzle foi sinalizado.
     puzzleReportError:
         title: Falha ao reportar
@@ -221,7 +221,7 @@ dialogs:
     modsDifference:
         title: Aviso de Modos
         desc: Os modos instalados atualmente são diferentes dos modos utilizados no
-            atual savegame. Isto pode fazer com que o teu savegame falhe ou não
+            savegame atual. Isto pode fazer com que o teu savegame falhe ou não
             carregue. Tens a certeza que queres continuar?
         missingMods: Modos em Falta
         newMods: Modos instalados recentemente
@@ -269,12 +269,12 @@ ingame:
         unlockText: <reward> desbloqueado!
         buttonNextLevel: Próximo nível
     notifications:
-        newUpgrade: Está disponível um novo upgrade!
+        newUpgrade: Está disponível uma nova melhoria!
         gameSaved: O teu jogo foi guardado.
         freeplayLevelComplete: Nível <level> completo!
     shop:
-        title: Upgrades
-        buttonUnlock: Upgrade
+        title: Melhorias
+        buttonUnlock: Melhoria
         tier: Nível <x>
         maximumLevel: NÍVEL MÁXIMO (Velocidade x<currentMult>)
     statistics:
@@ -391,9 +391,9 @@ ingame:
               <strong>Recetor de Objetivo</strong>
             - 3. Assim que o Recetor de Objetivo receba uma forma durante um
               certo espaço de tempo, ele <strong>guarda-a num objetivo</strong>
-              que o jogador terá de produzir mais tarde (Indicatdo pelo
+              que o jogador terá de produzir mais tarde (Indicado pelo
               <strong>distintivo verde</strong>).
-            - 4. Clcica no <strong>botão de bloqueio</strong> numa construção
+            - 4. Clica no <strong>botão de bloqueio</strong> numa construção
               para desátiva-lo.
             - 5. Assim que clicares em analisar, o teu puzzle será validado e
               poderás publicá-lo.
@@ -455,7 +455,7 @@ buildings:
                 apenas usares uma parte, destrói a outra para não encravar a
                 produção!</strong>
         quad:
-            name: Cortador (Quád)
+            name: Cortador (Quad)
             description: Corta as formas geométricas em quatro partes. <strong>Se apenas
                 usares uma parte, destrói as outras partes para não encravar a
                 produção!</strong>
@@ -545,7 +545,7 @@ buildings:
     constant_signal:
         default:
             name: Sinal Constante
-            description: Emite um sinal constante , que pode ser uma forma, cor ou um sinal
+            description: Emite um sinal constante, que pode ser uma forma, cor ou um sinal
                 binário (1 ou 0).
     lever:
         default:
@@ -569,7 +569,7 @@ buildings:
                 "1")'
         or:
             name: Portão OR
-            description: 'Emite um sinal binário "1" se uma entrada é verdadeira.
+            description: 'Emite um sinal binário "1" se uma entrada for verdadeira.
                 (Verdadeiro significa: forma, cor ou sinal binário "1")'
     transistor:
         default:
@@ -649,7 +649,7 @@ storyRewards:
         title: Corte de formas
         desc: Acabaste de desbloquear o <strong>cortador</strong>, que corta as formas
             ao meio de cima para baixo <strong>independentemente da sua
-            orientação</strong>!<br><br>Certefica-te de que te livras do
+            orientação</strong>!<br><br>Certifica-te de que te livras do
             desperdício, caso contrário <strong>irá encravar e parar</strong> -
             Para este propósito eu dei-te um <strong>lixo</strong>, que destrói
             tudo o que lá colocares!
@@ -691,7 +691,7 @@ storyRewards:
             variantes</strong>!
     reward_miner_chainable:
         title: Extração em série
-        desc: "Desbloqueaste o <strong>extrator em séire</strong>! Permite
+        desc: "Desbloqueaste o <strong>extrator em série</strong>! Permite
             <strong>enviar os recursos</strong> para outros extratores, sendo
             assim permite uma extração de recursos mais eficiente!<br><br> PS: O
             extrator antigo já foi trocado na tua lista de construções!"
@@ -723,9 +723,9 @@ storyRewards:
             <strong>aleatoriamente</strong>!<br><br> Como o edifício central vai
             precisar de uma <strong>taxa de rendimento</strong> a partir de
             agora, recomendo vivamente a contruires uma máquina que,
-            automaticamente, entraga as formas pedidas!<br><br> O edifício
+            automaticamente, entregue as formas pedidas!<br><br> O edifício
             central emite a forma pedida na camada de fios,sendo assim tudo o
-            que tens a fazer é analiza-la e automaticamente configurares a tua
+            que tens a fazer é analisa-la e automaticamente configurares a tua
             fábrica baseada nisso.
     reward_blueprints:
         title: Projetos
@@ -770,33 +770,33 @@ storyRewards:
             isso num visor!"
     reward_constant_signal:
         title: Sinal Constante
-        desc: Desbloqueaste o <strong>sinal constante</strong> contruido na camada de
+        desc: Desbloqueaste o <strong>sinal constante</strong> contruído na camada de
             fios! Isto é útil conectado com um <strong>filtro de itens</strong>
             por exemplo.<br><br> O sinal constante pode emitir uma
             <strong>forma</strong>, <strong>cor</strong> ou <strong>sinal
             binário</strong> (1 ou 0).
     reward_logic_gates:
-        title: Portões Lógicos
-        desc: Desbloqueaste os <strong>portões lógicos</strong>! Não tens de te excitar
-            com isto, mas é realmente super fixe!<br><br> Com estes portões
+        title: Portas Lógicos
+        desc: Desbloqueaste as <strong>portas lógicas</strong>! Não tens de te excitar
+            com isto, mas é realmente super fixe!<br><br> Com estas portas
             agora podes realizar operações AND, OR, XOR and NOT.<br><br> Como um
             bónus anteriormente já te dei um <strong>transístor</strong>!
     reward_virtual_processing:
         title: Processamento Virtual
-        desc: Acadei de te dar um monte de novas construções, que te vão permitir
+        desc: Acabei de te dar um monte de novas construções, que te vão permitir
             <strong>simular o processamento de formas</strong>!<br><br> Agora
             podes simular um cortador, um rodador, um empilhador e muito mais na
             camada de fios! Com isto, agora tens três opções para continuares o
             jogo:<br><br> - Construir uma <strong>máquina automática</strong>
             para criar qualquer forma possível pedida pelo Edifício Central
-            (Reconmento-te a experimentares!).<br><br> - Contruir algo fixe com
+            (Reconmento-te a experimentares!).<br><br> - Construir algo fixe com
             os fios.<br><br> - Continuar a jogar regularmente.<br><br>
             Independentemente da tua escolha, lembra-te de te divertires!
     reward_wires_painter_and_levers:
         title: Fios & Pintor Quádruplo
         desc: "Desbloquaste a <strong>Camada de Fios</strong>: É uma camada separada no
             topo da camada normal e introduz um monte de novas
-            mecânicas!<br><br> Para o inicio eu dei-te o <strong>Pintor
+            mecânicas!<br><br> Para o início eu dei-te o <strong>Pintor
             Quádruplo</strong> - Conecta as entradas que queres pintar na camada
             de fios!<br><br> Para trocares para a camada de fios, pressiona a
             tecla <strong>E</strong>. <br><br> PS: <strong>Ativa as
@@ -817,7 +817,7 @@ settings:
         general: Geral
         userInterface: Interface de Utilizador
         advanced: Avançado
-        performance: Performance
+        performance: Desempenho
     versionBadges:
         dev: Desenvolvimento
         staging: Ensaio
@@ -836,8 +836,8 @@ settings:
                 large: Grande
                 huge: Enorme
         scrollWheelSensitivity:
-            title: Sensibilidade do zoom
-            description: Define o quão sensível é o zoom (Roda do rato ou trackpado).
+            title: Sensibilidade do aproximar
+            description: Define o quão sensível é o aproximar (Roda do rato ou trackpad).
             sensitivity:
                 super_slow: Muito lento
                 slow: Lento
@@ -867,7 +867,7 @@ settings:
         refreshRate:
             title: Frequência
             description: Se tens um monitor 144hz, muda a frequência para que o jogo simule
-                corretamente frequências de autalização altas. Isto pode
+                corretamente frequências de atualização altas. Isto pode
                 resultar em perda de FPS se o teu computador for demasiado
                 lento.
         alwaysMultiplace:
@@ -952,7 +952,7 @@ settings:
         lowQualityTextures:
             title: Texturas de baixa qualidade (Feio)
             description: Usa texturas de baixa qualidade para melhorar o desempenho. Isto
-                vai tornar o jogo parecer muito feio!
+                vai causar o jogo parecer muito feio!
         displayChunkBorders:
             title: Mostrar bordas de limites (chunk borders)
             description: O jogo está dividido em partes de 16x16 quadrados, se esta
@@ -964,24 +964,23 @@ settings:
                 estiveres com o rato em cima de um quadrado de recurso.
         simplifiedBelts:
             title: Tapetes rolantes simplificados (Feio)
-            description: Não renderiza os intens nos tapetes excepto quando tens o rato em
+            description: Não renderiza os items nos tapetes excepto quando tens o rato em
                 cima do tapete para melhorar o desempenho. Não recomendo a
                 jogares com esta definição ativada a não ser que precises mesmo
                 de melhorar o desempenho.
         enableMousePan:
             title: Ativar rato panorâmico
             description: Permite-te mover o mapa movento o rato nos cantos do ecrâ. A
-                velociade depende da definição de velocidade de movimentação.
+                velocidade depende da definição de velocidade de movimentação.
         zoomToCursor:
             title: Aproximar no cursor
-            description: Se ativado o zoom será na direção da posição do teu rato, de outra
+            description: Se ativado o aproximar será na direção da posição do teu rato, de outra
                 forma será para o centro do ecrã.
         mapResourcesScale:
             title: Tamanho de Recursos no Mapa
-            description: Controla o tamanho das formas na visão geral do mapa (aplicando
-                zoom out).
+            description: Controla o tamanho das formas na visão geral do mapa (ao afastar a visão).
         shapeTooltipAlwaysOn:
-            title: Shape Tooltip - Mostrar Sempre
+            title: Dica da ferramenta de forma - Mostrar Sempre
             description: Mostrar sempre a shape tooltip quando passar sobre construções, em
                 vez de pressionar 'ALT'.
     rangeSliderPercentage: <amount> %
@@ -991,7 +990,7 @@ keybindings:
     title: Atalhos
     hint: "Dica: Utiliza o CTRL, o SHIFT e o ALT! Eles permitem diferentes opções de
         posicionamento."
-    resetKeybindings: Resetar Atalhos
+    resetKeybindings: Repor Atalhos
     categoryLabels:
         general: Aplicação
         ingame: Jogo
@@ -1009,8 +1008,8 @@ keybindings:
         mapMoveDown: Mover para baixo
         mapMoveLeft: Mover para a esquerda
         centerMap: Centrar o mapa
-        mapZoomIn: Zoom in
-        mapZoomOut: Zoom out
+        mapZoomIn: Aproximar
+        mapZoomOut: Afastar
         createMarker: Criar Marco
         menuOpenShop: Upgrades
         menuOpenStats: Estatísticas
@@ -1056,7 +1055,7 @@ keybindings:
         display: Display
         reader: Leitor de Tapete
         virtual_processor: Cortador Virtual
-        transistor: Transistor
+        transistor: Transístor
         analyzer: Analisador de Forma
         comparator: Comparador
         item_producer: Produtor de Itens (Sandbox)
@@ -1069,7 +1068,7 @@ keybindings:
         goal_acceptor: Recetor de Objetivo
         block: Bloqueador
         massSelectClear: Limpar tapetes rolante
-        showShapeTooltip: Show shape output tooltip
+        showShapeTooltip: Mostrar dica do processador de forma
 about:
     title: Sobre o Jogo
     body: >-
@@ -1100,7 +1099,7 @@ tips:
     - Os rácios continuam os mesmos, desde que todos os upgrades estejam no
       mesmo Nível.
     - Execução em série é mais eficiente que em paralelo.
-    - Vais desbloquear mais variações de edifícios, mais tarde no jogo!
+    - Vais desbloquear mais variações de edifícios mais tarde no jogo!
     - Podes usar <b>T</b> para trocares entre as diferentes variantes.
     - Simetria é a solução!
     - Podes entrelaçar diferentes tipos de túneis.
@@ -1126,12 +1125,12 @@ tips:
     - Organização é importante. Tenta não cruzar demasiados tapetes.
     - Planeia antecipadamente, ou vai ser um grande caos!
     - Não removas as tuas fábricas antigas! Vais precisar delas para
-      desbloqueares upgrades.
+      desbloqueares melhorias.
     - Tenta superar o nível 20 sozinho sem procurar ajuda!
-    - Não complicas as coisas, tenta continuar simples e irás muito longe.
+    - Não compliques as coisas, tenta continuar simples e irás muito longe.
     - Talvez precises de reutilizar fábricas, mais tarde no jogo. Planeia as
       tuas fábricas para serem reutilizáveis.
-    - Às vezes, podes encontrar uma forma necessária no mapa sem criar-la com
+    - Às vezes, podes encontrar uma forma necessária no mapa sem a criar com
       empilhadoras.
     - Moinhos de vento e cataventos completos nunca aparecem naturalmente.
     - Pinta as tuas formas antes de as cortares para eficiência máxima.
@@ -1142,14 +1141,14 @@ tips:
     - Usa <b>CTRL</b> + Clique para selecionar uma área.
     - Construir demasiado perto do edifício central pode ficar no caminho de
       projetos futuros.
-    - O ícone de alfinete perto duma forma na lista de upgrades vai afixa-la ao
+    - O ícone de alfinete perto duma forma na lista de melhorias afixa-la-à ao
       ecrã.
     - Junta todas as cores primárias para fazeres branco!
     - Tu tens um mapa infinito, não limites a tua fábrica, expande!
     - Tenta também Factorio! É o meu jogo favorito.
     - O cortador quádruplo corta no sentido dos ponteiros do relógio começando
       no canto superior direito!
-    - Podes fazer download dos teus savegames no menu principal!
+    - Podes descarregar os teus jogos guardados no menu principal!
     - Este jogo tem muitos atalhos de teclado úteis! Não te esqueças de
       verificar a página de configurações.
     - Este jogo tem muitas definições, não te esqueças de as verificar!
@@ -1157,8 +1156,8 @@ tips:
       sua direção!
     - Para limpar tapetes, corta a área e cola-a na mesma localização.
     - Pressiona F4 para mostrar os teus FPS e Tick Rate.
-    - Pressiona F4 duas vezes para mostrar a tile do teu rato e câmara.
-    - Podes clicar numa forma afixada no lado direito para desafixa-la.
+    - Pressiona F4 duas vezes para mostrar a quadrícula do teu rato e câmara.
+    - Podes clicar numa forma afixada no lado direito para desafixá-la.
 puzzleMenu:
     play: Jogar
     edit: Editar
@@ -1190,7 +1189,7 @@ puzzleMenu:
         noProducers: Por favor coloca um Produtor Constante!
         noGoalAcceptors: Por favor coloca um Recetor de Objetivo!
         goalAcceptorNoItem: Um ou mais Recetores de Objetivo ainda não tem itens
-            atrbuídos. Entrega uma forma nele para definires um objetivo.
+            atribuídos. Entrega uma forma nele para definires um objetivo.
         goalAcceptorRateNotMet: Um ou mais Recetores de Objetivo não está a receber
             itens suficientes. Assegura-te de que tens o indicador verde em
             todos os Recetores.
@@ -1204,8 +1203,8 @@ puzzleMenu:
         medium: Médio
         hard: Difícil
         unknown: Sem Classificação
-    dlcHint: Já compraste o DLC? Certifica-te de que o ativaste clicando no botãoo
-        direito de shapez.io na tua biblioteca, selecionar Properties > DLCs.
+    dlcHint: Já compraste o DLC? Certifica-te de que o ativaste clicando no botão
+        direito de shapez.io na tua biblioteca, seleciona Propriedades > DLCs.
     search:
         action: Procurar
         placeholder: Introduzir um puzzle ou nome de autor
@@ -1222,11 +1221,11 @@ puzzleMenu:
             long: Longa (> 10 min)
 backendErrors:
     ratelimit: Estás a realizar as tuas ações demasiado rápido. Aguarda um pouco.
-    invalid-api-key: Falha ao cominucar com o backend, por favor tenta
-        atualizar/resetar o Jogo (Chave Api inválida).
-    unauthorized: Falha ao cominucar com o backend, or favor tenta atualizar/resetar
+    invalid-api-key: Falha ao comunicar com o backend, por favor tenta
+        atualizar/repor o Jogo (Chave Api inválida).
+    unauthorized: Falha ao comunicar com o backend, por favor tenta atualizar/repor
         o Jogo (Não autorizado).
-    bad-token: Falha ao cominucar com o backend, por favor tenta atualizar/resetar o
+    bad-token: Falha ao comunicar com o backend, por favor tenta atualizar/repor o
         Jogo (Mau Token).
     bad-id: Identificador de Puzzle inválido.
     not-found: O Puzzle pedido não foi encontrado.
