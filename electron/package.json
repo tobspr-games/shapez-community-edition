@@ -2,6 +2,7 @@
     "name": "electron",
     "version": "1.0.0",
     "license": "MIT",
+    "desktopName": "io.shapez.community.desktop",
     "type": "module",
     "main": "dist/index.js",
     "private": true,
