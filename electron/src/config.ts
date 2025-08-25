@@ -5,7 +5,6 @@ const disabledFeatures = ["HardwareMediaKeyHandling"];
 app.commandLine.appendSwitch("disable-features", disabledFeatures.join(","));
 
 export const defaultWindowTitle = "shapez CE";
-app.setName("shapez-ce");
 
 // This variable should be used to avoid situations where the app name
 // wasn't set yet.
