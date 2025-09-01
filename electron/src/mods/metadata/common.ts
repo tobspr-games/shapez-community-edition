@@ -7,7 +7,7 @@ export const semver = z.string().transform((str, ctx) => {
         return new SemVer(str);
     } catch {
         ctx.addIssue({
-            code: z.ZodIssueCode.custom,
+            code: "custom",
             message: "Not a valid SemVer version string",
         });
         return z.NEVER;
@@ -19,7 +19,7 @@ export const semverRange = z.string().transform((str, ctx) => {
         return new Range(str);
     } catch {
         ctx.addIssue({
-            code: z.ZodIssueCode.custom,
+            code: "custom",
             message: "Not a valid SemVer range string",
         });
         return z.NEVER;

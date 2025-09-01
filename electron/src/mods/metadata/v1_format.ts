@@ -10,11 +10,11 @@ export const ModMetadata = z.object({
     authors: z
         .object({
             name: z.string().nonempty(),
-            website: z.string().url().optional(),
+            website: z.url().optional(),
         })
         .array(),
     version: semver,
     savegameResident: z.boolean().default(true),
-    website: z.string().url().optional(),
-    source: z.string().url().optional(),
+    website: z.url().optional(),
+    source: z.url().optional(),
 });

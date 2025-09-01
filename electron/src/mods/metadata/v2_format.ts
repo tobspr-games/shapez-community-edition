@@ -7,7 +7,7 @@ export const ModMetadata = ModMetadataV1.extend({
     dependencies: z
         .object({
             id: ModID,
-            version: semverRange.default("*"),
+            version: semverRange.prefault("*"),
             optional: z.boolean().default(false),
             loadOrder: z.enum(["before", "after"]).default("after"),
         })
