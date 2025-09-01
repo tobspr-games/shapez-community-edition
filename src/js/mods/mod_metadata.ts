@@ -5,8 +5,8 @@ export interface ModAuthor {
     website?: string;
 }
 
-export interface ModMetadata {
-    // format: 1;
+type ModMetadataV1 = {
+    format: 1;
     id: string;
     entry: string;
     name: string;
@@ -16,7 +16,19 @@ export interface ModMetadata {
     savegameResident: boolean;
     website?: string;
     source?: string;
-}
+};
+
+type ModMetadataV2 = {
+    format: 2;
+    dependencies: {
+        id: string;
+        version: Range;
+        optional: boolean;
+        loadOrder: "before" | "after";
+    }[];
+} & Omit<ModMetadataV1, "format">;
+
+export type ModMetadata = ModMetadataV1 | ModMetadataV2;
 
 export type ModSource = "user" | "distro" | "dev";
 
@@ -33,6 +45,6 @@ export interface ModInfo {
     mod: Mod;
 }
 
-export interface FrozenModMetadata extends Readonly<Omit<ModMetadata, "authors">> {
+export interface FrozenModMetadata extends Readonly<Omit<ModMetadata, "authors" | "dependencies">> {
     authors: ReadonlyArray<Readonly<ModAuthor>>;
 }
