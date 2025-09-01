@@ -13,6 +13,15 @@ function freezeMetadata(metadata: ModMetadata): FrozenModMetadata {
     }
 
     Object.freeze(metadata.authors);
+
+    if (metadata.format === 2) {
+        for (const dependency of metadata.dependencies) {
+            Object.freeze(dependency);
+        }
+
+        Object.freeze(metadata.dependencies);
+    }
+
     return Object.freeze(metadata);
 }
 
