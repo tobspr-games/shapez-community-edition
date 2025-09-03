@@ -5,6 +5,13 @@ export interface ModAuthor {
     website?: string;
 }
 
+export interface ModDependency {
+    id: string;
+    version: string;
+    optional: boolean;
+    loadOrder: "before" | "after";
+}
+
 type ModMetadataV1 = {
     format: 1;
     id: string;
@@ -20,12 +27,8 @@ type ModMetadataV1 = {
 
 type ModMetadataV2 = {
     format: 2;
-    dependencies: {
-        id: string;
-        version: Range;
-        optional: boolean;
-        loadOrder: "before" | "after";
-    }[];
+    dependencies: ModDependency[];
+    loadOrder: "beforeAll" | "afterAll";
 } & Omit<ModMetadataV1, "format">;
 
 export type ModMetadata = ModMetadataV1 | ModMetadataV2;
@@ -47,4 +50,5 @@ export interface ModInfo {
 
 export interface FrozenModMetadata extends Readonly<Omit<ModMetadata, "authors" | "dependencies">> {
     authors: ReadonlyArray<Readonly<ModAuthor>>;
+    dependencies: ReadonlyArray<Readonly<ModDependency>>;
 }
