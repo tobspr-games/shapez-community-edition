@@ -116,10 +116,6 @@
         text-align: right;
         font-weight: bold !important;
 
-        .kbd {
-            position: relative;
-        }
-
         @include DarkThemeOverride {
             color: rgba(#fff, 0.5);
         }

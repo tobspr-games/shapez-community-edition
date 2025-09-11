@@ -79,6 +79,7 @@ button {
     transition: opacity 0.12s ease-in-out;
 
     kbd {
+        position: absolute;
         bottom: -0.25rem;
         right: -0.2rem;
     }
@@ -480,9 +481,6 @@ kbd,
     align-items: center;
     min-width: 1.2rem;
     display: inline-flex;
-    position: absolute;
-    bottom: 0rem;
-    right: 0rem;
     z-index: 999;
     box-sizing: border-box;
     height: 1.2rem;
