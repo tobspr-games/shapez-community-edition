@@ -14,7 +14,7 @@ function freezeMetadata(metadata: ModMetadata): FrozenModMetadata {
 
     Object.freeze(metadata.authors);
 
-    if (metadata.format === 2) {
+    if (metadata.format !== 1) {
         for (const dependency of metadata.dependencies) {
             Object.freeze(dependency);
         }
