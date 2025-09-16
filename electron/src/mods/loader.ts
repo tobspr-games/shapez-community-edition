@@ -43,6 +43,12 @@ class Mod {
             disabled: this.disabled,
             metadata: {
                 ...this.metadata,
+                dependencies: this.metadata.dependencies.map(dependency => ({
+                    id: dependency.id,
+                    loadOrder: dependency.loadOrder,
+                    optional: dependency.optional,
+                    version: dependency.version.format(),
+                })),
                 version: this.metadata.version.format(),
             },
         };
