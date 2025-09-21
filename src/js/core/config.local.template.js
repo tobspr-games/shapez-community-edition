@@ -53,9 +53,6 @@ export default {
     // Replace all translations with emojis to see which texts are translateable
     // testTranslations: true,
     // -----------------------------------------------------------------------------------
-    // Enables an inspector which shows information about the entity below the cursor
-    // enableEntityInspector: true,
-    // -----------------------------------------------------------------------------------
     // Enables use of (some) existing flags within the puzzle mode context
     // testPuzzleMode: true,
     // -----------------------------------------------------------------------------------
@@ -67,9 +64,6 @@ export default {
     // -----------------------------------------------------------------------------------
     // Makes belts almost infinitely fast
     // instantBelts: true,
-    // -----------------------------------------------------------------------------------
-    // Makes item processors almost infinitely fast
-    // instantProcessors: true,
     // -----------------------------------------------------------------------------------
     // Makes miners almost infinitely fast
     // instantMiners: true,
@@ -85,9 +79,6 @@ export default {
     // -----------------------------------------------------------------------------------
     // Whether to check belt paths
     // checkBeltPaths: true,
-    // -----------------------------------------------------------------------------------
-    // Whether to items / s instead of items / m in stats
-    // detailedStatistics: true,
     // -----------------------------------------------------------------------------------
     // Shows detailed information about which atlas is used
     // showAtlasInfo: true,

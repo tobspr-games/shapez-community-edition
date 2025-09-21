@@ -3,14 +3,14 @@ import { DrawParameters } from "../core/draw_parameters";
 import { Component } from "./component";
 /* typehints:end */
 
-import { GameRoot } from "./root";
 import { globalConfig } from "../core/config";
-import { enumDirectionToVector, enumDirectionToAngle } from "../core/vector";
-import { BasicSerializableObject, types } from "../savegame/serialization";
-import { Loader } from "../core/loader";
 import { drawRotatedSprite } from "../core/draw_utils";
 import { gComponentRegistry } from "../core/global_registries";
+import { Loader } from "../core/loader";
+import { enumDirectionToAngle, enumDirectionToVector } from "../core/vector";
+import { BasicSerializableObject, types } from "../savegame/serialization";
 import { getBuildingDataFromCode } from "./building_codes";
+import { GameRoot } from "./root";
 
 export class Entity extends BasicSerializableObject {
     /**
@@ -193,7 +193,7 @@ export class Entity extends BasicSerializableObject {
             const acceptorComp = this.components.ItemAcceptor;
 
             if (acceptorComp) {
-                const acceptorSprite = Loader.getSprite("sprites/misc/acceptor_slot.png");
+                const acceptorSprite = Loader.getSprite("sprites/debug/acceptor_slot.png");
                 for (let i = 0; i < acceptorComp.slots.length; ++i) {
                     const slot = acceptorComp.slots[i];
                     const slotTile = staticComp.localTileToWorld(slot.pos);
