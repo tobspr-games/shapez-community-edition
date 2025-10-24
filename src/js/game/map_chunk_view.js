@@ -17,6 +17,9 @@ export const MOD_CHUNK_DRAW_HOOKS = {
 
     staticBefore: [],
     staticAfter: [],
+
+    wiresForegroundBefore: [],
+    wiresForegroundAfter: [],
 };
 
 export class MapChunkView extends MapChunk {
@@ -300,8 +303,17 @@ export class MapChunkView extends MapChunk {
      */
     drawWiresForegroundLayer(parameters) {
         const systems = this.root.systemMgr.systems;
+
+        MOD_CHUNK_DRAW_HOOKS.wiresForegroundBefore.forEach(systemId =>
+            systems[systemId].drawWiresChunk(parameters, this)
+        );
+
         systems.wire.drawChunk(parameters, this);
         systems.staticMapEntities.drawWiresChunk(parameters, this);
         systems.wiredPins.drawChunk(parameters, this);
+
+        MOD_CHUNK_DRAW_HOOKS.wiresForegroundAfter.forEach(systemId =>
+            systems[systemId].drawWiresChunk(parameters, this)
+        );
     }
 }
