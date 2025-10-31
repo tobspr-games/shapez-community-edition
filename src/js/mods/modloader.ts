@@ -8,6 +8,8 @@ import { MOD_SIGNALS } from "./mod_signals";
 
 const LOG = createLogger("mods");
 
+export type LoadedModEntry = { entry: ModQueueEntry; mod: Mod };
+
 export class ModLoader {
     private readonly mods = new Map<string, ModInfo>();
 
