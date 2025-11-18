@@ -20,6 +20,7 @@ import {
     TypePositiveInteger,
     TypePositiveIntegerOrString,
     TypePositiveNumber,
+    TypeSet,
     TypeString,
     TypeStructuredObject,
     TypeVector,
@@ -112,6 +113,13 @@ export const types = {
      */
     fixedSizeArray(innerType) {
         return new TypeArray(innerType, true);
+    },
+
+    /**
+     * @param {BaseDataType} innerType
+     */
+    set(innerType) {
+        return new TypeSet(innerType);
     },
 
     /**
