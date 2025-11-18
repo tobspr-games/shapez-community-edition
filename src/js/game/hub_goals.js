@@ -21,6 +21,7 @@ export class HubGoals extends BasicSerializableObject {
             level: types.uint,
             storedShapes: types.keyValueMap(types.uint),
             upgradeLevels: types.keyValueMap(types.uint),
+            gainedRewards: types.set(types.string),
         };
     }
 
@@ -42,11 +43,10 @@ export class HubGoals extends BasicSerializableObject {
             this.level = Math.min(this.level, levels.length);
         }
 
-        // Compute gained rewards
-        for (let i = 0; i < this.level - 1; ++i) {
-            if (i < levels.length) {
-                const reward = levels[i].reward;
-                this.gainedRewards.add(reward);
+        // Remove rewards that no longer exist
+        for (const reward of this.gainedRewards) {
+            if (!enumHubGoalRewards[reward]) {
+                this.gainedRewards.delete(reward);
             }
         }
 
