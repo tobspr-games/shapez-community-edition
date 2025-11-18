@@ -21,6 +21,7 @@ export class HubGoals extends BasicSerializableObject {
             level: types.uint,
             storedShapes: types.keyValueMap(types.uint),
             upgradeLevels: types.keyValueMap(types.uint),
+            gainedRewards: types.set(types.string),
         };
     }
 
@@ -42,11 +43,10 @@ export class HubGoals extends BasicSerializableObject {
             this.level = Math.min(this.level, levels.length);
         }
 
-        // Compute gained rewards
-        for (let i = 0; i < this.level - 1; ++i) {
-            if (i < levels.length) {
-                const reward = levels[i].reward;
-                this.gainedRewards[reward] = (this.gainedRewards[reward] || 0) + 1;
+        // Remove rewards that no longer exist
+        for (const reward of this.gainedRewards) {
+            if (!enumHubGoalRewards[reward]) {
+                this.gainedRewards.delete(reward);
             }
         }
 
@@ -78,9 +78,9 @@ export class HubGoals extends BasicSerializableObject {
 
         /**
          * Which story rewards we already gained
-         * @type {Object.<string, number>}
+         * @type {Set<string>}
          */
-        this.gainedRewards = {};
+        this.gainedRewards = new Set();
 
         /**
          * Mapping from shape hash -> amount
@@ -202,7 +202,7 @@ export class HubGoals extends BasicSerializableObject {
             // no story, so always unlocked
             return true;
         }
-        return !!this.gainedRewards[reward];
+        return this.gainedRewards.has(reward);
     }
 
     /**
@@ -260,7 +260,7 @@ export class HubGoals extends BasicSerializableObject {
      */
     onGoalCompleted() {
         const reward = this.currentGoal.reward;
-        this.gainedRewards[reward] = (this.gainedRewards[reward] || 0) + 1;
+        this.gainedRewards.add(reward);
 
         ++this.level;
         this.computeNextGoal();

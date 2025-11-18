@@ -3,8 +3,8 @@ import { GameRoot } from "../game/root";
 import { BasicSerializableObject } from "./serialization";
 /* typehints:end */
 
-import { Vector } from "../core/vector";
 import { round4Digits } from "../core/utils";
+import { Vector } from "../core/vector";
 export const globalJsonSchemaDefs = {};
 
 /**
@@ -974,6 +974,73 @@ export class TypeArray extends BaseDataType {
 
     getCacheKey() {
         return "array." + this.innerType.getCacheKey();
+    }
+}
+
+export class TypeSet extends BaseDataType {
+    /**
+     * @param {BaseDataType} innerType
+     */
+    constructor(innerType) {
+        super();
+        this.innerType = innerType;
+    }
+
+    serialize(value) {
+        assert(value instanceof Set, "Not a Set");
+
+        // In the serialized form, the Set is stored as an array
+        const result = new Array(value.size);
+        const iterator = value.values();
+        for (let i = 0; i < value.size; i++) {
+            result[i] = iterator.next().value;
+        }
+        return result;
+    }
+
+    /**
+     * @see BaseDataType.deserialize
+     * @param {any} value
+     * @param {GameRoot} root
+     * @param {object} targetObject
+     * @param {string|number} targetKey
+     * @returns {string|void} String error code or null on success
+     */
+    deserialize(value, targetObject, targetKey, root) {
+        let destination = targetObject[targetKey];
+        if (!destination) {
+            targetObject[targetKey] = destination = new Set();
+        }
+
+        destination.clear();
+
+        const buffer = {};
+        for (const entry of value) {
+            const errorStatus = this.innerType.deserializeWithVerify(entry, buffer, "result", root);
+            if (errorStatus) {
+                return errorStatus;
+            }
+
+            // NOTE: need to be careful with non-primitive types
+            destination.add(buffer.result);
+        }
+    }
+
+    getAsJsonSchemaUncached() {
+        return {
+            type: "set",
+            items: this.innerType.getAsJsonSchema(),
+        };
+    }
+
+    verifySerializedValue(value) {
+        if (!Array.isArray(value)) {
+            return "Not an array: " + value;
+        }
+    }
+
+    getCacheKey() {
+        return "set." + this.innerType.getCacheKey();
     }
 }
 
