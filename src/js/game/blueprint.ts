@@ -1,23 +1,17 @@
 import { globalConfig } from "../core/config";
-import { DrawParameters } from "../core/draw_parameters";
+import type { DrawParameters } from "../core/draw_parameters";
 import { findNiceIntegerValue } from "../core/utils";
 import { Vector } from "../core/vector";
-import { Entity } from "./entity";
-import { GameRoot } from "./root";
+import type { Entity } from "./entity";
+import type { GameRoot } from "./root";
 
 export class Blueprint {
-    /**
-     * @param {Array<Entity>} entities
-     */
-    constructor(entities) {
-        this.entities = entities;
-    }
+    constructor(private entities: Entity[]) {}
 
     /**
      * Returns the layer of this blueprint
-     * @returns {Layer}
      */
-    get layer() {
+    get layer(): Layer {
         if (this.entities.length === 0) {
             return "regular";
         }
@@ -26,13 +20,11 @@ export class Blueprint {
 
     /**
      * Creates a new blueprint from the given entity uids
-     * @param {GameRoot} root
-     * @param {Array<number>} uids
      */
-    static fromUids(root, uids) {
+    static fromUids(root: GameRoot, uids: number[]) {
         const newEntities = [];
 
-        let averagePosition = new Vector();
+        const averagePosition = new Vector();
 
         // First, create a copy
         for (let i = 0; i < uids.length; ++i) {
@@ -69,9 +61,8 @@ export class Blueprint {
 
     /**
      * Draws the blueprint at the given origin
-     * @param {DrawParameters} parameters
      */
-    draw(parameters, tile) {
+    draw(parameters: DrawParameters, tile: Vector) {
         parameters.context.globalAlpha = 0.8;
         for (let i = 0; i < this.entities.length; ++i) {
             const entity = this.entities[i];
@@ -131,7 +122,7 @@ export class Blueprint {
      * @param {GameRoot} root
      * @param {Vector} tile
      */
-    canPlace(root, tile) {
+    canPlace(root: GameRoot, tile: Vector) {
         let anyPlaceable = false;
 
         for (let i = 0; i < this.entities.length; ++i) {
@@ -144,10 +135,7 @@ export class Blueprint {
         return anyPlaceable;
     }
 
-    /**
-     * @param {GameRoot} root
-     */
-    canAfford(root) {
+    canAfford(root: GameRoot) {
         if (root.gameMode.getHasFreeCopyPaste()) {
             return true;
         }
@@ -156,10 +144,8 @@ export class Blueprint {
 
     /**
      * Attempts to place the blueprint at the given tile
-     * @param {GameRoot} root
-     * @param {Vector} tile
      */
-    tryPlace(root, tile) {
+    tryPlace(root: GameRoot, tile: Vector) {
         return root.logic.performBulkOperation(() => {
             return root.logic.performImmutableOperation(() => {
                 let count = 0;
