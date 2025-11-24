@@ -124,7 +124,7 @@ export class HUDBuildingPlacerLogic extends BaseHUDPart {
         this.root.gameState.inputReceiver.keyup.add(this.checkForDirectionLockSwitch, this);
 
         // BINDINGS TO GAME EVENTS
-        this.root.hud.signals.buildingsSelectedForCopy.add(this.abortPlacement, this);
+        this.root.hud.signals.buildingsSelectedForBlueprint.add(this.abortPlacement, this);
         this.root.hud.signals.pasteBlueprintRequested.add(this.abortPlacement, this);
         this.root.signals.storyGoalCompleted.add(() => this.signals.variantChanged.dispatch());
         this.root.signals.upgradePurchased.add(() => this.signals.variantChanged.dispatch());
