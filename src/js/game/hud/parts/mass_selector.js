@@ -5,7 +5,6 @@ import { STOP_PROPAGATION } from "../../../core/signal";
 import { formatBigNumberFull } from "../../../core/utils";
 import { Vector } from "../../../core/vector";
 import { T } from "../../../translations";
-import { Blueprint } from "../../blueprint";
 import { enumMouseButton } from "../../camera";
 import { Entity } from "../../entity";
 import { KEYMAPPINGS } from "../../key_action_mapper";
@@ -138,7 +137,10 @@ export class HUDMassSelector extends BaseHUDPart {
                 this.showBlueprintsNotUnlocked();
                 return;
             }
-            this.root.hud.signals.buildingsSelectedForCopy.dispatch(Array.from(this.selectedUids));
+            this.root.hud.signals.buildingsSelectedForBlueprint.dispatch(
+                Array.from(this.selectedUids),
+                false
+            );
             this.selectedUids = new Set();
             this.root.soundProxy.playUiClick();
         } else {
@@ -181,30 +183,16 @@ export class HUDMassSelector extends BaseHUDPart {
         if (this.selectedUids.size > 0) {
             const entityUids = Array.from(this.selectedUids);
 
-            const cutAction = () => {
-                // copy code relies on entities still existing, so must copy before deleting.
-                this.root.hud.signals.buildingsSelectedForCopy.dispatch(entityUids);
+            // copy code relies on entities still existing, so must copy before deleting.
+            this.root.hud.signals.buildingsSelectedForBlueprint.dispatch(entityUids, true);
 
-                for (let i = 0; i < entityUids.length; ++i) {
-                    const uid = entityUids[i];
-                    const entity = this.root.entityMgr.findByUid(uid);
-                    if (!this.root.logic.tryDeleteBuilding(entity)) {
-                        logger.error("Error in mass cut, could not remove building");
-                        this.selectedUids.delete(uid);
-                    }
+            for (let i = 0; i < entityUids.length; ++i) {
+                const uid = entityUids[i];
+                const entity = this.root.entityMgr.findByUid(uid);
+                if (!this.root.logic.tryDeleteBuilding(entity)) {
+                    logger.error("Error in mass cut, could not remove building");
+                    this.selectedUids.delete(uid);
                 }
-            };
-
-            const blueprint = Blueprint.fromUids(this.root, entityUids);
-            if (blueprint.canAfford(this.root)) {
-                cutAction();
-            } else {
-                const { cancel, ok } = this.root.hud.parts.dialogs.showWarning(
-                    T.dialogs.massCutInsufficientConfirm.title,
-                    T.dialogs.massCutInsufficientConfirm.desc,
-                    ["cancel:good:escape", "ok:bad:enter"]
-                );
-                ok.add(cutAction);
             }
 
             this.root.soundProxy.playUiClick();

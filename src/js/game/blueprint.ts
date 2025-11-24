@@ -6,6 +6,12 @@ import type { Entity } from "./entity";
 import type { GameRoot } from "./root";
 
 export class Blueprint {
+    /**
+     * If set to true, the blueprint temporarily has no cost. This field is
+     * reset by {@link tryPlace} if any building was successfully placed.
+     */
+    isNextPasteFree = false;
+
     constructor(private entities: Entity[]) {}
 
     /**
@@ -57,6 +63,19 @@ export class Blueprint {
             return 0;
         }
         return findNiceIntegerValue(4 * Math.pow(this.entities.length, 1.1));
+    }
+
+    /**
+     * Returns whether the placement of this blueprint should not consume any
+     * shapes.
+     *
+     * Factors include:
+     *  - Game mode permitting free blueprint paste
+     *  - The blueprint having {@link isNextPasteFree} flag set
+     *  - Cost returned by {@link getCost} being zero
+     */
+    getIsEffectivelyFree(root: GameRoot) {
+        return root.gameMode.getHasFreeCopyPaste() || this.isNextPasteFree || this.getCost() === 0;
     }
 
     /**
@@ -136,9 +155,10 @@ export class Blueprint {
     }
 
     canAfford(root: GameRoot) {
-        if (root.gameMode.getHasFreeCopyPaste()) {
+        if (this.getIsEffectivelyFree(root)) {
             return true;
         }
+
         return root.hubGoals.getShapesStoredByKey(root.gameMode.getBlueprintShapeKey()) >= this.getCost();
     }
 
@@ -146,7 +166,7 @@ export class Blueprint {
      * Attempts to place the blueprint at the given tile
      */
     tryPlace(root: GameRoot, tile: Vector) {
-        return root.logic.performBulkOperation(() => {
+        const consumed: boolean = root.logic.performBulkOperation(() => {
             return root.logic.performImmutableOperation(() => {
                 let count = 0;
                 for (let i = 0; i < this.entities.length; ++i) {
@@ -166,5 +186,16 @@ export class Blueprint {
                 return count !== 0;
             });
         });
+
+        if (consumed) {
+            if (!this.getIsEffectivelyFree(root)) {
+                const blueprintShape = root.gameMode.getBlueprintShapeKey();
+                root.hubGoals.takeShapeByKey(blueprintShape, this.getCost());
+            }
+
+            this.isNextPasteFree = false;
+        }
+
+        return consumed;
     }
 }

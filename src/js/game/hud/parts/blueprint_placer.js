@@ -1,9 +1,9 @@
+import { SOUNDS } from "@/platform/sound";
 import { DrawParameters } from "../../../core/draw_parameters";
 import { STOP_PROPAGATION } from "../../../core/signal";
 import { TrackedState } from "../../../core/tracked_state";
 import { makeDiv } from "../../../core/utils";
 import { Vector } from "../../../core/vector";
-import { SOUNDS } from "../../../platform/sound";
 import { T } from "../../../translations";
 import { Blueprint } from "../../blueprint";
 import { enumMouseButton } from "../../camera";
@@ -27,7 +27,7 @@ export class HUDBlueprintPlacer extends BaseHUDPart {
     }
 
     initialize() {
-        this.root.hud.signals.buildingsSelectedForCopy.add(this.createBlueprintFromBuildings, this);
+        this.root.hud.signals.buildingsSelectedForBlueprint.add(this.createBlueprintFromBuildings, this);
 
         /** @type {TypedTrackedState<Blueprint?>} */
         this.currentBlueprint = new TrackedState(this.onBlueprintChanged, this);
@@ -86,9 +86,7 @@ export class HUDBlueprintPlacer extends BaseHUDPart {
 
     update() {
         const currentBlueprint = this.currentBlueprint.get();
-        this.domAttach.update(
-            !this.getHasFreeCopyPaste() && currentBlueprint && currentBlueprint.getCost() > 0
-        );
+        this.domAttach.update(currentBlueprint && !currentBlueprint.getIsEffectivelyFree(this.root));
         this.trackedCanAfford.set(currentBlueprint && currentBlueprint.canAfford(this.root));
     }
 
@@ -120,7 +118,7 @@ export class HUDBlueprintPlacer extends BaseHUDPart {
                 return;
             }
 
-            if (!this.getHasFreeCopyPaste() && !blueprint.canAfford(this.root)) {
+            if (!blueprint.canAfford(this.root)) {
                 this.root.soundProxy.playUiError();
                 return;
             }
@@ -128,10 +126,6 @@ export class HUDBlueprintPlacer extends BaseHUDPart {
             const worldPos = this.root.camera.screenToWorld(pos);
             const tile = worldPos.toTileSpace();
             if (blueprint.tryPlace(this.root, tile)) {
-                if (!this.getHasFreeCopyPaste()) {
-                    const cost = blueprint.getCost();
-                    this.root.hubGoals.takeShapeByKey(this.root.gameMode.getBlueprintShapeKey(), cost);
-                }
                 this.root.soundProxy.playUi(SOUNDS.placeBuilding);
             }
             return STOP_PROPAGATION;
@@ -151,12 +145,16 @@ export class HUDBlueprintPlacer extends BaseHUDPart {
     /**
      * Called when an array of bulidings was selected
      * @param {Array<number>} uids
+     * @param {boolean} isCut
      */
-    createBlueprintFromBuildings(uids) {
+    createBlueprintFromBuildings(uids, isCut) {
         if (uids.length === 0) {
             return;
         }
-        this.currentBlueprint.set(Blueprint.fromUids(this.root, uids));
+
+        const blueprint = Blueprint.fromUids(this.root, uids);
+        blueprint.isNextPasteFree = isCut;
+        this.currentBlueprint.set(blueprint);
     }
 
     /**
