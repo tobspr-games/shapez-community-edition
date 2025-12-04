@@ -2,15 +2,10 @@
 import { GameRoot } from "../root";
 /* typehints:end */
 
-import { types, BasicSerializableObject } from "../../savegame/serialization";
-import { RegularGameSpeed } from "./regular_game_speed";
-import { BaseGameSpeed } from "./base_game_speed";
-import { PausedGameSpeed } from "./paused_game_speed";
-import { gGameSpeedRegistry } from "../../core/global_registries";
 import { globalConfig } from "../../core/config";
-import { createLogger } from "../../core/logging";
+import { BasicSerializableObject, types } from "../../savegame/serialization";
 
-const logger = createLogger("game_time");
+const MAX_LOGIC_STEPS_IN_QUEUE = 3;
 
 export class GameTime extends BasicSerializableObject {
     /**
@@ -29,9 +24,6 @@ export class GameTime extends BasicSerializableObject {
         // The adjustment, used when loading savegames so we can continue where we were
         this.realtimeAdjust = 0;
 
-        /** @type {BaseGameSpeed} */
-        this.speed = new RegularGameSpeed(this.root);
-
         // Store how much time we have in bucket
         this.logicTimeBudget = 0;
     }
@@ -43,7 +35,6 @@ export class GameTime extends BasicSerializableObject {
     static getSchema() {
         return {
             timeSeconds: types.float,
-            speed: types.obj(gGameSpeedRegistry),
             realtimeSeconds: types.float,
         };
     }
@@ -63,22 +54,6 @@ export class GameTime extends BasicSerializableObject {
     }
 
     /**
-     * Returns how many seconds we are in the grace period
-     * @returns {number}
-     */
-    getRemainingGracePeriodSeconds() {
-        return 0;
-    }
-
-    /**
-     * Returns if we are currently in the grace period
-     * @returns {boolean}
-     */
-    getIsWithinGracePeriod() {
-        return this.getRemainingGracePeriodSeconds() > 0;
-    }
-
-    /**
      * Internal method to generate new logic time budget
      * @param {number} deltaMs
      */
@@ -87,14 +62,14 @@ export class GameTime extends BasicSerializableObject {
         if (this.root.hud.shouldPauseGame()) {
             this.logicTimeBudget = 0;
         } else {
-            const multiplier = this.getSpeed().getTimeMultiplier();
-            this.logicTimeBudget += deltaMs * multiplier;
+            this.logicTimeBudget += deltaMs;
         }
 
         // Check for too big pile of updates -> reduce it to 1
+        // TODO: Does this "3" have the same meaning as MAX_LOGIC_STEPS_IN_QUEUE?
         let maxLogicSteps = Math.max(
             3,
-            (this.speed.getMaxLogicStepsInQueue() * this.root.dynamicTickrate.currentTickRate) / 60
+            (MAX_LOGIC_STEPS_IN_QUEUE * this.root.dynamicTickrate.currentTickRate) / 60
         );
         if (G_IS_DEV && globalConfig.debug.framePausesBetweenTicks) {
             maxLogicSteps *= 1 + globalConfig.debug.framePausesBetweenTicks;
@@ -113,8 +88,6 @@ export class GameTime extends BasicSerializableObject {
     performTicks(deltaMs, updateMethod) {
         this.internalAddDeltaToBudget(deltaMs);
 
-        const speedAtStart = this.root.time.getSpeed();
-
         let effectiveDelta = this.root.dynamicTickrate.deltaMs;
         if (G_IS_DEV && globalConfig.debug.framePausesBetweenTicks) {
             effectiveDelta += globalConfig.debug.framePausesBetweenTicks * this.root.dynamicTickrate.deltaMs;
@@ -131,17 +104,6 @@ export class GameTime extends BasicSerializableObject {
 
             // Step game time
             this.timeSeconds += this.root.dynamicTickrate.deltaSeconds;
-
-            // Game time speed changed, need to abort since our logic steps are no longer valid
-            if (speedAtStart.getId() !== this.speed.getId()) {
-                logger.warn(
-                    "Skipping update because speed changed from",
-                    speedAtStart.getId(),
-                    "to",
-                    this.speed.getId()
-                );
-                break;
-            }
         }
     }
 
@@ -169,25 +131,6 @@ export class GameTime extends BasicSerializableObject {
         return (this.realtimeSeconds - this.realtimeAdjust) * 1000.0;
     }
 
-    getIsPaused() {
-        return this.speed.getId() === PausedGameSpeed.getId();
-    }
-
-    getSpeed() {
-        return this.speed;
-    }
-
-    setSpeed(speed) {
-        assert(speed instanceof BaseGameSpeed, "Not a valid game speed");
-        if (this.speed.getId() === speed.getId()) {
-            logger.warn(
-                "Same speed set than current one:",
-                /** @type {typeof BaseGameSpeed} */ (speed.constructor).getId()
-            );
-        }
-        this.speed = speed;
-    }
-
     deserialize(data) {
         const errorCode = super.deserialize(data);
         if (errorCode) {
@@ -197,7 +140,5 @@ export class GameTime extends BasicSerializableObject {
         // Adjust realtime now difference so they match
         this.realtimeAdjust = this.realtimeSeconds - performance.now() / 1000.0;
         this.updateRealtimeNow();
-
-        this.speed.initializeAfterDeserialize(this.root);
     }
 }

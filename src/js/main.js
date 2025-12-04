@@ -7,7 +7,6 @@ import { Application } from "./application";
 import { createLogger, logSection } from "./core/logging";
 import { initComponentRegistry } from "./game/component_registry";
 import { initGameModeRegistry } from "./game/game_mode_registry";
-import { initGameSpeedRegistry } from "./game/game_speed_registry";
 import { initItemRegistry } from "./game/item_registry";
 import { initMetaBuildingRegistry } from "./game/meta_building_registry";
 
@@ -45,7 +44,6 @@ initComponentRegistry();
 initItemRegistry();
 initMetaBuildingRegistry();
 initGameModeRegistry();
-initGameSpeedRegistry();
 
 let app = null;
 
