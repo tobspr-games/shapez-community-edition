@@ -17,6 +17,7 @@ import { Entity } from "./entity";
 import { EntityManager } from "./entity_manager";
 import { GameMode } from "./game_mode";
 import { GameSystemManager } from "./game_system_manager";
+import { GameTime } from "./game_time";
 import { HubGoals } from "./hub_goals";
 import { GameHUD } from "./hud/hud";
 import { KeyActionMapper } from "./key_action_mapper";
@@ -26,7 +27,6 @@ import { ProductionAnalytics } from "./production_analytics";
 import { ShapeDefinition } from "./shape_definition";
 import { ShapeDefinitionManager } from "./shape_definition_manager";
 import { SoundProxy } from "./sound_proxy";
-import { GameTime } from "./time/game_time";
 /* typehints:end */
 
 const logger = createLogger("game/root");

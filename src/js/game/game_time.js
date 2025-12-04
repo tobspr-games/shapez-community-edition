@@ -1,9 +1,9 @@
 /* typehints:start */
-import { GameRoot } from "../root";
+import { GameRoot } from "./root";
 /* typehints:end */
 
-import { globalConfig } from "../../core/config";
-import { BasicSerializableObject, types } from "../../savegame/serialization";
+import { globalConfig } from "../core/config";
+import { BasicSerializableObject, types } from "../savegame/serialization";
 
 const MAX_LOGIC_STEPS_IN_QUEUE = 3;
 

@@ -22,6 +22,7 @@ import { DynamicTickrate } from "./dynamic_tickrate";
 import { EntityManager } from "./entity_manager";
 import { GameMode } from "./game_mode";
 import { GameSystemManager } from "./game_system_manager";
+import { GameTime } from "./game_time";
 import { HubGoals } from "./hub_goals";
 import { GameHUD } from "./hud/hud";
 import { KeyActionMapper } from "./key_action_mapper";
@@ -32,7 +33,6 @@ import { ProductionAnalytics } from "./production_analytics";
 import { GameRoot } from "./root";
 import { ShapeDefinitionManager } from "./shape_definition_manager";
 import { SoundProxy } from "./sound_proxy";
-import { GameTime } from "./time/game_time";
 
 const logger = createLogger("ingame/core");
 
