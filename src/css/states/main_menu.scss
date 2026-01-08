@@ -604,26 +604,24 @@
                 transition: background-color 0.12s ease-in-out;
 
                 &.githubLogo {
-                    background-image: uiResource("main_menu/github.png");
+                    background-image: uiResource("main_menu/github.svg");
                     background-size: 66%;
-                    background-position: 54% 50%;
+                    background-position: 50% 48%;
                 }
 
                 &.discordLogo {
                     background-image: uiResource("main_menu/discord.svg");
                     background-size: 66%;
-                    background-position: 50% 53%;
                 }
 
                 &.redditLogo {
                     background-image: uiResource("main_menu/reddit.svg");
-                    background-size: 65%;
+                    background-size: 85%;
                 }
 
                 &.patreonLogo {
                     background-image: uiResource("main_menu/patreon.svg");
                     background-size: 60%;
-                    background-position: 60% 60%;
                 }
             }
         }
