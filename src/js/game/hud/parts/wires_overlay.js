@@ -8,7 +8,6 @@ import { KEYMAPPINGS } from "../../key_action_mapper";
 import { enumHubGoalRewards } from "../../tutorial_goals";
 import { BaseHUDPart } from "../base_hud_part";
 
-import copy from "clipboard-copy";
 const wiresBackgroundDpi = 4;
 
 export class HUDWiresOverlay extends BaseHUDPart {
@@ -103,10 +102,10 @@ export class HUDWiresOverlay extends BaseHUDPart {
         }
 
         if (value) {
-            copy(value.getAsCopyableKey());
+            navigator.clipboard.writeText(value.getAsCopyableKey());
             this.root.soundProxy.playUi(SOUNDS.copy);
         } else {
-            copy("");
+            navigator.clipboard.writeText("");
             this.root.soundProxy.playUiError();
         }
     }

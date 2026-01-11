@@ -1,6 +1,5 @@
 import { MODS } from "@/mods/modloader";
 import { T } from "@/translations";
-import copy from "clipboard-copy";
 import { BUILD_OPTIONS } from "./globals";
 import { removeAllChildren } from "./utils";
 
@@ -101,7 +100,7 @@ export class ErrorScreen {
         log += `\n\nLoaded Mods:\n${this.loadedMods}`;
         log += `\n\nBuild Information:\n${this.buildInformation}`;
 
-        copy(log);
+        navigator.clipboard.writeText(log);
 
         if (ev.target instanceof HTMLButtonElement) {
             ev.target.innerText = T.errorHandler.actions.copyDone;

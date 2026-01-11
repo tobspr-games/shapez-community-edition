@@ -6,8 +6,6 @@ import { ShapeDefinition } from "../../shape_definition";
 import { BaseHUDPart } from "../base_hud_part";
 import { DynamicDomAttach } from "../dynamic_dom_attach";
 
-import copy from "clipboard-copy";
-
 export class HUDShapeViewer extends BaseHUDPart {
     createElements(parent) {
         this.background = makeDiv(parent, "ingame_HUD_ShapeViewer", ["ingameDialog"]);
@@ -57,7 +55,7 @@ export class HUDShapeViewer extends BaseHUDPart {
      */
     onCopyKeyRequested() {
         if (this.currentShapeKey) {
-            copy(this.currentShapeKey);
+            navigator.clipboard.writeText(this.currentShapeKey);
             this.close();
         }
     }

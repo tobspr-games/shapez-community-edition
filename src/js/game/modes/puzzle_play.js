@@ -33,7 +33,6 @@ import { gMetaBuildingRegistry } from "../../core/global_registries";
 import { HUDPuzzleNextPuzzle } from "../hud/parts/next_puzzle";
 
 const logger = createLogger("puzzle-play");
-import copy from "clipboard-copy";
 
 export class PuzzlePlayGameMode extends PuzzleGameMode {
     static getId() {
@@ -157,7 +156,7 @@ export class PuzzlePlayGameMode extends PuzzleGameMode {
     }
 
     sharePuzzle() {
-        copy(this.puzzle.meta.shortKey);
+        navigator.clipboard.writeText(this.puzzle.meta.shortKey);
 
         this.root.hud.parts.dialogs.showInfo(
             T.dialogs.puzzleShare.title,
