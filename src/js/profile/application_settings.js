@@ -3,14 +3,14 @@ import { Application } from "../application";
 /* typehints:end */
 
 import { ExplainedResult } from "../core/explained_result";
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { ReadWriteProxy } from "../core/read_write_proxy";
 import { THEMES, applyGameTheme } from "../game/theme";
 import { LANGUAGES } from "../languages";
 import { T } from "../translations";
 import { BaseSetting, BoolSetting, EnumSetting, RangeSetting } from "./setting_types";
 
-const logger = createLogger("application_settings");
+const logger = new Logger("application_settings");
 
 /**
  * @enum {string}

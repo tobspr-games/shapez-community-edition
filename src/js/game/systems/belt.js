@@ -2,7 +2,7 @@ import { globalConfig } from "../../core/config";
 import { DrawParameters } from "../../core/draw_parameters";
 import { gMetaBuildingRegistry } from "../../core/global_registries";
 import { Loader } from "../../core/loader";
-import { createLogger } from "../../core/logging";
+import { Logger } from "../../core/logging";
 import { AtlasSprite } from "../../core/sprites";
 import { fastArrayDeleteValue } from "../../core/utils";
 import { enumDirection, enumDirectionToVector, enumInvertedDirections, Vector } from "../../core/vector";
@@ -17,7 +17,7 @@ import { defaultBuildingVariant } from "../meta_building";
 
 export const BELT_ANIM_COUNT = 14;
 
-const logger = createLogger("belt");
+const logger = new Logger("belt");
 
 /**
  * Manages all belts

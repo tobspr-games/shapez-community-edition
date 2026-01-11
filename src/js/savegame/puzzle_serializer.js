@@ -9,14 +9,14 @@ import { MetaConstantProducerBuilding } from "../game/buildings/constant_produce
 import { defaultBuildingVariant, MetaBuilding } from "../game/meta_building";
 import { gMetaBuildingRegistry } from "../core/global_registries";
 import { MetaGoalAcceptorBuilding } from "../game/buildings/goal_acceptor";
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { BaseItem } from "../game/base_item";
 import { enumColors } from "../game/colors";
 import { COLOR_ITEM_SINGLETONS } from "../game/items/color_item";
 import { ShapeDefinition } from "../game/shape_definition";
 import { MetaBlockBuilding } from "../game/buildings/block";
 
-const logger = createLogger("puzzle-serializer");
+const logger = new Logger("puzzle-serializer");
 
 export class PuzzleSerializer {
     /**

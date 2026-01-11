@@ -1,12 +1,12 @@
 import { globalConfig } from "../core/config";
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { newEmptyMap } from "../core/utils";
 import { BasicSerializableObject, types } from "../savegame/serialization";
 import { Component } from "./component";
 import { Entity } from "./entity";
 import { GameRoot } from "./root";
 
-const logger = createLogger("entity_manager");
+const logger = new Logger("entity_manager");
 
 // Manages all entities
 

@@ -3,7 +3,7 @@ import { GameSystem } from "./game_system";
 import { GameRoot } from "./root";
 /* typehints:end */
 
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { BeltSystem } from "./systems/belt";
 import { ItemEjectorSystem } from "./systems/item_ejector";
 import { MapResourcesSystem } from "./systems/map_resources";
@@ -29,7 +29,7 @@ import { ConstantProducerSystem } from "./systems/constant_producer";
 import { GoalAcceptorSystem } from "./systems/goal_acceptor";
 import { ZoneSystem } from "./systems/zone";
 
-const logger = createLogger("game_system_manager");
+const logger = new Logger("game_system_manager");
 
 /**
  * @type {Object<string, Array<{ id: string; systemClass: new (any) => GameSystem}>>}

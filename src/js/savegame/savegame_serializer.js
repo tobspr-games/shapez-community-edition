@@ -1,6 +1,6 @@
 import { ExplainedResult } from "../core/explained_result";
 import { gComponentRegistry } from "../core/global_registries";
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { MOD_SIGNALS } from "../mods/mod_signals";
 import { SerializerInternal } from "./serializer_internal";
 
@@ -12,7 +12,7 @@ import { SerializerInternal } from "./serializer_internal";
  * @typedef {import("../savegame/savegame_typedefs").SerializedGame} SerializedGame
  */
 
-const logger = createLogger("savegame_serializer");
+const logger = new Logger("savegame_serializer");
 
 /**
  * Serializes a savegame

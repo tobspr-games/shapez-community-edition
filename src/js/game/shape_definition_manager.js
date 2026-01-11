@@ -1,11 +1,11 @@
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { BasicSerializableObject } from "../savegame/serialization";
 import { enumColors } from "./colors";
 import { ShapeItem } from "./items/shape_item";
 import { GameRoot } from "./root";
 import { enumSubShape, ShapeDefinition } from "./shape_definition";
 
-const logger = createLogger("shape_definition_manager");
+const logger = new Logger("shape_definition_manager");
 
 export class ShapeDefinitionManager extends BasicSerializableObject {
     static getId() {
