@@ -24,7 +24,8 @@
         "@msgpack/msgpack": "^3.1.2",
         "ajv": "^6.10.2",
         "debounce-promise": "^3.1.2",
-        "howler": "^2.1.2"
+        "howler": "^2.1.2",
+        "semver": "^7.7.2"
     },
     "devDependencies": {
         "@electron/packager": "^18.3.6",
@@ -35,6 +36,7 @@
         "@types/gulp": "^4.0.9",
         "@types/gulp-htmlmin": "^1.3.32",
         "@types/node": "^22.14.0",
+        "@types/semver": "^7.7.1",
         "browser-sync": "^2.27.10",
         "circular-dependency-plugin": "^5.2.2",
         "css-mqpacker": "^7.0.0",

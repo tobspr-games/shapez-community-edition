@@ -1,12 +1,15 @@
 import { GLOBAL_APP } from "@/core/globals";
 import { SavegameStoredMods } from "@/savegame/savegame_typedefs";
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { DisabledMod } from "./disabled_mod";
 import { Mod, ModConstructor } from "./mod";
 import { ModInfo, ModMetadata, ModQueueEntry } from "./mod_metadata";
 import { MOD_SIGNALS } from "./mod_signals";
+import { sortMods } from "./mod_sorter";
 
-const LOG = createLogger("mods");
+const LOG = new Logger("mods");
+
+export type LoadedModEntry = { entry: ModQueueEntry; mod: Mod };
 
 export class ModLoader {
     private readonly mods = new Map<string, ModInfo>();
@@ -79,13 +82,15 @@ export class ModLoader {
         const queue: ModQueueEntry[] = await ipcRenderer.invoke("get-mods");
 
         // Mods can be parsed and constructed in parallel
-        const loadedMods = await Promise.all(
+        const loadedMods: LoadedModEntry[] = await Promise.all(
             queue.map(async e => ({ entry: e, mod: await this.loadMod(e) }))
         );
 
+        const sortedMods = sortMods(loadedMods);
+
         // Initialize all mods sequentially
         // TODO: Also collect early errors from the main process
-        for (const { entry, mod } of loadedMods) {
+        for (const { entry, mod } of sortedMods) {
             this.mods.set(mod.id, {
                 source: entry.source,
                 file: entry.file,
