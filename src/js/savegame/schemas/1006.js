@@ -1,5 +1,5 @@
 import { gMetaBuildingRegistry } from "../../core/global_registries";
-import { createLogger } from "../../core/logging";
+import { Logger } from "../../core/logging";
 import { getCodeFromBuildingData } from "../../game/building_codes.js";
 import { enumBalancerVariants, MetaBalancerBuilding } from "../../game/buildings/balancer.js";
 import { MetaBeltBuilding } from "../../game/buildings/belt.js";
@@ -22,7 +22,7 @@ import { defaultBuildingVariant, MetaBuilding } from "../../game/meta_building.j
 import { SavegameInterface_V1005 } from "./1005.js";
 
 import schema from "./1006.json";
-const logger = createLogger("savegame_interface/1006");
+const logger = new Logger("savegame_interface/1006");
 
 /**
  *

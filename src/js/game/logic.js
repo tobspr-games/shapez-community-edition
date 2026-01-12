@@ -1,5 +1,5 @@
 import { globalConfig } from "../core/config";
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { STOP_PROPAGATION } from "../core/signal";
 import { round2Digits } from "../core/utils";
 import { enumDirection, enumDirectionToVector, enumInvertedDirections, Vector } from "../core/vector";
@@ -11,7 +11,7 @@ import { MetaBuilding } from "./meta_building";
 import { GameRoot } from "./root";
 import { WireNetwork } from "./systems/wire";
 
-const logger = createLogger("ingame/logic");
+const logger = new Logger("ingame/logic");
 
 /**
  * Typing helper

@@ -1,6 +1,6 @@
 import { globalConfig } from "../../../core/config";
 import { DrawParameters } from "../../../core/draw_parameters";
-import { createLogger } from "../../../core/logging";
+import { Logger } from "../../../core/logging";
 import { STOP_PROPAGATION } from "../../../core/signal";
 import { formatBigNumberFull } from "../../../core/utils";
 import { Vector } from "../../../core/vector";
@@ -16,7 +16,7 @@ import { BaseHUDPart } from "../base_hud_part";
 // @ts-ignore
 /* typehints:end */
 
-const logger = createLogger("hud/mass_selector");
+const logger = new Logger("hud/mass_selector");
 
 export class HUDMassSelector extends BaseHUDPart {
     createElements(parent) {}

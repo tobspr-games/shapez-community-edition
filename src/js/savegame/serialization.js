@@ -1,4 +1,4 @@
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import {
     BaseDataType,
     TypeArray,
@@ -35,7 +35,7 @@ import {
  * @template {{ getId(): string }} T
  */
 
-const logger = createLogger("serialization");
+const logger = new Logger("serialization");
 
 // Schema declarations
 export const types = {

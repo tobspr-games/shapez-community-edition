@@ -2,10 +2,10 @@
 import { Application } from "../application";
 /* typehints:end */
 
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { T } from "../translations";
 
-const logger = createLogger("setting_types");
+const logger = new Logger("setting_types");
 
 /*
  * ***************************************************

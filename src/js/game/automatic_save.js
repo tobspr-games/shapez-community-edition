@@ -1,5 +1,5 @@
 import { globalConfig } from "../core/config";
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { GameRoot } from "./root";
 
 // How important it is that a savegame is created
@@ -11,7 +11,7 @@ export const enumSavePriority = {
     asap: 100,
 };
 
-const logger = createLogger("autosave");
+const logger = new Logger("autosave");
 
 export class AutomaticSave {
     constructor(root) {

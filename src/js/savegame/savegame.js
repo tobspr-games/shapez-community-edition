@@ -1,13 +1,13 @@
 import { globalConfig } from "../core/config";
 import { ExplainedResult } from "../core/explained_result";
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { ReadWriteProxy } from "../core/read_write_proxy";
 import { MODS } from "../mods/modloader";
 import { BaseSavegameInterface } from "./savegame_interface";
 import { getSavegameInterface, savegameInterfaces } from "./savegame_interface_registry";
 import { SavegameSerializer } from "./savegame_serializer";
 
-const logger = createLogger("savegame");
+const logger = new Logger("savegame");
 
 /**
  * @typedef {import("../application").Application} Application

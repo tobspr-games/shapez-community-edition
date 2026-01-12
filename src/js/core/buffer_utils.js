@@ -1,8 +1,8 @@
 import { globalConfig } from "./config";
-import { createLogger } from "./logging";
+import { Logger } from "./logging";
 import { fastArrayDelete } from "./utils";
 
-const logger = createLogger("buffer_utils");
+const logger = new Logger("buffer_utils");
 
 /**
  * @typedef {{
