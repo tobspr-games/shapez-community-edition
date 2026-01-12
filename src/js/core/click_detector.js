@@ -1,4 +1,4 @@
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { Signal } from "../core/signal";
 import { fastArrayDelete, fastArrayDeleteValueIfContained } from "./utils";
 import { Vector } from "./vector";
@@ -6,7 +6,7 @@ import { IS_MOBILE, SUPPORT_TOUCH } from "./config";
 import { SOUNDS } from "../platform/sound";
 import { GLOBAL_APP } from "./globals";
 
-const logger = createLogger("click_detector");
+const logger = new Logger("click_detector");
 
 export const MAX_MOVE_DISTANCE_PX = IS_MOBILE ? 20 : 80;
 

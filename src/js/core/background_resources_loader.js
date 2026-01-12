@@ -7,11 +7,11 @@ import { MUSIC, SOUNDS } from "../platform/sound";
 import { T } from "../translations";
 import { AtlasDefinition, atlasFiles } from "./atlas_definitions";
 import { Loader } from "./loader";
-import { createLogger } from "./logging";
+import { Logger } from "./logging";
 import { Signal } from "./signal";
 import { clamp, timeoutPromise } from "./utils";
 
-const logger = createLogger("background_loader");
+const logger = new Logger("background_loader");
 
 const MAIN_MENU_ASSETS = {
     sprites: ["logo.png"],

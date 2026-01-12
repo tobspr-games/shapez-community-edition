@@ -1,6 +1,6 @@
 import { globalConfig } from "../core/config";
 import { GameState } from "../core/game_state";
-import { createLogger, logSection } from "../core/logging";
+import { Logger, logSection } from "../core/logging";
 import { waitNextFrame } from "../core/utils";
 import { GameCore } from "../game/core";
 import { GameLoadingOverlay } from "../game/game_loading_overlay";
@@ -12,7 +12,7 @@ import { MUSIC } from "../platform/sound";
 import { Savegame } from "../savegame/savegame";
 import { T } from "../translations";
 
-const logger = createLogger("state/ingame");
+const logger = new Logger("state/ingame");
 
 // Different sub-states
 export const GAME_LOADING_STATES = {

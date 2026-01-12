@@ -28,16 +28,6 @@ export class Logger {
     error(...args: unknown[]) {}
 }
 
-/**
- * @deprecated Use the {@link Logger} constructor instead
- * @param handle Object to be used as the logger label
- * @returns A {@link Logger} instance
- */
-export function createLogger(handle: unknown) {
-    const context = extractHandleContext(handle);
-    return new Logger(context);
-}
-
 export function logSection(name, color) {
     while (name.length <= 14) {
         name = " " + name + " ";
@@ -48,13 +38,4 @@ export function logSection(name, color) {
         "letter-spacing: -3px; color: " + color + "; font-size: 6px; background: #eee; color: #eee;";
     const line = "%c----------------------------";
     console.log("\n" + line + " %c" + name + " " + line + "\n", lineCss, "color: " + color, lineCss);
-}
-
-function extractHandleContext(handle: unknown) {
-    handle ??= "unknown";
-    if (typeof handle === "string") {
-        return handle;
-    }
-
-    return handle.constructor.name;
 }

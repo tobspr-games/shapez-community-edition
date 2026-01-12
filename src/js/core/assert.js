@@ -1,6 +1,6 @@
-import { createLogger } from "./logging";
+import { Logger } from "./logging";
 
-const logger = createLogger("assert");
+const logger = new Logger("assert");
 
 let assertionErrorShown = false;
 

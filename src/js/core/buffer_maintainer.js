@@ -1,6 +1,6 @@
 import { GameRoot } from "../game/root";
 import { clearBufferBacklog, freeCanvas, makeOffscreenBuffer } from "./buffer_utils";
-import { createLogger } from "./logging";
+import { Logger } from "./logging";
 
 /**
  * @typedef {{
@@ -10,7 +10,7 @@ import { createLogger } from "./logging";
  * }} CacheEntry
  */
 
-const logger = createLogger("buffers");
+const logger = new Logger("buffers");
 
 const bufferGcDurationSeconds = 0.5;
 

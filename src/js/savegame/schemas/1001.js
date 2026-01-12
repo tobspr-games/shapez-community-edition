@@ -1,11 +1,11 @@
-import { createLogger } from "../../core/logging";
+import { Logger } from "../../core/logging";
 import { T } from "../../translations.js";
 import { TypeNumber, TypeVector } from "../serialization_data_types.js";
 import { SavegameInterface_V1000 } from "./1000.js";
 
 import schema from "./1001.json";
 
-const logger = createLogger("savegame_interface/1001");
+const logger = new Logger("savegame_interface/1001");
 
 export class SavegameInterface_V1001 extends SavegameInterface_V1000 {
     getVersion() {

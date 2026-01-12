@@ -1,7 +1,7 @@
 import { Signal } from "./signal";
 
-import { createLogger } from "./logging";
-const logger = createLogger("animation_frame");
+import { Logger } from "./logging";
+const logger = new Logger("animation_frame");
 
 const maxDtMs = 1000;
 const resetDtMs = 16;

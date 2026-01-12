@@ -1,7 +1,7 @@
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { fastArrayDeleteValueIfContained } from "../core/utils";
 
-const logger = createLogger("request_channel");
+const logger = new Logger("request_channel");
 
 // Thrown when a request is aborted
 export const PROMISE_ABORTED = "promise-aborted";

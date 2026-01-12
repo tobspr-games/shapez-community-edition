@@ -1,7 +1,7 @@
 import { globalConfig } from "../../core/config";
 import { gMetaBuildingRegistry } from "../../core/global_registries";
 import { Loader } from "../../core/loader";
-import { createLogger } from "../../core/logging";
+import { Logger } from "../../core/logging";
 import { Rectangle } from "../../core/rectangle";
 import { AtlasSprite } from "../../core/sprites";
 import { StaleAreaDetector } from "../../core/stale_area_detector";
@@ -24,7 +24,7 @@ import { GameSystem } from "../game_system";
 import { isTruthyItem } from "../items/boolean_item";
 import { MapChunkView } from "../map_chunk_view";
 
-const logger = createLogger("wires");
+const logger = new Logger("wires");
 
 let networkUidCounter = 0;
 

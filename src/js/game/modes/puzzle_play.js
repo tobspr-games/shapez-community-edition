@@ -24,7 +24,7 @@ import { MetaGoalAcceptorBuilding } from "../buildings/goal_acceptor";
 import { PuzzleSerializer } from "../../savegame/puzzle_serializer";
 import { T } from "../../translations";
 import { HUDPuzzlePlayMetadata } from "../hud/parts/puzzle_play_metadata";
-import { createLogger } from "../../core/logging";
+import { Logger } from "../../core/logging";
 import { HUDPuzzleCompleteNotification } from "../hud/parts/puzzle_complete_notification";
 import { HUDPuzzlePlaySettings } from "../hud/parts/puzzle_play_settings";
 import { MetaBlockBuilding } from "../buildings/block";
@@ -32,7 +32,7 @@ import { MetaBuilding } from "../meta_building";
 import { gMetaBuildingRegistry } from "../../core/global_registries";
 import { HUDPuzzleNextPuzzle } from "../hud/parts/next_puzzle";
 
-const logger = createLogger("puzzle-play");
+const logger = new Logger("puzzle-play");
 
 export class PuzzlePlayGameMode extends PuzzleGameMode {
     static getId() {

@@ -1,7 +1,7 @@
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { GameRoot } from "./root";
 
-const logger = createLogger("dynamic_tickrate");
+const logger = new Logger("dynamic_tickrate");
 
 const fpsAccumulationTime = 1000;
 

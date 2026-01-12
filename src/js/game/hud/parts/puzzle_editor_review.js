@@ -1,5 +1,5 @@
 import { globalConfig, THIRDPARTY_URLS } from "../../../core/config";
-import { createLogger } from "../../../core/logging";
+import { Logger } from "../../../core/logging";
 import { DialogWithForm } from "../../../core/modal_dialog_elements";
 import { FormElementInput, FormElementItemChooser } from "../../../core/modal_dialog_forms";
 import { STOP_PROPAGATION } from "../../../core/signal";
@@ -13,7 +13,7 @@ import { ShapeItem } from "../../items/shape_item";
 import { ShapeDefinition } from "../../shape_definition";
 import { BaseHUDPart } from "../base_hud_part";
 
-const logger = createLogger("puzzle-review");
+const logger = new Logger("puzzle-review");
 
 export class HUDPuzzleEditorReview extends BaseHUDPart {
     constructor(root) {

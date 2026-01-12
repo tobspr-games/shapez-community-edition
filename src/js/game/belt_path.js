@@ -1,7 +1,7 @@
 import { globalConfig } from "../core/config";
 import { smoothenDpi } from "../core/dpi_manager";
 import { DrawParameters } from "../core/draw_parameters";
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { Rectangle } from "../core/rectangle";
 import { ORIGINAL_SPRITE_SCALE } from "../core/sprites";
 import { clamp, epsilonCompare, round4Digits } from "../core/utils";
@@ -12,7 +12,7 @@ import { Entity } from "./entity";
 import { typeItemSingleton } from "./item_resolver";
 import { GameRoot } from "./root";
 
-const logger = createLogger("belt_path");
+const logger = new Logger("belt_path");
 
 // Helpers for more semantic access into interleaved arrays
 

@@ -1,13 +1,13 @@
 import { makeOffscreenBuffer } from "./buffer_utils";
 import { AtlasSprite, BaseSprite, RegularSprite, SpriteAtlasLink } from "./sprites";
-import { createLogger } from "./logging";
+import { Logger } from "./logging";
 
 /**
  * @typedef {import("../application").Application} Application
  * @typedef {import("./atlas_definitions").AtlasDefinition} AtlasDefinition;
  */
 
-const logger = createLogger("loader");
+const logger = new Logger("loader");
 
 const missingSpriteIds = {};
 

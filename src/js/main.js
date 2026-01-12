@@ -4,13 +4,13 @@ import "./core/polyfills";
 import "./mods/modloader";
 
 import { Application } from "./application";
-import { createLogger, logSection } from "./core/logging";
+import { Logger, logSection } from "./core/logging";
 import { initComponentRegistry } from "./game/component_registry";
 import { initGameModeRegistry } from "./game/game_mode_registry";
 import { initItemRegistry } from "./game/item_registry";
 import { initMetaBuildingRegistry } from "./game/meta_building_registry";
 
-const logger = createLogger("main");
+const logger = new Logger("main");
 
 console.log(
     `%cshapez.io ️%c\n© 2022 tobspr Games\nCommit %c${G_BUILD_COMMIT_HASH}%c on %c${new Date(

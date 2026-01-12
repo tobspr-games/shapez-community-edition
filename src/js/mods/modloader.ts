@@ -1,12 +1,12 @@
 import { GLOBAL_APP } from "@/core/globals";
 import { SavegameStoredMods } from "@/savegame/savegame_typedefs";
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { DisabledMod } from "./disabled_mod";
 import { Mod, ModConstructor } from "./mod";
 import { ModInfo, ModMetadata, ModQueueEntry } from "./mod_metadata";
 import { MOD_SIGNALS } from "./mod_signals";
 
-const LOG = createLogger("mods");
+const LOG = new Logger("mods");
 
 export class ModLoader {
     private readonly mods = new Map<string, ModInfo>();

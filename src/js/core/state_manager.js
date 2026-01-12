@@ -4,10 +4,10 @@ import { Application } from "../application";
 
 import { MOD_SIGNALS } from "../mods/mod_signals";
 import { GameState } from "./game_state";
-import { createLogger } from "./logging";
+import { Logger } from "./logging";
 import { removeAllChildren, waitNextFrame } from "./utils";
 
-const logger = createLogger("state_manager");
+const logger = new Logger("state_manager");
 
 /**
  * This is the main state machine which drives the game states.

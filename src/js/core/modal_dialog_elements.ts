@@ -6,7 +6,7 @@ import { ClickDetector, ClickDetectorConstructorArgs } from "./click_detector";
 import { globalConfig } from "./config";
 import { InputReceiver, KeydownEvent } from "./input_receiver";
 import { getStringForKeyCode } from "./keycodes";
-import { createLogger } from "./logging";
+import { Logger } from "./logging";
 import { FormElement } from "./modal_dialog_forms";
 import { Signal, STOP_PROPAGATION } from "./signal";
 import { arrayDeleteValue, waitNextFrame } from "./utils";
@@ -25,7 +25,7 @@ import { arrayDeleteValue, waitNextFrame } from "./utils";
 const kbEnter = 13;
 const kbCancel = 27;
 
-const logger = createLogger("dialogs");
+const logger = new Logger("dialogs");
 
 export type DialogButtonStr<T extends string> = `${T}:${string}` | T;
 export type DialogButtonType = "info" | "loading" | "warning";

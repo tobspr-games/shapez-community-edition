@@ -1,7 +1,7 @@
 import { makeOffscreenBuffer } from "../../../core/buffer_utils";
 import { globalConfig } from "../../../core/config";
 import { DrawParameters } from "../../../core/draw_parameters";
-import { createLogger } from "../../../core/logging";
+import { Logger } from "../../../core/logging";
 import { Rectangle } from "../../../core/rectangle";
 import { Vector } from "../../../core/vector";
 import { T } from "../../../translations";
@@ -9,7 +9,7 @@ import { StaticMapEntityComponent } from "../../components/static_map_entity";
 import { KEYMAPPINGS } from "../../key_action_mapper";
 import { BaseHUDPart } from "../base_hud_part";
 
-const logger = createLogger("screenshot_exporter");
+const logger = new Logger("screenshot_exporter");
 
 export class HUDScreenshotExporter extends BaseHUDPart {
     createElements() {}

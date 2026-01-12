@@ -1,6 +1,6 @@
 import { globalConfig } from "../../core/config";
 import { DrawParameters } from "../../core/draw_parameters";
-import { createLogger } from "../../core/logging";
+import { Logger } from "../../core/logging";
 import { Rectangle } from "../../core/rectangle";
 import { StaleAreaDetector } from "../../core/stale_area_detector";
 import { enumDirection, enumDirectionToVector } from "../../core/vector";
@@ -12,7 +12,7 @@ import { Entity } from "../entity";
 import { GameSystemWithFilter } from "../game_system_with_filter";
 import { MapChunkView } from "../map_chunk_view";
 
-const logger = createLogger("systems/ejector");
+const logger = new Logger("systems/ejector");
 
 export class ItemEjectorSystem extends GameSystemWithFilter {
     constructor(root) {

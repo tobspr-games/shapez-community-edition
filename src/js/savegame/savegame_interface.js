@@ -1,4 +1,4 @@
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 
 import Ajv from "ajv";
 const ajv = new Ajv({
@@ -10,7 +10,7 @@ const ajv = new Ajv({
 
 const validators = {};
 
-const logger = createLogger("savegame_interface");
+const logger = new Logger("savegame_interface");
 
 export class BaseSavegameInterface {
     /**

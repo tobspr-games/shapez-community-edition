@@ -1,12 +1,12 @@
 import { CHANGELOG } from "../changelog";
 import { globalConfig } from "../core/config";
 import { GameState } from "../core/game_state";
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { getRandomHint } from "../game/hints";
 import { HUDModalDialogs } from "../game/hud/parts/modal_dialogs";
 import { T, autoDetectLanguageId, updateApplicationLanguage } from "../translations";
 
-const logger = createLogger("state/preload");
+const logger = new Logger("state/preload");
 
 export class PreloadState extends GameState {
     constructor() {
