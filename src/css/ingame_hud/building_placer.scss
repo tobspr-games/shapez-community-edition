@@ -55,14 +55,14 @@
         grid-template-columns: auto 1fr;
 
         label {
-            color: color.adjust($colorGreenBright, $lightness: 10, $space: hsl);
+            color: color.adjust($colorGreenBright, $lightness: 10%, $space: hsl);
             font-weight: bold;
             margin-right: 0.5rem;
         }
     }
 
     .hotkey {
-        color: color.adjust($colorGreenBright, $lightness: 10, $space: hsl);
+        color: color.adjust($colorGreenBright, $lightness: 10%, $space: hsl);
         font-weight: bold;
         display: flex;
         flex-direction: row;

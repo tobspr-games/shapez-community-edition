@@ -309,7 +309,7 @@
                         }
 
                         50% {
-                            background-color: color.adjust($colorGreenBright, $lightness: 10, $space: hsl);
+                            background-color: color.adjust($colorGreenBright, $lightness: 10%, $space: hsl);
                             transform: scale(1.02);
                         }
                         100% {

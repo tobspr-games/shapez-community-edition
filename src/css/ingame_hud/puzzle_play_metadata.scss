@@ -23,10 +23,10 @@
         }
         > span {
             display: flex;
-            color: color.adjust($accentColorDark, $lightness: -25, $space: hsl);
+            color: color.adjust($accentColorDark, $lightness: -25%, $space: hsl);
             @include SuperSmallText;
             @include DarkThemeOverride {
-                color: color.adjust($accentColorDark, $lightness: 15, $space: hsl);
+                color: color.adjust($accentColorDark, $lightness: 15%, $space: hsl);
             }
         }
     }

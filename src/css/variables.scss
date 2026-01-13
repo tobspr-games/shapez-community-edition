@@ -38,11 +38,11 @@ $ingameHudBg: rgba(#33343b, 0.9);
 $modsColor: rgb(214, 60, 228);
 
 $darkModeGameBackground: #535866;
-$darkModeControlsBackground: color.adjust($darkModeGameBackground, $lightness: -5, $space: hsl);
+$darkModeControlsBackground: color.adjust($darkModeGameBackground, $lightness: -5%, $space: hsl);
 
 // Dialog properties
 $modalDialogBg: rgba(160, 165, 180, 0.8);
-$dialogBgColor: color.adjust($mainBgColor, $lightness: 10, $space: hsl);
+$dialogBgColor: color.adjust($mainBgColor, $lightness: 10%, $space: hsl);
 
 // Poppins 500
 // Rubik 400

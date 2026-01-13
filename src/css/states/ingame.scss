@@ -27,7 +27,7 @@
         color: #666;
 
         @include DarkThemeOverride() {
-            color: color.adjust($darkModeGameBackground, $lightness: 50, $space: hsl);
+            color: color.adjust($darkModeGameBackground, $lightness: 50%, $space: hsl);
         }
     }
 

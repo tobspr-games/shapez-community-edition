@@ -22,7 +22,7 @@
         background: #eee;
 
         @include DarkThemeOverride {
-            background: color.adjust($darkModeControlsBackground, $lightness: 5, $space: hsl);
+            background: color.adjust($darkModeControlsBackground, $lightness: 5%, $space: hsl);
         }
     }
 

@@ -23,7 +23,7 @@
         }
     }
 
-    $darkModeDialogBg: color.adjust($darkModeGameBackground, $lightness: -5, $space: hsl);
+    $darkModeDialogBg: color.adjust($darkModeGameBackground, $lightness: -5%, $space: hsl);
 
     @include DarkThemeOverride {
         background: rgba($darkModeDialogBg, 0.9);
@@ -42,7 +42,7 @@
                 background: $darkModeControlsBackground;
 
                 &:hover {
-                    background-color: color.adjust($darkModeControlsBackground, $lightness: 5, $space: hsl);
+                    background-color: color.adjust($darkModeControlsBackground, $lightness: 5%, $space: hsl);
                 }
 
                 &.active {
@@ -91,7 +91,7 @@
         pointer-events: all;
 
         @include DarkThemeOverride {
-            background: color.adjust($darkModeControlsBackground, $lightness: -5, $space: hsl);
+            background: color.adjust($darkModeControlsBackground, $lightness: -5%, $space: hsl);
         }
 
         &.optionChooserDialog {

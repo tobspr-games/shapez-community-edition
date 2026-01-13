@@ -32,7 +32,7 @@
         background-color: rgba($ingameHudBg, 0.07);
 
         @include DarkThemeOverride {
-            background-color: rgba(color.adjust($darkModeGameBackground, $lightness: -15, $space: hsl), 0.95);
+            background-color: rgba(color.adjust($darkModeGameBackground, $lightness: -15%, $space: hsl), 0.95);
         }
 
         &.secondary {
@@ -145,7 +145,7 @@
                 }
                 &.selected {
                     .icon {
-                        background-color: rgba(color.adjust($colorBlueBright, $lightness: 9, $space: hsl), 0.4);
+                        background-color: rgba(color.adjust($colorBlueBright, $lightness: 9%, $space: hsl), 0.4);
                     }
                     // transform: scale(1.05);
                     // border-radius: $globalBorderRadius;

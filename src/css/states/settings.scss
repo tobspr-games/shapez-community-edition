@@ -207,7 +207,7 @@
                 button.about,
                 button.privacy {
                     color: #ccc;
-                    background-color: color.adjust($darkModeControlsBackground, $lightness: -5, $space: hsl);
+                    background-color: color.adjust($darkModeControlsBackground, $lightness: -5%, $space: hsl);
 
                     &.active {
                         color: #fff;
@@ -219,7 +219,7 @@
             .categoryContainer {
                 .category {
                     .setting {
-                        background: color.adjust($darkModeGameBackground, $lightness: -10, $space: hsl);
+                        background: color.adjust($darkModeGameBackground, $lightness: -10%, $space: hsl);
 
                         .value.enum {
                             // dirty but works
@@ -231,7 +231,7 @@
                             }
                             color: #ddd;
                             &:hover {
-                                background-color: color.adjust($darkModeControlsBackground, $lightness: -2, $space: hsl);
+                                background-color: color.adjust($darkModeControlsBackground, $lightness: -2%, $space: hsl);
                             }
                         }
 

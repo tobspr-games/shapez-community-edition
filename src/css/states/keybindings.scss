@@ -57,7 +57,7 @@
     @include DarkThemeOverride {
         .content {
             .hint {
-                background: color.adjust($darkModeControlsBackground, $lightness: -4, $space: hsl);
+                background: color.adjust($darkModeControlsBackground, $lightness: -4%, $space: hsl);
             }
 
             .category .entry {

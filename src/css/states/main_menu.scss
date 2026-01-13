@@ -340,7 +340,7 @@
                 grid-row: 1 / 1;
 
                 &:hover {
-                    background-color: color.adjust($colorGreenBright, $lightness: -4, $space: hsl);
+                    background-color: color.adjust($colorGreenBright, $lightness: -4%, $space: hsl);
                     opacity: 1;
                 }
 
@@ -541,7 +541,7 @@
                         margin-left: 0.4rem;
 
                         @include DarkThemeOverride {
-                            background-color: color.adjust($darkModeControlsBackground, $lightness: 10, $space: hsl);
+                            background-color: color.adjust($darkModeControlsBackground, $lightness: 10%, $space: hsl);
                         }
                     }
                 }
@@ -692,7 +692,7 @@
             background: $darkModeControlsBackground;
 
             .savegames .savegame {
-                background: color.adjust($darkModeControlsBackground, $lightness: -5, $space: hsl);
+                background: color.adjust($darkModeControlsBackground, $lightness: -5%, $space: hsl);
                 color: white;
             }
         }
@@ -701,10 +701,10 @@
             background: $darkModeControlsBackground;
 
             .modsList {
-                border-color: color.adjust($darkModeControlsBackground, $lightness: -5, $space: hsl);
+                border-color: color.adjust($darkModeControlsBackground, $lightness: -5%, $space: hsl);
 
                 .mod {
-                    background: color.adjust($darkModeControlsBackground, $lightness: -5, $space: hsl);
+                    background: color.adjust($darkModeControlsBackground, $lightness: -5%, $space: hsl);
                     color: white;
                 }
             }
