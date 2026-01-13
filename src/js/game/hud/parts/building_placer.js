@@ -658,8 +658,16 @@ export class HUDBuildingPlacer extends HUDBuildingPlacerLogic {
                     // Connected to a belt
                     isConnected = true;
                 } else if (minerComp && minerComp.chainable && destMiner && destMiner.chainable) {
-                    // Chainable miners connected to eachother
-                    isConnected = true;
+                    const worldTile = staticComp.localTileToWorld(slot.pos);
+                    if (
+                        this.root.map.getLowerLayerContentXY(worldTile.x, worldTile.y) ==
+                        destMiner.cachedMinedItem
+                    ) {
+                        // Chainable miners connected to eachother
+                        isConnected = true;
+                    } else {
+                        isBlocked = true;
+                    }
                 } else {
                     // This one is blocked
                     isBlocked = true;
