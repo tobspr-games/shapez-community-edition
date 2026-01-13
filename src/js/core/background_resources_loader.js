@@ -83,50 +83,45 @@ export class BackgroundResourcesLoader {
         const promiseFunctions = [];
 
         // CSS
-        for (let i = 0; i < css.length; ++i) {
+        for (const url of css) {
             promiseFunctions.push(progress =>
-                timeoutPromise(this.internalPreloadCss(css[i], progress), LOADER_TIMEOUT_PER_RESOURCE).catch(
+                timeoutPromise(this.internalPreloadCss(url, progress), LOADER_TIMEOUT_PER_RESOURCE).catch(
                     err => {
-                        logger.error("Failed to load css:", css[i], err);
-                        throw new Error("HUD Stylesheet " + css[i] + " failed to load: " + err);
+                        logger.error("Failed to load css:", url, err);
+                        throw new Error("HUD Stylesheet " + url + " failed to load: " + err);
                     }
                 )
             );
         }
 
         // ATLAS FILES
-        for (let i = 0; i < atlas.length; ++i) {
+        for (const url of atlas) {
             promiseFunctions.push(progress =>
-                timeoutPromise(Loader.preloadAtlas(atlas[i], progress), LOADER_TIMEOUT_PER_RESOURCE).catch(
-                    err => {
-                        logger.error("Failed to load atlas:", atlas[i].sourceFileName, err);
-                        throw new Error("Atlas " + atlas[i].sourceFileName + " failed to load: " + err);
-                    }
-                )
-            );
-        }
-
-        // HUD Sprites
-        for (let i = 0; i < sprites.length; ++i) {
-            promiseFunctions.push(progress =>
-                timeoutPromise(
-                    Loader.preloadCSSSprite(sprites[i], progress),
-                    LOADER_TIMEOUT_PER_RESOURCE
-                ).catch(err => {
-                    logger.error("Failed to load css sprite:", sprites[i], err);
-                    throw new Error("HUD Sprite " + sprites[i] + " failed to load: " + err);
+                timeoutPromise(Loader.preloadAtlas(url, progress), LOADER_TIMEOUT_PER_RESOURCE).catch(err => {
+                    logger.error("Failed to load atlas:", url.sourceFileName, err);
+                    throw new Error("Atlas " + url.sourceFileName + " failed to load: " + err);
                 })
             );
         }
 
-        // SFX & Music
-        for (let i = 0; i < sounds.length; ++i) {
-            promiseFunctions.push(() =>
-                timeoutPromise(this.app.sound.loadSound(sounds[i]), LOADER_TIMEOUT_PER_RESOURCE).catch(
+        // HUD Sprites
+        for (const url of sprites) {
+            promiseFunctions.push(progress =>
+                timeoutPromise(Loader.preloadCSSSprite(url, progress), LOADER_TIMEOUT_PER_RESOURCE).catch(
                     err => {
-                        logger.warn("Failed to load sound, will not be available:", sounds[i], err);
+                        logger.error("Failed to load css sprite:", url, err);
+                        throw new Error("HUD Sprite " + url + " failed to load: " + err);
                     }
                 )
+            );
+        }
+
+        // SFX & Music
+        for (const url of sounds) {
+            promiseFunctions.push(() =>
+                timeoutPromise(this.app.sound.loadSound(url), LOADER_TIMEOUT_PER_RESOURCE).catch(err => {
+                    logger.warn("Failed to load sound, will not be available:", url, err);
+                })
             );
         }
 
@@ -139,7 +134,7 @@ export class BackgroundResourcesLoader {
         this.resourceStateChangedSignal.dispatch({ progress });
         const promises = [];
 
-        for (let i = 0; i < promiseFunctions.length; i++) {
+        for (const promiseFunction of promiseFunctions) {
             let lastIndividualProgress = 0;
             const progressHandler = individualProgress => {
                 const delta = clamp(individualProgress) - lastIndividualProgress;
@@ -148,7 +143,7 @@ export class BackgroundResourcesLoader {
                 this.resourceStateChangedSignal.dispatch({ progress });
             };
             promises.push(
-                promiseFunctions[i](progressHandler).then(() => {
+                promiseFunction(progressHandler).then(() => {
                     progressHandler(1);
                 })
             );
