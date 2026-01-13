@@ -147,7 +147,7 @@
                 background: $darkModeControlsBackground;
 
                 &.pinned {
-                    background: mix($darkModeControlsBackground, $colorBlueBright, 90%);
+                    background: color.mix($darkModeControlsBackground, $colorBlueBright, 90%);
                 }
             }
 

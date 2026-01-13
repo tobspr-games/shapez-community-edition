@@ -1,6 +1,8 @@
+@use "sass:string";
+
 // Control here whether to inline all resources or instead load them
 @function uiResource($pth) {
-    @if (str-index($string: $pth, $substring: ".noinline")) {
+    @if (string.index($string: $pth, $substring: ".noinline")) {
         @return resolve($pth);
     }
     @return inline($pth);
