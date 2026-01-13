@@ -1,3 +1,5 @@
+@use "sass:color";
+
 #ingame_HUD_PlacementHints {
     position: fixed;
     top: 6rem;
@@ -53,14 +55,14 @@
         grid-template-columns: auto 1fr;
 
         label {
-            color: lighten($colorGreenBright, 10);
+            color: color.adjust($colorGreenBright, $lightness: 10, $space: hsl);
             font-weight: bold;
             margin-right: 0.5rem;
         }
     }
 
     .hotkey {
-        color: lighten($colorGreenBright, 10);
+        color: color.adjust($colorGreenBright, $lightness: 10, $space: hsl);
         font-weight: bold;
         display: flex;
         flex-direction: row;

@@ -1,3 +1,5 @@
+@use "sass:color";
+
 #ingame_HUD_PuzzlePlayMetadata {
     position: absolute;
 
@@ -21,10 +23,10 @@
         }
         > span {
             display: flex;
-            color: darken($accentColorDark, 25);
+            color: color.adjust($accentColorDark, $lightness: -25, $space: hsl);
             @include SuperSmallText;
             @include DarkThemeOverride {
-                color: lighten($accentColorDark, 15);
+                color: color.adjust($accentColorDark, $lightness: 15, $space: hsl);
             }
         }
     }

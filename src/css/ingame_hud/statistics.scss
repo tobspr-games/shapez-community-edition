@@ -1,3 +1,5 @@
+@use "sass:color";
+
 #ingame_HUD_Statistics {
     .content {
         width: 50rem;
@@ -79,7 +81,7 @@
             transition: opacity 0.2s ease-in-out;
 
             @include DarkThemeOverride {
-                background-color: lighten($darkModeControlsBackground, 10) !important;
+                background-color: color.adjust($darkModeControlsBackground, $lightness: 10, $space: hsl) !important;
             }
         }
 

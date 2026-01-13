@@ -1,3 +1,5 @@
+@use "sass:color";
+
 #state_MainMenuState {
     display: grid;
     align-items: center;
@@ -338,7 +340,7 @@
                 grid-row: 1 / 1;
 
                 &:hover {
-                    background-color: darken($colorGreenBright, 4);
+                    background-color: color.adjust($colorGreenBright, $lightness: -4, $space: hsl);
                     opacity: 1;
                 }
 
@@ -539,7 +541,7 @@
                         margin-left: 0.4rem;
 
                         @include DarkThemeOverride {
-                            background-color: lighten($darkModeControlsBackground, 10);
+                            background-color: color.adjust($darkModeControlsBackground, $lightness: 10, $space: hsl);
                         }
                     }
                 }
@@ -690,7 +692,7 @@
             background: $darkModeControlsBackground;
 
             .savegames .savegame {
-                background: darken($darkModeControlsBackground, 5);
+                background: color.adjust($darkModeControlsBackground, $lightness: -5, $space: hsl);
                 color: white;
             }
         }
@@ -699,10 +701,10 @@
             background: $darkModeControlsBackground;
 
             .modsList {
-                border-color: darken($darkModeControlsBackground, 5);
+                border-color: color.adjust($darkModeControlsBackground, $lightness: -5, $space: hsl);
 
                 .mod {
-                    background: darken($darkModeControlsBackground, 5);
+                    background: color.adjust($darkModeControlsBackground, $lightness: -5, $space: hsl);
                     color: white;
                 }
             }

@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $globalBorderRadius: 0.6rem;
 
 // Font sizes and line heights
@@ -36,11 +38,11 @@ $ingameHudBg: rgba(#33343b, 0.9);
 $modsColor: rgb(214, 60, 228);
 
 $darkModeGameBackground: #535866;
-$darkModeControlsBackground: darken($darkModeGameBackground, 5);
+$darkModeControlsBackground: color.adjust($darkModeGameBackground, $lightness: -5, $space: hsl);
 
 // Dialog properties
 $modalDialogBg: rgba(160, 165, 180, 0.8);
-$dialogBgColor: lighten($mainBgColor, 10);
+$dialogBgColor: color.adjust($mainBgColor, $lightness: 10, $space: hsl);
 
 // Poppins 500
 // Rubik 400

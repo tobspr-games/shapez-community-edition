@@ -1,3 +1,5 @@
+@use "sass:color";
+
 #state_InGameState {
     .gameLoadingOverlay {
         position: absolute;
@@ -25,7 +27,7 @@
         color: #666;
 
         @include DarkThemeOverride() {
-            color: lighten($darkModeGameBackground, 50);
+            color: color.adjust($darkModeGameBackground, $lightness: 50, $space: hsl);
         }
     }
 

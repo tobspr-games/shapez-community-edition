@@ -1,3 +1,5 @@
+@use "sass:color";
+
 #state_KeybindingsState {
     .content {
         .topEntries {
@@ -55,7 +57,7 @@
     @include DarkThemeOverride {
         .content {
             .hint {
-                background: darken($darkModeControlsBackground, 4);
+                background: color.adjust($darkModeControlsBackground, $lightness: -4, $space: hsl);
             }
 
             .category .entry {

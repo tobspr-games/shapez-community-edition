@@ -1,3 +1,5 @@
+@use "sass:color";
+
 #state_SettingsState {
     $colorCategoryButton: #eeeff5;
     $colorCategoryButtonSelected: $colorBlueBright;
@@ -205,7 +207,7 @@
                 button.about,
                 button.privacy {
                     color: #ccc;
-                    background-color: darken($darkModeControlsBackground, 5);
+                    background-color: color.adjust($darkModeControlsBackground, $lightness: -5, $space: hsl);
 
                     &.active {
                         color: #fff;
@@ -217,7 +219,7 @@
             .categoryContainer {
                 .category {
                     .setting {
-                        background: darken($darkModeGameBackground, 10);
+                        background: color.adjust($darkModeGameBackground, $lightness: -10, $space: hsl);
 
                         .value.enum {
                             // dirty but works
@@ -229,7 +231,7 @@
                             }
                             color: #ddd;
                             &:hover {
-                                background-color: darken($darkModeControlsBackground, 2);
+                                background-color: color.adjust($darkModeControlsBackground, $lightness: -2, $space: hsl);
                             }
                         }
 
