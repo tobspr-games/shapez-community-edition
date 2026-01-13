@@ -235,7 +235,11 @@
                             }
                             color: #ddd;
                             &:hover {
-                                background-color: color.adjust($darkModeControlsBackground, $lightness: -2%, $space: hsl);
+                                background-color: color.adjust(
+                                    $darkModeControlsBackground,
+                                    $lightness: -2%,
+                                    $space: hsl
+                                );
                             }
                         }
 

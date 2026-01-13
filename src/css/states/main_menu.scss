@@ -545,7 +545,11 @@
                         margin-left: 0.4rem;
 
                         @include DarkThemeOverride {
-                            background-color: color.adjust($darkModeControlsBackground, $lightness: 10%, $space: hsl);
+                            background-color: color.adjust(
+                                $darkModeControlsBackground,
+                                $lightness: 10%,
+                                $space: hsl
+                            );
                         }
                     }
                 }

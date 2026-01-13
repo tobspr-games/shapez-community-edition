@@ -128,7 +128,9 @@ input[type="email"] {
     &.errored {
         @include BoxShadow3D(color.mix(color.adjust($mainBgColor, $lightness: 30%, $space: hsl), #f77, 25%));
         &:focus {
-            @include BoxShadow3D(color.mix(color.adjust($mainBgColor, $lightness: 50%, $space: hsl), #f77, 25%));
+            @include BoxShadow3D(
+                color.mix(color.adjust($mainBgColor, $lightness: 50%, $space: hsl), #f77, 25%)
+            );
         }
     }
     &.input-token {

@@ -85,7 +85,11 @@
             transition: opacity 0.2s ease-in-out;
 
             @include DarkThemeOverride {
-                background-color: color.adjust($darkModeControlsBackground, $lightness: 10%, $space: hsl) !important;
+                background-color: color.adjust(
+                    $darkModeControlsBackground,
+                    $lightness: 10%,
+                    $space: hsl
+                ) !important;
             }
         }
 
