@@ -1,3 +1,6 @@
+@use "../ui_resource" as *;
+@use "../variables" as *;
+
 #ingame_HUD_SettingsMenu {
     .statsElement {
         position: absolute;

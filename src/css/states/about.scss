@@ -1,3 +1,5 @@
+@use "../variables" as *;
+
 #state_AboutState {
     > .container .content {
         max-width: 60rem;
