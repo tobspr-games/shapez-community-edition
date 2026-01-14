@@ -15,23 +15,17 @@ const logger = new Logger("background_loader");
 
 const MAIN_MENU_ASSETS = {
     sprites: ["logo.png"],
-    sounds: [SOUNDS.uiClick, SOUNDS.uiError, SOUNDS.dialogError, SOUNDS.dialogOk],
+    sounds: [...Object.values(MUSIC), ...Object.values(SOUNDS)],
     atlas: [],
     css: [],
 };
 
 const INGAME_ASSETS = {
     sprites: [],
-    sounds: [
-        ...Array.from(Object.values(MUSIC)),
-        ...Array.from(Object.values(SOUNDS)).filter(sound => !MAIN_MENU_ASSETS.sounds.includes(sound)),
-    ],
+    sounds: [],
     atlas: atlasFiles,
     css: ["async-resources.css"],
 };
-
-MAIN_MENU_ASSETS.sounds = [...Array.from(Object.values(MUSIC)), ...Array.from(Object.values(SOUNDS))];
-INGAME_ASSETS.sounds = [];
 
 const LOADER_TIMEOUT_PER_RESOURCE = 180000;
 

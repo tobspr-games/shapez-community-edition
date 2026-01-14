@@ -44,7 +44,6 @@ export class AtlasDefinition {
 export const atlasFiles = (
     await Promise.all(
         import.meta
-            // @ts-ignore
             .webpackContext("../../../res_built/atlas/", { recursive: false, regExp: /.*\.json/i })
             .keys()
             .map(f => f.replace(/^\.\//gi, ""))
