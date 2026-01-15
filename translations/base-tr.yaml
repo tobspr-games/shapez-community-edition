@@ -220,11 +220,6 @@ dialogs:
             misiniz?
         missingMods: Eksik Modlar
         newMods: Yeni yüklenen Modlar
-    resourceLoadFailed:
-        title: Kaynaklar yüklenemedi
-        descSteamDemo: "Bir veya birden fazla kaynak yüklenemedi. Oyunu tekrar
-            başlatmayı deneyin - Eğer bu yardımcı olmazsa yeniden yüklemeyi ve
-            oyun dosyalarını Steam üzerinden doğrulayın. <br><br> Hata Mesajı:"
 ingame:
     keybindingsOverlay:
         moveMap: Hareket Et

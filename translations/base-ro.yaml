@@ -222,11 +222,6 @@ dialogs:
             you sure you want to continue?
         missingMods: Missing Mods
         newMods: Newly installed Mods
-    resourceLoadFailed:
-        title: Resources failed to load
-        descSteamDemo: "One ore more resources could not be loaded. Try restarting the
-            game - If that does not help, try reinstalling and verifying the
-            game files via Steam. <br><br> Error Message:"
 ingame:
     keybindingsOverlay:
         moveMap: Mișcă-te

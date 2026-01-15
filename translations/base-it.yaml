@@ -227,11 +227,6 @@ dialogs:
             continuare?
         missingMods: Mods mancanti
         newMods: Mods installate di recente
-    resourceLoadFailed:
-        title: Impossibile caricare le risorse
-        descSteamDemo: "Impossibile caricare una o più risorse. Prova a riavviare il
-            gioco - Se questo non aiuta, prova a reinstallare e verificare i
-            file di gioco da Steam. <br><br> Messaggio di errore:"
 ingame:
     keybindingsOverlay:
         moveMap: Sposta

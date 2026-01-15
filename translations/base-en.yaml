@@ -373,14 +373,6 @@ dialogs:
         missingMods: Missing Mods
         newMods: Newly installed Mods
 
-    resourceLoadFailed:
-        title: Resources failed to load
-
-        descSteamDemo: >-
-            One ore more resources could not be loaded. Try restarting the game - If that does not help, try reinstalling and verifying the game files via Steam.
-            <br><br>
-            Error Message:
-
 ingame:
     # This is shown in the top left corner and displays useful keybindings in
     # every situation
@@ -1430,6 +1422,9 @@ errorHandler:
     labels:
         buildInformation: "Build Information:"
         loadedMods: "Loaded Mods:"
+    links:
+        reportIssue: Report an Issue
+        discord: Discord Server
     actions:
         copy: Copy
         copyDone: Copied!

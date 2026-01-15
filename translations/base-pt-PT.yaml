@@ -225,11 +225,6 @@ dialogs:
             carregue. Tens a certeza que queres continuar?
         missingMods: Modos em Falta
         newMods: Modos instalados recentemente
-    resourceLoadFailed:
-        title: Falha ao carregar recursos
-        descSteamDemo: "Um ou mais recursos não carrega. Tenta reiniciar o jogo - Se
-            isto não ajudar, tenta reinstalar e verifica os ficheiros do jogo na
-            Steam. <br><br> Mensagem de Erro:"
 ingame:
     keybindingsOverlay:
         moveMap: Mover

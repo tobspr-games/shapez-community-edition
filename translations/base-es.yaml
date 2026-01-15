@@ -224,11 +224,6 @@ dialogs:
             consitnuar?
         missingMods: Mods Faltantes
         newMods: Mods Nuevos Instalados
-    resourceLoadFailed:
-        title: Recursos fallaron en cargar
-        descSteamDemo: "Uno o más recursos no puedieron cargar. Intenta reiniciar el
-            juego - Si eso no ayuda, intenta reinstalar y verificar los archivos
-            del juego en Steam. <br><br> Mensaje de Error:"
 ingame:
     keybindingsOverlay:
         moveMap: Mover

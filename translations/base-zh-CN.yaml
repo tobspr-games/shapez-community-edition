@@ -191,11 +191,6 @@ dialogs:
         desc: 当前已安装的游戏模组（Mods）与该存档创建时所安装的游戏模组（Mods）不同！这可能会导致存档损坏，甚至无法加载。你确定要继续加载吗？
         missingMods: 缺失的游戏模组（Mods）
         newMods: 新安装的游戏模组（Mods）
-    resourceLoadFailed:
-        title: 资源载入失败
-        descSteamDemo:
-            “一个或多个资源载入失败，请重新启动游戏。 如果仍然存在问题，请重新安装游戏或者通过Steam验证游戏安装文件。 <br><br>
-            错误提示：”
 ingame:
     keybindingsOverlay:
         moveMap: 移动地图

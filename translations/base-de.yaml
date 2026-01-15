@@ -286,11 +286,6 @@ dialogs:
             ihn wirklich laden?
         missingMods: Fehlende Mods
         newMods: Neu installierte Mods
-    resourceLoadFailed:
-        title: Resources failed to load
-        descSteamDemo: "One ore more resources could not be loaded. Try restarting the
-            game - If that does not help, try reinstalling and verifying the
-            game files via Steam. <br><br> Error Message:"
 ingame:
     keybindingsOverlay:
         moveMap: Bewegen
