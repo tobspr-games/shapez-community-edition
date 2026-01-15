@@ -2,7 +2,7 @@ import debug from "./config.local";
 
 export const THIRDPARTY_URLS = {
     discord: "https://discord.gg/HN7EVzV",
-    github: "https://github.com/tobspr-games/shapez.io",
+    github: "https://github.com/tobspr-games/shapez-community-edition",
     reddit: "https://www.reddit.com/r/shapezio",
     shapeViewer: "https://viewer.shapez.io",
 

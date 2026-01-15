@@ -1,5 +1,6 @@
 import { MODS } from "@/mods/modloader";
 import { T } from "@/translations";
+import { THIRDPARTY_URLS } from "./config";
 import { BUILD_OPTIONS } from "./globals";
 import { removeAllChildren } from "./utils";
 
@@ -86,6 +87,9 @@ export class ErrorScreen {
                     <pre>{this.buildInformation}</pre>
                 </div>
                 <div class="actions">
+                    <a href={THIRDPARTY_URLS.github}>{T.errorHandler.links.reportIssue}</a>
+                    <a href={THIRDPARTY_URLS.discord}>{T.errorHandler.links.discord}</a>
+                    <div class="spacer" />
                     {btnCopy}
                     {btnRestart}
                 </div>
@@ -124,7 +128,7 @@ export class ErrorScreen {
 
         while (current.cause instanceof Error) {
             current = current.cause;
-            stack += `\nCaused by: ${current.stack}`;
+            stack += `\n\nCaused by:\n${current.stack}`;
         }
 
         return stack;

@@ -9,6 +9,9 @@
     --background-container: hsl(0deg 40% 10%);
     --foreground: hsl(0deg 100% 95%);
 
+    --foreground-link: hsl(0deg 40% 60%);
+    --foreground-link-hover: hsl(from var(--foreground-link) h s 70%);
+
     --background-button: rgba(255 255 255 / 0.05);
     --background-button-hover: rgba(255 255 255 / 0.03);
     --background-button-active: hsl(from var(--background-container) h s l / 0.4);
@@ -63,6 +66,14 @@
         }
     }
 
+    a {
+        color: var(--foreground-link);
+
+        &:hover {
+            color: var(--foreground-link-hover);
+        }
+    }
+
     .header,
     .actions {
         grid-column: 1 / 3;
@@ -84,6 +95,10 @@
         display: flex;
         padding-top: 1rem;
         gap: 1rem;
-        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .spacer {
+        flex-grow: 1;
     }
 }
