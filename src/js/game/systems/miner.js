@@ -30,6 +30,7 @@ export class MinerSystem extends GameSystemWithFilter {
     }
 
     update() {
+        // note this is in items/sec, not tiles/sec
         let progressGrowth = this.root.dynamicTickrate.deltaSeconds * this.root.hubGoals.getMinerBaseSpeed();
 
         const targetProgress = 1;
@@ -38,8 +39,7 @@ export class MinerSystem extends GameSystemWithFilter {
             progressGrowth = targetProgress;
         }
 
-        for (let i = 0; i < this.allEntities.length; ++i) {
-            const entity = this.allEntities[i];
+        for (const entity of this.allEntities) {
             const minerComp = entity.components.Miner;
 
             // Check if miner is above an actual tile
@@ -85,6 +85,8 @@ export class MinerSystem extends GameSystemWithFilter {
             }
 
             //make sure progress never gets out of control
+            // TODO: consider if specific extra progress limit has non-negligible effects,
+            // or maybe replace it with an epsilon comparison?
             minerComp.progress = Math.min(minerComp.progress, targetProgress + 0.5);
             if (minerComp.progress >= targetProgress) {
                 // We can try to eject
@@ -99,6 +101,7 @@ export class MinerSystem extends GameSystemWithFilter {
                 }
             }
 
+            // TODO: pointless code? and why duplication
             if (minerComp.progress < targetProgress) {
                 minerComp.progress += progressGrowth;
             }

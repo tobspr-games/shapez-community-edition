@@ -17,7 +17,7 @@ export const THIRDPARTY_URLS = {
 };
 
 export const globalConfig = {
-    // Size of a single tile in Pixels.
+    /** Size of a single tile in Pixels. */
     tileSize: 32,
     halfTileSize: 16,
 
@@ -32,7 +32,9 @@ export const globalConfig = {
     analyticsSliceDurationSeconds: G_IS_DEV ? 1 : 10,
 
     // Map
+    /** width of a chunk in tiles */
     mapChunkSize: 16,
+    /** width of an aggregate in chunks */
     chunkAggregateSize: 4,
     mapChunkOverviewMinZoom: 0.9,
     mapChunkWorldSize: null, // COMPUTED
@@ -45,6 +47,7 @@ export const globalConfig = {
 
     defaultItemDiameter: 20,
 
+    /** how many tiles of width each item takes up on a belt */
     itemSpacingOnBelts: 0.63,
 
     undergroundBeltMaxTilesByTier: [5, 9],

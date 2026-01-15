@@ -129,7 +129,7 @@ export class ItemAcceptorComponent extends Component {
     }
 
     /**
-     *
+     * Check if an item can logically be accepted in a slot (not considering whether it already holds items)
      * @param {Entity} entity
      * @param {BaseItem} item
      * @param {number} slotIndex
@@ -180,6 +180,7 @@ export class ItemAcceptorComponent extends Component {
                     }
 
                     // set the item straight away - this way different kinds of items can't be inq the acceptor
+                    // TODO: This feels messy, and doing it in tryAcceptItem shouldn't be complicated
                     storageComp.storedItem = item;
                     storageComp.storedCount++;
 
@@ -205,13 +206,13 @@ export class ItemAcceptorComponent extends Component {
     tryAcceptItem(entity, slotIndex, item, startProgress = 0.0) {
         // make sure we have space to actually accept
         let existingInputs = 0;
-        for (let i = 0; i < this.inputs.length; i++) {
-            if (this.inputs[i].slotIndex == slotIndex) {
+        for (const input of this.inputs) {
+            if (input.slotIndex == slotIndex) {
                 existingInputs++;
             }
         }
-        for (let i = 0; i < this.completedInputs.length; i++) {
-            if (this.completedInputs[i].slotIndex == slotIndex) {
+        for (const input of this.completedInputs) {
+            if (input.slotIndex == slotIndex) {
                 existingInputs++;
             }
         }

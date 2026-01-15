@@ -230,8 +230,8 @@ export class UndergroundBeltSystem extends GameSystemWithFilter {
             this.root.hubGoals.getBeltBaseSpeed() *
             globalConfig.itemSpacingOnBelts;
 
-        for (let i = 0; i < this.allEntities.length; ++i) {
-            const entity = this.allEntities[i];
+        // TODO: for misordered tunnel pairs, entering items get progressed twice
+        for (const entity of this.allEntities) {
             const undergroundComp = entity.components.UndergroundBelt;
             if (undergroundComp.mode === sender) {
                 this.handleSender(entity);
@@ -340,8 +340,9 @@ export class UndergroundBeltSystem extends GameSystemWithFilter {
         const distance = undergroundComp.cachedLinkedEntity.distance;
 
         // Move items along
-        for (let i = 0; i < undergroundComp.pendingItems.length; i++) {
-            const itemAndProgress = undergroundComp.pendingItems[i];
+        // TODO: maybe implement belt path-like optimization?
+        for (const itemAndProgress of undergroundComp.pendingItems) {
+            // TODO: think this leads to kinda arbitrary extraProgress when backed up
             if (itemAndProgress[1] < distance) {
                 itemAndProgress[1] += progressGrowth;
             }

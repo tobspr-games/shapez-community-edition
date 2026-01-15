@@ -8,8 +8,7 @@ export class ItemProducerSystem extends GameSystemWithFilter {
     }
 
     update() {
-        for (let i = 0; i < this.allEntities.length; ++i) {
-            const entity = this.allEntities[i];
+        for (const entity of this.allEntities) {
             const ejectorComp = entity.components.ItemEjector;
             const pinsComp = entity.components.WiredPins;
             if (!pinsComp) {

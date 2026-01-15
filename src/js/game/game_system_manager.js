@@ -217,15 +217,15 @@ export class GameSystemManager {
      * Updates all systems
      */
     update() {
-        for (let i = 0; i < this.systemUpdateOrder.length; ++i) {
-            const system = this.systems[this.systemUpdateOrder[i]];
+        for (const id of this.systemUpdateOrder) {
+            const system = this.systems[id];
             system.update();
         }
     }
 
     refreshCaches() {
-        for (let i = 0; i < this.systemUpdateOrder.length; ++i) {
-            const system = this.systems[this.systemUpdateOrder[i]];
+        for (const id of this.systemUpdateOrder) {
+            const system = this.systems[id];
             system.refreshCaches();
         }
     }

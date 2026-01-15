@@ -17,8 +17,7 @@ export class ItemAcceptorSystem extends GameSystemWithFilter {
             this.root.hubGoals.getBeltBaseSpeed() *
             globalConfig.itemSpacingOnBelts;
 
-        for (let i = 0; i < this.allEntities.length; ++i) {
-            const entity = this.allEntities[i];
+        for (const entity of this.allEntities) {
             const acceptorComp = entity.components.ItemAcceptor;
             const inputs = acceptorComp.inputs;
             const maxProgress = 0.5;
@@ -53,16 +52,14 @@ export class ItemAcceptorSystem extends GameSystemWithFilter {
         }
 
         const contents = chunk.containedEntitiesByLayer.regular;
-        for (let i = 0; i < contents.length; ++i) {
-            const entity = contents[i];
+        for (const entity of contents) {
             const acceptorComp = entity.components.ItemAcceptor;
             if (!acceptorComp) {
                 continue;
             }
 
             const staticComp = entity.components.StaticMapEntity;
-            for (let i = 0; i < acceptorComp.inputs.length; i++) {
-                const input = acceptorComp.inputs[i];
+            for (const input of acceptorComp.inputs) {
                 const { item, animProgress, slotIndex } = input;
 
                 const slotData = acceptorComp.slots[slotIndex];

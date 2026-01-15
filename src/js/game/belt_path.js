@@ -69,7 +69,7 @@ export class BeltPath extends BasicSerializableObject {
         this.entityPath = entityPath;
 
         /**
-         * Stores the items sorted, and their distance to the previous item (or start)
+         * Stores the items sorted start to end, and their distance to the next item (or end)
          * Layout: [distanceToNext, item]
          * @type {Array<[number, BaseItem]>}
          */
@@ -95,6 +95,7 @@ export class BeltPath extends BasicSerializableObject {
         this.totalLength = this.computeTotalLength();
 
         if (computeSpacing) {
+            /** Stores the distance from start to first (closest to start) item (or end if none) */
             this.spacingToFirstItem = this.totalLength;
         }
 
@@ -175,7 +176,7 @@ export class BeltPath extends BasicSerializableObject {
         this.boundAcceptor = this.computeAcceptingEntityAndSlot().acceptor;
 
         /**
-         * How many items past the first item are compressed
+         * How many items past the first item are compressed (okay if underestimate)
          */
         this.numCompressedItemsAfterFirstItem = 0;
     }
@@ -267,12 +268,8 @@ export class BeltPath extends BasicSerializableObject {
 
         return {
             entity: targetEntity,
-            acceptor: function (item, startProgress = 0.0) {
-                if (targetAcceptorComp.tryAcceptItem(targetEntity, matchingSlotIndex, item, startProgress)) {
-                    return true;
-                }
-                return false;
-            },
+            acceptor: (item, startProgress = 0.0) =>
+                targetAcceptorComp.tryAcceptItem(targetEntity, matchingSlotIndex, item, startProgress),
         };
     }
 
@@ -1043,39 +1040,39 @@ export class BeltPath extends BasicSerializableObject {
             return;
         }
 
-        // Divide by item spacing on belts since we use throughput and not speed
-        let beltSpeed =
+        // Distance in tiles that items should move (if not backed up)
+        let progress =
             this.root.hubGoals.getBeltBaseSpeed() *
             this.root.dynamicTickrate.deltaSeconds *
             globalConfig.itemSpacingOnBelts;
 
         if (G_IS_DEV && globalConfig.debug.instantBelts) {
-            beltSpeed *= 100;
+            progress *= 100;
         }
 
-        // Store whether this is the first item we processed, so premature
-        // item ejection is available
+        // Store whether this is the first item we are processing (and hence end-most item),
+        // so premature item ejection is available
         let isFirstItemProcessed = true;
 
-        // Store how much velocity (strictly its distance, not velocity) we have to distribute over all items
-        let remainingVelocity = beltSpeed;
+        // Store how much progress we have yet to distribute over all items
+        let remainingProgress = progress;
 
-        // Store the last item we processed, so we can skip clashed ones
-        let lastItemProcessed;
+        // Store the position of the last item we processed for afterwards,
+        // so we can compute the new number of compressed items
+        let i;
 
-        for (lastItemProcessed = this.items.length - 1; lastItemProcessed >= 0; --lastItemProcessed) {
-            const nextDistanceAndItem = this.items[lastItemProcessed];
+        for (i = this.items.length - 1; i >= 0; --i) {
+            const nextDistanceAndItem = this.items[i];
 
             // Compute how much spacing we need at least
-            const minimumSpacing =
-                lastItemProcessed === this.items.length - 1 ? 0 : globalConfig.itemSpacingOnBelts;
+            const minimumSpacing = i === this.items.length - 1 ? 0 : globalConfig.itemSpacingOnBelts;
 
             // Compute how much we can advance
             let clampedProgress = nextDistanceAndItem[0 /* nextDistance */] - minimumSpacing;
 
             // Make sure we don't advance more than the remaining velocity has stored
-            if (remainingVelocity < clampedProgress) {
-                clampedProgress = remainingVelocity;
+            if (remainingProgress < clampedProgress) {
+                clampedProgress = remainingProgress;
             }
 
             // Make sure we don't advance back
@@ -1083,8 +1080,8 @@ export class BeltPath extends BasicSerializableObject {
                 clampedProgress = 0;
             }
 
-            // Reduce our velocity by the amount we consumed
-            remainingVelocity -= clampedProgress;
+            // Reduce our remaining progress by the amount we consumed
+            remainingProgress -= clampedProgress;
 
             // Reduce the spacing
             nextDistanceAndItem[0 /* nextDistance */] -= clampedProgress;
@@ -1092,35 +1089,34 @@ export class BeltPath extends BasicSerializableObject {
             // Advance all items behind by the progress we made
             this.spacingToFirstItem += clampedProgress;
 
-            // If the last item can be ejected, eject it and reduce the spacing, because otherwise
-            // we lose velocity
+            // If the end-most item can be ejected, eject it and reduce the spacing, because otherwise
+            // we lose progress
             if (isFirstItemProcessed && nextDistanceAndItem[0 /* nextDistance */] < 1e-7) {
-                // Store how much velocity we "lost" because we bumped the item to the end of the
+                // The end-most item "lost" the remaining progress because we bumped it to the end of the
                 // belt but couldn't move it any farther. We need this to tell the item acceptor
-                // animation to start a tad later, so everything matches up. Yes I'm a perfectionist.
-                const excessVelocity = beltSpeed - clampedProgress;
+                // animation to start a tad ahead, so everything matches up. Yes I'm a perfectionist.
 
                 // Try to directly get rid of the item
                 if (
                     this.boundAcceptor &&
-                    this.boundAcceptor(nextDistanceAndItem[1 /* item */], excessVelocity)
+                    this.boundAcceptor(nextDistanceAndItem[1 /* item */], remainingProgress)
                 ) {
                     this.items.pop();
 
-                    const itemBehind = this.items[lastItemProcessed - 1];
+                    const itemBehind = this.items[i - 1];
                     if (itemBehind && this.numCompressedItemsAfterFirstItem > 0) {
-                        // So, with the next tick we will skip this item, but it actually has the potential
+                        // So, with the next iteration we will skip this item, but it actually has the potential
                         // to process farther -> If we don't advance here, we loose a tiny bit of progress
-                        // every tick which causes the belt to be slower than it actually is.
+                        // since the end-most item, and hence this item, did not get stopped by the end of the belt
                         // Also see #999
                         const fixupProgress = Math.max(
                             0,
-                            Math.min(remainingVelocity, itemBehind[0 /* nextDistance */])
+                            Math.min(remainingProgress, itemBehind[0 /* nextDistance */])
                         );
 
                         // See above
                         itemBehind[0 /* nextDistance */] -= fixupProgress;
-                        remainingVelocity -= fixupProgress;
+                        remainingProgress -= fixupProgress;
                         this.spacingToFirstItem += fixupProgress;
                     }
 
@@ -1132,25 +1128,31 @@ export class BeltPath extends BasicSerializableObject {
                 }
             }
 
-            if (isFirstItemProcessed) {
-                // Skip N null items after first items
-                lastItemProcessed -= this.numCompressedItemsAfterFirstItem;
+            if (remainingProgress < 1e-7) {
+                break;
             }
 
-            isFirstItemProcessed = false;
-            if (remainingVelocity < 1e-7) {
-                break;
+            if (isFirstItemProcessed) {
+                isFirstItemProcessed = false;
+                // Skip compressed items since they will consume no progress
+                i -= this.numCompressedItemsAfterFirstItem;
             }
         }
 
         // Compute compressed item count
         this.numCompressedItemsAfterFirstItem = Math.max(
             0,
+            // useful for if the end-most item does not reach the end so nothing backs up
             this.numCompressedItemsAfterFirstItem,
-            this.items.length - 2 - lastItemProcessed
+            // Determines the number of backed-up items (minus 1).
+            // i+1 is the start-most item to get backed up
+            // (since it couldn't consume all remaining progress)
+            this.items.length - 2 - i
         );
 
         // Check if we have an item which is ready to be emitted
+        // TODO: Pretty sure this only succeeds if within a tick, two items reach the end of the belt.
+        // Most of the time this code just causes backed-up belts to attempt to ask the acceptor twice.
         const lastItem = this.items[this.items.length - 1];
         if (lastItem && lastItem[0 /* nextDistance */] === 0) {
             if (this.boundAcceptor && this.boundAcceptor(lastItem[1 /* item */])) {

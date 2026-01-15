@@ -150,13 +150,11 @@ export class ItemEjectorSystem extends GameSystemWithFilter {
         }
 
         // Go over all cache entries
-        for (let i = 0; i < this.allEntities.length; ++i) {
-            const sourceEntity = this.allEntities[i];
+        for (const sourceEntity of this.allEntities) {
             const sourceEjectorComp = sourceEntity.components.ItemEjector;
 
             const slots = sourceEjectorComp.slots;
-            for (let j = 0; j < slots.length; ++j) {
-                const sourceSlot = slots[j];
+            for (const sourceSlot of slots) {
                 const item = sourceSlot.item;
                 if (!item) {
                     // No item available to be ejected
@@ -170,6 +168,8 @@ export class ItemEjectorSystem extends GameSystemWithFilter {
                     progressLimit += destPath.spacingToFirstItem - globalConfig.itemSpacingOnBelts;
                 }
 
+                // TODO: why not take min? Also revisit purpose of limit besides when
+                // the ejector is not connected to anything
                 if (sourceSlot.progress < progressLimit) {
                     // Advance items on the slot
                     sourceSlot.progress += progressGrowth;

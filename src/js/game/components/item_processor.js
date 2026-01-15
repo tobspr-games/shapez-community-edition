@@ -100,9 +100,11 @@ export class ItemProcessorComponent extends Component {
     }
 
     clear() {
-        // Which slot to emit next, this is only a preference and if it can't emit
-        // it will take the other one. Some machines ignore this (e.g. the balancer) to make
-        // sure the outputs always match
+        /**
+         * Which slot to emit next, this is only a preference and if it can't emit
+         * it will take the other one. Some machines ignore this (e.g. the balancer) to make
+         * sure the outputs always match
+         */
         this.nextOutputSlot = 0;
 
         /**
@@ -114,7 +116,9 @@ export class ItemProcessorComponent extends Component {
         this.currentCharge = null;
 
         /**
-         * How much processing time we have left from the last tick
+         * How much past processing time that hasn't been spent
+         * (caused since completion time is slightly before the tick handling completion),
+         * to be granted to the next charge (fast-forwarding it)
          * @type {number}
          */
         this.bonusTime = 0;

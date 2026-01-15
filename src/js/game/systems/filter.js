@@ -12,8 +12,7 @@ export class FilterSystem extends GameSystemWithFilter {
     }
 
     update() {
-        for (let i = 0; i < this.allEntities.length; ++i) {
-            const entity = this.allEntities[i];
+        for (const entity of this.allEntities) {
             const filterComp = entity.components.Filter;
             const acceptorComp = entity.components.ItemAcceptor;
             const ejectorComp = entity.components.ItemEjector;
@@ -31,6 +30,7 @@ export class FilterSystem extends GameSystemWithFilter {
 
                 for (let j = 0; j < pendingItems.length; ++j) {
                     const nextItem = pendingItems[j];
+                    // TODO: extraProgress dropped
                     if (ejectorComp.tryEject(slotIndex, nextItem.item)) {
                         pendingItems.shift();
                     }

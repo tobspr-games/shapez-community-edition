@@ -76,9 +76,7 @@ export class ItemProcessorSystem extends GameSystemWithFilter {
     }
 
     update() {
-        for (let i = 0; i < this.allEntities.length; ++i) {
-            const entity = this.allEntities[i];
-
+        for (const entity of this.allEntities) {
             const processorComp = entity.components.ItemProcessor;
             const ejectorComp = entity.components.ItemEjector;
 
@@ -96,6 +94,8 @@ export class ItemProcessorSystem extends GameSystemWithFilter {
                     currentCharge.remainingTime -= this.root.dynamicTickrate.deltaSeconds;
                     if (currentCharge.remainingTime < 0.0) {
                         // Add bonus time, this is the time we spent too much
+                        // TODO: the item gets no extra progress, though pretty sure this only causes a slight delay
+                        // (and it's not applicable to 0-time processors)
                         processorComp.bonusTime += -currentCharge.remainingTime;
                     }
                 }
@@ -105,8 +105,8 @@ export class ItemProcessorSystem extends GameSystemWithFilter {
                     const itemsToEject = currentCharge.items;
 
                     // Go over all items and add them to the queue
-                    for (let j = 0; j < itemsToEject.length; ++j) {
-                        processorComp.queuedEjects.push(itemsToEject[j]);
+                    for (const itemToEject of itemsToEject) {
+                        processorComp.queuedEjects.push(itemToEject);
                     }
 
                     processorComp.currentCharge = null;
@@ -132,12 +132,12 @@ export class ItemProcessorSystem extends GameSystemWithFilter {
                 assert(ejectorComp, "To eject items, the building needs to have an ejector");
 
                 let slot = null;
-                if (requiredSlot !== null && requiredSlot !== undefined) {
+                if (requiredSlot != null) {
                     // We have a slot override, check if that is free
                     if (ejectorComp.canEjectOnSlot(requiredSlot)) {
                         slot = requiredSlot;
                     }
-                } else if (preferredSlot !== null && preferredSlot !== undefined) {
+                } else if (preferredSlot != null) {
                     // We have a slot preference, try using it but otherwise use a free slot
                     if (ejectorComp.canEjectOnSlot(preferredSlot)) {
                         slot = preferredSlot;
@@ -277,6 +277,7 @@ export class ItemProcessorSystem extends GameSystemWithFilter {
 
             if (!items.get(input.slotIndex)) {
                 items.set(input.slotIndex, input.item);
+                // TODO: shouldn't this be min?
                 extraProgress = Math.max(extraProgress, input.extraProgress);
                 //inputs.splice(i, 1);
                 //i--;
@@ -298,18 +299,20 @@ export class ItemProcessorSystem extends GameSystemWithFilter {
         });
 
         // Track produced items
-        for (let i = 0; i < outItems.length; ++i) {
-            if (!outItems[i].doNotTrack) {
-                this.root.signals.itemProduced.dispatch(outItems[i].item);
+        for (const outItem of outItems) {
+            if (!outItem.doNotTrack) {
+                this.root.signals.itemProduced.dispatch(outItem.item);
             }
 
             // also set extra progress
-            outItems[i].extraProgress = extraProgress;
+            outItem.extraProgress = extraProgress;
         }
 
         // Queue Charge
         const originalTime = this.root.hubGoals.getProcessingTime(processorComp.type);
 
+        // Note this correction system is to account for the delay before this shape can be processed
+        // caused by the ejection of the previous shape having to happen on a tick
         const bonusTimeToApply = Math.min(originalTime, processorComp.bonusTime);
         const timeToProcess = originalTime - bonusTimeToApply;
 
