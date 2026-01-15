@@ -4,7 +4,6 @@ import { Application } from "../application";
 
 import { initSpriteCache } from "../game/meta_building_registry";
 import { MUSIC, SOUNDS } from "../platform/sound";
-import { T } from "../translations";
 import { AtlasDefinition, atlasFiles } from "./atlas_definitions";
 import { Loader } from "./loader";
 import { Logger } from "./logging";
@@ -145,19 +144,6 @@ export class BackgroundResourcesLoader {
         await Promise.all(promises);
 
         logger.log("⏰ Preloaded assets in", Math.round(performance.now() - start), "ms");
-    }
-
-    /**
-     * Shows an error when a resource failed to load and allows to reload the game
-     */
-    showLoaderError(dialogs, err) {
-        dialogs
-            .showWarning(
-                T.dialogs.resourceLoadFailed.title,
-                T.dialogs.resourceLoadFailed.descSteamDemo + "<br>" + err,
-                ["retry"]
-            )
-            .retry.add(() => window.location.reload());
     }
 
     preloadWithProgress(src, progressHandler) {

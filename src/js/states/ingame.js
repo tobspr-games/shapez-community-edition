@@ -5,7 +5,6 @@ import { waitNextFrame } from "../core/utils";
 import { GameCore } from "../game/core";
 import { GameLoadingOverlay } from "../game/game_loading_overlay";
 import { enumGameModeIds } from "../game/game_mode";
-import { HUDModalDialogs } from "../game/hud/parts/modal_dialogs";
 import { KeyActionMapper } from "../game/key_action_mapper";
 import { MOD_SIGNALS } from "../mods/mod_signals";
 import { MUSIC } from "../platform/sound";
@@ -238,43 +237,27 @@ export class InGameState extends GameState {
                 );
             });
 
-            this.app.backgroundResourceLoader.getIngamePromise().then(
-                () => {
-                    if (
-                        this.creationPayload.gameModeId &&
-                        this.creationPayload.gameModeId.includes("puzzle")
-                    ) {
-                        this.app.sound.playThemeMusic(MUSIC.puzzle);
-                    } else {
-                        this.app.sound.playThemeMusic(MUSIC.theme);
-                    }
-
-                    this.loadingOverlay.loadingIndicator.innerText = "";
-                    this.app.backgroundResourceLoader.resourceStateChangedSignal.removeAll();
-
-                    logger.log("Creating new game core");
-                    this.core = new GameCore(this.app);
-
-                    this.core.initializeRoot(this, this.savegame, this.gameModeId);
-
-                    if (this.savegame.hasGameDump()) {
-                        this.stage4bResumeGame();
-                    } else {
-                        this.stage4aInitEmptyGame();
-                    }
-                },
-                err => {
-                    logger.error("Failed to preload resources:", err);
-                    const dialogs = new HUDModalDialogs(null, this.app);
-                    const dialogsElement = document.createElement("div");
-                    dialogsElement.id = "ingame_HUD_ModalDialogs";
-                    dialogsElement.style.zIndex = "999999";
-                    document.body.appendChild(dialogsElement);
-                    dialogs.initializeToElement(dialogsElement);
-
-                    this.app.backgroundResourceLoader.showLoaderError(dialogs, err);
+            this.app.backgroundResourceLoader.getIngamePromise().then(() => {
+                if (this.creationPayload.gameModeId && this.creationPayload.gameModeId.includes("puzzle")) {
+                    this.app.sound.playThemeMusic(MUSIC.puzzle);
+                } else {
+                    this.app.sound.playThemeMusic(MUSIC.theme);
                 }
-            );
+
+                this.loadingOverlay.loadingIndicator.innerText = "";
+                this.app.backgroundResourceLoader.resourceStateChangedSignal.removeAll();
+
+                logger.log("Creating new game core");
+                this.core = new GameCore(this.app);
+
+                this.core.initializeRoot(this, this.savegame, this.gameModeId);
+
+                if (this.savegame.hasGameDump()) {
+                    this.stage4bResumeGame();
+                } else {
+                    this.stage4aInitEmptyGame();
+                }
+            });
         }
     }
 

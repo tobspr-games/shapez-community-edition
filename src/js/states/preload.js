@@ -110,11 +110,7 @@ export class PreloadState extends GameState {
                         40 + progress * 50
                     );
                 });
-                return this.app.backgroundResourceLoader.getMainMenuPromise().catch(err => {
-                    logger.error("Failed to load resources:", err);
-                    this.app.backgroundResourceLoader.showLoaderError(this.dialogs, err);
-                    return new Promise(() => null);
-                });
+                return this.app.backgroundResourceLoader.getMainMenuPromise();
             })
             .then(() => {
                 this.app.backgroundResourceLoader.resourceStateChangedSignal.removeAll();
@@ -177,7 +173,9 @@ export class PreloadState extends GameState {
                     this.moveToState("MainMenuState");
                 },
                 err => {
-                    this.showFailMessage(err);
+                    throw new Error(`Application initialization failed at ${this.currentStatus}`, {
+                        cause: err,
+                    });
                 }
             );
     }
@@ -218,59 +216,5 @@ export class PreloadState extends GameState {
         this.statusText.innerText = text;
         this.progressElement.style.width = 80 + (progress / 100) * 20 + "%";
         return Promise.resolve();
-    }
-
-    showFailMessage(text) {
-        logger.error("App init failed:", text);
-
-        const subElement = document.createElement("div");
-        subElement.classList.add("failureBox");
-
-        subElement.innerHTML = `
-                <div class="logo">
-                    <img src="res/logo.png" alt="Shapez.io Logo">
-                </div>
-                <div class="failureInner">
-                    <div class="errorHeader">
-                    Failed to initialize application!
-                    </div>
-                    <div class="errorMessage">
-                        ${this.currentStatus} failed:<br/>
-                        ${text}
-                    </div>
-                    <div class="lower">
-                        <button class="resetApp styledButton">Reset App</button>
-                        <i>Build ${G_BUILD_VERSION} @ ${G_BUILD_COMMIT_HASH}</i>
-                    </div>
-                </div>
-        `;
-
-        this.htmlElement.classList.add("failure");
-        this.htmlElement.appendChild(subElement);
-
-        const resetBtn = subElement.querySelector("button.resetApp");
-        this.trackClicks(resetBtn, this.showResetConfirm);
-
-        this.hintsText.remove();
-    }
-
-    showResetConfirm() {
-        if (confirm("Are you sure you want to reset the app? This will delete all your savegames!")) {
-            this.resetApp();
-        }
-    }
-
-    resetApp() {
-        this.app.settings
-            .resetEverythingAsync()
-            .then(() => {
-                this.app.savegameMgr.resetEverythingAsync();
-            })
-            .then(() => {
-                this.app.settings.resetEverythingAsync();
-            })
-            .then(() => {
-                window.location.reload();
-            });
     }
 }
