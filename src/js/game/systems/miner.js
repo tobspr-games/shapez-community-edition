@@ -1,7 +1,6 @@
 import { globalConfig } from "../../core/config";
 import { DrawParameters } from "../../core/draw_parameters";
 import { enumDirectionToVector } from "../../core/vector";
-import { BaseItem } from "../base_item";
 import { MinerComponent } from "../components/miner";
 import { Entity } from "../entity";
 import { GameSystemWithFilter } from "../game_system_with_filter";
@@ -11,6 +10,7 @@ export class MinerSystem extends GameSystemWithFilter {
     constructor(root) {
         super(root, [MinerComponent]);
 
+        /** Whether chainable miner connections need to be recomputed. */
         this.needsRecompute = true;
 
         this.root.signals.entityAdded.add(this.onEntityChanged, this);
@@ -24,79 +24,115 @@ export class MinerSystem extends GameSystemWithFilter {
      */
     onEntityChanged(entity) {
         const minerComp = entity.components.Miner;
-        if (minerComp && minerComp.chainable) {
+        if (!minerComp) {
+            return;
+        }
+        const staticComp = entity.components.StaticMapEntity;
+
+        minerComp.cachedMinedItem = this.root.map.getLowerLayerContentXY(
+            staticComp.origin.x,
+            staticComp.origin.y
+        );
+
+        if (minerComp.chainable) {
             // Miner component, need to recompute
             this.needsRecompute = true;
         }
     }
 
     update() {
-        let miningSpeed = this.root.hubGoals.getMinerBaseSpeed();
-        if (G_IS_DEV && globalConfig.debug.instantMiners) {
-            miningSpeed *= 100;
+        if (this.needsRecompute) {
+            for (const entity of this.allEntities) {
+                const minerComp = entity.components.Miner;
+
+                if (!minerComp.chainable) {
+                    continue;
+                }
+
+                minerComp.cachedChainedMiner = this.findChainedMiner(entity);
+                minerComp.cachedExitMiner = undefined;
+            }
+
+            for (const entity of this.allEntities) {
+                const minerComp = entity.components.Miner;
+
+                if (!minerComp.chainable) {
+                    continue;
+                }
+
+                this.cacheExitMiners(entity);
+            }
+
+            this.needsRecompute = false;
         }
 
-        for (let i = 0; i < this.allEntities.length; ++i) {
-            const entity = this.allEntities[i];
-            const minerComp = entity.components.Miner;
+        // note this is in items/sec, not tiles/sec
+        let progressGrowth = this.root.dynamicTickrate.deltaSeconds * this.root.hubGoals.getMinerBaseSpeed();
 
-            // Reset everything on recompute
-            if (this.needsRecompute) {
-                minerComp.cachedChainedMiner = null;
-            }
+        const targetProgress = 1;
+
+        if (G_IS_DEV && globalConfig.debug.instantMiners) {
+            progressGrowth = targetProgress;
+        }
+
+        for (const entity of this.allEntities) {
+            const minerComp = entity.components.Miner;
 
             // Check if miner is above an actual tile
             if (!minerComp.cachedMinedItem) {
-                const staticComp = entity.components.StaticMapEntity;
-                const tileBelow = this.root.map.getLowerLayerContentXY(
-                    staticComp.origin.x,
-                    staticComp.origin.y
-                );
-                if (!tileBelow) {
-                    continue;
-                }
-                minerComp.cachedMinedItem = tileBelow;
+                continue;
             }
 
-            // First, try to get rid of chained items
-            if (minerComp.itemChainBuffer.length > 0) {
-                if (this.tryPerformMinerEject(entity, minerComp.itemChainBuffer[0])) {
-                    minerComp.itemChainBuffer.shift();
-                    continue;
+            // Check if we are a chained miner
+            if (minerComp.chainable) {
+                // Check if we now have a target at the end of the chain - if so, that's what we will progress
+                const exitEntity = minerComp.cachedExitMiner;
+                if (exitEntity) {
+                    const exitMinerComp = exitEntity.components.Miner;
+                    if (exitMinerComp.progress < targetProgress + 0.5) {
+                        // we can add on some extra progress
+                        exitMinerComp.progress += progressGrowth;
+                    }
+                }
+            } else {
+                // Normal miner
+                if (minerComp.progress < targetProgress) {
+                    minerComp.progress += progressGrowth;
                 }
             }
 
-            const mineDuration = 1 / miningSpeed;
-            const timeSinceMine = this.root.time.now() - minerComp.lastMiningTime;
-            if (timeSinceMine > mineDuration) {
-                // Store how much we overflowed
-                const buffer = Math.min(timeSinceMine - mineDuration, this.root.dynamicTickrate.deltaSeconds);
+            //make sure progress never gets out of control
+            // TODO: consider if specific extra progress limit has non-negligible effects,
+            // or maybe replace it with an epsilon comparison?
+            minerComp.progress = Math.min(minerComp.progress, targetProgress + 0.5);
+            if (minerComp.progress >= targetProgress) {
+                // We can try to eject
+                const extraProgress = minerComp.progress - targetProgress;
 
-                if (this.tryPerformMinerEject(entity, minerComp.cachedMinedItem)) {
+                const ejectorComp = entity.components.ItemEjector;
+                if (ejectorComp.tryEject(0, minerComp.cachedMinedItem, extraProgress)) {
                     // Analytics hook
                     this.root.signals.itemProduced.dispatch(minerComp.cachedMinedItem);
-                    // Store mining time
-                    minerComp.lastMiningTime = this.root.time.now() - buffer;
+
+                    minerComp.progress -= targetProgress;
                 }
             }
         }
-
-        // After this frame we are done
-        this.needsRecompute = false;
     }
 
     /**
      * Finds the target chained miner for a given entity
      * @param {Entity} entity
-     * @returns {Entity|false} The chained entity or null if not found
+     * @returns {Entity|null|undefined} The chained entity or null if not found, or undefined if not over a resource
      */
     findChainedMiner(entity) {
         const ejectComp = entity.components.ItemEjector;
         const staticComp = entity.components.StaticMapEntity;
+        const minedItem = entity.components.Miner.cachedMinedItem;
         const contentsBelow = this.root.map.getLowerLayerContentXY(staticComp.origin.x, staticComp.origin.y);
         if (!contentsBelow) {
             // This miner has no contents
-            return null;
+            return undefined;
         }
 
         const ejectingSlot = ejectComp.slots[0];
@@ -106,10 +142,14 @@ export class MinerSystem extends GameSystemWithFilter {
         const targetTile = ejectingPos.add(enumDirectionToVector[ejectingDirection]);
         const targetContents = this.root.map.getTileContent(targetTile, "regular");
 
-        // Check if we are connected to another miner and thus do not eject directly
+        // Check if we are connected to another chainable miner of the same item and thus do not eject directly
         if (targetContents) {
             const targetMinerComp = targetContents.components.Miner;
-            if (targetMinerComp && targetMinerComp.chainable) {
+            if (
+                targetMinerComp &&
+                targetMinerComp.chainable &&
+                targetMinerComp.cachedMinedItem == minedItem
+            ) {
                 const targetLowerLayer = this.root.map.getLowerLayerContentXY(targetTile.x, targetTile.y);
                 if (targetLowerLayer) {
                     return targetContents;
@@ -117,44 +157,36 @@ export class MinerSystem extends GameSystemWithFilter {
             }
         }
 
-        return false;
+        return null;
     }
 
     /**
-     *
+     * Recursively finds the target exit miner for a given entity
+     * and assigns it to all miners along the way
      * @param {Entity} entity
-     * @param {BaseItem} item
+     * @param {Entity=} firstEntity The entity that started the recursion, for loop detection
+     * @returns {Entity|null} The exit miner entity or null if none
      */
-    tryPerformMinerEject(entity, item) {
+    cacheExitMiners(entity, firstEntity = entity) {
         const minerComp = entity.components.Miner;
-        const ejectComp = entity.components.ItemEjector;
 
-        // Check if we are a chained miner
-        if (minerComp.chainable) {
-            const targetEntity = minerComp.cachedChainedMiner;
-
-            // Check if the cache has to get recomputed
-            if (targetEntity === null) {
-                minerComp.cachedChainedMiner = this.findChainedMiner(entity);
-            }
-
-            // Check if we now have a target
-            if (targetEntity) {
-                const targetMinerComp = targetEntity.components.Miner;
-                if (targetMinerComp.tryAcceptChainedItem(item)) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
+        if (minerComp.cachedExitMiner !== undefined) {
+            // We're at an already-computed miner, yay!
+            return minerComp.cachedExitMiner;
         }
 
-        // Seems we are a regular miner or at the end of a row, try actually ejecting
-        if (ejectComp.tryEject(0, item)) {
-            return true;
+        const target = minerComp.cachedChainedMiner;
+        switch (target) {
+            case null:
+                // We're at the front
+                return (minerComp.cachedExitMiner = entity);
+            case undefined:
+            case firstEntity:
+                // We shouldn't eject to anywhere, or we're in a loop
+                return null;
         }
 
-        return false;
+        return (minerComp.cachedExitMiner = this.cacheExitMiners(target, firstEntity));
     }
 
     /**

@@ -474,7 +474,7 @@ export class TypeNumber extends BaseDataType {
 export class TypePositiveNumber extends BaseDataType {
     serialize(value) {
         assert(Number.isFinite(value), "Type number got non number for serialize: " + value);
-        assert(value >= 0, "Postitive number got negative value: " + value);
+        assert(value >= 0, "Positive number got negative value: " + value);
         return round4Digits(value);
     }
 

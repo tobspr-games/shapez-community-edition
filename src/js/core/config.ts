@@ -17,7 +17,7 @@ export const THIRDPARTY_URLS = {
 };
 
 export const globalConfig = {
-    // Size of a single tile in Pixels.
+    /** Size of a single tile in Pixels. */
     tileSize: 32,
     halfTileSize: 16,
 
@@ -32,7 +32,9 @@ export const globalConfig = {
     analyticsSliceDurationSeconds: G_IS_DEV ? 1 : 10,
 
     // Map
+    /** width of a chunk in tiles */
     mapChunkSize: 16,
+    /** width of an aggregate in chunks */
     chunkAggregateSize: 4,
     mapChunkOverviewMinZoom: 0.9,
     mapChunkWorldSize: null, // COMPUTED
@@ -45,6 +47,7 @@ export const globalConfig = {
 
     defaultItemDiameter: 20,
 
+    /** how many tiles of width each item takes up on a belt */
     itemSpacingOnBelts: 0.63,
 
     undergroundBeltMaxTilesByTier: [5, 9],
@@ -58,17 +61,14 @@ export const globalConfig = {
     puzzleMaxBoundsSize: 20,
     puzzleValidationDurationSeconds: 30,
 
-    buildingSpeeds: {
-        cutter: 1 / 4,
-        cutterQuad: 1 / 4,
-        rotator: 1 / 1,
-        rotatorCCW: 1 / 1,
-        rotator180: 1 / 1,
-        painter: 1 / 6,
-        painterDouble: 1 / 8,
-        painterQuad: 1 / 2,
-        mixer: 1 / 5,
-        stacker: 1 / 8,
+    buildingRatios: {
+        cutter: 4,
+        cutterQuad: 4,
+        painter: 6,
+        painterDouble: 8,
+        painterQuad: 2,
+        mixer: 5,
+        stacker: 8,
     },
 
     warmupTimeSecondsFast: 0.25,

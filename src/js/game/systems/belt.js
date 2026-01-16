@@ -478,8 +478,8 @@ export class BeltSystem extends GameSystem {
             this.debug_verifyBeltPaths();
         }
 
-        for (let i = 0; i < this.beltPaths.length; ++i) {
-            this.beltPaths[i].update();
+        for (const beltPath of this.beltPaths) {
+            beltPath.update();
         }
 
         if (G_IS_DEV && globalConfig.debug.checkBeltPaths) {
