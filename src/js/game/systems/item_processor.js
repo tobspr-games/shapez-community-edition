@@ -90,18 +90,18 @@ export class ItemProcessorSystem extends GameSystemWithFilter {
             const currentCharge = processorComp.currentCharge;
             if (currentCharge) {
                 // Process next charge
-                if (currentCharge.remainingTime > 0.0) {
-                    currentCharge.remainingTime -= this.root.dynamicTickrate.deltaSeconds;
-                    if (currentCharge.remainingTime < 0.0) {
-                        // Add bonus time, this is the time we spent too much
-                        // TODO: the item gets no extra progress, though pretty sure this only causes a slight delay
-                        // (and it's not applicable to 0-time processors)
-                        processorComp.bonusTime += -currentCharge.remainingTime;
-                    }
-                }
+                currentCharge.remainingTime -= this.root.dynamicTickrate.deltaSeconds;
+                if (processorComp.queuedEjects.length) {
+                    // Blocked; don't accumulate bonus time since the extra time was spent waiting
+                    currentCharge.remainingTime = Math.max(0.0, currentCharge.remainingTime);
+                } else if (currentCharge.remainingTime <= 0.0) {
+                    // It finished and we don't already have queued ejects
 
-                // Check if it finished and we don't already have queued ejects
-                if (currentCharge.remainingTime <= 0.0 && !processorComp.queuedEjects.length) {
+                    // Add bonus time, this is the time we spent too much
+                    // TODO: the item gets no extra progress, though pretty sure this only causes a slight delay
+                    // (and it's not applicable to 0-time processors)
+                    processorComp.bonusTime += -currentCharge.remainingTime;
+
                     const itemsToEject = currentCharge.items;
 
                     // Go over all items and add them to the queue
