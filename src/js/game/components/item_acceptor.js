@@ -89,20 +89,20 @@ export class ItemAcceptorComponent extends Component {
      * @param {number=} param0.maxSlotInputs The maximum amount of items one slot can accept before it is full
      * @param {string|null=} param0.inputRequirement The requirement to accept items
      */
-    constructor({ slots = [], maxSlotInputs = 2, inputRequirement = null }) {
+    constructor({ slots = [], maxSlotInputs = 1, inputRequirement = null }) {
         super();
 
         this.setSlots(slots);
 
         this.inputRequirement = inputRequirement;
 
-        // setting this to 1 will cause throughput issues at very high speeds
         this.maxSlotInputs = maxSlotInputs;
 
         this.clear();
     }
 
     clear() {
+        // TODO: these should be indexed by slot instead of loose collections
         /** @type {ItemAcceptorInputs} */
         this.inputs = [];
         /** @type {ItemAcceptorCompletedInputs} */
@@ -191,11 +191,6 @@ export class ItemAcceptorComponent extends Component {
         // make sure we have space to actually accept
         let existingInputs = 0;
         for (const input of this.inputs) {
-            if (input.slotIndex == slotIndex) {
-                existingInputs++;
-            }
-        }
-        for (const input of this.completedInputs) {
             if (input.slotIndex == slotIndex) {
                 existingInputs++;
             }

@@ -30,6 +30,12 @@ export class ItemAcceptorSystem extends GameSystemWithFilter {
                     continue;
                 }
 
+                if (acceptorComp.completedInputs.some(other => input.slotIndex === other.slotIndex)) {
+                    // Blocked
+                    input.animProgress = maxProgress;
+                    continue;
+                }
+
                 inputs.splice(i, 1);
                 i--;
                 acceptorComp.completedInputs.push({
