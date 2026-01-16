@@ -163,28 +163,12 @@ export class ItemAcceptorComponent extends Component {
                     // Check the network value at the given slot
                     const network = pinsComp.slots[slotIndex - 1].linkedNetwork;
                     const slotIsEnabled = network && network.hasValue() && isTruthyItem(network.currentValue);
-                    if (!slotIsEnabled) {
-                        return false;
-                    }
-                    return true;
+                    return slotIsEnabled;
                 }
                 case enumInputRequirements.storage: {
                     const storageComp = entity.components.Storage;
 
-                    if (storageComp.storedCount >= storageComp.maximumStorage) {
-                        return false;
-                    }
-                    const itemType = item.getItemType();
-                    if (storageComp.storedItem && itemType !== storageComp.storedItem.getItemType()) {
-                        return false;
-                    }
-
-                    // set the item straight away - this way different kinds of items can't be inq the acceptor
-                    // TODO: This feels messy, and doing it in tryAcceptItem shouldn't be complicated
-                    storageComp.storedItem = item;
-                    storageComp.storedCount++;
-
-                    return true;
+                    return storageComp.canAcceptItem(item);
                 }
                 default: {
                     assertAlways(false, "Input requirement is not recognised: " + this.inputRequirement);
@@ -222,6 +206,11 @@ export class ItemAcceptorComponent extends Component {
         }
         if (!this.canAcceptItem(entity, item, slotIndex)) {
             return false;
+        }
+
+        if (this.inputRequirement === enumInputRequirements.storage) {
+            // set the item straight away - this way different kinds of items can't be inq the acceptor
+            entity.components.Storage.takeItem(item);
         }
 
         // if the start progress is bigger than 0.5, the remainder should get passed on to the ejector
