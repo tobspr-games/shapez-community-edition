@@ -28,22 +28,23 @@ export class MinerComponent extends Component {
         this.chainable = chainable;
 
         /**
-         * The item we are mining beneath us
-         * @type {BaseItem}
+         * The item we are mining beneath us.
+         * Null means there is no item beneath us.
+         * @type {BaseItem|null}
          */
         this.cachedMinedItem = null;
 
         /**
-         * Which miner this miner ejects to, in case its a chainable one.
-         * If the value is false, it means there is no entity, and we don't have to re-check
-         * @type {Entity|null|false}
+         * For chainable miners, which miner this miner connects to.
+         * Null means there is no entity (end of a chain); undefined additionally means this miner should not try ejecting.
+         * @type {Entity|null|undefined}
          */
-        this.cachedChainedMiner = null;
+        this.cachedChainedMiner = undefined;
         /**
-         * The miner at the end of the chain, which actually ejects the items
-         * If the value is false, it means there is no entity, and we don't have to re-check
-         * @type {Entity|null|false}
+         * For chainable miners, the miner at the end of the chain, which actually ejects the items. This could be itself.
+         * Null means there is no entity (because of a loop or because the miner is not over a resource); undefined means uncomputed.
+         * @type {Entity|null|undefined}
          */
-        this.cachedExitMiner = null;
+        this.cachedExitMiner = undefined;
     }
 }
