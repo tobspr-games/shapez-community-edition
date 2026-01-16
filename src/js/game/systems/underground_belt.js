@@ -223,20 +223,25 @@ export class UndergroundBeltSystem extends GameSystemWithFilter {
     update() {
         this.staleAreaWatcher.update();
 
-        const sender = enumUndergroundBeltMode.sender;
+        const { sender, receiver } = enumUndergroundBeltMode;
 
         const progressGrowth =
             this.root.dynamicTickrate.deltaSeconds *
             this.root.hubGoals.getBeltBaseSpeed() *
             globalConfig.itemSpacingOnBelts;
 
-        // TODO: for misordered tunnel pairs, entering items get progressed twice
+        // TODO: would be nice if there was just one object representing a pair,
+        // though that might violate ECS principles
+        for (const entity of this.allEntities) {
+            const undergroundComp = entity.components.UndergroundBelt;
+            if (undergroundComp.mode === receiver) {
+                this.handleReceiver(entity, progressGrowth);
+            }
+        }
         for (const entity of this.allEntities) {
             const undergroundComp = entity.components.UndergroundBelt;
             if (undergroundComp.mode === sender) {
                 this.handleSender(entity);
-            } else {
-                this.handleReceiver(entity, progressGrowth);
             }
         }
     }

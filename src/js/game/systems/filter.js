@@ -30,8 +30,7 @@ export class FilterSystem extends GameSystemWithFilter {
 
                 for (let j = 0; j < pendingItems.length; ++j) {
                     const nextItem = pendingItems[j];
-                    // TODO: extraProgress dropped
-                    if (ejectorComp.tryEject(slotIndex, nextItem.item)) {
+                    if (ejectorComp.tryEject(slotIndex, nextItem.item, nextItem.extraProgress)) {
                         pendingItems.shift();
                     }
                 }
