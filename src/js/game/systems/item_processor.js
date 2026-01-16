@@ -110,18 +110,6 @@ export class ItemProcessorSystem extends GameSystemWithFilter {
                     }
 
                     processorComp.currentCharge = null;
-
-                    // now that the charge is complete, empty the inputs now
-                    let usedSlots = [];
-                    const acceptorComp = entity.components.ItemAcceptor;
-                    for (let i = 0; i < acceptorComp.completedInputs.length; i++) {
-                        const index = acceptorComp.completedInputs[i].slotIndex;
-                        if (!usedSlots.includes(index)) {
-                            usedSlots.push(index);
-                            acceptorComp.completedInputs.splice(i, 1);
-                            i--;
-                        }
-                    }
                 }
             }
 
@@ -262,18 +250,19 @@ export class ItemProcessorSystem extends GameSystemWithFilter {
         const processorComp = entity.components.ItemProcessor;
 
         // First, take inputs - but only one from each
-        // Note we don't remove them until after the charge completes
-        const inputs = acceptorComp.completedInputs;
-
         // split inputs efficiently
-        let items = new Map();
+        const items = new Map();
         let extraProgress = 0;
-        for (const input of inputs) {
+        for (let i = 0; i < acceptorComp.completedInputs.length; i++) {
+            const input = acceptorComp.completedInputs[i];
             if (!items.get(input.slotIndex)) {
                 items.set(input.slotIndex, input.item);
                 // TODO: this should be min of extraProgress of any items that just arrived this tick,
                 // but it's unclear how to handle the extraProgress of items from previous ticks, so this works for now
                 extraProgress = Math.max(extraProgress, input.extraProgress);
+
+                acceptorComp.completedInputs.splice(i, 1);
+                i--;
             }
         }
 
