@@ -161,23 +161,12 @@ export class ItemEjectorSystem extends GameSystemWithFilter {
                     continue;
                 }
 
-                // Limit progress here as well
-                let progressLimit = maxProgress;
-                const destPath = sourceSlot.cachedBeltPath;
-                if (destPath) {
-                    progressLimit += destPath.spacingToFirstItem - globalConfig.itemSpacingOnBelts;
-                }
-
-                // TODO: why not take min? Also revisit purpose of limit besides when
-                // the ejector is not connected to anything
-                if (sourceSlot.progress < progressLimit) {
-                    // Advance items on the slot
-                    sourceSlot.progress += progressGrowth;
-                }
-
                 if (G_IS_DEV && globalConfig.debug.disableEjectorProcessing) {
                     sourceSlot.progress = maxProgress;
                 }
+
+                // Advance items on the slot
+                sourceSlot.progress += progressGrowth;
 
                 // Check if we are still in the process of ejecting, can't proceed then
                 if (sourceSlot.progress < maxProgress) {
@@ -186,27 +175,33 @@ export class ItemEjectorSystem extends GameSystemWithFilter {
 
                 const extraProgress = sourceSlot.progress - maxProgress;
 
+                // There can *either* be a belt path *or* a slot
+                const destPath = sourceSlot.cachedBeltPath;
                 if (destPath) {
                     // Try passing the item over
                     if (destPath.tryAcceptItem(item, extraProgress)) {
                         sourceSlot.item = null;
+                        continue;
                     }
-
-                    // Always stop here, since there can *either* be a belt path *or*
-                    // a slot
-                    continue;
+                } else {
+                    // Check if the target acceptor can actually accept this item
+                    const destEntity = sourceSlot.cachedTargetEntity;
+                    const destSlot = sourceSlot.cachedDestSlot;
+                    if (destEntity && destSlot) {
+                        const targetAcceptorComp = destEntity.components.ItemAcceptor;
+                        if (
+                            targetAcceptorComp.tryAcceptItem(destEntity, destSlot.index, item, extraProgress)
+                        ) {
+                            // Handover successful, clear slot
+                            sourceSlot.item = null;
+                            continue;
+                        }
+                    }
                 }
 
-                // Check if the target acceptor can actually accept this item
-                const destEntity = sourceSlot.cachedTargetEntity;
-                const destSlot = sourceSlot.cachedDestSlot;
-                if (destEntity && destSlot) {
-                    const targetAcceptorComp = destEntity.components.ItemAcceptor;
-                    if (targetAcceptorComp.tryAcceptItem(destEntity, destSlot.index, item, extraProgress)) {
-                        // Handover successful, clear slot
-                        sourceSlot.item = null;
-                    }
-                }
+                // There's nothing to continue moving on,
+                // so the item gets stopped at the end of the ejector
+                sourceSlot.progress = maxProgress;
             }
         }
     }

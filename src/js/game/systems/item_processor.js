@@ -224,12 +224,7 @@ export class ItemProcessorSystem extends GameSystemWithFilter {
                     const networkValue = network && network.hasValue() ? network.currentValue : null;
 
                     // If there is no "1" on that slot, don't paint there
-                    if (!isTruthyItem(networkValue)) {
-                        slotStatus.push(false);
-                        continue;
-                    }
-
-                    slotStatus.push(true);
+                    slotStatus.push(isTruthyItem(networkValue));
                 }
 
                 // All slots are disabled
@@ -267,20 +262,18 @@ export class ItemProcessorSystem extends GameSystemWithFilter {
         const processorComp = entity.components.ItemProcessor;
 
         // First, take inputs - but only one from each
+        // Note we don't remove them until after the charge completes
         const inputs = acceptorComp.completedInputs;
 
         // split inputs efficiently
         let items = new Map();
         let extraProgress = 0;
-        for (let i = 0; i < inputs.length; i++) {
-            const input = inputs[i];
-
+        for (const input of inputs) {
             if (!items.get(input.slotIndex)) {
                 items.set(input.slotIndex, input.item);
-                // TODO: shouldn't this be min?
+                // TODO: this should be min of extraProgress of any items that just arrived this tick,
+                // but it's unclear how to handle the extraProgress of items from previous ticks, so this works for now
                 extraProgress = Math.max(extraProgress, input.extraProgress);
-                //inputs.splice(i, 1);
-                //i--;
             }
         }
 

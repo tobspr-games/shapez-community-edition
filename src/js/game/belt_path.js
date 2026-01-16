@@ -1051,7 +1051,7 @@ export class BeltPath extends BasicSerializableObject {
         }
 
         // Store whether this is the first item we are processing (and hence end-most item),
-        // so premature item ejection is available
+        // so item ejection is available
         let isFirstItemProcessed = true;
 
         // Store how much progress we have yet to distribute over all items
@@ -1149,20 +1149,6 @@ export class BeltPath extends BasicSerializableObject {
             // (since it couldn't consume all remaining progress)
             this.items.length - 2 - i
         );
-
-        // Check if we have an item which is ready to be emitted
-        // TODO: Pretty sure this only succeeds if within a tick, two items reach the end of the belt.
-        // Most of the time this code just causes backed-up belts to attempt to ask the acceptor twice.
-        const lastItem = this.items[this.items.length - 1];
-        if (lastItem && lastItem[0 /* nextDistance */] === 0) {
-            if (this.boundAcceptor && this.boundAcceptor(lastItem[1 /* item */])) {
-                this.items.pop();
-                this.numCompressedItemsAfterFirstItem = Math.max(
-                    0,
-                    this.numCompressedItemsAfterFirstItem - 1
-                );
-            }
-        }
 
         if (G_IS_DEV && globalConfig.debug.checkBeltPaths) {
             this.debug_checkIntegrity("post-update");
