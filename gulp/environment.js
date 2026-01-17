@@ -1,7 +1,7 @@
-import { exec } from "child_process";
-import fs from "fs/promises";
+import { exec } from "node:child_process";
+import fs from "node:fs/promises";
 import gulp from "gulp";
-import { promisify } from "util";
+import { promisify } from "node:util";
 
 const texturePackerUrl =
     "https://libgdx-nightlies.s3.amazonaws.com/libgdx-runnables/runnable-texturepacker.jar";
