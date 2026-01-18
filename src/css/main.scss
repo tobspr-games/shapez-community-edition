@@ -1,61 +1,51 @@
-// Control here whether to inline all resources or instead load them
-@function uiResource($pth) {
-    @if (str-index($string: $pth, $substring: ".noinline")) {
-        @return resolve($pth);
-    }
-    @return inline($pth);
-}
+@use "resources";
 
-@import "resources";
-@import "variables";
+@use "common";
+@use "game_state";
+@use "textual_game_state";
+@use "error_handler";
 
-@import "mixins";
-@import "common";
-@import "game_state";
-@import "textual_game_state";
-@import "error_handler";
+@use "states/preload";
+@use "states/main_menu";
+@use "states/ingame";
+@use "states/keybindings";
+@use "states/settings";
+@use "states/about";
+@use "states/changelog";
+@use "states/puzzle_menu";
+@use "states/mods";
 
-@import "states/preload";
-@import "states/main_menu";
-@import "states/ingame";
-@import "states/keybindings";
-@import "states/settings";
-@import "states/about";
-@import "states/changelog";
-@import "states/puzzle_menu";
-@import "states/mods";
-
-@import "ingame_hud/buildings_toolbar";
-@import "ingame_hud/building_placer";
-@import "ingame_hud/beta_overlay";
-@import "ingame_hud/keybindings_overlay";
-@import "ingame_hud/unlock_notification";
-@import "ingame_hud/shop";
-@import "ingame_hud/game_menu";
-@import "ingame_hud/dialogs";
-@import "ingame_hud/vignette_overlay";
-@import "ingame_hud/statistics";
-@import "ingame_hud/pinned_shapes";
-@import "ingame_hud/notifications";
-@import "ingame_hud/settings_menu";
-@import "ingame_hud/debug_info";
-@import "ingame_hud/entity_debugger";
-@import "ingame_hud/tutorial_hints";
-@import "ingame_hud/blueprint_placer";
-@import "ingame_hud/waypoints";
-@import "ingame_hud/interactive_tutorial";
-@import "ingame_hud/color_blind_helper";
-@import "ingame_hud/shape_viewer";
-@import "ingame_hud/sandbox_controller";
-@import "ingame_hud/puzzle_back_to_menu";
-@import "ingame_hud/puzzle_editor_review";
-@import "ingame_hud/puzzle_dlc_logo";
-@import "ingame_hud/puzzle_editor_controls";
-@import "ingame_hud/puzzle_editor_settings";
-@import "ingame_hud/puzzle_play_settings";
-@import "ingame_hud/puzzle_play_metadata";
-@import "ingame_hud/puzzle_complete_notification";
-@import "ingame_hud/puzzle_next";
+@use "ingame_hud/buildings_toolbar";
+@use "ingame_hud/building_placer";
+@use "ingame_hud/beta_overlay";
+@use "ingame_hud/keybindings_overlay";
+@use "ingame_hud/unlock_notification";
+@use "ingame_hud/shop";
+@use "ingame_hud/game_menu";
+@use "ingame_hud/dialogs";
+@use "ingame_hud/vignette_overlay";
+@use "ingame_hud/statistics";
+@use "ingame_hud/pinned_shapes";
+@use "ingame_hud/notifications";
+@use "ingame_hud/settings_menu";
+@use "ingame_hud/debug_info";
+@use "ingame_hud/entity_debugger";
+@use "ingame_hud/tutorial_hints";
+@use "ingame_hud/blueprint_placer";
+@use "ingame_hud/waypoints";
+@use "ingame_hud/interactive_tutorial";
+@use "ingame_hud/color_blind_helper";
+@use "ingame_hud/shape_viewer";
+@use "ingame_hud/sandbox_controller";
+@use "ingame_hud/puzzle_back_to_menu";
+@use "ingame_hud/puzzle_editor_review";
+@use "ingame_hud/puzzle_dlc_logo";
+@use "ingame_hud/puzzle_editor_controls";
+@use "ingame_hud/puzzle_editor_settings";
+@use "ingame_hud/puzzle_play_settings";
+@use "ingame_hud/puzzle_play_metadata";
+@use "ingame_hud/puzzle_complete_notification";
+@use "ingame_hud/puzzle_next";
 
 // prettier-ignore
 $elements:

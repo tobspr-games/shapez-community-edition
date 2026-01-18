@@ -1,3 +1,6 @@
+@use "../mixins" as *;
+@use "../variables" as *;
+
 #ingame_HUD_InteractiveTutorial {
     position: absolute;
     left: 1rem;

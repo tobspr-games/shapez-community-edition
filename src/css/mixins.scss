@@ -1,9 +1,11 @@
+@use "sass:string";
+
 // ----------------------------------------
 /* Duplicates an animation and adds two classes .<classPrefix>Even and .<classPrefix>Odd which uses the
   animation. This can be used to replay the animation by toggling between the classes, because
   it is not possible to restart a css animation */
 @mixin MakeAnimationWrappedEvenOdd($duration, $classPrefix: "anim", $childSelector: "") {
-    $animName: autogen_anim_#{unique-id()};
+    $animName: autogen_anim_#{string.unique-id()};
 
     @at-root {
         @keyframes #{$animName}_even {
@@ -27,7 +29,7 @@
 // ----------------------------------------
 /* Allows to use and define an animation without specifying its name */
 @mixin InlineAnimation($duration) {
-    $animName: autogen_anim_#{unique-id()};
+    $animName: autogen_anim_#{string.unique-id()};
 
     @at-root {
         @keyframes #{$animName} {

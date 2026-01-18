@@ -1,3 +1,5 @@
+@use "../variables" as *;
+
 #ingame_HUD_PuzzleEditorSettings {
     position: absolute;
     background: $ingameHudBg;

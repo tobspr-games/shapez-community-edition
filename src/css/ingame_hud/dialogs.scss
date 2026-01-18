@@ -1,3 +1,9 @@
+@use "../mixins" as *;
+@use "../ui_resource" as *;
+@use "../variables" as *;
+
+@use "sass:color";
+
 .ingameDialog {
     position: absolute;
     top: 0;
@@ -21,7 +27,7 @@
         }
     }
 
-    $darkModeDialogBg: darken($darkModeGameBackground, 5);
+    $darkModeDialogBg: color.adjust($darkModeGameBackground, $lightness: -5%, $space: hsl);
 
     @include DarkThemeOverride {
         background: rgba($darkModeDialogBg, 0.9);
@@ -40,7 +46,7 @@
                 background: $darkModeControlsBackground;
 
                 &:hover {
-                    background-color: lighten($darkModeControlsBackground, 5);
+                    background-color: color.adjust($darkModeControlsBackground, $lightness: 5%, $space: hsl);
                 }
 
                 &.active {
@@ -89,7 +95,7 @@
         pointer-events: all;
 
         @include DarkThemeOverride {
-            background: darken($darkModeControlsBackground, 5);
+            background: color.adjust($darkModeControlsBackground, $lightness: -5%, $space: hsl);
         }
 
         &.optionChooserDialog {

@@ -1,3 +1,6 @@
+@use "../mixins" as *;
+@use "../ui_resource" as *;
+
 #ingame_VignetteOverlay {
     position: absolute;
     top: 0;
