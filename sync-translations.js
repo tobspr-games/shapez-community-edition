@@ -1,7 +1,7 @@
 // Synchronizes all translations
 
-const fs = require("fs");
-const path = require("path");
+const fs = require("node:fs");
+const path = require("node:path");
 const YAML = require("yaml");
 
 const files = fs

@@ -1,10 +1,10 @@
 import gulp from "gulp";
-import path from "path/posix";
+import path from "node:path/posix";
 import atlas2Json from "./atlas2json.js";
 import { buildFolder } from "./config.js";
 
-import childProcess from "child_process";
-import { promisify } from "util";
+import childProcess from "node:child_process";
+import { promisify } from "node:util";
 const exec = promisify(childProcess.exec);
 const execute = command => {
     const promise = exec(command, {

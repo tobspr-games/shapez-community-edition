@@ -1,9 +1,9 @@
-import childProcess from "child_process";
+import childProcess from "node:child_process";
 import delEmpty from "delete-empty";
 import gulp from "gulp";
-import pathNative from "path";
-import path from "path/posix";
-import { promisify } from "util";
+import pathNative from "node:path";
+import path from "node:path/posix";
+import { promisify } from "node:util";
 import { BUILD_VARIANTS } from "./build_variants.js";
 import {
     browserSync,

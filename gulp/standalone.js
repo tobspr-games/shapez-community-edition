@@ -1,7 +1,7 @@
 import { packager } from "@electron/packager";
-import fs from "fs/promises";
+import fs from "node:fs/promises";
 import gulp from "gulp";
-import path from "path/posix";
+import path from "node:path/posix";
 import electronPackageJson from "../electron/package.json" with { type: "json" };
 import { BUILD_VARIANTS } from "./build_variants.js";
 import { getVersion } from "./buildutils.js";
