@@ -1,0 +1,17 @@
+{
+    "format_on_save": "on",
+    "file_scan_exclusions": [
+        "**/.git",
+        "**/.DS_Store",
+        "**/Thumbs.db",
+        "node_modules",
+        "build",
+        "build_output"
+    ],
+    "formatter": {
+        "external": {
+            "command": "npx",
+            "arguments": ["prettier", "--stdin-filepath", "{buffer_path}"]
+        }
+    }
+}
