@@ -1,6 +1,5 @@
 {
     "editor.defaultFormatter": "prettier.prettier-vscode",
-    "files.trimTrailingWhitespace": true,
     "editor.formatOnSave": true,
     "files.exclude": {
         "**/.git": true,
