@@ -5,7 +5,7 @@ import { GameState } from "./core/game_state";
 import { setGlobalApp } from "./core/globals";
 import { InputDistributor } from "./core/input_distributor";
 import { Loader } from "./core/loader";
-import { createLogger } from "./core/logging";
+import { Logger } from "./core/logging";
 import { StateManager } from "./core/state_manager";
 import { TrackedState } from "./core/tracked_state";
 import { getPlatformName, round2Digits, waitNextFrame } from "./core/utils";
@@ -33,7 +33,7 @@ import { SettingsState } from "./states/settings";
  * @typedef {import("./platform/sound").SoundInterface} SoundInterface
  */
 
-const logger = createLogger("application");
+const logger = new Logger("application");
 
 export class Application {
     /**

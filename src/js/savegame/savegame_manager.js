@@ -4,10 +4,10 @@ import { Application } from "@/application";
 
 import { globalConfig } from "../core/config";
 import { ExplainedResult } from "../core/explained_result";
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { ReadWriteProxy } from "../core/read_write_proxy";
 import { Savegame } from "./savegame";
-const logger = createLogger("savegame_manager");
+const logger = new Logger("savegame_manager");
 
 /**
  * @typedef {import("./savegame_typedefs").SavegamesData} SavegamesData

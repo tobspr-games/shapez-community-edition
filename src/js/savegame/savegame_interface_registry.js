@@ -1,6 +1,6 @@
 import { BaseSavegameInterface } from "./savegame_interface";
 import { SavegameInterface_V1000 } from "./schemas/1000";
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { SavegameInterface_V1001 } from "./schemas/1001";
 import { SavegameInterface_V1002 } from "./schemas/1002";
 import { SavegameInterface_V1003 } from "./schemas/1003";
@@ -27,7 +27,7 @@ export const savegameInterfaces = {
     1010: SavegameInterface_V1010,
 };
 
-const logger = createLogger("savegame_interface_registry");
+const logger = new Logger("savegame_interface_registry");
 
 /**
  * Returns if the given savegame has any supported interface

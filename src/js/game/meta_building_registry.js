@@ -1,5 +1,5 @@
 import { gMetaBuildingRegistry } from "../core/global_registries";
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { T } from "../translations";
 import { buildBuildingCodeCache, gBuildingVariants, registerBuildingVariant } from "./building_codes";
 import { MetaAnalyzerBuilding } from "./buildings/analyzer";
@@ -33,7 +33,7 @@ import { MetaWireTunnelBuilding } from "./buildings/wire_tunnel";
 import { KEYMAPPINGS } from "./key_action_mapper";
 import { defaultBuildingVariant, MetaBuilding } from "./meta_building";
 
-const logger = createLogger("building_registry");
+const logger = new Logger("building_registry");
 
 /**
  *

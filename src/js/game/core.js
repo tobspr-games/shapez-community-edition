@@ -7,7 +7,7 @@ import { globalConfig } from "../core/config";
 import { getDeviceDPI, resizeHighDPICanvas } from "../core/dpi_manager";
 import { DrawParameters } from "../core/draw_parameters";
 import { gMetaBuildingRegistry } from "../core/global_registries";
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { Rectangle } from "../core/rectangle";
 import { ORIGINAL_SPRITE_SCALE } from "../core/sprites";
 import { lerp, randomInt, round2Digits } from "../core/utils";
@@ -34,7 +34,7 @@ import { GameRoot } from "./root";
 import { ShapeDefinitionManager } from "./shape_definition_manager";
 import { SoundProxy } from "./sound_proxy";
 
-const logger = createLogger("ingame/core");
+const logger = new Logger("ingame/core");
 
 /**
  * The core manages the root and represents the whole game. It wraps the root, since

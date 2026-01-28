@@ -1,8 +1,8 @@
-import { createLogger } from "../../core/logging";
+import { Logger } from "../../core/logging";
 import { SavegameInterface_V1001 } from "./1001.js";
 
 import schema from "./1002.json";
-const logger = createLogger("savegame_interface/1002");
+const logger = new Logger("savegame_interface/1002");
 
 export class SavegameInterface_V1002 extends SavegameInterface_V1001 {
     getVersion() {

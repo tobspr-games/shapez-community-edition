@@ -3,10 +3,10 @@ import { Application } from "../application";
 /* typehints:end */
 
 import { IS_MOBILE } from "../core/config";
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { clamp } from "../core/utils";
 
-const logger = createLogger("electron-wrapper");
+const logger = new Logger("electron-wrapper");
 
 export class PlatformWrapperImplElectron {
     constructor(app) {

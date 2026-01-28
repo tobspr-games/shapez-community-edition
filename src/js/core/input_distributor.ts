@@ -1,11 +1,11 @@
 import type { Application } from "../application";
 import type { InputReceiver, ReceiverId } from "./input_receiver";
 
-import { createLogger } from "./logging";
+import { Logger } from "./logging";
 import { Signal, STOP_PROPAGATION } from "./signal";
 import { arrayDeleteValue, fastArrayDeleteValue } from "./utils";
 
-const logger = createLogger("input_distributor");
+const logger = new Logger("input_distributor");
 
 export class InputDistributor {
     public receiverStack: InputReceiver[] = [];

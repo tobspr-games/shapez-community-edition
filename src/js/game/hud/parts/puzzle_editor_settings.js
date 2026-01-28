@@ -1,6 +1,6 @@
 import { globalConfig } from "../../../core/config";
 import { gMetaBuildingRegistry } from "../../../core/global_registries";
-import { createLogger } from "../../../core/logging";
+import { Logger } from "../../../core/logging";
 import { Rectangle } from "../../../core/rectangle";
 import { makeDiv } from "../../../core/utils";
 import { T } from "../../../translations";
@@ -11,7 +11,7 @@ import { StaticMapEntityComponent } from "../../components/static_map_entity";
 import { PuzzleGameMode } from "../../modes/puzzle";
 import { BaseHUDPart } from "../base_hud_part";
 
-const logger = createLogger("puzzle-editor");
+const logger = new Logger("puzzle-editor");
 
 export class HUDPuzzleEditorSettings extends BaseHUDPart {
     createElements(parent) {

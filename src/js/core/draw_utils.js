@@ -4,10 +4,10 @@
  */
 
 import { globalConfig } from "./config";
-import { createLogger } from "./logging";
+import { Logger } from "./logging";
 import { Rectangle } from "./rectangle";
 
-const logger = createLogger("draw_utils");
+const logger = new Logger("draw_utils");
 
 /**
  *

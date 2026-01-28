@@ -4,11 +4,11 @@ import { Storage } from "@/platform/storage";
 
 import { FsError } from "@/platform/fs_error";
 import { ExplainedResult } from "./explained_result";
-import { createLogger } from "./logging";
+import { Logger } from "./logging";
 
 import debounce from "debounce-promise";
 
-const logger = createLogger("read_write_proxy");
+const logger = new Logger("read_write_proxy");
 
 // Helper which only writes / reads if verify() works. Also performs migration
 export class ReadWriteProxy {

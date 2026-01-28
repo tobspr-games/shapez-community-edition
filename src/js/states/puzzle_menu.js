@@ -1,4 +1,4 @@
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { DialogWithForm } from "../core/modal_dialog_elements";
 import { FormElementInput } from "../core/modal_dialog_forms";
 import { TextualGameState } from "../core/textual_game_state";
@@ -16,7 +16,7 @@ const navigation = {
     search: ["search"],
 };
 
-const logger = createLogger("puzzle-menu");
+const logger = new Logger("puzzle-menu");
 
 let lastCategory = "official";
 

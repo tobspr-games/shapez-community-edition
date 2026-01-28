@@ -1,6 +1,6 @@
-import { createLogger } from "./logging";
+import { Logger } from "./logging";
 
-const logger = createLogger("singleton_factory");
+const logger = new Logger("singleton_factory");
 
 // simple factory pattern
 export class SingletonFactory<T extends { getId(): string }> {

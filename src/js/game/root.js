@@ -1,4 +1,4 @@
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { RandomNumberGenerator } from "../core/rng";
 import { Signal } from "../core/signal";
 
@@ -29,7 +29,7 @@ import { ShapeDefinitionManager } from "./shape_definition_manager";
 import { SoundProxy } from "./sound_proxy";
 /* typehints:end */
 
-const logger = createLogger("game/root");
+const logger = new Logger("game/root");
 
 /** @type {Array<Layer>} */
 export const layers = ["regular", "wires"];

@@ -1,5 +1,5 @@
 import { globalConfig } from "../core/config";
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { RandomNumberGenerator } from "../core/rng";
 import { clamp, fastArrayDeleteValueIfContained, make2DUndefinedArray } from "../core/utils";
 import { Vector } from "../core/vector";
@@ -11,7 +11,7 @@ import { GameRoot } from "./root";
 import { enumSubShape } from "./shape_definition";
 import { Rectangle } from "../core/rectangle";
 
-const logger = createLogger("map_chunk");
+const logger = new Logger("map_chunk");
 
 /**
  * @type {Object<string, (distanceToOriginInChunks: number) => number>}

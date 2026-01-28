@@ -1,8 +1,8 @@
 import { globalConfig } from "./core/config";
-import { createLogger } from "./core/logging";
+import { Logger } from "./core/logging";
 import { LANGUAGES } from "./languages";
 
-const logger = createLogger("translations");
+const logger = new Logger("translations");
 
 // @ts-ignore
 import baseTranslations from "./built-temp/base-en.json";

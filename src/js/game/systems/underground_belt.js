@@ -1,6 +1,6 @@
 import { globalConfig } from "../../core/config";
 import { Loader } from "../../core/loader";
-import { createLogger } from "../../core/logging";
+import { Logger } from "../../core/logging";
 import { Rectangle } from "../../core/rectangle";
 import { StaleAreaDetector } from "../../core/stale_area_detector";
 import { fastArrayDelete } from "../../core/utils";
@@ -15,7 +15,7 @@ import { UndergroundBeltComponent, enumUndergroundBeltMode } from "../components
 import { Entity } from "../entity";
 import { GameSystemWithFilter } from "../game_system_with_filter";
 
-const logger = createLogger("tunnels");
+const logger = new Logger("tunnels");
 
 export class UndergroundBeltSystem extends GameSystemWithFilter {
     constructor(root) {

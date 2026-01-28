@@ -3,12 +3,12 @@ import type { Application } from "../application";
 import { ClickDetector } from "./click_detector";
 import { globalConfig } from "./config";
 import { InputReceiver } from "./input_receiver";
-import { createLogger, logSection } from "./logging";
+import { Logger, logSection } from "./logging";
 import { RequestChannel } from "./request_channel";
 import type { StateManager } from "./state_manager";
 import { waitNextFrame } from "./utils";
 
-const logger = createLogger("game_state");
+const logger = new Logger("game_state");
 
 /**
  * Basic state of the game state machine. This is the base of the whole game

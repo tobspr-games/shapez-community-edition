@@ -1,10 +1,10 @@
-import { createLogger } from "../../../core/logging";
+import { Logger } from "../../../core/logging";
 import { makeDiv } from "../../../core/utils";
 import { T } from "../../../translations";
 import { StaticMapEntityComponent } from "../../components/static_map_entity";
 import { BaseHUDPart } from "../base_hud_part";
 
-const logger = createLogger("puzzle-play");
+const logger = new Logger("puzzle-play");
 
 export class HUDPuzzlePlaySettings extends BaseHUDPart {
     createElements(parent) {

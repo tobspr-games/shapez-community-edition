@@ -4,13 +4,13 @@ import { Application } from "../application";
 
 import { Howl, Howler } from "howler";
 import { globalConfig } from "../core/config";
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { clamp, newEmptyMap } from "../core/utils";
 
 // @ts-ignore
 import sprites from "../built-temp/sfx.json";
 
-const logger = createLogger("sound");
+const logger = new Logger("sound");
 
 export const SOUNDS = {
     // Menu and such

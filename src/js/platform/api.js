@@ -2,13 +2,13 @@
 import { Application } from "../application";
 /* typehints:end */
 
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { DialogWithForm } from "../core/modal_dialog_elements";
 import { FormElementInput } from "../core/modal_dialog_forms";
 import { timeoutPromise } from "../core/utils";
 import { T } from "../translations";
 
-const logger = createLogger("puzzle-api");
+const logger = new Logger("puzzle-api");
 
 export class ClientAPI {
     /**

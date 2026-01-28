@@ -1,6 +1,6 @@
-import { createLogger } from "./logging";
+import { Logger } from "./logging";
 
-const logger = createLogger("factory");
+const logger = new Logger("factory");
 
 // simple factory pattern
 export class Factory<T> {

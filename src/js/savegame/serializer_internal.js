@@ -1,11 +1,11 @@
 import { globalConfig } from "../core/config";
-import { createLogger } from "../core/logging";
+import { Logger } from "../core/logging";
 import { Vector } from "../core/vector";
 import { getBuildingDataFromCode } from "../game/building_codes";
 import { Entity } from "../game/entity";
 import { GameRoot } from "../game/root";
 
-const logger = createLogger("serializer_internal");
+const logger = new Logger("serializer_internal");
 
 // Internal serializer methods
 export class SerializerInternal {
