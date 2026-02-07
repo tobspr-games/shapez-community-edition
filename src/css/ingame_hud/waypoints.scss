@@ -1,3 +1,7 @@
+@use "../mixins" as *;
+@use "../ui_resource" as *;
+@use "../variables" as *;
+
 #ingame_HUD_Waypoints_Hint {
     position: absolute;
     right: 1rem;

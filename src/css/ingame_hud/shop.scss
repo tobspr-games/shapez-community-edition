@@ -1,3 +1,9 @@
+@use "../mixins" as *;
+@use "../ui_resource" as *;
+@use "../variables" as *;
+
+@use "sass:color";
+
 #ingame_HUD_Shop {
     .content {
         padding-right: 1rem;
@@ -307,7 +313,7 @@
                         }
 
                         50% {
-                            background-color: lighten($colorGreenBright, 10);
+                            background-color: color.adjust($colorGreenBright, $lightness: 10%, $space: hsl);
                             transform: scale(1.02);
                         }
                         100% {

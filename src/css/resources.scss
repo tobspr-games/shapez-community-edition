@@ -1,3 +1,5 @@
+@use "ui_resource" as *;
+
 $buildings: belt, cutter, miner, mixer, painter, rotator, balancer, stacker, trash, underground_belt, wire,
     constant_signal, logic_gate, lever, filter, wire_tunnel, display, virtual_processor, reader, storage,
     transistor, analyzer, comparator, item_producer, constant_producer, goal_acceptor, block;

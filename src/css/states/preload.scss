@@ -1,3 +1,7 @@
+@use "../game_state" as *;
+@use "../mixins" as *;
+@use "../variables" as *;
+
 #state_PreloadState {
     .changelogDialogEntry {
         margin-top: 1rem;

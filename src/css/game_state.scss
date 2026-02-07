@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 $gameStateTransition: 0.2s ease-out;
 
 @mixin StateAnim($properties...) {
