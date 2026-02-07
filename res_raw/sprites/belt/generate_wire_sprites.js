@@ -4,8 +4,8 @@
  */
 
 const { createCanvas } = require("canvas");
-const fs = require("fs");
-const path = require("path");
+const fs = require("node:fs");
+const path = require("node:path");
 
 const outputFolder = path.join(__dirname, "..", "wires", "sets");
 

@@ -1,5 +1,5 @@
 import { BrowserWindow, app, shell } from "electron";
-import path from "path";
+import path from "node:path";
 import { defaultWindowTitle, pageUrl, switches } from "./config.js";
 import { IpcHandler } from "./ipc.js";
 import { ModLoader } from "./mods/loader.js";

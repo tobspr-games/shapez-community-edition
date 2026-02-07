@@ -1,4 +1,4 @@
-import { resolve } from "path/posix";
+import { resolve } from "node:path/posix";
 import TerserPlugin from "terser-webpack-plugin";
 import webpack from "webpack";
 import DeadCodePlugin from "webpack-deadcode-plugin";

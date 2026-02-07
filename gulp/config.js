@@ -1,5 +1,5 @@
 import BrowserSync from "browser-sync";
-import path from "path/posix";
+import path from "node:path/posix";
 
 export const baseDir = path.resolve("..");
 export const buildFolder = path.join(baseDir, "build");

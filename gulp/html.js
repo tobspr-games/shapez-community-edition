@@ -1,6 +1,6 @@
-import fs from "fs";
+import fs from "node:fs";
 import gulp from "gulp";
-import path from "path/posix";
+import path from "node:path/posix";
 import { buildFolder } from "./config.js";
 
 import gulpDom from "gulp-dom";

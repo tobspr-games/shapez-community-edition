@@ -1,5 +1,5 @@
 import CircularDependencyPlugin from "circular-dependency-plugin";
-import { resolve } from "path/posix";
+import { resolve } from "node:path/posix";
 import webpack from "webpack";
 import { getAllResourceImages, getRevision, getVersion } from "./buildutils.js";
 

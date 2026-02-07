@@ -1,5 +1,5 @@
-import { join, resolve } from "path/posix";
-import { readFileSync, readdirSync, writeFileSync } from "fs";
+import { join, resolve } from "node:path/posix";
+import { readFileSync, readdirSync, writeFileSync } from "node:fs";
 
 const suffixToScale = {
     lq: "0.25",

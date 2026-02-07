@@ -1,5 +1,5 @@
 import gulp from "gulp";
-import path from "path/posix";
+import path from "node:path/posix";
 import { buildFolder, generatedCodeFolder } from "./config.js";
 
 import gulpAudiosprite from "gulp-audiosprite";
