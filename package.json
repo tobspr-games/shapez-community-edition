@@ -70,7 +70,6 @@
         "ts-loader": "^9.5.2",
         "typescript": "^5.8.2",
         "typescript-eslint": "^8.29.1",
-        "webpack-deadcode-plugin": "^0.1.17",
         "webpack-strip-block": "^0.2.0",
         "yaml": "^1.10.0"
     }

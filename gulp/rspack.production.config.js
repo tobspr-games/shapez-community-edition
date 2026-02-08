@@ -1,7 +1,6 @@
 import { resolve } from "path/posix";
 import TerserPlugin from "terser-webpack-plugin";
 import rspack from "@rspack/core";
-import DeadCodePlugin from "webpack-deadcode-plugin";
 import { getAllResourceImages, getRevision, getVersion } from "./buildutils.js";
 import { buildFolder } from "./config.js";
 
@@ -127,9 +126,6 @@ export default {
         new rspack.DefinePlugin(globalDefs),
         new rspack.IgnorePlugin({ resourceRegExp: /\.(png|jpe?g|svg)$/ }),
         new rspack.IgnorePlugin({ resourceRegExp: /\.nobuild/ }),
-        new DeadCodePlugin({
-            patterns: ["../src/js/**/*.js"],
-        }),
     ],
     module: { rules: moduleRules },
     performance: {
