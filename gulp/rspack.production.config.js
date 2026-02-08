@@ -1,5 +1,4 @@
 import { resolve } from "path/posix";
-import TerserPlugin from "terser-webpack-plugin";
 import rspack from "@rspack/core";
 import { getAllResourceImages, getRevision, getVersion } from "./buildutils.js";
 import { buildFolder } from "./config.js";
@@ -84,12 +83,13 @@ export default {
     optimization: {
         removeAvailableModules: true,
         minimizer: [
-            new TerserPlugin({
-                parallel: true,
-                terserOptions: {
+            new rspack.SwcJsMinimizerRspackPlugin({
+                minimizerOptions: {
                     ecma: 2020,
                     module: true,
-                    keep_fnames: true,
+                    mangle: {
+                        keep_fnames: true,
+                    },
                     compress: {
                         global_defs: globalDefs,
                         keep_infinity: true,
