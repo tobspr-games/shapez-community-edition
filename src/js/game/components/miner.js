@@ -2,9 +2,13 @@ import { types } from "../../savegame/serialization";
 import { BaseItem } from "../base_item";
 import { Component } from "../component";
 import { Entity } from "../entity";
-import { typeItemSingleton } from "../item_resolver";
 
-const chainBufferSize = 6;
+/**
+ * @typedef {{
+ * item: BaseItem,
+ * extraProgress?: number,
+ * }} MinerItem
+ */
 
 export class MinerComponent extends Component {
     static getId() {
@@ -14,51 +18,33 @@ export class MinerComponent extends Component {
     static getSchema() {
         // cachedMinedItem is not serialized.
         return {
-            lastMiningTime: types.ufloat,
-            itemChainBuffer: types.array(typeItemSingleton),
+            progress: types.ufloat,
         };
     }
 
     constructor({ chainable = false }) {
         super();
-        this.lastMiningTime = 0;
+        this.progress = 0;
         this.chainable = chainable;
 
         /**
-         * @type {BaseItem}
+         * The item we are mining beneath us.
+         * Null means there is no item beneath us.
+         * @type {BaseItem|null}
          */
         this.cachedMinedItem = null;
 
         /**
-         * Which miner this miner ejects to, in case its a chainable one.
-         * If the value is false, it means there is no entity, and we don't have to re-check
-         * @type {Entity|null|false}
+         * For chainable miners, which miner this miner connects to.
+         * Null means there is no entity (end of a chain); undefined additionally means this miner should not try ejecting.
+         * @type {Entity|null|undefined}
          */
-        this.cachedChainedMiner = null;
-
-        this.clear();
-    }
-
-    clear() {
+        this.cachedChainedMiner = undefined;
         /**
-         * Stores items from other miners which were chained to this
-         * miner.
-         * @type {Array<BaseItem>}
+         * For chainable miners, the miner at the end of the chain, which actually ejects the items. This could be itself.
+         * Null means there is no entity (because of a loop or because the miner is not over a resource); undefined means uncomputed.
+         * @type {Entity|null|undefined}
          */
-        this.itemChainBuffer = [];
-    }
-
-    /**
-     *
-     * @param {BaseItem} item
-     */
-    tryAcceptChainedItem(item) {
-        if (this.itemChainBuffer.length > chainBufferSize) {
-            // Well, this one is full
-            return false;
-        }
-
-        this.itemChainBuffer.push(item);
-        return true;
+        this.cachedExitMiner = undefined;
     }
 }

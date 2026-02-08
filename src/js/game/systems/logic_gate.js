@@ -325,6 +325,7 @@ export class LogicGateSystem extends GameSystemWithFilter {
             return null;
         }
 
+        // TODO: isn't the rest of this what .equals() is for??
         if (itemA.getItemType() !== itemB.getItemType()) {
             // Not the same type
             return BOOL_FALSE_SINGLETON;

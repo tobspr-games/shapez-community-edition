@@ -49,7 +49,7 @@ export class Savegame extends ReadWriteProxy {
      * @returns {number}
      */
     static getCurrentVersion() {
-        return 1010;
+        return 1011;
     }
 
     /**

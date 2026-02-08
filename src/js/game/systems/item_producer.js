@@ -8,8 +8,7 @@ export class ItemProducerSystem extends GameSystemWithFilter {
     }
 
     update() {
-        for (let i = 0; i < this.allEntities.length; ++i) {
-            const entity = this.allEntities[i];
+        for (const entity of this.allEntities) {
             const ejectorComp = entity.components.ItemEjector;
             const pinsComp = entity.components.WiredPins;
             if (!pinsComp) {
@@ -24,7 +23,9 @@ export class ItemProducerSystem extends GameSystemWithFilter {
             }
 
             this.item = network.currentValue;
-            ejectorComp.tryEject(0, this.item);
+
+            // Basically start ejecting at the exit of the ejector. Hacky, but who cares. It works, and its not in the base game :)
+            ejectorComp.tryEject(0, this.item, 0.5);
         }
     }
 }
