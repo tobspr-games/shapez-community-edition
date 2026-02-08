@@ -103,7 +103,7 @@ export class ModLoader {
             regExp: /\.[jt]sx?$/,
             // NOTE: Worker scripts are executed if not explicitly excluded, which causes
             // infinite recursion!
-            exclude: /\/webworkers\/|\.d\.ts$/,
+            exclude: /\/webworkers\/|\.d\.ts$|jsx-dev-runtime\.ts$/,
         });
 
         Array.from(modules.keys()).forEach(key => {

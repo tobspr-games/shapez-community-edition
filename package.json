@@ -66,7 +66,6 @@
         "postcss-critical-split": "^2.5.3",
         "prettier": "^3.3.2",
         "sass-embedded": "^1.97.2",
-        "ts-loader": "^9.5.2",
         "typescript": "^5.8.2",
         "typescript-eslint": "^8.29.1",
         "webpack-strip-block": "^0.2.0",

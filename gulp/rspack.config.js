@@ -39,13 +39,18 @@ const moduleRules = [
         test: /\.[jt]sx?$/,
         use: [
             {
-                loader: "ts-loader",
-
+                loader: "builtin:swc-loader",
+                /** @type {import('@rspack/core').SwcLoaderOptions} */
                 options: {
-                    configFile: resolve("../src/tsconfig.json"),
-                    onlyCompileBundledFiles: true,
-                    transpileOnly: true,
-                    experimentalWatchApi: true,
+                    jsc: {
+                        target: "es2024",
+                        transform: {
+                            react: {
+                                runtime: "automatic",
+                                importSource: "@",
+                            },
+                        },
+                    },
                 },
             },
         ],
