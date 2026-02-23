@@ -1,3 +1,5 @@
+@use "../variables" as *;
+
 #ingame_HUD_SandboxController {
     position: absolute;
     background: $ingameHudBg;

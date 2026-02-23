@@ -1,3 +1,8 @@
+@use "../mixins" as *;
+@use "../variables" as *;
+
+@use "sass:color";
+
 #state_ModsState {
     // TODO: Update dimensions to use less build-time logic
     .modsGrid {
@@ -20,7 +25,7 @@
         background: #eee;
 
         @include DarkThemeOverride {
-            background: lighten($darkModeControlsBackground, 5);
+            background: color.adjust($darkModeControlsBackground, $lightness: 5%, $space: hsl);
         }
     }
 

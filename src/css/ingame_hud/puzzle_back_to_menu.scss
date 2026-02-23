@@ -1,3 +1,7 @@
+@use "../mixins" as *;
+@use "../ui_resource" as *;
+@use "../variables" as *;
+
 #ingame_HUD_PuzzleBackToMenu {
     position: absolute;
     top: 1rem;

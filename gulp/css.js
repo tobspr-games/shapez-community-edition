@@ -4,12 +4,15 @@ import { buildFolder } from "./config.js";
 
 import cssMqpacker from "css-mqpacker";
 import cssnano from "cssnano";
-import gulpDartSass from "gulp-dart-sass";
+import gulpSass from "gulp-sass";
+import * as sass from "sass-embedded";
 import gulpPlumber from "gulp-plumber";
 import gulpPostcss from "gulp-postcss";
 import gulpRename from "gulp-rename";
 import postcssAssets from "postcss-assets";
 import postcssCriticalSplit from "postcss-critical-split";
+
+const gulpSassCompiler = gulpSass(sass);
 
 // The assets plugin copies the files
 const postcssAssetsPlugin = postcssAssets({
@@ -47,7 +50,7 @@ function resourcesTask({ isProd }) {
     return gulp
         .src("../src/css/main.scss")
         .pipe(gulpPlumber())
-        .pipe(gulpDartSass.sync().on("error", gulpDartSass.logError))
+        .pipe(gulpSassCompiler().on("error", gulpSassCompiler.logError))
         .pipe(
             gulpPostcss([
                 postcssCriticalSplit({
@@ -72,7 +75,7 @@ function mainTask({ isProd }) {
     return gulp
         .src("../src/css/main.scss")
         .pipe(gulpPlumber())
-        .pipe(gulpDartSass.sync().on("error", gulpDartSass.logError))
+        .pipe(gulpSassCompiler().on("error", gulpSassCompiler.logError))
         .pipe(
             gulpPostcss([
                 postcssCriticalSplit({

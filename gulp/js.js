@@ -1,12 +1,24 @@
-import gulp from "gulp";
-import webpack from "webpack";
+import { rspack } from "@rspack/core";
 import { BUILD_VARIANTS } from "./build_variants.js";
-import { buildFolder } from "./config.js";
 
-import webpackConfig from "./webpack.config.js";
-import webpackProductionConfig from "./webpack.production.config.js";
+import rspackConfig from "./rspack.config.js";
+import rspackProductionConfig from "./rspack.production.config.js";
 
-import webpackStream from "webpack-stream";
+/**
+ * @param {import("@rspack/core").Configuration} config
+ * @returns {Promise<void>}
+ */
+function runRspack(config) {
+    return new Promise((resolve, reject) => {
+        rspack(config, (err, stats) => {
+            if (err || stats.hasErrors()) {
+                console.error(stats?.toString("errors-only") || err);
+                return reject(new Error("Build failed"));
+            }
+            resolve();
+        });
+    });
+}
 
 /**
  * PROVIDES (per <variant>)
@@ -22,21 +34,11 @@ import webpackStream from "webpack-stream";
 export default Object.fromEntries(
     Object.entries(BUILD_VARIANTS).map(([variant, data]) => {
         const dev = {
-            build() {
-                return gulp
-                    .src("../src/js/main.js")
-                    .pipe(webpackStream(webpackConfig, webpack))
-                    .pipe(gulp.dest(buildFolder));
-            },
+            build: () => runRspack(rspackConfig),
         };
 
         const prod = {
-            build() {
-                return gulp
-                    .src("../src/js/main.js")
-                    .pipe(webpackStream(webpackProductionConfig, webpack))
-                    .pipe(gulp.dest(buildFolder));
-            },
+            build: () => runRspack(rspackProductionConfig),
         };
 
         return [variant, { dev, prod }];

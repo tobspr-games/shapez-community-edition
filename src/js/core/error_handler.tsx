@@ -124,7 +124,7 @@ export class ErrorScreen {
 
         while (current.cause instanceof Error) {
             current = current.cause;
-            stack += `\nCaused by: ${current.stack}`;
+            stack += `\n\nCaused by:\n${current.stack}`;
         }
 
         return stack;

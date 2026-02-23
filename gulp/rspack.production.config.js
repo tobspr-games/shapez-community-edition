@@ -1,9 +1,7 @@
 import { resolve } from "path/posix";
-import TerserPlugin from "terser-webpack-plugin";
-import webpack from "webpack";
-import DeadCodePlugin from "webpack-deadcode-plugin";
+import rspack from "@rspack/core";
 import { getAllResourceImages, getRevision, getVersion } from "./buildutils.js";
-const { DefinePlugin, IgnorePlugin } = webpack;
+import { buildFolder } from "./config.js";
 
 const globalDefs = {
     "assert": "false && window.assert",
@@ -20,7 +18,7 @@ const globalDefs = {
     "G_IS_RELEASE": "true",
 };
 
-/** @type {import("webpack").RuleSetRule[]} */
+/** @type {import("@rspack/core").RuleSetRule[]} */
 const moduleRules = [
     {
         test: /\.jsx?$/,
@@ -48,13 +46,18 @@ const moduleRules = [
         test: /\.[jt]sx?$/,
         use: [
             {
-                loader: "ts-loader",
-
+                loader: "builtin:swc-loader",
+                /** @type {import('@rspack/core').SwcLoaderOptions} */
                 options: {
-                    configFile: resolve("../src/tsconfig.json"),
-                    onlyCompileBundledFiles: true,
-                    transpileOnly: true,
-                    experimentalWatchApi: true,
+                    jsc: {
+                        target: "es2024",
+                        transform: {
+                            react: {
+                                runtime: "automatic",
+                                importSource: "@",
+                            },
+                        },
+                    },
                 },
             },
         ],
@@ -64,13 +67,13 @@ const moduleRules = [
     },
 ];
 
-/** @type {import("webpack").Configuration} */
+/** @type {import("@rspack/core").Configuration} */
 export default {
     mode: "production",
     entry: resolve("../src/js/main.js"),
     context: resolve(".."),
     output: {
-        path: resolve("../build"),
+        path: buildFolder,
         filename: "bundle.js",
     },
     resolve: {
@@ -85,12 +88,13 @@ export default {
     optimization: {
         removeAvailableModules: true,
         minimizer: [
-            new TerserPlugin({
-                parallel: true,
-                terserOptions: {
+            new rspack.SwcJsMinimizerRspackPlugin({
+                minimizerOptions: {
                     ecma: 2020,
                     module: true,
-                    keep_fnames: true,
+                    mangle: {
+                        keep_fnames: true,
+                    },
                     compress: {
                         global_defs: globalDefs,
                         keep_infinity: true,
@@ -124,12 +128,9 @@ export default {
         ],
     },
     plugins: [
-        new DefinePlugin(globalDefs),
-        new IgnorePlugin({ resourceRegExp: /\.(png|jpe?g|svg)$/ }),
-        new IgnorePlugin({ resourceRegExp: /\.nobuild/ }),
-        new DeadCodePlugin({
-            patterns: ["../src/js/**/*.js"],
-        }),
+        new rspack.DefinePlugin(globalDefs),
+        new rspack.IgnorePlugin({ resourceRegExp: /\.(png|jpe?g|svg)$/ }),
+        new rspack.IgnorePlugin({ resourceRegExp: /\.nobuild/ }),
     ],
     module: { rules: moduleRules },
     performance: {

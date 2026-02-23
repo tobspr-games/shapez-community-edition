@@ -1,7 +1,7 @@
-import CircularDependencyPlugin from "circular-dependency-plugin";
 import { resolve } from "path/posix";
-import webpack from "webpack";
+import rspack from "@rspack/core";
 import { getAllResourceImages, getRevision, getVersion } from "./buildutils.js";
+import { buildFolder } from "./config.js";
 
 const globalDefs = {
     assert: "window.assert",
@@ -19,7 +19,7 @@ const globalDefs = {
     G_IS_RELEASE: "false",
 };
 
-/** @type {import("webpack").RuleSetRule[]} */
+/** @type {import("@rspack/core").RuleSetRule[]} */
 const moduleRules = [
     {
         test: /\.jsx?$/,
@@ -39,13 +39,18 @@ const moduleRules = [
         test: /\.[jt]sx?$/,
         use: [
             {
-                loader: "ts-loader",
-
+                loader: "builtin:swc-loader",
+                /** @type {import('@rspack/core').SwcLoaderOptions} */
                 options: {
-                    configFile: resolve("../src/tsconfig.json"),
-                    onlyCompileBundledFiles: true,
-                    transpileOnly: true,
-                    experimentalWatchApi: true,
+                    jsc: {
+                        target: "es2024",
+                        transform: {
+                            react: {
+                                runtime: "automatic",
+                                importSource: "@",
+                            },
+                        },
+                    },
                 },
             },
         ],
@@ -55,13 +60,13 @@ const moduleRules = [
     },
 ];
 
-/** @type {import("webpack").Configuration} */
+/** @type {import("@rspack/core").Configuration} */
 export default {
     mode: "development",
     entry: resolve("../src/js/main.js"),
     context: resolve(".."),
     output: {
-        path: resolve("../build"),
+        path: buildFolder,
         filename: "bundle.js",
     },
     resolve: {
@@ -75,14 +80,12 @@ export default {
     devtool: "cheap-source-map",
     cache: false,
     plugins: [
-        new webpack.DefinePlugin(globalDefs),
-        new webpack.IgnorePlugin({ resourceRegExp: /\.(png|jpe?g|svg)$/ }),
-        new webpack.IgnorePlugin({ resourceRegExp: /\.nobuild/ }),
-        new CircularDependencyPlugin({
+        new rspack.DefinePlugin(globalDefs),
+        new rspack.IgnorePlugin({ resourceRegExp: /\.(png|jpe?g|svg)$/ }),
+        new rspack.IgnorePlugin({ resourceRegExp: /\.nobuild/ }),
+        new rspack.CircularDependencyRspackPlugin({
             exclude: /node_modules/,
             failOnError: true,
-            allowAsyncCycles: false,
-            cwd: resolve("../src/js"),
         }),
     ],
     module: { rules: moduleRules },
