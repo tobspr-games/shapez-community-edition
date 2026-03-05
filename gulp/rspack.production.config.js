@@ -14,8 +14,6 @@ const globalDefs = {
     "G_BUILD_COMMIT_HASH": JSON.stringify(getRevision()),
     "G_BUILD_VERSION": JSON.stringify(getVersion()),
     "G_ALL_UI_IMAGES": JSON.stringify(getAllResourceImages()),
-
-    "G_IS_RELEASE": "true",
 };
 
 /** @type {import("@rspack/core").RuleSetRule[]} */
