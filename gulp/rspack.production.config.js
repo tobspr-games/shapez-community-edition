@@ -51,6 +51,7 @@ const moduleRules = [
                 options: {
                     jsc: {
                         target: "es2024",
+                        parser: { syntax: "typescript", tsx: true },
                         transform: {
                             react: {
                                 runtime: "automatic",
