@@ -1,0 +1,1581 @@
+global:
+    loading: Зареждане...
+    error: Грешка
+    loggingIn: Влизане...
+
+    loadingResources: Изтегляне на допълнителни ресурси (<percentage> %)
+
+    # How big numbers are rendered, e.g. "10,000"
+    thousandsDivider: ","
+
+    # What symbol to use to separate the integer part from the fractional part of a number, e.g. "0.4"
+    decimalSeparator: "."
+
+    # The suffix for large numbers, e.g. 1.3k, 400.2M, etc.
+    suffix:
+        thousands: k
+        millions: M
+        billions: B
+        trillions: T
+
+    # Shown for infinitely big numbers
+    infinite: ∞
+
+    time:
+        # Used for formatting past time dates
+        oneSecondAgo: преди една секунда
+        xSecondsAgo: преди <x> секунди
+        oneMinuteAgo: преди една минута
+        xMinutesAgo: преди <x> минути
+        oneHourAgo: преди един час
+        xHoursAgo: преди <x> часа
+        oneDayAgo: преди един ден
+        xDaysAgo: преди <x> дни
+
+        # Short formats for times, e.g. '5h 23m'
+        secondsShort: <seconds>с
+        minutesAndSecondsShort: <minutes>м <seconds>с
+        hoursAndMinutesShort: <hours>ч <minutes>м
+
+        xMinutes: <x> минути
+
+    keys:
+        tab: TAB
+        control: CTRL
+        alt: ALT
+        escape: ESC
+        shift: SHIFT
+        space: SPACE
+
+mainMenu:
+    play: Играй
+    continue: Продължи
+    newGame: Нова игра
+    importSavegame: Импортиране
+    helpTranslate: Помогни с превода!
+    noActiveSavegames: Няма активни записани игри - Натисни Играй, за да започнеш нова игра!
+
+    savegameLevel: Ниво <x>
+    savegameLevelUnknown: Ниво ?
+    savegameUnnamed: Без име
+
+    mods:
+        warningPuzzleDLC: >-
+            Играенето на Puzzle DLC не е възможно с модове. Моля, деактивирайте
+            всички модове, за да играете DLC-то.
+
+puzzleMenu:
+    play: Играй
+    edit: Редакция
+    title: Режим Пъзели
+    createPuzzle: Създай пъзел
+    loadPuzzle: Зареди
+    reviewPuzzle: Преглед и публикуване
+    validatingPuzzle: Валидиране на пъзел
+    submittingPuzzle: Публикуване на пъзел
+    noPuzzles: В момента няма пъзели в тази секция.
+    dlcHint: Купихте DLC-то? Уверете се, че е активирано, като щракнете с десния бутон
+        върху shapez в библиотеката си и изберете Properties > DLCs.
+
+    categories:
+        levels: Нива
+        new: Нови
+        top-rated: Най-високо оценени
+        mine: Създадени
+        easy: Лесно
+        medium: Средно
+        hard: Трудно
+        completed: Завършени
+        official: Урок
+        trending: Популярни днес
+        trending-weekly: Популярни за седмицата
+        categories: Категории
+        difficulties: По трудност
+        account: Моите пъзели
+        search: Търсене
+
+    search:
+        action: Търсене
+        placeholder: Въведете име на пъзел или автор
+        includeCompleted: Включи завършените
+
+        difficulties:
+            any: Всякаква трудност
+            easy: Лесно
+            medium: Средно
+            hard: Трудно
+
+        durations:
+            any: Всякаква продължителност
+            short: Кратка (< 2 мин)
+            medium: Нормална
+            long: Дълга (> 10 мин)
+
+    difficulties:
+        easy: Лесно
+        medium: Средно
+        hard: Трудно
+        unknown: Неоценено
+
+    validation:
+        title: Невалиден пъзел
+        noProducers: Моля, поставете Изпращач!
+        noGoalAcceptors: Моля, поставете Получател!
+        goalAcceptorNoItem: >-
+            Поне един Получател все още няма зададен предмет. Доставете
+            им форма, за да зададете цел.
+        goalAcceptorRateNotMet: >-
+            Поне един Получател не получава достатъчно предмети.
+            Уверете се, че индикаторите са зелени за всички приемници.
+        buildingOutOfBounds: >-
+            Една или повече сгради са извън строителната зона. Увеличете зоната или
+            ги премахнете.
+        autoComplete: >-
+            Вашият пъзел се самозавършва! Уверете се, че Изпращачите не
+            доставят директно към Получателите.
+
+dialogs:
+    buttons:
+        ok: OK
+        delete: Изтрий
+        cancel: Отказ
+        later: По-късно
+        restart: Рестарт
+        reset: Нулиране
+        deleteGame: Знам какво правя
+        viewUpdate: Преглед на обновлението
+        showUpgrades: Покажи подобренията
+        showKeybindings: Покажи клавишните комбинации
+        retry: Опитай отново
+        continue: Продължи
+        playOffline: Играй офлайн
+
+    importSavegameError:
+        title: Грешка при импортиране
+        text: >-
+            Неуспешно импортиране на запазената игра:
+
+    importSavegameSuccess:
+        title: Запазената игра е импортирана
+        text: >-
+            Вашата запазена игра беше импортирана успешно.
+
+    gameLoadFailure:
+        title: Играта е повредена
+        text: >-
+            Неуспешно зареждане на запазената игра:
+
+    confirmSavegameDelete:
+        title: Потвърди изтриването
+        text: >-
+            Сигурни ли сте, че искате да изтриете следната игра?<br><br>
+            '<savegameName>' на ниво <savegameLevel><br><br> Това не може да бъде върнато!
+
+    savegameDeletionError:
+        title: Неуспешно изтриване
+        text: >-
+            Неуспешно изтриване на запазената игра:
+
+    restartRequired:
+        title: Изисква се рестарт
+        text: >-
+            Трябва да рестартирате играта, за да приложите настройките.
+
+    editKeybinding:
+        title: Промяна на клавишна комбинация
+        desc: Натиснете клавиша или бутона на мишката, който искате да зададете, или ESC за отказ.
+
+    resetKeybindingsConfirmation:
+        title: Нулиране на клавишните комбинации
+        desc: Това ще върне всички клавишни комбинации към стойностите по подразбиране. Моля, потвърдете.
+
+    keybindingsResetOk:
+        title: Клавишните комбинации са нулирани
+        desc: Всички клавишни комбинации бяха върнати към стойностите по подразбиране!
+
+    updateSummary:
+        title: Нова актуализация!
+        desc: >-
+            Ето промените от последното ви влизане:
+
+    upgradesIntroduction:
+        title: Отключване на подобрения
+        desc: >-
+            Всички форми, които произвеждате, могат да се използват за отключване на
+            подобрения - <strong>не унищожавайте старите си фабрики!</strong> Табът
+            за подобрения е в горния десен ъгъл на екрана.
+
+    massDeleteConfirm:
+        title: Потвърди изтриването
+        desc: >-
+            Изтривате много сгради (точно <count>)! Сигурни ли сте, че искате да го
+            направите?
+
+    massCutConfirm:
+        title: Потвърди изрязването
+        desc: >-
+            Изрязвате много сгради (точно <count>)! Сигурни ли сте, че искате да го
+            направите?
+
+    massCutInsufficientConfirm:
+        title: Потвърди изрязването
+        desc: >-
+            Нямате достатъчно ресурси, за да поставите тази зона! Сигурни ли сте, че
+            искате да я изрежете?
+
+    blueprintsNotUnlocked:
+        title: Още не е отключено
+        desc: >-
+            Завършете ниво 12, за да отключите чертежи!
+
+    keybindingsIntroduction:
+        title: Полезни клавишни комбинации
+        desc: >-
+            Тази игра има много клавишни комбинации, които улесняват строенето на
+            големи фабрики. Ето няколко, но непременно <strong>прегледайте
+            клавишните комбинации</strong>!<br><br> <code class='keybinding'>CTRL</code>
+            + Плъзгане: Избор на зона.<br> <code class='keybinding'>SHIFT</code>:
+            Задръжте за поставяне на няколко еднакви сгради.<br> <code class='keybinding'>ALT</code>:
+            Обръща посоката на поставяните ленти.<br>
+
+    createMarker:
+        title: Нов маркер
+        titleEdit: Редакция на маркер
+        desc: Дайте му смислено име, можете също да добавите <strong>кратък
+            код</strong> на форма (който може да генерирате <link>тук</link>)
+
+    editSignal:
+        title: Задаване на сигнал
+        descItems: >-
+            Изберете предварително дефиниран елемент:
+        descShortKey: ... или въведете <strong>краткия код</strong> на форма (който може да
+            генерирате <link>тук</link>)
+
+    editConstantProducer:
+        title: Задаване на елемент
+
+    exportScreenshotWarning:
+        title: Експорт на снимка
+        desc: Поискахте да експортирате базата си като снимка. Имайте предвид, че това
+            може да е доста бавно за голяма база и потенциално да срине играта!
+
+    renameSavegame:
+        title: Преименуване на запазена игра
+        desc: Тук можете да преименувате запазената си игра.
+
+    tutorialVideoAvailable:
+        title: Наличен урок
+        desc: За това ниво има налично видео с урок! Искате ли да го гледате?
+
+    tutorialVideoAvailableForeignLanguage:
+        title: Наличен урок
+        desc: За това ниво има налично видео с урок, но е само на английски. Искате ли
+            да го гледате?
+
+    puzzleLoadFailed:
+        title: Пъзелите не се заредиха
+        desc: >-
+            За съжаление пъзелите не можаха да бъдат заредени:
+
+    submitPuzzle:
+        title: Публикуване на пъзел
+        descName: >-
+            Дайте име на вашия пъзел:
+        descIcon: >-
+            Моля, въведете уникален кратък код, който ще се показва като икона на
+            пъзела ви (можете да го генерирате <link>тук</link> или да изберете една
+            от произволно предложените форми по-долу):
+
+        placeholderName: Заглавие на пъзела
+
+    puzzleResizeBadBuildings:
+        title: Преоразмеряване невъзможно
+        desc: Не можете да направите зоната по-малка, защото тогава някои сгради ще
+            останат извън нея.
+
+    puzzleLoadError:
+        title: Невалиден пъзел
+        desc: >-
+            Пъзелът не можа да се зареди:
+
+    offlineMode:
+        title: Офлайн режим
+        desc: >-
+            Не успяхме да се свържем със сървърите, затова играта трябва да работи в
+            офлайн режим. Моля, уверете се, че имате активна интернет връзка.
+
+    puzzleDownloadError:
+        title: Грешка при изтегляне
+        desc: >-
+            Неуспешно изтегляне на пъзела:
+
+    puzzleSubmitError:
+        title: Грешка при публикуване
+        desc: >-
+            Неуспешно публикуване на пъзела:
+
+    puzzleSubmitOk:
+        title: Пъзелът е публикуван
+        desc: >-
+            Поздравления! Вашият пъзел беше публикуван и вече може да бъде игран от
+            други. Можете да го намерите в секцията "Моите пъзели".
+
+    puzzleCreateOffline:
+        title: Офлайн режим
+        desc: >-
+            Тъй като сте офлайн, няма да можете да запазите и/или публикувате пъзела
+            си. Все пак искате ли да продължите?
+
+    puzzlePlayRegularRecommendation:
+        title: Препоръка
+        desc: >-
+            <strong>Силно</strong> препоръчвам да играете стандартната игра до ниво
+            12, преди да опитате Puzzle DLC, иначе може да срещнете механики, които
+            още не са въведени. Все пак искате ли да продължите?
+
+    puzzleShare:
+        title: Краткият код е копиран
+        desc: >-
+            Краткият код на пъзела (<key>) беше копиран в клипборда! Може да го
+            въведете в менюто за пъзели, за да отворите пъзела.
+
+    puzzleReport:
+        title: Докладване на пъзел
+        options:
+            profane: Нецензурен
+            unsolvable: Неразрешим
+            trolling: Тролене
+
+    puzzleReportComplete:
+        title: Благодарим за обратната връзка!
+        desc: >-
+            Пъзелът беше маркиран.
+
+    puzzleReportError:
+        title: Неуспешно докладване
+        desc: >-
+            Вашият доклад не можа да бъде обработен:
+
+    puzzleLoadShortKey:
+        title: Въведете кратък код
+        desc: >-
+            Въведете краткия код на пъзела, за да го заредите.
+
+    puzzleDelete:
+        title: Изтриване на пъзел?
+        desc: >-
+            Сигурни ли сте, че искате да изтриете '<title>'? Това не може да бъде върнато!
+
+    modsDifference:
+        title: Предупреждение за модове
+        desc: >-
+            В момента инсталираните модове се различават от модовете, с които е
+            създадена запазената игра. Това може да я повреди или изобщо да не се
+            зареди. Сигурни ли сте, че искате да продължите?
+        missingMods: Липсващи модове
+        newMods: Новоинсталирани модове
+
+    resourceLoadFailed:
+        title: Ресурсите не се заредиха
+
+        descSteamDemo: >-
+            Един или повече ресурси не можаха да бъдат заредени. Опитайте да
+            рестартирате играта - ако това не помогне, опитайте преинсталация и
+            проверка на файловете на играта чрез Steam. <br><br> Съобщение за грешка:
+
+ingame:
+    # This is shown in the top left corner and displays useful keybindings in
+    # every situation
+    keybindingsOverlay:
+        moveMap: Движение
+        selectBuildings: Избор на зона
+        stopPlacement: Спиране на поставянето
+        rotateBuilding: Завърти сграда
+        placeMultiple: Постави няколко
+        reverseOrientation: Обърни посоката
+        disableAutoOrientation: Изключи авто-ориентацията
+        toggleHud: Превключи HUD
+        placeBuilding: Постави сграда
+        createMarker: Създай маркер
+        delete: Изтрий
+        pasteLastBlueprint: Постави последния чертеж
+        lockBeltDirection: Включи планиране на ленти
+        plannerSwitchSide: Смени страна на планиране
+        cutSelection: Изрежи
+        copySelection: Копирай
+        clearBelts: Изчисти лентите
+        clearSelection: Изчисти избора
+        pipette: Пипета
+        switchLayers: Смяна на слоеве
+
+    # Names of the colors, used for the color blind mode
+    colors:
+        red: Червен
+        green: Зелен
+        blue: Син
+        yellow: Жълт
+        purple: Магента
+        cyan: Циан
+        white: Бял
+        black: Черен
+        uncolored: Сив
+
+    # Everything related to placing buildings (I.e. as soon as you selected a building
+    # from the toolbar)
+    buildingPlacement:
+        # Buildings can have different variants which are unlocked at later levels,
+        # and this is the hint shown when there are multiple variants available.
+        cycleBuildingVariants: Натиснете <key>, за да сменяте варианти.
+
+        # Shows the hotkey in the ui, e.g. "Hotkey: Q"
+        hotkeyLabel: >-
+            Бърз клавиш: <key>
+
+        infoTexts:
+            speed: Скорост
+            range: Обхват
+            storage: Капацитет
+            oneItemPerSecond: 1 предмет / секунда
+            itemsPerSecond: <x> предмета / сек
+            itemsPerSecondDouble: (x2)
+
+            tiles: <x> плочки
+
+    # The notification when completing a level
+    levelCompleteNotification:
+        # <level> is replaced by the actual level, so this gets 'Level 03' for example.
+        levelTitle: Ниво <level>
+        completed: Завършено
+        unlockText: "Отключено: <reward>!"
+        buttonNextLevel: Следващо ниво
+
+    # Notifications on the lower right
+    notifications:
+        newUpgrade: Налично е ново подобрение!
+        gameSaved: Играта е запазена.
+        freeplayLevelComplete: Ниво <level> е завършено!
+
+    # The "Upgrades" window
+    shop:
+        title: Подобрения
+        buttonUnlock: Подобри
+
+        # Gets replaced to e.g. "Tier IX"
+        tier: Ниво <x>
+
+        maximumLevel: МАКСИМАЛНО НИВО (Скорост x<currentMult>)
+
+    # The "Statistics" window
+    statistics:
+        title: Статистика
+        dataSources:
+            stored:
+                title: Съхранени
+                description: Всички форми, съхранени в Централата.
+            produced:
+                title: Произведени
+                description: Всички форми, произведени във фабриката ви, включително междинни
+                    продукти.
+            delivered:
+                title: Доставени
+                description: Форми, които се доставят към Централата.
+        noShapesProduced: До момента няма произведени форми.
+
+        # Displays the shapes per second, e.g. '523 / s'
+        shapesDisplayUnits:
+            second: <shapes> / s
+            minute: <shapes> / m
+            hour: <shapes> / h
+
+    # Settings menu, when you press "ESC"
+    settingsMenu:
+        playtime: Игрално време
+        buildingsPlaced: Сгради
+        beltsPlaced: Ленти
+
+    # Bottom left tutorial hints
+    tutorialHints:
+        title: Нужда от помощ?
+        showHint: Покажи подсказка
+        hideHint: Затвори
+
+    # When placing a blueprint
+    blueprintPlacer:
+        cost: Цена
+
+    # Map markers
+    waypoints:
+        waypoints: Маркери
+        hub: Централа
+        description: >-
+            Щракнете с ляв бутон върху маркер, за да се преместите до него, с десен
+            бутон, за да го изтриете.<br><br>Натиснете <keybinding>, за да създадете
+            маркер от текущия изглед, или <strong>десен бутон</strong>, за да
+            създадете маркер на избраното място.
+        creationSuccessNotification: Маркерът е създаден.
+
+    # Shape viewer
+    shapeViewer:
+        title: Слоеве
+        empty: Празно
+        copyKey: Копирай код
+
+    # Interactive tutorial
+    interactiveTutorial:
+        title: Урок
+        hints:
+            1_1_extractor: Поставете <strong>екстрактор</strong> върху <strong>кръгла форма</strong>,
+                за да я извлечете!
+            1_2_conveyor: >-
+                Свържете екстрактора с <strong>конвейерна лента</strong> към вашата
+                Централа!<br><br>Съвет: <strong>Щракнете и плъзнете</strong> лентата с
+                мишката!
+
+            1_3_expand: >-
+                Това <strong>НЕ</strong> е idle игра! Постройте още екстрактори и ленти,
+                за да изпълните целта по-бързо.<br><br>Съвет: Задръжте
+                <strong>SHIFT</strong>, за да поставите няколко екстрактора, и
+                използвайте <strong>R</strong>, за да ги завъртате.
+
+            2_1_place_cutter: >-
+                Сега поставете <strong>резачка</strong>, за да разрежете кръговете на
+                две половини!<br><br> PS: Резачката винаги реже <strong>отгоре
+                надолу</strong>, независимо от ориентацията си.
+
+            2_2_place_trash: >-
+                Резачката може да <strong>се задръсти и спре</strong>!<br><br>
+                Използвайте <strong>кошче</strong>, за да се отървете от в момента (!)
+                ненужния отпадък.
+
+            2_3_more_cutters: >-
+                Добра работа! Сега поставете <strong>още 2 резачки</strong>, за да
+                ускорите този бавен процес!<br><br> PS: Използвайте
+                <strong>бързите клавиши 0-9</strong>, за да достъпвате сгради по-бързо!
+
+            3_1_rectangles: >-
+                Сега да извлечем правоъгълници! <strong>Постройте 4 екстрактора</strong>
+                и ги свържете към Централата.<br><br> PS: Задръжте <strong>SHIFT</strong>,
+                докато плъзгате лента, за да активирате планирането на ленти!
+
+            21_1_place_quad_painter: >-
+                Поставете <strong>четворния бояджия</strong> и осигурете
+                <strong>кръгове</strong>, <strong>бял</strong> и <strong>червен</strong>
+                цвят!
+
+            21_2_switch_to_wires: >-
+                Превключете към слоя с проводници с <strong>E</strong>!<br><br> След
+                това <strong>свържете и четирите входа</strong> на бояджията с кабели!
+
+            21_3_place_button: >-
+                Страхотно! Сега поставете <strong>превключвател</strong> и го свържете
+                с проводници!
+
+            21_4_press_button: >-
+                Натиснете превключвателя, за да <strong>излъчва ненулев сигнал</strong>
+                и така да активира бояджията.<br><br> PS: Не е нужно да свързвате
+                всички входове! Опитайте само два.
+
+            1_2_hold_and_drag: Задръж и плъзни
+
+    # Connected miners
+    connectedMiners:
+        one_miner: 1 екстрактор
+        n_miners: <amount> екстрактора
+        limited_items: Ограничено до <max_throughput>
+
+    # puzzle mode
+    puzzleEditorSettings:
+        zoneTitle: Зона
+        zoneWidth: Ширина
+        zoneHeight: Височина
+        trimZone: Изрязване
+        clearItems: Изчисти елементите
+        clearBuildings: Изчисти сградите
+        resetPuzzle: Нулирай пъзела
+        share: Сподели
+        report: Докладвай
+
+    puzzleEditorControls:
+        title: Създател на пъзели
+        instructions:
+            - 1. Поставете <strong>Изпращач</strong>, за да осигурите форми
+              и цветове на играча
+            - 2. Изградете една или повече форми, които искате играчът да изработи
+              по-късно, и ги доставете на един или повече <strong>Получатели</strong>
+            - 3. След като Получател получава форма за определено време, той
+              <strong>я запазва като цел</strong>, която играчът трябва да произвежда
+              по-късно (обозначено със <strong>зелената значка</strong>).
+            - 4. Щракнете бутона <strong>катинар</strong> върху сграда, за да я
+              деактивирате.
+            - 5. След като натиснете преглед, пъзелът ви ще бъде валидиран и ще
+              можете да го публикувате.
+            - 6. При публикуване <strong>всички сгради ще бъдат премахнати</strong>
+              освен Изпращачите и Получателите - това е частта, която играчът трябва
+              сам да измисли :)
+
+    puzzleCompletion:
+        title: Пъзелът е завършен!
+
+        titleLike: >-
+            Натиснете сърцето, ако пъзелът ви е харесал:
+        titleRating: Колко труден ви се стори пъзелът?
+        titleRatingDesc: Вашата оценка ще ми помогне да ви давам по-добри предложения в бъдеще
+
+        continueBtn: Продължи играта
+        menuBtn: Меню
+        nextPuzzle: Следващ пъзел
+
+    puzzleMetadata:
+        author: Автор
+        shortKey: Кратък код
+        rating: Оценка за трудност
+        averageDuration: Средна продължителност
+        completionRate: Процент завършване
+
+# All shop upgrades
+shopUpgrades:
+    belt:
+        name: Ленти, разпределител и тунели
+        description: Скорост x<currentMult> → x<newMult>
+    miner:
+        name: Извличане
+        description: Скорост x<currentMult> → x<newMult>
+    processors:
+        name: Рязане, въртене и стакване
+        description: Скорост x<currentMult> → x<newMult>
+    painting:
+        name: Смесване и оцветяване
+        description: Скорост x<currentMult> → x<newMult>
+
+# Buildings and their name / description
+buildings:
+    hub:
+        deliver: Достави
+        toUnlock: Ще отключите
+        levelShortcut: LVL
+        endOfDemo: Край на демото
+
+    belt:
+        default:
+            name: &belt Конвейерна лента
+            description: Транспортира предмети, задръжте и плъзнете за многократно поставяне.
+
+    # Internal name for the Extractor
+    miner:
+        default:
+            name: &miner Екстрактор
+            description: Поставете върху форма или цвят, за да го извлечете.
+
+        chainable:
+            name: Екстрактор (Верижен)
+            description: Поставете върху форма или цвят, за да го извлечете. Може да се свързва във верига.
+
+    # Internal name for the Tunnel
+    underground_belt:
+        default:
+            name: &underground_belt Тунел
+            description: Позволява ви да прекарвате ресурси под сгради и ленти.
+
+        tier2:
+            name: Тунел Ниво II
+            description: Позволява ви да прекарвате ресурси под сгради и ленти.
+
+    # Balancer
+    balancer:
+        default:
+            name: &balancer Балансер
+            description: Многофункционален - разпределя равномерно всички входове към всички изходи.
+
+        merger:
+            name: Сливач (компактен)
+            description: Слива две конвейерни ленти в една.
+
+        merger-inverse:
+            name: Сливач (компактен)
+            description: Слива две конвейерни ленти в една.
+
+        splitter:
+            name: Разделител (компактен)
+            description: Разделя една конвейерна лента на две.
+
+        splitter-inverse:
+            name: Разделител (компактен)
+            description: Разделя една конвейерна лента на две.
+
+    cutter:
+        default:
+            name: &cutter Резачка
+            description: Реже формите отгоре надолу и извежда двете половини. <strong>Ако
+                използвате само едната част, унищожете другата, иначе ще се задръсти и
+                спре!</strong>
+        quad:
+            name: Резачка (Четворна)
+            description: Реже формите на четири части. <strong>Ако използвате само една част,
+                унищожете останалите, иначе ще се задръсти и спре!</strong>
+
+    rotator:
+        default:
+            name: &rotator Ротатор
+            description: Завърта формите по часовниковата стрелка на 90 градуса.
+        ccw:
+            name: Ротатор (Обратно на часовниковата стрелка)
+            description: Завърта формите обратно на часовниковата стрелка на 90 градуса.
+        rotate180:
+            name: Ротатор (180°)
+            description: Завърта формите на 180 градуса.
+
+    stacker:
+        default:
+            name: &stacker Стакер
+            description: Комбинира входовете си на един и същ слой, ако е възможно; иначе десният
+                вход се поставя върху левия.
+
+    mixer:
+        default:
+            name: &mixer Смесител за цветове
+            description: Смесва два цвята чрез адитивно смесване.
+
+    painter:
+        default:
+            name: &painter Бояджия
+            description: &painter_desc Оцветява цялата форма от левия вход с цвета от горния вход.
+
+        mirrored:
+            name: *painter
+            description: Оцветява цялата форма от левия вход с цвета от долния вход.
+
+        double:
+            name: Бояджия (Двоен)
+            description: Оцветява формите на левите входове с цвета от горния вход.
+
+        quad:
+            name: Бояджия (Четворен)
+            description: Позволява ви да оцветявате всеки квадрант на формата поотделно. Ще бъдат
+                оцветени само слотове с <strong>ненулев сигнал</strong> на слоя с проводници!
+
+    trash:
+        default:
+            name: &trash Кошче
+            description: Приема входове от всички страни и ги унищожава. Завинаги.
+
+    storage:
+        default:
+            name: &storage Склад
+            description: Съхранява излишните предмети до определен капацитет. Приоритизира левия
+                изход и може да се използва като преливен клапан.
+
+    wire:
+        default:
+            name: &wire Проводник
+            description: &wire_desc Пренася сигнали, които могат да бъдат предмети, цветове или
+                булеви стойности (1 или 0). Проводници с различни цветове не се свързват.
+
+        second:
+            name: *wire
+            description: *wire_desc
+
+    wire_tunnel:
+        default:
+            name: &wire_tunnel Пресичане на проводници
+            description: Позволява два проводника да се пресекат, без да се свързват.
+
+    constant_signal:
+        default:
+            name: &constant_signal Постоянен сигнал
+            description: Излъчва постоянен сигнал, който може да бъде форма, цвят или булева
+                стойност (1 или 0).
+
+    lever:
+        default:
+            name: &lever Превключвател
+            description: Може да се превключва, за да излъчва булев сигнал (1 или 0) на слоя с
+                проводници, който след това може да управлява компоненти, например
+                филтър за предмети.
+
+    logic_gate:
+        default:
+            name: AND врата
+            description: Излъчва булева стойност "1", ако и двата входа са ненулеви. (Ненулево
+                означава форма, цвят или булева стойност "1")
+        not:
+            name: NOT врата
+            description: Излъчва булева стойност "1", ако входът не е ненулев. (Ненулево означава
+                форма, цвят или булева стойност "1")
+        xor:
+            name: XOR врата
+            description: Излъчва булева стойност "1", ако един от входовете е ненулев, но не и
+                двата. (Ненулево означава форма, цвят или булева стойност "1")
+        or:
+            name: OR врата
+            description: Излъчва булева стойност "1", ако един от входовете е ненулев. (Ненулево
+                означава форма, цвят или булева стойност "1")
+
+    transistor:
+        default:
+            name: &transistor Транзистор
+            description: &transistor_desc Пропуска долния вход, ако страничният вход е ненулев
+                (форма, цвят или "1").
+
+        mirrored:
+            name: *transistor
+            description: *transistor_desc
+
+    filter:
+        default:
+            name: &filter Филтър
+            description: Свържете сигнал, за да насочите всички съвпадащи предмети нагоре, а
+                останалите надясно. Може да се управлява и с булеви сигнали.
+
+    display:
+        default:
+            name: &display Дисплей
+            description: Свържете сигнал, за да го покажете на дисплея - може да е форма, цвят
+                или булева стойност.
+
+    reader:
+        default:
+            name: &reader Четец на лента
+            description: Позволява измерване на средния поток на лента. Извежда последния прочетен
+                предмет на слоя с проводници (след отключване).
+
+    analyzer:
+        default:
+            name: &analyzer Анализатор на форми
+            description: Анализира горния десен квадрант на най-долния слой на формата и връща
+                нейната форма и цвят.
+
+    comparator:
+        default:
+            name: &comparator Компаратор
+            description: Връща булева стойност "1", ако двата сигнала са напълно еднакви. Може
+                да сравнява форми, цветове и булеви стойности.
+
+    virtual_processor:
+        default:
+            name: &virtual_processor Виртуална резачка
+            description: Виртуално разрязва формата на две половини.
+
+        rotator:
+            name: Виртуален ротатор
+            description: Виртуално завърта формата по часовниковата стрелка.
+
+        unstacker:
+            name: Виртуален разстакер
+            description: Виртуално извлича най-горния слой към десния изход, а останалите към
+                левия.
+
+        stacker:
+            name: Виртуален стакер
+            description: Виртуално поставя дясната форма върху лявата.
+
+        painter:
+            name: Виртуален бояджия
+            description: Виртуално оцветява формата от долния вход с цвета от десния вход.
+
+    item_producer:
+        default:
+            name: Производител на предмети
+            description: Наличен само в sandbox режим, извежда зададения сигнал от слоя с
+                проводници на стандартния слой.
+
+    constant_producer:
+        default:
+            name: &constant_producer Постоянен производител
+            description: Постоянно извежда зададена форма или цвят.
+
+    goal_acceptor:
+        default:
+            name: &goal_acceptor Приемник на цели
+            description: Доставете форми към приемника на цели, за да ги зададете като цел.
+
+    block:
+        default:
+            name: &block Блок
+            description: Позволява ви да блокирате плочка.
+
+storyRewards:
+    # Those are the rewards gained from completing the store
+    reward_cutter_and_trash:
+        title: Рязане на форми
+        desc: >-
+            Току-що отключихте <strong>резачката</strong>, която реже формите на две
+            отгоре надолу <strong>независимо от ориентацията си</strong>!<br><br>
+            Не забравяйте да премахвате отпадъка, иначе <strong>ще се задръсти и
+            спре</strong> - за тази цел ви дадох <strong>кошче</strong>, което
+            унищожава всичко, което поставите в него!
+
+    reward_rotator:
+        title: Въртене
+        desc: <strong>Ротаторът</strong> е отключен! Той завърта формите по часовниковата
+            стрелка с 90 градуса.
+
+    reward_painter:
+        title: Оцветяване
+        desc: >-
+            <strong>Бояджията</strong> е отключен - извлечете цветни находища (точно
+            както при формите) и ги комбинирайте с форма в бояджията, за да я
+            оцветите!<br><br>PS: Ако сте далтонист, в настройките има
+            <strong>режим за цветна слепота</strong>!
+
+    reward_mixer:
+        title: Смесване на цветове
+        desc: <strong>Смесителят</strong> е отключен - смесва два цвята чрез
+            <strong>адитивно смесване</strong>!
+
+    reward_stacker:
+        title: Стакер
+        desc: >-
+            Вече можете да комбинирате форми със <strong>стакера</strong>! Двата
+            входа се комбинират, и ако могат да се поставят един до друг, ще бъдат
+            <strong>слети</strong>. Ако не, десният вход се <strong>поставя отгоре</strong>
+            върху левия!
+
+    reward_balancer:
+        title: Балансер
+        desc: Многофункционалният <strong>балансер</strong> е отключен - може да се
+            използва за изграждане на по-големи фабрики чрез <strong>разделяне и
+            сливане на предмети</strong> върху множество ленти!
+
+    reward_tunnel:
+        title: Тунел
+        desc: <strong>Тунелът</strong> е отключен - вече можете да прекарвате предмети
+            под ленти и сгради с него!
+
+    reward_rotator_ccw:
+        title: Завъртане обратно на часовника
+        desc: >-
+            Отключихте вариант на <strong>ротатора</strong> - позволява ви да завъртате
+            форми обратно на часовниковата стрелка! За да го построите, изберете
+            ротатора и <strong>натиснете 'T', за да сменяте вариантите му</strong>!
+
+    reward_miner_chainable:
+        title: Верижен екстрактор
+        desc: >-
+            Отключихте <strong>верижния екстрактор</strong>! Той може да
+            <strong>предава ресурсите си</strong> към други екстрактори, за да
+            извличате по-ефективно ресурси!<br><br> PS: Старият екстрактор вече е
+            заменен в лентата с инструменти!
+
+    reward_underground_belt_tier_2:
+        title: Тунел Ниво II
+        desc: Отключихте нов вариант на <strong>тунела</strong> - има
+            <strong>по-голям обхват</strong>, а вече можете и да комбинирате тези
+            тунели!
+
+    reward_merger:
+        title: Компактен сливач
+        desc: >-
+            Отключихте вариант <strong>сливач</strong> на <strong>балансера</strong> -
+            приема два входа и ги слива в една лента!
+
+    reward_splitter:
+        title: Компактен разделител
+        desc: >-
+            Отключихте вариант <strong>разделител</strong> на <strong>балансера</strong> -
+            приема един вход и го разделя на два!
+
+    reward_belt_reader:
+        title: Четец на лента
+        desc: >-
+            Вече отключихте <strong>четеца на лента</strong>! Той ви позволява да
+            измервате потока на лента.<br><br>И изчакайте да отключите проводниците -
+            тогава става наистина полезен!
+
+    reward_cutter_quad:
+        title: Четворна резачка
+        desc: Отключихте вариант на <strong>резачката</strong> - позволява ви да режете
+            формите на <strong>четири части</strong> вместо само на две!
+
+    reward_painter_double:
+        title: Двойно оцветяване
+        desc: >-
+            Отключихте вариант на <strong>бояджията</strong> - работи подобно на
+            стандартния, но обработва <strong>две форми наведнъж</strong>, като
+            използва само един цвят вместо два!
+
+    reward_storage:
+        title: Склад
+        desc: >-
+            Отключихте сградата <strong>склад</strong> - позволява ви да съхранявате
+            предмети до определен капацитет!<br><br> Приоритизира левия изход, така
+            че може да се използва и като <strong>преливен клапан</strong>!
+
+    reward_blueprints:
+        title: Чертежи
+        desc: >-
+            Вече можете да <strong>копирате и поставяте</strong> части от фабриката
+            си! Изберете зона (задръжте CTRL и плъзнете с мишката) и натиснете 'C',
+            за да я копирате.<br><br>Поставянето <strong>не е безплатно</strong>,
+            трябва да произвеждате <strong>форми за чертежи</strong>, за да си го
+            позволите! (Тези, които току-що доставихте).
+
+    reward_rotator_180:
+        title: Ротатор (180°)
+        desc: Току-що отключихте <strong>ротатор на 180 градуса</strong>! - Позволява
+            ви да завъртате форма на 180 градуса (Изненада! :D)
+
+    reward_wires_painter_and_levers:
+        title: >-
+            Проводници и четворен бояджия
+        desc: >-
+            Току-що отключихте <strong>слоя с проводници</strong>: това е отделен слой
+            над стандартния и въвежда много нови механики!<br><br> За начало ви
+            отключих <strong>четворния бояджия</strong> - свържете слотовете, които
+            искате да се боядисват, на слоя с проводници!<br><br> За да превключите
+            към слоя с проводници, натиснете <strong>E</strong>. <br><br> PS:
+            <strong>Включете подсказките</strong> в настройките, за да активирате
+            урока за проводници!
+
+    reward_filter:
+        title: >-
+            Филтър за предмети
+        desc: >-
+            Отключихте <strong>филтъра за предмети</strong>! Той ще насочва предметите
+            или към горния, или към десния изход според това дали съвпадат със
+            сигнала от слоя с проводници.<br><br> Можете също да подадете булев
+            сигнал (1 или 0), за да го активирате или деактивирате изцяло.
+
+    reward_display:
+        title: Дисплей
+        desc: >-
+            Отключихте <strong>дисплея</strong> - свържете сигнал на слоя с
+            проводници, за да го визуализирате!<br><br> PS: Забелязахте ли, че четецът
+            на лента и складът извеждат последния прочетен предмет? Опитайте да го
+            покажете на дисплей!
+
+    reward_constant_signal:
+        title: Постоянен сигнал
+        desc: >-
+            Отключихте сградата <strong>постоянен сигнал</strong> на слоя с
+            проводници! Това е полезно например за свързване към <strong>филтри за
+            предмети</strong>.<br><br> Постоянният сигнал може да излъчва
+            <strong>форма</strong>, <strong>цвят</strong> или <strong>булева
+            стойност</strong> (1 или 0).
+
+    reward_logic_gates:
+        title: Логически врати
+        desc: >-
+            Отключихте <strong>логически врати</strong>! Не е нужно да се вълнувате,
+            но всъщност е супер яко!<br><br> С логическите врати вече можете да
+            изчислявате AND, OR, XOR и NOT операции.<br><br> Като бонус ви дадох и
+            <strong>транзистор</strong>!
+
+    reward_virtual_processing:
+        title: Виртуална обработка
+        desc: >-
+            Току-що ви дадох цял куп нови сгради, които позволяват да
+            <strong>симулирате обработката на форми</strong>!<br><br> Вече можете да
+            симулирате резачка, ротатор, стакер и още на слоя с проводници! Така имате
+            три варианта да продължите играта:<br><br> - Постройте
+            <strong>автоматизирана машина</strong>, която създава всяка възможна форма,
+            поискана от Централата (препоръчвам да пробвате!).<br><br> - Постройте нещо яко
+            с проводници.<br><br> - Продължете да играете нормално.<br><br> Каквото
+            и да изберете, забавлявайте се!
+
+    # Special reward, which is shown when there is no reward actually
+    no_reward:
+        title: Следващо ниво
+        desc: >-
+            Това ниво не ви даде награда, но следващото ще даде! <br><br> PS: По-добре
+            не унищожавайте съществуващата си фабрика - по-късно ще ви трябват
+            <strong>всички</strong> тези форми, за да <strong>отключвате
+            подобрения</strong>!
+
+    no_reward_freeplay:
+        title: Следващо ниво
+        desc: >-
+            Поздравления!
+
+    reward_freeplay:
+        title: Свободна игра
+        desc: >-
+            Успяхте! Отключихте <strong>режима свободна игра</strong>! Това означава,
+            че формите вече се генерират <strong>произволно</strong>!<br><br> Тъй като
+            Централата вече ще изисква <strong>поток</strong>, силно препоръчвам да
+            построите машина, която автоматично доставя исканата форма!<br><br> Централата
+            извежда исканата форма на слоя с проводници, така че трябва само да я
+            анализирате и автоматично да конфигурирате фабриката си според нея.
+
+    reward_demo_end:
+        title: Край на демото
+        desc: >-
+            Достигнахте края на демо версията!
+
+mods:
+    title: Модове
+
+    author: Автор
+    version: Версия
+    modWebsite: Уебсайт
+    openFolder: Отвори папката с модове
+    browseMods: Разгледай модове
+
+    modsInfo: >-
+        За инсталиране и управление на модове, копирайте ги в папката с модове
+        (използвайте бутона 'Отвори папката с модове'). След това рестартирайте
+        играта, иначе модовете няма да се покажат.
+
+settings:
+    title: Настройки
+    categories:
+        general: Общи
+        userInterface: Потребителски интерфейс
+        advanced: Разширени
+        performance: Производителност
+
+    versionBadges:
+        dev: Разработка
+        staging: Тестова
+        prod: Продукция
+    buildDate: Компилирано на <at-date>
+    tickrateHz: <amount> Hz
+    rangeSliderPercentage: <amount> %
+    newBadge: Ново!
+
+    labels:
+        uiScale:
+            title: Мащаб на интерфейса
+            description: >-
+                Променя размера на потребителския интерфейс. Интерфейсът все пак ще се
+                мащабира според резолюцията на устройството ви, но тази настройка
+                контролира степента на мащабиране.
+            scales:
+                super_small: Много малък
+                small: Малък
+                regular: Нормален
+                large: Голям
+                huge: Огромен
+
+        autosaveInterval:
+            title: Интервал за автозапазване
+            description: >-
+                Определя колко често играта се запазва автоматично. Можете и напълно да
+                го изключите оттук.
+
+            intervals:
+                one_minute: 1 минута
+                two_minutes: 2 минути
+                five_minutes: 5 минути
+                ten_minutes: 10 минути
+                twenty_minutes: 20 минути
+                disabled: Изключено
+
+        scrollWheelSensitivity:
+            title: Чувствителност на мащабирането
+            description: >-
+                Променя чувствителността на мащабирането (колелце на мишката или
+                тъчпад).
+            sensitivity:
+                super_slow: Много бавно
+                slow: Бавно
+                regular: Нормално
+                fast: Бързо
+                super_fast: Много бързо
+
+        movementSpeed:
+            title: Скорост на движение
+            description: >-
+                Променя колко бързо се движи изгледът при използване на клавиатурата или
+                при преместване на мишката до краищата на екрана.
+            speeds:
+                super_slow: Много бавно
+                slow: Бавно
+                regular: Нормално
+                fast: Бързо
+                super_fast: Много бързо
+                extremely_fast: Изключително бързо
+
+        language:
+            title: Език
+            description: >-
+                Смени езика. Всички преводи са създадени от потребители и може да са
+                непълни!
+
+        enableColorBlindHelper:
+            title: Режим за далтонисти
+            description: >-
+                Включва различни инструменти, които ви позволяват да играете, ако сте
+                далтонист.
+
+        fullscreen:
+            title: Цял екран
+            description: >-
+                Препоръчително е да играете на цял екран за най-добро изживяване.
+                Достъпно само в пълната версия.
+
+        soundsMuted:
+            title: Заглуши звуците
+            description: >-
+                Ако е включено, заглушава всички звукови ефекти.
+
+        musicMuted:
+            title: Заглуши музиката
+            description: >-
+                Ако е включено, заглушава цялата музика.
+
+        soundVolume:
+            title: Сила на звука
+            description: >-
+                Задава силата на звуковите ефекти
+
+        musicVolume:
+            title: Сила на музиката
+            description: >-
+                Задава силата на музиката
+
+        theme:
+            title: Тема на играта
+            description: >-
+                Изберете тема на играта (светла / тъмна).
+            themes:
+                dark: Тъмна
+                light: Светла
+
+        refreshRate:
+            title: Tick честота
+            description: >-
+                Определя колко игрови тика се случват в секунда. По-висока честота
+                обикновено означава по-добра точност, но и по-слаба производителност.
+                При по-ниски честоти потокът може да не е точен. Над 60 Hz се очаква
+                забавяне!
+
+        alwaysMultiplace:
+            title: Множествено поставяне
+            description: >-
+                Ако е включено, всички сгради остават избрани след поставяне, докато не
+                го отмените. Това е еквивалент на постоянно задържан SHIFT.
+
+        offerHints:
+            title: Подсказки и уроци
+            description: >-
+                Дали да се предлагат подсказки и уроци по време на игра. Също така
+                скрива определени UI елементи до дадено ниво, за да е по-лесно влизането
+                в играта.
+
+        enableTunnelSmartplace:
+            title: Умни тунели
+            description: >-
+                Когато е включено, поставянето на тунели автоматично премахва ненужните
+                ленти. Позволява и плъзгане на тунели, като излишните се премахват.
+
+        vignette:
+            title: Винетка
+            description: >-
+                Включва винетката, която потъмнява ъглите на екрана и прави текста
+                по-лесен за четене.
+
+        rotationByBuilding:
+            title: Ротация по тип сграда
+            description: >-
+                Всеки тип сграда запомня последно зададената му ротация поотделно. Това
+                може да е по-удобно, ако често сменяте различни типове сгради.
+
+        compactBuildingInfo:
+            title: Компактна информация за сградите
+            description: >-
+                Съкращава информационните полета за сградите, като показва само
+                съотношенията им. В противен случай се показват описание и изображение.
+
+        disableCutDeleteWarnings:
+            title: Изключи предупрежденията за изрязване/изтриване
+            description: >-
+                Изключва предупредителните диалози при изрязване/изтриване на повече от
+                100 обекта.
+
+        lowQualityMapResources:
+            title: Нискокачествени ресурси на картата
+            description: >-
+                Опростява изобразяването на ресурсите на картата при увеличение, за да
+                подобри производителността. Дори изглежда по-чисто, затова го пробвайте!
+
+        disableTileGrid:
+            title: Изключи мрежата
+            description: >-
+                Изключването на мрежата от плочки може да помогне за производителността.
+                Освен това играта изглежда по-чисто!
+
+        clearCursorOnDeleteWhilePlacing:
+            title: Изчисти курсора при десен бутон
+            description: >-
+                Включено по подразбиране, изчиства курсора при десен бутон, докато имате
+                избрана сграда за поставяне. Ако е изключено, можете да триете сгради с
+                десен бутон, докато поставяте сграда.
+
+        lowQualityTextures:
+            title: Нискокачествени текстури (Грозни)
+            description: >-
+                Използва нискокачествени текстури за по-добра производителност. Това ще
+                направи играта доста грозна!
+
+        displayChunkBorders:
+            title: Показвай границите на чънковете
+            description: >-
+                Играта е разделена на чънкове от 16x16 плочки; ако тази настройка е
+                включена, се показват границите на всеки чънк.
+
+        pickMinerOnPatch:
+            title: Избирай екстрактор върху ресурсно поле
+            description: >-
+                Включено по подразбиране, избира екстрактора, ако използвате пипетата,
+                докато сте върху ресурсно поле.
+
+        simplifiedBelts:
+            title: Опростени ленти (Грозни)
+            description: >-
+                Не изобразява предметите върху лентите, освен при посочване, за да
+                спести производителност. Не препоръчвам да играете с тази настройка,
+                ако не ви е абсолютно необходима.
+
+        enableMousePan:
+            title: Преместване по ръба на екрана
+            description: >-
+                Позволява преместване на картата чрез движение на курсора към ръбовете
+                на екрана. Скоростта зависи от настройката за скорост на движение.
+
+        zoomToCursor:
+            title: Мащабиране към курсора
+            description: >-
+                Ако е активирано, мащабирането ще се случва към позицията на мишката,
+                иначе към центъра на екрана.
+
+        mapResourcesScale:
+            title: Размер на ресурсите на картата
+            description: >-
+                Контролира размера на формите при изглед на картата (при отдалечаване).
+
+        shapeTooltipAlwaysOn:
+            title: Подсказка за форма - винаги показвай
+            description: >-
+                Дали подсказката за форма винаги да се показва при посочване на сгради,
+                вместо да се задържа 'ALT'.
+
+keybindings:
+    title: Клавишни комбинации
+    hint: >-
+        Съвет: Използвайте CTRL, SHIFT и ALT! Те включват различни опции за
+        поставяне.
+
+    resetKeybindings: Нулиране
+
+    categoryLabels:
+        general: Приложение
+        ingame: Игра
+        navigation: Навигация
+        placement: Поставяне
+        massSelect: Масов избор
+        buildings: Бързи клавиши за сгради
+        placementModifiers: Модификатори за поставяне
+        mods: Предоставени от модове
+
+    mappings:
+        confirm: Потвърди
+        back: Назад
+        mapMoveUp: Движение нагоре
+        mapMoveRight: Движение надясно
+        mapMoveDown: Движение надолу
+        mapMoveLeft: Движение наляво
+        mapMoveFaster: По-бързо движение
+        centerMap: Центрирай картата
+
+        mapZoomIn: Увеличи
+        mapZoomOut: Намали
+        createMarker: Създай маркер
+
+        menuOpenShop: Подобрения
+        menuOpenStats: Статистика
+        menuClose: Затвори менюто
+
+        toggleHud: Превключи HUD
+        toggleFPSInfo: Превключи FPS и debug информация
+        switchLayers: Смяна на слоеве
+        exportScreenshot: Експортирай цялата база като изображение
+
+        # --- Do not translate the values in this section
+        belt: *belt
+        balancer: *balancer
+        underground_belt: *underground_belt
+        miner: *miner
+        cutter: *cutter
+        rotator: *rotator
+        stacker: *stacker
+        mixer: *mixer
+        painter: *painter
+        trash: *trash
+        storage: *storage
+        wire: *wire
+        constant_signal: *constant_signal
+        logic_gate: Логическа врата
+        lever: *lever
+        filter: *filter
+        wire_tunnel: *wire_tunnel
+        display: *display
+        reader: *reader
+        virtual_processor: *virtual_processor
+        transistor: *transistor
+        analyzer: *analyzer
+        comparator: *comparator
+        item_producer: Производител
+        constant_producer: *constant_producer
+        goal_acceptor: *goal_acceptor
+        block: *block
+        # ---
+
+        pipette: Пипета
+        rotateWhilePlacing: Завърти
+        rotateInverseModifier: >-
+            Модификатор: Завърти oбратно на часовниковата стрелка вместо това
+        rotateToUp: "Завърти: Нагоре"
+        rotateToDown: "Завърти: Надолу"
+        rotateToRight: "Завърти: Надясно"
+        rotateToLeft: "Завърти: Наляво"
+        cycleBuildingVariants: Смени вариантите
+        confirmMassDelete: Изтрий зона
+        pasteLastBlueprint: Постави последния чертеж
+        cycleBuildings: Смени сградите
+        lockBeltDirection: Включи планиране на ленти
+        switchDirectionLockSide: >-
+            Планиране: Смени страна
+        copyWireValue: >-
+            Проводници: Копирай стойността под курсора
+        massSelectStart: Задръж и плъзни за старт
+        massSelectSelectMultiple: Избери няколко зони
+        massSelectCopy: Копирай зона
+        massSelectCut: Изрежи зона
+        massSelectClear: Изчисти лентите
+
+        placementDisableAutoOrientation: Изключи автоматичната ориентация
+        placeMultiple: Остани в режим на поставяне
+        placeInverse: Обърни автоматичната ориентация на лентите
+
+        showShapeTooltip: Покажи подсказка за изходната форма
+
+about:
+    title: За тази игра
+    body: >-
+        Тази игра е с отворен код и е разработена от <a
+        href="https://github.com/tobspr" target="_blank">Tobias Springer</a> (това
+        съм аз).<br><br>
+
+        Ако искате да допринесете, вижте <a href="<githublink>"
+        target="_blank">shapez в GitHub</a>.<br><br>
+
+        Тази игра нямаше да е възможна без страхотната Discord общност около
+        игрите ми - наистина трябва да се присъедините към <a href="<discordlink>"
+        target="_blank">Discord сървъра</a>!<br><br>
+
+        Саундтракът е създаден от <a href="https://soundcloud.com/pettersumelius"
+        target="_blank">Peppsen</a> - той е страхотен.<br><br>
+
+        И накрая, огромни благодарности към най-добрия ми приятел <a
+        href="https://github.com/niklas-dahl" target="_blank">Niklas</a> - без
+        нашите Factorio сесии тази игра никога нямаше да съществува.
+
+changelog:
+    title: Списък с промените
+
+demo:
+    settingNotAvailable: Не е налично в демо версията.
+
+backendErrors:
+    ratelimit: Извършвате действията си твърде често. Моля, изчакайте малко.
+    invalid-api-key: Неуспешна комуникация с бекенда, моля опитайте да обновите/рестартирате
+        играта (невалиден API ключ).
+    unauthorized: Неуспешна комуникация с бекенда, моля опитайте да обновите/рестартирате
+        играта (неоторизиран достъп).
+    bad-token: Неуспешна комуникация с бекенда, моля опитайте да обновите/рестартирате
+        играта (невалиден токен).
+    bad-id: Невалиден идентификатор на пъзел.
+    not-found: Подаденият пъзел не беше намерен.
+    bad-category: Подадената категория не беше намерена.
+    bad-short-key: Подаденият кратък код е невалиден.
+    profane-title: Заглавието на пъзела съдържа нецензурни думи.
+    bad-title-too-many-spaces: Заглавието на пъзела е твърде кратко.
+    bad-shape-key-in-emitter: Изпращач съдържа невалиден елемент.
+    bad-shape-key-in-goal: Получател съдържа невалиден елемент.
+    no-emitters: Пъзелът ви не съдържа изпращачи.
+    no-goals: Пъзелът ви не съдържа получатели.
+    short-key-already-taken: Този кратък код вече е зает, моля използвайте друг.
+    can-not-report-your-own-puzzle: Не можете да докладвате собствен пъзел.
+    bad-payload: Заявката съдържа невалидни данни.
+    bad-building-placement: Пъзелът ви съдържа невалидно поставени сгради.
+    timeout: Времето за заявката изтече.
+    too-many-likes-already: Пъзелът вече има твърде много харесвания. Ако все пак искате да го
+        премахнете, свържете се с support@shapez.io!
+    no-permission: Нямате разрешение да извършите това действие.
+
+tips:
+    - Централата приема всеки вход, не само текущата форма!
+    - Уверете се, че фабриките ви са модулни - ще си заслужава!
+    - Не строете твърде близо до Централата, иначе ще стане хаос!
+    - Ако стакването не работи, опитайте да размените входовете.
+    - Можете да смените посоката на планирането на ленти с <b>R</b>.
+    - Задържането на <b>CTRL</b> позволява влачене на ленти без авто-ориентация.
+    - Съотношенията остават същите, стига всички подобрения да са на едно ниво.
+    - Последователното изпълнение е по-ефективно от паралелното.
+    - По-късно в играта ще отключите още варианти на сгради!
+    - Можете да използвате <b>T</b>, за да сменяте различните варианти.
+    - Симетрията е ключът!
+    - Можете да преплитате различни нива тунели.
+    - Опитайте да строите компактни фабрики - ще си заслужава!
+    - Бояджията има огледален вариант, който може да изберете с <b>T</b>
+    - Правилните съотношения на сградите максимизират ефективността.
+    - На максимално ниво 5 екстрактора запълват една лента.
+    - Не забравяйте за тунелите!
+    - Не е нужно да разделяте предметите равномерно за пълна ефективност.
+    - Задържането на <b>SHIFT</b> активира планирането на ленти и улеснява
+      поставянето на дълги линии.
+    - Резачките винаги режат вертикално, независимо от ориентацията си.
+    - Смесете и трите основни цвята, за да получите бяло.
+    - Буферът на склада приоритизира левия изход.
+    - Инвестирайте време в повтаряеми дизайни - заслужава си!
+    - Задържането на <b>SHIFT</b> ви позволява да поставяте по няколко сгради.
+    - Можете да задържите <b>ALT</b>, за да обърнете посоката на лентите.
+    - Ефективността е ключът!
+    - Полетата с форми по-далеч от Централата са по-сложни.
+    - Машините имат ограничена скорост, разделяйте потоците за максимална
+      ефективност.
+    - Използвайте балансери, за да увеличите ефективността си.
+    - Организацията е важна. Опитайте да не пресичате твърде много конвейери.
+    - Планирайте предварително, иначе ще стане хаос!
+    - Не премахвайте старите си фабрики! Ще ви трябват за отключване на
+      подобрения.
+    - Опитайте да минете ниво 20 или 26 сами, преди да търсите помощ!
+    - Не усложнявайте, опитайте се да останете семпли и ще стигнете далеч.
+    - Може да се наложи да използвате фабрики повторно по-късно в играта.
+      Изграждайте ги така, че да могат да се преизползват.
+    - Понякога може да намерите нужната форма на картата, без да я създавате със
+      стакери.
+    - Пълни вятърни мелници/пинууили никога не се появяват естествено.
+    - Оцветявайте формите преди рязане за максимална ефективност.
+    - С модулите пространството е само възприятие; грижа за смъртните хора.
+    - Направете отделна фабрика за чертежи. Те са важни за модулите.
+    - Погледнете по-внимателно смесителя за цветове и въпросите ви ще получат
+      отговор.
+    - Използвайте <b>CTRL</b> + клик за избор на зона.
+    - Строенето твърде близо до Централата може да попречи на по-късни проекти.
+    - Иконата за закачане до всяка форма в списъка с подобрения я закрепя на
+      екрана.
+    - Смесете и трите основни цвята, за да получите бяло!
+    - Имате безкрайна карта. Не тъпчете фабриката си, разширявайте!
+    - Опитайте и Factorio! Това е любимата ми игра.
+    - Четворната резачка реже по часовниковата стрелка, започвайки от горния десен
+      ъгъл.
+    - Можете да изтеглите записаните си игри от главното меню!
+    - Тази игра има много полезни клавишни комбинации! Не пропускайте страницата
+      с настройки.
+    - Тази игра има много настройки, разгледайте ги!
+    - Маркерът на Централата има малък компас, който показва в коя посока е!
+    - За да изчистите ленти, изрежете зоната и я поставете на същото място.
+    - Натиснете F4, за да покажете FPS и Tick честотата.
+    - Натиснете F4 два пъти, за да покажете плочката на мишката и камерата.
+    - Можете да щракнете върху закачена форма вляво, за да я откачите.
+
+errorHandler:
+    title: Необработена грешка!
+    labels:
+        buildInformation: "Информация за компилацията:"
+        loadedMods: "Заредени модове:"
+    actions:
+        copy: Копирай
+        copyDone: Копирано!
+        restart: Рестарт
