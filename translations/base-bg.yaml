@@ -1423,7 +1423,7 @@ keybindings:
         pipette: Пипета
         rotateWhilePlacing: Завърти
         rotateInverseModifier: >-
-            Модификатор: Завърти oбратно на часовниковата стрелка вместо това
+            Модификатор: Завърти обратно на часовниковата стрелка вместо това
         rotateToUp: "Завърти: Нагоре"
         rotateToDown: "Завърти: Надолу"
         rotateToRight: "Завърти: Надясно"
