@@ -3,31 +3,31 @@ import { RandomNumberGenerator } from "../core/rng";
 import { Signal } from "../core/signal";
 
 // Type hints
-/* typehints:start */
-import { Application } from "../application";
-import { BufferMaintainer } from "../core/buffer_maintainer";
-import { Vector } from "../core/vector";
-import { Savegame } from "../savegame/savegame";
-import { InGameState } from "../states/ingame";
-import { AutomaticSave } from "./automatic_save";
-import { BaseItem } from "./base_item";
-import { Camera } from "./camera";
-import { DynamicTickrate } from "./dynamic_tickrate";
-import { Entity } from "./entity";
-import { EntityManager } from "./entity_manager";
-import { GameMode } from "./game_mode";
-import { GameSystemManager } from "./game_system_manager";
-import { GameTime } from "./game_time";
-import { HubGoals } from "./hub_goals";
-import { GameHUD } from "./hud/hud";
-import { KeyActionMapper } from "./key_action_mapper";
-import { GameLogic } from "./logic";
-import { MapView } from "./map_view";
-import { ProductionAnalytics } from "./production_analytics";
-import { ShapeDefinition } from "./shape_definition";
-import { ShapeDefinitionManager } from "./shape_definition_manager";
-import { SoundProxy } from "./sound_proxy";
-/* typehints:end */
+/**
+ * @import { Application } from "../application"
+ * @import { BufferMaintainer } from "../core/buffer_maintainer"
+ * @import { Vector } from "../core/vector"
+ * @import { Savegame } from "../savegame/savegame"
+ * @import { InGameState } from "../states/ingame"
+ * @import { AutomaticSave } from "./automatic_save"
+ * @import { BaseItem } from "./base_item"
+ * @import { Camera } from "./camera"
+ * @import { DynamicTickrate } from "./dynamic_tickrate"
+ * @import { Entity } from "./entity"
+ * @import { EntityManager } from "./entity_manager"
+ * @import { GameMode } from "./game_mode"
+ * @import { GameSystemManager } from "./game_system_manager"
+ * @import { GameTime } from "./game_time"
+ * @import { HubGoals } from "./hub_goals"
+ * @import { GameHUD } from "./hud/hud"
+ * @import { KeyActionMapper } from "./key_action_mapper"
+ * @import { GameLogic } from "./logic"
+ * @import { MapView } from "./map_view"
+ * @import { ProductionAnalytics } from "./production_analytics"
+ * @import { ShapeDefinition } from "./shape_definition"
+ * @import { ShapeDefinitionManager } from "./shape_definition_manager"
+ * @import { SoundProxy } from "./sound_proxy"
+ */
 
 const logger = new Logger("game/root");
 

@@ -1,8 +1,8 @@
-/* typehints:start */
-import { DrawParameters } from "../../core/draw_parameters";
-import { MapChunkView } from "../map_chunk_view";
-import { GameRoot } from "../root";
-/* typehints:end */
+/**
+ * @import { DrawParameters } from "../../core/draw_parameters"
+ * @import { MapChunkView } from "../map_chunk_view"
+ * @import { GameRoot } from "../root"
+ */
 
 import { globalConfig } from "../../core/config";
 import { STOP_PROPAGATION } from "../../core/signal";

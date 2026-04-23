@@ -1,7 +1,7 @@
-/* typehints:start */
-import { DrawParameters } from "../core/draw_parameters";
-import { Component } from "./component";
-/* typehints:end */
+/**
+ * @import { DrawParameters } from "../core/draw_parameters"
+ * @import { Component } from "./component"
+ */
 
 import { GameRoot } from "./root";
 import { globalConfig } from "../core/config";

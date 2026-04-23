@@ -1,9 +1,9 @@
-/* typehints:start */
-import { Component } from "../game/component";
-import { GameSystem } from "../game/game_system";
-import { MetaBuilding } from "../game/meta_building";
-import { ModLoader } from "./modloader";
-/* typehints:end */
+/**
+ * @import { Component } from "../game/component"
+ * @import { GameSystem } from "../game/game_system"
+ * @import { MetaBuilding } from "../game/meta_building"
+ * @import { ModLoader } from "./modloader"
+ */
 
 import { gComponentRegistry, gItemRegistry, gMetaBuildingRegistry } from "../core/global_registries";
 import { Loader } from "../core/loader";

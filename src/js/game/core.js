@@ -1,6 +1,6 @@
-/* typehints:start */
-import { Application } from "../application";
-/* typehints:end */
+/**
+ * @import { Application } from "../application"
+ */
 import { BufferMaintainer } from "../core/buffer_maintainer";
 import { getBufferStats } from "../core/buffer_utils";
 import { globalConfig } from "../core/config";

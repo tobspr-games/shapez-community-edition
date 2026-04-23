@@ -1,7 +1,7 @@
-/* typehints:start */
-import { GameSystem } from "./game_system";
-import { GameRoot } from "./root";
-/* typehints:end */
+/**
+ * @import { GameSystem } from "./game_system"
+ * @import { GameRoot } from "./root"
+ */
 
 import { Logger } from "../core/logging";
 import { BeltSystem } from "./systems/belt";

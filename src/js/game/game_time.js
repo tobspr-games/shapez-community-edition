@@ -1,6 +1,6 @@
-/* typehints:start */
-import { GameRoot } from "./root";
-/* typehints:end */
+/**
+ * @import { GameRoot } from "./root"
+ */
 
 import { globalConfig } from "../core/config";
 import { BasicSerializableObject, types } from "../savegame/serialization";

@@ -1,6 +1,6 @@
-/* typehints:start */
-import { PuzzlePlayGameMode } from "../../modes/puzzle_play";
-/* typehints:end */
+/**
+ * @import { PuzzlePlayGameMode } from "../../modes/puzzle_play"
+ */
 
 import { InputReceiver } from "../../../core/input_receiver";
 import { makeDiv } from "../../../core/utils";

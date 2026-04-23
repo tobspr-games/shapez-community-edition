@@ -1,6 +1,6 @@
-/* typehints:start */
-import { Storage } from "@/platform/storage";
-/* typehints:end */
+/**
+ * @import { Storage } from "@/platform/storage"
+ */
 
 import { FsError } from "@/platform/fs_error";
 import { ExplainedResult } from "./explained_result";
