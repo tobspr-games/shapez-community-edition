@@ -54,6 +54,7 @@ const moduleRules = [
                         transform: {
                             react: {
                                 runtime: "automatic",
+                                development: false,
                                 importSource: "@",
                             },
                         },
