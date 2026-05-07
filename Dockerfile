@@ -1,31 +1,31 @@
-FROM node:16
-
-EXPOSE 3001 3005
-
-WORKDIR /shapez.io
+# syntax=docker/dockerfile:1
+# docker build -t shapez-ce-builder .
+ARG TARGETPLATFORM=linux/amd64
+FROM --platform=$TARGETPLATFORM node:22-bookworm-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    ffmpeg default-jre \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    ffmpeg default-jre git \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-COPY package.json yarn.lock ./
-RUN yarn
+WORKDIR /app
 
+COPY package.json package-lock.json ./
 COPY gulp ./gulp
-WORKDIR /shapez.io/gulp
-RUN yarn
+COPY src ./src
 
-WORKDIR /shapez.io
-COPY res ./res
-COPY src/html ./src/html
-COPY src/css ./src/css
-COPY sync-translations.js ./
-COPY translations ./translations
-COPY src/js ./src/js
-COPY res_raw ./res_raw
-COPY .git ./.git
-COPY electron ./electron
+RUN --mount=type=cache,target=/root/.npm \
+    --mount=type=cache,target=/tmp/jar-cache \
+    (cp /tmp/jar-cache/runnable-texturepacker.jar gulp/ 2>/dev/null || true) && \
+    npm ci && \
+    (cp gulp/runnable-texturepacker.jar /tmp/jar-cache/ 2>/dev/null || true)
 
-WORKDIR /shapez.io/gulp
-ENTRYPOINT ["yarn", "gulp"]
+COPY electron/package.json electron/package-lock.json electron/
+RUN --mount=type=cache,target=/root/.npm \
+    npm ci --prefix electron --ignore-scripts
+
+COPY . .
+
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
