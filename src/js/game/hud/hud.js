@@ -6,7 +6,6 @@ import { KEYMAPPINGS } from "../key_action_mapper";
 import { MetaBuilding } from "../meta_building";
 import { GameRoot } from "../root";
 import { ShapeDefinition } from "../shape_definition";
-import { HUDBetaOverlay } from "./parts/beta_overlay";
 import { HUDBlueprintPlacer } from "./parts/blueprint_placer";
 import { HUDBuildingPlacer } from "./parts/building_placer";
 import { HUDBuildingsToolbar } from "./parts/buildings_toolbar";
@@ -79,10 +78,6 @@ export class GameHUD {
 
         if (this.root.app.settings.getAllSettings().enableColorBlindHelper) {
             this.parts.colorBlindHelper = new HUDColorBlindHelper(this.root);
-        }
-
-        if (!G_IS_RELEASE && !G_IS_DEV) {
-            this.parts.betaOverlay = new HUDBetaOverlay(this.root);
         }
 
         const additionalParts = this.root.gameMode.additionalHudParts;

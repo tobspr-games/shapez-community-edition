@@ -17,7 +17,6 @@
 
 @use "ingame_hud/buildings_toolbar";
 @use "ingame_hud/building_placer";
-@use "ingame_hud/beta_overlay";
 @use "ingame_hud/keybindings_overlay";
 @use "ingame_hud/unlock_notification";
 @use "ingame_hud/shop";
@@ -86,7 +85,6 @@ ingame_HUD_ColorBlindBelowTileHelper,
 ingame_HUD_SandboxController,
 
 // Overlays
-ingame_HUD_BetaOverlay,
 
 // Dialogs
 ingame_HUD_Shop,
