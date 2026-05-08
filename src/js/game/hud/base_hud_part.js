@@ -1,7 +1,7 @@
-/* typehints:start */
-import { DrawParameters } from "../../core/draw_parameters";
-import { GameRoot } from "../root";
-/* typehints:end */
+/**
+ * @import { DrawParameters } from "../../core/draw_parameters"
+ * @import { GameRoot } from "../root"
+ */
 
 import { ClickDetector } from "../../core/click_detector";
 

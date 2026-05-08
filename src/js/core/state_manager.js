@@ -1,6 +1,6 @@
-/* typehints:start*/
-import { Application } from "../application";
-/* typehints:end*/
+/**
+ * @import { Application } from "../application"
+ */
 
 import { MOD_SIGNALS } from "../mods/mod_signals";
 import { GameState } from "./game_state";

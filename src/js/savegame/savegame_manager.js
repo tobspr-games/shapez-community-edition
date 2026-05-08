@@ -1,6 +1,6 @@
-/* typehints:start */
-import { Application } from "@/application";
-/* typehints:end */
+/**
+ * @import { Application } from "@/application"
+ */
 
 import { globalConfig } from "../core/config";
 import { ExplainedResult } from "../core/explained_result";

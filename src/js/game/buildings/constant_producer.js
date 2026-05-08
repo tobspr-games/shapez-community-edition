@@ -1,6 +1,6 @@
-/* typehints:start */
-import { Entity } from "../entity";
-/* typehints:end */
+/**
+ * @import { Entity } from "../entity"
+ */
 
 import { enumDirection, Vector } from "../../core/vector";
 import { ConstantSignalComponent } from "../components/constant_signal";

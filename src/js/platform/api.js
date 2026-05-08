@@ -1,6 +1,6 @@
-/* typehints:start */
-import { Application } from "../application";
-/* typehints:end */
+/**
+ * @import { Application } from "../application"
+ */
 
 import { Logger } from "../core/logging";
 import { DialogWithForm } from "../core/modal_dialog_elements";
