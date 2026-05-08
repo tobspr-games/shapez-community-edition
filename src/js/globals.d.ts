@@ -90,8 +90,8 @@ declare namespace JSX {
      */
     type IntrinsicElements = {
         [K in keyof HTMLElementTagNameMap]: {
-            children?: JSXNode | JSXNode[];
-            [k: string]: JSXNode | JSXNode[] | string | number | boolean;
+            children?: JSXNode | JSXNodes;
+            [k: string]: JSXNode | JSXNodes | string | number | boolean;
         };
     };
     /**
@@ -117,4 +117,9 @@ declare namespace JSX {
      * A child of a JSX element.
      */
     type JSXNode = Node | string | boolean | null | undefined;
+
+    /**
+     * A group of children of a JSX element.
+     */
+    type JSXNodes = (JSXNode | JSXNodes)[];
 }
