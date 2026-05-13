@@ -143,14 +143,6 @@
                             opacity: $enabledOpacity + 0.1;
                         }
 
-                        &.alreadyPinned {
-                            opacity: $disabledOpacity !important;
-
-                            &:hover {
-                                opacity: $disabledOpacity + 0.1 !important;
-                            }
-                        }
-
                         &.isGoal {
                             /* @load-async */
                             background: uiResource("icons/current_goal_marker.png") center center / 95%
