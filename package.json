@@ -29,7 +29,7 @@
     "devDependencies": {
         "@electron/packager": "^18.3.6",
         "@eslint/js": "^9.24.0",
-        "@rspack/core": "^1.7.2",
+        "@rspack/core": "^2.0.3",
         "@tsconfig/node-lts": "^22.0.1",
         "@tsconfig/strictest": "^2.0.5",
         "@types/gulp": "^4.0.9",
