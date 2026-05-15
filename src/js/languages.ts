@@ -179,4 +179,11 @@ export const LANGUAGES: Record<string, Language> = {
         code: "ar",
         region: "",
     },
+
+    "bg": {
+        // bulgarian
+        name: "Български",
+        code: "bg",
+        region: "",
+    },
 };

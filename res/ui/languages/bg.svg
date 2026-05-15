@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+    <defs>
+        <clipPath id="rounded">
+            <rect width="512" height="512" rx="64" ry="64"/>
+        </clipPath>
+        <symbol id="digital" viewBox="0 0 512 512">
+            <rect y="171" width="512" height="170" fill="#009900"/>
+            <rect y="341" width="512" height="171" fill="#CC0000"/>
+        </symbol>
+        <symbol id="textile" viewBox="0 0 512 512">
+            <rect y="171" width="512" height="170" fill="#00966E"/>
+            <rect y="341" width="512" height="171" fill="#D62612"/>
+        </symbol>
+    </defs>
+    <g clip-path="url(#rounded)">
+        <rect width="512" height="171" fill="#FFFFFF"/>
+        <use href="#digital"/>
+        <!-- <use href="#textile"/> -->
+    </g>
+</svg>
