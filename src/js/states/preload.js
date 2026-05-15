@@ -1,3 +1,5 @@
+import semverGt from "semver/functions/gt";
+import Semver from "semver/classes/semver";
 import { CHANGELOG } from "../changelog";
 import { globalConfig } from "../core/config";
 import { GameState } from "../core/game_state";
@@ -135,25 +137,24 @@ export class PreloadState extends GameState {
                     .then(version => {
                         logger.log("Last version:", version, "App version:", G_BUILD_VERSION);
                         this.app.storage.writeFileAsync("lastversion.bin", G_BUILD_VERSION);
-                        return version;
+                        return new Semver(/** @type {string} */ (version));
                     })
                     .then(version => {
-                        let changelogEntries = [];
+                        const changelogEntries = [];
                         logger.log("Last seen version:", version);
 
-                        for (let i = 0; i < CHANGELOG.length; ++i) {
-                            if (CHANGELOG[i].version === version) {
+                        for (const changelogEntry of CHANGELOG) {
+                            if (semverGt(version, changelogEntry.version)) {
                                 break;
                             }
-                            changelogEntries.push(CHANGELOG[i]);
+                            changelogEntries.push(changelogEntry);
                         }
                         if (changelogEntries.length === 0) {
                             return;
                         }
 
                         let dialogHtml = T.dialogs.updateSummary.desc;
-                        for (let i = 0; i < changelogEntries.length; ++i) {
-                            const entry = changelogEntries[i];
+                        for (const entry of changelogEntries) {
                             dialogHtml += `
                             <div class="changelogDialogEntry">
                                 <span class="version">${entry.version}</span>
