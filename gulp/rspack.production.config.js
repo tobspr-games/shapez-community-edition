@@ -88,7 +88,6 @@ export default {
     },
     stats: { optimizationBailout: true },
     optimization: {
-        removeAvailableModules: true,
         minimizer: [
             new rspack.SwcJsMinimizerRspackPlugin({
                 minimizerOptions: {
