@@ -42,6 +42,7 @@ const moduleRules = [
                 loader: "builtin:swc-loader",
                 /** @type {import('@rspack/core').SwcLoaderOptions} */
                 options: {
+                    detectSyntax: "auto",
                     jsc: {
                         target: "es2024",
                         transform: {

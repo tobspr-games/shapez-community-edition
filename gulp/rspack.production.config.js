@@ -49,6 +49,7 @@ const moduleRules = [
                 loader: "builtin:swc-loader",
                 /** @type {import('@rspack/core').SwcLoaderOptions} */
                 options: {
+                    detectSyntax: "auto",
                     jsc: {
                         target: "es2024",
                         transform: {
@@ -87,7 +88,6 @@ export default {
     },
     stats: { optimizationBailout: true },
     optimization: {
-        removeAvailableModules: true,
         minimizer: [
             new rspack.SwcJsMinimizerRspackPlugin({
                 minimizerOptions: {
