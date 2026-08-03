@@ -20,3 +20,28 @@ jobs:
               uses: ibiqlik/action-yamllint@v1.0.0
               with:
                   file_or_dir: translations/*.yaml
+
+    build:
+        name: build
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v2
+            - name: Build Docker image
+              env:
+                  DOCKER_BUILDKIT: 1
+              run: docker build -t shapez-ce-builder .
+            - name: Build linux-x64 and win32-x64
+              run: >
+                docker run --rm
+                -v ${{ github.workspace }}/build_output:/output
+                shapez-ce-builder
+                package.standalone.linux-x64
+                package.standalone.win32-x64
+            - name: Fix artifact permissions
+              run: sudo chown -R "$(id -u):$(id -g)" build_output
+            - name: Upload build artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                  name: standalone
+                  path: build_output/standalone

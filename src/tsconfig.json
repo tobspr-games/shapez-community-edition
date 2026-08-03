@@ -5,6 +5,7 @@
         "allowJs": true,
         "module": "es2022",
         "moduleResolution": "bundler",
+        "isolatedModules": true,
         "noEmit": true,
         "target": "ES2024",
         /* JSX Compilation */

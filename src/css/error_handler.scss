@@ -5,14 +5,14 @@
 }
 
 #errorHandler {
-    --background-primary: hsl(0deg 40% 18%);
-    --background-container: hsl(0deg 40% 10%);
-    --foreground: hsl(0deg 100% 95%);
+    --background-primary: hsl(350 50% 16%);
+    --background-container: hsl(350 40% 10%);
+    --foreground: hsl(350 100% 95%);
 
     --background-button: rgba(255 255 255 / 0.05);
     --background-button-hover: rgba(255 255 255 / 0.03);
     --background-button-active: hsl(from var(--background-container) h s l / 0.4);
-    --background-button-success: hsl(130deg 40% 25%);
+    --background-button-success: hsl(130 40% 25%);
 
     background: var(--background-primary);
     color: var(--foreground);

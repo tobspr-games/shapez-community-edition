@@ -3,8 +3,7 @@ import { ExplainedResult } from "../core/explained_result";
 import { Logger } from "../core/logging";
 import { ReadWriteProxy } from "../core/read_write_proxy";
 import { MODS } from "../mods/modloader";
-import { BaseSavegameInterface } from "./savegame_interface";
-import { getSavegameInterface, savegameInterfaces } from "./savegame_interface_registry";
+import { SavegameInterface } from "./savegame_interface";
 import { SavegameSerializer } from "./savegame_serializer";
 
 const logger = new Logger("savegame");
@@ -36,11 +35,6 @@ export class Savegame extends ReadWriteProxy {
 
         /** @type {SavegameData} */
         this.currentData = this.getDefaultData();
-
-        assert(
-            savegameInterfaces[Savegame.getCurrentVersion()],
-            "Savegame interface not defined: " + Savegame.getCurrentVersion()
-        );
     }
 
     //////// RW Proxy Impl //////////
@@ -50,13 +44,6 @@ export class Savegame extends ReadWriteProxy {
      */
     static getCurrentVersion() {
         return 1010;
-    }
-
-    /**
-     * @returns {typeof BaseSavegameInterface}
-     */
-    static getReaderClass() {
-        return savegameInterfaces[Savegame.getCurrentVersion()];
     }
 
     /**
@@ -160,24 +147,23 @@ export class Savegame extends ReadWriteProxy {
 
     /**
      * Returns a reader to access the data
-     * @returns {BaseSavegameInterface}
+     * @returns {SavegameInterface}
      */
     getDumpReader() {
         if (!this.currentData.dump) {
             logger.warn("Getting reader on null-savegame dump");
         }
 
-        const cls = /** @type {typeof Savegame} */ (this.constructor).getReaderClass();
-        return new cls(this.currentData);
+        return new SavegameInterface(this.currentData);
     }
 
     /**
      * Returns a reader to access external data
-     * @returns {BaseSavegameInterface}
+     * @returns {SavegameInterface}
      */
     getDumpReaderForExternalData(data) {
         assert(data.version, "External data contains no version");
-        return getSavegameInterface(data);
+        return new SavegameInterface(data);
     }
 
     ///////// Public Interface ///////////

@@ -12,12 +12,12 @@ const validators = {};
 
 const logger = new Logger("savegame_interface");
 
-export class BaseSavegameInterface {
+export class SavegameInterface {
     /**
      * Returns the interfaces version
      */
     getVersion() {
-        throw new Error("Implement get version");
+        return 1010;
     }
 
     /**
@@ -25,7 +25,11 @@ export class BaseSavegameInterface {
      * @returns {object}
      */
     getSchemaUncached() {
-        throw new Error("Implement get schema");
+        return {
+            type: "object",
+            required: [],
+            additionalProperties: true,
+        };
     }
 
     getValidator() {

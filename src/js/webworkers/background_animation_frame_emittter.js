@@ -1,5 +1,9 @@
 /// <reference lib="WebWorker" />
 
+if (!(typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope)) {
+    throw new Error("webworkers should never be run on the main thread!");
+}
+
 // We clamp high deltas so 30 fps is fairly ok
 const bgFps = 30;
 const desiredMsDelay = 1000 / bgFps;
