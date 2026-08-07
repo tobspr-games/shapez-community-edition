@@ -1,14 +1,15 @@
+import { formatItemsPerSecond, generateMatrixRotations } from "../../core/utils";
 import { enumDirection, Vector } from "../../core/vector";
+import { T } from "../../translations";
+import { BUILDING_IDS } from "../building_identifiers";
+import { BeltUnderlaysComponent } from "../components/belt_underlays";
 import { ItemAcceptorComponent } from "../components/item_acceptor";
 import { ItemEjectorComponent } from "../components/item_ejector";
 import { enumItemProcessorTypes, ItemProcessorComponent } from "../components/item_processor";
 import { Entity } from "../entity";
-import { MetaBuilding, defaultBuildingVariant } from "../meta_building";
+import { defaultBuildingVariant, MetaBuilding } from "../meta_building";
 import { GameRoot } from "../root";
 import { enumHubGoalRewards } from "../tutorial_goals";
-import { T } from "../../translations";
-import { formatItemsPerSecond, generateMatrixRotations } from "../../core/utils";
-import { BeltUnderlaysComponent } from "../components/belt_underlays";
 
 /** @enum {string} */
 export const enumBalancerVariants = {
@@ -28,7 +29,7 @@ const overlayMatrices = {
 
 export class MetaBalancerBuilding extends MetaBuilding {
     constructor() {
-        super("balancer");
+        super(BUILDING_IDS.balancer);
     }
 
     static getAllVariantCombinations() {

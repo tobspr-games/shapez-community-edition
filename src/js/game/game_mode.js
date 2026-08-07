@@ -5,7 +5,7 @@ import { GameRoot } from "./root";
 import { gGameModeRegistry } from "../core/global_registries";
 import { Rectangle } from "../core/rectangle";
 import { BasicSerializableObject } from "../savegame/serialization";
-import { MetaItemProducerBuilding } from "./buildings/item_producer";
+import { BUILDING_IDS } from "./building_identifiers";
 import { BaseHUDPart } from "./hud/base_hud_part";
 import { MetaBuilding } from "./meta_building";
 
@@ -55,8 +55,8 @@ export class GameMode extends BasicSerializableObject {
          */
         this.additionalHudParts = {};
 
-        /** @type {typeof MetaBuilding[]} */
-        this.hiddenBuildings = [MetaItemProducerBuilding];
+        /** @type {string[]} */
+        this.hiddenBuildings = [BUILDING_IDS.itemProducer];
     }
 
     /** @returns {object} */
@@ -85,11 +85,11 @@ export class GameMode extends BasicSerializableObject {
     }
 
     /**
-     * @param {typeof MetaBuilding} building - Class name of building
+     * @param {MetaBuilding} building MetaBuilding instance
      * @returns {boolean}
      */
     isBuildingExcluded(building) {
-        return this.hiddenBuildings.indexOf(building) >= 0;
+        return this.hiddenBuildings.includes(building.getId());
     }
 
     /** @returns {undefined|Rectangle[]} */

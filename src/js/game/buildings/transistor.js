@@ -1,5 +1,6 @@
 import { generateMatrixRotations } from "../../core/utils";
 import { enumDirection, Vector } from "../../core/vector";
+import { BUILDING_IDS } from "../building_identifiers";
 import { enumLogicGateType, LogicGateComponent } from "../components/logic_gate";
 import { enumPinSlotType, WiredPinsComponent } from "../components/wired_pins";
 import { Entity } from "../entity";
@@ -19,7 +20,7 @@ const overlayMatrices = {
 
 export class MetaTransistorBuilding extends MetaBuilding {
     constructor() {
-        super("transistor");
+        super(BUILDING_IDS.transistor);
     }
 
     static getAllVariantCombinations() {

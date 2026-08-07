@@ -1,12 +1,12 @@
 /* typehints:start */
 import { Application } from "../application";
 /* typehints:end */
+import { Registry } from "@/core/registry";
 import { BufferMaintainer } from "../core/buffer_maintainer";
 import { getBufferStats } from "../core/buffer_utils";
 import { globalConfig } from "../core/config";
 import { getDeviceDPI, resizeHighDPICanvas } from "../core/dpi_manager";
 import { DrawParameters } from "../core/draw_parameters";
-import { gMetaBuildingRegistry } from "../core/global_registries";
 import { Logger } from "../core/logging";
 import { Rectangle } from "../core/rectangle";
 import { ORIGINAL_SPRITE_SCALE } from "../core/sprites";
@@ -16,7 +16,7 @@ import { MOD_SIGNALS } from "../mods/mod_signals";
 import { Savegame } from "../savegame/savegame";
 import { SavegameSerializer } from "../savegame/savegame_serializer";
 import { AutomaticSave } from "./automatic_save";
-import { MetaHubBuilding } from "./buildings/hub";
+import { BUILDING_IDS } from "./building_identifiers";
 import { Camera } from "./camera";
 import { DynamicTickrate } from "./dynamic_tickrate";
 import { EntityManager } from "./entity_manager";
@@ -163,7 +163,7 @@ export class GameCore {
         }
 
         // Place the hub
-        const hub = gMetaBuildingRegistry.findByClass(MetaHubBuilding).createEntity({
+        const hub = Registry.BUILDINGS.get(BUILDING_IDS.hub).createEntity({
             root: this.root,
             origin: new Vector(-2, -2),
             rotation: 0,

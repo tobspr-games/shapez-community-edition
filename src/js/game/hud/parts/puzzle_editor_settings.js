@@ -1,12 +1,9 @@
+import { BUILDING_IDS } from "@/game/building_identifiers";
 import { globalConfig } from "../../../core/config";
-import { gMetaBuildingRegistry } from "../../../core/global_registries";
 import { Logger } from "../../../core/logging";
 import { Rectangle } from "../../../core/rectangle";
 import { makeDiv } from "../../../core/utils";
 import { T } from "../../../translations";
-import { MetaBlockBuilding } from "../../buildings/block";
-import { MetaConstantProducerBuilding } from "../../buildings/constant_producer";
-import { MetaGoalAcceptorBuilding } from "../../buildings/goal_acceptor";
 import { StaticMapEntityComponent } from "../../components/static_map_entity";
 import { PuzzleGameMode } from "../../modes/puzzle";
 import { BaseHUDPart } from "../base_hud_part";
@@ -78,9 +75,9 @@ export class HUDPuzzleEditorSettings extends BaseHUDPart {
             }
 
             if (
-                [MetaGoalAcceptorBuilding, MetaConstantProducerBuilding, MetaBlockBuilding]
-                    .map(metaClass => gMetaBuildingRegistry.findByClass(metaClass).id)
-                    .includes(staticComp.getMetaBuilding().id)
+                [BUILDING_IDS.goalAcceptor, BUILDING_IDS.constantProducer, BUILDING_IDS.block].includes(
+                    staticComp.getMetaBuilding().id
+                )
             ) {
                 continue;
             }

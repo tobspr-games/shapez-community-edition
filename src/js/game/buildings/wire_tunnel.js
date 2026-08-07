@@ -1,5 +1,6 @@
 import { generateMatrixRotations } from "../../core/utils";
 import { Vector } from "../../core/vector";
+import { BUILDING_IDS } from "../building_identifiers";
 import { WireTunnelComponent } from "../components/wire_tunnel";
 import { Entity } from "../entity";
 import { defaultBuildingVariant, MetaBuilding } from "../meta_building";
@@ -10,7 +11,7 @@ const wireTunnelOverlayMatrix = generateMatrixRotations([0, 1, 0, 1, 1, 1, 0, 1,
 
 export class MetaWireTunnelBuilding extends MetaBuilding {
     constructor() {
-        super("wire_tunnel");
+        super(BUILDING_IDS.wireTunnel);
     }
 
     static getAllVariantCombinations() {

@@ -1,4 +1,5 @@
 import { enumDirection, Vector } from "../../core/vector";
+import { BUILDING_IDS } from "../building_identifiers";
 import { enumLogicGateType, LogicGateComponent } from "../components/logic_gate";
 import { enumPinSlotType, WiredPinsComponent } from "../components/wired_pins";
 import { Entity } from "../entity";
@@ -8,7 +9,7 @@ import { enumHubGoalRewards } from "../tutorial_goals";
 
 export class MetaComparatorBuilding extends MetaBuilding {
     constructor() {
-        super("comparator");
+        super(BUILDING_IDS.comparator);
     }
 
     static getAllVariantCombinations() {

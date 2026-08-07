@@ -1,6 +1,7 @@
 import { formatItemsPerSecond } from "../../core/utils";
 import { enumDirection, Vector } from "../../core/vector";
 import { T } from "../../translations";
+import { BUILDING_IDS } from "../building_identifiers";
 import { FilterComponent } from "../components/filter";
 import { ItemAcceptorComponent } from "../components/item_acceptor";
 import { ItemEjectorComponent } from "../components/item_ejector";
@@ -12,7 +13,7 @@ import { enumHubGoalRewards } from "../tutorial_goals";
 
 export class MetaFilterBuilding extends MetaBuilding {
     constructor() {
-        super("filter");
+        super(BUILDING_IDS.filter);
     }
 
     static getAllVariantCombinations() {

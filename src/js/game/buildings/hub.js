@@ -1,14 +1,15 @@
 import { enumDirection, Vector } from "../../core/vector";
+import { BUILDING_IDS } from "../building_identifiers";
 import { HubComponent } from "../components/hub";
 import { ItemAcceptorComponent } from "../components/item_acceptor";
 import { enumItemProcessorTypes, ItemProcessorComponent } from "../components/item_processor";
+import { enumPinSlotType, WiredPinsComponent } from "../components/wired_pins";
 import { Entity } from "../entity";
 import { defaultBuildingVariant, MetaBuilding } from "../meta_building";
-import { WiredPinsComponent, enumPinSlotType } from "../components/wired_pins";
 
 export class MetaHubBuilding extends MetaBuilding {
     constructor() {
-        super("hub");
+        super(BUILDING_IDS.hub);
     }
 
     static getAllVariantCombinations() {

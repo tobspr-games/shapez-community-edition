@@ -1,5 +1,6 @@
 import { generateMatrixRotations } from "../../core/utils";
 import { enumDirection, Vector } from "../../core/vector";
+import { BUILDING_IDS } from "../building_identifiers";
 import { ItemAcceptorComponent } from "../components/item_acceptor";
 import { enumItemProcessorTypes, ItemProcessorComponent } from "../components/item_processor";
 import { Entity } from "../entity";
@@ -11,7 +12,7 @@ const overlayMatrix = generateMatrixRotations([1, 1, 0, 1, 1, 1, 0, 1, 1]);
 
 export class MetaTrashBuilding extends MetaBuilding {
     constructor() {
-        super("trash");
+        super(BUILDING_IDS.trash);
     }
 
     static getAllVariantCombinations() {

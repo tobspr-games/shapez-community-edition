@@ -1,7 +1,8 @@
-import { gMetaBuildingRegistry } from "../core/global_registries";
+import { Registry } from "@/core/registry";
 import { Logger } from "../core/logging";
 import { T } from "../translations";
 import { buildBuildingCodeCache, gBuildingVariants, registerBuildingVariant } from "./building_codes";
+import { BUILDING_IDS } from "./building_identifiers";
 import { MetaAnalyzerBuilding } from "./buildings/analyzer";
 import { MetaBalancerBuilding } from "./buildings/balancer";
 import { MetaBeltBuilding } from "./buildings/belt";
@@ -36,16 +37,16 @@ import { defaultBuildingVariant, MetaBuilding } from "./meta_building";
 const logger = new Logger("building_registry");
 
 /**
- *
- * @param {typeof MetaBuilding} metaBuilding
+ * @param {typeof MetaBuilding} buildingType
+ * @param {MetaBuilding} instance
  */
-export function registerBuildingVariants(metaBuilding) {
-    gMetaBuildingRegistry.register(metaBuilding);
-    const combinations = metaBuilding.getAllVariantCombinations();
+export function registerBuildingVariants(buildingType, instance) {
+    Registry.BUILDINGS.register(instance);
+    const combinations = buildingType.getAllVariantCombinations();
     combinations.forEach(combination => {
         registerBuildingVariant(
             combination.internalId,
-            metaBuilding,
+            instance,
             combination.variant || defaultBuildingVariant,
             combination.rotationVariant || 0
         );
@@ -84,13 +85,15 @@ export function initMetaBuildingRegistry() {
         MetaBlockBuilding,
     ];
 
-    buildings.forEach(registerBuildingVariants);
+    for (const building of buildings) {
+        const instance = new building();
+        registerBuildingVariants(building, instance);
+    }
 
     // Check for valid keycodes
     if (G_IS_DEV) {
-        gMetaBuildingRegistry.entries.forEach(metaBuilding => {
-            const id = metaBuilding.getId();
-            if (!["hub"].includes(id)) {
+        for (const [id, metaBuilding] of Registry.BUILDINGS) {
+            if (id !== BUILDING_IDS.hub) {
                 if (!KEYMAPPINGS.buildings[id]) {
                     console.error(
                         "Building " + id + " has no keybinding assigned! Add it to key_action_mapper.js"
@@ -103,10 +106,10 @@ export function initMetaBuildingRegistry() {
                     console.error("Translation for building " + id + " missing (default variant)!");
                 }
             }
-        });
+        }
     }
 
-    logger.log("Registered", gMetaBuildingRegistry.getNumEntries(), "buildings");
+    logger.log("Registered", Registry.BUILDINGS.size, "buildings");
     logger.log("Registered", Object.keys(gBuildingVariants).length, "building codes");
 }
 

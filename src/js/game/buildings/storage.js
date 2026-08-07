@@ -1,6 +1,7 @@
 import { formatBigNumber } from "../../core/utils";
 import { enumDirection, Vector } from "../../core/vector";
 import { T } from "../../translations";
+import { BUILDING_IDS } from "../building_identifiers";
 import { ItemAcceptorComponent } from "../components/item_acceptor";
 import { ItemEjectorComponent } from "../components/item_ejector";
 import { StorageComponent } from "../components/storage";
@@ -14,7 +15,7 @@ const storageSize = 5000;
 
 export class MetaStorageBuilding extends MetaBuilding {
     constructor() {
-        super("storage");
+        super(BUILDING_IDS.storage);
     }
 
     static getAllVariantCombinations() {

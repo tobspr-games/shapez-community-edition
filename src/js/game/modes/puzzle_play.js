@@ -2,35 +2,16 @@
 import { GameRoot } from "../root";
 /* typehints:end */
 
-import { enumGameModeIds } from "../game_mode";
-import { PuzzleGameMode } from "./puzzle";
-import { MetaStorageBuilding } from "../buildings/storage";
-import { MetaReaderBuilding } from "../buildings/reader";
-import { MetaFilterBuilding } from "../buildings/filter";
-import { MetaDisplayBuilding } from "../buildings/display";
-import { MetaLeverBuilding } from "../buildings/lever";
-import { MetaItemProducerBuilding } from "../buildings/item_producer";
-import { MetaMinerBuilding } from "../buildings/miner";
-import { MetaWireBuilding } from "../buildings/wire";
-import { MetaWireTunnelBuilding } from "../buildings/wire_tunnel";
-import { MetaConstantSignalBuilding } from "../buildings/constant_signal";
-import { MetaLogicGateBuilding } from "../buildings/logic_gate";
-import { MetaVirtualProcessorBuilding } from "../buildings/virtual_processor";
-import { MetaAnalyzerBuilding } from "../buildings/analyzer";
-import { MetaComparatorBuilding } from "../buildings/comparator";
-import { MetaTransistorBuilding } from "../buildings/transistor";
-import { MetaConstantProducerBuilding } from "../buildings/constant_producer";
-import { MetaGoalAcceptorBuilding } from "../buildings/goal_acceptor";
+import { Logger } from "../../core/logging";
 import { PuzzleSerializer } from "../../savegame/puzzle_serializer";
 import { T } from "../../translations";
-import { HUDPuzzlePlayMetadata } from "../hud/parts/puzzle_play_metadata";
-import { Logger } from "../../core/logging";
-import { HUDPuzzleCompleteNotification } from "../hud/parts/puzzle_complete_notification";
-import { HUDPuzzlePlaySettings } from "../hud/parts/puzzle_play_settings";
-import { MetaBlockBuilding } from "../buildings/block";
-import { MetaBuilding } from "../meta_building";
-import { gMetaBuildingRegistry } from "../../core/global_registries";
+import { BUILDING_IDS } from "../building_identifiers";
+import { enumGameModeIds } from "../game_mode";
 import { HUDPuzzleNextPuzzle } from "../hud/parts/next_puzzle";
+import { HUDPuzzleCompleteNotification } from "../hud/parts/puzzle_complete_notification";
+import { HUDPuzzlePlayMetadata } from "../hud/parts/puzzle_play_metadata";
+import { HUDPuzzlePlaySettings } from "../hud/parts/puzzle_play_settings";
+import { PuzzleGameMode } from "./puzzle";
 
 const logger = new Logger("puzzle-play");
 
@@ -48,43 +29,32 @@ export class PuzzlePlayGameMode extends PuzzleGameMode {
     constructor(root, { puzzle, nextPuzzles }) {
         super(root);
 
-        /** @type {Array<typeof MetaBuilding>} */
+        /** @type {string[]} */
         let excludedBuildings = [
-            MetaConstantProducerBuilding,
-            MetaGoalAcceptorBuilding,
-            MetaBlockBuilding,
+            BUILDING_IDS.constantProducer,
+            BUILDING_IDS.goalAcceptor,
+            BUILDING_IDS.block,
 
-            MetaStorageBuilding,
-            MetaReaderBuilding,
-            MetaFilterBuilding,
-            MetaDisplayBuilding,
-            MetaLeverBuilding,
-            MetaItemProducerBuilding,
-            MetaMinerBuilding,
+            BUILDING_IDS.storage,
+            BUILDING_IDS.reader,
+            BUILDING_IDS.filter,
+            BUILDING_IDS.display,
+            BUILDING_IDS.lever,
+            BUILDING_IDS.itemProducer,
+            BUILDING_IDS.miner,
 
-            MetaWireBuilding,
-            MetaWireTunnelBuilding,
-            MetaConstantSignalBuilding,
-            MetaLogicGateBuilding,
-            MetaVirtualProcessorBuilding,
-            MetaAnalyzerBuilding,
-            MetaComparatorBuilding,
-            MetaTransistorBuilding,
+            BUILDING_IDS.wire,
+            BUILDING_IDS.wireTunnel,
+            BUILDING_IDS.constantSignal,
+            BUILDING_IDS.logicGate,
+            BUILDING_IDS.virtualProcessor,
+            BUILDING_IDS.analyzer,
+            BUILDING_IDS.comparator,
+            BUILDING_IDS.transistor,
         ];
 
         if (puzzle.game.excludedBuildings) {
-            /**
-             * @type {any}
-             */
-            const puzzleHidden = puzzle.game.excludedBuildings
-                .map(id => {
-                    if (!gMetaBuildingRegistry.hasId(id)) {
-                        return;
-                    }
-                    return gMetaBuildingRegistry.findById(id).constructor;
-                })
-                .filter(x => !!x);
-            excludedBuildings = excludedBuildings.concat(puzzleHidden);
+            excludedBuildings.push(...puzzle.game.excludedBuildings);
         }
 
         this.hiddenBuildings = excludedBuildings;

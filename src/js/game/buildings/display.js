@@ -1,14 +1,15 @@
 import { enumDirection, Vector } from "../../core/vector";
+import { BUILDING_IDS } from "../building_identifiers";
+import { DisplayComponent } from "../components/display";
 import { enumPinSlotType, WiredPinsComponent } from "../components/wired_pins";
 import { Entity } from "../entity";
 import { defaultBuildingVariant, MetaBuilding } from "../meta_building";
 import { GameRoot } from "../root";
-import { DisplayComponent } from "../components/display";
 import { enumHubGoalRewards } from "../tutorial_goals";
 
 export class MetaDisplayBuilding extends MetaBuilding {
     constructor() {
-        super("display");
+        super(BUILDING_IDS.display);
     }
 
     static getAllVariantCombinations() {

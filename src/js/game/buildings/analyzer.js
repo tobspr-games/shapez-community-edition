@@ -1,5 +1,6 @@
 import { generateMatrixRotations } from "../../core/utils";
 import { enumDirection, Vector } from "../../core/vector";
+import { BUILDING_IDS } from "../building_identifiers";
 import { enumLogicGateType, LogicGateComponent } from "../components/logic_gate";
 import { enumPinSlotType, WiredPinsComponent } from "../components/wired_pins";
 import { Entity } from "../entity";
@@ -11,7 +12,7 @@ const overlayMatrix = generateMatrixRotations([1, 1, 0, 1, 1, 1, 0, 1, 0]);
 
 export class MetaAnalyzerBuilding extends MetaBuilding {
     constructor() {
-        super("analyzer");
+        super(BUILDING_IDS.analyzer);
     }
 
     static getAllVariantCombinations() {

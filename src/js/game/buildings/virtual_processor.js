@@ -1,4 +1,5 @@
 import { Vector, enumDirection } from "../../core/vector";
+import { BUILDING_IDS } from "../building_identifiers";
 import { LogicGateComponent, enumLogicGateType } from "../components/logic_gate";
 import { WiredPinsComponent, enumPinSlotType } from "../components/wired_pins";
 import { Entity } from "../entity";
@@ -37,7 +38,7 @@ const colors = {
 
 export class MetaVirtualProcessorBuilding extends MetaBuilding {
     constructor() {
-        super("virtual_processor");
+        super(BUILDING_IDS.virtualProcessor);
     }
 
     static getAllVariantCombinations() {

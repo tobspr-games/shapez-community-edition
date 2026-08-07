@@ -1,7 +1,8 @@
+import { Registry } from "@/core/registry";
+import { BUILDING_IDS } from "@/game/building_identifiers";
 import { makeOffscreenBuffer } from "../../../core/buffer_utils";
 import { globalConfig, THIRDPARTY_URLS } from "../../../core/config";
 import { DrawParameters } from "../../../core/draw_parameters";
-import { gMetaBuildingRegistry } from "../../../core/global_registries";
 import { Loader } from "../../../core/loader";
 import { DialogWithForm } from "../../../core/modal_dialog_elements";
 import { FormElementInput } from "../../../core/modal_dialog_forms";
@@ -17,7 +18,6 @@ import {
 import { Vector } from "../../../core/vector";
 import { T } from "../../../translations";
 import { BaseItem } from "../../base_item";
-import { MetaHubBuilding } from "../../buildings/hub";
 import { enumMouseButton } from "../../camera";
 import { KEYMAPPINGS } from "../../key_action_mapper";
 import { ShapeDefinition } from "../../shape_definition";
@@ -105,7 +105,7 @@ export class HUDWaypoints extends BaseHUDPart {
             label: null,
             center: { x: 0, y: 0 },
             zoomLevel: 3,
-            layer: gMetaBuildingRegistry.findByClass(MetaHubBuilding).getLayer(),
+            layer: Registry.BUILDINGS.get(BUILDING_IDS.hub).getLayer(),
         });
 
         // Create a buffer we can use to measure text

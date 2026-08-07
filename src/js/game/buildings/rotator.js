@@ -1,6 +1,7 @@
 import { formatItemsPerSecond, generateMatrixRotations } from "../../core/utils";
 import { enumDirection, Vector } from "../../core/vector";
 import { T } from "../../translations";
+import { BUILDING_IDS } from "../building_identifiers";
 import { ItemAcceptorComponent } from "../components/item_acceptor";
 import { ItemEjectorComponent } from "../components/item_ejector";
 import { enumItemProcessorTypes, ItemProcessorComponent } from "../components/item_processor";
@@ -20,7 +21,7 @@ const overlayMatrices = {
 
 export class MetaRotatorBuilding extends MetaBuilding {
     constructor() {
-        super("rotator");
+        super(BUILDING_IDS.rotator);
     }
 
     static getAllVariantCombinations() {

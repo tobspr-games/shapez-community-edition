@@ -1,12 +1,12 @@
-import { gMetaBuildingRegistry } from "../../../core/global_registries";
+import { Registry } from "@/core/registry";
+import { BUILDING_IDS } from "@/game/building_identifiers";
 import { Signal, STOP_PROPAGATION } from "../../../core/signal";
 import { TrackedState } from "../../../core/tracked_state";
 import { safeModulo } from "../../../core/utils";
 import { Vector } from "../../../core/vector";
 import { SOUNDS } from "../../../platform/sound";
 import { getBuildingDataFromCode, getCodeFromBuildingData } from "../../building_codes";
-import { MetaHubBuilding } from "../../buildings/hub";
-import { enumMinerVariants, MetaMinerBuilding } from "../../buildings/miner";
+import { enumMinerVariants } from "../../buildings/miner";
 import { enumMouseButton } from "../../camera";
 import { StaticMapEntityComponent } from "../../components/static_map_entity";
 import { Entity } from "../../entity";
@@ -367,7 +367,7 @@ export class HUDBuildingPlacerLogic extends BaseHUDPart {
                 this.root.currentLayer === "regular" &&
                 this.root.gameMode.hasResources()
             ) {
-                this.currentMetaBuilding.set(gMetaBuildingRegistry.findByClass(MetaMinerBuilding));
+                this.currentMetaBuilding.set(Registry.BUILDINGS.get(BUILDING_IDS.miner));
 
                 // Select chained miner if available, since that's always desired once unlocked
                 if (this.root.hubGoals.isRewardUnlocked(enumHubGoalRewards.reward_miner_chainable)) {
@@ -384,13 +384,13 @@ export class HUDBuildingPlacerLogic extends BaseHUDPart {
         const extracted = getBuildingDataFromCode(buildingCode);
 
         // Disable pipetting the hub
-        if (extracted.metaInstance.getId() === gMetaBuildingRegistry.findByClass(MetaHubBuilding).getId()) {
+        if (extracted.metaInstance.getId() === BUILDING_IDS.hub) {
             this.currentMetaBuilding.set(null);
             return;
         }
 
         // Disallow picking excluded buildings
-        if (this.root.gameMode.isBuildingExcluded(extracted.metaClass)) {
+        if (this.root.gameMode.isBuildingExcluded(extracted.metaInstance)) {
             this.currentMetaBuilding.set(null);
             return;
         }

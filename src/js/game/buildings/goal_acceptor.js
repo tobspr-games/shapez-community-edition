@@ -3,6 +3,7 @@ import { Entity } from "../entity";
 /* typehints:end */
 
 import { enumDirection, Vector } from "../../core/vector";
+import { BUILDING_IDS } from "../building_identifiers";
 import { GoalAcceptorComponent } from "../components/goal_acceptor";
 import { ItemAcceptorComponent } from "../components/item_acceptor";
 import { enumItemProcessorTypes, ItemProcessorComponent } from "../components/item_processor";
@@ -10,7 +11,7 @@ import { defaultBuildingVariant, MetaBuilding } from "../meta_building";
 
 export class MetaGoalAcceptorBuilding extends MetaBuilding {
     constructor() {
-        super("goal_acceptor");
+        super(BUILDING_IDS.goalAcceptor);
     }
 
     static getAllVariantCombinations() {

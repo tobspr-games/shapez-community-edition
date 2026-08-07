@@ -2,11 +2,12 @@
 import { Entity } from "../entity";
 /* typehints:end */
 
+import { BUILDING_IDS } from "../building_identifiers";
 import { defaultBuildingVariant, MetaBuilding } from "../meta_building";
 
 export class MetaBlockBuilding extends MetaBuilding {
     constructor() {
-        super("block");
+        super(BUILDING_IDS.block);
     }
 
     static getAllVariantCombinations() {

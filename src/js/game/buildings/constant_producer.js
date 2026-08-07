@@ -3,6 +3,7 @@ import { Entity } from "../entity";
 /* typehints:end */
 
 import { enumDirection, Vector } from "../../core/vector";
+import { BUILDING_IDS } from "../building_identifiers";
 import { ConstantSignalComponent } from "../components/constant_signal";
 import { ItemEjectorComponent } from "../components/item_ejector";
 import { ItemProducerComponent } from "../components/item_producer";
@@ -10,7 +11,7 @@ import { defaultBuildingVariant, MetaBuilding } from "../meta_building";
 
 export class MetaConstantProducerBuilding extends MetaBuilding {
     constructor() {
-        super("constant_producer");
+        super(BUILDING_IDS.constantProducer);
     }
 
     static getAllVariantCombinations() {

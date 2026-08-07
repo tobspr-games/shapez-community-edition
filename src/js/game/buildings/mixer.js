@@ -1,6 +1,7 @@
 import { formatItemsPerSecond } from "../../core/utils";
 import { enumDirection, Vector } from "../../core/vector";
 import { T } from "../../translations";
+import { BUILDING_IDS } from "../building_identifiers";
 import { ItemAcceptorComponent } from "../components/item_acceptor";
 import { ItemEjectorComponent } from "../components/item_ejector";
 import { enumItemProcessorTypes, ItemProcessorComponent } from "../components/item_processor";
@@ -11,7 +12,7 @@ import { enumHubGoalRewards } from "../tutorial_goals";
 
 export class MetaMixerBuilding extends MetaBuilding {
     constructor() {
-        super("mixer");
+        super(BUILDING_IDS.mixer);
     }
 
     static getAllVariantCombinations() {

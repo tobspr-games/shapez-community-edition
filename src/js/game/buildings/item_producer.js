@@ -1,4 +1,5 @@
 import { enumDirection, Vector } from "../../core/vector";
+import { BUILDING_IDS } from "../building_identifiers";
 import { ItemEjectorComponent } from "../components/item_ejector";
 import { ItemProducerComponent } from "../components/item_producer";
 import { enumPinSlotType, WiredPinsComponent } from "../components/wired_pins";
@@ -7,7 +8,7 @@ import { defaultBuildingVariant, MetaBuilding } from "../meta_building";
 
 export class MetaItemProducerBuilding extends MetaBuilding {
     constructor() {
-        super("item_producer");
+        super(BUILDING_IDS.itemProducer);
     }
 
     static getAllVariantCombinations() {

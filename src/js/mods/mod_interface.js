@@ -5,7 +5,8 @@ import { MetaBuilding } from "../game/meta_building";
 import { ModLoader } from "./modloader";
 /* typehints:end */
 
-import { gComponentRegistry, gItemRegistry, gMetaBuildingRegistry } from "../core/global_registries";
+import { Registry } from "@/core/registry";
+import { gComponentRegistry, gItemRegistry } from "../core/global_registries";
 import { Loader } from "../core/loader";
 import { AtlasSprite, SpriteAtlasLink } from "../core/sprites";
 import { Vector } from "../core/vector";
@@ -243,12 +244,11 @@ export class ModInterface {
      * @param {string=} param0.buildingIconBase64
      */
     registerNewBuilding({ metaClass, buildingIconBase64 }) {
-        const id = new /** @type {new (...args) => ModMetaBuilding} */ (metaClass)().getId();
-        if (gMetaBuildingRegistry.hasId(id)) {
-            throw new Error("Tried to register building twice: " + id);
-        }
-        gMetaBuildingRegistry.register(metaClass);
-        const metaInstance = gMetaBuildingRegistry.findByClass(metaClass);
+        const metaInstance = new /** @type {new (...args) => ModMetaBuilding} */ (metaClass)();
+        const id = metaInstance.getId();
+
+        Registry.BUILDINGS.register(metaInstance);
+
         T.buildings[id] = {};
 
         metaClass.getAllVariantCombinations().forEach(combination => {
@@ -258,7 +258,7 @@ export class ModInterface {
             const buildingIdentifier = id + (variant === defaultBuildingVariant ? "" : "-" + variant);
 
             const uniqueTypeId = buildingIdentifier + (rotationVariant === 0 ? "" : "-" + rotationVariant);
-            registerBuildingVariant(uniqueTypeId, metaClass, variant, rotationVariant);
+            registerBuildingVariant(uniqueTypeId, metaInstance, variant, rotationVariant);
 
             gBuildingVariants[id].metaInstance = metaInstance;
 
@@ -423,9 +423,13 @@ export class ModInterface {
         const hudElementName = toolbar === "wires" ? "HUDWiresToolbar" : "HUDBuildingsToolbar";
         const property = location === "secondary" ? "secondaryBuildings" : "primaryBuildings";
 
+        // FIXME: compatibility with singleton buildings
+        const id = new /** @type {new (...args) => MetaBuilding} */ (metaClass)().getId();
+        const building = Registry.BUILDINGS.get(id);
+
         this.modLoader.signals.hudElementInitialized.add(element => {
             if (element.constructor.name === hudElementName) {
-                element[property].push(metaClass);
+                element[property].push(building);
             }
         });
     }
@@ -613,7 +617,11 @@ export class ModInterface {
             });
         }
 
-        const internalId = new metaClass().getId() + "-" + variant;
+        // FIXME: compatibility with singleton building interfaces
+        const buildingId = new metaClass().getId();
+        const metaBuilding = Registry.BUILDINGS.get(buildingId);
+
+        const internalId = buildingId + "-" + variant;
 
         // Extend static methods
         this.extendObject(metaClass, ({ $old }) => ({
@@ -666,9 +674,9 @@ export class ModInterface {
 
         // Register our variant finally, with rotation variants
         payload.rotationVariants.forEach(rotationVariant =>
-            shapez.registerBuildingVariant(
+            registerBuildingVariant(
                 rotationVariant ? internalId + "-" + rotationVariant : internalId,
-                metaClass,
+                metaBuilding,
                 variant,
                 rotationVariant
             )

@@ -1,5 +1,5 @@
+import { Registry } from "@/core/registry";
 import { globalConfig } from "../../core/config";
-import { gMetaBuildingRegistry } from "../../core/global_registries";
 import { Loader } from "../../core/loader";
 import { Logger } from "../../core/logging";
 import { Rectangle } from "../../core/rectangle";
@@ -15,7 +15,8 @@ import {
 } from "../../core/vector";
 import { BaseItem } from "../base_item";
 import { getCodeFromBuildingData } from "../building_codes";
-import { arrayWireRotationVariantToType, MetaWireBuilding } from "../buildings/wire";
+import { BUILDING_IDS } from "../building_identifiers";
+import { arrayWireRotationVariantToType } from "../buildings/wire";
 import { enumWireType, enumWireVariant, WireComponent } from "../components/wire";
 import { WireTunnelComponent } from "../components/wire_tunnel";
 import { enumPinSlotType, WiredPinsComponent } from "../components/wired_pins";
@@ -708,7 +709,7 @@ export class WireSystem extends GameSystem {
      * @param {Rectangle} affectedArea
      */
     updateSurroundingWirePlacement(affectedArea) {
-        const metaWire = gMetaBuildingRegistry.findByClass(MetaWireBuilding);
+        const metaWire = Registry.BUILDINGS.get(BUILDING_IDS.wire);
 
         for (let x = affectedArea.x; x < affectedArea.right(); ++x) {
             for (let y = affectedArea.y; y < affectedArea.bottom(); ++y) {

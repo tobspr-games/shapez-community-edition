@@ -3,6 +3,7 @@ import { formatItemsPerSecond, generateMatrixRotations } from "../../core/utils"
 import { enumAngleToDirection, enumDirection, Vector } from "../../core/vector";
 import { SOUNDS } from "../../platform/sound";
 import { T } from "../../translations";
+import { BUILDING_IDS } from "../building_identifiers";
 import { BeltComponent } from "../components/belt";
 import { Entity } from "../entity";
 import { defaultBuildingVariant, MetaBuilding } from "../meta_building";
@@ -19,7 +20,7 @@ export const beltOverlayMatrices = {
 
 export class MetaBeltBuilding extends MetaBuilding {
     constructor() {
-        super("belt");
+        super(BUILDING_IDS.belt);
     }
 
     static getAllVariantCombinations() {

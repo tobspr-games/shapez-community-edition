@@ -1,6 +1,6 @@
+import { Registry } from "@/core/registry";
 import { globalConfig } from "../../core/config";
 import { DrawParameters } from "../../core/draw_parameters";
-import { gMetaBuildingRegistry } from "../../core/global_registries";
 import { Loader } from "../../core/loader";
 import { Logger } from "../../core/logging";
 import { AtlasSprite } from "../../core/sprites";
@@ -8,7 +8,8 @@ import { fastArrayDeleteValue } from "../../core/utils";
 import { enumDirection, enumDirectionToVector, enumInvertedDirections, Vector } from "../../core/vector";
 import { BeltPath } from "../belt_path";
 import { getCodeFromBuildingData } from "../building_codes";
-import { arrayBeltVariantToRotation, MetaBeltBuilding } from "../buildings/belt";
+import { BUILDING_IDS } from "../building_identifiers";
+import { arrayBeltVariantToRotation } from "../buildings/belt";
 import { BeltComponent } from "../components/belt";
 import { Entity } from "../entity";
 import { GameSystem } from "../game_system";
@@ -123,7 +124,7 @@ export class BeltSystem extends GameSystem {
             return;
         }
 
-        const metaBelt = gMetaBuildingRegistry.findByClass(MetaBeltBuilding);
+        const metaBelt = Registry.BUILDINGS.get(BUILDING_IDS.belt);
         // Compute affected area
         const originalRect = staticComp.getTileSpaceBounds();
         const affectedArea = originalRect.expandedInAllDirections(1);

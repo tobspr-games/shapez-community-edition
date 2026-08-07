@@ -1,10 +1,11 @@
+import { generateMatrixRotations } from "../../core/utils";
 import { enumDirection, Vector } from "../../core/vector";
+import { BUILDING_IDS } from "../building_identifiers";
+import { enumLogicGateType, LogicGateComponent } from "../components/logic_gate";
 import { enumPinSlotType, WiredPinsComponent } from "../components/wired_pins";
 import { Entity } from "../entity";
-import { MetaBuilding, defaultBuildingVariant } from "../meta_building";
+import { defaultBuildingVariant, MetaBuilding } from "../meta_building";
 import { GameRoot } from "../root";
-import { enumLogicGateType, LogicGateComponent } from "../components/logic_gate";
-import { generateMatrixRotations } from "../../core/utils";
 import { enumHubGoalRewards } from "../tutorial_goals";
 
 /** @enum {string} */
@@ -38,7 +39,7 @@ const colors = {
 
 export class MetaLogicGateBuilding extends MetaBuilding {
     constructor() {
-        super("logic_gate");
+        super(BUILDING_IDS.logicGate);
     }
 
     static getAllVariantCombinations() {

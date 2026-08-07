@@ -1,25 +1,26 @@
 import { formatItemsPerSecond } from "../../core/utils";
 import { enumDirection, Vector } from "../../core/vector";
 import { T } from "../../translations";
+import { BUILDING_IDS } from "../building_identifiers";
 import { ItemAcceptorComponent } from "../components/item_acceptor";
 import { ItemEjectorComponent } from "../components/item_ejector";
 import {
+    enumItemProcessorRequirements,
     enumItemProcessorTypes,
     ItemProcessorComponent,
-    enumItemProcessorRequirements,
 } from "../components/item_processor";
+import { enumPinSlotType, WiredPinsComponent } from "../components/wired_pins";
 import { Entity } from "../entity";
 import { defaultBuildingVariant, MetaBuilding } from "../meta_building";
 import { GameRoot } from "../root";
 import { enumHubGoalRewards } from "../tutorial_goals";
-import { WiredPinsComponent, enumPinSlotType } from "../components/wired_pins";
 
 /** @enum {string} */
 export const enumPainterVariants = { mirrored: "mirrored", double: "double", quad: "quad" };
 
 export class MetaPainterBuilding extends MetaBuilding {
     constructor() {
-        super("painter");
+        super(BUILDING_IDS.painter);
     }
 
     static getAllVariantCombinations() {

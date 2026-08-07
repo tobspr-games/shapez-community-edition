@@ -2,6 +2,7 @@ import { Loader } from "../../core/loader";
 import { generateMatrixRotations } from "../../core/utils";
 import { enumDirection, Vector } from "../../core/vector";
 import { SOUNDS } from "../../platform/sound";
+import { BUILDING_IDS } from "../building_identifiers";
 import { enumWireType, enumWireVariant, WireComponent } from "../components/wire";
 import { Entity } from "../entity";
 import { defaultBuildingVariant, MetaBuilding } from "../meta_building";
@@ -34,7 +35,7 @@ const enumWireVariantToVariant = {
 
 export class MetaWireBuilding extends MetaBuilding {
     constructor() {
-        super("wire");
+        super(BUILDING_IDS.wire);
     }
 
     static getAllVariantCombinations() {

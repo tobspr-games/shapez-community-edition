@@ -1,37 +1,25 @@
+import { BUILDING_IDS } from "@/game/building_identifiers";
 import { HUDBaseToolbar } from "./base_toolbar";
-import { MetaWireBuilding } from "../../buildings/wire";
-import { MetaConstantSignalBuilding } from "../../buildings/constant_signal";
-import { MetaLogicGateBuilding } from "../../buildings/logic_gate";
-import { MetaLeverBuilding } from "../../buildings/lever";
-import { MetaWireTunnelBuilding } from "../../buildings/wire_tunnel";
-import { MetaVirtualProcessorBuilding } from "../../buildings/virtual_processor";
-import { MetaTransistorBuilding } from "../../buildings/transistor";
-import { MetaAnalyzerBuilding } from "../../buildings/analyzer";
-import { MetaComparatorBuilding } from "../../buildings/comparator";
-import { MetaReaderBuilding } from "../../buildings/reader";
-import { MetaFilterBuilding } from "../../buildings/filter";
-import { MetaDisplayBuilding } from "../../buildings/display";
-import { MetaStorageBuilding } from "../../buildings/storage";
 
 export class HUDWiresToolbar extends HUDBaseToolbar {
     constructor(root) {
         super(root, {
             primaryBuildings: [
-                MetaWireBuilding,
-                MetaWireTunnelBuilding,
-                MetaConstantSignalBuilding,
-                MetaLogicGateBuilding,
-                MetaVirtualProcessorBuilding,
-                MetaAnalyzerBuilding,
-                MetaComparatorBuilding,
-                MetaTransistorBuilding,
+                BUILDING_IDS.wire,
+                BUILDING_IDS.wireTunnel,
+                BUILDING_IDS.constantSignal,
+                BUILDING_IDS.logicGate,
+                BUILDING_IDS.virtualProcessor,
+                BUILDING_IDS.analyzer,
+                BUILDING_IDS.comparator,
+                BUILDING_IDS.transistor,
             ],
             secondaryBuildings: [
-                MetaStorageBuilding,
-                MetaReaderBuilding,
-                MetaLeverBuilding,
-                MetaFilterBuilding,
-                MetaDisplayBuilding,
+                BUILDING_IDS.storage,
+                BUILDING_IDS.reader,
+                BUILDING_IDS.lever,
+                BUILDING_IDS.filter,
+                BUILDING_IDS.display,
             ],
             visibilityCondition: () =>
                 !this.root.camera.getIsMapOverlayActive() && this.root.currentLayer === "wires",

@@ -5,9 +5,9 @@ import { GameRoot } from "../root";
 import { Rectangle } from "../../core/rectangle";
 import { types } from "../../savegame/serialization";
 import { enumGameModeTypes, GameMode } from "../game_mode";
+import { HUDMassSelector } from "../hud/parts/mass_selector";
 import { HUDPuzzleBackToMenu } from "../hud/parts/puzzle_back_to_menu";
 import { HUDPuzzleDLCLogo } from "../hud/parts/puzzle_dlc_logo";
-import { HUDMassSelector } from "../hud/parts/mass_selector";
 
 export class PuzzleGameMode extends GameMode {
     static getType() {
@@ -36,13 +36,6 @@ export class PuzzleGameMode extends GameMode {
 
         this.zoneWidth = data.zoneWidth || 8;
         this.zoneHeight = data.zoneHeight || 6;
-    }
-
-    /**
-     * @param {typeof import("../meta_building").MetaBuilding} building
-     */
-    isBuildingExcluded(building) {
-        return this.hiddenBuildings.indexOf(building) >= 0;
     }
 
     getSaveData() {

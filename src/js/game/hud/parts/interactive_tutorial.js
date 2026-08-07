@@ -1,14 +1,11 @@
+import { BUILDING_IDS } from "@/game/building_identifiers";
 import { globalConfig } from "../../../core/config";
 import { DrawParameters } from "../../../core/draw_parameters";
-import { gMetaBuildingRegistry } from "../../../core/global_registries";
 import { TrackedState } from "../../../core/tracked_state";
 import { clamp, makeDiv, smoothPulse } from "../../../core/utils";
 import { Vector } from "../../../core/vector";
 import { SOUNDS } from "../../../platform/sound";
 import { T } from "../../../translations";
-import { MetaBeltBuilding } from "../../buildings/belt";
-import { MetaMinerBuilding } from "../../buildings/miner";
-import { MetaTrashBuilding } from "../../buildings/trash";
 import { enumItemProcessorTypes, ItemProcessorComponent } from "../../components/item_processor";
 import { LeverComponent } from "../../components/lever";
 import { MinerComponent } from "../../components/miner";
@@ -225,10 +222,7 @@ export class HUDInteractiveTutorial extends BaseHUDPart {
         const currentBuilding = this.root.hud.parts.buildingPlacer.currentMetaBuilding.get();
 
         if (["1_1_extractor"].includes(this.currentHintId.get())) {
-            if (
-                currentBuilding &&
-                currentBuilding.getId() === gMetaBuildingRegistry.findByClass(MetaMinerBuilding).getId()
-            ) {
+            if (currentBuilding && currentBuilding.getId() === BUILDING_IDS.miner) {
                 // Find closest circle patch to hub
 
                 let closest = null;
@@ -273,10 +267,7 @@ export class HUDInteractiveTutorial extends BaseHUDPart {
         }
 
         if (this.currentHintId.get() === "1_2_conveyor") {
-            if (
-                currentBuilding &&
-                currentBuilding.getId() === gMetaBuildingRegistry.findByClass(MetaBeltBuilding).getId()
-            ) {
+            if (currentBuilding && currentBuilding.getId() === BUILDING_IDS.belt) {
                 // Find closest miner
                 const miners = this.root.entityMgr.getAllWithComponent(MinerComponent);
 
@@ -407,10 +398,7 @@ export class HUDInteractiveTutorial extends BaseHUDPart {
 
         if (this.currentHintId.get() === "2_2_place_trash") {
             // Find cutters
-            if (
-                currentBuilding &&
-                currentBuilding.getId() === gMetaBuildingRegistry.findByClass(MetaTrashBuilding).getId()
-            ) {
+            if (currentBuilding && currentBuilding.getId() === BUILDING_IDS.trash) {
                 const entities = this.root.entityMgr.getAllWithComponent(ItemProcessorComponent);
                 for (let i = 0; i < entities.length; i++) {
                     const entity = entities[i];

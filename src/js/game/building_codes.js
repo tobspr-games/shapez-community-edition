@@ -1,14 +1,11 @@
 /* typehints:start */
-import { MetaBuilding } from "./meta_building";
 import { AtlasSprite } from "../core/sprites";
 import { Vector } from "../core/vector";
+import { MetaBuilding } from "./meta_building";
 /* typehints:end */
-
-import { gMetaBuildingRegistry } from "../core/global_registries";
 
 /**
  * @typedef {{
- *   metaClass: typeof MetaBuilding,
  *   metaInstance?: MetaBuilding,
  *   variant?: string,
  *   rotationVariant?: number,
@@ -36,7 +33,7 @@ const variantsCache = new Map();
 /**
  * Registers a new variant
  * @param {number|string} code
- * @param {typeof MetaBuilding} meta
+ * @param {MetaBuilding} meta
  * @param {string} variant
  * @param {number} rotationVariant
  */
@@ -48,12 +45,11 @@ export function registerBuildingVariant(
 ) {
     assert(!gBuildingVariants[code], "Duplicate id: " + code);
     gBuildingVariants[code] = {
-        metaClass: meta,
-        metaInstance: gMetaBuildingRegistry.findByClass(meta),
+        metaInstance: meta,
         variant,
         rotationVariant,
         // @ts-ignore
-        tileSize: new meta().getDimensions(variant),
+        tileSize: meta.getDimensions(variant),
     };
 }
 

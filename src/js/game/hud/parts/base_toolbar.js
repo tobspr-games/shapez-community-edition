@@ -1,10 +1,8 @@
-import { gMetaBuildingRegistry } from "../../../core/global_registries";
+import { Registry } from "@/core/registry";
+import { BUILDING_IDS } from "@/game/building_identifiers";
 import { Logger } from "../../../core/logging";
 import { STOP_PROPAGATION } from "../../../core/signal";
 import { makeDiv, safeModulo } from "../../../core/utils";
-import { MetaBlockBuilding } from "../../buildings/block";
-import { MetaConstantProducerBuilding } from "../../buildings/constant_producer";
-import { MetaGoalAcceptorBuilding } from "../../buildings/goal_acceptor";
 import { StaticMapEntityComponent } from "../../components/static_map_entity";
 import { KEYMAPPINGS } from "../../key_action_mapper";
 import { MetaBuilding } from "../../meta_building";
@@ -18,8 +16,8 @@ export class HUDBaseToolbar extends BaseHUDPart {
     /**
      * @param {GameRoot} root
      * @param {object} param0
-     * @param {Array<typeof MetaBuilding>} param0.primaryBuildings
-     * @param {Array<typeof MetaBuilding>=} param0.secondaryBuildings
+     * @param {string[]} param0.primaryBuildings
+     * @param {string[]} param0.secondaryBuildings
      * @param {function} param0.visibilityCondition
      * @param {string} param0.htmlElementId
      * @param {Layer=} param0.layer
@@ -56,18 +54,19 @@ export class HUDBaseToolbar extends BaseHUDPart {
     }
 
     /**
-     * @param {Array<typeof MetaBuilding>} buildings
-     * @returns {Array<typeof MetaBuilding>}
+     * @param {string[]} buildingIds
+     * @returns {Array<MetaBuilding>}
      */
-    filterBuildings(buildings) {
+    filterBuildings(buildingIds) {
         const filtered = [];
 
-        for (let i = 0; i < buildings.length; i++) {
-            if (this.root.gameMode.isBuildingExcluded(buildings[i])) {
+        for (const id of buildingIds) {
+            const building = Registry.BUILDINGS.get(id);
+            if (this.root.gameMode.isBuildingExcluded(building)) {
                 continue;
             }
 
-            filtered.push(buildings[i]);
+            filtered.push(building);
         }
 
         return filtered;
@@ -75,7 +74,7 @@ export class HUDBaseToolbar extends BaseHUDPart {
 
     /**
      * Returns all buildings
-     * @returns {Array<typeof MetaBuilding>}
+     * @returns {MetaBuilding[]}
      */
     get allBuildings() {
         return [...this.primaryBuildings, ...this.secondaryBuildings];
@@ -97,7 +96,7 @@ export class HUDBaseToolbar extends BaseHUDPart {
         const allBuildings = this.allBuildings;
 
         for (let i = 0; i < allBuildings.length; ++i) {
-            const metaBuilding = gMetaBuildingRegistry.findByClass(allBuildings[i]);
+            const metaBuilding = allBuildings[i];
 
             let rawBinding = KEYMAPPINGS.buildings[metaBuilding.getId() + "_" + this.layer];
             if (!rawBinding) {
@@ -114,7 +113,7 @@ export class HUDBaseToolbar extends BaseHUDPart {
             }
 
             const itemContainer = makeDiv(
-                this.primaryBuildings.includes(allBuildings[i]) ? rowPrimary : rowSecondary,
+                this.primaryBuildings.includes(metaBuilding) ? rowPrimary : rowSecondary,
                 null,
                 ["building"]
             );
@@ -181,9 +180,8 @@ export class HUDBaseToolbar extends BaseHUDPart {
 
             if (recomputeSecondaryToolbarVisibility && this.secondaryDomAttach) {
                 let anyUnlocked = false;
-                for (let i = 0; i < this.secondaryBuildings.length; ++i) {
-                    const metaClass = gMetaBuildingRegistry.findByClass(this.secondaryBuildings[i]);
-                    if (metaClass.getIsUnlocked(this.root)) {
+                for (const building of this.secondaryBuildings) {
+                    if (building.getIsUnlocked(this.root)) {
                         anyUnlocked = true;
                         break;
                     }
@@ -211,7 +209,7 @@ export class HUDBaseToolbar extends BaseHUDPart {
 
         for (let i = 0; i <= this.primaryBuildings.length; ++i) {
             newIndex = safeModulo(newIndex + direction, this.primaryBuildings.length);
-            const metaBuilding = gMetaBuildingRegistry.findByClass(this.primaryBuildings[newIndex]);
+            const metaBuilding = this.primaryBuildings[newIndex];
             const handle = this.buildingHandles[metaBuilding.id];
             if (!handle.selected && handle.unlocked) {
                 newBuildingFound = true;
@@ -221,8 +219,7 @@ export class HUDBaseToolbar extends BaseHUDPart {
         if (!newBuildingFound) {
             return;
         }
-        const metaBuildingClass = this.primaryBuildings[newIndex];
-        const metaBuilding = gMetaBuildingRegistry.findByClass(metaBuildingClass);
+        const metaBuilding = this.primaryBuildings[newIndex];
         this.selectBuildingForPlacement(metaBuilding);
     }
 
@@ -322,10 +319,10 @@ export class HUDBaseToolbar extends BaseHUDPart {
      */
     inRequiredBuildings(metaBuilding) {
         const requiredBuildings = [
-            gMetaBuildingRegistry.findByClass(MetaConstantProducerBuilding),
-            gMetaBuildingRegistry.findByClass(MetaGoalAcceptorBuilding),
-            gMetaBuildingRegistry.findByClass(MetaBlockBuilding),
+            BUILDING_IDS.goalAcceptor,
+            BUILDING_IDS.constantProducer,
+            BUILDING_IDS.block,
         ];
-        return requiredBuildings.includes(metaBuilding);
+        return requiredBuildings.includes(metaBuilding.getId());
     }
 }

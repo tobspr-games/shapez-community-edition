@@ -1,20 +1,17 @@
 /* typehints:start */
-import { GameRoot } from "../game/root";
 import { PuzzleGameMode } from "../game/modes/puzzle";
+import { GameRoot } from "../game/root";
 /* typehints:end */
-import { StaticMapEntityComponent } from "../game/components/static_map_entity";
-import { ShapeItem } from "../game/items/shape_item";
-import { Vector } from "../core/vector";
-import { MetaConstantProducerBuilding } from "../game/buildings/constant_producer";
-import { defaultBuildingVariant, MetaBuilding } from "../game/meta_building";
-import { gMetaBuildingRegistry } from "../core/global_registries";
-import { MetaGoalAcceptorBuilding } from "../game/buildings/goal_acceptor";
+import { Registry } from "@/core/registry";
+import { BUILDING_IDS } from "@/game/building_identifiers";
 import { Logger } from "../core/logging";
+import { Vector } from "../core/vector";
 import { BaseItem } from "../game/base_item";
 import { enumColors } from "../game/colors";
+import { StaticMapEntityComponent } from "../game/components/static_map_entity";
 import { COLOR_ITEM_SINGLETONS } from "../game/items/color_item";
+import { defaultBuildingVariant } from "../game/meta_building";
 import { ShapeDefinition } from "../game/shape_definition";
-import { MetaBlockBuilding } from "../game/buildings/block";
 
 const logger = new Logger("puzzle-serializer");
 
@@ -65,7 +62,7 @@ export class PuzzleSerializer {
                 continue;
             }
 
-            if (staticComp.getMetaBuilding().id === gMetaBuildingRegistry.findByClass(MetaBlockBuilding).id) {
+            if (staticComp.getMetaBuilding().id === BUILDING_IDS.block) {
                 buildings.push({
                     type: "block",
                     pos: {
@@ -80,7 +77,7 @@ export class PuzzleSerializer {
         const mode = /** @type {PuzzleGameMode} */ (root.gameMode);
 
         const handles = root.hud.parts.buildingsToolbar.buildingHandles;
-        const ids = gMetaBuildingRegistry.getAllIds();
+        const ids = Registry.BUILDINGS.getAllIds();
 
         /** @type {Array<string>} */
         let excludedBuildings = [];
@@ -148,7 +145,7 @@ export class PuzzleSerializer {
 
                     const entity = root.logic.tryPlaceBuilding({
                         origin: new Vector(building.pos.x, building.pos.y),
-                        building: gMetaBuildingRegistry.findByClass(MetaConstantProducerBuilding),
+                        building: Registry.BUILDINGS.get(BUILDING_IDS.constantProducer),
                         originalRotation: building.pos.r,
                         rotation: building.pos.r,
                         rotationVariant: 0,
@@ -169,7 +166,7 @@ export class PuzzleSerializer {
                     }
                     const entity = root.logic.tryPlaceBuilding({
                         origin: new Vector(building.pos.x, building.pos.y),
-                        building: gMetaBuildingRegistry.findByClass(MetaGoalAcceptorBuilding),
+                        building: Registry.BUILDINGS.get(BUILDING_IDS.goalAcceptor),
                         originalRotation: building.pos.r,
                         rotation: building.pos.r,
                         rotationVariant: 0,
@@ -186,7 +183,7 @@ export class PuzzleSerializer {
                 case "block": {
                     const entity = root.logic.tryPlaceBuilding({
                         origin: new Vector(building.pos.x, building.pos.y),
-                        building: gMetaBuildingRegistry.findByClass(MetaBlockBuilding),
+                        building: Registry.BUILDINGS.get(BUILDING_IDS.block),
                         originalRotation: building.pos.r,
                         rotation: building.pos.r,
                         rotationVariant: 0,

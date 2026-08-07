@@ -1,5 +1,4 @@
 import { globalConfig } from "../../../core/config";
-import { gMetaBuildingRegistry } from "../../../core/global_registries";
 import { InputReceiver } from "../../../core/input_receiver";
 import { makeDiv } from "../../../core/utils";
 import { SOUNDS } from "../../../platform/sound";
@@ -89,10 +88,9 @@ export class HUDUnlockNotification extends BaseHUDPart {
         html += "<div class='images'>";
         const gained = enumHubGoalRewardsToContentUnlocked[reward];
         if (gained) {
-            gained.forEach(([metaBuildingClass, variant]) => {
-                const metaBuilding = gMetaBuildingRegistry.findByClass(metaBuildingClass);
+            gained.forEach(([buildingId, variant]) => {
                 html += `<div class="buildingExplanation" data-icon="building_tutorials/${
-                    metaBuilding.getId() + (variant === defaultBuildingVariant ? "" : "-" + variant)
+                    buildingId + (variant === defaultBuildingVariant ? "" : "-" + variant)
                 }.png"></div>`;
             });
         }
