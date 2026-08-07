@@ -6,6 +6,7 @@ import { setGlobalApp } from "./core/globals";
 import { InputDistributor } from "./core/input_distributor";
 import { Loader } from "./core/loader";
 import { Logger } from "./core/logging";
+import { Registry } from "./core/registry";
 import { StateManager } from "./core/state_manager";
 import { TrackedState } from "./core/tracked_state";
 import { getPlatformName, round2Digits, waitNextFrame } from "./core/utils";
@@ -101,6 +102,7 @@ export class Application {
 
         this.registerStates();
         this.registerEventListeners();
+        Registry.freezeAll();
 
         Loader.linkAppAfterBoot(this);
 
