@@ -55,3 +55,7 @@
 - 실제 Fork: https://github.com/Ricotta-Cheese/shapez-CE-industrial-reengineering
 - [첫 Cloud 작업 프롬프트](cloud-first-task.md): M0 환경 검증과 초기 성능 계측 계획.
 - 개인 세이브와 모드 원본은 이 저장소에 포함하지 않는다.
+
+## M0 실행 기록
+
+- [2026-10-10 개발 환경 검증 및 초기 성능 계측 계획](implementation-notes/2026-10-10-m0-environment.md): 실제 lint·타입 검사·standalone 빌드 결과와 미검증 로컬 항목을 구분한 보고서.
