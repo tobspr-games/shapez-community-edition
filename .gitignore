@@ -55,3 +55,9 @@ translations/tmp
 gulp/additional_build_files
 
 electron/dist
+
+# Private gameplay and validation inputs
+local-saves/
+private-fixtures/
+external resources/
+*.shapez-private.bin
