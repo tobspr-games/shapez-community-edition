@@ -1,5 +1,5 @@
-import { resolve } from "path/posix";
 import rspack from "@rspack/core";
+import { resolve } from "node:path/posix";
 import { getAllResourceImages, getRevision, getVersion } from "./buildutils.js";
 import { buildFolder } from "./config.js";
 
@@ -45,6 +45,7 @@ const moduleRules = [
                         transform: {
                             react: {
                                 runtime: "automatic",
+                                development: false,
                                 importSource: "@",
                             },
                         },

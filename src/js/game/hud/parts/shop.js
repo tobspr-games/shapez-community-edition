@@ -138,7 +138,7 @@ export class HUDShop extends BaseHUDPart {
                 if (shape === currentGoalShape) {
                     pinButton.classList.add("isGoal");
                 } else if (this.root.hud.parts.pinnedShapes.isShapePinned(shape)) {
-                    pinButton.classList.add("alreadyPinned");
+                    pinButton.classList.add("pinned");
                 }
 
                 const pinDetector = new ClickDetector(pinButton, {
@@ -149,7 +149,7 @@ export class HUDShop extends BaseHUDPart {
                     if (this.root.hud.parts.pinnedShapes.isShapePinned(shape)) {
                         this.root.hud.signals.shapeUnpinRequested.dispatch(shape);
                         pinButton.classList.add("unpinned");
-                        pinButton.classList.remove("pinned", "alreadyPinned");
+                        pinButton.classList.remove("pinned");
                     } else {
                         this.root.hud.signals.shapePinRequested.dispatch(shapeDef);
                         pinButton.classList.add("pinned");
