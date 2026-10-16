@@ -1,4 +1,4 @@
-/// <reference types="webpack/module" />
+/// <reference types="@rspack/core/module" />
 
 // Globals defined by webpack
 
@@ -65,14 +65,6 @@ declare class TypedTrackedState<T> {
 
 declare type Layer = "regular" | "wires";
 declare type ItemType = "shape" | "color" | "boolean";
-
-declare module "worker-loader?inline=true&fallback=false!*" {
-    class WebpackWorker extends Worker {
-        constructor();
-    }
-
-    export default WebpackWorker;
-}
 
 // JSX type support - https://www.typescriptlang.org/docs/handbook/jsx.html
 // modified from https://stackoverflow.com/a/68238924
