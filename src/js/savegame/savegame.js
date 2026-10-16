@@ -199,7 +199,7 @@ export class Savegame extends ReadWriteProxy {
         const reader = this.getDumpReaderForExternalData(shadowData);
 
         // Validate (not in prod though)
-        if (!G_IS_RELEASE) {
+        if (G_IS_DEV) {
             const validationResult = reader.validate();
             if (!validationResult) {
                 return false;

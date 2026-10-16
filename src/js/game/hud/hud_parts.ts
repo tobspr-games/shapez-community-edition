@@ -1,4 +1,3 @@
-import type { HUDBetaOverlay } from "./parts/beta_overlay.js";
 import type { HUDBlueprintPlacer } from "./parts/blueprint_placer.js";
 import type { HUDBuildingsToolbar } from "./parts/buildings_toolbar.js";
 import type { HUDBuildingPlacer } from "./parts/building_placer.js";
@@ -60,7 +59,6 @@ export interface HudParts {
 
     vignetteOverlay?: HUDVignetteOverlay;
     colorBlindHelper?: HUDColorBlindHelper;
-    betaOverlay?: HUDBetaOverlay;
 
     // Additional Hud Parts
     // Shared
