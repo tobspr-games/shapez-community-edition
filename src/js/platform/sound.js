@@ -1,6 +1,6 @@
-/* typehints:start */
-import { Application } from "../application";
-/* typehints:end */
+/**
+ * @import { Application } from "../application"
+ */
 
 import { Howl, Howler } from "howler";
 import { globalConfig } from "../core/config";

@@ -1,7 +1,7 @@
-/* typehints:start */
-import { GameRoot } from "../game/root";
-import { PuzzleGameMode } from "../game/modes/puzzle";
-/* typehints:end */
+/**
+ * @import { GameRoot } from "../game/root"
+ * @import { PuzzleGameMode } from "../game/modes/puzzle"
+ */
 import { StaticMapEntityComponent } from "../game/components/static_map_entity";
 import { ShapeItem } from "../game/items/shape_item";
 import { Vector } from "../core/vector";

@@ -1,6 +1,6 @@
-/* typehints:start */
-import { Application } from "../application";
-/* typehints:end */
+/**
+ * @import { Application } from "../application"
+ */
 
 import { initSpriteCache } from "../game/meta_building_registry";
 import { MUSIC, SOUNDS } from "../platform/sound";

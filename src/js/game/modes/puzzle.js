@@ -1,6 +1,6 @@
-/* typehints:start */
-import { GameRoot } from "../root";
-/* typehints:end */
+/**
+ * @import { GameRoot } from "../root"
+ */
 
 import { Rectangle } from "../../core/rectangle";
 import { types } from "../../savegame/serialization";

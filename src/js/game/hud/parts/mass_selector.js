@@ -12,10 +12,6 @@ import { THEME } from "../../theme";
 import { enumHubGoalRewards } from "../../tutorial_goals";
 import { BaseHUDPart } from "../base_hud_part";
 
-/* typehints:start */
-// @ts-ignore
-/* typehints:end */
-
 const logger = new Logger("hud/mass_selector");
 
 export class HUDMassSelector extends BaseHUDPart {

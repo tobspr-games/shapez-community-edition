@@ -1,6 +1,6 @@
-/* typehints:start */
-import { Application } from "../application";
-/* typehints:end */
+/**
+ * @import { Application } from "../application"
+ */
 
 import { randomChoice } from "../core/utils";
 import { T } from "../translations";

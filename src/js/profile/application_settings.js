@@ -1,6 +1,6 @@
-/* typehints:start */
-import { Application } from "../application";
-/* typehints:end */
+/**
+ * @import { Application } from "../application"
+ */
 
 import { ExplainedResult } from "../core/explained_result";
 import { Logger } from "../core/logging";

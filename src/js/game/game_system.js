@@ -1,7 +1,7 @@
-/* typehints:start */
-import { GameRoot } from "./root";
-import { DrawParameters } from "../core/draw_parameters";
-/* typehints:end */
+/**
+ * @import { GameRoot } from "./root"
+ * @import { DrawParameters } from "../core/draw_parameters"
+ */
 
 /**
  * A game system processes all entities which match a given schema, usually a list of

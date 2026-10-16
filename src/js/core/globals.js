@@ -1,6 +1,6 @@
-/* typehints:start */
-import { Application } from "../application";
-/* typehints:end */
+/**
+ * @import { Application } from "../application"
+ */
 
 /**
  * Used for the bug reporter, and the click detector which both have no handles to this.

@@ -1,6 +1,6 @@
-/* typehints:start */
-import { Entity } from "../entity";
-/* typehints:end */
+/**
+ * @import { Entity } from "../entity"
+ */
 
 import { defaultBuildingVariant, MetaBuilding } from "../meta_building";
 

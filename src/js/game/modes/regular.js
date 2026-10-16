@@ -1,7 +1,7 @@
-/* typehints:start */
-import { MetaBuilding } from "../meta_building";
-import { GameRoot } from "../root";
-/* typehints:end */
+/**
+ * @import { MetaBuilding } from "../meta_building"
+ * @import { GameRoot } from "../root"
+ */
 
 import { IS_MOBILE } from "../../core/config";
 import { findNiceIntegerValue } from "../../core/utils";

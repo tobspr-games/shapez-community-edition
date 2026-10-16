@@ -1,8 +1,8 @@
-/* typehints:start */
-import { Application } from "../application";
-import { InputReceiver } from "../core/input_receiver";
-import { GameRoot } from "./root";
-/* typehints:end */
+/**
+ * @import { Application } from "../application"
+ * @import { InputReceiver } from "../core/input_receiver"
+ * @import { GameRoot } from "./root"
+ */
 
 import { getStringForKeyCode, KEYCODES, keyToKeyCode } from "@/core/keycodes";
 import { IS_MOBILE } from "../core/config";

@@ -1,6 +1,6 @@
-/* typehints:start */
-import { Application } from "../application";
-/* typehints:end */
+/**
+ * @import { Application } from "../application"
+ */
 
 import { IS_MOBILE } from "../core/config";
 import { Logger } from "../core/logging";

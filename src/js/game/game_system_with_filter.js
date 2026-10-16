@@ -1,7 +1,7 @@
-/* typehints:start */
-import { Component } from "./component";
-import { Entity } from "./entity";
-/* typehints:end */
+/**
+ * @import { Component } from "./component"
+ * @import { Entity } from "./entity"
+ */
 
 import { GameRoot } from "./root";
 import { GameSystem } from "./game_system";

@@ -57,12 +57,6 @@ export class GameHUD {
             settingsMenu: new HUDSettingsMenu(this.root),
             debugInfo: new HUDDebugInfo(this.root),
             dialogs: new HUDModalDialogs(this.root),
-
-            // Typing hints
-            /* typehints:start */
-            /** @type {HUDChangesDebugger} */
-            changesDebugger: null,
-            /* typehints:end */
         };
 
         if (G_IS_DEV) {
