@@ -4,9 +4,9 @@
  */
 
 const { createCanvas, loadImage } = require("canvas");
-const fs = require("fs");
-const path = require("path");
-const { fileURLToPath } = require("url");
+const fs = require("node:fs");
+const path = require("node:path");
+const { fileURLToPath } = require("node:url");
 
 async function run() {
     console.log("Running");

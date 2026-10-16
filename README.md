@@ -77,6 +77,17 @@ and does not intend to provide compatibility for older clients.
     -   `$ARCH` is the target system architecture (`x64` or `arm64`)
 -   The build will be found under `build_output/standalone` as `shapez-...`.
 
+### Building with Docker
+
+You can build without installing Node, Java, or ffmpeg on the host. From the repo root, build the image and run a package task with a volume so output appears in `build_output/` on your machine:
+
+```bash
+docker build -t shapez-ce-builder .
+docker run --rm -v "$(pwd)/build_output:/output" shapez-ce-builder package.standalone.linux-x64
+```
+
+On Apple Silicon add `--platform linux/amd64` to the build command. For other targets use e.g. `package.standalone.win32-x64`. Darwin builds are best done on macOS.
+
 ## Credits
 
 Thanks to [tobspr](https://tobspr.io) for creating this project!

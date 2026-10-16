@@ -1,5 +1,9 @@
 /// <reference lib="WebWorker" />
 
+if (!(typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope)) {
+    throw new Error("webworkers should never be run on the main thread!");
+}
+
 import { encode } from "@msgpack/msgpack";
 
 async function compress(data: unknown): Promise<Uint8Array> {

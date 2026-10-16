@@ -1,0 +1,11 @@
+node_modules
+electron/node_modules
+build_output
+build
+gulp/res_built
+src/js/built-temp
+gulp/runnable-texturepacker.jar
+.vscode
+.zed
+*.log
+.env
